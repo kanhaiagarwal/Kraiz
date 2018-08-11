@@ -11,8 +11,40 @@
 		B51DF1F1211F1248009896CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF1F0211F1248009896CC /* ViewController.swift */; };
 		B51DF1F4211F1248009896CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51DF1F2211F1248009896CC /* Main.storyboard */; };
 		B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B51DF1F5211F1248009896CC /* Kraiz.xcdatamodeld */; };
-		B51DF1F9211F1248009896CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B51DF1F8211F1248009896CC /* Assets.xcassets */; };
 		B51DF1FC211F1248009896CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51DF1FA211F1248009896CC /* LaunchScreen.storyboard */; };
+		B51DF21B211F13B9009896CC /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B51DF203211F13B6009896CC /* AppIcon.png */; };
+		B51DF21D211F13B9009896CC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF205211F13B6009896CC /* ProfileViewController.swift */; };
+		B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF206211F13B6009896CC /* AboutUsViewController.swift */; };
+		B51DF21F211F13B9009896CC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF207211F13B7009896CC /* SignInViewController.swift */; };
+		B51DF220211F13B9009896CC /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF208211F13B7009896CC /* ContactUsViewController.swift */; };
+		B51DF221211F13B9009896CC /* CreateStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF209211F13B7009896CC /* CreateStoryViewController.swift */; };
+		B51DF222211F13B9009896CC /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20A211F13B7009896CC /* HamburgerViewController.swift */; };
+		B51DF223211F13B9009896CC /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B51DF20B211F13B7009896CC /* avatar.jpg */; };
+		B51DF224211F13B9009896CC /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20C211F13B7009896CC /* HomeTabBarController.swift */; };
+		B51DF226211F13B9009896CC /* LetterInputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */; };
+		B51DF227211F13B9009896CC /* LetterInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20F211F13B7009896CC /* LetterInputViewController.swift */; };
+		B51DF228211F13B9009896CC /* SignUpOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */; };
+		B51DF229211F13B9009896CC /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF211211F13B8009896CC /* StartViewController.swift */; };
+		B51DF22B211F13B9009896CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B51DF213211F13B8009896CC /* Assets.xcassets */; };
+		B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF214211F13B8009896CC /* DraftsViewController.swift */; };
+		B51DF22E211F13B9009896CC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF216211F13B8009896CC /* SignUpViewController.swift */; };
+		B51DF22F211F13B9009896CC /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */; };
+		B51DF231211F13B9009896CC /* VibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF219211F13B9009896CC /* VibesViewController.swift */; };
+		B51DF232211F13B9009896CC /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */; };
+		B51DF24A211F16AA009896CC /* DeviceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF249211F16AA009896CC /* DeviceConstants.swift */; };
+		B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51DF238211F15E3009896CC /* DraftsTableViewCell.xib */; };
+		B51DF24E211F174A009896CC /* HamburgerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23A211F15E3009896CC /* HamburgerTableViewCell.xib */; };
+		B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23C211F15E3009896CC /* ProfileTableViewCell.xib */; };
+		B51DF250211F1783009896CC /* VibesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23E211F15E3009896CC /* VibesTableViewCell.xib */; };
+		B51DF251211F1787009896CC /* ContactUsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51DF236211F15E3009896CC /* ContactUsTableViewCell.xib */; };
+		B51DF252211F17DA009896CC /* DraftsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF237211F15E3009896CC /* DraftsTableViewCell.swift */; };
+		B51DF253211F17E0009896CC /* ContactUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF235211F15E3009896CC /* ContactUsTableViewCell.swift */; };
+		B51DF254211F17E3009896CC /* HamburgerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF239211F15E3009896CC /* HamburgerTableViewCell.swift */; };
+		B51DF255211F17E6009896CC /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF23B211F15E3009896CC /* ProfileTableViewCell.swift */; };
+		B51DF256211F17EC009896CC /* VibesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF23D211F15E3009896CC /* VibesTableViewCell.swift */; };
+		B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B51DF241211F15FF009896CC /* monotype-corsiva.ttf */; };
+		B51DF258211F1AA8009896CC /* frenchscriptmt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B51DF240211F15FD009896CC /* frenchscriptmt.ttf */; };
+		B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23F211F15FB009896CC /* FREESCPT.TTF */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,9 +53,41 @@
 		B51DF1F0211F1248009896CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B51DF1F3211F1248009896CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B51DF1F6211F1248009896CC /* Kraiz.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kraiz.xcdatamodel; sourceTree = "<group>"; };
-		B51DF1F8211F1248009896CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B51DF1FB211F1248009896CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B51DF1FD211F1248009896CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B51DF203211F13B6009896CC /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
+		B51DF205211F13B6009896CC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B51DF206211F13B6009896CC /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		B51DF207211F13B7009896CC /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		B51DF208211F13B7009896CC /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		B51DF209211F13B7009896CC /* CreateStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStoryViewController.swift; sourceTree = "<group>"; };
+		B51DF20A211F13B7009896CC /* HamburgerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
+		B51DF20B211F13B7009896CC /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
+		B51DF20C211F13B7009896CC /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterInputCollectionViewCell.swift; sourceTree = "<group>"; };
+		B51DF20F211F13B7009896CC /* LetterInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterInputViewController.swift; sourceTree = "<group>"; };
+		B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpOTPViewController.swift; sourceTree = "<group>"; };
+		B51DF211211F13B8009896CC /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		B51DF213211F13B8009896CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../StoryFi/StoryFi/Assets.xcassets; sourceTree = "<group>"; };
+		B51DF214211F13B8009896CC /* DraftsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraftsViewController.swift; sourceTree = "<group>"; };
+		B51DF216211F13B8009896CC /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
+		B51DF219211F13B9009896CC /* VibesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VibesViewController.swift; sourceTree = "<group>"; };
+		B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		B51DF235211F15E3009896CC /* ContactUsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsTableViewCell.swift; sourceTree = "<group>"; };
+		B51DF236211F15E3009896CC /* ContactUsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactUsTableViewCell.xib; sourceTree = "<group>"; };
+		B51DF237211F15E3009896CC /* DraftsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftsTableViewCell.swift; sourceTree = "<group>"; };
+		B51DF238211F15E3009896CC /* DraftsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DraftsTableViewCell.xib; sourceTree = "<group>"; };
+		B51DF239211F15E3009896CC /* HamburgerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerTableViewCell.swift; sourceTree = "<group>"; };
+		B51DF23A211F15E3009896CC /* HamburgerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HamburgerTableViewCell.xib; sourceTree = "<group>"; };
+		B51DF23B211F15E3009896CC /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		B51DF23C211F15E3009896CC /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
+		B51DF23D211F15E3009896CC /* VibesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibesTableViewCell.swift; sourceTree = "<group>"; };
+		B51DF23E211F15E3009896CC /* VibesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VibesTableViewCell.xib; sourceTree = "<group>"; };
+		B51DF23F211F15FB009896CC /* FREESCPT.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FREESCPT.TTF; sourceTree = "<group>"; };
+		B51DF240211F15FD009896CC /* frenchscriptmt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = frenchscriptmt.ttf; sourceTree = "<group>"; };
+		B51DF241211F15FF009896CC /* monotype-corsiva.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "monotype-corsiva.ttf"; sourceTree = "<group>"; };
+		B51DF249211F16AA009896CC /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +120,89 @@
 		B51DF1ED211F1248009896CC /* Kraiz */ = {
 			isa = PBXGroup;
 			children = (
+				B51DF24C211F16E4009896CC /* Controller */,
+				B51DF24B211F16BC009896CC /* Constants */,
+				B51DF242211F1608009896CC /* Fonts */,
+				B51DF233211F15D4009896CC /* View */,
+				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
+				B51DF203211F13B6009896CC /* AppIcon.png */,
+				B51DF213211F13B8009896CC /* Assets.xcassets */,
+				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
+				B51DF20B211F13B7009896CC /* avatar.jpg */,
+				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
+				B51DF209211F13B7009896CC /* CreateStoryViewController.swift */,
+				B51DF214211F13B8009896CC /* DraftsViewController.swift */,
+				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
+				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
+				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
+				B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */,
+				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
+				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
+				B51DF207211F13B7009896CC /* SignInViewController.swift */,
+				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
+				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
+				B51DF211211F13B8009896CC /* StartViewController.swift */,
+				B51DF219211F13B9009896CC /* VibesViewController.swift */,
 				B51DF1EE211F1248009896CC /* AppDelegate.swift */,
 				B51DF1F0211F1248009896CC /* ViewController.swift */,
 				B51DF1F2211F1248009896CC /* Main.storyboard */,
-				B51DF1F8211F1248009896CC /* Assets.xcassets */,
 				B51DF1FA211F1248009896CC /* LaunchScreen.storyboard */,
 				B51DF1FD211F1248009896CC /* Info.plist */,
 				B51DF1F5211F1248009896CC /* Kraiz.xcdatamodeld */,
 			);
 			path = Kraiz;
+			sourceTree = "<group>";
+		};
+		B51DF233211F15D4009896CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B51DF234211F15E3009896CC /* TableViewCells */,
+			);
+			name = View;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		B51DF234211F15E3009896CC /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				B51DF235211F15E3009896CC /* ContactUsTableViewCell.swift */,
+				B51DF236211F15E3009896CC /* ContactUsTableViewCell.xib */,
+				B51DF237211F15E3009896CC /* DraftsTableViewCell.swift */,
+				B51DF238211F15E3009896CC /* DraftsTableViewCell.xib */,
+				B51DF239211F15E3009896CC /* HamburgerTableViewCell.swift */,
+				B51DF23A211F15E3009896CC /* HamburgerTableViewCell.xib */,
+				B51DF23B211F15E3009896CC /* ProfileTableViewCell.swift */,
+				B51DF23C211F15E3009896CC /* ProfileTableViewCell.xib */,
+				B51DF23D211F15E3009896CC /* VibesTableViewCell.swift */,
+				B51DF23E211F15E3009896CC /* VibesTableViewCell.xib */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		B51DF242211F1608009896CC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B51DF241211F15FF009896CC /* monotype-corsiva.ttf */,
+				B51DF240211F15FD009896CC /* frenchscriptmt.ttf */,
+				B51DF23F211F15FB009896CC /* FREESCPT.TTF */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B51DF24B211F16BC009896CC /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				B51DF249211F16AA009896CC /* DeviceConstants.swift */,
+			);
+			name = Constants;
+			path = Constnats;
+			sourceTree = "<group>";
+		};
+		B51DF24C211F16E4009896CC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,9 +264,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B51DF21B211F13B9009896CC /* AppIcon.png in Resources */,
+				B51DF24E211F174A009896CC /* HamburgerTableViewCell.xib in Resources */,
+				B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */,
 				B51DF1FC211F1248009896CC /* LaunchScreen.storyboard in Resources */,
-				B51DF1F9211F1248009896CC /* Assets.xcassets in Resources */,
+				B51DF223211F13B9009896CC /* avatar.jpg in Resources */,
+				B51DF250211F1783009896CC /* VibesTableViewCell.xib in Resources */,
+				B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */,
+				B51DF258211F1AA8009896CC /* frenchscriptmt.ttf in Resources */,
+				B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */,
+				B51DF251211F1787009896CC /* ContactUsTableViewCell.xib in Resources */,
+				B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
+				B51DF22B211F13B9009896CC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,9 +287,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B51DF222211F13B9009896CC /* HamburgerViewController.swift in Sources */,
+				B51DF229211F13B9009896CC /* StartViewController.swift in Sources */,
+				B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */,
+				B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */,
 				B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */,
+				B51DF231211F13B9009896CC /* VibesViewController.swift in Sources */,
+				B51DF220211F13B9009896CC /* ContactUsViewController.swift in Sources */,
+				B51DF254211F17E3009896CC /* HamburgerTableViewCell.swift in Sources */,
+				B51DF224211F13B9009896CC /* HomeTabBarController.swift in Sources */,
+				B51DF22E211F13B9009896CC /* SignUpViewController.swift in Sources */,
 				B51DF1F1211F1248009896CC /* ViewController.swift in Sources */,
+				B51DF256211F17EC009896CC /* VibesTableViewCell.swift in Sources */,
+				B51DF226211F13B9009896CC /* LetterInputCollectionViewCell.swift in Sources */,
+				B51DF253211F17E0009896CC /* ContactUsTableViewCell.swift in Sources */,
 				B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */,
+				B51DF21D211F13B9009896CC /* ProfileViewController.swift in Sources */,
+				B51DF252211F17DA009896CC /* DraftsTableViewCell.swift in Sources */,
+				B51DF227211F13B9009896CC /* LetterInputViewController.swift in Sources */,
+				B51DF22F211F13B9009896CC /* AudioRecorderViewController.swift in Sources */,
+				B51DF24A211F16AA009896CC /* DeviceConstants.swift in Sources */,
+				B51DF232211F13B9009896CC /* ForgotPasswordViewController.swift in Sources */,
+				B51DF228211F13B9009896CC /* SignUpOTPViewController.swift in Sources */,
+				B51DF221211F13B9009896CC /* CreateStoryViewController.swift in Sources */,
+				B51DF255211F17E6009896CC /* ProfileTableViewCell.swift in Sources */,
+				B51DF21F211F13B9009896CC /* SignInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
