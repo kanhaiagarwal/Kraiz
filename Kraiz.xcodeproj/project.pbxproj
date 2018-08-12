@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF1EE211F1248009896CC /* AppDelegate.swift */; };
-		B51DF1F1211F1248009896CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF1F0211F1248009896CC /* ViewController.swift */; };
 		B51DF1F4211F1248009896CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51DF1F2211F1248009896CC /* Main.storyboard */; };
 		B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B51DF1F5211F1248009896CC /* Kraiz.xcdatamodeld */; };
 		B51DF1FC211F1248009896CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51DF1FA211F1248009896CC /* LaunchScreen.storyboard */; };
@@ -45,12 +44,15 @@
 		B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B51DF241211F15FF009896CC /* monotype-corsiva.ttf */; };
 		B51DF258211F1AA8009896CC /* frenchscriptmt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B51DF240211F15FD009896CC /* frenchscriptmt.ttf */; };
 		B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23F211F15FB009896CC /* FREESCPT.TTF */; };
+		B5B74C19211F57C900E2A396 /* Kraiz.app in Resources */ = {isa = PBXBuildFile; fileRef = B51DF1EB211F1248009896CC /* Kraiz.app */; };
+		C7E25CAAD6566B37AC6926A8 /* Pods_Kraiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24DDAF27796E7272B44F72B /* Pods_Kraiz.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.release.xcconfig"; sourceTree = "<group>"; };
+		AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.debug.xcconfig"; sourceTree = "<group>"; };
 		B51DF1EB211F1248009896CC /* Kraiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kraiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B51DF1EE211F1248009896CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B51DF1F0211F1248009896CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B51DF1F3211F1248009896CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B51DF1F6211F1248009896CC /* Kraiz.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kraiz.xcdatamodel; sourceTree = "<group>"; };
 		B51DF1FB211F1248009896CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		B51DF240211F15FD009896CC /* frenchscriptmt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = frenchscriptmt.ttf; sourceTree = "<group>"; };
 		B51DF241211F15FF009896CC /* monotype-corsiva.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "monotype-corsiva.ttf"; sourceTree = "<group>"; };
 		B51DF249211F16AA009896CC /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
+		D24DDAF27796E7272B44F72B /* Pods_Kraiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kraiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,17 +98,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7E25CAAD6566B37AC6926A8 /* Pods_Kraiz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B57BC13AFD4177F18214DF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D24DDAF27796E7272B44F72B /* Pods_Kraiz.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ABAC6EE6BE42A34431A5E1C4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */,
+				77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B51DF1E2211F1248009896CC = {
 			isa = PBXGroup;
 			children = (
 				B51DF1ED211F1248009896CC /* Kraiz */,
 				B51DF1EC211F1248009896CC /* Products */,
+				ABAC6EE6BE42A34431A5E1C4 /* Pods */,
+				9B57BC13AFD4177F18214DF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,24 +150,8 @@
 				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
 				B51DF203211F13B6009896CC /* AppIcon.png */,
 				B51DF213211F13B8009896CC /* Assets.xcassets */,
-				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
 				B51DF20B211F13B7009896CC /* avatar.jpg */,
-				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
-				B51DF209211F13B7009896CC /* CreateStoryViewController.swift */,
-				B51DF214211F13B8009896CC /* DraftsViewController.swift */,
-				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
-				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
-				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
-				B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */,
-				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
-				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
-				B51DF207211F13B7009896CC /* SignInViewController.swift */,
-				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
-				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
-				B51DF211211F13B8009896CC /* StartViewController.swift */,
-				B51DF219211F13B9009896CC /* VibesViewController.swift */,
 				B51DF1EE211F1248009896CC /* AppDelegate.swift */,
-				B51DF1F0211F1248009896CC /* ViewController.swift */,
 				B51DF1F2211F1248009896CC /* Main.storyboard */,
 				B51DF1FA211F1248009896CC /* LaunchScreen.storyboard */,
 				B51DF1FD211F1248009896CC /* Info.plist */,
@@ -201,6 +208,21 @@
 		B51DF24C211F16E4009896CC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
+				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
+				B51DF209211F13B7009896CC /* CreateStoryViewController.swift */,
+				B51DF214211F13B8009896CC /* DraftsViewController.swift */,
+				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
+				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
+				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
+				B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */,
+				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
+				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
+				B51DF207211F13B7009896CC /* SignInViewController.swift */,
+				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
+				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
+				B51DF211211F13B8009896CC /* StartViewController.swift */,
+				B51DF219211F13B9009896CC /* VibesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -212,9 +234,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B51DF200211F1248009896CC /* Build configuration list for PBXNativeTarget "Kraiz" */;
 			buildPhases = (
+				28087701D6E240F8FD999EE2 /* [CP] Check Pods Manifest.lock */,
 				B51DF1E7211F1248009896CC /* Sources */,
 				B51DF1E8211F1248009896CC /* Frameworks */,
 				B51DF1E9211F1248009896CC /* Resources */,
+				3C57ED9B4747591F8C37E197 /* [CP] Embed Pods Frameworks */,
+				7884EDF24D6BAFE33BB86674 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -275,12 +300,67 @@
 				B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */,
 				B51DF251211F1787009896CC /* ContactUsTableViewCell.xib in Resources */,
 				B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */,
+				B5B74C19211F57C900E2A396 /* Kraiz.app in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				B51DF22B211F13B9009896CC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		28087701D6E240F8FD999EE2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kraiz-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3C57ED9B4747591F8C37E197 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7884EDF24D6BAFE33BB86674 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B51DF1E7211F1248009896CC /* Sources */ = {
@@ -297,7 +377,6 @@
 				B51DF254211F17E3009896CC /* HamburgerTableViewCell.swift in Sources */,
 				B51DF224211F13B9009896CC /* HomeTabBarController.swift in Sources */,
 				B51DF22E211F13B9009896CC /* SignUpViewController.swift in Sources */,
-				B51DF1F1211F1248009896CC /* ViewController.swift in Sources */,
 				B51DF256211F17EC009896CC /* VibesTableViewCell.swift in Sources */,
 				B51DF226211F13B9009896CC /* LetterInputCollectionViewCell.swift in Sources */,
 				B51DF253211F17E0009896CC /* ContactUsTableViewCell.swift in Sources */,
@@ -446,6 +525,7 @@
 		};
 		B51DF201211F1248009896CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -461,6 +541,7 @@
 		};
 		B51DF202211F1248009896CC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
