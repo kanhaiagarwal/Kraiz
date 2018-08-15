@@ -214,7 +214,7 @@
 				B51DF249211F16AA009896CC /* DeviceConstants.swift */,
 			);
 			name = Constants;
-			path = Constnats;
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		B51DF24C211F16E4009896CC /* Controller */ = {
