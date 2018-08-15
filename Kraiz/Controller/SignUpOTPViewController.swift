@@ -5,6 +5,7 @@
 //  Created by Kumar Agarwal, Kanhai on 30/06/18.
 //  Copyright © 2018 Kumar Agarwal, Kanhai. All rights reserved.
 //
+//  Class for the OTP View for Sign Up.
 
 import UIKit
 

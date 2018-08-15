@@ -6,6 +6,7 @@
 //  Created by Kumar Agarwal, Kanhai on 07/07/18.
 //  Copyright © 2018 Kumar Agarwal, Kanhai. All rights reserved.
 //
+// Class to show the user profile.
 
 import UIKit
 

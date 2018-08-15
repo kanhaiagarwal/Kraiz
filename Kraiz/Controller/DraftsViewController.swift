@@ -5,6 +5,7 @@
 //  Created by Kumar Agarwal, Kanhai on 02/07/18.
 //  Copyright © 2018 Kumar Agarwal, Kanhai. All rights reserved.
 //
+// Class to show all the Drafts for the user.
 
 import UIKit
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */; };
 		B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF1EE211F1248009896CC /* AppDelegate.swift */; };
 		B51DF1F4211F1248009896CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51DF1F2211F1248009896CC /* Main.storyboard */; };
 		B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B51DF1F5211F1248009896CC /* Kraiz.xcdatamodeld */; };
@@ -16,7 +17,7 @@
 		B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF206211F13B6009896CC /* AboutUsViewController.swift */; };
 		B51DF21F211F13B9009896CC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF207211F13B7009896CC /* SignInViewController.swift */; };
 		B51DF220211F13B9009896CC /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF208211F13B7009896CC /* ContactUsViewController.swift */; };
-		B51DF221211F13B9009896CC /* CreateStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF209211F13B7009896CC /* CreateStoryViewController.swift */; };
+		B51DF221211F13B9009896CC /* CreateVibeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF209211F13B7009896CC /* CreateVibeViewController.swift */; };
 		B51DF222211F13B9009896CC /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20A211F13B7009896CC /* HamburgerViewController.swift */; };
 		B51DF223211F13B9009896CC /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B51DF20B211F13B7009896CC /* avatar.jpg */; };
 		B51DF224211F13B9009896CC /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20C211F13B7009896CC /* HomeTabBarController.swift */; };
@@ -44,13 +45,18 @@
 		B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B51DF241211F15FF009896CC /* monotype-corsiva.ttf */; };
 		B51DF258211F1AA8009896CC /* frenchscriptmt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B51DF240211F15FD009896CC /* frenchscriptmt.ttf */; };
 		B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23F211F15FB009896CC /* FREESCPT.TTF */; };
-		B5B74C19211F57C900E2A396 /* Kraiz.app in Resources */ = {isa = PBXBuildFile; fileRef = B51DF1EB211F1248009896CC /* Kraiz.app */; };
+		B54073012120150400122FD0 /* PhotoInputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54073002120150400122FD0 /* PhotoInputCollectionViewCell.swift */; };
+		B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54073022120188F00122FD0 /* PhotosInputViewController.swift */; };
+		B5523B852120BFDF00CAC7BF /* ImageTextCombinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5523B832120BFDF00CAC7BF /* ImageTextCombinationViewController.swift */; };
+		B5523B862120BFDF00CAC7BF /* ImageTextCombinationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */; };
+		B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */; };
 		C7E25CAAD6566B37AC6926A8 /* Pods_Kraiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24DDAF27796E7272B44F72B /* Pods_Kraiz.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.release.xcconfig"; sourceTree = "<group>"; };
 		AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.debug.xcconfig"; sourceTree = "<group>"; };
+		B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPageViewController.swift; sourceTree = "<group>"; };
 		B51DF1EB211F1248009896CC /* Kraiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kraiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B51DF1EE211F1248009896CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B51DF1F3211F1248009896CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,7 +68,7 @@
 		B51DF206211F13B6009896CC /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		B51DF207211F13B7009896CC /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B51DF208211F13B7009896CC /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
-		B51DF209211F13B7009896CC /* CreateStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStoryViewController.swift; sourceTree = "<group>"; };
+		B51DF209211F13B7009896CC /* CreateVibeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVibeViewController.swift; sourceTree = "<group>"; };
 		B51DF20A211F13B7009896CC /* HamburgerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
 		B51DF20B211F13B7009896CC /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
 		B51DF20C211F13B7009896CC /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
@@ -90,6 +96,11 @@
 		B51DF240211F15FD009896CC /* frenchscriptmt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = frenchscriptmt.ttf; sourceTree = "<group>"; };
 		B51DF241211F15FF009896CC /* monotype-corsiva.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "monotype-corsiva.ttf"; sourceTree = "<group>"; };
 		B51DF249211F16AA009896CC /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
+		B54073002120150400122FD0 /* PhotoInputCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInputCollectionViewCell.swift; sourceTree = "<group>"; };
+		B54073022120188F00122FD0 /* PhotosInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosInputViewController.swift; sourceTree = "<group>"; };
+		B5523B832120BFDF00CAC7BF /* ImageTextCombinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCombinationViewController.swift; sourceTree = "<group>"; };
+		B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTextCombinationViewController.xib; sourceTree = "<group>"; };
+		B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllImagesTextViewController.swift; sourceTree = "<group>"; };
 		D24DDAF27796E7272B44F72B /* Pods_Kraiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kraiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -147,7 +158,6 @@
 				B51DF24B211F16BC009896CC /* Constants */,
 				B51DF242211F1608009896CC /* Fonts */,
 				B51DF233211F15D4009896CC /* View */,
-				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
 				B51DF203211F13B6009896CC /* AppIcon.png */,
 				B51DF213211F13B8009896CC /* Assets.xcassets */,
 				B51DF20B211F13B7009896CC /* avatar.jpg */,
@@ -163,10 +173,12 @@
 		B51DF233211F15D4009896CC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B54072FF212014E100122FD0 /* CollectionViewCells */,
 				B51DF234211F15E3009896CC /* TableViewCells */,
+				B5523B832120BFDF00CAC7BF /* ImageTextCombinationViewController.swift */,
+				B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */,
 			);
-			name = View;
-			path = "New Group";
+			path = View;
 			sourceTree = "<group>";
 		};
 		B51DF234211F15E3009896CC /* TableViewCells */ = {
@@ -209,13 +221,13 @@
 			isa = PBXGroup;
 			children = (
 				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
+				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
 				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
-				B51DF209211F13B7009896CC /* CreateStoryViewController.swift */,
+				B51DF209211F13B7009896CC /* CreateVibeViewController.swift */,
 				B51DF214211F13B8009896CC /* DraftsViewController.swift */,
 				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
 				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
 				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
-				B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */,
 				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
 				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
 				B51DF207211F13B7009896CC /* SignInViewController.swift */,
@@ -223,8 +235,20 @@
 				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
 				B51DF211211F13B8009896CC /* StartViewController.swift */,
 				B51DF219211F13B9009896CC /* VibesViewController.swift */,
+				B54073022120188F00122FD0 /* PhotosInputViewController.swift */,
+				B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */,
+				B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		B54072FF212014E100122FD0 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */,
+				B54073002120150400122FD0 /* PhotoInputCollectionViewCell.swift */,
+			);
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,9 +324,9 @@
 				B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */,
 				B51DF251211F1787009896CC /* ContactUsTableViewCell.xib in Resources */,
 				B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */,
-				B5B74C19211F57C900E2A396 /* Kraiz.app in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				B51DF22B211F13B9009896CC /* Assets.xcassets in Resources */,
+				B5523B862120BFDF00CAC7BF /* ImageTextCombinationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,11 +358,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSGridCollectionViewLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageViewModeScaleAspect.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -369,10 +399,13 @@
 			files = (
 				B51DF222211F13B9009896CC /* HamburgerViewController.swift in Sources */,
 				B51DF229211F13B9009896CC /* StartViewController.swift in Sources */,
+				B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */,
 				B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */,
+				B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */,
 				B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */,
 				B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */,
 				B51DF231211F13B9009896CC /* VibesViewController.swift in Sources */,
+				B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */,
 				B51DF220211F13B9009896CC /* ContactUsViewController.swift in Sources */,
 				B51DF254211F17E3009896CC /* HamburgerTableViewCell.swift in Sources */,
 				B51DF224211F13B9009896CC /* HomeTabBarController.swift in Sources */,
@@ -380,7 +413,9 @@
 				B51DF256211F17EC009896CC /* VibesTableViewCell.swift in Sources */,
 				B51DF226211F13B9009896CC /* LetterInputCollectionViewCell.swift in Sources */,
 				B51DF253211F17E0009896CC /* ContactUsTableViewCell.swift in Sources */,
+				B54073012120150400122FD0 /* PhotoInputCollectionViewCell.swift in Sources */,
 				B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */,
+				B5523B852120BFDF00CAC7BF /* ImageTextCombinationViewController.swift in Sources */,
 				B51DF21D211F13B9009896CC /* ProfileViewController.swift in Sources */,
 				B51DF252211F17DA009896CC /* DraftsTableViewCell.swift in Sources */,
 				B51DF227211F13B9009896CC /* LetterInputViewController.swift in Sources */,
@@ -388,7 +423,7 @@
 				B51DF24A211F16AA009896CC /* DeviceConstants.swift in Sources */,
 				B51DF232211F13B9009896CC /* ForgotPasswordViewController.swift in Sources */,
 				B51DF228211F13B9009896CC /* SignUpOTPViewController.swift in Sources */,
-				B51DF221211F13B9009896CC /* CreateStoryViewController.swift in Sources */,
+				B51DF221211F13B9009896CC /* CreateVibeViewController.swift in Sources */,
 				B51DF255211F17E6009896CC /* ProfileTableViewCell.swift in Sources */,
 				B51DF21F211F13B9009896CC /* SignInViewController.swift in Sources */,
 			);

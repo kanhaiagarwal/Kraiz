@@ -5,6 +5,7 @@
 //  Created by Kumar Agarwal, Kanhai on 13/06/18.
 //  Copyright © 2018 Kumar Agarwal, Kanhai. All rights reserved.
 //
+//  Class for the Sign Up View.
 
 import UIKit
 

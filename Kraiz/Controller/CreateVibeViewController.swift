@@ -5,18 +5,19 @@
 //  Created by Kumar Agarwal, Kanhai on 08/07/18.
 //  Copyright © 2018 Kumar Agarwal, Kanhai. All rights reserved.
 //
+// Class corresponding to the Create Story View.
 
 import UIKit
 import AVFoundation
+import BSImagePicker
+import Photos
 
-class CreateStoryViewController: UIViewController {
+class CreateVibeViewController: UIViewController {
     
     @IBOutlet weak var audioView: UIView!
     @IBOutlet weak var videoView: UIView!
     @IBOutlet weak var imagesView: UIView!
     @IBOutlet weak var letterView: UIView!
-    @IBOutlet weak var appreciationView: UIView!
-    @IBOutlet weak var storyTagView: UIView!
     @IBOutlet weak var letterImageView: UIImageView!
     @IBOutlet weak var photosImageView: UIImageView!
     @IBOutlet weak var videoImageView: UIImageView!
@@ -28,6 +29,9 @@ class CreateStoryViewController: UIViewController {
     @IBOutlet weak var videoLabel: UILabel!
     @IBOutlet weak var audioLabel: UILabel!
     @IBOutlet weak var appreciationLabel: UILabel!
+    @IBOutlet weak var vibeTagLabel: UILabel!
+    @IBOutlet weak var reviewImageView: UIImageView!
+    @IBOutlet weak var continueImageView: UIImageView!
     
     @IBOutlet weak var letterCheckbox: UIView!
     @IBOutlet weak var photosCheckbox: UIView!
@@ -40,9 +44,6 @@ class CreateStoryViewController: UIViewController {
     @IBOutlet weak var videoCrossButton: UIButton!
     @IBOutlet weak var audioCrossButton: UIButton!
     
-    var reviewView: UIImageView = UIImageView()
-    var continueView: UIImageView = UIImageView()
-    
     var isLetterSelected : Bool = false
     var isImagesSelected : Bool = false
     var isVideoSelected : Bool = false
@@ -53,9 +54,6 @@ class CreateStoryViewController: UIViewController {
     var videoFromPhone : URL? = nil
     var audioFromPhone : URL? = nil
     
-    var storyTagViewCenter : CGPoint = CGPoint()
-    var appreciationViewCenter : CGPoint = CGPoint()
-    
     var letterText : String = "Hello World"
     var letterBackground : Int = 0
     
@@ -64,6 +62,17 @@ class CreateStoryViewController: UIViewController {
     
     let selectedColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0)
     let unselectedColor = UIColor(displayP3Red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
+    
+    /// Segues
+    let AUDIO_RECORDER_SEGUE : String = "gotoAudioRecorder"
+    let IMAGE_PICKER_SEGUE : String = "gotoImagePicker"
+    let PHOTOS_INPUT_SEGUE : String = "gotoPhotosInput"
+    let TEXT_INPUT_SEGUE : String = "gotoTextInput"
+    let FINAL_APPROVAL_SEGUE : String = "gotoFinalApprovalPage"
+    
+    let MAX_IMAGES_TO_BE_SELECTED = 9
+    
+    var imagesSelectedFromGallery = [PHAsset]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,10 +83,10 @@ class CreateStoryViewController: UIViewController {
         setupCheckboxes()
         addGesturesToIcons()
         setSelectionButtonView()
-        createReviewAndContinueViews()
         setupCrossButtons()
-        appreciationViewCenter = appreciationView.center
-        storyTagViewCenter = storyTagView.center
+        
+        reviewImageView.alpha = 0
+        continueImageView.alpha = 0
     }
     
     @IBAction func onClickLetterCross(_ sender: UIButton) {
@@ -99,6 +108,9 @@ class CreateStoryViewController: UIViewController {
     }
     
     @IBAction func onClickPhotosCross(_ sender: UIButton) {
+        imagesSelectedFromGallery = []
+        isImagesSelected = false
+        performTickAnimation(checkbox: photosCheckbox, isSelected: isImagesSelected)
     }
     
     @IBAction func onClickVideoCross(_ sender: UIButton) {
@@ -171,14 +183,19 @@ class CreateStoryViewController: UIViewController {
         let imagesTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickImagesIcon))
         let videoTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickVideoIcon))
         let audioTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickAudioIcon))
+        let reviewTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickReviewIcon))
+        let continueTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickContinueIcon))
         let appreciationTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickAppreciationIcon))
         let selectionButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickSelectionButton))
         letterView.addGestureRecognizer(letterTapGesture)
         imagesView.addGestureRecognizer(imagesTapGesture)
         videoView.addGestureRecognizer(videoTapGesture)
         audioView.addGestureRecognizer(audioTapGesture)
-        appreciationView.addGestureRecognizer(appreciationTapGesture)
+        appreciationImageView.addGestureRecognizer(appreciationTapGesture)
+        appreciationLabel.addGestureRecognizer(appreciationTapGesture)
         selectionButtonView.addGestureRecognizer(selectionButtonTapGesture)
+        reviewImageView.addGestureRecognizer(reviewTapGesture)
+        continueImageView.addGestureRecognizer(continueTapGesture)
     }
     
     ///Initially hides the checkboxes initially.
@@ -194,39 +211,9 @@ class CreateStoryViewController: UIViewController {
         setShadowLayerOfSelectionButton()
         drawInSelectionButton(pathName: TICK)
     }
-    
-    /// Creates the review and continue view.
-    /// Puts them behind the selection button view.
-    func createReviewAndContinueViews() {
-        let globalPoint = selectionButtonView.convert(selectionButtonView.frame.origin, to: view)
-        if view.frame.height == DeviceConstants.IPHONE7PLUS_HEIGHT || view.frame.height == DeviceConstants.IPHONEX_HEIGHT {
-            reviewView = UIImageView(frame: CGRect(x: globalPoint.x, y: globalPoint.y + selectionButtonView.frame.height, width: 3 * selectionButtonView.frame.width / 5, height: 3 * selectionButtonView.frame.height / 5))
-            continueView = UIImageView(frame: CGRect(x: globalPoint.x, y: globalPoint.y + selectionButtonView.frame.height, width: 3 * selectionButtonView.frame.width / 5, height: 3 * selectionButtonView.frame.height / 5))
-        } else {
-            reviewView = UIImageView(frame: CGRect(x: globalPoint.x, y: globalPoint.y, width: 3 * selectionButtonView.frame.width / 5, height: 3 * selectionButtonView.frame.height / 5))
-            continueView = UIImageView(frame: CGRect(x: globalPoint.x, y: globalPoint.y, width: 3 * selectionButtonView.frame.width / 5, height: 3 * selectionButtonView.frame.height / 5))
-        }
-        reviewView.contentMode = .scaleAspectFit
-        reviewView.image = UIImage(named: "review")
-        continueView.contentMode = .scaleAspectFit
-        continueView.image = UIImage(named: "continue")
-        
-        let reviewButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickReviewIcon))
-        let continueButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickContinueIcon))
-        reviewView.isUserInteractionEnabled = true
-        continueView.isUserInteractionEnabled = true
-        reviewView.addGestureRecognizer(reviewButtonTapGesture)
-        continueView.addGestureRecognizer(continueButtonTapGesture)
-        
-        view.addSubview(reviewView)
-        view.addSubview(continueView)
-        
-        reviewView.isHidden = true
-        continueView.isHidden = true
-    }
 }
 
-extension CreateStoryViewController {
+extension CreateVibeViewController {
     
     /// Set shadows on all the icon views
     /// - Parameter inputView: The view whose shadow has to be drawn.
@@ -241,16 +228,17 @@ extension CreateStoryViewController {
     
 }
 
-extension CreateStoryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     /// Action performed on click of the Letter View
     @objc func onClickLetterIcon() {
-        performSegue(withIdentifier: "gotoTextInput", sender: self)
+        performSegue(withIdentifier: TEXT_INPUT_SEGUE, sender: self)
     }
     
     /// Action performed on click of the Photos View
     @objc func onClickImagesIcon() {
         if isImagesSelected {
+            performSegue(withIdentifier: PHOTOS_INPUT_SEGUE, sender: self)
             isImagesSelected = false
             photosCheckbox.isHidden = true
             photosImageView.image = UIImage(named: "photos-unselected")
@@ -258,12 +246,14 @@ extension CreateStoryViewController: UIImagePickerControllerDelegate, UINavigati
             photosCrossButton.isHidden = true
             photosCrossButton.isEnabled = false
         } else {
+//            openImagePicker()
             isImagesSelected = true
-            photosCheckbox.isHidden = false
-            photosImageView.image = UIImage(named: "photos-selected")
-            photosLabel.textColor = selectedColor
-            photosCrossButton.isHidden = false
-            photosCrossButton.isEnabled = true
+            self.isImagesSelected = true
+            self.photosCheckbox.isHidden = false
+            self.photosImageView.image = UIImage(named: "photos-selected")
+            self.photosLabel.textColor = self.selectedColor
+            self.photosCrossButton.isHidden = false
+            self.photosCrossButton.isEnabled = true
         }
         performTickAnimation(checkbox: photosCheckbox, isSelected: isImagesSelected)
     }
@@ -275,7 +265,7 @@ extension CreateStoryViewController: UIImagePickerControllerDelegate, UINavigati
     
     /// Action performed on click of the Audio View
     @objc func onClickAudioIcon() {
-        performSegue(withIdentifier: "gotoAudioRecorder", sender: self)
+        performSegue(withIdentifier: AUDIO_RECORDER_SEGUE, sender: self)
     }
     
     /// Action performed on click of the Appreciation View
@@ -291,14 +281,13 @@ extension CreateStoryViewController: UIImagePickerControllerDelegate, UINavigati
         }
     }
     
+    /// Action to perform on clicking the Review Icon
     @objc func onClickReviewIcon() {
-        print("*************************")
-        print("Review button clicked")
     }
     
+    /// Action to perform on clicking the Continue Icon
     @objc func onClickContinueIcon() {
-        print("*************************")
-        print("Continue button clicked")
+        performSegue(withIdentifier: FINAL_APPROVAL_SEGUE, sender: self)
     }
     
     /// Action performed on click of the Selection Button.
@@ -309,24 +298,23 @@ extension CreateStoryViewController: UIImagePickerControllerDelegate, UINavigati
             isSelectionToggleOn = false
             drawInSelectionButton(pathName: TICK)
             UIView.animate(withDuration: 0.5, animations: {
-                    self.appreciationView.center = self.appreciationViewCenter
-                    self.storyTagView.center = self.storyTagViewCenter
-                    self.continueView.center.x = self.continueView.center.x - self.view.frame.width / 4
-                    self.reviewView.center.x = self.reviewView.center.x + self.view.frame.width / 4
-                }, completion: { (completed) in
-                    self.reviewView.isHidden = true
-                    self.continueView.isHidden = true
-            })
+                self.reviewImageView.alpha = 0
+                self.continueImageView.alpha = 0
+                self.appreciationImageView.alpha = 1
+                self.appreciationLabel.alpha = 1
+                self.storyTagImageView.alpha = 1
+                self.vibeTagLabel.alpha = 1
+            }, completion: nil)
         } else {
             isSelectionToggleOn = true
             drawInSelectionButton(pathName: CROSS)
             UIView.animate(withDuration: 0.5, animations: {
-                self.appreciationView.center.y = self.appreciationView.center.y + 300
-                self.storyTagView.center.y = self.storyTagView.center.y + 300
-                self.reviewView.isHidden = false
-                self.continueView.isHidden = false
-                self.continueView.center.x = self.continueView.center.x + self.view.frame.width / 4
-                self.reviewView.center.x = self.reviewView.center.x - self.view.frame.width / 4
+                self.reviewImageView.alpha = 1
+                self.continueImageView.alpha = 1
+                self.appreciationImageView.alpha = 0
+                self.appreciationLabel.alpha = 0
+                self.storyTagImageView.alpha = 0
+                self.vibeTagLabel.alpha = 0
             })
         }
     }
@@ -455,9 +443,29 @@ extension CreateStoryViewController: UIImagePickerControllerDelegate, UINavigati
         }
         performTickAnimation(checkbox: videoCheckbox, isSelected: isVideoSelected)
     }
+    
+    /// Method to open a custom Image Picker
+    func openImagePicker() {
+        let imagePicker = BSImagePickerViewController()
+        
+        imagePicker.maxNumberOfSelections = MAX_IMAGES_TO_BE_SELECTED
+        imagePicker.selectionCharacter = "√"
+        
+        bs_presentImagePickerController(imagePicker, animated: true, select: { (asset: PHAsset) -> Void in
+            print("Select: \(asset)")
+        }, deselect: { (asset: PHAsset) -> Void in
+            print("Deselect: \(asset)")
+        }, cancel: { (assets: [PHAsset]) -> Void in
+            print("Cancel: \(assets)")
+        }, finish: { (assets: [PHAsset]) -> Void in
+            print("Finish: \(assets)")
+            self.imagesSelectedFromGallery = assets
+            self.isImagesSelected = true
+        }, completion: nil)
+    }
 }
 
-extension CreateStoryViewController: AudioRecorderProtocol, LetterInputProtocol {
+extension CreateVibeViewController: AudioRecorderProtocol, LetterInputProtocol {
     func letterInput(backgroundImage: Int, text: String) {
         letterBackground = backgroundImage
         letterText = text
@@ -498,10 +506,10 @@ extension CreateStoryViewController: AudioRecorderProtocol, LetterInputProtocol 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "gotoAudioRecorder" {
+        if segue.identifier == AUDIO_RECORDER_SEGUE {
             let destinationVC = segue.destination as! AudioRecorderViewController
             destinationVC.delegate = self
-        } else if segue.identifier == "gotoTextInput" {
+        } else if segue.identifier == TEXT_INPUT_SEGUE {
             let destinationVC = segue.destination as! LetterInputViewController
             destinationVC.delegate = self
             destinationVC.backgroundSelected = letterBackground

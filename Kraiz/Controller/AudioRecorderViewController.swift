@@ -5,6 +5,7 @@
 //  Created by Kumar Agarwal, Kanhai on 04/08/18.
 //  Copyright © 2018 Kumar Agarwal, Kanhai. All rights reserved.
 //
+// Audio Recorder Class.
 
 import UIKit
 import AVFoundation

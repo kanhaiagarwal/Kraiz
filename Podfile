@@ -7,5 +7,6 @@ target 'Kraiz' do
 
   # Pods for Kraiz
   pod 'CropViewController'
+  pod 'BSImagePicker'
 
 end

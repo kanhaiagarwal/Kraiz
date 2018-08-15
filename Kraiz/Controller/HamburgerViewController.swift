@@ -5,6 +5,7 @@
 //  Created by Kumar Agarwal, Kanhai on 03/07/18.
 //  Copyright © 2018 Kumar Agarwal, Kanhai. All rights reserved.
 //
+// Class showing the Hamburger Tab Menu options.
 
 import UIKit
 

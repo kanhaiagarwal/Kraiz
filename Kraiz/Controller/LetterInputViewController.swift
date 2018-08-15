@@ -5,6 +5,7 @@
 //  Created by Kumar Agarwal, Kanhai on 05/08/18.
 //  Copyright © 2018 Kumar Agarwal, Kanhai. All rights reserved.
 //
+// Class for Taking the Letter input from the user.
 
 import UIKit
 
