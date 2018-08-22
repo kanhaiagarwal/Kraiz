@@ -8,5 +8,8 @@ target 'Kraiz' do
   # Pods for Kraiz
   pod 'CropViewController'
   pod 'BSImagePicker'
+  pod 'AWSCognito'
+  pod 'AWSCognitoIdentityProvider'
+  pod 'TTGSnackbar'
 
 end

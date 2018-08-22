@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507EF5C21244886007FC9F1 /* AWSConstants.swift */; };
+		B507EF6121244C27007FC9F1 /* AuthenticationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507EF6021244C27007FC9F1 /* AuthenticationUtility.swift */; };
 		B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */; };
 		B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF1EE211F1248009896CC /* AppDelegate.swift */; };
 		B51DF1F4211F1248009896CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51DF1F2211F1248009896CC /* Main.storyboard */; };
@@ -50,12 +52,18 @@
 		B5523B852120BFDF00CAC7BF /* ImageTextCombinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5523B832120BFDF00CAC7BF /* ImageTextCombinationViewController.swift */; };
 		B5523B862120BFDF00CAC7BF /* ImageTextCombinationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */; };
 		B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */; };
+		B55346AE212B1FD8005353E4 /* VibeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55346AD212B1FD8005353E4 /* VibeModel.swift */; };
+		B5C9431A212947F8000DCF7A /* MyVibeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C94319212947F8000DCF7A /* MyVibeViewController.swift */; };
+		B5DC7929212D5CA600C69A13 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DC7928212D5CA600C69A13 /* AppUtilities.swift */; };
+		B5E23DAF2129E677005C93C2 /* CountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E23DAE2129E677005C93C2 /* CountryCodes.swift */; };
 		C7E25CAAD6566B37AC6926A8 /* Pods_Kraiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24DDAF27796E7272B44F72B /* Pods_Kraiz.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.release.xcconfig"; sourceTree = "<group>"; };
 		AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.debug.xcconfig"; sourceTree = "<group>"; };
+		B507EF5C21244886007FC9F1 /* AWSConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSConstants.swift; sourceTree = "<group>"; };
+		B507EF6021244C27007FC9F1 /* AuthenticationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUtility.swift; sourceTree = "<group>"; };
 		B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPageViewController.swift; sourceTree = "<group>"; };
 		B51DF1EB211F1248009896CC /* Kraiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kraiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B51DF1EE211F1248009896CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +109,10 @@
 		B5523B832120BFDF00CAC7BF /* ImageTextCombinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCombinationViewController.swift; sourceTree = "<group>"; };
 		B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTextCombinationViewController.xib; sourceTree = "<group>"; };
 		B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllImagesTextViewController.swift; sourceTree = "<group>"; };
+		B55346AD212B1FD8005353E4 /* VibeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeModel.swift; sourceTree = "<group>"; };
+		B5C94319212947F8000DCF7A /* MyVibeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVibeViewController.swift; sourceTree = "<group>"; };
+		B5DC7928212D5CA600C69A13 /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
+		B5E23DAE2129E677005C93C2 /* CountryCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodes.swift; sourceTree = "<group>"; };
 		D24DDAF27796E7272B44F72B /* Pods_Kraiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kraiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -133,6 +145,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B507EF5F21244C06007FC9F1 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B507EF6021244C27007FC9F1 /* AuthenticationUtility.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		B51DF1E2211F1248009896CC = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +174,8 @@
 		B51DF1ED211F1248009896CC /* Kraiz */ = {
 			isa = PBXGroup;
 			children = (
+				B55346AC212B1FC9005353E4 /* Model */,
+				B507EF5F21244C06007FC9F1 /* Authentication */,
 				B51DF24C211F16E4009896CC /* Controller */,
 				B51DF24B211F16BC009896CC /* Constants */,
 				B51DF242211F1608009896CC /* Fonts */,
@@ -212,14 +234,16 @@
 			isa = PBXGroup;
 			children = (
 				B51DF249211F16AA009896CC /* DeviceConstants.swift */,
+				B507EF5C21244886007FC9F1 /* AWSConstants.swift */,
+				B5E23DAE2129E677005C93C2 /* CountryCodes.swift */,
 			);
-			name = Constants;
 			path = Constants;
 			sourceTree = "<group>";
 		};
 		B51DF24C211F16E4009896CC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B5DC7927212D5C9400C69A13 /* Utilities */,
 				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
 				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
 				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
@@ -229,6 +253,7 @@
 				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
 				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
 				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
+				B5C94319212947F8000DCF7A /* MyVibeViewController.swift */,
 				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
 				B51DF207211F13B7009896CC /* SignInViewController.swift */,
 				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
@@ -249,6 +274,22 @@
 				B54073002120150400122FD0 /* PhotoInputCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		B55346AC212B1FC9005353E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B55346AD212B1FD8005353E4 /* VibeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B5DC7927212D5C9400C69A13 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B5DC7928212D5CA600C69A13 /* AppUtilities.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,16 +399,26 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSCognito/AWSCognito.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
 				"${BUILT_PRODUCTS_DIR}/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/TTGSnackbar/TTGSnackbar.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognito.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSGridCollectionViewLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTGSnackbar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageViewModeScaleAspect.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,7 +448,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C9431A212947F8000DCF7A /* MyVibeViewController.swift in Sources */,
 				B51DF222211F13B9009896CC /* HamburgerViewController.swift in Sources */,
+				B5E23DAF2129E677005C93C2 /* CountryCodes.swift in Sources */,
 				B51DF229211F13B9009896CC /* StartViewController.swift in Sources */,
 				B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */,
 				B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */,
@@ -405,11 +458,15 @@
 				B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */,
 				B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */,
 				B51DF231211F13B9009896CC /* VibesViewController.swift in Sources */,
+				B507EF6121244C27007FC9F1 /* AuthenticationUtility.swift in Sources */,
 				B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */,
+				B5DC7929212D5CA600C69A13 /* AppUtilities.swift in Sources */,
 				B51DF220211F13B9009896CC /* ContactUsViewController.swift in Sources */,
 				B51DF254211F17E3009896CC /* HamburgerTableViewCell.swift in Sources */,
 				B51DF224211F13B9009896CC /* HomeTabBarController.swift in Sources */,
+				B55346AE212B1FD8005353E4 /* VibeModel.swift in Sources */,
 				B51DF22E211F13B9009896CC /* SignUpViewController.swift in Sources */,
+				B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */,
 				B51DF256211F17EC009896CC /* VibesTableViewCell.swift in Sources */,
 				B51DF226211F13B9009896CC /* LetterInputCollectionViewCell.swift in Sources */,
 				B51DF253211F17E0009896CC /* ContactUsTableViewCell.swift in Sources */,

@@ -65,10 +65,11 @@ class CreateVibeViewController: UIViewController {
     
     /// Segues
     let AUDIO_RECORDER_SEGUE : String = "gotoAudioRecorder"
+    let FINAL_APPROVAL_SEGUE : String = "gotoFinalApprovalPage"
     let IMAGE_PICKER_SEGUE : String = "gotoImagePicker"
+    let MY_VIBE_SEGUE : String = "gotoMyVibeFromCreateVibe"
     let PHOTOS_INPUT_SEGUE : String = "gotoPhotosInput"
     let TEXT_INPUT_SEGUE : String = "gotoTextInput"
-    let FINAL_APPROVAL_SEGUE : String = "gotoFinalApprovalPage"
     
     let MAX_IMAGES_TO_BE_SELECTED = 9
     
@@ -184,6 +185,8 @@ class CreateVibeViewController: UIViewController {
         let videoTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickVideoIcon))
         let audioTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickAudioIcon))
         let reviewTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickReviewIcon))
+        let myVibeImageViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickMyVibeIcon))
+        let myVibeLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickMyVibeIcon))
         let continueTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickContinueIcon))
         let appreciationTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickAppreciationIcon))
         let selectionButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickSelectionButton))
@@ -193,6 +196,9 @@ class CreateVibeViewController: UIViewController {
         audioView.addGestureRecognizer(audioTapGesture)
         appreciationImageView.addGestureRecognizer(appreciationTapGesture)
         appreciationLabel.addGestureRecognizer(appreciationTapGesture)
+        
+        storyTagImageView.addGestureRecognizer(myVibeImageViewTapGesture)
+        vibeTagLabel.addGestureRecognizer(myVibeLabelTapGesture)
         selectionButtonView.addGestureRecognizer(selectionButtonTapGesture)
         reviewImageView.addGestureRecognizer(reviewTapGesture)
         continueImageView.addGestureRecognizer(continueTapGesture)
@@ -283,11 +289,17 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
     
     /// Action to perform on clicking the Review Icon
     @objc func onClickReviewIcon() {
+        // Show the story here.
     }
     
     /// Action to perform on clicking the Continue Icon
     @objc func onClickContinueIcon() {
         performSegue(withIdentifier: FINAL_APPROVAL_SEGUE, sender: self)
+    }
+    
+    /// Action to perform on clicking the My Vibe Icon
+    @objc func onClickMyVibeIcon() {
+        performSegue(withIdentifier: MY_VIBE_SEGUE, sender: self)
     }
     
     /// Action performed on click of the Selection Button.

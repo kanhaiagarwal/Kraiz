@@ -8,14 +8,21 @@
 //  Class for the Sign Up View.
 
 import UIKit
+import AWSCognitoIdentityProvider
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthenticationDelegate {
 
+    var pool: AWSCognitoIdentityUserPool?
+    
+    @IBOutlet weak var generateOTPButton: UIButton!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var phoneNumberField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     
+    // Segues
+    let GOTO_OTP_SEGUE = "gotoVerifyOtpFromSignUp"
+    let SIGN_UP_TO_SIGN_IN_SEGUE = "signUpToSignIn"
     var viewHeight : CGFloat = 0
     
     override func viewDidLoad() {
@@ -23,6 +30,9 @@ class SignUpViewController: UIViewController {
         viewHeight = view.frame.height
         
         setupViews()
+        
+        pool = AWSCognitoIdentityUserPool(forKey: "Kraiz")
+        pool?.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,9 +69,58 @@ class SignUpViewController: UIViewController {
         setupFontSize()
     }
     
-    @IBAction func gotoSignIn(_ sender: UIButton) {
-        performSegue(withIdentifier: "signUpToSignIn", sender: self)
+    @IBAction func generateOTPPressed(_ sender: UIButton) {
+        var attributes = [AWSCognitoIdentityUserAttributeType]()
+        let phone = AWSCognitoIdentityUserAttributeType()
+        
+        phone?.name = "phone_number"
+        phone?.value = phoneNumberField.text
+        attributes.append(phone!)
+        
+        let preferredUsername = AWSCognitoIdentityUserAttributeType()
+        preferredUsername?.name = "preferred_username"
+        preferredUsername?.value = usernameField.text
+        
+        attributes.append(preferredUsername!)
+        
+        generateOTPButton.isEnabled = false
+        
+        self.pool?.signUp(usernameField.text!, password: passwordField.text!, userAttributes: attributes, validationData: nil).continueWith(block: { (task: AWSTask<AWSCognitoIdentityUserPoolSignUpResponse>) -> Any? in
+            print("task.result \(String(describing: task.result))")
+            DispatchQueue.main.async(execute: {
+                if let error = task.error as? NSError {
+                    print("Error")
+                    print(error.debugDescription)
+                    if String(describing: error.userInfo["__type"]!) == "UsernameExistsException" {
+                        print("Inside the UsernameExistsException")
+                        APPUtilites.displayErrorSnackbar(message: "User with the same username or phone number already exists")
+                    } else if String(describing: error.userInfo["__type"]!) == "InvalidPasswordException" {
+                        APPUtilites.displayErrorSnackbar(message: "Please make sure that the password is minimum 8 characters.")
+                    }
+                    self.generateOTPButton.isEnabled = true
+                } else if let result = task.result  {
+                    // handle the case where user has to confirm his identity via email / SMS
+                    if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) {
+                        print("Status Not Confirmed")
+                    } else {
+                        print("Status Confirmed")
+                    }
+                    self.gotoVerifyOTPPage()
+                }
+            })
+            return nil
+        })
+        
+        print("After the sign up method")
     }
+    @IBAction func gotoSignIn(_ sender: UIButton) {
+        performSegue(withIdentifier: SIGN_UP_TO_SIGN_IN_SEGUE, sender: self)
+    }
+    
+    func gotoVerifyOTPPage() {
+        performSegue(withIdentifier: self.GOTO_OTP_SEGUE, sender: self)
+    }
+    
     func setupFontSize() {
         switch viewHeight {
         case DeviceConstants.IPHONE5S_HEIGHT:
@@ -88,6 +147,14 @@ class SignUpViewController: UIViewController {
             passwordField.font = UIFont(name: "Times New Roman", size: 20)
             phoneNumberField.font = UIFont(name: "Times New Roman", size: 20)
             break
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == GOTO_OTP_SEGUE {
+            let destinationVC = segue.destination as! SignUpOTPViewController
+            destinationVC.phoneNumber = self.phoneNumberField.text!
+            destinationVC.username = self.usernameField.text!
         }
     }
 }

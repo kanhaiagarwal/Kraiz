@@ -12,11 +12,11 @@ import UIKit
 class StartViewController: UIViewController {
 
     @IBOutlet weak var logoContainer: UIView!
-    @IBOutlet weak var logoImageView: UIImageView!
+//    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var titleContainer: UIView!
-    @IBOutlet weak var appTitle: UILabel!
-    @IBOutlet weak var tagLineContainer: UILabel!
-    @IBOutlet weak var tagLine: UILabel!
+//    @IBOutlet weak var appTitle: UILabel!
+//    @IBOutlet weak var tagLineContainer: UILabel!
+//    @IBOutlet weak var tagLine: UILabel!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     
@@ -39,27 +39,27 @@ class StartViewController: UIViewController {
     }
     
     func setFonts() {
-        switch viewHeight {
-            case DeviceConstants.IPHONE5S_HEIGHT:
-                appTitle.font = UIFont(name: "Times New Roman", size: 50)
-                tagLine.font = UIFont(name: "Times New Roman", size: 20)
-                break
-            case DeviceConstants.IPHONE7_HEIGHT:
-                appTitle.font = UIFont(name: "Times New Roman", size: 60)
-                tagLine.font = UIFont(name: "Times New Roman", size: 24)
-                break
-            case DeviceConstants.IPHONE7PLUS_HEIGHT:
-                appTitle.font = UIFont(name: "Times New Roman", size: 60)
-                tagLine.font = UIFont(name: "Times New Roman", size: 28)
-                break
-            case DeviceConstants.IPHONEX_HEIGHT:
-                appTitle.font = UIFont(name: "Times New Roman", size: 60)
-                tagLine.font = UIFont(name: "Times New Roman", size: 28)
-            default:
-                appTitle.font = UIFont(name: "Times New Roman", size: 50)
-                tagLine.font = UIFont(name: "Times New Roman", size: 20)
-                break
-        }
+//        switch viewHeight {
+//            case DeviceConstants.IPHONE5S_HEIGHT:
+//                appTitle.font = UIFont(name: "Times New Roman", size: 50)
+//                tagLine.font = UIFont(name: "Times New Roman", size: 20)
+//                break
+//            case DeviceConstants.IPHONE7_HEIGHT:
+//                appTitle.font = UIFont(name: "Times New Roman", size: 60)
+//                tagLine.font = UIFont(name: "Times New Roman", size: 24)
+//                break
+//            case DeviceConstants.IPHONE7PLUS_HEIGHT:
+//                appTitle.font = UIFont(name: "Times New Roman", size: 60)
+//                tagLine.font = UIFont(name: "Times New Roman", size: 28)
+//                break
+//            case DeviceConstants.IPHONEX_HEIGHT:
+//                appTitle.font = UIFont(name: "Times New Roman", size: 60)
+//                tagLine.font = UIFont(name: "Times New Roman", size: 28)
+//            default:
+//                appTitle.font = UIFont(name: "Times New Roman", size: 50)
+//                tagLine.font = UIFont(name: "Times New Roman", size: 20)
+//                break
+//        }
     }
     
     func setMainViewHeight() {
@@ -85,8 +85,8 @@ class StartViewController: UIViewController {
             signUpButton.layer.cornerRadius = signInButton.frame.width / 20
             break
         default:
-            appTitle.font = UIFont(name: "Times New Roman", size: 50)
-            tagLine.font = UIFont(name: "Times New Roman", size: 20)
+//            appTitle.font = UIFont(name: "Times New Roman", size: 50)
+//            tagLine.font = UIFont(name: "Times New Roman", size: 20)
             break
         }
     }

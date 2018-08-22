@@ -12,6 +12,8 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need to access the Photo Library</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Kraiz needs to Access your Contacts List</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

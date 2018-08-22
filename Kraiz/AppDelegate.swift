@@ -8,15 +8,48 @@
 
 import UIKit
 import CoreData
+import AWSCore
+import AWSCognitoIdentityProvider
+import AWSCognito
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInteractiveAuthenticationDelegate {
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        print("********************************")
+        print("Inside didFinishLaunchingWithOptions")
+        
+        let serviceConfiguration = AWSServiceConfiguration(region: AWSConstants.AWS_REGION, credentialsProvider: nil)
+        let configuration = AWSCognitoIdentityUserPoolConfiguration(clientId: AWSConstants.COGNITO_APP_CLIENT_ID, clientSecret: AWSConstants.COGNITO_APP_CLIENT_SECRET, poolId: AWSConstants.COGNITO_POOL_ID)
+        AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: configuration, forKey: "Kraiz")
+        
+        let pool = AWSCognitoIdentityUserPool(forKey: "Kraiz")
+        let user = pool.currentUser()
+        
+        if user != nil {
+            print("User is not nil")
+            let session = user?.getSession()
+            if session != nil {
+                print("Session is not equal to nil")
+                let result = session?.result
+                if result != nil {
+                    print("Result is not equal to nil")
+                    print("access token: \(result?.accessToken)")
+                    print("expiration time: \(result?.expirationTime)")
+                    print("id token: \(result?.idToken)")
+                } else {
+                    print("Result is equal to nil")
+                }
+            } else {
+                print("Session is nil")
+            }
+        } else {
+            print("user is nil")
+        }
+        
         return true
     }
 
@@ -88,6 +121,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
 
