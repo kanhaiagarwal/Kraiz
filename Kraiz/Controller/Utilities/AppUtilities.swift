@@ -10,6 +10,9 @@ import Foundation
 import TTGSnackbar
 
 public class APPUtilites {
+    /// Displays an Error Snackbar for the message.
+    /// - Parameters
+    ///     - message: Message to be displayed in the snackbar.
     public static func displayErrorSnackbar(message: String) {
         let errorBar = TTGSnackbar()
         errorBar.message = message
@@ -19,6 +22,9 @@ public class APPUtilites {
         errorBar.show()
     }
     
+    /// Displays a Success Snackbar for the message.
+    /// - Parameters
+    ///     - message: Message to be displayed in the snackbar.
     public static func displaySuccessSnackbar(message: String) {
         let errorBar = TTGSnackbar()
         errorBar.message = message

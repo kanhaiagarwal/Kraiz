@@ -17,11 +17,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     var user: AWSCognitoIdentityUser?
     var passwordAuthenticationCompletion: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>?
     
+    @IBOutlet weak var countryCodeField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var usernameContainer: UIView!
-    @IBOutlet weak var usernameFieldLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var hideKeyboardButton: UIButton!
+    
     let countryCodePicker = UIPickerView()
     var countryCodeTextField: UITextField!
     var countryCodeSelected : String?
@@ -43,51 +45,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         
         viewHeight = view.frame.height
         setupViews()
+        usernameField.delegate = self
+        passwordField.delegate = self
         countryCodePicker.delegate = self
+        countryCodeField.inputView = countryCodePicker
+        countryCodeField.text = "+91"
+        createToolbarForPickerView()
+        hideKeyboardButton.isHidden = true
         
-        pool = AWSCognitoIdentityUserPool(forKey: "Kraiz")
+        pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         user = pool?.getUser()
         pool?.delegate = self
-    }
-
-    @IBAction func onChangeUsername(_ sender: UITextField) {
-        
-         if Int(sender.text!) != nil && !isUsernameInputNumbers {
-            isUsernameInputNumbers = true
-            usernameFieldLeadingConstraint.constant = 100
-            print("numbers inside the username textfield")
-            displayCountryCodeTextField()
-            
-        } else if Int(sender.text!) == nil && isUsernameInputNumbers {
-            isUsernameInputNumbers = false
-
-            usernameFieldLeadingConstraint.constant = 50
-            removeCountryCodeTextField()
-            print("alpha numeric values inside the username textfield")
-        }
-    }
-    
-    
-    // TODO: Fix the case when the user inputs the +9
-    // Then the country code dropdown appears.
-    // The country code picker should not appear when the user inputs the +9 something.
-    func displayCountryCodeTextField() {
-        countryCodeTextField = UITextField(frame: CGRect(x: usernameField.frame.minX, y: usernameField.frame.minY, width: 50, height: usernameField.frame.height))
-        countryCodeSelected = "+91"
-        countryCodeTextField.text = "+91"
-        countryCodeTextField.textAlignment = .center
-        countryCodeTextField.adjustsFontSizeToFitWidth = true
-        countryCodeTextField.minimumFontSize = 14
-        countryCodeTextField.inputView = countryCodePicker
-        createToolbarForPickerView()
-        countryCodeTextField.layer.cornerRadius = countryCodeTextField.frame.height / 10
-        countryCodeTextField.backgroundColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.24)
-        countryCodeTextField.textColor = UIColor.white
-        usernameContainer.addSubview(countryCodeTextField)
-    }
-    
-    func removeCountryCodeTextField() {
-        countryCodeTextField.removeFromSuperview()
     }
     
     func createToolbarForPickerView() {
@@ -100,11 +68,16 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         toolbar.setItems([doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         
-        countryCodeTextField.inputAccessoryView = toolbar
+        countryCodeField.inputAccessoryView = toolbar
     }
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    @IBAction func hideKeyboardPressed(_ sender: UIButton) {
+        view.endEditing(true)
+        hideKeyboardButton.isHidden = true
     }
     
     func setupFontSize() {
@@ -112,21 +85,26 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         case DeviceConstants.IPHONE5S_HEIGHT:
             usernameField.font = UIFont(name: "Times New Roman", size: 20)
             passwordField.font = UIFont(name: "Times New Roman", size: 20)
+            countryCodeField.font = UIFont(name: "Times New Roman", size: 20)
             break
         case DeviceConstants.IPHONE7_HEIGHT:
             usernameField.font = UIFont(name: "Times New Roman", size: 22)
             passwordField.font = UIFont(name: "Times New Roman", size: 22)
+            countryCodeField.font = UIFont(name: "Times New Roman", size: 22)
             break
         case DeviceConstants.IPHONE7PLUS_HEIGHT:
             usernameField.font = UIFont(name: "Times New Roman", size: 26)
             passwordField.font = UIFont(name: "Times New Roman", size: 26)
+            countryCodeField.font = UIFont(name: "Times New Roman", size: 26)
             break
         case DeviceConstants.IPHONEX_HEIGHT:
             usernameField.font = UIFont(name: "Times New Roman", size: 26)
             passwordField.font = UIFont(name: "Times New Roman", size: 26)
+            countryCodeField.font = UIFont(name: "Times New Roman", size: 26)
         default:
             usernameField.font = UIFont(name: "Times New Roman", size: 20)
             passwordField.font = UIFont(name: "Times New Roman", size: 20)
+            countryCodeField.font = UIFont(name: "Times New Roman", size: 20)
             break
         }
     }
@@ -153,14 +131,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     }
     
     @IBAction func onClickSignIn(_ sender: UIButton) {
+        dismissKeyboard()
         print("Inside sign in")
         if usernameField.text == nil || passwordField.text == nil || usernameField.text == "" || passwordField.text == "" {
             print("UsernameField.text and passwordField.text are not nil")
             APPUtilites.displayErrorSnackbar(message: "Username or password are empty")
             return
         }
-        let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: usernameField.text!, password: passwordField.text!)
-        user?.getSession(usernameField.text!, password: passwordField.text!, validationData: nil)
+        let usernameText = countryCodeField.text! + usernameField.text!
+        print("usernameText: \(usernameText)")
+        let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: usernameText, password: passwordField.text!)
+        user?.getSession(usernameText, password: passwordField.text!, validationData: nil)
             .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserSession>) -> Any? in
                 DispatchQueue.main.async(execute: {
                     if let result = task.result {
@@ -199,8 +180,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == GOTO_OTP_FROM_SIGN_IN {
             let destinationVC = segue.destination as? SignUpOTPViewController
-            destinationVC?.username = usernameField.text!
-            destinationVC?.phoneNumber = "+919003194776"
+            
+            let usernameText = countryCodeField.text! + usernameField.text!
+            destinationVC?.username = usernameText
         }
     }
     
@@ -228,6 +210,12 @@ extension SignInViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         countryCodeSelected = countryCodes[row]
-        countryCodeTextField.text = countryCodeSelected
+        countryCodeField.text = countryCodeSelected
+    }
+}
+
+extension SignInViewController {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        hideKeyboardButton.isHidden = false
     }
 }

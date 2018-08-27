@@ -53,6 +53,7 @@
 		B5523B862120BFDF00CAC7BF /* ImageTextCombinationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */; };
 		B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */; };
 		B55346AE212B1FD8005353E4 /* VibeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55346AD212B1FD8005353E4 /* VibeModel.swift */; };
+		B58B934E21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */; };
 		B5C9431A212947F8000DCF7A /* MyVibeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C94319212947F8000DCF7A /* MyVibeViewController.swift */; };
 		B5DC7929212D5CA600C69A13 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DC7928212D5CA600C69A13 /* AppUtilities.swift */; };
 		B5E23DAF2129E677005C93C2 /* CountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E23DAE2129E677005C93C2 /* CountryCodes.swift */; };
@@ -110,6 +111,7 @@
 		B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTextCombinationViewController.xib; sourceTree = "<group>"; };
 		B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllImagesTextViewController.swift; sourceTree = "<group>"; };
 		B55346AD212B1FD8005353E4 /* VibeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeModel.swift; sourceTree = "<group>"; };
+		B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordOTPViewController.swift; sourceTree = "<group>"; };
 		B5C94319212947F8000DCF7A /* MyVibeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVibeViewController.swift; sourceTree = "<group>"; };
 		B5DC7928212D5CA600C69A13 /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
 		B5E23DAE2129E677005C93C2 /* CountryCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodes.swift; sourceTree = "<group>"; };
@@ -244,25 +246,26 @@
 			isa = PBXGroup;
 			children = (
 				B5DC7927212D5C9400C69A13 /* Utilities */,
-				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
 				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
+				B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */,
+				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
 				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
 				B51DF209211F13B7009896CC /* CreateVibeViewController.swift */,
 				B51DF214211F13B8009896CC /* DraftsViewController.swift */,
+				B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */,
 				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
 				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
 				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
 				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
 				B5C94319212947F8000DCF7A /* MyVibeViewController.swift */,
+				B54073022120188F00122FD0 /* PhotosInputViewController.swift */,
 				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
+				B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */,
 				B51DF207211F13B7009896CC /* SignInViewController.swift */,
 				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
 				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
 				B51DF211211F13B8009896CC /* StartViewController.swift */,
 				B51DF219211F13B9009896CC /* VibesViewController.swift */,
-				B54073022120188F00122FD0 /* PhotosInputViewController.swift */,
-				B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */,
-				B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */,
 				B5523B852120BFDF00CAC7BF /* ImageTextCombinationViewController.swift in Sources */,
 				B51DF21D211F13B9009896CC /* ProfileViewController.swift in Sources */,
+				B58B934E21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift in Sources */,
 				B51DF252211F17DA009896CC /* DraftsTableViewCell.swift in Sources */,
 				B51DF227211F13B9009896CC /* LetterInputViewController.swift in Sources */,
 				B51DF22F211F13B9009896CC /* AudioRecorderViewController.swift in Sources */,

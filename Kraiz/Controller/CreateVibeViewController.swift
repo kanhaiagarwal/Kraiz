@@ -90,6 +90,9 @@ class CreateVibeViewController: UIViewController {
         continueImageView.alpha = 0
     }
     
+    @IBAction func crossButtonPressed(_ sender: UIButton) {
+    }
+    
     @IBAction func onClickLetterCross(_ sender: UIButton) {
         let alert = UIAlertController(title: "Remove Letter", message: "Are you sure you want to remove the letter from the story", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in

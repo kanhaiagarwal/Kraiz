@@ -13,8 +13,7 @@ import TTGSnackbar
 
 class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAuthenticationDelegate {
 
-    public var user: AWSCognitoIdentityUser?
-    public var phoneNumber: String = ""
+    public var cognitoUser: AWSCognitoIdentityUser?
     public var username: String = ""
     var pool: AWSCognitoIdentityUserPool?
     
@@ -30,16 +29,14 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        typeOTPLabel.text = standardText + phoneNumber
+        typeOTPLabel.text = standardText + username
         pool = AWSCognitoIdentityUserPool(forKey: "Kraiz")
         pool?.delegate = self
-        user = pool?.getUser(username)
-        print("User: \(String(describing: user?.getDetails()))")
-        print("Device: \(String(describing: user?.getDevice()))")
+        print("************************Current Username")
+        print(cognitoUser?.username)
     }
 
     @IBAction func onClickOTPButton(_ sender: UIButton) {
-//        performSegue(withIdentifier: "gotoHomeFromSignUp", sender: self)
         print("Inside onClickOTPButton")
         print("OTP Entered: \(otpField.text)")
         if otpField.text == nil && otpField.text == "" {
@@ -53,7 +50,7 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
             print("OTP is not empty")
         }
         
-        self.user?.confirmSignUp(otpField.text!)
+        self.cognitoUser!.confirmSignUp(otpField.text!)
             .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserConfirmSignUpResponse>) -> Any? in
                 DispatchQueue.main.async(execute: {
                     print("************************************************************")
@@ -78,9 +75,9 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     }
     
     @IBAction func onClickResendOTP(_ sender: UIButton) {
-        user?.resendConfirmationCode().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserResendConfirmationCodeResponse>) -> Any? in
+        cognitoUser!.resendConfirmationCode().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserResendConfirmationCodeResponse>) -> Any? in
             DispatchQueue.main.async(execute: {
-                APPUtilites.displaySuccessSnackbar(message: "The confirmation code has been sent again to " + self.phoneNumber)
+                APPUtilites.displaySuccessSnackbar(message: "The confirmation code has been sent again to " + self.username)
             })
             return nil
         }).continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in

@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
         
         let serviceConfiguration = AWSServiceConfiguration(region: AWSConstants.AWS_REGION, credentialsProvider: nil)
         let configuration = AWSCognitoIdentityUserPoolConfiguration(clientId: AWSConstants.COGNITO_APP_CLIENT_ID, clientSecret: AWSConstants.COGNITO_APP_CLIENT_SECRET, poolId: AWSConstants.COGNITO_POOL_ID)
-        AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: configuration, forKey: "Kraiz")
+        AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: configuration, forKey: "Kraiz-2")
         
-        let pool = AWSCognitoIdentityUserPool(forKey: "Kraiz")
+        let pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         let user = pool.currentUser()
         
         if user != nil {
