@@ -19,7 +19,6 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var hideKeyboardButton: UIButton!
     
     let pickerStrings = ["India (+91)", "USA (+1)", "Pakistan (+92)", "Bangladesh (+123)"]
     let countryCodes = ["+91", "+1", "+92", "+123"]
@@ -43,24 +42,27 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
         countryCodePicker.delegate = self
         countryCodeField.inputView = countryCodePicker
         countryCodeField.text = "+91"
-        createToolbarForPickerView()
-        hideKeyboardButton.isHidden = true
+        createToolbarForTextField(textField: countryCodeField)
+        createToolbarForTextField(textField: usernameField)
+        createToolbarForTextField(textField: passwordField)
         
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         pool?.delegate = self
     }
     
-    func createToolbarForPickerView() {
+    func createToolbarForTextField(textField: UITextField) {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.dismissKeyboard))
+        let flexButton1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let flexButton2 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
         
-        toolbar.setItems([doneButton], animated: false)
+        toolbar.setItems([flexButton1, flexButton2, doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         
-        countryCodeField.inputAccessoryView = toolbar
+        textField.inputAccessoryView = toolbar
     }
     
     @objc func dismissKeyboard() {
@@ -68,23 +70,22 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
     }
     
     func setupViews() {
-        usernameField.layer.cornerRadius = usernameField.frame.width / 15
+        countryCodeField.layer.cornerRadius = countryCodeField.frame.height / 2
+        countryCodeField.clipsToBounds = true
+        
+        usernameField.layer.cornerRadius = usernameField.frame.height / 2
         usernameField.clipsToBounds = true
-        usernameField.textColor = UIColor.white
-        usernameField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: usernameField.frame.height))
-        usernameField.leftViewMode = UITextFieldViewMode.always
-        usernameField.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.4)])
+        usernameField.setPadding(left: 10, right: 10)
+        usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile Number", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
-        passwordField.layer.cornerRadius = usernameField.frame.width / 15
+        passwordField.layer.cornerRadius = passwordField.frame.height / 2
         passwordField.clipsToBounds = true
-        passwordField.textColor = UIColor.white
-        passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: passwordField.frame.height))
-        passwordField.leftViewMode = UITextFieldViewMode.always
-        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.4)])
+        passwordField.setPadding(left: 10, right: 10)
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
-        signUpButton.layer.cornerRadius = usernameField.frame.width / 15
-        signUpButton.clipsToBounds = true
-
+        generateOTPButton.layer.cornerRadius = generateOTPButton.frame.height / 2
+        generateOTPButton.clipsToBounds = true
+        
         setupFontSize()
     }
     
@@ -94,38 +95,19 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
             return
         }
         generateOTPButton.isEnabled = false
-        let username = countryCodeField.text! + usernameField.text!
-        print("****************************************")
-        print("username: \(username)")
+        let usernameText = countryCodeField.text! + usernameField.text!
         
-        self.pool?.signUp(username, password: passwordField.text!, userAttributes: nil, validationData: nil).continueWith(block: { (task: AWSTask<AWSCognitoIdentityUserPoolSignUpResponse>) -> Any? in
-            print("task.result \(String(describing: task.result))")
-            DispatchQueue.main.async(execute: {
-                if let error = task.error as? NSError {
-                    print("Error")
-                    print(error.debugDescription)
-                    if String(describing: error.userInfo["__type"]!) == "UsernameExistsException" {
-                        print("Inside the UsernameExistsException")
-                        APPUtilites.displayErrorSnackbar(message: "User with the same username or phone number already exists")
-                    } else if String(describing: error.userInfo["__type"]!) == "InvalidPasswordException" || String(describing: error.userInfo["__type"]!) == "InvalidParameterException" {
-                        APPUtilites.displayErrorSnackbar(message: "Please make sure that the password is minimum 6 characters.")
-                    }
-                    self.generateOTPButton.isEnabled = true
-                } else if let result = task.result  {
-                    // handle the case where user has to confirm his identity via email / SMS
-                    if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) {
-                        print("Status Not Confirmed")
-                    } else {
-                        print("Status Confirmed")
-                    }
-                    self.user = task.result?.user
-                    self.gotoVerifyOTPPage()
-                }
-            })
-            return nil
-        })
-        
-        print("After the sign up method")
+        CognitoHelper.shared.generateOTPForSignUp(pool: pool!, usernameText: usernameText, passwordText: passwordField.text!, success: { (sessionUser: AWSCognitoIdentityUser) in
+            self.user = sessionUser
+            self.gotoVerifyOTPPage()
+        }) { (error: NSError) in
+            if String(describing: error.userInfo["__type"]!) == "UsernameExistsException" {
+                APPUtilites.displayErrorSnackbar(message: "User with the phone number already exists")
+            } else if String(describing: error.userInfo["__type"]!) == "InvalidPasswordException" || String(describing: error.userInfo["__type"]!) == "InvalidParameterException" {
+                APPUtilites.displayErrorSnackbar(message: "Please make sure that the password is minimum 6 characters.")
+            }
+            self.generateOTPButton.isEnabled = true
+        }
     }
     @IBAction func gotoSignIn(_ sender: UIButton) {
         performSegue(withIdentifier: SIGN_UP_TO_SIGN_IN_SEGUE, sender: self)
@@ -171,10 +153,6 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
             destinationVC.cognitoUser = user
         }
     }
-    @IBAction func hideKeyboardButtonPressed(_ sender: UIButton) {
-        view.endEditing(true)
-        hideKeyboardButton.isHidden = true
-    }
 }
 
 extension SignUpViewController: UIPickerViewDataSource, UITextFieldDelegate {
@@ -195,7 +173,8 @@ extension SignUpViewController: UIPickerViewDataSource, UITextFieldDelegate {
         countryCodeField.text = countryCodeSelected
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        hideKeyboardButton.isHidden = false
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

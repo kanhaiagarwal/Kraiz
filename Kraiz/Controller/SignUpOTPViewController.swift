@@ -30,44 +30,61 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     override func viewDidLoad() {
         super.viewDidLoad()
         typeOTPLabel.text = standardText + username
-        pool = AWSCognitoIdentityUserPool(forKey: "Kraiz")
+        pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         pool?.delegate = self
-        print("************************Current Username")
-        print(cognitoUser?.username)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupViews()
+    }
+    
+    func setupViews() {
+        otpField.layer.cornerRadius = otpField.frame.height / 2
+        otpField.clipsToBounds = true
+        otpField.setPadding(left: 10, right: 10)
+        otpField.attributedPlaceholder = NSAttributedString(string: "Enter the OTP Here", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        
+        otpButton.layer.cornerRadius = otpButton.frame.height / 2
+        otpButton.clipsToBounds = true
+        
+        createToolbarForTextField(textField: otpField)
     }
 
-    @IBAction func onClickOTPButton(_ sender: UIButton) {
-        print("Inside onClickOTPButton")
-        print("OTP Entered: \(otpField.text)")
-        if otpField.text == nil && otpField.text == "" {
-            let emptyOTPMessage = TTGSnackbar()
-            emptyOTPMessage.message = "OTP Field cannot be blank"
-            emptyOTPMessage.backgroundColor = UIColor.red
-            emptyOTPMessage.messageTextAlign = .center
-            emptyOTPMessage.show()
-            return
-        } else {
-            print("OTP is not empty")
-        }
+    func createToolbarForTextField(textField: UITextField) {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
         
-        self.cognitoUser!.confirmSignUp(otpField.text!)
-            .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserConfirmSignUpResponse>) -> Any? in
-                DispatchQueue.main.async(execute: {
-                    print("************************************************************")
-                    print("Sign Up has been confirmed")
-                    self.gotoHomePage()
-                })
-                return nil
-            }).continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
-                DispatchQueue.main.async(execute: {
-                    if let error = task.error as? NSError {
-                        print("Error")
-                        print(error)
-                        APPUtilites.displayErrorSnackbar(message: "Wrong OTP Entered. Please enter the correct OTP")
-                    }
-                })
-                return nil
-            })
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.dismissKeyboard))
+        let flexButton1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let flexButton2 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        toolbar.setItems([flexButton1, flexButton2, doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        textField.inputAccessoryView = toolbar
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func backPressed(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func onClickOTPButton(_ sender: UIButton) {
+        if otpField.text == nil || otpField.text == "" {
+            APPUtilites.displayErrorSnackbar(message: "OTP Field cannot be blank")
+            return
+        }
+
+        CognitoHelper.shared.verifyOTPForSignUp(pool: pool!, user: self.cognitoUser!, otp: otpField.text!, success: {
+            self.gotoHomePage()
+        }) { (error: NSError) in
+            print(error)
+            APPUtilites.displayErrorSnackbar(message: "Wrong OTP Entered. Please enter the correct OTP")
+        }
     }
     
     func gotoHomePage() {
@@ -75,19 +92,18 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     }
     
     @IBAction func onClickResendOTP(_ sender: UIButton) {
-        cognitoUser!.resendConfirmationCode().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserResendConfirmationCodeResponse>) -> Any? in
-            DispatchQueue.main.async(execute: {
-                APPUtilites.displaySuccessSnackbar(message: "The confirmation code has been sent again to " + self.username)
-            })
-            return nil
-        }).continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
-            DispatchQueue.main.async(execute: {
-                if let error = task.error as? NSError {
-                    print(error.debugDescription)
-                    APPUtilites.displayErrorSnackbar(message: "Error in sending the code. Please try again")
-                }
-            })
-            return nil
-        })
+        CognitoHelper.shared.resendOTPForSignUp(pool: pool!, user: self.cognitoUser!, success: {
+            APPUtilites.displaySuccessSnackbar(message: "The confirmation code has been sent again to " + self.username)
+        }) { (error: NSError) in
+            print(error.debugDescription)
+            APPUtilites.displayErrorSnackbar(message: "Error in sending the code. Please try again")
+        }
+    }
+}
+
+extension SignUpOTPViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

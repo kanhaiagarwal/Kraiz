@@ -33,19 +33,12 @@ class ForgotPasswordOTPViewController: UIViewController, AWSCognitoIdentityInter
     }
 
     @IBAction func resendOTPPressed(_ sender: UIButton) {
-        user?.forgotPassword()
-            .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserForgotPasswordResponse>) -> Any? in
-                DispatchQueue.main.async {
-                    APPUtilites.displaySuccessSnackbar(message: "OTP has been resent to your mobile number")
-                }
-            })
-            .continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
-                if let error = task.error as? NSError {
-                    print("Error")
-                    print(error.userInfo)
-                }
-                return nil
-            })
+        CognitoHelper.shared.resendOTPForForgotPassword(user: user!, success: {
+            APPUtilites.displaySuccessSnackbar(message: "OTP has been resent to your mobile number!")
+        }) { (error: NSError) in
+            print("Error")
+            print(error.userInfo)
+        }
     }
     
     @IBAction func donePressed(_ sender: UIButton) {
@@ -53,25 +46,16 @@ class ForgotPasswordOTPViewController: UIViewController, AWSCognitoIdentityInter
             APPUtilites.displayErrorSnackbar(message: "OTP Field and Password cannot be blank")
             return
         }
-
-        user?.confirmForgotPassword(otpField.text!, password: newPasswordField.text!)
-            .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserConfirmForgotPasswordResponse>) -> Any? in
-                DispatchQueue.main.async(execute: {
-                    APPUtilites.displaySuccessSnackbar(message: "Your password has been changed. Use the new password to login.")
-                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-                })
-            })
-        .continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
-            if let error = task.error as? NSError {
-                print("Error")
-                print(error.userInfo)
-                let errorType = error.userInfo["__type"] as! String
-                if errorType == "CodeMismatchException" {
-                    APPUtilites.displayErrorSnackbar(message: "The OTP entered is wrong. Please enter the correct OTP ")
-                }
+        
+        CognitoHelper.shared.confirmForgotPassword(user: user!, otp: otpField.text!, newPassword: newPasswordField.text!, success: {
+            APPUtilites.displaySuccessSnackbar(message: "Your password has been changed. Use the new password to login.")
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        }) { (error: NSError) in
+            let errorType = error.userInfo["__type"] as! String
+            if errorType == "CodeMismatchException" {
+                APPUtilites.displayErrorSnackbar(message: "The OTP entered is wrong. Please enter the correct OTP ")
             }
-            return nil
-        })
+        }
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
@@ -85,27 +69,39 @@ class ForgotPasswordOTPViewController: UIViewController, AWSCognitoIdentityInter
         otpField.clipsToBounds = true
         otpField.layer.cornerRadius = otpField.frame.height / 2
         otpField.setPadding(left: 20, right: 20)
-        otpField.attributedPlaceholder = NSAttributedString(string: "OTP", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        otpField.attributedPlaceholder = NSAttributedString(string: "Enter the OTP here", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
         newPasswordField.clipsToBounds = true
         newPasswordField.layer.cornerRadius = newPasswordField.frame.height / 2
         newPasswordField.setPadding(left: 20, right: 20)
         newPasswordField.attributedPlaceholder = NSAttributedString(string: "New Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        
+        createToolbarForTextField(textField: otpField)
+        createToolbarForTextField(textField: newPasswordField)
+    }
+    
+    func createToolbarForTextField(textField: UITextField) {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.dismissKeyboard))
+        let flexButton1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let flexButton2 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        toolbar.setItems([flexButton1, flexButton2, doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        textField.inputAccessoryView = toolbar
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }
 
-extension UITextField {
-    func setPadding(left: CGFloat? = nil, right: CGFloat? = nil){
-        if let left = left {
-            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: left, height: self.frame.size.height))
-            self.leftView = paddingView
-            self.leftViewMode = .always
-        }
-        
-        if let right = right {
-            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: right, height: self.frame.size.height))
-            self.rightView = paddingView
-            self.rightViewMode = .always
-        }
+extension ForgotPasswordOTPViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

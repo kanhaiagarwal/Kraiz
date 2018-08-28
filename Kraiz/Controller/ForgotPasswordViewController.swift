@@ -39,7 +39,8 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
         countryCodePicker.delegate = self
         countryCodeField.inputView = countryCodePicker
         countryCodeField.text = "+91"
-        createToolbarForPicker()
+        createToolbarForTextField(textField: countryCodeField)
+        createToolbarForTextField(textField: phoneNumberField)
         
     }
     
@@ -57,16 +58,18 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
         generateOTPButton.layer.cornerRadius = generateOTPButton.frame.height / 2
     }
     
-    func createToolbarForPicker() {
+    func createToolbarForTextField(textField: UITextField) {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissKeyboard))
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.dismissKeyboard))
+        let flexButton1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let flexButton2 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
-        toolbar.setItems([doneButton], animated: false)
+        toolbar.setItems([flexButton1, flexButton2, doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         
-        countryCodeField.inputAccessoryView = toolbar
+        textField.inputAccessoryView = toolbar
     }
     
     @objc func dismissKeyboard() {
@@ -74,39 +77,25 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
     }
     
     @IBAction func otpButtonPressed(_ sender: UIButton) {
-        print("****************************************************************")
-        print("Inside otpButtonPressed")
         if phoneNumberField.text == nil || phoneNumberField.text == "" {
             APPUtilites.displayErrorSnackbar(message: "Mobile Number cannot be blank")
         }
         let username = countryCodeField.text! +
              phoneNumberField.text!
-        print("username: \(username)")
-        print("pool: \(pool)")
-        user = pool?.getUser(username)
-        print("user: \(user)")
-        print("user.username: \(user?.username)")
-        user?.forgotPassword()
-            .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserForgotPasswordResponse>) -> Any? in
-                DispatchQueue.main.async(execute: {
-                    self.gotoForgotPasswordOTPPage()
-                })
-            })
-            .continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
-                DispatchQueue.main.async(execute: {
-                    if let error = task.error as? NSError {
-                        print("Error")
-                        print(error)
-                        let errorType = error.userInfo["__type"] as! String
-                        if  errorType == "LimitExceededException" {
-                            APPUtilites.displayErrorSnackbar(message: "You have exceeded the number of retries. Please try again after sometime")
-                        } else if errorType == "UserNotFoundException" {
-                            APPUtilites.displayErrorSnackbar(message: "User with this mobile number does not exist")
-                        }
-                    }
-                })
-                return nil
-            })
+        
+        self.user = pool?.getUser(username)
+        
+        CognitoHelper.shared.forgotPassword(user: user!, success: {
+            self.gotoForgotPasswordOTPPage()
+        }) { (error: NSError) in
+            print(error)
+            let errorType = error.userInfo["__type"] as! String
+            if  errorType == "LimitExceededException" {
+                APPUtilites.displayErrorSnackbar(message: "You have exceeded the number of retries. Please try again after sometime")
+            } else if errorType == "UserNotFoundException" {
+                APPUtilites.displayErrorSnackbar(message: "User with this mobile number does not exist")
+            }
+        }
     }
     
     @IBAction func onBackClick(_ sender: UIButton) {
@@ -126,7 +115,7 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
     }
 }
 
-extension ForgotPasswordViewController: UIPickerViewDataSource {
+extension ForgotPasswordViewController: UIPickerViewDataSource, UITextFieldDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -142,5 +131,10 @@ extension ForgotPasswordViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         countryCodeSelected = CountryCodes.countryCodes[row]
         countryCodeField.text = countryCodeSelected
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

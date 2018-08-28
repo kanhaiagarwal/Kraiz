@@ -46,6 +46,28 @@ class LetterInputViewController: UIViewController {
         setTextFont(backgroundIndex: backgroundSelected)
         letterText.textContainerInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        createToolbarForTextView(textView: letterText)
+    }
+    
+    func createToolbarForTextView(textView: UITextView) {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.dismissKeyboard))
+        let flexButton1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let flexButton2 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        
+        toolbar.setItems([flexButton1, flexButton2, doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        textView.inputAccessoryView = toolbar
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
     @IBAction func donePressed(_ sender: UIButton) {
         delegate?.letterInput(backgroundImage: backgroundSelected, text: letterText.text)
@@ -66,7 +88,7 @@ class LetterInputViewController: UIViewController {
     
 }
 
-extension LetterInputViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension LetterInputViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width / 5, height: backgroundCollection.frame.height)
@@ -117,5 +139,10 @@ extension LetterInputViewController: UICollectionViewDataSource, UICollectionVie
             letterText.textColor = fontColors[backgroundIndex]
             break
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

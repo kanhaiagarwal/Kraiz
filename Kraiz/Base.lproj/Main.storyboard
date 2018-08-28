@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qPJ-LJ-Yho">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZdR-Ef-hjh">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -253,11 +253,11 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="64.333333333333329"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="X2R-p4-GCG" userLabel="Username">
-                                                                <rect key="frame" x="110" y="0.0" width="215" height="64.333333333333329"/>
+                                                                <rect key="frame" x="120" y="0.0" width="205" height="64.333333333333329"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hwa-od-77q">
                                                                 <rect key="frame" x="50" y="0.0" width="60" height="64.333333333333329"/>
@@ -272,7 +272,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstItem="X2R-p4-GCG" firstAttribute="leading" secondItem="hwa-od-77q" secondAttribute="trailing" id="7TY-GJ-rEk"/>
+                                                            <constraint firstItem="X2R-p4-GCG" firstAttribute="leading" secondItem="hwa-od-77q" secondAttribute="trailing" constant="10" id="7TY-GJ-rEk"/>
                                                             <constraint firstItem="X2R-p4-GCG" firstAttribute="top" secondItem="nuv-Zz-g2F" secondAttribute="top" id="8uB-Ol-9ve"/>
                                                             <constraint firstAttribute="bottom" secondItem="hwa-od-77q" secondAttribute="bottom" id="9nI-j1-dTV"/>
                                                             <constraint firstAttribute="trailing" secondItem="X2R-p4-GCG" secondAttribute="trailing" constant="50" id="PIM-0F-Yuj"/>
@@ -288,7 +288,7 @@
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Re6-37-7I0">
                                                                 <rect key="frame" x="50" y="0.0" width="275" height="65"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
@@ -392,27 +392,17 @@
                                     <constraint firstItem="G1e-sL-3Gh" firstAttribute="height" secondItem="Ia5-OV-O5P" secondAttribute="height" multiplier="1:5" id="a1q-Z6-iL4"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0Q-Hd-Viy">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
-                                <connections>
-                                    <action selector="hideKeyboardButtonPressed:" destination="BQ4-AX-GYV" eventType="touchUpInside" id="4wF-ga-L5N"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="dqN-vb-mX5" secondAttribute="bottom" id="0Mm-To-6yH"/>
                             <constraint firstItem="weq-Fc-aDy" firstAttribute="bottom" secondItem="9ru-Vb-4PP" secondAttribute="bottom" id="7gT-hF-oua"/>
                             <constraint firstItem="9ru-Vb-4PP" firstAttribute="top" secondItem="weq-Fc-aDy" secondAttribute="top" id="Elf-a2-4xN"/>
-                            <constraint firstItem="w0Q-Hd-Viy" firstAttribute="top" secondItem="weq-Fc-aDy" secondAttribute="top" id="LHV-ac-pEk"/>
                             <constraint firstItem="dqN-vb-mX5" firstAttribute="top" secondItem="ltw-iW-pYx" secondAttribute="top" id="Lmj-3x-fp1"/>
                             <constraint firstItem="uhT-MA-JZW" firstAttribute="top" secondItem="weq-Fc-aDy" secondAttribute="centerY" multiplier="0.13" id="Tp7-LY-EJu"/>
-                            <constraint firstItem="weq-Fc-aDy" firstAttribute="trailing" secondItem="w0Q-Hd-Viy" secondAttribute="trailing" id="VlW-G7-TGT"/>
                             <constraint firstItem="weq-Fc-aDy" firstAttribute="trailing" secondItem="9ru-Vb-4PP" secondAttribute="trailing" id="WNe-Eg-JUU"/>
-                            <constraint firstItem="weq-Fc-aDy" firstAttribute="bottom" secondItem="w0Q-Hd-Viy" secondAttribute="bottom" id="WaL-yR-PsG"/>
                             <constraint firstItem="9ru-Vb-4PP" firstAttribute="leading" secondItem="weq-Fc-aDy" secondAttribute="leading" id="We6-t1-otQ"/>
                             <constraint firstItem="dqN-vb-mX5" firstAttribute="leading" secondItem="weq-Fc-aDy" secondAttribute="leading" id="ZvV-3B-MCl"/>
-                            <constraint firstItem="w0Q-Hd-Viy" firstAttribute="leading" secondItem="weq-Fc-aDy" secondAttribute="leading" id="vCn-an-gXq"/>
                             <constraint firstItem="weq-Fc-aDy" firstAttribute="trailing" secondItem="dqN-vb-mX5" secondAttribute="trailing" id="yF4-Bq-ClX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="weq-Fc-aDy"/>
@@ -420,7 +410,6 @@
                     <connections>
                         <outlet property="countryCodeField" destination="hwa-od-77q" id="r9v-yb-PuS"/>
                         <outlet property="generateOTPButton" destination="klA-AL-S5I" id="Ao0-BB-EHo"/>
-                        <outlet property="hideKeyboardButton" destination="w0Q-Hd-Viy" id="JdK-1h-Oo5"/>
                         <outlet property="passwordField" destination="Re6-37-7I0" id="w2U-0A-IZV"/>
                         <outlet property="signUpButton" destination="klA-AL-S5I" id="rno-c4-Fjy"/>
                         <outlet property="usernameField" destination="X2R-p4-GCG" id="FJB-Gr-Mrf"/>
@@ -505,7 +494,7 @@
                                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                <textInputTraits key="textInputTraits"/>
+                                                                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                                             </textField>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -585,6 +574,9 @@
                                                                 <state key="normal" title="Back">
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="backPressed:" destination="de4-iG-N5A" eventType="touchUpInside" id="1uY-1V-WiG"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -715,7 +707,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="24"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQk-aM-m4i">
                                                 <rect key="frame" x="170" y="132" width="35" height="31"/>
@@ -828,7 +820,7 @@ mobile number +919003194776</string>
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qNM-Y4-ZOF">
                                 <rect key="frame" x="245" y="275.66666666666669" width="100" height="31"/>
@@ -851,7 +843,7 @@ mobile number +919003194776</string>
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8E0-6J-Rgn">
                                 <rect key="frame" x="30" y="384.66666666666669" width="315" height="52"/>
@@ -973,17 +965,17 @@ mobile number +919003194776</string>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jZv-Rj-l55">
-                                                                <rect key="frame" x="110" y="0.0" width="215" height="48.666666666666664"/>
+                                                                <rect key="frame" x="120" y="0.0" width="205" height="48.666666666666664"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="jZv-Rj-l55" secondAttribute="bottom" id="00z-wV-ahL"/>
-                                                            <constraint firstItem="jZv-Rj-l55" firstAttribute="leading" secondItem="nMs-kG-Gmo" secondAttribute="trailing" id="NmQ-eT-bTY"/>
+                                                            <constraint firstItem="jZv-Rj-l55" firstAttribute="leading" secondItem="nMs-kG-Gmo" secondAttribute="trailing" constant="10" id="NmQ-eT-bTY"/>
                                                             <constraint firstItem="nMs-kG-Gmo" firstAttribute="top" secondItem="xbj-HZ-8cm" secondAttribute="top" id="ZP3-5z-hsU"/>
                                                             <constraint firstItem="nMs-kG-Gmo" firstAttribute="leading" secondItem="xbj-HZ-8cm" secondAttribute="leading" constant="50" id="ZWB-QT-c16"/>
                                                             <constraint firstItem="jZv-Rj-l55" firstAttribute="top" secondItem="xbj-HZ-8cm" secondAttribute="top" id="hJ5-f4-tfv"/>
@@ -1118,20 +1110,11 @@ mobile number +919003194776</string>
                                     <constraint firstItem="CDh-yH-45b" firstAttribute="height" secondItem="A6C-PM-YPc" secondAttribute="height" multiplier="1:1" id="lqz-9L-K70"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIh-1f-fis">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
-                                <connections>
-                                    <action selector="hideKeyboardPressed:" destination="qPJ-LJ-Yho" eventType="touchUpInside" id="RSP-wl-eo1"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8AV-k9-dBn" firstAttribute="leading" secondItem="B51-Up-Tbe" secondAttribute="leading" id="5Jw-Uv-yyr"/>
                             <constraint firstItem="xMI-sB-qSK" firstAttribute="leading" secondItem="B51-Up-Tbe" secondAttribute="leading" id="Gei-zs-l9s"/>
-                            <constraint firstItem="KIh-1f-fis" firstAttribute="leading" secondItem="B51-Up-Tbe" secondAttribute="leading" id="Jk3-Z5-ttN"/>
-                            <constraint firstItem="B51-Up-Tbe" firstAttribute="trailing" secondItem="KIh-1f-fis" secondAttribute="trailing" id="K5o-0X-Y8R"/>
-                            <constraint firstItem="KIh-1f-fis" firstAttribute="top" secondItem="B51-Up-Tbe" secondAttribute="top" id="Zu6-mg-RRM"/>
                             <constraint firstItem="8AV-k9-dBn" firstAttribute="top" secondItem="M94-Vy-Chd" secondAttribute="top" id="aTd-4W-Vqe"/>
                             <constraint firstItem="B51-Up-Tbe" firstAttribute="trailing" secondItem="8AV-k9-dBn" secondAttribute="trailing" id="an5-Zx-Toq"/>
                             <constraint firstItem="xMI-sB-qSK" firstAttribute="top" secondItem="B51-Up-Tbe" secondAttribute="top" id="daT-CO-Rca"/>
@@ -1139,13 +1122,11 @@ mobile number +919003194776</string>
                             <constraint firstAttribute="bottom" secondItem="8AV-k9-dBn" secondAttribute="bottom" id="etW-Ct-Ckb"/>
                             <constraint firstItem="B51-Up-Tbe" firstAttribute="bottom" secondItem="xMI-sB-qSK" secondAttribute="bottom" id="jb6-Ce-geq"/>
                             <constraint firstItem="UOc-Bg-3jx" firstAttribute="top" secondItem="8AV-k9-dBn" secondAttribute="centerY" multiplier="0.15" id="kK1-au-bcW"/>
-                            <constraint firstItem="B51-Up-Tbe" firstAttribute="bottom" secondItem="KIh-1f-fis" secondAttribute="bottom" id="mCL-Wh-h0u"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B51-Up-Tbe"/>
                     </view>
                     <connections>
                         <outlet property="countryCodeField" destination="nMs-kG-Gmo" id="BL3-E2-rQP"/>
-                        <outlet property="hideKeyboardButton" destination="KIh-1f-fis" id="aod-Vz-8GM"/>
                         <outlet property="passwordField" destination="0HU-Ef-6vm" id="xkI-UE-ZaW"/>
                         <outlet property="signInButton" destination="Fz9-vX-llW" id="sgH-9C-hr5"/>
                         <outlet property="usernameContainer" destination="xbj-HZ-8cm" id="9jO-sq-f1B"/>
@@ -3790,10 +3771,10 @@ its the right one</string>
         <image name="video-unselected" width="26" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Y14-05-DiJ"/>
+        <segue reference="hgI-cb-1J3"/>
         <segue reference="jey-vD-tun"/>
         <segue reference="29n-BT-rOK"/>
-        <segue reference="pzD-o7-afy"/>
+        <segue reference="h3y-kV-xul"/>
         <segue reference="QEH-CO-fw1"/>
     </inferredMetricsTieBreakers>
 </document>

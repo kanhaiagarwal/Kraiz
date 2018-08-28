@@ -22,7 +22,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var usernameContainer: UIView!
-    @IBOutlet weak var hideKeyboardButton: UIButton!
     
     let countryCodePicker = UIPickerView()
     var countryCodeTextField: UITextField!
@@ -50,34 +49,33 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         countryCodePicker.delegate = self
         countryCodeField.inputView = countryCodePicker
         countryCodeField.text = "+91"
-        createToolbarForPickerView()
-        hideKeyboardButton.isHidden = true
+        createToolbarForTextField(textField: countryCodeField)
+        createToolbarForTextField(textField: usernameField)
+        createToolbarForTextField(textField: passwordField)
         
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         user = pool?.getUser()
         pool?.delegate = self
+        
+        
     }
     
-    func createToolbarForPickerView() {
+    func createToolbarForTextField(textField: UITextField) {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.dismissKeyboard))
+        let flexButton1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let flexButton2 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
-        
-        toolbar.setItems([doneButton], animated: false)
+        toolbar.setItems([flexButton1, flexButton2, doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         
-        countryCodeField.inputAccessoryView = toolbar
+        textField.inputAccessoryView = toolbar
     }
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
-    }
-    
-    @IBAction func hideKeyboardPressed(_ sender: UIButton) {
-        view.endEditing(true)
-        hideKeyboardButton.isHidden = true
     }
     
     func setupFontSize() {
@@ -110,22 +108,23 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     }
     
     func setupViews() {
-        usernameField.layer.cornerRadius = usernameField.frame.width / 20
+        usernameField.layer.cornerRadius = usernameField.frame.height / 2
         usernameField.clipsToBounds = true
         usernameField.textColor = UIColor.white
-        usernameField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: usernameField.frame.height))
-        usernameField.leftViewMode = UITextFieldViewMode.always
-        usernameField.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.4)])
+        usernameField.setPadding(left: 20.0, right: 20.0)
+        usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile Number", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
-        passwordField.layer.cornerRadius = usernameField.frame.width / 20
+        passwordField.layer.cornerRadius = passwordField.frame.height / 2
         passwordField.clipsToBounds = true
         passwordField.textColor = UIColor.white
-        passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: passwordField.frame.height))
-        passwordField.leftViewMode = UITextFieldViewMode.always
-        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white.withAlphaComponent(0.4)])
+        passwordField.setPadding(left: 20.0, right: 20.0)
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         
-        signInButton.layer.cornerRadius = signInButton.frame.width / 20
+        signInButton.layer.cornerRadius = signInButton.frame.height / 2
         signInButton.clipsToBounds = true
+        
+        countryCodeField.layer.cornerRadius = countryCodeField.frame.height / 2
+        countryCodeField.clipsToBounds = true
         
         setupFontSize()
     }
@@ -139,34 +138,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
             return
         }
         let usernameText = countryCodeField.text! + usernameField.text!
-        print("usernameText: \(usernameText)")
-        let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: usernameText, password: passwordField.text!)
-        user?.getSession(usernameText, password: passwordField.text!, validationData: nil)
-            .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserSession>) -> Any? in
-                DispatchQueue.main.async(execute: {
-                    if let result = task.result {
-                        print("access token: \(result.accessToken)")
-                        print("expiration time: \(result.expirationTime)")
-                        print("id token: \(result.idToken)")
-                        print(result.debugDescription)
-                        self.gotoHomePage()
-                    }
-                })
-                return nil
-            })
-            .continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
-                DispatchQueue.main.async {
-                    if let error = task.error as? NSError {
-                        print("Error")
-                        print(error)
-                        if error.userInfo["__type"] as! String == "UserNotConfirmedException" {
-                            self.gotoOTPPage()
-                        }
-                        APPUtilites.displayErrorSnackbar(message: error.userInfo["message"] as! String)
-                    }
-                }
-                return nil
-            })
+        let password = passwordField.text!
+        CognitoHelper.shared.signIn(pool: pool!, usernameText: usernameText, passwordText: password, success: {
+            self.gotoHomePage()
+        }) { (error: NSError) in
+            print("Error")
+            print(error)
+            if error.userInfo["__type"] as! String == "UserNotConfirmedException" {
+                self.gotoOTPPage()
+            }
+            APPUtilites.displayErrorSnackbar(message: error.userInfo["message"] as! String)
+        }
     }
     
     func gotoHomePage() {
@@ -212,10 +194,25 @@ extension SignInViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         countryCodeSelected = countryCodes[row]
         countryCodeField.text = countryCodeSelected
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 }
 
-extension SignInViewController {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        hideKeyboardButton.isHidden = false
+extension UITextField {
+    func setPadding(left: CGFloat? = nil, right: CGFloat? = nil){
+        if let left = left {
+            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: left, height: self.frame.size.height))
+            self.leftView = paddingView
+            self.leftViewMode = .always
+        }
+        
+        if let right = right {
+            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: right, height: self.frame.size.height))
+            self.rightView = paddingView
+            self.rightViewMode = .always
+        }
     }
 }
