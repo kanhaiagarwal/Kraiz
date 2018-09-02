@@ -8,15 +8,11 @@
 //  Starting View Controller.
 
 import UIKit
+import Reachability
 
 class StartViewController: UIViewController {
 
     @IBOutlet weak var logoContainer: UIView!
-//    @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var titleContainer: UIView!
-//    @IBOutlet weak var appTitle: UILabel!
-//    @IBOutlet weak var tagLineContainer: UILabel!
-//    @IBOutlet weak var tagLine: UILabel!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     
@@ -24,10 +20,28 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setMainViewHeight()
-        setFonts()
+        viewHeight = view.frame.height
+        
+        checkInternetConnection()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setButtonsCornerRadius()
         setButtonFontSize()
+    }
+    
+//    override func viewDidLayoutSubviews() {
+//        setButtonsCornerRadius()
+//        setButtonFontSize()
+//    }
+    
+    func checkInternetConnection() {
+        let reachability = Reachability()
+        if reachability?.connection == Reachability.Connection.none {
+            APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
+            return
+        }
     }
     
     @IBAction func onSignInClick(_ sender: UIButton) {
@@ -38,57 +52,13 @@ class StartViewController: UIViewController {
         performSegue(withIdentifier: "gotoSignUp", sender: self)
     }
     
-    func setFonts() {
-//        switch viewHeight {
-//            case DeviceConstants.IPHONE5S_HEIGHT:
-//                appTitle.font = UIFont(name: "Times New Roman", size: 50)
-//                tagLine.font = UIFont(name: "Times New Roman", size: 20)
-//                break
-//            case DeviceConstants.IPHONE7_HEIGHT:
-//                appTitle.font = UIFont(name: "Times New Roman", size: 60)
-//                tagLine.font = UIFont(name: "Times New Roman", size: 24)
-//                break
-//            case DeviceConstants.IPHONE7PLUS_HEIGHT:
-//                appTitle.font = UIFont(name: "Times New Roman", size: 60)
-//                tagLine.font = UIFont(name: "Times New Roman", size: 28)
-//                break
-//            case DeviceConstants.IPHONEX_HEIGHT:
-//                appTitle.font = UIFont(name: "Times New Roman", size: 60)
-//                tagLine.font = UIFont(name: "Times New Roman", size: 28)
-//            default:
-//                appTitle.font = UIFont(name: "Times New Roman", size: 50)
-//                tagLine.font = UIFont(name: "Times New Roman", size: 20)
-//                break
-//        }
-    }
-    
-    func setMainViewHeight() {
-        viewHeight = view.frame.height
-    }
-    
     func setButtonsCornerRadius() {
-        switch viewHeight {
-        case DeviceConstants.IPHONE5S_HEIGHT:
-            signInButton.layer.cornerRadius = signInButton.frame.width / 50
-            signUpButton.layer.cornerRadius = signInButton.frame.width / 50
-            break
-        case DeviceConstants.IPHONE7_HEIGHT:
-            signInButton.layer.cornerRadius = signInButton.frame.width / 30
-            signUpButton.layer.cornerRadius = signInButton.frame.width / 30
-            break
-        case DeviceConstants.IPHONE7PLUS_HEIGHT:
-            signInButton.layer.cornerRadius = signInButton.frame.width / 20
-            signUpButton.layer.cornerRadius = signInButton.frame.width / 20
-            break
-        case DeviceConstants.IPHONEX_HEIGHT:
-            signInButton.layer.cornerRadius = signInButton.frame.width / 20
-            signUpButton.layer.cornerRadius = signInButton.frame.width / 20
-            break
-        default:
-//            appTitle.font = UIFont(name: "Times New Roman", size: 50)
-//            tagLine.font = UIFont(name: "Times New Roman", size: 20)
-            break
-        }
+        signInButton.clipsToBounds = true
+        signInButton.layer.cornerRadius = signInButton.frame.height / 2
+        
+        signUpButton.layer.borderColor = UIColor.clear.cgColor
+        signUpButton.layer.cornerRadius = signUpButton.frame.height / 2
+        signUpButton.clipsToBounds = true
     }
     
     func setButtonFontSize() {

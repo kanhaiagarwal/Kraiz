@@ -8,6 +8,7 @@
 
 import Foundation
 import AWSCognitoIdentityProvider
+import Reachability
 
 class CognitoHelper {
     
@@ -23,6 +24,13 @@ class CognitoHelper {
     ///     - success: Closure to execute if the sign in is successful.
     ///     - failure: Closure to execute if the sign in failed.
     func signIn(pool: AWSCognitoIdentityUserPool, usernameText: String, passwordText: String, success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
+        
+        let reachability = Reachability()
+        if reachability?.connection == Reachability.Connection.none {
+            failure(DeviceConstants.NO_INTERNET_ERROR)
+            return
+        }
+        
         let user = pool.getUser()
         user.getSession(usernameText, password: passwordText, validationData: nil)
             .continueOnSuccessWith { (task: AWSTask<AWSCognitoIdentityUserSession>) -> Any? in
@@ -56,6 +64,13 @@ class CognitoHelper {
     ///     - success: Closure to execute if the OTP generation for Sign UP is successful.
     ///     - failure: Closure to execute if the OTP generation for Sign UP has failed.
     func generateOTPForSignUp(pool: AWSCognitoIdentityUserPool, usernameText: String, passwordText: String, success: @escaping (AWSCognitoIdentityUser) -> Void, failure: @escaping (NSError) -> Void) {
+        
+        let reachability = Reachability()
+        if reachability?.connection == Reachability.Connection.none {
+            failure(DeviceConstants.NO_INTERNET_ERROR)
+            return
+        }
+        
         pool.signUp(usernameText, password: passwordText, userAttributes: nil, validationData: nil)
             .continueOnSuccessWith { (task: AWSTask<AWSCognitoIdentityUserPoolSignUpResponse>) -> Any? in
                 DispatchQueue.main.async(execute: {
@@ -81,6 +96,13 @@ class CognitoHelper {
     ///     - success: Closure to execute if the OTP is verified successfully
     ///     - failure: Closure to execute if the OTP verification fails.
     func verifyOTPForSignUp(pool: AWSCognitoIdentityUserPool, user: AWSCognitoIdentityUser, otp: String, success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
+        
+        let reachability = Reachability()
+        if reachability?.connection == Reachability.Connection.none {
+            failure(DeviceConstants.NO_INTERNET_ERROR)
+            return
+        }
+        
         user.confirmSignUp(otp)
             .continueOnSuccessWith { (task: AWSTask<AWSCognitoIdentityUserConfirmSignUpResponse>) -> Any? in
                 DispatchQueue.main.async(execute: {
@@ -104,6 +126,13 @@ class CognitoHelper {
     ///     - success: Closure to execute if the OTP resend action is successful.
     ///     - failure: Closure to execute if the OTP resend action fails.
     func resendOTPForSignUp(pool: AWSCognitoIdentityUserPool, user: AWSCognitoIdentityUser, success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
+        
+        let reachability = Reachability()
+        if reachability?.connection == Reachability.Connection.none {
+            failure(DeviceConstants.NO_INTERNET_ERROR)
+            return
+        }
+        
         user.resendConfirmationCode().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserResendConfirmationCodeResponse>) -> Any? in
             DispatchQueue.main.async(execute: {
                 success()
@@ -125,6 +154,13 @@ class CognitoHelper {
     ///     - success: Closure to execute if the OTP send action is successful.
     ///     - failure: Closure to execute if the OTP send action fails.
     func forgotPassword(user: AWSCognitoIdentityUser, success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
+        
+        let reachability = Reachability()
+        if reachability?.connection == Reachability.Connection.none {
+            failure(DeviceConstants.NO_INTERNET_ERROR)
+            return
+        }
+        
         user.forgotPassword()
         .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserForgotPasswordResponse>) -> Any? in
             DispatchQueue.main.async(execute: {
@@ -150,6 +186,13 @@ class CognitoHelper {
     ///     - success: Closure to execute if change password action is successful.
     ///     - failure: Closure to execute if change password action fails.
     func confirmForgotPassword(user: AWSCognitoIdentityUser, otp: String, newPassword: String, success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
+        
+        let reachability = Reachability()
+        if reachability?.connection == Reachability.Connection.none {
+            failure(DeviceConstants.NO_INTERNET_ERROR)
+            return
+        }
+        
         user.confirmForgotPassword(otp, password: newPassword)
         .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserConfirmForgotPasswordResponse>) -> Any? in
             DispatchQueue.main.async(execute: {
@@ -171,6 +214,13 @@ class CognitoHelper {
     ///     - success: Closure to execute if resend OTP action is successful.
     ///     - failure: Closure to execute if resend OTP action fails.
     func resendOTPForForgotPassword(user: AWSCognitoIdentityUser, success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
+        
+        let reachability = Reachability()
+        if reachability?.connection == Reachability.Connection.none {
+            failure(DeviceConstants.NO_INTERNET_ERROR)
+            return
+        }
+        
         user.forgotPassword()
         .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserForgotPasswordResponse>) -> Any? in
             DispatchQueue.main.async {

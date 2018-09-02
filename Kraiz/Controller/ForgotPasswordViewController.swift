@@ -25,11 +25,14 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
     /// Segues
     let FORGOT_PASSWORD_OTP_SEGUE = "gotoEnterOTPFromForgotPassword"
     
+    let PLACEHOLDER_COLOR = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.4)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         pool = AWSCognitoIdentityUserPool(forKey: "Kraiz-2")
         pool?.delegate = self
+    self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +53,7 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
         phoneNumberField.textColor = UIColor.white
         phoneNumberField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: phoneNumberField.frame.height))
         phoneNumberField.leftViewMode = UITextFieldViewMode.always
-        phoneNumberField.attributedPlaceholder = NSAttributedString(string: "Mobile Number", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        phoneNumberField.attributedPlaceholder = NSAttributedString(string: "Mobile Number", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
         countryCodeField.clipsToBounds = true
         countryCodeField.layer.cornerRadius = countryCodeField.frame.height / 2
         
@@ -77,29 +80,38 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
     }
     
     @IBAction func otpButtonPressed(_ sender: UIButton) {
+        dismissKeyboard()
         if phoneNumberField.text == nil || phoneNumberField.text == "" {
             APPUtilites.displayErrorSnackbar(message: "Mobile Number cannot be blank")
+            return
         }
         let username = countryCodeField.text! +
              phoneNumberField.text!
         
         self.user = pool?.getUser(username)
         
+        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
         CognitoHelper.shared.forgotPassword(user: user!, success: {
+            APPUtilites.removeLoadingSpinner(spinner: sv)
             self.gotoForgotPasswordOTPPage()
         }) { (error: NSError) in
+            APPUtilites.removeLoadingSpinner(spinner: sv)
             print(error)
             let errorType = error.userInfo["__type"] as! String
-            if  errorType == "LimitExceededException" {
-                APPUtilites.displayErrorSnackbar(message: "You have exceeded the number of retries. Please try again after sometime")
+            if errorType == "NoInternetConnectionException" {
+                APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
+            } else if  errorType == "LimitExceededException" {
+                APPUtilites.displayErrorSnackbar(message: "You have exceeded maximum number of failed attempts.Please try again later")
             } else if errorType == "UserNotFoundException" {
-                APPUtilites.displayErrorSnackbar(message: "User with this mobile number does not exist")
+                APPUtilites.displayErrorSnackbar(message: "Mobile number is not registered")
+            } else if errorType == "InvalidParameterException" {
+                APPUtilites.displayErrorSnackbar(message: "Mobile Number not verified or incorrect")
             }
         }
     }
     
     @IBAction func onBackClick(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func gotoForgotPasswordOTPPage() {

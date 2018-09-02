@@ -19,6 +19,7 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var hidePasswordButton: UIButton!
     
     let pickerStrings = ["India (+91)", "USA (+1)", "Pakistan (+92)", "Bangladesh (+123)"]
     let countryCodes = ["+91", "+1", "+92", "+123"]
@@ -31,6 +32,8 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
     let GOTO_OTP_SEGUE = "gotoVerifyOtpFromSignUp"
     let SIGN_UP_TO_SIGN_IN_SEGUE = "signUpToSignIn"
     var viewHeight : CGFloat = 0
+    
+    let PLACEHOLDER_COLOR = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.4)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +51,7 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
         
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         pool?.delegate = self
+    self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     func createToolbarForTextField(textField: UITextField) {
@@ -76,12 +80,12 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
         usernameField.layer.cornerRadius = usernameField.frame.height / 2
         usernameField.clipsToBounds = true
         usernameField.setPadding(left: 10, right: 10)
-        usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile Number", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile number", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
         
         passwordField.layer.cornerRadius = passwordField.frame.height / 2
         passwordField.clipsToBounds = true
         passwordField.setPadding(left: 10, right: 10)
-        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
         
         generateOTPButton.layer.cornerRadius = generateOTPButton.frame.height / 2
         generateOTPButton.clipsToBounds = true
@@ -90,25 +94,54 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
     }
     
     @IBAction func generateOTPPressed(_ sender: UIButton) {
+        dismissKeyboard()
         if usernameField.text == nil || passwordField.text == nil || usernameField.text == "" || passwordField.text == "" {
-            APPUtilites.displayErrorSnackbar(message: "Username and Password cannot be left blank")
+            APPUtilites.displayErrorSnackbar(message: "Mobile number and Password cannot be left blank")
             return
         }
-        generateOTPButton.isEnabled = false
+        if (passwordField.text?.count)! < 8 {
+            APPUtilites.displayErrorSnackbar(message: "Please make sure that the password is minimum 8 characters.")
+            return
+        }
         let usernameText = countryCodeField.text! + usernameField.text!
+        if usernameText.count < 7 {
+            APPUtilites.displayErrorSnackbar(message: "Please enter a correct Mobile number")
+            return
+        }
+        let sw = APPUtilites.displayLoadingSpinner(onView: self.view)
         
         CognitoHelper.shared.generateOTPForSignUp(pool: pool!, usernameText: usernameText, passwordText: passwordField.text!, success: { (sessionUser: AWSCognitoIdentityUser) in
+            APPUtilites.removeLoadingSpinner(spinner: sw)
             self.user = sessionUser
             self.gotoVerifyOTPPage()
         }) { (error: NSError) in
-            if String(describing: error.userInfo["__type"]!) == "UsernameExistsException" {
-                APPUtilites.displayErrorSnackbar(message: "User with the phone number already exists")
-            } else if String(describing: error.userInfo["__type"]!) == "InvalidPasswordException" || String(describing: error.userInfo["__type"]!) == "InvalidParameterException" {
-                APPUtilites.displayErrorSnackbar(message: "Please make sure that the password is minimum 6 characters.")
+            print(error)
+            APPUtilites.removeLoadingSpinner(spinner: sw)
+            if String(describing: error.userInfo["__type"]!) == "NoInternetConnectionException" {
+                APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
+            } else if String(describing: error.userInfo["__type"]!) == "UsernameExistsException" {
+                APPUtilites.displayErrorSnackbar(message: "Mobile number already exists")
+            } else if String(describing: error.userInfo["__type"]!) == "InvalidPasswordException" {
+                APPUtilites.displayErrorSnackbar(message: "Please make sure that the password is minimum 8 characters.")
+            } else if String(describing: error.userInfo["__type"]!) == "InvalidParameterException" {
+                APPUtilites.displayErrorSnackbar(message: "Please enter a valid mobile number")
             }
-            self.generateOTPButton.isEnabled = true
         }
     }
+    
+    @IBAction func hidePasswordPressed(_ sender: UIButton) {
+        passwordField.isSecureTextEntry = !passwordField.isSecureTextEntry
+        if passwordField.isSecureTextEntry == true {
+            hidePasswordButton.setImage(UIImage(named: "show-password"), for: .normal)
+        } else {
+            // The position of the cursor on unsecured text is shown wrong. This is because the width of the secured text and unsecured text are different.
+            let tempText = passwordField.text
+            passwordField.text = ""
+            passwordField.text = tempText
+            hidePasswordButton.setImage(UIImage(named: "hide-password"), for: .normal)
+        }
+    }
+    
     @IBAction func gotoSignIn(_ sender: UIButton) {
         performSegue(withIdentifier: SIGN_UP_TO_SIGN_IN_SEGUE, sender: self)
     }

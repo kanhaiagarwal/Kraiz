@@ -9,7 +9,6 @@
 
 import UIKit
 import AWSCognitoIdentityProvider
-import TTGSnackbar
 
 class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIdentityInteractiveAuthenticationDelegate {
 
@@ -22,6 +21,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var usernameContainer: UIView!
+    @IBOutlet weak var hidePasswordButton: UIButton!
     
     let countryCodePicker = UIPickerView()
     var countryCodeTextField: UITextField!
@@ -35,15 +35,26 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     let pickerStrings = ["India (+91)", "USA (+1)", "Pakistan (+92)", "Bangladesh (+123)"]
     
     let countryCodes = ["+91", "+1", "+92", "+123"]
+    let PLACEHOLDER_COLOR = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.4)
     
     var viewHeight : CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
+        user = pool?.getUser()
+        pool?.delegate = self
+    self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupViews()
         usernameField.delegate = self
         
         viewHeight = view.frame.height
-        setupViews()
         usernameField.delegate = self
         passwordField.delegate = self
         countryCodePicker.delegate = self
@@ -52,12 +63,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         createToolbarForTextField(textField: countryCodeField)
         createToolbarForTextField(textField: usernameField)
         createToolbarForTextField(textField: passwordField)
-        
-        pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
-        user = pool?.getUser()
-        pool?.delegate = self
-        
-        
     }
     
     func createToolbarForTextField(textField: UITextField) {
@@ -108,46 +113,80 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     }
     
     func setupViews() {
+        usernameField.borderStyle = .none
+        usernameField.layer.masksToBounds = true
         usernameField.layer.cornerRadius = usernameField.frame.height / 2
-        usernameField.clipsToBounds = true
         usernameField.textColor = UIColor.white
         usernameField.setPadding(left: 20.0, right: 20.0)
-        usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile Number", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile Number", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
         
+        passwordField.borderStyle = .none
+        passwordField.layer.borderWidth = 0
+        passwordField.layer.masksToBounds = true
         passwordField.layer.cornerRadius = passwordField.frame.height / 2
-        passwordField.clipsToBounds = true
         passwordField.textColor = UIColor.white
         passwordField.setPadding(left: 20.0, right: 20.0)
-        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
         
         signInButton.layer.cornerRadius = signInButton.frame.height / 2
-        signInButton.clipsToBounds = true
+        signInButton.layer.masksToBounds = true
         
+        countryCodeField.borderStyle = .none
+        countryCodeField.layer.masksToBounds = true
         countryCodeField.layer.cornerRadius = countryCodeField.frame.height / 2
-        countryCodeField.clipsToBounds = true
         
         setupFontSize()
+        hidePasswordButton.imageView?.contentMode = .scaleAspectFit
+        hidePasswordButton.imageEdgeInsets = UIEdgeInsetsMake(10, 0, 10, 0)
     }
     
+    @IBAction func showPasswordPressed(_ sender: UIButton) {
+        passwordField.isSecureTextEntry = !passwordField.isSecureTextEntry
+        if passwordField.isSecureTextEntry == true {
+            sender.setImage(UIImage(named: "hide-password"), for: .normal)
+        } else {
+            // The position of the cursor on unsecured text is shown wrong. This is because the width of the secured text and unsecured text are different.
+            let tempText = passwordField.text
+            passwordField.text = ""
+            passwordField.text = tempText
+            sender.setImage(UIImage(named: "show-password"), for: .normal)
+        }
+    }
     @IBAction func onClickSignIn(_ sender: UIButton) {
         dismissKeyboard()
-        print("Inside sign in")
         if usernameField.text == nil || passwordField.text == nil || usernameField.text == "" || passwordField.text == "" {
-            print("UsernameField.text and passwordField.text are not nil")
             APPUtilites.displayErrorSnackbar(message: "Username or password are empty")
             return
         }
+        if (passwordField.text?.count)! < 8 {
+            APPUtilites.displayErrorSnackbar(message: "Please make sure that the password is minimum 8 characters.")
+            return
+        }
         let usernameText = countryCodeField.text! + usernameField.text!
+        if usernameText.count < 7 {
+            APPUtilites.displayErrorSnackbar(message: "Please enter a correct Mobile number")
+            return
+        }
+        
+        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
         let password = passwordField.text!
+        
         CognitoHelper.shared.signIn(pool: pool!, usernameText: usernameText, passwordText: password, success: {
+            APPUtilites.removeLoadingSpinner(spinner: sv)
             self.gotoHomePage()
         }) { (error: NSError) in
+            APPUtilites.removeLoadingSpinner(spinner: sv)
             print("Error")
             print(error)
-            if error.userInfo["__type"] as! String == "UserNotConfirmedException" {
+            if error.userInfo["__type"] as! String == "NoInternetConnectionException" {
+                APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
+            } else if error.userInfo["__type"] as! String == "UserNotConfirmedException" {
                 self.gotoOTPPage()
+            } else if error.userInfo["__type"] as! String == "NotAuthorizedException" {
+                APPUtilites.displayErrorSnackbar(message: "Mobile number/Password combination incorrect")
+            } else {
+                APPUtilites.displayErrorSnackbar(message: error.userInfo["message"] as! String)
             }
-            APPUtilites.displayErrorSnackbar(message: error.userInfo["message"] as! String)
         }
     }
     

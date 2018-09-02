@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
         let pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         let user = pool.currentUser()
         
-        if user != nil {
+            if user != nil {
             print("User is not nil")
             let session = user?.getSession()
             if session != nil {

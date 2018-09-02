@@ -6,10 +6,11 @@ target 'Kraiz' do
   use_frameworks!
 
   # Pods for Kraiz
-  pod 'CropViewController'
-  pod 'BSImagePicker'
   pod 'AWSCognito'
   pod 'AWSCognitoIdentityProvider'
+  pod 'BSImagePicker'
+  pod 'CropViewController'
+  pod 'ReachabilitySwift'
   pod 'TTGSnackbar'
 
 end

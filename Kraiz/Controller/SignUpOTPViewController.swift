@@ -12,7 +12,7 @@ import AWSCognitoIdentityProvider
 import TTGSnackbar
 
 class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAuthenticationDelegate {
-
+    
     public var cognitoUser: AWSCognitoIdentityUser?
     public var username: String = ""
     var pool: AWSCognitoIdentityUserPool?
@@ -27,23 +27,28 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     // Segues
     let GOTO_HOME_PAGE: String = "gotoHomeFromSignUp"
     
+    let OTP_LENGTH = 6
+    let PLACEHOLDER_COLOR = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.4)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         typeOTPLabel.text = standardText + username
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         pool?.delegate = self
+    self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupViews()
+        otpField.becomeFirstResponder()
     }
     
     func setupViews() {
         otpField.layer.cornerRadius = otpField.frame.height / 2
         otpField.clipsToBounds = true
         otpField.setPadding(left: 10, right: 10)
-        otpField.attributedPlaceholder = NSAttributedString(string: "Enter the OTP Here", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        otpField.attributedPlaceholder = NSAttributedString(string: "OTP", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
         
         otpButton.layer.cornerRadius = otpButton.frame.height / 2
         otpButton.clipsToBounds = true
@@ -70,20 +75,31 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func onClickOTPButton(_ sender: UIButton) {
+        dismissKeyboard()
         if otpField.text == nil || otpField.text == "" {
             APPUtilites.displayErrorSnackbar(message: "OTP Field cannot be blank")
             return
+        } else if (otpField.text?.count)! != OTP_LENGTH {
+            APPUtilites.displayErrorSnackbar(message: "OTP must be of \(OTP_LENGTH) digits")
+            return
         }
 
+        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
         CognitoHelper.shared.verifyOTPForSignUp(pool: pool!, user: self.cognitoUser!, otp: otpField.text!, success: {
+            APPUtilites.removeLoadingSpinner(spinner: sv)
             self.gotoHomePage()
         }) { (error: NSError) in
             print(error)
-            APPUtilites.displayErrorSnackbar(message: "Wrong OTP Entered. Please enter the correct OTP")
+            APPUtilites.removeLoadingSpinner(spinner: sv)
+            if String(describing: error.userInfo["__type"]!) == "NoInternetConnectionException" {
+                APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
+            } else {
+                APPUtilites.displayErrorSnackbar(message: "Wrong OTP Entered. Please enter the correct OTP")
+            }
         }
     }
     
@@ -92,11 +108,20 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     }
     
     @IBAction func onClickResendOTP(_ sender: UIButton) {
+        dismissKeyboard()
+        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+        
         CognitoHelper.shared.resendOTPForSignUp(pool: pool!, user: self.cognitoUser!, success: {
+            APPUtilites.removeLoadingSpinner(spinner: sv)
             APPUtilites.displaySuccessSnackbar(message: "The confirmation code has been sent again to " + self.username)
         }) { (error: NSError) in
+            APPUtilites.removeLoadingSpinner(spinner: sv)
             print(error.debugDescription)
-            APPUtilites.displayErrorSnackbar(message: "Error in sending the code. Please try again")
+            if String(describing: error.userInfo["__type"]!) == "NoInternetConnectionException" {
+                APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
+            } else {
+                APPUtilites.displayErrorSnackbar(message: "OTP could not be sent. Please try again")
+            }
         }
     }
 }
