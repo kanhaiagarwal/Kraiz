@@ -13,7 +13,7 @@ import Reachability
 class CognitoHelper {
     
     static let shared = CognitoHelper()
-    
+    var currentUser: AWSCognitoIdentityUser?
     private init() {}
     
     /// Sign In Helper Method.
@@ -233,5 +233,20 @@ class CognitoHelper {
             }
             return nil
         })
+    }
+    
+    func signOut(success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
+        currentUser?.globalSignOut()
+            .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserGlobalSignOutResponse>) -> Any? in
+                DispatchQueue.main.async(execute: {
+                    success()
+                })
+            })
+            .continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
+                if let error = task.error as? NSError {
+                    failure(error)
+                }
+                return nil
+            })
     }
 }

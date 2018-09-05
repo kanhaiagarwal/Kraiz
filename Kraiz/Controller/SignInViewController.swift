@@ -172,6 +172,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         let password = passwordField.text!
         
         CognitoHelper.shared.signIn(pool: pool!, usernameText: usernameText, passwordText: password, success: {
+            CognitoHelper.shared.currentUser = self.pool?.currentUser()
             APPUtilites.removeLoadingSpinner(spinner: sv)
             self.gotoHomePage()
         }) { (error: NSError) in
@@ -191,7 +192,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     }
     
     func gotoHomePage() {
-        performSegue(withIdentifier: GOTO_HOME_FROM_SIGN_IN, sender: self)
+//        performSegue(withIdentifier: GOTO_HOME_FROM_SIGN_IN, sender: self)
+        let homePageVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabBarController")
+        self.navigationController?.pushViewController(homePageVC!, animated: true)
     }
     
     func gotoOTPPage() {

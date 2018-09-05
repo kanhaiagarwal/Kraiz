@@ -1,88 +1,52 @@
 //
 //  StartViewController.swift
-//  StoryFi
+//  Kraiz
 //
-//  Created by Kumar Agarwal, Kanhai on 11/06/18.
+//  Created by Kumar Agarwal, Kanhai on 04/09/18.
 //  Copyright © 2018 Kumar Agarwal, Kanhai. All rights reserved.
-//
-//  Starting View Controller.
 
 import UIKit
-import Reachability
-
-class StartViewController: UIViewController {
-
-    @IBOutlet weak var logoContainer: UIView!
-    @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var signInButton: UIButton!
+import AWSCognitoIdentityProvider
     
-    var viewHeight : CGFloat = 0
+class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthenticationDelegate  {
+    
+    // Segues
+    let WELCOME_PAGE_SEGUE = "gotoWelcomePage"
+    let HOME_PAGE_SEGUE = "gotoHomePage"
+
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var pool: AWSCognitoIdentityUserPool?
+    var currentUser: AWSCognitoIdentityUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewHeight = view.frame.height
-        
-        checkInternetConnection()
+        print("**************************************************")
+        print("Inside viewDidLoad")
     }
     
+    /// Executed everytime the user arrives on this view controller.
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setButtonsCornerRadius()
-        setButtonFontSize()
-    }
-    
-//    override func viewDidLayoutSubviews() {
-//        setButtonsCornerRadius()
-//        setButtonFontSize()
-//    }
-    
-    func checkInternetConnection() {
-        let reachability = Reachability()
-        if reachability?.connection == Reachability.Connection.none {
-            APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
-            return
-        }
-    }
-    
-    @IBAction func onSignInClick(_ sender: UIButton) {
-        performSegue(withIdentifier: "gotoSignIn", sender: self)
-    }
-    
-    @IBAction func onSignUpClick(_ sender: UIButton) {
-        performSegue(withIdentifier: "gotoSignUp", sender: self)
-    }
-    
-    func setButtonsCornerRadius() {
-        signInButton.clipsToBounds = true
-        signInButton.layer.cornerRadius = signInButton.frame.height / 2
+        super.viewWillAppear(true)
+        print("**************************************************")
+        print("Inside viewWillAppear")
+        activityIndicator.startAnimating()
+        pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
+        let currentUser = pool?.currentUser()
         
-        signUpButton.layer.borderColor = UIColor.clear.cgColor
-        signUpButton.layer.cornerRadius = signUpButton.frame.height / 2
-        signUpButton.clipsToBounds = true
-    }
-    
-    func setButtonFontSize() {
-        switch viewHeight {
-            case DeviceConstants.IPHONE5S_HEIGHT:
-                signInButton.titleLabel?.font = UIFont(name: "Times New Roman", size: 20)
-                signUpButton.titleLabel?.font = UIFont(name: "Times New Roman", size: 20)
-                break
-            case DeviceConstants.IPHONE7_HEIGHT:
-                signInButton.titleLabel?.font = UIFont(name: "Times New Roman", size: 24)
-                signUpButton.titleLabel?.font = UIFont(name: "Times New Roman", size: 24)
-                break
-            case DeviceConstants.IPHONE7PLUS_HEIGHT:
-                signInButton.titleLabel?.font = UIFont(name: "Times New Roman", size: 30)
-                signUpButton.titleLabel?.font = UIFont(name: "Times New Roman", size: 30)
-                break
-            case DeviceConstants.IPHONEX_HEIGHT:
-                signInButton.titleLabel?.font = UIFont(name: "Times New Roman", size: 30)
-                signUpButton.titleLabel?.font = UIFont(name: "Times New Roman", size: 30)
-                break
-            default:
-                signInButton.titleLabel?.font = UIFont(name: "Times New Roman", size: 20)
-                signUpButton.titleLabel?.font = UIFont(name: "Times New Roman", size: 20)
-                break
+        if currentUser != nil {
+            print("Current User is not nil")
+            let result = currentUser?.getSession().result
+            if result != nil {
+                print("Result of the Current User is not nil")
+                CognitoHelper.shared.currentUser = currentUser
+                performSegue(withIdentifier: HOME_PAGE_SEGUE, sender: self)
+            } else {
+                print("Result of the Current User is nil")
+                performSegue(withIdentifier: WELCOME_PAGE_SEGUE, sender: self)
+            }
+        } else {
+            print("Current User is nil")
+            performSegue(withIdentifier: WELCOME_PAGE_SEGUE, sender: self)
         }
     }
 }

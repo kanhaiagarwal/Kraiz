@@ -25,7 +25,7 @@
 		B51DF226211F13B9009896CC /* LetterInputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */; };
 		B51DF227211F13B9009896CC /* LetterInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20F211F13B7009896CC /* LetterInputViewController.swift */; };
 		B51DF228211F13B9009896CC /* SignUpOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */; };
-		B51DF229211F13B9009896CC /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF211211F13B8009896CC /* StartViewController.swift */; };
+		B51DF229211F13B9009896CC /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF211211F13B8009896CC /* WelcomeViewController.swift */; };
 		B51DF22B211F13B9009896CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B51DF213211F13B8009896CC /* Assets.xcassets */; };
 		B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF214211F13B8009896CC /* DraftsViewController.swift */; };
 		B51DF22E211F13B9009896CC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF216211F13B8009896CC /* SignUpViewController.swift */; };
@@ -48,6 +48,7 @@
 		B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23F211F15FB009896CC /* FREESCPT.TTF */; };
 		B54073012120150400122FD0 /* PhotoInputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54073002120150400122FD0 /* PhotoInputCollectionViewCell.swift */; };
 		B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54073022120188F00122FD0 /* PhotosInputViewController.swift */; };
+		B54579A0213F010900C7424F /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545799F213F010900C7424F /* StartViewController.swift */; };
 		B5523B852120BFDF00CAC7BF /* ImageTextCombinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5523B832120BFDF00CAC7BF /* ImageTextCombinationViewController.swift */; };
 		B5523B862120BFDF00CAC7BF /* ImageTextCombinationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */; };
 		B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */; };
@@ -83,7 +84,7 @@
 		B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterInputCollectionViewCell.swift; sourceTree = "<group>"; };
 		B51DF20F211F13B7009896CC /* LetterInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterInputViewController.swift; sourceTree = "<group>"; };
 		B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpOTPViewController.swift; sourceTree = "<group>"; };
-		B51DF211211F13B8009896CC /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		B51DF211211F13B8009896CC /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		B51DF213211F13B8009896CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../StoryFi/StoryFi/Assets.xcassets; sourceTree = "<group>"; };
 		B51DF214211F13B8009896CC /* DraftsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraftsViewController.swift; sourceTree = "<group>"; };
 		B51DF216211F13B8009896CC /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 		B51DF249211F16AA009896CC /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
 		B54073002120150400122FD0 /* PhotoInputCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInputCollectionViewCell.swift; sourceTree = "<group>"; };
 		B54073022120188F00122FD0 /* PhotosInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosInputViewController.swift; sourceTree = "<group>"; };
+		B545799F213F010900C7424F /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		B5523B832120BFDF00CAC7BF /* ImageTextCombinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCombinationViewController.swift; sourceTree = "<group>"; };
 		B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTextCombinationViewController.xib; sourceTree = "<group>"; };
 		B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllImagesTextViewController.swift; sourceTree = "<group>"; };
@@ -256,8 +258,9 @@
 				B51DF207211F13B7009896CC /* SignInViewController.swift */,
 				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
 				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
-				B51DF211211F13B8009896CC /* StartViewController.swift */,
+				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
 				B51DF219211F13B9009896CC /* VibesViewController.swift */,
+				B545799F213F010900C7424F /* StartViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -456,7 +459,7 @@
 				B5C9431A212947F8000DCF7A /* MyVibeViewController.swift in Sources */,
 				B51DF222211F13B9009896CC /* HamburgerViewController.swift in Sources */,
 				B5E23DAF2129E677005C93C2 /* CountryCodes.swift in Sources */,
-				B51DF229211F13B9009896CC /* StartViewController.swift in Sources */,
+				B51DF229211F13B9009896CC /* WelcomeViewController.swift in Sources */,
 				B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */,
 				B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */,
 				B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */,
@@ -467,6 +470,7 @@
 				B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */,
 				B5DC7929212D5CA600C69A13 /* AppUtilities.swift in Sources */,
 				B51DF220211F13B9009896CC /* ContactUsViewController.swift in Sources */,
+				B54579A0213F010900C7424F /* StartViewController.swift in Sources */,
 				B51DF254211F17E3009896CC /* HamburgerTableViewCell.swift in Sources */,
 				B51DF224211F13B9009896CC /* HomeTabBarController.swift in Sources */,
 				B55346AE212B1FD8005353E4 /* VibeModel.swift in Sources */,

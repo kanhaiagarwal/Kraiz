@@ -8,8 +8,9 @@
 // Class showing the Hamburger Tab Menu options.
 
 import UIKit
+import AWSCognitoIdentityProvider
 
-class HamburgerViewController: UIViewController {
+class HamburgerViewController: UIViewController, AWSCognitoIdentityInteractiveAuthenticationDelegate {
 
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -22,6 +23,8 @@ class HamburgerViewController: UIViewController {
     let cellSegues = ["gotoInviteFriends", "gotoContactUs", "gotoAboutUs", "gotoSignOut"]
     let cellInformationLabel = ["Invite Friends", "Contact Us", "About Us", "Sign Out"]
     
+    var pool: AWSCognitoIdentityUserPool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +34,8 @@ class HamburgerViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
     }
 
 }
@@ -60,6 +65,37 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: cellSegues[indexPath.row], sender: self)
+        if indexPath.row == 3 {
+            let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+            CognitoHelper.shared.signOut(success: {
+                APPUtilites.removeLoadingSpinner(spinner: sv)
+                
+                if self.tabBarController != nil {
+                print("*************v****************************************************")
+                    print("TabBarController is not nil")
+                    
+                    if self.tabBarController?.navigationController != nil {
+                        print("*************v****************************************************")
+                        print("NavigationControlleris not nil")
+                        self.tabBarController?.navigationController?.popToRootViewController(animated: true)
+                        
+                    } else {
+                        print("*************v****************************************************")
+                        print("NavigationController is nil")
+                    }
+               
+                     self.navigationController?.popToRootViewController(animated: true)
+                } else {
+                print("*************v****************************************************")
+                    print("TabBarController is nil")
+                self.tabBarController?.navigationController?.popToRootViewController(animated: true)
+                }
+            }, failure: { (error) in
+                APPUtilites.displayErrorSnackbar(message: "Sorry, cannot Sign Out right now. Please try again")
+                APPUtilites.removeLoadingSpinner(spinner: sv)
+            })
+        } else {
+            performSegue(withIdentifier: cellSegues[indexPath.row], sender: self)
+        }
     }
 }
