@@ -90,6 +90,10 @@ class CreateVibeViewController: UIViewController {
         continueImageView.alpha = 0
     }
     
+    override func viewDidLayoutSubviews() {
+        selectionButtonView.layer.cornerRadius = selectionButtonView.frame.height / 2
+    }
+    
     @IBAction func crossButtonPressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -389,7 +393,6 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
     
     /// Sets the shadow layer of the selection button.
     func setShadowLayerOfSelectionButton() {
-        selectionButtonView.layer.cornerRadius = selectionButtonView.frame.height / 2
         selectionButtonView.layer.shadowColor = UIColor.black.cgColor
         selectionButtonView.layer.shadowOffset = CGSize(width: 0, height: 0)
         selectionButtonView.layer.shadowOpacity = 1

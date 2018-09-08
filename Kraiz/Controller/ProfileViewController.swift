@@ -28,13 +28,16 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        profileImage.layer.cornerRadius = profileImage.frame.height / 2
         
         tableView.delegate = self
         tableView.dataSource = self
         genderPickerView.delegate = self
         dobDatePicker.maximumDate = Date()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        profileImage.layer.masksToBounds = true
+        profileImage.layer.cornerRadius = profileImage.frame.height / 2
     }
 
     @IBAction func savePressed(_ sender: UIButton) {

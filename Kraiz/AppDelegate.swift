@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 import AWSCore
 import AWSCognitoIdentityProvider
-import AWSCognito
 import RealmSwift
 
 @UIApplicationMain
@@ -23,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
         let serviceConfiguration = AWSServiceConfiguration(region: AWSConstants.AWS_REGION, credentialsProvider: nil)
         let configuration = AWSCognitoIdentityUserPoolConfiguration(clientId: AWSConstants.COGNITO_APP_CLIENT_ID, clientSecret: AWSConstants.COGNITO_APP_CLIENT_SECRET, poolId: AWSConstants.COGNITO_POOL_ID)
         AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: configuration, forKey: "Kraiz-2")
-//        UserDefaults.standard.set(true, forKey: DeviceConstants.IS_FIRST_SIGN_IN)
         
 //        print("***********************************")
 //        print("Realm file: \(Realm.Configuration.defaultConfiguration.fileURL!)")

@@ -1028,7 +1028,7 @@ mobile number +919003194776</string>
                                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GX8-1i-AKN" id="aqD-Hb-Smp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -3145,7 +3145,7 @@ its the right one</string>
                         <outlet property="tableView" destination="gPZ-2H-7EG" id="jjt-Az-A8G"/>
                         <outlet property="usernameLabel" destination="h9Y-ce-2t8" id="68Y-n2-1Kj"/>
                         <segue destination="npe-cZ-Tip" kind="presentation" identifier="gotoAboutUs" id="5le-oE-XCS"/>
-                        <segue destination="kej-GX-Oif" kind="show" identifier="gotoContactUs" id="WcY-be-aZh"/>
+                        <segue destination="kej-GX-Oif" kind="presentation" identifier="gotoContactUs" id="WcY-be-aZh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N7d-ax-Ha9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3675,9 +3675,9 @@ its the right one</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Yxk-op-ykK"/>
-        <segue reference="GFf-Ia-2GJ"/>
+        <segue reference="jey-vD-tun"/>
         <segue reference="29n-BT-rOK"/>
-        <segue reference="pzD-o7-afy"/>
+        <segue reference="h3y-kV-xul"/>
         <segue reference="QEH-CO-fw1"/>
     </inferredMetricsTieBreakers>
 </document>

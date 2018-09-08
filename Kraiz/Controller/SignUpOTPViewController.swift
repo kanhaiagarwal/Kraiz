@@ -15,6 +15,7 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     
     public var cognitoUser: AWSCognitoIdentityUser?
     public var username: String = ""
+    public var password: String = ""
     var pool: AWSCognitoIdentityUserPool?
     
     let standardText = "Please type the OTP sent to your number "
@@ -92,7 +93,12 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
         CognitoHelper.shared.verifyOTPForSignUp(pool: pool!, user: self.cognitoUser!, otp: otpField.text!, success: {
             APPUtilites.removeLoadingSpinner(spinner: sv)
             UserDefaults.standard.set(true, forKey: DeviceConstants.IS_FIRST_SIGN_IN)
-            self.gotoHomePage()
+            CognitoHelper.shared.signIn(pool: self.pool!, usernameText: self.username, passwordText: self.password, success: {
+                CognitoHelper.shared.currentUser = self.pool?.currentUser()
+                self.gotoHomePage()
+            }, failure: { (error) in
+                APPUtilites.displayErrorSnackbar(message: "Error in Sign In after Sign Up")
+            })
         }) { (error: NSError) in
             print(error)
             APPUtilites.removeLoadingSpinner(spinner: sv)

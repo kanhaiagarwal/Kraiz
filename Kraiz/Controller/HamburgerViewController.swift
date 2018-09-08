@@ -28,14 +28,20 @@ class HamburgerViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        profileImage.clipsToBounds = true
-        profileImage.layer.masksToBounds = false
-        profileImage.layer.cornerRadius = profileImage.frame.height / 2
-        
         tableView.delegate = self
         tableView.dataSource = self
         
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        profileImage.layer.masksToBounds = true
+        profileImage.layer.cornerRadius = profileImage.frame.height / 2
+    }
+    
+    override func viewDidLayoutSubviews() {
+        profileImage.layer.masksToBounds = true
+        profileImage.layer.cornerRadius = profileImage.frame.height / 2
     }
 
 }
@@ -69,27 +75,7 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
             let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
             CognitoHelper.shared.signOut(success: {
                 APPUtilites.removeLoadingSpinner(spinner: sv)
-                
-                if self.tabBarController != nil {
-                print("*************v****************************************************")
-                    print("TabBarController is not nil")
-                    
-                    if self.tabBarController?.navigationController != nil {
-                        print("*************v****************************************************")
-                        print("NavigationControlleris not nil")
-                        self.tabBarController?.navigationController?.popToRootViewController(animated: true)
-                        
-                    } else {
-                        print("*************v****************************************************")
-                        print("NavigationController is nil")
-                    }
-               
-                     self.navigationController?.popToRootViewController(animated: true)
-                } else {
-                print("*************v****************************************************")
-                    print("TabBarController is nil")
                 self.tabBarController?.navigationController?.popToRootViewController(animated: true)
-                }
             }, failure: { (error) in
                 APPUtilites.displayErrorSnackbar(message: "Sorry, cannot Sign Out right now. Please try again")
                 APPUtilites.removeLoadingSpinner(spinner: sv)

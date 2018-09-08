@@ -189,6 +189,7 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
         if segue.identifier == GOTO_OTP_SEGUE {
             let destinationVC = segue.destination as! SignUpOTPViewController
             destinationVC.username = countryCodeField.text! + usernameField.text!
+            destinationVC.password = passwordField.text!
             destinationVC.cognitoUser = user
         }
     }
