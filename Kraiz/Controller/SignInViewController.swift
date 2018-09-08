@@ -42,18 +42,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
-        user = pool?.getUser()
-        pool?.delegate = self
-    self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        setupViews()
-        usernameField.delegate = self
-        
         viewHeight = view.frame.height
         usernameField.delegate = self
         passwordField.delegate = self
@@ -63,6 +51,16 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         createToolbarForTextField(textField: countryCodeField)
         createToolbarForTextField(textField: usernameField)
         createToolbarForTextField(textField: passwordField)
+
+        pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
+        user = pool?.getUser()
+        pool?.delegate = self
+    self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+
+    override func viewDidLayoutSubviews() {
+        setupViews()
+        usernameField.delegate = self
     }
     
     func createToolbarForTextField(textField: UITextField) {

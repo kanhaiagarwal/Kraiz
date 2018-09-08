@@ -20,15 +20,12 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("**************************************************")
-        print("Inside viewDidLoad")
     }
     
     /// Executed everytime the user arrives on this view controller.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print("**************************************************")
-        print("Inside viewWillAppear")
+
         activityIndicator.startAnimating()
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         let currentUser = pool?.currentUser()

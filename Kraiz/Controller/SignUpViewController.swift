@@ -37,9 +37,7 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewHeight = view.frame.height
         
-        setupViews()
         usernameField.delegate = self
         passwordField.delegate = self
         countryCodePicker.delegate = self
@@ -52,6 +50,11 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         pool?.delegate = self
     self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
+    
+    override func viewDidLayoutSubviews() {
+        viewHeight = view.frame.height
+        setupViews()
     }
     
     func createToolbarForTextField(textField: UITextField) {
@@ -74,16 +77,19 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
     }
     
     func setupViews() {
+        countryCodeField.borderStyle = .none
+        countryCodeField.layer.masksToBounds = true
         countryCodeField.layer.cornerRadius = countryCodeField.frame.height / 2
-        countryCodeField.clipsToBounds = true
         
+        usernameField.borderStyle = .none
+        usernameField.layer.masksToBounds = true
         usernameField.layer.cornerRadius = usernameField.frame.height / 2
-        usernameField.clipsToBounds = true
         usernameField.setPadding(left: 10, right: 10)
         usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile number", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
         
+        passwordField.borderStyle = .none
+        passwordField.layer.masksToBounds = true
         passwordField.layer.cornerRadius = passwordField.frame.height / 2
-        passwordField.clipsToBounds = true
         passwordField.setPadding(left: 10, right: 10)
         passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
         

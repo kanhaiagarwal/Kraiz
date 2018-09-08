@@ -11,8 +11,8 @@ import AWSCore
 
 public class AWSConstants {
     static public let AWS_REGION : AWSRegionType = AWSRegionType.USWest2
-    static public let COGNITO_APP_CLIENT_ID : String = "5s87340ie30d7m6rf17e0uolqe"
-    static public let COGNITO_APP_CLIENT_SECRET : String = "8sd87f01497m0i92id39kut9fuk9u33echuo599fb1tas9s7rqb"
+    static public let COGNITO_APP_CLIENT_ID : String = "1vkf7m8h3eqao1abk0alv4h6m9"
+    static public let COGNITO_APP_CLIENT_SECRET : String = "kvhricpgiqhka4u9si4crman72o9o7nekit9lm4u3aut62rjv9j"
     static public let COGNITO_POOL_ID : String = "us-west-2_oPLIFxSIr"
     static public let COGNITO_USER_POOL_NAME : String = "Kraiz-2"
 }

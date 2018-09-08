@@ -31,7 +31,7 @@ class WelcomeViewController: UIViewController {
         setButtonFontSize()
     }
     
-    override func viewDidLayoutSubviews() {
+    override func viewDidAppear(_ animated: Bool) {
         setButtonsCornerRadius()
     }
     
@@ -52,12 +52,12 @@ class WelcomeViewController: UIViewController {
     }
     
     func setButtonsCornerRadius() {
-        signInButton.clipsToBounds = true
+        signInButton.layer.masksToBounds = true
         signInButton.layer.cornerRadius = signInButton.frame.height / 2
         
         signUpButton.layer.borderColor = UIColor.clear.cgColor
+        signUpButton.layer.masksToBounds = true
         signUpButton.layer.cornerRadius = signUpButton.frame.height / 2
-        signUpButton.clipsToBounds = true
     }
     
     func setButtonFontSize() {
