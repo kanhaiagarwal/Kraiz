@@ -8,19 +8,40 @@
 // Main Tab Bar Controller for the Home Page.
 
 import UIKit
+import RxSwift
 
 class HomeTabBarController: UITabBarController {
 
-    let DEFAULT_SELECTED_INDEX : Int = 3
+    let CREATE_VIBE_INDEX : Int = 2
+    let PROFILE_SELECTED_INDEX : Int = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var createButton : UIButton
-        self.selectedIndex = DEFAULT_SELECTED_INDEX
+        setTabBarSelection()
         
         self.tabBar.itemPositioning = .centered
+    }
+    
+    func setTabBarSelection() {
+        let isFirstSignIn : Bool = UserDefaults.standard.bool(forKey: DeviceConstants.IS_FIRST_SIGN_IN)
         
-        // Custom Create button
+        if isFirstSignIn {
+            self.selectedIndex = PROFILE_SELECTED_INDEX
+            self.tabBar.isHidden = true
+        } else {
+            self.selectedIndex = DeviceConstants.DEFAULT_SELECTED_INDEX
+            self.addCreateVibeButton()
+        }
+    }
+}
+
+extension UITabBarController {
+    
+    /// Create a Custom Button to be added in the centre.
+    /// On pressing the button, we will open the CreateVibe.
+    func addCreateVibeButton() {
+        
+        var createButton : UIButton = UIButton()
         let itemWidth = self.view.frame.width / 5
         let itemHeight = self.tabBar.frame.height
         
@@ -34,12 +55,10 @@ class HomeTabBarController: UITabBarController {
         createButton.adjustsImageWhenHighlighted = false
         createButton.addTarget(self, action: #selector(self.onClickCreateButton), for: .touchUpInside)
         self.view.addSubview(createButton)
-        
     }
     
     // Goto the create story view controller
     @objc func onClickCreateButton() {
-        performSegue(withIdentifier: "gotoCreateStory", sender: self)
+        performSegue(withIdentifier: DeviceConstants.CREATE_STORY_SEGUE, sender: self)
     }
-
 }

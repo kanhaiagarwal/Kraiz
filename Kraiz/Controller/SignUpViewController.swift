@@ -84,13 +84,13 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
         usernameField.borderStyle = .none
         usernameField.layer.masksToBounds = true
         usernameField.layer.cornerRadius = usernameField.frame.height / 2
-        usernameField.setPadding(left: 10, right: 10)
+        usernameField.setPadding(left: 20, right: 20)
         usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile number", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
         
         passwordField.borderStyle = .none
         passwordField.layer.masksToBounds = true
         passwordField.layer.cornerRadius = passwordField.frame.height / 2
-        passwordField.setPadding(left: 10, right: 10)
+        passwordField.setPadding(left: 20, right: 20)
         passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
         
         generateOTPButton.layer.cornerRadius = generateOTPButton.frame.height / 2

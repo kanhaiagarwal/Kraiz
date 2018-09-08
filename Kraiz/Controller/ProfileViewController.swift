@@ -35,32 +35,16 @@ class ProfileViewController: UIViewController {
         tableView.dataSource = self
         genderPickerView.delegate = self
         dobDatePicker.maximumDate = Date()
-        
-        // Listen to the keyboard events
-//        NotificationCenter.default.addObserver(self, selector: #selector(moveViewOnKeyboardShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(moveViewOnKeyboardShow), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(moveViewOnKeyboardShow), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
-    
-//    deinit {
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-//    }
-    
-    // Tasks to perform on Keyboard events
-//    @objc func moveViewOnKeyboardShow(notification: Notification) {
-//        guard let keyboardRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-//            return
-//        }
-//
-//        if notification.name == Notification.Name.UIKeyboardWillShow ||
-//            notification.name == Notification.Name.UIKeyboardWillChangeFrame {
-//            self.view.frame.origin.y = -keyboardRect.height
-//        } else {
-//            self.view.frame.origin.y = 0
-//        }
-//    }
+
+    @IBAction func savePressed(_ sender: UIButton) {
+        if UserDefaults.standard.bool(forKey: DeviceConstants.IS_FIRST_SIGN_IN) {
+            UserDefaults.standard.set(false, forKey: DeviceConstants.IS_FIRST_SIGN_IN)
+            self.tabBarController?.selectedIndex = DeviceConstants.DEFAULT_SELECTED_INDEX
+            self.tabBarController?.addCreateVibeButton()
+            self.tabBarController?.tabBar.isHidden = false
+        }
+    }
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
@@ -89,7 +73,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, UIT
         
         // Keep the username uneditable in the Profile..
         if indexPath.row == 1 {
-            cell.inputField.isEnabled = false
             cell.inputField.text = "username1"
             cell.inputField.textColor = UIColor(displayP3Red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
             

@@ -1028,7 +1028,7 @@ mobile number +919003194776</string>
                                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GX8-1i-AKN" id="aqD-Hb-Smp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -1092,11 +1092,24 @@ mobile number +919003194776</string>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n2a-sz-Jtc">
+                                                                <rect key="frame" x="355" y="0.0" width="49" height="54.666666666666664"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                                                <state key="normal" title="Save">
+                                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="savePressed:" destination="ct3-RG-NcZ" eventType="touchUpInside" id="mYa-KR-5Iu"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="hFs-PZ-L9g" firstAttribute="top" secondItem="Slu-hm-DrP" secondAttribute="top" id="8bm-DC-tVy"/>
                                                             <constraint firstAttribute="bottom" secondItem="hFs-PZ-L9g" secondAttribute="bottom" id="BIL-zh-aEG"/>
+                                                            <constraint firstAttribute="trailing" secondItem="n2a-sz-Jtc" secondAttribute="trailing" constant="10" id="Dy0-qz-aHB"/>
+                                                            <constraint firstItem="n2a-sz-Jtc" firstAttribute="top" secondItem="Slu-hm-DrP" secondAttribute="top" id="K9E-VD-lzV"/>
+                                                            <constraint firstAttribute="bottom" secondItem="n2a-sz-Jtc" secondAttribute="bottom" id="bbv-ld-U9T"/>
                                                             <constraint firstAttribute="trailing" secondItem="hFs-PZ-L9g" secondAttribute="trailing" id="knY-q7-6nd"/>
                                                             <constraint firstItem="hFs-PZ-L9g" firstAttribute="leading" secondItem="Slu-hm-DrP" secondAttribute="leading" id="q5U-Ua-NaM"/>
                                                         </constraints>
@@ -1156,7 +1169,6 @@ mobile number +919003194776</string>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fEG-Ee-UxC">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="490.66666666666669"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <color key="separatorColor" red="0.90196078431372551" green="0.61960784313725492" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <view key="tableFooterView" contentMode="scaleToFill" id="skM-qs-XEb">
                                                                     <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

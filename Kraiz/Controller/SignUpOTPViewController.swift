@@ -91,6 +91,7 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
         let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
         CognitoHelper.shared.verifyOTPForSignUp(pool: pool!, user: self.cognitoUser!, otp: otpField.text!, success: {
             APPUtilites.removeLoadingSpinner(spinner: sv)
+            UserDefaults.standard.set(true, forKey: DeviceConstants.IS_FIRST_SIGN_IN)
             self.gotoHomePage()
         }) { (error: NSError) in
             print(error)

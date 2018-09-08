@@ -10,7 +10,9 @@ target 'Kraiz' do
   pod 'AWSCognitoIdentityProvider'
   pod 'BSImagePicker'
   pod 'CropViewController'
+  pod 'RealmSwift'
   pod 'ReachabilitySwift'
+  pod 'RxSwift'
   pod 'TTGSnackbar'
 
 end

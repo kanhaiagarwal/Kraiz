@@ -53,6 +53,7 @@
 		B5523B862120BFDF00CAC7BF /* ImageTextCombinationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */; };
 		B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */; };
 		B55346AE212B1FD8005353E4 /* VibeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55346AD212B1FD8005353E4 /* VibeModel.swift */; };
+		B56648512143A3550016DBC8 /* UserCacheData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56648502143A3550016DBC8 /* UserCacheData.swift */; };
 		B58B934E21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */; };
 		B5C6E33221346A2700F8D5EC /* CognitoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6E33121346A2700F8D5EC /* CognitoHelper.swift */; };
 		B5C9431A212947F8000DCF7A /* MyVibeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C94319212947F8000DCF7A /* MyVibeViewController.swift */; };
@@ -112,6 +113,7 @@
 		B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTextCombinationViewController.xib; sourceTree = "<group>"; };
 		B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllImagesTextViewController.swift; sourceTree = "<group>"; };
 		B55346AD212B1FD8005353E4 /* VibeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeModel.swift; sourceTree = "<group>"; };
+		B56648502143A3550016DBC8 /* UserCacheData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCacheData.swift; sourceTree = "<group>"; };
 		B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordOTPViewController.swift; sourceTree = "<group>"; };
 		B5C6E33121346A2700F8D5EC /* CognitoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitoHelper.swift; sourceTree = "<group>"; };
 		B5C94319212947F8000DCF7A /* MyVibeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVibeViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		B51DF24C211F16E4009896CC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B566484F2143A3370016DBC8 /* Cache */,
 				B5C6E32F213469A700F8D5EC /* Network */,
 				B5DC7927212D5C9400C69A13 /* Utilities */,
 				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
@@ -280,6 +283,14 @@
 				B55346AD212B1FD8005353E4 /* VibeModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B566484F2143A3370016DBC8 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				B56648502143A3550016DBC8 /* UserCacheData.swift */,
+			);
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		B5C6E32F213469A700F8D5EC /* Network */ = {
@@ -413,6 +424,9 @@
 				"${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/TTGSnackbar/TTGSnackbar.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework",
 			);
@@ -426,6 +440,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTGSnackbar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageViewModeScaleAspect.framework",
 			);
@@ -465,6 +482,7 @@
 				B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */,
 				B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */,
 				B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */,
+				B56648512143A3550016DBC8 /* UserCacheData.swift in Sources */,
 				B5C6E33221346A2700F8D5EC /* CognitoHelper.swift in Sources */,
 				B51DF231211F13B9009896CC /* VibesViewController.swift in Sources */,
 				B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */,

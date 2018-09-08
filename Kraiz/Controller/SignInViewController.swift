@@ -55,7 +55,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         user = pool?.getUser()
         pool?.delegate = self
-    self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
 
     override func viewDidLayoutSubviews() {
