@@ -34,11 +34,30 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
         
         if currentUser != nil {
             print("Current User is not nil")
-            
             let result = currentUser?.getSession().result
             if result != nil {
                 print("result is not nil")
                 CognitoHelper.shared.currentUser = currentUser
+                if UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER) == nil {
+                    currentUser?.getDetails().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserGetDetailsResponse>) -> Any? in
+                        if let taskResult = task.result {
+                            if let userAttributes = taskResult.userAttributes {
+                                for i in 0 ..< userAttributes.count {
+                                    if userAttributes[i].name == "phone_number" {
+                                        UserDefaults.standard.set(userAttributes[i].value, forKey: DeviceConstants.MOBILE_NUMBER)
+                                        break
+                                    }
+                                }
+                            }
+                        }
+                        return nil
+                    }).continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
+                        if let error = task.error {
+                            print("Error: \(error.localizedDescription)")
+                        }
+                        return nil
+                    })
+                }
                 UserDefaults.standard.set(currentUser?.username!, forKey: DeviceConstants.USER_ID)
                 AppSyncHelper.shared.setAppSyncClient()
                 performSegue(withIdentifier: self.HOME_PAGE_SEGUE, sender: self)

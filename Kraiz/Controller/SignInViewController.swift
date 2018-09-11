@@ -177,6 +177,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
             if currentUser?.username != nil {
                 AppSyncHelper.shared.setAppSyncClient()
                 UserDefaults.standard.set(currentUser?.username!, forKey: DeviceConstants.USER_ID)
+                self.setMobileNumberInUserDefaults()
             }
             self.gotoHomePage()
         }) { (error: NSError) in
@@ -193,6 +194,22 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
                 APPUtilites.displayErrorSnackbar(message: error.userInfo["message"] as! String)
             }
         }
+    }
+    
+    func setMobileNumberInUserDefaults() {
+        pool?.currentUser()?.getDetails().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserGetDetailsResponse>) -> Any? in
+            if let taskResult = task.result {
+                if let userAttributes = taskResult.userAttributes {
+                    for i in 0 ..< userAttributes.count {
+                        if userAttributes[i].name == "phone_number" {
+                            UserDefaults.standard.set(userAttributes[i].value, forKey: DeviceConstants.MOBILE_NUMBER)
+                            break
+                        }
+                    }
+                }
+            }
+            return nil
+        })
     }
     
     func gotoHomePage() {

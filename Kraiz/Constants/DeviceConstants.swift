@@ -21,6 +21,7 @@ public class DeviceConstants {
     // User Defaults Keys
     static public let IS_PROFILE_PRESENT : String = "isProfilePresent"
     static public let USER_ID : String = "userId"
+    static public let MOBILE_NUMBER : String = "mobileNumber"
     
     // Segues
     static public let CREATE_STORY_SEGUE = "gotoCreateStory"

@@ -99,6 +99,7 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
                 if let userId = currentUser?.username {
                     UserDefaults.standard.set(userId, forKey: DeviceConstants.USER_ID)
                     AppSyncHelper.shared.setAppSyncClient()
+                    self.setMobileNumberInUserDefaults()
                 }
                 self.gotoHomePage()
             }, failure: { (error) in
@@ -112,6 +113,24 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
             } else {
                 APPUtilites.displayErrorSnackbar(message: "Wrong OTP Entered. Please enter the correct OTP")
             }
+        }
+    }
+    
+    func setMobileNumberInUserDefaults() {
+        func setMobileNumberInUserDefaults() {
+            pool?.currentUser()?.getDetails().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserGetDetailsResponse>) -> Any? in
+                if let taskResult = task.result {
+                    if let userAttributes = taskResult.userAttributes {
+                        for i in 0 ..< userAttributes.count {
+                            if userAttributes[i].name == "phone_number" {
+                                UserDefaults.standard.set(userAttributes[i].value, forKey: DeviceConstants.MOBILE_NUMBER)
+                                break
+                            }
+                        }
+                    }
+                }
+                return nil
+            })
         }
     }
     

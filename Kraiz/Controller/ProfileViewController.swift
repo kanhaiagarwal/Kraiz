@@ -45,6 +45,28 @@ class ProfileViewController: UIViewController {
 
     @IBAction func savePressed(_ sender: UIButton) {
         
+        let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! ProfileTableViewCell
+        let usernameCell = tableView.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! ProfileTableViewCell
+        let dobCell = tableView.cellForRow(at: IndexPath.init(row: 2, section: 0)) as! ProfileTableViewCell
+        let mobileCell = tableView.cellForRow(at: IndexPath.init(row: 3, section: 0)) as! ProfileTableViewCell
+        let genderCell = tableView.cellForRow(at: IndexPath.init(row: 4, section: 0)) as! ProfileTableViewCell
+        
+        print("Name: \(nameCell.inputField.text)")
+        print("Username: \(usernameCell.inputField.text)")
+        print("DOB: \(dobCell.inputField.text)")
+        print("Mobile: \(mobileCell.inputField.text)")
+        print("Gender: \(genderCell.inputField.text)")
+        
+        if mobileCell.inputField.text == nil || mobileCell.inputField.text == "" {
+            APPUtilites.displayErrorSnackbar(message: "Mobile number is mandatory")
+            return
+        }
+        
+        if usernameCell.inputField.text == nil || usernameCell.inputField.text == "" {
+            APPUtilites.displayErrorSnackbar(message: "Username is mandatory")
+            return
+        }
+        
         if UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT) {
             UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
             self.tabBarController?.selectedIndex = DeviceConstants.DEFAULT_SELECTED_INDEX
@@ -77,17 +99,17 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, UIT
         cell.inputField.placeholder = placeholders[indexPath.row]
         cell.inputField.layer.borderColor = UIColor.clear.cgColor
         cell.inputField.delegate = self
-        
-        // Keep the username uneditable in the Profile..
-        if indexPath.row == 1 {
-            cell.inputField.text = "username1"
-            cell.inputField.textColor = UIColor(displayP3Red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
             
+        // Create a date picker for the DOB field in the Profile.
+        if indexPath.row == 2 {
+            cell.inputField.inputView = dobDatePicker
+            createToolbarForDatePicker(dobCell: cell)
         }
+
         // Keep the phone number uneditable in the Profile.
         else if indexPath.row == 3 {
             cell.inputField.isEnabled = false
-            cell.inputField.text = "+919003194776"
+            cell.inputField.text = UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)
             cell.inputField.textColor = UIColor(displayP3Red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
         }
         
@@ -95,12 +117,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, UIT
         if indexPath.row == 4 {
             cell.inputField.inputView = genderPickerView
             createToolbarForGenderPickerView(genderCell: cell)
-        }
-        
-        // Create a date picker for the DOB field in the Profile.
-        if indexPath.row == 2 {
-            cell.inputField.inputView = dobDatePicker
-            createToolbarForDatePicker(dobCell: cell)
         }
         
         return cell
