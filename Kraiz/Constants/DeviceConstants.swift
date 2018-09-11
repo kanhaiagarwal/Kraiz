@@ -19,7 +19,8 @@ public class DeviceConstants {
     static public let NO_INTERNET_ERROR = NSError(domain: "NoInternetConnection", code: 503, userInfo: ["__type": "NoInternetConnectionException"])
     
     // User Defaults Keys
-    static public let IS_FIRST_SIGN_IN : String = "isFirstSignIn"
+    static public let IS_PROFILE_PRESENT : String = "isProfilePresent"
+    static public let USER_ID : String = "userId"
     
     // Segues
     static public let CREATE_STORY_SEGUE = "gotoCreateStory"

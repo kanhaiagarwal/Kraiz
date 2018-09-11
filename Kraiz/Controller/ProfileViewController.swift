@@ -26,6 +26,9 @@ class ProfileViewController: UIViewController {
     let dobDatePicker = UIDatePicker()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
+    
+    let profile = ProfileModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,8 +44,9 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func savePressed(_ sender: UIButton) {
-        if UserDefaults.standard.bool(forKey: DeviceConstants.IS_FIRST_SIGN_IN) {
-            UserDefaults.standard.set(false, forKey: DeviceConstants.IS_FIRST_SIGN_IN)
+        
+        if UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT) {
+            UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
             self.tabBarController?.selectedIndex = DeviceConstants.DEFAULT_SELECTED_INDEX
             self.tabBarController?.addCreateVibeButton()
             self.tabBarController?.tabBar.isHidden = false

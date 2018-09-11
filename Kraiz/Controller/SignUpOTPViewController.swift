@@ -92,9 +92,14 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
         let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
         CognitoHelper.shared.verifyOTPForSignUp(pool: pool!, user: self.cognitoUser!, otp: otpField.text!, success: {
             APPUtilites.removeLoadingSpinner(spinner: sv)
-            UserDefaults.standard.set(true, forKey: DeviceConstants.IS_FIRST_SIGN_IN)
+            UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
             CognitoHelper.shared.signIn(pool: self.pool!, usernameText: self.username, passwordText: self.password, success: {
-                CognitoHelper.shared.currentUser = self.pool?.currentUser()
+                let currentUser = self.pool?.currentUser()
+                CognitoHelper.shared.currentUser = currentUser!
+                if let userId = currentUser?.username {
+                    UserDefaults.standard.set(userId, forKey: DeviceConstants.USER_ID)
+                    AppSyncHelper.shared.setAppSyncClient()
+                }
                 self.gotoHomePage()
             }, failure: { (error) in
                 APPUtilites.displayErrorSnackbar(message: "Error in Sign In after Sign Up")

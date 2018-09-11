@@ -1,4 +1,8 @@
 PODS:
+  - AWSAppSync (2.6.15):
+    - AWSCore (~> 2.6.6)
+    - ReachabilitySwift (~> 4.0.0)
+    - SQLite.swift (= 0.11.4)
   - AWSCognito (2.6.13):
     - AWSCore (= 2.6.13)
   - AWSCognitoIdentityProvider (2.6.13):
@@ -11,27 +15,31 @@ PODS:
     - BSGridCollectionViewLayout (~> 1.2.0)
     - UIImageViewModeScaleAspect (= 1.5)
   - CropViewController (2.3.6)
-  - ReachabilitySwift (4.1.0)
+  - ReachabilitySwift (4.0.0)
   - Realm (3.3.0):
     - Realm/Headers (= 3.3.0)
   - Realm/Headers (3.3.0)
   - RealmSwift (3.3.0):
     - Realm (= 3.3.0)
   - RxSwift (4.1.2)
+  - SQLite.swift (0.11.4):
+    - SQLite.swift/standard (= 0.11.4)
+  - SQLite.swift/standard (0.11.4)
   - TTGSnackbar (1.7.2)
   - UIImageViewModeScaleAspect (1.5)
 
 DEPENDENCIES:
+  - AWSAppSync
   - AWSCognito
   - AWSCognitoIdentityProvider
   - BSImagePicker
   - CropViewController
-  - ReachabilitySwift
   - RealmSwift
   - RxSwift
   - TTGSnackbar
 
 SPEC CHECKSUMS:
+  AWSAppSync: b1ec632c39ecd8441c67dea4b23b34e7f0518d67
   AWSCognito: 26f1263726ddc4c16b2a9876402b4bc5c25199b7
   AWSCognitoIdentityProvider: c532434167c99ec42126447a83c6a2f2ea18f678
   AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
@@ -39,13 +47,14 @@ SPEC CHECKSUMS:
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
   BSImagePicker: eb12948a6e71b9855c2c37723dfd989b9b4288bd
   CropViewController: e6d4bd512d15a1709e9ddf71fe7d98ffd05dda0f
-  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  ReachabilitySwift: e67b2cab4d5386053673d8a7421b5981e5f08259
   Realm: 7d74ad6c5020432f58fe5e1df90bb6d97b2c7fef
   RealmSwift: b2fa31a09c22e246026766557405505eeaad2b01
   RxSwift: e49536837d9901277638493ea537394d4b55f570
+  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   TTGSnackbar: e23b4f1e9e9f271b22ce75dfd39c6384edff96c9
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: 1f00ea36fbe8598bc87a6e9632e8a120edfbfaf2
+PODFILE CHECKSUM: 6a31c651028c456f70e1aeec9c043a9d9b3a6e76
 
 COCOAPODS: 1.4.0

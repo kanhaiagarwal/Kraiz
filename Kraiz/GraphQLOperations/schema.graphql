@@ -1,0 +1,64 @@
+mutation DeleteUserProfile($input: DeleteUserProfileInput!) {
+    deleteUserProfile(input: $input) {
+        id
+        mobileNumber
+        name
+    }
+}
+
+mutation CreateUserProfile($input: CreateUserProfileInput!) {
+    createUserProfile(input: $input) {
+        id
+        mobileNumber
+        username
+        name
+    }
+}
+
+mutation UpdateUserProfile($input: UpdateUserProfileInput!) {
+    updateUserProfile(input: $input) {
+        id
+        mobileNumber
+        username
+        name
+        gender
+        profilePicUrl
+        dob
+    }
+}
+
+query GetUserProfile($id: ID!) {
+    getUserProfile(id: $id) {
+        id
+        mobileNumber
+        username
+        name
+        gender
+        profilePicUrl
+        dob
+    }
+}
+
+query GetUserProfileByUsername($username: String!) {
+    getUserProfileByUsername(username: $username) {
+        id
+        mobileNumber
+        username
+        name
+        gender
+        profilePicUrl
+        dob
+    }
+}
+
+query GetUserProfileByMobileNumber($mobileNumber: String!) {
+    getUserProfileByMobileNumber(mobileNumber: $mobileNumber) {
+        id
+        mobileNumber
+        username
+        name
+        gender
+        profilePicUrl
+        dob
+    }
+}

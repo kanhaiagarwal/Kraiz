@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AWSAppSync
 import AWSCore
 import AWSCognitoIdentityProvider
 import RealmSwift
@@ -16,12 +17,14 @@ import RealmSwift
 class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInteractiveAuthenticationDelegate {
     var window: UIWindow?
     var restrictRotation: UIInterfaceOrientationMask = .portrait
+//    var appSyncClient: AWSAppSyncClient?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let serviceConfiguration = AWSServiceConfiguration(region: AWSConstants.AWS_REGION, credentialsProvider: nil)
-        let configuration = AWSCognitoIdentityUserPoolConfiguration(clientId: AWSConstants.COGNITO_APP_CLIENT_ID, clientSecret: AWSConstants.COGNITO_APP_CLIENT_SECRET, poolId: AWSConstants.COGNITO_POOL_ID)
-        AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: configuration, forKey: "Kraiz-2")
+        let configuration = AWSCognitoIdentityUserPoolConfiguration(clientId: AWSConstants.COGNITO_APP_CLIENT_ID, clientSecret: AWSConstants.COGNITO_APP_CLIENT_SECRET, poolId: AWSConstants.COGNITO_USER_POOL_ID)
+        AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: configuration, forKey: AWSConstants.COGNITO_USER_POOL_NAME)
+        CognitoHelper.shared.setUserPool()
         
 //        print("***********************************")
 //        print("Realm file: \(Realm.Configuration.defaultConfiguration.fileURL!)")

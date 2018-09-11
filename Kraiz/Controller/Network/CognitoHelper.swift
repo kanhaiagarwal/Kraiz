@@ -12,9 +12,21 @@ import Reachability
 
 class CognitoHelper {
     
-    static let shared = CognitoHelper()
+    private var pool: AWSCognitoIdentityUserPool?
     var currentUser: AWSCognitoIdentityUser?
+    static let shared = CognitoHelper()
+    
     private init() {}
+    
+    /// Sets the User Pool.
+    func setUserPool() {
+        CognitoHelper.shared.pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
+    }
+    
+    /// Gets the User Pool.
+    func getUserPool() -> AWSCognitoIdentityUserPool? {
+        return CognitoHelper.shared.pool
+    }
     
     /// Sign In Helper Method.
     /// - Parameters

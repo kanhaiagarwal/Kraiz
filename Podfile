@@ -6,12 +6,12 @@ target 'Kraiz' do
   use_frameworks!
 
   # Pods for Kraiz
+  pod 'AWSAppSync'
   pod 'AWSCognito'
   pod 'AWSCognitoIdentityProvider'
   pod 'BSImagePicker'
   pod 'CropViewController'
   pod 'RealmSwift'
-  pod 'ReachabilitySwift'
   pod 'RxSwift'
   pod 'TTGSnackbar'
 

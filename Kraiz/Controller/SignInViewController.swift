@@ -173,6 +173,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         CognitoHelper.shared.signIn(pool: pool!, usernameText: usernameText, passwordText: password, success: {
             CognitoHelper.shared.currentUser = self.pool?.currentUser()
             APPUtilites.removeLoadingSpinner(spinner: sv)
+            let currentUser = self.pool?.currentUser()
+            if currentUser?.username != nil {
+                AppSyncHelper.shared.setAppSyncClient()
+                UserDefaults.standard.set(currentUser?.username!, forKey: DeviceConstants.USER_ID)
+            }
             self.gotoHomePage()
         }) { (error: NSError) in
             APPUtilites.removeLoadingSpinner(spinner: sv)

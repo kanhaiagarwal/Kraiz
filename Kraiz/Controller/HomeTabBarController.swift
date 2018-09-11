@@ -8,6 +8,7 @@
 // Main Tab Bar Controller for the Home Page.
 
 import UIKit
+import AWSAppSync
 import RxSwift
 
 class HomeTabBarController: UITabBarController {
@@ -15,22 +16,42 @@ class HomeTabBarController: UITabBarController {
     let CREATE_VIBE_INDEX : Int = 2
     let PROFILE_SELECTED_INDEX : Int = 0
 
+    var appSyncClient: AWSAppSyncClient?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTabBarSelection()
         
         self.tabBar.itemPositioning = .centered
+        appSyncClient = AppSyncHelper.shared.getAppSyncClient()
+        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+        
+        AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (result) in
+            APPUtilites.removeLoadingSpinner(spinner: sv)
+            var isProfilePresent = false
+            if let data = result.data {
+                print("data: \(data)")
+                if let userProfile = data.snapshot["getUserProfile"] as? [String: Any?] {
+                    print("userProfile: \(userProfile)")
+                    isProfilePresent = true
+                } else {
+                    print("data snapshot is nil")
+                }
+                UserDefaults.standard.set(isProfilePresent, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                self.setTabBarSelection(isProfilePresent: isProfilePresent)
+            }
+        }) { (error) in
+            APPUtilites.displayErrorSnackbar(message: error.userInfo["NSLocalizedDescription"] as! String)
+            print("error: \(error.userInfo)")
+        }
     }
     
-    func setTabBarSelection() {
-        let isFirstSignIn : Bool = UserDefaults.standard.bool(forKey: DeviceConstants.IS_FIRST_SIGN_IN)
-        
-        if isFirstSignIn {
-            self.selectedIndex = PROFILE_SELECTED_INDEX
-            self.tabBar.isHidden = true
-        } else {
+    func setTabBarSelection(isProfilePresent: Bool) {
+        if isProfilePresent {
             self.selectedIndex = DeviceConstants.DEFAULT_SELECTED_INDEX
             self.addCreateVibeButton()
+        } else {
+            self.selectedIndex = PROFILE_SELECTED_INDEX
+            self.tabBar.isHidden = true
         }
     }
 }
