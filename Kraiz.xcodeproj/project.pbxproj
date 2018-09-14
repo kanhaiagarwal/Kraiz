@@ -61,6 +61,7 @@
 		B58B934E21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */; };
 		B5C6E33221346A2700F8D5EC /* CognitoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6E33121346A2700F8D5EC /* CognitoHelper.swift */; };
 		B5C9431A212947F8000DCF7A /* MyVibeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C94319212947F8000DCF7A /* MyVibeViewController.swift */; };
+		B5D90894214C0853000D3E2B /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */; };
 		B5DC7929212D5CA600C69A13 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DC7928212D5CA600C69A13 /* AppUtilities.swift */; };
 		B5E23DAF2129E677005C93C2 /* CountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E23DAE2129E677005C93C2 /* CountryCodes.swift */; };
 		C7E25CAAD6566B37AC6926A8 /* Pods_Kraiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24DDAF27796E7272B44F72B /* Pods_Kraiz.framework */; };
@@ -125,6 +126,7 @@
 		B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordOTPViewController.swift; sourceTree = "<group>"; };
 		B5C6E33121346A2700F8D5EC /* CognitoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitoHelper.swift; sourceTree = "<group>"; };
 		B5C94319212947F8000DCF7A /* MyVibeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVibeViewController.swift; sourceTree = "<group>"; };
+		B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
 		B5DC7928212D5CA600C69A13 /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
 		B5E23DAE2129E677005C93C2 /* CountryCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodes.swift; sourceTree = "<group>"; };
 		D24DDAF27796E7272B44F72B /* Pods_Kraiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kraiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +275,7 @@
 				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
 				B51DF219211F13B9009896CC /* VibesViewController.swift */,
 				B545799F213F010900C7424F /* StartViewController.swift */,
+				B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */,
 				B5523B852120BFDF00CAC7BF /* ImageTextCombinationViewController.swift in Sources */,
 				B51DF21D211F13B9009896CC /* ProfileViewController.swift in Sources */,
+				B5D90894214C0853000D3E2B /* InviteFriendsViewController.swift in Sources */,
 				B58B934E21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift in Sources */,
 				B51DF252211F17DA009896CC /* DraftsTableViewCell.swift in Sources */,
 				B51DF227211F13B9009896CC /* LetterInputViewController.swift in Sources */,
