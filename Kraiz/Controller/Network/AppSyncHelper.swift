@@ -36,17 +36,26 @@ class AppSyncHelper {
         return nil
     }
     
-    public func getUserProfile(userId: String, success: @escaping (GraphQLResult<GetUserProfileQuery.Data>) -> Void, failure: @escaping (NSError) -> Void) {
+    public func getUserProfile(userId: String, success: @escaping (ProfileModel) -> Void, failure: @escaping (NSError) -> Void) {
         let getQuery = GetUserProfileQuery(id: userId)
         print("getQuery.id: \(getQuery.id)")
         let queue = DispatchQueue.main
         if appSyncClient != nil {
             print("AppSyncClient is not nil")
-            appSyncClient?.fetch(query: getQuery, cachePolicy: CachePolicy.returnCacheDataAndFetch, queue: queue, resultHandler: { (result, error) in
+            appSyncClient?.fetch(query: getQuery, cachePolicy: CachePolicy.returnCacheDataElseFetch, queue: queue, resultHandler: { (result, error) in
                 if error != nil {
                     failure(error! as NSError)
                 } else {
-                    success(result!)
+                    var profileModel = ProfileModel()
+                    if let data = result?.data {
+                        print("data: \(data)")
+                        if let userProfile = data.snapshot["getUserProfile"] as? [String: Any?] {
+                            profileModel = ProfileModel(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID), username: userProfile["username"] as? String, mobileNumber: userProfile["mobileNumber"] as? String, name: userProfile["name"] as? String, gender: userProfile["gender"] as? String, dob: userProfile["dob"] as? String, profilePicUrl: userProfile["profilePicUrl"] as? String)
+                        } else {
+                            print("data snapshot is nil")
+                        }
+                    }
+                    success(profileModel)
                 }
             })
         } else {
@@ -54,8 +63,17 @@ class AppSyncHelper {
         }
     }
     
-    public func createUserProfile(profile: ProfileModel, success: @escaping (GraphQLResult<CreateUserProfileMutation.Data>) -> Void, failure: @escaping (NSError) -> Void) {
-        let profileInput = CreateUserProfileInput.init(id: profile.getId(), mobileNumber: profile.getMobileNumber(), username: profile.getUsername(), name: profile.getName(), dob: profile.getDob().description, gender: Gender(rawValue: profile.getGender()), profilePicUrl: profile.getProfilePicUrl())
+    public func createUserProfile(profile: ProfileModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
+        print("*****************************************************************")
+        print("Inside createUserProfile. profile:")
+        print(profile.getId())
+        print(profile.getUsername())
+        print(profile.getName())
+        print(profile.getMobileNumber())
+        print(profile.getGender())
+        print(profile.getProfilePicUrl())
+        
+        let profileInput = CreateUserProfileInput.init(id: profile.getId()!, mobileNumber: profile.getMobileNumber()!, username: profile.getUsername()!, name: profile.getName(), dob: profile.getDob()?.description, gender: profile.getGender().map { Gender(rawValue: $0) }, profilePicUrl: profile.getProfilePicUrl())
         
         let createQuery = CreateUserProfileMutation(input: profileInput)
         if appSyncClient == nil {
@@ -65,7 +83,14 @@ class AppSyncHelper {
                 if error != nil {
                     failure(error! as NSError)
                 } else {
-                    success(result!)
+                    print("result: \(result)")
+                    print("result.data: \(result?.data)")
+                    if result?.errors == nil {
+                        print("result?.data?.snapshot: \(result?.data?.snapshot)")
+                        success(true)
+                    } else {
+                        success(false)
+                    }
                 }
             })
         }

@@ -49,4 +49,18 @@ public class APPUtilites {
     public static func removeLoadingSpinner(spinner: UIView) {
         spinner.removeFromSuperview()
     }
+    
+    public static func inverseDate(inputDate: String) -> String {
+        let dateParts = inputDate.split(separator: "-")
+        let newDate = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0]
+        return newDate
+    }
+}
+
+extension Date {
+    func asString(style: DateFormatter.Style) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = style
+        return dateFormatter.string(from: self)
+    }
 }

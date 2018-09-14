@@ -9,25 +9,25 @@
 import Foundation
 
 class ProfileModel {
-    private var id: String
-    private var username: String
-    private var mobileNumber: String
-    private var name: String
-    private var gender: String
-    private var dob: Date
-    private var profilePicUrl: String
+    private var id: String?
+    private var username: String?
+    private var mobileNumber: String?
+    private var name: String?
+    private var gender: String?
+    private var dob: String?
+    private var profilePicUrl: String?
     
     public init() {
-        id = ""
-        username = ""
-        mobileNumber = ""
-        name = ""
-        gender = ""
-        dob = Date.init()
-        profilePicUrl = ""
+        id = nil
+        username = nil
+        mobileNumber = nil
+        name = nil
+        gender = nil
+        dob = nil
+        profilePicUrl = nil
     }
     
-    public init(id: String, username: String, mobileNumber: String, name: String, gender: String, dob: Date, profilePicUrl: String) {
+    public init(id: String? = nil, username: String? = nil, mobileNumber: String? = nil, name: String? = nil, gender: String? = nil, dob: String? = nil, profilePicUrl: String? = nil) {
         self.id = id
         self.username = username
         self.mobileNumber = mobileNumber
@@ -37,51 +37,59 @@ class ProfileModel {
         self.profilePicUrl = profilePicUrl
     }
     
-    public func getId() -> String {
+    public func getId() -> String? {
         return self.id
     }
     
-    public func setId(id: String) {
+    public func setId(id: String?) {
         self.id = id
     }
     
-    public func getUsername() -> String {
+    public func getUsername() -> String? {
         return self.username
     }
     
-    public func setUsername(username: String) {
+    public func setUsername(username: String?) {
         self.username = username
     }
     
-    public func getMobileNumber() -> String {
+    public func getMobileNumber() -> String? {
         return self.mobileNumber
     }
     
-    public func setMobileNumber(mobileNumber: String) {
+    public func setMobileNumber(mobileNumber: String?) {
         self.mobileNumber = mobileNumber
     }
     
-    public func getName() -> String {
+    public func getName() -> String? {
         return self.name
     }
     
-    public func setName(name: String) {
+    public func setName(name: String?) {
         self.name = name
     }
     
-    public func getGender() -> String {
+    public func getGender() -> String? {
         return self.gender
     }
     
-    public func setGender(id: String) {
-        self.id = id
+    public func setGender(gender: String?) {
+        self.gender = gender
     }
     
-    public func getDob() -> Date {
+    public func getDob() -> String? {
         return self.dob
     }
     
-    public func getProfilePicUrl() -> String {
+    public func setDob(dob: String?) {
+        self.dob = dob
+    }
+    
+    public func getProfilePicUrl() -> String? {
         return self.profilePicUrl
+    }
+    
+    public func setProfilePicUrl(profilePic: String?) {
+        self.profilePicUrl = profilePic
     }
 }

@@ -9,6 +9,7 @@
 // Class to show the user profile.
 
 import UIKit
+import AWSAppSync
 
 class ProfileViewController: UIViewController {
 
@@ -17,7 +18,7 @@ class ProfileViewController: UIViewController {
     
     let placeholders = ["Enter your Full Name Here", "Enter your Username Here", "Enter you Date Of Birth", "Enter Your Phone Number", "Enter Your Gender"]
     
-    let genders = ["Male", "Female", "Other"]
+    let genders = ["MALE", "FEMALE", "OTHERS"]
     
     var genderSelected : String?
     var dobSelected : String?
@@ -26,8 +27,6 @@ class ProfileViewController: UIViewController {
     let dobDatePicker = UIDatePicker()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
-    
-    let profile = ProfileModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +41,50 @@ class ProfileViewController: UIViewController {
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.height / 2
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+        AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (result: ProfileModel) in
+            APPUtilites.removeLoadingSpinner(spinner: sv)
+            self.populateProfileTable(profile: result)
+            
+        }) { (error: NSError) in
+            APPUtilites.removeLoadingSpinner(spinner: sv)
+            print(error.localizedDescription)
+            APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
+        }
+    }
 
+    /// Populates the profile fields with the values in the ProfileModel.
+    /// - Parameter profile: The Profile Values of the user.
+    func populateProfileTable(profile: ProfileModel) {
+        let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! ProfileTableViewCell
+        let usernameCell = tableView.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! ProfileTableViewCell
+        let dobCell = tableView.cellForRow(at: IndexPath.init(row: 2, section: 0)) as! ProfileTableViewCell
+        let mobileCell = tableView.cellForRow(at: IndexPath.init(row: 3, section: 0)) as! ProfileTableViewCell
+        let genderCell = tableView.cellForRow(at: IndexPath.init(row: 4, section: 0)) as! ProfileTableViewCell
+        
+        if let name = profile.getName() {
+            nameCell.inputField.text = name
+        }
+        
+        if let username = profile.getUsername() {
+            usernameCell.inputField.text = username
+        }
+        
+        if let dob = profile.getDob() {
+            dobCell.inputField.text = dob
+        }
+        
+        mobileCell.inputField.text = UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)
+        
+        if let gender = profile.getGender() {
+            genderCell.inputField.text = gender
+        }
+    }
+    
+    /// On pressing the Save Button.
     @IBAction func savePressed(_ sender: UIButton) {
         
         let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! ProfileTableViewCell
@@ -50,12 +92,6 @@ class ProfileViewController: UIViewController {
         let dobCell = tableView.cellForRow(at: IndexPath.init(row: 2, section: 0)) as! ProfileTableViewCell
         let mobileCell = tableView.cellForRow(at: IndexPath.init(row: 3, section: 0)) as! ProfileTableViewCell
         let genderCell = tableView.cellForRow(at: IndexPath.init(row: 4, section: 0)) as! ProfileTableViewCell
-        
-        print("Name: \(nameCell.inputField.text)")
-        print("Username: \(usernameCell.inputField.text)")
-        print("DOB: \(dobCell.inputField.text)")
-        print("Mobile: \(mobileCell.inputField.text)")
-        print("Gender: \(genderCell.inputField.text)")
         
         if mobileCell.inputField.text == nil || mobileCell.inputField.text == "" {
             APPUtilites.displayErrorSnackbar(message: "Mobile number is mandatory")
@@ -65,14 +101,61 @@ class ProfileViewController: UIViewController {
         if usernameCell.inputField.text == nil || usernameCell.inputField.text == "" {
             APPUtilites.displayErrorSnackbar(message: "Username is mandatory")
             return
+        } else if (usernameCell.inputField.text?.contains(" "))! {
+            APPUtilites.displayErrorSnackbar(message: "Username cannot contain spaces")
+            return
         }
         
-        if UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT) {
-            UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
-            self.tabBarController?.selectedIndex = DeviceConstants.DEFAULT_SELECTED_INDEX
-            self.tabBarController?.addCreateVibeButton()
-            self.tabBarController?.tabBar.isHidden = false
+        let inputProfile = ProfileModel()
+        inputProfile.setId(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID))
+        inputProfile.setUsername(username: usernameCell.inputField.text)
+        inputProfile.setName(name: nameCell.inputField.text != "" ? nameCell.inputField.text : nil)
+        inputProfile.setMobileNumber(mobileNumber: mobileCell.inputField.text)
+        inputProfile.setGender(gender: genderCell.inputField.text != "" ? genderCell.inputField.text : nil)
+        inputProfile.setProfilePicUrl(profilePic: nil)
+        
+        if dobCell.inputField.text != nil && dobCell.inputField.text != "" {
+            inputProfile.setDob(dob: APPUtilites.inverseDate(inputDate: dobCell.inputField.text!))
+        } else {
+            inputProfile.setDob(dob: nil)
         }
+        
+        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+        
+        // Check if the profile was not present initially. If not, then add it and goto to the Default Tab Bar.
+        if !UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT) {
+            AppSyncHelper.shared.createUserProfile(profile: inputProfile, success: { (success) in
+                APPUtilites.removeLoadingSpinner(spinner: sv)
+                if success == true {
+                    APPUtilites.displaySuccessSnackbar(message: "Profile Creation Succeeded!")
+                    self.tabBarController?.selectedIndex = DeviceConstants.DEFAULT_SELECTED_INDEX
+                    self.tabBarController?.addCreateVibeButton()
+                    self.tabBarController?.tabBar.isHidden = false
+                    UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                } else {
+                    APPUtilites.displayErrorSnackbar(message: "Profile Creation Failed. Please Check your inputs")
+                }
+            }, failure: { (error) in
+                APPUtilites.removeLoadingSpinner(spinner: sv)
+                APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
+            })
+        } else {
+            AppSyncHelper.shared.createUserProfile(profile: inputProfile, success: { (success) in
+                APPUtilites.removeLoadingSpinner(spinner: sv)
+                if success == true {
+                    APPUtilites.displaySuccessSnackbar(message: "Profile Update Succeeded!")
+                } else {
+                    APPUtilites.displayErrorSnackbar(message: "Profile Update Failed")
+                }
+            }, failure: { (error) in
+                APPUtilites.removeLoadingSpinner(spinner: sv)
+                APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
+            })
+        }
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
@@ -128,7 +211,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, UIT
     }
 }
 
-// Code for the Gender Picker of the Gender Field.
+/// Code for the Gender Picker of the Gender Field.
 extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -169,7 +252,7 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-// Code for the date picker of the DOB Field.
+/// Code for the date picker of the DOB Field.
 extension ProfileViewController {
     func createToolbarForDatePicker(dobCell: ProfileTableViewCell) {
         let toolbar = UIToolbar()
@@ -189,7 +272,6 @@ extension ProfileViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-YYY"
         let selectedDate = dateFormatter.string(from: dobDatePicker.date)
-        print("selected date: \(selectedDate)")
         let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as! ProfileTableViewCell
         cell.inputField.text = selectedDate
         view.endEditing(true)

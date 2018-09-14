@@ -25,20 +25,14 @@ class HomeTabBarController: UITabBarController {
         appSyncClient = AppSyncHelper.shared.getAppSyncClient()
         let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
         
-        AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (result) in
+        AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (profile) in
             APPUtilites.removeLoadingSpinner(spinner: sv)
             var isProfilePresent = false
-            if let data = result.data {
-                print("data: \(data)")
-                if let userProfile = data.snapshot["getUserProfile"] as? [String: Any?] {
-                    print("userProfile: \(userProfile)")
-                    isProfilePresent = true
-                } else {
-                    print("data snapshot is nil")
-                }
-                UserDefaults.standard.set(isProfilePresent, forKey: DeviceConstants.IS_PROFILE_PRESENT)
-                self.setTabBarSelection(isProfilePresent: isProfilePresent)
+            if profile.getId() != nil {
+                isProfilePresent = true
             }
+            UserDefaults.standard.set(isProfilePresent, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+            self.setTabBarSelection(isProfilePresent: isProfilePresent)
         }) { (error) in
             APPUtilites.displayErrorSnackbar(message: error.userInfo["NSLocalizedDescription"] as! String)
             print("error: \(error.userInfo)")
