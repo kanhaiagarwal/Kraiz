@@ -3417,6 +3417,9 @@ its the right one</string>
                                                                                 <color key="value" red="0.8901960784313725" green="0.47450980392156861" blue="0.043137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="instagramPressed:" destination="npe-cZ-Tip" eventType="touchUpInside" id="EHb-4F-f5I"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3445,6 +3448,9 @@ its the right one</string>
                                                                                 <color key="value" red="0.8901960784313725" green="0.47450980392156861" blue="0.043137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="fbPressed:" destination="npe-cZ-Tip" eventType="touchUpInside" id="H0p-C6-9dW"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3639,6 +3645,9 @@ its the right one</string>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="np1-Kx-ufx">
                                                                         <rect key="frame" x="0.0" y="0.0" width="275" height="53"/>
                                                                         <state key="normal" backgroundImage="follow_us_on_facebook"/>
+                                                                        <connections>
+                                                                            <action selector="fbPressed:" destination="kej-GX-Oif" eventType="touchUpInside" id="GUm-1Z-BeK"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -3656,6 +3665,9 @@ its the right one</string>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jt9-Vm-13X">
                                                                         <rect key="frame" x="0.0" y="0.0" width="275" height="53"/>
                                                                         <state key="normal" backgroundImage="follow_us_on_instagram"/>
+                                                                        <connections>
+                                                                            <action selector="instagramPressed:" destination="kej-GX-Oif" eventType="touchUpInside" id="lAX-xl-s5g"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

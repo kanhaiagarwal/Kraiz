@@ -26,6 +26,40 @@ class ContactUsViewController: UIViewController {
     @IBAction func onClickBackButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func fbPressed(_ sender: UIButton) {
+        if let appURL = URL(string: "facebook://") {
+            let canOpenURL = UIApplication.shared.canOpenURL(appURL)
+            print("\(canOpenURL)")
+            
+            let appName = "Facebook"
+            let appScheme = "\(appName)://"
+            let appSchemeUrl = URL(string: appScheme)
+            
+            if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
+                UIApplication.shared.open(appSchemeUrl!, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.open(URL(string: "http://facebook.com")!, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+    @IBAction func instagramPressed(_ sender: UIButton) {
+        if let appURL = URL(string: "instagram://") {
+            let canOpenURL = UIApplication.shared.canOpenURL(appURL)
+            print("\(canOpenURL)")
+            
+            let appName = "Instagram"
+            let appScheme = "\(appName)://"
+            let appSchemeUrl = URL(string: appScheme)
+            
+            if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
+                UIApplication.shared.open(appSchemeUrl!, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.open(URL(string: "http://instagram.com")!, options: [:], completionHandler: nil)
+            }
+        }
+    }
 }
 
 extension ContactUsViewController: UITableViewDelegate, UITableViewDataSource {

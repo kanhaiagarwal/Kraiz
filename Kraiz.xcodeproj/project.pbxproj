@@ -161,6 +161,35 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B508AC5B214C4AB2001E3BB3 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
+				B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */,
+				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
+				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
+				B51DF209211F13B7009896CC /* CreateVibeViewController.swift */,
+				B51DF214211F13B8009896CC /* DraftsViewController.swift */,
+				B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */,
+				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
+				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
+				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
+				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
+				B5C94319212947F8000DCF7A /* MyVibeViewController.swift */,
+				B54073022120188F00122FD0 /* PhotosInputViewController.swift */,
+				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
+				B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */,
+				B51DF207211F13B7009896CC /* SignInViewController.swift */,
+				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
+				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
+				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
+				B51DF219211F13B9009896CC /* VibesViewController.swift */,
+				B545799F213F010900C7424F /* StartViewController.swift */,
+				B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		B51DF1E2211F1248009896CC = {
 			isa = PBXGroup;
 			children = (
@@ -251,31 +280,10 @@
 		B51DF24C211F16E4009896CC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B508AC5B214C4AB2001E3BB3 /* ViewController */,
 				B524CABF21453B8300316D84 /* GraphQL */,
 				B5C6E32F213469A700F8D5EC /* Network */,
 				B5DC7927212D5C9400C69A13 /* Utilities */,
-				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
-				B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */,
-				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
-				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
-				B51DF209211F13B7009896CC /* CreateVibeViewController.swift */,
-				B51DF214211F13B8009896CC /* DraftsViewController.swift */,
-				B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */,
-				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
-				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
-				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
-				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
-				B5C94319212947F8000DCF7A /* MyVibeViewController.swift */,
-				B54073022120188F00122FD0 /* PhotosInputViewController.swift */,
-				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
-				B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */,
-				B51DF207211F13B7009896CC /* SignInViewController.swift */,
-				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
-				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
-				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
-				B51DF219211F13B9009896CC /* VibesViewController.swift */,
-				B545799F213F010900C7424F /* StartViewController.swift */,
-				B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
