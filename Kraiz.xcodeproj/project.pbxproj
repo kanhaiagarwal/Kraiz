@@ -20,13 +20,11 @@
 		B51DF220211F13B9009896CC /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF208211F13B7009896CC /* ContactUsViewController.swift */; };
 		B51DF221211F13B9009896CC /* CreateVibeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF209211F13B7009896CC /* CreateVibeViewController.swift */; };
 		B51DF222211F13B9009896CC /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20A211F13B7009896CC /* HamburgerViewController.swift */; };
-		B51DF223211F13B9009896CC /* avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B51DF20B211F13B7009896CC /* avatar.jpg */; };
 		B51DF224211F13B9009896CC /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20C211F13B7009896CC /* HomeTabBarController.swift */; };
 		B51DF226211F13B9009896CC /* LetterInputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */; };
 		B51DF227211F13B9009896CC /* LetterInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF20F211F13B7009896CC /* LetterInputViewController.swift */; };
 		B51DF228211F13B9009896CC /* SignUpOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */; };
 		B51DF229211F13B9009896CC /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF211211F13B8009896CC /* WelcomeViewController.swift */; };
-		B51DF22B211F13B9009896CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B51DF213211F13B8009896CC /* Assets.xcassets */; };
 		B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF214211F13B8009896CC /* DraftsViewController.swift */; };
 		B51DF22E211F13B9009896CC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF216211F13B8009896CC /* SignUpViewController.swift */; };
 		B51DF22F211F13B9009896CC /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */; };
@@ -57,11 +55,15 @@
 		B55346AE212B1FD8005353E4 /* VibeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55346AD212B1FD8005353E4 /* VibeModel.swift */; };
 		B5652C6E21482D9900B15E8F /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B5652C6D21482D9900B15E8F /* schema.json */; };
 		B5652C7021482DFC00B15E8F /* AppSyncObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5652C6F21482DFC00B15E8F /* AppSyncObjects.swift */; };
+		B56EFE99215AB05D008059ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56EFE98215AB05D008059ED /* Images.xcassets */; };
 		B585CB162146D210008E80F8 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585CB152146D210008E80F8 /* ProfileModel.swift */; };
 		B58B934E21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */; };
+		B5A65830214D052F0003C034 /* MediaHelperConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A6582F214D052F0003C034 /* MediaHelperConstants.swift */; };
+		B5A65832214D05A00003C034 /* MediaHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A65831214D05A00003C034 /* MediaHelper.swift */; };
 		B5C6E33221346A2700F8D5EC /* CognitoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6E33121346A2700F8D5EC /* CognitoHelper.swift */; };
 		B5C9431A212947F8000DCF7A /* MyVibeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C94319212947F8000DCF7A /* MyVibeViewController.swift */; };
 		B5D90894214C0853000D3E2B /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */; };
+		B5D9F612214CDFC500BF2C0F /* DisplayImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D9F611214CDFC500BF2C0F /* DisplayImageViewController.swift */; };
 		B5DC7929212D5CA600C69A13 /* AppUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DC7928212D5CA600C69A13 /* AppUtilities.swift */; };
 		B5E23DAF2129E677005C93C2 /* CountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E23DAE2129E677005C93C2 /* CountryCodes.swift */; };
 		C7E25CAAD6566B37AC6926A8 /* Pods_Kraiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24DDAF27796E7272B44F72B /* Pods_Kraiz.framework */; };
@@ -85,13 +87,11 @@
 		B51DF208211F13B7009896CC /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		B51DF209211F13B7009896CC /* CreateVibeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateVibeViewController.swift; sourceTree = "<group>"; };
 		B51DF20A211F13B7009896CC /* HamburgerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
-		B51DF20B211F13B7009896CC /* avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = avatar.jpg; sourceTree = "<group>"; };
 		B51DF20C211F13B7009896CC /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterInputCollectionViewCell.swift; sourceTree = "<group>"; };
 		B51DF20F211F13B7009896CC /* LetterInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterInputViewController.swift; sourceTree = "<group>"; };
 		B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpOTPViewController.swift; sourceTree = "<group>"; };
 		B51DF211211F13B8009896CC /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		B51DF213211F13B8009896CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../StoryFi/StoryFi/Assets.xcassets; sourceTree = "<group>"; };
 		B51DF214211F13B8009896CC /* DraftsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraftsViewController.swift; sourceTree = "<group>"; };
 		B51DF216211F13B8009896CC /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
@@ -122,11 +122,15 @@
 		B55346AD212B1FD8005353E4 /* VibeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeModel.swift; sourceTree = "<group>"; };
 		B5652C6D21482D9900B15E8F /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		B5652C6F21482DFC00B15E8F /* AppSyncObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppSyncObjects.swift; path = Kraiz/AppSyncObjects.swift; sourceTree = SOURCE_ROOT; };
+		B56EFE98215AB05D008059ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B585CB152146D210008E80F8 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordOTPViewController.swift; sourceTree = "<group>"; };
+		B5A6582F214D052F0003C034 /* MediaHelperConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaHelperConstants.swift; sourceTree = "<group>"; };
+		B5A65831214D05A00003C034 /* MediaHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaHelper.swift; sourceTree = "<group>"; };
 		B5C6E33121346A2700F8D5EC /* CognitoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitoHelper.swift; sourceTree = "<group>"; };
 		B5C94319212947F8000DCF7A /* MyVibeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVibeViewController.swift; sourceTree = "<group>"; };
 		B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
+		B5D9F611214CDFC500BF2C0F /* DisplayImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayImageViewController.swift; sourceTree = "<group>"; };
 		B5DC7928212D5CA600C69A13 /* AppUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtilities.swift; sourceTree = "<group>"; };
 		B5E23DAE2129E677005C93C2 /* CountryCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodes.swift; sourceTree = "<group>"; };
 		D24DDAF27796E7272B44F72B /* Pods_Kraiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kraiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,11 +173,13 @@
 				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
 				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
 				B51DF209211F13B7009896CC /* CreateVibeViewController.swift */,
+				B5D9F611214CDFC500BF2C0F /* DisplayImageViewController.swift */,
 				B51DF214211F13B8009896CC /* DraftsViewController.swift */,
 				B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */,
 				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
 				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
 				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
+				B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */,
 				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
 				B5C94319212947F8000DCF7A /* MyVibeViewController.swift */,
 				B54073022120188F00122FD0 /* PhotosInputViewController.swift */,
@@ -182,10 +188,9 @@
 				B51DF207211F13B7009896CC /* SignInViewController.swift */,
 				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
 				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
-				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
-				B51DF219211F13B9009896CC /* VibesViewController.swift */,
 				B545799F213F010900C7424F /* StartViewController.swift */,
-				B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */,
+				B51DF219211F13B9009896CC /* VibesViewController.swift */,
+				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -218,13 +223,12 @@
 				B51DF242211F1608009896CC /* Fonts */,
 				B51DF233211F15D4009896CC /* View */,
 				B51DF203211F13B6009896CC /* AppIcon.png */,
-				B51DF213211F13B8009896CC /* Assets.xcassets */,
-				B51DF20B211F13B7009896CC /* avatar.jpg */,
 				B51DF1EE211F1248009896CC /* AppDelegate.swift */,
 				B51DF1F2211F1248009896CC /* Main.storyboard */,
 				B51DF1FA211F1248009896CC /* LaunchScreen.storyboard */,
 				B51DF1FD211F1248009896CC /* Info.plist */,
 				B51DF1F5211F1248009896CC /* Kraiz.xcdatamodeld */,
+				B56EFE98215AB05D008059ED /* Images.xcassets */,
 			);
 			path = Kraiz;
 			sourceTree = "<group>";
@@ -273,6 +277,7 @@
 				B51DF249211F16AA009896CC /* DeviceConstants.swift */,
 				B507EF5C21244886007FC9F1 /* AWSConstants.swift */,
 				B5E23DAE2129E677005C93C2 /* CountryCodes.swift */,
+				B5A6582F214D052F0003C034 /* MediaHelperConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 			children = (
 				B5C6E33121346A2700F8D5EC /* CognitoHelper.swift */,
 				B524CABD21453AD000316D84 /* AppSyncHelper.swift */,
+				B5A65831214D05A00003C034 /* MediaHelper.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -352,7 +358,6 @@
 				B51DF1E8211F1248009896CC /* Frameworks */,
 				B51DF1E9211F1248009896CC /* Resources */,
 				3C57ED9B4747591F8C37E197 /* [CP] Embed Pods Frameworks */,
-				7884EDF24D6BAFE33BB86674 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -407,16 +412,15 @@
 				B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */,
 				B51DF1FC211F1248009896CC /* LaunchScreen.storyboard in Resources */,
 				B5652C6E21482D9900B15E8F /* schema.json in Resources */,
-				B51DF223211F13B9009896CC /* avatar.jpg in Resources */,
 				B51DF250211F1783009896CC /* VibesTableViewCell.xib in Resources */,
 				B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */,
 				B51DF258211F1AA8009896CC /* frenchscriptmt.ttf in Resources */,
 				B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */,
 				B51DF251211F1787009896CC /* ContactUsTableViewCell.xib in Resources */,
+				B56EFE99215AB05D008059ED /* Images.xcassets in Resources */,
 				B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */,
 				B524CACC214544BF00316D84 /* schema.graphql in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
-				B51DF22B211F13B9009896CC /* Assets.xcassets in Resources */,
 				B5523B862120BFDF00CAC7BF /* ImageTextCombinationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,13 +458,16 @@
 				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/Cloudinary/Cloudinary.framework",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/TTGSnackbar/TTGSnackbar.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework",
@@ -472,13 +479,16 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSGridCollectionViewLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cloudinary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTGSnackbar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageViewModeScaleAspect.framework",
@@ -486,21 +496,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7884EDF24D6BAFE33BB86674 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -522,6 +517,7 @@
 				B5C6E33221346A2700F8D5EC /* CognitoHelper.swift in Sources */,
 				B51DF231211F13B9009896CC /* VibesViewController.swift in Sources */,
 				B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */,
+				B5A65830214D052F0003C034 /* MediaHelperConstants.swift in Sources */,
 				B5DC7929212D5CA600C69A13 /* AppUtilities.swift in Sources */,
 				B51DF220211F13B9009896CC /* ContactUsViewController.swift in Sources */,
 				B585CB162146D210008E80F8 /* ProfileModel.swift in Sources */,
@@ -532,10 +528,12 @@
 				B55346AE212B1FD8005353E4 /* VibeModel.swift in Sources */,
 				B524CABE21453AD000316D84 /* AppSyncHelper.swift in Sources */,
 				B51DF22E211F13B9009896CC /* SignUpViewController.swift in Sources */,
+				B5D9F612214CDFC500BF2C0F /* DisplayImageViewController.swift in Sources */,
 				B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */,
 				B51DF256211F17EC009896CC /* VibesTableViewCell.swift in Sources */,
 				B51DF226211F13B9009896CC /* LetterInputCollectionViewCell.swift in Sources */,
 				B51DF253211F17E0009896CC /* ContactUsTableViewCell.swift in Sources */,
+				B5A65832214D05A00003C034 /* MediaHelper.swift in Sources */,
 				B54073012120150400122FD0 /* PhotoInputCollectionViewCell.swift in Sources */,
 				B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */,
 				B5523B852120BFDF00CAC7BF /* ImageTextCombinationViewController.swift in Sources */,
@@ -688,6 +686,7 @@
 			baseConfigurationReference = AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GNET3L3CRK;
 				INFOPLIST_FILE = Kraiz/Info.plist;
@@ -704,6 +703,7 @@
 			baseConfigurationReference = 77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GNET3L3CRK;
 				ENABLE_TESTABILITY = YES;

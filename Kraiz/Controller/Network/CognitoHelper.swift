@@ -51,6 +51,7 @@ class CognitoHelper {
                         print("access token: \(result.accessToken?.tokenString)")
                         print("expiration time: \(result.expirationTime)")
                         print("id token: \(result.idToken?.tokenString)")
+                        UserDefaults.standard.set(result.idToken?.tokenString, forKey: DeviceConstants.ID_TOKEN)
                         print(result.debugDescription)
                         success()
                     }
@@ -248,6 +249,10 @@ class CognitoHelper {
     }
     
     func signOut(success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
+        if currentUser == nil {
+            print("currentUser is nil inside signOut")
+            currentUser = pool?.currentUser()
+        }
         currentUser?.globalSignOut()
             .continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserGlobalSignOutResponse>) -> Any? in
                 DispatchQueue.main.async(execute: {

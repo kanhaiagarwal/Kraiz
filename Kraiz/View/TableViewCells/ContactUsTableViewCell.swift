@@ -24,4 +24,14 @@ class ContactUsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        subviews.forEach { (view) in
+            if type(of: view).description() == "_UITableViewCellSeparatorView" {
+                view.alpha = 1.0
+            }
+        }
+    }
+    
 }

@@ -12,7 +12,7 @@ import UIKit
 class ContactUsViewController: UIViewController {
 
     let icons = ["contact", "email", "link"]
-    let labels = ["+91-9023161611", "storyfi.company@gmail.com", "https://www.storyfi.app"]
+    let labels = ["+91-9023161611", "kraiz.company@gmail.com", "https://www.kraiz.app"]
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -86,5 +86,20 @@ extension ContactUsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.selectionStyle = UITableViewCellSelectionStyle.none
+        
+        // Open the dialler with the number of the Company.
+        if indexPath.row == 0 {
+            UIApplication.shared.open(URL(string: "tel://9023161611")!, options: [:], completionHandler: nil)
+        }
+        
+        // Open the default Mail App.
+        if indexPath.row == 1 {
+            UIApplication.shared.open(URL(string: "mailto:kraiz.company@gmail.com")!, options: [:], completionHandler: nil)
+        }
+        
+        // Open the Kraiz Website URL.
+        if indexPath.row == 2 {
+            UIApplication.shared.open(URL(string: "http://kraiz.app")!, options: [:], completionHandler: nil)
+        }
     }
 }

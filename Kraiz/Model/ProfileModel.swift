@@ -15,7 +15,7 @@ class ProfileModel {
     private var name: String?
     private var gender: String?
     private var dob: String?
-    private var profilePicUrl: String?
+    private var profilePicId: String?
     
     public init() {
         id = nil
@@ -24,17 +24,17 @@ class ProfileModel {
         name = nil
         gender = nil
         dob = nil
-        profilePicUrl = nil
+        profilePicId = nil
     }
     
-    public init(id: String? = nil, username: String? = nil, mobileNumber: String? = nil, name: String? = nil, gender: String? = nil, dob: String? = nil, profilePicUrl: String? = nil) {
+    public init(id: String? = nil, username: String? = nil, mobileNumber: String? = nil, name: String? = nil, gender: String? = nil, dob: String? = nil, profilePicId: String? = nil) {
         self.id = id
         self.username = username
         self.mobileNumber = mobileNumber
         self.name = name
         self.gender = gender
         self.dob = dob
-        self.profilePicUrl = profilePicUrl
+        self.profilePicId = profilePicId
     }
     
     public func getId() -> String? {
@@ -85,11 +85,11 @@ class ProfileModel {
         self.dob = dob
     }
     
-    public func getProfilePicUrl() -> String? {
-        return self.profilePicUrl
+    public func getProfilePicId() -> String? {
+        return self.profilePicId
     }
     
-    public func setProfilePicUrl(profilePic: String?) {
-        self.profilePicUrl = profilePic
+    public func setProfilePicId(profilePicId: String?) {
+        self.profilePicId = profilePicId
     }
 }

@@ -22,8 +22,8 @@ public struct DeleteUserProfileInput: GraphQLMapConvertible {
 public struct CreateUserProfileInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID, mobileNumber: String, username: String, name: Optional<String?> = nil, dob: Optional<String?> = nil, gender: Optional<Gender?> = nil, profilePicUrl: Optional<String?> = nil) {
-    graphQLMap = ["id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "dob": dob, "gender": gender, "profilePicUrl": profilePicUrl]
+  public init(id: GraphQLID, mobileNumber: String, username: String, name: Optional<String?> = nil, dob: Optional<String?> = nil, gender: Optional<Gender?> = nil, profilePicId: Optional<String?> = nil) {
+    graphQLMap = ["id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "dob": dob, "gender": gender, "profilePicId": profilePicId]
   }
 
   public var id: GraphQLID {
@@ -80,12 +80,12 @@ public struct CreateUserProfileInput: GraphQLMapConvertible {
     }
   }
 
-  public var profilePicUrl: Optional<String?> {
+  public var profilePicId: Optional<String?> {
     get {
-      return graphQLMap["profilePicUrl"] as! Optional<String?>
+      return graphQLMap["profilePicId"] as! Optional<String?>
     }
     set {
-      graphQLMap.updateValue(newValue, forKey: "profilePicUrl")
+      graphQLMap.updateValue(newValue, forKey: "profilePicId")
     }
   }
 }
@@ -130,8 +130,8 @@ public enum Gender: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
 public struct UpdateUserProfileInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID, name: Optional<String?> = nil, dob: Optional<String?> = nil, gender: Optional<Gender?> = nil, profilePicUrl: Optional<String?> = nil) {
-    graphQLMap = ["id": id, "name": name, "dob": dob, "gender": gender, "profilePicUrl": profilePicUrl]
+  public init(id: GraphQLID, username: Optional<String?> = nil, name: Optional<String?> = nil, dob: Optional<String?> = nil, gender: Optional<Gender?> = nil, profilePicId: Optional<String?> = nil) {
+    graphQLMap = ["id": id, "username": username, "name": name, "dob": dob, "gender": gender, "profilePicId": profilePicId]
   }
 
   public var id: GraphQLID {
@@ -140,6 +140,15 @@ public struct UpdateUserProfileInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "id")
+    }
+  }
+
+  public var username: Optional<String?> {
+    get {
+      return graphQLMap["username"] as! Optional<String?>
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "username")
     }
   }
 
@@ -170,12 +179,12 @@ public struct UpdateUserProfileInput: GraphQLMapConvertible {
     }
   }
 
-  public var profilePicUrl: Optional<String?> {
+  public var profilePicId: Optional<String?> {
     get {
-      return graphQLMap["profilePicUrl"] as! Optional<String?>
+      return graphQLMap["profilePicId"] as! Optional<String?>
     }
     set {
-      graphQLMap.updateValue(newValue, forKey: "profilePicUrl")
+      graphQLMap.updateValue(newValue, forKey: "profilePicId")
     }
   }
 }
@@ -281,7 +290,7 @@ public final class DeleteUserProfileMutation: GraphQLMutation {
 
 public final class CreateUserProfileMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateUserProfile($input: CreateUserProfileInput!) {\n  createUserProfile(input: $input) {\n    __typename\n    id\n    mobileNumber\n    username\n    name\n  }\n}"
+    "mutation CreateUserProfile($input: CreateUserProfileInput!) {\n  createUserProfile(input: $input) {\n    __typename\n    id\n    mobileNumber\n    username\n    name\n    profilePicId\n  }\n}"
 
   public var input: CreateUserProfileInput
 
@@ -328,6 +337,7 @@ public final class CreateUserProfileMutation: GraphQLMutation {
         GraphQLField("mobileNumber", type: .nonNull(.scalar(String.self))),
         GraphQLField("username", type: .nonNull(.scalar(String.self))),
         GraphQLField("name", type: .scalar(String.self)),
+        GraphQLField("profilePicId", type: .scalar(String.self)),
       ]
 
       public var snapshot: Snapshot
@@ -336,8 +346,8 @@ public final class CreateUserProfileMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, mobileNumber: String, username: String, name: String? = nil) {
-        self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name])
+      public init(id: GraphQLID, mobileNumber: String, username: String, name: String? = nil, profilePicId: String? = nil) {
+        self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "profilePicId": profilePicId])
       }
 
       public var __typename: String {
@@ -384,13 +394,22 @@ public final class CreateUserProfileMutation: GraphQLMutation {
           snapshot.updateValue(newValue, forKey: "name")
         }
       }
+
+      public var profilePicId: String? {
+        get {
+          return snapshot["profilePicId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "profilePicId")
+        }
+      }
     }
   }
 }
 
 public final class UpdateUserProfileMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateUserProfile($input: UpdateUserProfileInput!) {\n  updateUserProfile(input: $input) {\n    __typename\n    id\n    mobileNumber\n    username\n    name\n    gender\n    profilePicUrl\n    dob\n  }\n}"
+    "mutation UpdateUserProfile($input: UpdateUserProfileInput!) {\n  updateUserProfile(input: $input) {\n    __typename\n    id\n    mobileNumber\n    username\n    name\n    gender\n    profilePicId\n    dob\n  }\n}"
 
   public var input: UpdateUserProfileInput
 
@@ -438,7 +457,7 @@ public final class UpdateUserProfileMutation: GraphQLMutation {
         GraphQLField("username", type: .nonNull(.scalar(String.self))),
         GraphQLField("name", type: .scalar(String.self)),
         GraphQLField("gender", type: .scalar(Gender.self)),
-        GraphQLField("profilePicUrl", type: .scalar(String.self)),
+        GraphQLField("profilePicId", type: .scalar(String.self)),
         GraphQLField("dob", type: .scalar(String.self)),
       ]
 
@@ -448,8 +467,8 @@ public final class UpdateUserProfileMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, mobileNumber: String, username: String, name: String? = nil, gender: Gender? = nil, profilePicUrl: String? = nil, dob: String? = nil) {
-        self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "gender": gender, "profilePicUrl": profilePicUrl, "dob": dob])
+      public init(id: GraphQLID, mobileNumber: String, username: String, name: String? = nil, gender: Gender? = nil, profilePicId: String? = nil, dob: String? = nil) {
+        self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "gender": gender, "profilePicId": profilePicId, "dob": dob])
       }
 
       public var __typename: String {
@@ -506,12 +525,12 @@ public final class UpdateUserProfileMutation: GraphQLMutation {
         }
       }
 
-      public var profilePicUrl: String? {
+      public var profilePicId: String? {
         get {
-          return snapshot["profilePicUrl"] as? String
+          return snapshot["profilePicId"] as? String
         }
         set {
-          snapshot.updateValue(newValue, forKey: "profilePicUrl")
+          snapshot.updateValue(newValue, forKey: "profilePicId")
         }
       }
 
@@ -529,7 +548,7 @@ public final class UpdateUserProfileMutation: GraphQLMutation {
 
 public final class GetUserProfileQuery: GraphQLQuery {
   public static let operationString =
-    "query GetUserProfile($id: ID!) {\n  getUserProfile(id: $id) {\n    __typename\n    id\n    mobileNumber\n    username\n    name\n    gender\n    profilePicUrl\n    dob\n  }\n}"
+    "query GetUserProfile($id: ID!) {\n  getUserProfile(id: $id) {\n    __typename\n    id\n    mobileNumber\n    username\n    name\n    gender\n    profilePicId\n    dob\n  }\n}"
 
   public var id: GraphQLID
 
@@ -577,7 +596,7 @@ public final class GetUserProfileQuery: GraphQLQuery {
         GraphQLField("username", type: .nonNull(.scalar(String.self))),
         GraphQLField("name", type: .scalar(String.self)),
         GraphQLField("gender", type: .scalar(Gender.self)),
-        GraphQLField("profilePicUrl", type: .scalar(String.self)),
+        GraphQLField("profilePicId", type: .scalar(String.self)),
         GraphQLField("dob", type: .scalar(String.self)),
       ]
 
@@ -587,8 +606,8 @@ public final class GetUserProfileQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, mobileNumber: String, username: String, name: String? = nil, gender: Gender? = nil, profilePicUrl: String? = nil, dob: String? = nil) {
-        self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "gender": gender, "profilePicUrl": profilePicUrl, "dob": dob])
+      public init(id: GraphQLID, mobileNumber: String, username: String, name: String? = nil, gender: Gender? = nil, profilePicId: String? = nil, dob: String? = nil) {
+        self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "gender": gender, "profilePicId": profilePicId, "dob": dob])
       }
 
       public var __typename: String {
@@ -645,12 +664,12 @@ public final class GetUserProfileQuery: GraphQLQuery {
         }
       }
 
-      public var profilePicUrl: String? {
+      public var profilePicId: String? {
         get {
-          return snapshot["profilePicUrl"] as? String
+          return snapshot["profilePicId"] as? String
         }
         set {
-          snapshot.updateValue(newValue, forKey: "profilePicUrl")
+          snapshot.updateValue(newValue, forKey: "profilePicId")
         }
       }
 
@@ -668,7 +687,7 @@ public final class GetUserProfileQuery: GraphQLQuery {
 
 public final class GetUserProfileByUsernameQuery: GraphQLQuery {
   public static let operationString =
-    "query GetUserProfileByUsername($username: String!) {\n  getUserProfileByUsername(username: $username) {\n    __typename\n    id\n    mobileNumber\n    username\n    name\n    gender\n    profilePicUrl\n    dob\n  }\n}"
+    "query GetUserProfileByUsername($username: String!) {\n  getUserProfileByUsername(username: $username) {\n    __typename\n    id\n    mobileNumber\n    username\n    name\n    gender\n    profilePicId\n    dob\n  }\n}"
 
   public var username: String
 
@@ -716,7 +735,7 @@ public final class GetUserProfileByUsernameQuery: GraphQLQuery {
         GraphQLField("username", type: .nonNull(.scalar(String.self))),
         GraphQLField("name", type: .scalar(String.self)),
         GraphQLField("gender", type: .scalar(Gender.self)),
-        GraphQLField("profilePicUrl", type: .scalar(String.self)),
+        GraphQLField("profilePicId", type: .scalar(String.self)),
         GraphQLField("dob", type: .scalar(String.self)),
       ]
 
@@ -726,8 +745,8 @@ public final class GetUserProfileByUsernameQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, mobileNumber: String, username: String, name: String? = nil, gender: Gender? = nil, profilePicUrl: String? = nil, dob: String? = nil) {
-        self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "gender": gender, "profilePicUrl": profilePicUrl, "dob": dob])
+      public init(id: GraphQLID, mobileNumber: String, username: String, name: String? = nil, gender: Gender? = nil, profilePicId: String? = nil, dob: String? = nil) {
+        self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "gender": gender, "profilePicId": profilePicId, "dob": dob])
       }
 
       public var __typename: String {
@@ -784,12 +803,12 @@ public final class GetUserProfileByUsernameQuery: GraphQLQuery {
         }
       }
 
-      public var profilePicUrl: String? {
+      public var profilePicId: String? {
         get {
-          return snapshot["profilePicUrl"] as? String
+          return snapshot["profilePicId"] as? String
         }
         set {
-          snapshot.updateValue(newValue, forKey: "profilePicUrl")
+          snapshot.updateValue(newValue, forKey: "profilePicId")
         }
       }
 
@@ -807,7 +826,7 @@ public final class GetUserProfileByUsernameQuery: GraphQLQuery {
 
 public final class GetUserProfileByMobileNumberQuery: GraphQLQuery {
   public static let operationString =
-    "query GetUserProfileByMobileNumber($mobileNumber: String!) {\n  getUserProfileByMobileNumber(mobileNumber: $mobileNumber) {\n    __typename\n    id\n    mobileNumber\n    username\n    name\n    gender\n    profilePicUrl\n    dob\n  }\n}"
+    "query GetUserProfileByMobileNumber($mobileNumber: String!) {\n  getUserProfileByMobileNumber(mobileNumber: $mobileNumber) {\n    __typename\n    id\n    mobileNumber\n    username\n    name\n    gender\n    profilePicId\n    dob\n  }\n}"
 
   public var mobileNumber: String
 
@@ -855,7 +874,7 @@ public final class GetUserProfileByMobileNumberQuery: GraphQLQuery {
         GraphQLField("username", type: .nonNull(.scalar(String.self))),
         GraphQLField("name", type: .scalar(String.self)),
         GraphQLField("gender", type: .scalar(Gender.self)),
-        GraphQLField("profilePicUrl", type: .scalar(String.self)),
+        GraphQLField("profilePicId", type: .scalar(String.self)),
         GraphQLField("dob", type: .scalar(String.self)),
       ]
 
@@ -865,8 +884,8 @@ public final class GetUserProfileByMobileNumberQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, mobileNumber: String, username: String, name: String? = nil, gender: Gender? = nil, profilePicUrl: String? = nil, dob: String? = nil) {
-        self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "gender": gender, "profilePicUrl": profilePicUrl, "dob": dob])
+      public init(id: GraphQLID, mobileNumber: String, username: String, name: String? = nil, gender: Gender? = nil, profilePicId: String? = nil, dob: String? = nil) {
+        self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "gender": gender, "profilePicId": profilePicId, "dob": dob])
       }
 
       public var __typename: String {
@@ -923,12 +942,12 @@ public final class GetUserProfileByMobileNumberQuery: GraphQLQuery {
         }
       }
 
-      public var profilePicUrl: String? {
+      public var profilePicId: String? {
         get {
-          return snapshot["profilePicUrl"] as? String
+          return snapshot["profilePicId"] as? String
         }
         set {
-          snapshot.updateValue(newValue, forKey: "profilePicUrl")
+          snapshot.updateValue(newValue, forKey: "profilePicId")
         }
       }
 

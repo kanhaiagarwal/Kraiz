@@ -11,7 +11,9 @@
 #endif
 
 #import "AWSAppSync.h"
-#import "MQTTClient.h"
+#import "AWSIoTMQTTClient.h"
+#import "AWSIoTMQTTTypes.h"
+#import "AppSyncLogHelper.h"
 
 FOUNDATION_EXPORT double AWSAppSyncVersionNumber;
 FOUNDATION_EXPORT const unsigned char AWSAppSyncVersionString[];

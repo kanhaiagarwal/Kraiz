@@ -23,20 +23,23 @@ class HomeTabBarController: UITabBarController {
         
         self.tabBar.itemPositioning = .centered
         appSyncClient = AppSyncHelper.shared.getAppSyncClient()
-        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+//        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
         
-        AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (profile) in
-            APPUtilites.removeLoadingSpinner(spinner: sv)
-            var isProfilePresent = false
-            if profile.getId() != nil {
-                isProfilePresent = true
-            }
-            UserDefaults.standard.set(isProfilePresent, forKey: DeviceConstants.IS_PROFILE_PRESENT)
-            self.setTabBarSelection(isProfilePresent: isProfilePresent)
-        }) { (error) in
-            APPUtilites.displayErrorSnackbar(message: error.userInfo["NSLocalizedDescription"] as! String)
-            print("error: \(error.userInfo)")
-        }
+//        AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (profile) in
+//            APPUtilites.removeLoadingSpinner(spinner: sv)
+//            var isProfilePresent = false
+//            if profile.getId() != nil {
+//                isProfilePresent = true
+//            }
+//            print("profile.getId: \(profile.getId())")
+//            print("profile: \(profile)")
+//            UserDefaults.standard.set(isProfilePresent, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+//            self.setTabBarSelection(isProfilePresent: isProfilePresent)
+//        }) { (error) in
+//            APPUtilites.displayErrorSnackbar(message: error.userInfo["NSLocalizedDescription"] as! String)
+//            print("error: \(error.userInfo)")
+//        }
+        setTabBarSelection(isProfilePresent: UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT))
     }
     
     func setTabBarSelection(isProfilePresent: Bool) {

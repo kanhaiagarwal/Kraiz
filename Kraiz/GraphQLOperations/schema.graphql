@@ -12,6 +12,7 @@ mutation CreateUserProfile($input: CreateUserProfileInput!) {
         mobileNumber
         username
         name
+        profilePicId
     }
 }
 
@@ -22,7 +23,7 @@ mutation UpdateUserProfile($input: UpdateUserProfileInput!) {
         username
         name
         gender
-        profilePicUrl
+        profilePicId
         dob
     }
 }
@@ -34,7 +35,7 @@ query GetUserProfile($id: ID!) {
         username
         name
         gender
-        profilePicUrl
+        profilePicId
         dob
     }
 }
@@ -46,7 +47,7 @@ query GetUserProfileByUsername($username: String!) {
         username
         name
         gender
-        profilePicUrl
+        profilePicId
         dob
     }
 }
@@ -58,7 +59,7 @@ query GetUserProfileByMobileNumber($mobileNumber: String!) {
         username
         name
         gender
-        profilePicUrl
+        profilePicId
         dob
     }
 }

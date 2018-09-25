@@ -39,7 +39,6 @@ class WelcomeViewController: UIViewController {
         let reachability = Reachability()
         if reachability?.connection == Reachability.Connection.none {
             APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
-            return
         }
     }
     

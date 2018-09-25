@@ -8,6 +8,8 @@
 
 import Foundation
 import TTGSnackbar
+import Photos
+import Reachability
 
 public class APPUtilites {
     /// Displays an Error Snackbar for the message.
@@ -18,7 +20,21 @@ public class APPUtilites {
         errorBar.message = message
         errorBar.backgroundColor = UIColor.red
         errorBar.messageTextAlign = .center
+        errorBar.duration = .short
+        errorBar.bottomMargin = 50.0
+        errorBar.show()
+    }
+    
+    /// Displays an Error Snacbar for the message with a long duration
+    /// - Parameters
+    ///     - message: Message to be displayed in the snackbar.
+    public static func displayErrorSnackbarForLongDuration(message: String) {
+        let errorBar = TTGSnackbar()
+        errorBar.message = message
+        errorBar.backgroundColor = UIColor.red
+        errorBar.messageTextAlign = .center
         errorBar.duration = .middle
+        errorBar.bottomMargin = 50.0
         errorBar.show()
     }
     
@@ -26,12 +42,13 @@ public class APPUtilites {
     /// - Parameters
     ///     - message: Message to be displayed in the snackbar.
     public static func displaySuccessSnackbar(message: String) {
-        let errorBar = TTGSnackbar()
-        errorBar.message = message
-        errorBar.backgroundColor = UIColor(displayP3Red: 103/255, green: 186/255, blue: 38/255, alpha: 1.0)
-        errorBar.messageTextAlign = .center
-        errorBar.duration = .middle
-        errorBar.show()
+        let successBar = TTGSnackbar()
+        successBar.message = message
+        successBar.backgroundColor = UIColor(displayP3Red: 103/255, green: 186/255, blue: 38/255, alpha: 1.0)
+        successBar.messageTextAlign = .center
+        successBar.duration = .short
+        successBar.bottomMargin = 50.0
+        successBar.show()
     }
     
     public static func displayLoadingSpinner(onView: UIView) -> UIView {
@@ -54,6 +71,45 @@ public class APPUtilites {
         let dateParts = inputDate.split(separator: "-")
         let newDate = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0]
         return newDate
+    }
+    
+    public static func getUIImage(asset: PHAsset) -> UIImage? {
+        var img: UIImage?
+        let manager = PHImageManager.default()
+        let options = PHImageRequestOptions()
+        options.version = .original
+        options.isSynchronous = true
+        manager.requestImageData(for: asset, options: options) { data, _, _, _ in
+            
+            if let data = data {
+                img = UIImage(data: data)
+            }
+        }
+        return img
+    }
+    
+    public static func isInternetConnectionAvailable() -> Bool {
+        let reachability = Reachability()
+        if reachability?.connection == Reachability.Connection.none {
+            return false
+        }
+        return true
+    }
+    
+    /// Only alphanumeric and special characters like .-_@ are allowed.
+    /// Special characters should not be present in the end.
+    public static func isUsernameValid(username: String) -> Bool {
+        if username.count > 30 {
+            return false
+        }
+        
+        let range = NSRange(location: 0, length: username.utf16.count)
+        let regex = try! NSRegularExpression(pattern: "([A-Za-z0-9\\@\\-\\_\\.])*(?<![.@_-])$", options: .allowCommentsAndWhitespace)
+        let matches = regex.firstMatch(in: username, options: [], range: range)
+        if matches != nil {
+            return true
+        }
+        return false
     }
 }
 

@@ -18,6 +18,7 @@ class HamburgerViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     
     let NUMBER_OF_ROWS : Int = 4
     let ROW_HEIGHT : CGFloat = 60.5
+    let DEFAULT_PROFILE_IMAGE = UIImage(named: "profile-default")
     
     let iconImageNames = ["invite-friends", "contact-us", "about-us", "sign-out"]
     let cellSegues = ["gotoInviteFriends", "gotoContactUs", "gotoAboutUs", "gotoSignOut"]
@@ -32,6 +33,39 @@ class HamburgerViewController: UIViewController, AWSCognitoIdentityInteractiveAu
         tableView.dataSource = self
         
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (profileModel) in
+            DispatchQueue.main.async {
+                if let name = profileModel.getName() {
+                    self.usernameLabel.text = name
+                } else {
+                    self.usernameLabel.text = profileModel.getUsername()!
+                }
+                if profileModel.getProfilePicId() != nil && profileModel.getProfilePicId()! != "none" {
+                    MediaHelper.shared.downloadProfileImage(publicId: profileModel.getProfilePicId()!, success: { (image) in
+                        DispatchQueue.main.async {
+                            self.profileImage.image = image
+                        }
+                    }, failure: { (error) in
+                        DispatchQueue.main.async {
+                            print("Error in loading the image: \(error)")
+                            APPUtilites.displayErrorSnackbar(message: "Error in loading the Profile Picture. Please try again later")
+                        }
+                    })
+                } else {
+                    self.profileImage.image = self.DEFAULT_PROFILE_IMAGE
+                }
+            }
+        }) { (error) in
+            DispatchQueue.main.async {
+                print("Error: \(error)")
+                APPUtilites.displayErrorSnackbar(message: "Error in loading the User Data")
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,7 +106,26 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 3 {
+            performSignOut()
+        } else {
+            performSegue(withIdentifier: cellSegues[indexPath.row], sender: self)
+        }
+    }
+    
+    func performSignOut() {
+        if !APPUtilites.isInternetConnectionAvailable() {
+            APPUtilites.displayErrorSnackbar(message: "Please Check your Internet Connection")
+        }
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+            if !APPUtilites.isInternetConnectionAvailable() {
+                APPUtilites.displayErrorSnackbar(message: "Please Check your Internet Connection")
+                return
+            }
             let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+            UserDefaults.standard.set(nil, forKey: DeviceConstants.ID_TOKEN)
+            UserDefaults.standard.set(nil, forKey: DeviceConstants.USER_ID)
+            UserDefaults.standard.set(nil, forKey: DeviceConstants.USER_NAME)
+            UserDefaults.standard.set(nil, forKey: DeviceConstants.MOBILE_NUMBER)
             CognitoHelper.shared.signOut(success: {
                 APPUtilites.removeLoadingSpinner(spinner: sv)
                 self.tabBarController?.navigationController?.popToRootViewController(animated: true)
@@ -80,8 +133,14 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
                 APPUtilites.displayErrorSnackbar(message: "Sorry, cannot Sign Out right now. Please try again")
                 APPUtilites.removeLoadingSpinner(spinner: sv)
             })
-        } else {
-            performSegue(withIdentifier: cellSegues[indexPath.row], sender: self)
         }
+        
+        let noAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        let alert = UIAlertController(title: "Sign Out", message: "Are you sure you want to Sign Out from Kraiz?", preferredStyle: .alert)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }

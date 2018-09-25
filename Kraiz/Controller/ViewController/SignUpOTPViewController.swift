@@ -117,25 +117,28 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     }
     
     func setMobileNumberInUserDefaults() {
-        func setMobileNumberInUserDefaults() {
-            pool?.currentUser()?.getDetails().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserGetDetailsResponse>) -> Any? in
-                if let taskResult = task.result {
-                    if let userAttributes = taskResult.userAttributes {
-                        for i in 0 ..< userAttributes.count {
-                            if userAttributes[i].name == "phone_number" {
-                                UserDefaults.standard.set(userAttributes[i].value, forKey: DeviceConstants.MOBILE_NUMBER)
-                                break
-                            }
+        print("Inside setMobileNumberInUserDefaults")
+        pool?.currentUser()?.getDetails().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserGetDetailsResponse>) -> Any? in
+            print("Inside constinueOnSuccessWith of setMobileNumberInUserDefaults")
+            if let taskResult = task.result {
+                print("taskResult is not nil inside setMobileNumberInUserDefaults")
+                if let userAttributes = taskResult.userAttributes {
+                    print("userAttributes is not nil inside setMobileNumberInUserDefaults")
+                    for i in 0 ..< userAttributes.count {
+                        if userAttributes[i].name == "phone_number" {
+                            UserDefaults.standard.set(userAttributes[i].value!, forKey: DeviceConstants.MOBILE_NUMBER)
+                            break
                         }
                     }
                 }
-                return nil
-            })
-        }
+            }
+            return nil
+        })
     }
     
     func gotoHomePage() {
-        performSegue(withIdentifier: GOTO_HOME_PAGE, sender: self)
+        let homePageVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabBarController")
+        self.navigationController?.pushViewController(homePageVC!, animated: true)
     }
     
     @IBAction func onClickResendOTP(_ sender: UIButton) {

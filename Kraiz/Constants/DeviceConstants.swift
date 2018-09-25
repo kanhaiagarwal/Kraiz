@@ -19,9 +19,15 @@ public class DeviceConstants {
     static public let NO_INTERNET_ERROR = NSError(domain: "NoInternetConnection", code: 503, userInfo: ["__type": "NoInternetConnectionException"])
     
     // User Defaults Keys
+    static public let DOB : String = "dob"
+    static public let GENDER : String = "gender"
+    static public let ID_TOKEN : String = "tokenString"
     static public let IS_PROFILE_PRESENT : String = "isProfilePresent"
-    static public let USER_ID : String = "userId"
     static public let MOBILE_NUMBER : String = "mobileNumber"
+    static public let NAME : String = "name"
+    static public let PROFILE_PICTURE : String = "profilePicture"
+    static public let USER_ID : String = "userId"
+    static public let USER_NAME : String = "username"
     
     // Segues
     static public let CREATE_STORY_SEGUE = "gotoCreateStory"

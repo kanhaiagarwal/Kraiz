@@ -34,18 +34,58 @@ class InviteFriendsViewController: UIViewController {
     }
     
     @objc func whatsappTapped() {
-        print("Whatsapp Tapped")
+        if let appURL = URL(string: "whatsapp://") {
+            let canOpenURL = UIApplication.shared.canOpenURL(appURL)
+            print("\(canOpenURL)")
+            
+            let appName = "Whatsapp"
+            let appScheme = "\(appName)://"
+            let appSchemeUrl = URL(string: appScheme)
+            
+            if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
+                UIApplication.shared.open(appSchemeUrl!, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.open(URL(string: "http://whatsapp.com")!, options: [:], completionHandler: nil)
+            }
+        }
     }
     
     @objc func fbTapped() {
-        print("Whatsapp Tapped")
+        if let appURL = URL(string: "facebook://") {
+            let canOpenURL = UIApplication.shared.canOpenURL(appURL)
+            print("\(canOpenURL)")
+            
+            let appName = "Facebook"
+            let appScheme = "\(appName)://"
+            let appSchemeUrl = URL(string: appScheme)
+            
+            if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
+                UIApplication.shared.open(appSchemeUrl!, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.open(URL(string: "http://facebook.com")!, options: [:], completionHandler: nil)
+            }
+        }
     }
     
     @objc func instagramTapped() {
-        print("Whatsapp Tapped")
+        if let appURL = URL(string: "instagram://") {
+            let canOpenURL = UIApplication.shared.canOpenURL(appURL)
+            print("\(canOpenURL)")
+            
+            let appName = "Instagram"
+            let appScheme = "\(appName)://"
+            let appSchemeUrl = URL(string: appScheme)
+            
+            if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
+                UIApplication.shared.open(appSchemeUrl!, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.open(URL(string: "http://instagram.com")!, options: [:], completionHandler: nil)
+            }
+        }
     }
     
     @objc func commonShareTapped() {
-        print("Whatsapp Tapped")
+        let activityViewController = UIActivityViewController(activityItems: ["Please download Kraiz. Its a really cool and awesome app." as NSString], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: {})
     }
 }

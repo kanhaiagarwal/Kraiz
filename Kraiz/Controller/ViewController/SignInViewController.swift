@@ -153,6 +153,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     }
     @IBAction func onClickSignIn(_ sender: UIButton) {
         dismissKeyboard()
+        if !APPUtilites.isInternetConnectionAvailable() {
+            APPUtilites.displayErrorSnackbar(message: "Please Check your Internet Connection")
+            return
+        }
         if usernameField.text == nil || passwordField.text == nil || usernameField.text == "" || passwordField.text == "" {
             APPUtilites.displayErrorSnackbar(message: "Username or password are empty")
             return
@@ -202,6 +206,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
                 if let userAttributes = taskResult.userAttributes {
                     for i in 0 ..< userAttributes.count {
                         if userAttributes[i].name == "phone_number" {
+                            print("Phone Number: \(userAttributes[i].value)")
                             UserDefaults.standard.set(userAttributes[i].value, forKey: DeviceConstants.MOBILE_NUMBER)
                             break
                         }
@@ -213,7 +218,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     }
     
     func gotoHomePage() {
-//        performSegue(withIdentifier: GOTO_HOME_FROM_SIGN_IN, sender: self)
         let homePageVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabBarController")
         self.navigationController?.pushViewController(homePageVC!, animated: true)
     }

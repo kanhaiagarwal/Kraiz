@@ -10,23 +10,66 @@
 
 import UIKit
 import AWSAppSync
+import BSImagePicker
+import CropViewController
+import Reachability
 
-class ProfileViewController: UIViewController {
-
+class ProfileViewController: UIViewController, CropViewControllerDelegate, DisplayImageViewControllerProtocol {
+    
+    /// Protocp; method called when back is pressed on the DisplayImageViewController
+    func backPressedOnDisplayProfileImage() {
+        self.updateProfilePicFromViewWillAppear = false
+        self.updateTableViewCells = false
+    }
+    
+    
+    func profileImageDeleted() {
+        DispatchQueue.main.async {
+            print("Profile Image Deleted")
+            self.profileImage.image = UIImage(named: self.DEFAULT_PROFILE_IMAGE)
+            self.uploadPhotoButton.setTitle("Upload Photo", for: .normal)
+            self.updateProfilePicFromViewWillAppear = false
+            self.updateTableViewCells = false
+            self.profilePicId = nil
+            if UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT) {
+                AppSyncHelper.shared.updateUserProfilePicture(profilePictureId: "none", success: { (success) in
+                    DispatchQueue.main.async {
+                        APPUtilites.displaySuccessSnackbar(message: "Profile Picture Removed")
+                    }
+                }, failure: { (error) in
+                    DispatchQueue.main.async {
+                        APPUtilites.displayErrorSnackbar(message: "Profile Picture Removal Failed")
+                    }
+                })
+            }
+        }
+        
+    }
+    
     let headingLabels = ["Full Name", "Username", "Date of Birth", "Phone Number", "Gender"]
     let icons = ["fullname", "username", "date_of_birth", "phone_number", "gender"]
     
-    let placeholders = ["Enter your Full Name Here", "Enter your Username Here", "Enter you Date Of Birth", "Enter Your Phone Number", "Enter Your Gender"]
+    let placeholders = ["Enter your Full Name", "Enter your Username", "Enter your Date Of Birth", "Enter Your Phone Number", "Enter Your Gender"]
     
     let genders = ["MALE", "FEMALE", "OTHERS"]
     
+    let DEFAULT_PROFILE_IMAGE = "profile-default"
+    
+    let MIN_AGE_LIMIT_IN_YEARS = 13
+    
     var genderSelected : String?
     var dobSelected : String?
+    var profilePicId : String? = nil
+    
+    var updateProfilePicFromViewWillAppear : Bool = true
+    var updateTableViewCells : Bool = true
     
     let genderPickerView = UIPickerView()
     let dobDatePicker = UIDatePicker()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var uploadPhotoButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,31 +77,70 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         genderPickerView.delegate = self
-        dobDatePicker.maximumDate = Date()
+        
+        let calendar = Calendar(identifier: .gregorian)
+        var comps = DateComponents()
+        comps.year = -(MIN_AGE_LIMIT_IN_YEARS)
+        dobDatePicker.maximumDate = calendar.date(byAdding: comps, to: Date())
+        
+        addTapGestureToProfilePicture()
+        getProfile(shouldUpdateProfilePicture: true, shouldUpdateTableViewCells: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(true)
+        getProfile(shouldUpdateProfilePicture: updateProfilePicFromViewWillAppear, shouldUpdateTableViewCells: updateTableViewCells)
+    }
+    
+    func getProfile(shouldUpdateProfilePicture: Bool, shouldUpdateTableViewCells: Bool) {
+        if shouldUpdateTableViewCells {
+            let sv = APPUtilites.displayLoadingSpinner(onView: (self.tabBarController?.view)!)
+            AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (result: ProfileModel) in
+                DispatchQueue.main.async {
+                    APPUtilites.removeLoadingSpinner(spinner: sv)
+                    self.populateProfileTable(profile: result, spinner: sv, shouldUpdateProfilePicture: shouldUpdateProfilePicture)
+                }
+                
+            }) { (error: NSError) in
+                DispatchQueue.main.async {
+                    APPUtilites.removeLoadingSpinner(spinner: sv)
+                    print(error.localizedDescription)
+                    APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
+                }
+            }
+        } else {
+            updateTableViewCells = true
+        }
+    }
+    
+    func addTapGestureToProfilePicture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped))
+        profileImage.addGestureRecognizer(tapGesture)
+    }
+    
+    /// Event which catches the tap on the Profile Image.
+    ///     If the image is the Placeholder image, then call the upload function.
+    ///     If the image is a profile image set by the user, then call the DisplayImageViewController.
+    @objc func profileImageTapped() {
+        if profileImage.image != UIImage(named: DEFAULT_PROFILE_IMAGE) {
+            let displayImageVC = self.storyboard?.instantiateViewController(withIdentifier: "DisplayImageViewController") as! DisplayImageViewController
+            displayImageVC.profileImage = profileImage.image!
+            displayImageVC.delegate = self
+            self.navigationController?.pushViewController(displayImageVC, animated: true)
+        } else {
+            uploadPhotoPressed(uploadPhotoButton)
+        }
     }
     
     override func viewDidLayoutSubviews() {
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.height / 2
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
-        AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (result: ProfileModel) in
-            APPUtilites.removeLoadingSpinner(spinner: sv)
-            self.populateProfileTable(profile: result)
-            
-        }) { (error: NSError) in
-            APPUtilites.removeLoadingSpinner(spinner: sv)
-            print(error.localizedDescription)
-            APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
-        }
-    }
 
     /// Populates the profile fields with the values in the ProfileModel.
     /// - Parameter profile: The Profile Values of the user.
-    func populateProfileTable(profile: ProfileModel) {
+    func populateProfileTable(profile: ProfileModel, spinner: UIView, shouldUpdateProfilePicture: Bool) {
         let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! ProfileTableViewCell
         let usernameCell = tableView.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! ProfileTableViewCell
         let dobCell = tableView.cellForRow(at: IndexPath.init(row: 2, section: 0)) as! ProfileTableViewCell
@@ -74,7 +156,7 @@ class ProfileViewController: UIViewController {
         }
         
         if let dob = profile.getDob() {
-            dobCell.inputField.text = dob
+            dobCell.inputField.text = APPUtilites.inverseDate(inputDate: dob)
         }
         
         mobileCell.inputField.text = UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)
@@ -82,10 +164,103 @@ class ProfileViewController: UIViewController {
         if let gender = profile.getGender() {
             genderCell.inputField.text = gender
         }
+        
+        if shouldUpdateProfilePicture {
+            if profile.getProfilePicId() == nil || profile.getProfilePicId()! == "none" {
+                APPUtilites.removeLoadingSpinner(spinner: spinner)
+                profileImage.image = UIImage(named: DEFAULT_PROFILE_IMAGE)
+                uploadPhotoButton.setTitle("Upload Photo", for: .normal)
+                return
+            }
+            MediaHelper.shared.downloadProfileImage(publicId: profile.getProfilePicId()!, success: { (image) in
+                DispatchQueue.main.async {
+                    self.uploadPhotoButton.setTitle("Change Photo", for: .normal)
+                    APPUtilites.removeLoadingSpinner(spinner: spinner)
+                    self.profileImage.image = image
+                }
+            }) { (error) in
+                DispatchQueue.main.async {
+                    self.uploadPhotoButton.setTitle("Change Photo", for: .normal)
+                    APPUtilites.removeLoadingSpinner(spinner: spinner)
+                    APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
+                }
+            }
+        } else {
+            updateProfilePicFromViewWillAppear = true
+        }
+    }
+    
+    /// Upload Photo Pressed.
+    @IBAction func uploadPhotoPressed(_ sender: UIButton) {
+        let vc = BSImagePickerViewController()
+        vc.maxNumberOfSelections = 1
+        let profileVC = self
+        
+        bs_presentImagePickerController(vc, animated: true, select: nil, deselect: nil, cancel: nil, finish: { (assets) in
+            let imageSelected = APPUtilites.getUIImage(asset: assets[0])
+            if let image = imageSelected {
+                DispatchQueue.main.async {
+                    let cropVC = CropViewController(croppingStyle: .default, image: image)
+                    cropVC.delegate = profileVC
+                    cropVC.aspectRatioLockEnabled = true
+                    cropVC.aspectRatioPickerButtonHidden = true
+                    cropVC.aspectRatioPreset = CropViewControllerAspectRatioPreset.presetSquare
+                    cropVC.resetAspectRatioEnabled = false
+                    self.present(cropVC, animated: true, completion: nil)
+                }
+            } else {
+                APPUtilites.displayErrorSnackbar(message: "Error in selecting the image from the image picker")
+            }
+        }, completion: nil)
+    }
+    
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        updateTableViewCells = false
+        let sv = APPUtilites.displayLoadingSpinner(onView: (self.tabBarController?.view)!)
+        if !APPUtilites.isInternetConnectionAvailable() {
+            APPUtilites.removeLoadingSpinner(spinner: sv)
+            APPUtilites.displayErrorSnackbar(message: "Please Check your Internet Connection")
+            cropViewController.dismiss(animated: true, completion: nil)
+            return
+        }
+        cropViewController.dismiss(animated: true, completion: nil)
+        MediaHelper.shared.uploadProfileImage(fileData: UIImageJPEGRepresentation(image, 0.5)!, success: { (publicId) in
+            APPUtilites.removeLoadingSpinner(spinner: sv)
+            self.profilePicId = publicId
+            self.profileImage.image = image
+            self.uploadPhotoButton.setTitle("Change Photo", for: .normal)
+            if UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT) {
+                AppSyncHelper.shared.updateUserProfilePicture(profilePictureId: self.profilePicId!, success: { (success) in
+                    DispatchQueue.main.async {
+                        APPUtilites.displaySuccessSnackbar(message: "Profile Picture Updated")
+                    }
+                }, failure: { (error) in
+                    DispatchQueue.main.async {
+                        print("Error: \(error)")
+                        APPUtilites.displayErrorSnackbar(message: "Profile Picture Update Failed")
+                    }
+                })
+            }
+        }) { (error) in
+            print("Error: \(error)")
+            APPUtilites.removeLoadingSpinner(spinner: sv)
+            APPUtilites.displayErrorSnackbar(message: error.userInfo["message"] as! String)
+        }
+    }
+    
+    func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
+        cropViewController.dismiss(animated: true, completion: nil)
+        APPUtilites.displayErrorSnackbar(message: "Didn't pick the image")
     }
     
     /// On pressing the Save Button.
     @IBAction func savePressed(_ sender: UIButton) {
+        dismissKeyboard()
+        
+        if !APPUtilites.isInternetConnectionAvailable() {
+            APPUtilites.displayErrorSnackbar(message: "Please Check your Internet Connection")
+            return
+        }
         
         let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! ProfileTableViewCell
         let usernameCell = tableView.cellForRow(at: IndexPath.init(row: 1, section: 0)) as! ProfileTableViewCell
@@ -104,53 +279,82 @@ class ProfileViewController: UIViewController {
         } else if (usernameCell.inputField.text?.contains(" "))! {
             APPUtilites.displayErrorSnackbar(message: "Username cannot contain spaces")
             return
+        } else if !APPUtilites.isUsernameValid(username: usernameCell.inputField.text!) {
+            APPUtilites.displayErrorSnackbarForLongDuration(message: "Username should contain only alphanumeric and special characters like . - @ _")
+            return
         }
         
-        let inputProfile = ProfileModel()
-        inputProfile.setId(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID))
-        inputProfile.setUsername(username: usernameCell.inputField.text)
-        inputProfile.setName(name: nameCell.inputField.text != "" ? nameCell.inputField.text : nil)
-        inputProfile.setMobileNumber(mobileNumber: mobileCell.inputField.text)
-        inputProfile.setGender(gender: genderCell.inputField.text != "" ? genderCell.inputField.text : nil)
-        inputProfile.setProfilePicUrl(profilePic: nil)
+        let sv = APPUtilites.displayLoadingSpinner(onView: (self.tabBarController?.view)!)
         
-        if dobCell.inputField.text != nil && dobCell.inputField.text != "" {
-            inputProfile.setDob(dob: APPUtilites.inverseDate(inputDate: dobCell.inputField.text!))
-        } else {
-            inputProfile.setDob(dob: nil)
-        }
-        
-        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
-        
-        // Check if the profile was not present initially. If not, then add it and goto to the Default Tab Bar.
-        if !UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT) {
-            AppSyncHelper.shared.createUserProfile(profile: inputProfile, success: { (success) in
+        AppSyncHelper.shared.getUserProfileByUsername(username: usernameCell.inputField.text!, success: { (profile) in
+            DispatchQueue.main.async {
                 APPUtilites.removeLoadingSpinner(spinner: sv)
-                if success == true {
-                    APPUtilites.displaySuccessSnackbar(message: "Profile Creation Succeeded!")
-                    self.tabBarController?.selectedIndex = DeviceConstants.DEFAULT_SELECTED_INDEX
-                    self.tabBarController?.addCreateVibeButton()
-                    self.tabBarController?.tabBar.isHidden = false
-                    UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                if profile.getUsername() == nil || profile.getId() == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID) {
+                    print("Inside if profile.getUsername() == nil || profile.getUsername() == usernameCell.inputField.text!")
+                    let inputProfile = ProfileModel()
+                    inputProfile.setId(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID))
+                    inputProfile.setUsername(username: usernameCell.inputField.text)
+                    inputProfile.setName(name: nameCell.inputField.text != "" ? nameCell.inputField.text : nil)
+                    inputProfile.setMobileNumber(mobileNumber: mobileCell.inputField.text)
+                    inputProfile.setGender(gender: genderCell.inputField.text != "" ? genderCell.inputField.text : nil)
+                    if (self.profileImage.image != UIImage(named: self.DEFAULT_PROFILE_IMAGE)) {
+                        inputProfile.setProfilePicId(profilePicId: self.profilePicId)
+                    } else {
+                        inputProfile.setProfilePicId(profilePicId: "none")
+                    }
+                    
+                    if dobCell.inputField.text != nil && dobCell.inputField.text != "" {
+                        inputProfile.setDob(dob: APPUtilites.inverseDate(inputDate: dobCell.inputField.text!))
+                    } else {
+                        inputProfile.setDob(dob: nil)
+                    }
+                    
+                    let sv = APPUtilites.displayLoadingSpinner(onView: (self.tabBarController?.view)!)
+                    
+                    // Check if the profile was not present initially. If not, then add it and goto to the Default Tab Bar.
+                    if !UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT) {
+                        AppSyncHelper.shared.createUserProfile(profile: inputProfile, success: { (success) in
+                            DispatchQueue.main.async {
+                                APPUtilites.removeLoadingSpinner(spinner: sv)
+                                if success == true {
+                                    APPUtilites.displaySuccessSnackbar(message: "Profile Creation Succeeded!")
+                                    self.tabBarController?.selectedIndex = DeviceConstants.DEFAULT_SELECTED_INDEX
+                                    self.tabBarController?.addCreateVibeButton()
+                                    self.tabBarController?.tabBar.isHidden = false
+                                    UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                                } else {
+                                    APPUtilites.displayErrorSnackbar(message: "Profile Creation Failed. Please Check your inputs")
+                                }
+                            }
+                        }, failure: { (error) in
+                            APPUtilites.removeLoadingSpinner(spinner: sv)
+                            APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
+                        })
+                    } else {
+                        AppSyncHelper.shared.updateUserProfile(profile: inputProfile, success: { (success) in
+                            DispatchQueue.main.async {
+                                APPUtilites.removeLoadingSpinner(spinner: sv)
+                                if success == true {
+                                    APPUtilites.displaySuccessSnackbar(message: "Profile Update Succeeded!")
+                                } else {
+                                    APPUtilites.displayErrorSnackbar(message: "Profile Update Failed")
+                                }
+                            }
+                        }, failure: { (error) in
+                            DispatchQueue.main.async {
+                                APPUtilites.removeLoadingSpinner(spinner: sv)
+                                APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
+                            }
+                        })
+                    }
                 } else {
-                    APPUtilites.displayErrorSnackbar(message: "Profile Creation Failed. Please Check your inputs")
+                    APPUtilites.displayErrorSnackbar(message: "This username is not available")
                 }
-            }, failure: { (error) in
-                APPUtilites.removeLoadingSpinner(spinner: sv)
+            }
+        }) { (error) in
+            DispatchQueue.main.async {
                 APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
-            })
-        } else {
-            AppSyncHelper.shared.createUserProfile(profile: inputProfile, success: { (success) in
-                APPUtilites.removeLoadingSpinner(spinner: sv)
-                if success == true {
-                    APPUtilites.displaySuccessSnackbar(message: "Profile Update Succeeded!")
-                } else {
-                    APPUtilites.displayErrorSnackbar(message: "Profile Update Failed")
-                }
-            }, failure: { (error) in
-                APPUtilites.removeLoadingSpinner(spinner: sv)
-                APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
-            })
+            }
         }
     }
     
@@ -182,7 +386,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource, UIT
         cell.inputField.placeholder = placeholders[indexPath.row]
         cell.inputField.layer.borderColor = UIColor.clear.cgColor
         cell.inputField.delegate = self
-            
+        
+        // remove the autocorrect feature from the username.
+        if indexPath.row == 1 {
+            cell.inputField.autocorrectionType = .no
+        }
+        
         // Create a date picker for the DOB field in the Profile.
         if indexPath.row == 2 {
             cell.inputField.inputView = dobDatePicker
@@ -237,8 +446,10 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         toolbar.sizeToFit()
         
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.dismissKeyboardForGenderPickerView))
+        let flexButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissKeyboard))
         
-        toolbar.setItems([doneButton], animated: false)
+        toolbar.setItems([doneButton, flexButton, cancelButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         
         genderCell.inputField.inputAccessoryView = toolbar
@@ -259,8 +470,10 @@ extension ProfileViewController {
         toolbar.sizeToFit()
         
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.selectDate))
+        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissKeyboard))
         
-        toolbar.setItems([done], animated: true)
+        toolbar.setItems([done, flex, cancel], animated: true)
         toolbar.isUserInteractionEnabled = true
         
         dobCell.inputField.inputAccessoryView = toolbar
