@@ -12,9 +12,19 @@ import UIKit
 class DraftsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var draftsTable: UITableView!
-
+    @IBOutlet weak var topBar: UIView!
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        let topBorderView = UIView(frame: CGRect(x: 0, y: topBar.frame.height,
+                                                 width: topBar.frame.size.width,
+                                                 height: 1))
+        topBorderView.backgroundColor = DeviceConstants.DEFAULT_SEPERATOR_COLOR
+        topBar.addSubview(topBorderView)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

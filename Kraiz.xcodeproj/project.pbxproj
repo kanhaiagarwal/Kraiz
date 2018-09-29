@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507EF5C21244886007FC9F1 /* AWSConstants.swift */; };
+		B513582F215D365C00139854 /* Hero.otf in Resources */ = {isa = PBXBuildFile; fileRef = B513582E215D365C00139854 /* Hero.otf */; };
 		B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */; };
 		B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF1EE211F1248009896CC /* AppDelegate.swift */; };
 		B51DF1F4211F1248009896CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51DF1F2211F1248009896CC /* Main.storyboard */; };
@@ -73,6 +74,7 @@
 		77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.release.xcconfig"; sourceTree = "<group>"; };
 		AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.debug.xcconfig"; sourceTree = "<group>"; };
 		B507EF5C21244886007FC9F1 /* AWSConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSConstants.swift; sourceTree = "<group>"; };
+		B513582E215D365C00139854 /* Hero.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hero.otf; sourceTree = "<group>"; };
 		B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPageViewController.swift; sourceTree = "<group>"; };
 		B51DF1EB211F1248009896CC /* Kraiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kraiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B51DF1EE211F1248009896CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		B51DF242211F1608009896CC /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B513582E215D365C00139854 /* Hero.otf */,
 				B51DF241211F15FF009896CC /* monotype-corsiva.ttf */,
 				B51DF240211F15FD009896CC /* frenchscriptmt.ttf */,
 				B51DF23F211F15FB009896CC /* FREESCPT.TTF */,
@@ -420,6 +423,7 @@
 				B56EFE99215AB05D008059ED /* Images.xcassets in Resources */,
 				B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */,
 				B524CACC214544BF00316D84 /* schema.graphql in Resources */,
+				B513582F215D365C00139854 /* Hero.otf in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				B5523B862120BFDF00CAC7BF /* ImageTextCombinationViewController.xib in Resources */,
 			);
@@ -686,7 +690,6 @@
 			baseConfigurationReference = AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GNET3L3CRK;
 				INFOPLIST_FILE = Kraiz/Info.plist;
@@ -703,7 +706,6 @@
 			baseConfigurationReference = 77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GNET3L3CRK;
 				ENABLE_TESTABILITY = YES;

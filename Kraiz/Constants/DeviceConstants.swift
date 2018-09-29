@@ -33,6 +33,9 @@ public class DeviceConstants {
     static public let CREATE_STORY_SEGUE = "gotoCreateStory"
     
     // Tab Bar Index
-    static public let DEFAULT_SELECTED_INDEX = 3
+    static public let DEFAULT_SELECTED_INDEX = 0
+    
+    // Colors
+    static public let DEFAULT_SEPERATOR_COLOR = UIColor(displayP3Red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
 }
 

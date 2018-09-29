@@ -70,6 +70,7 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var uploadPhotoButton: UIButton!
+    @IBOutlet weak var topBar: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +92,12 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
         
         super.viewDidAppear(true)
         getProfile(shouldUpdateProfilePicture: updateProfilePicFromViewWillAppear, shouldUpdateTableViewCells: updateTableViewCells)
+        
+        let topBorderView = UIView(frame: CGRect(x: 0, y: topBar.frame.height,
+                                                         width: topBar.frame.size.width,
+                                                         height: 1))
+        topBorderView.backgroundColor = DeviceConstants.DEFAULT_SEPERATOR_COLOR
+        topBar.addSubview(topBorderView)
     }
     
     func getProfile(shouldUpdateProfilePicture: Bool, shouldUpdateTableViewCells: Bool) {
@@ -490,3 +497,28 @@ extension ProfileViewController {
         view.endEditing(true)
     }
 }
+
+extension UIView {
+    
+    // Example use: myView.addBorder(toSide: .Left, withColor: UIColor.redColor().CGColor, andThickness: 1.0)
+    
+    enum ViewSide {
+        case Left, Right, Top, Bottom
+    }
+    
+    func addBorder(toSide side: ViewSide, withColor color: CGColor, andThickness thickness: CGFloat) {
+        
+        let border = CALayer()
+        border.backgroundColor = color
+        
+        switch side {
+        case .Left: border.frame = CGRect(x: frame.minX, y: frame.minY, width: thickness, height: frame.height); break
+        case .Right: border.frame = CGRect(x: frame.maxX, y: frame.minY, width: thickness, height: frame.height); break
+        case .Top: border.frame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: thickness); break
+        case .Bottom: border.frame = CGRect(x: frame.minX, y: frame.maxY, width: frame.width, height: thickness); break
+        }
+        
+        layer.addSublayer(border)
+    }
+}
+

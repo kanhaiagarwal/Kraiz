@@ -12,6 +12,7 @@ import UIKit
 class VibesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var vibesTable: UITableView!
+    @IBOutlet weak var topBarView: UIView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -40,6 +41,11 @@ class VibesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         vibesTable.delegate = self
         vibesTable.dataSource = self
-        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let topBarBackground = UIView(frame: CGRect(x: 0, y: topBarView.frame.height, width: topBarView.frame.width, height: 1))
+        topBarBackground.backgroundColor = DeviceConstants.DEFAULT_SEPERATOR_COLOR
+        topBarView.addSubview(topBarBackground)
     }
 }
