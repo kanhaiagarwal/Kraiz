@@ -15,16 +15,20 @@ class VibesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var topBarView: UIView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("VibesTableViewCell", owner: self, options: nil)?.first as! VibesTableViewCell
         
+        cell.usernameField.text = "username" + String(indexPath.row)
         cell.profileImage.image = UIImage(named: "Disha")
-        cell.timestampField.text = "10/12/2048"
-        cell.statusLabel.text = "Scheduled"
-        cell.storyNameLabel.text = "The Story of Us"
+        cell.timestampField.text = "Yesterday"
+        cell.vibeNameField.text = "Happy Birthday Subramanium" + String(indexPath.row) + "😃😃🕺"
+        cell.vibeComponent1.image = UIImage(named: "letter-on-all-vibes")
+        cell.vibeComponent2.image = UIImage(named: "photos-on-all-vibes")
+        cell.vibeComponent3.image = UIImage(named: "video-on-all-vibes")
+        cell.vibeComponent4.image = UIImage(named: "audio-on-all-vibes")
         return cell
     }
     
@@ -33,7 +37,12 @@ class VibesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 76
+        return view.frame.height / 5
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
+        print("row selected: \(indexPath.row)")
     }
 
     override func viewDidLoad() {
@@ -41,6 +50,8 @@ class VibesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         vibesTable.delegate = self
         vibesTable.dataSource = self
+        print("**************************************************")
+        print("Phone height: \(self.view.frame.height)")
     }
     
     override func viewDidLayoutSubviews() {
