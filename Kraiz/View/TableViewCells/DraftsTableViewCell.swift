@@ -10,11 +10,14 @@ import UIKit
 
 class DraftsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var timestamp: UILabel!
-    @IBOutlet weak var storyName: UILabel!
-    @IBOutlet weak var draftsIcon: UIImageView!
+    @IBOutlet weak var usernameField: UILabel!
+    @IBOutlet weak var timestampField: UILabel!
+    @IBOutlet weak var textPresentImage: UIImageView!
+    @IBOutlet weak var photosPresentImage: UIImageView!
+    @IBOutlet weak var videoPresentImage: UIImageView!
+    @IBOutlet weak var audioPresentImage: UIImageView!
+    @IBOutlet weak var vibeNameField: UITextField!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,4 +29,10 @@ class DraftsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func layoutSubviews() {
+        setupFontSize()
+    }
+    
+    func setupFontSize() {
+    }
 }

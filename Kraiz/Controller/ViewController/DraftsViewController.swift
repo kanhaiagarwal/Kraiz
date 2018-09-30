@@ -29,10 +29,13 @@ class DraftsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("DraftsTableViewCell", owner: self, options: nil)?.first as! DraftsTableViewCell
-        
-        cell.profileImage.image = UIImage(named: "Disha")
-        cell.timestamp.text = "10/12/2048"
-        cell.storyName.text = "The Story of Us"
+        cell.usernameField.text = "Username" + String(indexPath.row)
+        cell.timestampField.text = "1 day ago"
+        cell.vibeNameField.text = "Our Vibes together!!!"
+        cell.textPresentImage.image = UIImage(named: "letter-on-all-vibes")
+        cell.photosPresentImage.image = UIImage(named: "photos-on-all-vibes")
+        cell.videoPresentImage.image = UIImage(named: "video-on-all-vibes")
+        cell.audioPresentImage.image = UIImage(named: "audio-on-all-vibes")
         return cell
     }
     
@@ -41,7 +44,7 @@ class DraftsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 76
+        return view.frame.height / 6
     }
     
     override func viewDidLoad() {

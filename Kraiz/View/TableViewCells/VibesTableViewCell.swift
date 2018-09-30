@@ -44,6 +44,7 @@ class VibesTableViewCell: UITableViewCell {
     
     func setFontSizeForLabels() {
         let height = self.superview?.superview?.frame.height
+        timestampField.font = UIFont(name: "Times New Roman", size: 10)
         switch height! {
         case DeviceConstants.IPHONE7_HEIGHT:
             
@@ -54,7 +55,6 @@ class VibesTableViewCell: UITableViewCell {
             break
         case DeviceConstants.IPHONEX_HEIGHT:
             vibeNameField.font = UIFont(name: "Times New Roman", size: 13)
-            timestampField.font = UIFont(name: "Times New Roman", size: 10)
             break
         default:
             print("Hello")
