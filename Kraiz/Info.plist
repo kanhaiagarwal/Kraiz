@@ -45,6 +45,7 @@
 		<string>frenchscriptmt.ttf</string>
 		<string>monotype-corsiva.ttf</string>
 		<string>Hero.otf</string>
+		<string>playlist-script.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

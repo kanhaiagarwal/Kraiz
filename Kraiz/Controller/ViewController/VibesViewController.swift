@@ -50,8 +50,6 @@ class VibesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         vibesTable.delegate = self
         vibesTable.dataSource = self
-        print("**************************************************")
-        print("Phone height: \(self.view.frame.height)")
     }
     
     override func viewDidLayoutSubviews() {

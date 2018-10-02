@@ -61,6 +61,12 @@
 		B58B934E21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */; };
 		B5A65830214D052F0003C034 /* MediaHelperConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A6582F214D052F0003C034 /* MediaHelperConstants.swift */; };
 		B5A65832214D05A00003C034 /* MediaHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A65831214D05A00003C034 /* MediaHelper.swift */; };
+		B5BC1CF521615A71008CE09F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC1CF421615A71008CE09F /* CardView.swift */; };
+		B5BC1CF821615B61008CE09F /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC1CF621615B61008CE09F /* ChatsTableViewCell.swift */; };
+		B5BC1CF921615B61008CE09F /* ChatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5BC1CF721615B61008CE09F /* ChatsTableViewCell.xib */; };
+		B5BC1CFB21615D05008CE09F /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC1CFA21615D05008CE09F /* ChatsViewController.swift */; };
+		B5BC1CFD216164D6008CE09F /* playlist-script.otf in Resources */ = {isa = PBXBuildFile; fileRef = B5BC1CFC216164D6008CE09F /* playlist-script.otf */; };
+		B5BC1CFF216169DA008CE09F /* CornerRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC1CFE216169DA008CE09F /* CornerRadiusView.swift */; };
 		B5C6E33221346A2700F8D5EC /* CognitoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C6E33121346A2700F8D5EC /* CognitoHelper.swift */; };
 		B5C9431A212947F8000DCF7A /* MyVibeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C94319212947F8000DCF7A /* MyVibeViewController.swift */; };
 		B5D90894214C0853000D3E2B /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */; };
@@ -129,6 +135,12 @@
 		B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordOTPViewController.swift; sourceTree = "<group>"; };
 		B5A6582F214D052F0003C034 /* MediaHelperConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaHelperConstants.swift; sourceTree = "<group>"; };
 		B5A65831214D05A00003C034 /* MediaHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaHelper.swift; sourceTree = "<group>"; };
+		B5BC1CF421615A71008CE09F /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B5BC1CF621615B61008CE09F /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
+		B5BC1CF721615B61008CE09F /* ChatsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatsTableViewCell.xib; sourceTree = "<group>"; };
+		B5BC1CFA21615D05008CE09F /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
+		B5BC1CFC216164D6008CE09F /* playlist-script.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "playlist-script.otf"; sourceTree = "<group>"; };
+		B5BC1CFE216169DA008CE09F /* CornerRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusView.swift; sourceTree = "<group>"; };
 		B5C6E33121346A2700F8D5EC /* CognitoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitoHelper.swift; sourceTree = "<group>"; };
 		B5C94319212947F8000DCF7A /* MyVibeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVibeViewController.swift; sourceTree = "<group>"; };
 		B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +185,7 @@
 				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
 				B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */,
 				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
+				B5BC1CFA21615D05008CE09F /* ChatsViewController.swift */,
 				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
 				B51DF209211F13B7009896CC /* CreateVibeViewController.swift */,
 				B5D9F611214CDFC500BF2C0F /* DisplayImageViewController.swift */,
@@ -238,6 +251,7 @@
 		B51DF233211F15D4009896CC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B5BC1CF321615A5E008CE09F /* UIView */,
 				B54072FF212014E100122FD0 /* CollectionViewCells */,
 				B51DF234211F15E3009896CC /* TableViewCells */,
 				B5523B832120BFDF00CAC7BF /* ImageTextCombinationViewController.swift */,
@@ -249,6 +263,8 @@
 		B51DF234211F15E3009896CC /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				B5BC1CF621615B61008CE09F /* ChatsTableViewCell.swift */,
+				B5BC1CF721615B61008CE09F /* ChatsTableViewCell.xib */,
 				B51DF235211F15E3009896CC /* ContactUsTableViewCell.swift */,
 				B51DF236211F15E3009896CC /* ContactUsTableViewCell.xib */,
 				B51DF237211F15E3009896CC /* DraftsTableViewCell.swift */,
@@ -266,10 +282,11 @@
 		B51DF242211F1608009896CC /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B51DF23F211F15FB009896CC /* FREESCPT.TTF */,
+				B51DF240211F15FD009896CC /* frenchscriptmt.ttf */,
 				B513582E215D365C00139854 /* Hero.otf */,
 				B51DF241211F15FF009896CC /* monotype-corsiva.ttf */,
-				B51DF240211F15FD009896CC /* frenchscriptmt.ttf */,
-				B51DF23F211F15FB009896CC /* FREESCPT.TTF */,
+				B5BC1CFC216164D6008CE09F /* playlist-script.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -329,6 +346,15 @@
 				B585CB152146D210008E80F8 /* ProfileModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B5BC1CF321615A5E008CE09F /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				B5BC1CF421615A71008CE09F /* CardView.swift */,
+				B5BC1CFE216169DA008CE09F /* CornerRadiusView.swift */,
+			);
+			path = UIView;
 			sourceTree = "<group>";
 		};
 		B5C6E32F213469A700F8D5EC /* Network */ = {
@@ -410,6 +436,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5BC1CFD216164D6008CE09F /* playlist-script.otf in Resources */,
 				B51DF21B211F13B9009896CC /* AppIcon.png in Resources */,
 				B51DF24E211F174A009896CC /* HamburgerTableViewCell.xib in Resources */,
 				B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */,
@@ -425,6 +452,7 @@
 				B524CACC214544BF00316D84 /* schema.graphql in Resources */,
 				B513582F215D365C00139854 /* Hero.otf in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
+				B5BC1CF921615B61008CE09F /* ChatsTableViewCell.xib in Resources */,
 				B5523B862120BFDF00CAC7BF /* ImageTextCombinationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,6 +548,7 @@
 				B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */,
 				B5C6E33221346A2700F8D5EC /* CognitoHelper.swift in Sources */,
 				B51DF231211F13B9009896CC /* VibesViewController.swift in Sources */,
+				B5BC1CFB21615D05008CE09F /* ChatsViewController.swift in Sources */,
 				B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */,
 				B5A65830214D052F0003C034 /* MediaHelperConstants.swift in Sources */,
 				B5DC7929212D5CA600C69A13 /* AppUtilities.swift in Sources */,
@@ -528,13 +557,16 @@
 				B5652C7021482DFC00B15E8F /* AppSyncObjects.swift in Sources */,
 				B54579A0213F010900C7424F /* StartViewController.swift in Sources */,
 				B51DF254211F17E3009896CC /* HamburgerTableViewCell.swift in Sources */,
+				B5BC1CF521615A71008CE09F /* CardView.swift in Sources */,
 				B51DF224211F13B9009896CC /* HomeTabBarController.swift in Sources */,
 				B55346AE212B1FD8005353E4 /* VibeModel.swift in Sources */,
 				B524CABE21453AD000316D84 /* AppSyncHelper.swift in Sources */,
 				B51DF22E211F13B9009896CC /* SignUpViewController.swift in Sources */,
 				B5D9F612214CDFC500BF2C0F /* DisplayImageViewController.swift in Sources */,
+				B5BC1CF821615B61008CE09F /* ChatsTableViewCell.swift in Sources */,
 				B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */,
 				B51DF256211F17EC009896CC /* VibesTableViewCell.swift in Sources */,
+				B5BC1CFF216169DA008CE09F /* CornerRadiusView.swift in Sources */,
 				B51DF226211F13B9009896CC /* LetterInputCollectionViewCell.swift in Sources */,
 				B51DF253211F17E0009896CC /* ContactUsTableViewCell.swift in Sources */,
 				B5A65832214D05A00003C034 /* MediaHelper.swift in Sources */,
