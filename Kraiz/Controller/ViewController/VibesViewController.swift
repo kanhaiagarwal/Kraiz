@@ -44,12 +44,19 @@ class VibesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
         print("row selected: \(indexPath.row)")
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.selectionStyle = .none
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         vibesTable.delegate = self
         vibesTable.dataSource = self
+        
+        vibesTable.separatorStyle = .singleLine
+        vibesTable.separatorColor = UIColor.gray
     }
     
     override func viewDidLayoutSubviews() {

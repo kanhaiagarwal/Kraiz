@@ -111,6 +111,14 @@ public class APPUtilites {
         }
         return false
     }
+    
+    public static func getAccessHashForBidirectional(key1: String, key2: String) -> String {
+        return key1 < key2 ? (key1 + "#" + key2).sha1 : (key2 + "#" + key1).sha1
+    }
+    
+    public static func getAccessHashForAnonymous(key: String) -> String {
+        return (key + "_a").sha1
+    }
 }
 
 extension Date {
@@ -119,4 +127,33 @@ extension Date {
         dateFormatter.dateStyle = style
         return dateFormatter.string(from: self)
     }
+}
+
+extension String {
+    
+    var sha1: String {
+        guard let data = data(using: .utf8, allowLossyConversion: false) else {
+            return ""
+        }
+        return data.digestSHA1.hexString
+    }
+    
+}
+
+fileprivate extension Data {
+    
+    var digestSHA1: Data {
+        var bytes: [UInt8] = Array(repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
+        
+        withUnsafeBytes {
+            _ = CC_SHA1($0, CC_LONG(count), &bytes)
+        }
+        
+        return Data(bytes: bytes)
+    }
+    
+    var hexString: String {
+        return map { String(format: "%02x", UInt8($0)) }.joined()
+    }
+    
 }

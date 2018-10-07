@@ -28,11 +28,10 @@ class VibesTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = profileImage.frame.height / 2
         vibeNameOuterView.layer.masksToBounds = true

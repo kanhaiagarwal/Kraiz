@@ -27,7 +27,6 @@ extension ChatsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("ChatsTableViewCell", owner: self, options: nil)?.first as! ChatsTableViewCell
-        let height = self.view.frame.height
         return cell
     }
     

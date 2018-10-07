@@ -30,6 +30,7 @@ class DraftsTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         setupFontSize()
     }
     

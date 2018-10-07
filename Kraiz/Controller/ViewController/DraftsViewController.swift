@@ -39,6 +39,10 @@ class DraftsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.selectionStyle = .none
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

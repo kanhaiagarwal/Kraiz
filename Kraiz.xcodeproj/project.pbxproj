@@ -59,6 +59,7 @@
 		B56EFE99215AB05D008059ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56EFE98215AB05D008059ED /* Images.xcassets */; };
 		B585CB162146D210008E80F8 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585CB152146D210008E80F8 /* ProfileModel.swift */; };
 		B58B934E21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */; };
+		B5A054E92169E6E400BA21AD /* Kraiz-Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A054E82169E6E400BA21AD /* Kraiz-Bridging-Header.m */; };
 		B5A65830214D052F0003C034 /* MediaHelperConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A6582F214D052F0003C034 /* MediaHelperConstants.swift */; };
 		B5A65832214D05A00003C034 /* MediaHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A65831214D05A00003C034 /* MediaHelper.swift */; };
 		B5BC1CF521615A71008CE09F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC1CF421615A71008CE09F /* CardView.swift */; };
@@ -133,6 +134,8 @@
 		B56EFE98215AB05D008059ED /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B585CB152146D210008E80F8 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordOTPViewController.swift; sourceTree = "<group>"; };
+		B5A054E72169E6E400BA21AD /* Kraiz-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kraiz-Bridging-Header.h"; sourceTree = "<group>"; };
+		B5A054E82169E6E400BA21AD /* Kraiz-Bridging-Header.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Kraiz-Bridging-Header.m"; sourceTree = "<group>"; };
 		B5A6582F214D052F0003C034 /* MediaHelperConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaHelperConstants.swift; sourceTree = "<group>"; };
 		B5A65831214D05A00003C034 /* MediaHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaHelper.swift; sourceTree = "<group>"; };
 		B5BC1CF421615A71008CE09F /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 				B51DF1FD211F1248009896CC /* Info.plist */,
 				B51DF1F5211F1248009896CC /* Kraiz.xcdatamodeld */,
 				B56EFE98215AB05D008059ED /* Images.xcassets */,
+				B5A054E82169E6E400BA21AD /* Kraiz-Bridging-Header.m */,
+				B5A054E72169E6E400BA21AD /* Kraiz-Bridging-Header.h */,
 			);
 			path = Kraiz;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				TargetAttributes = {
 					B51DF1EA211F1248009896CC = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -573,6 +579,7 @@
 				B54073012120150400122FD0 /* PhotoInputCollectionViewCell.swift in Sources */,
 				B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */,
 				B5523B852120BFDF00CAC7BF /* ImageTextCombinationViewController.swift in Sources */,
+				B5A054E92169E6E400BA21AD /* Kraiz-Bridging-Header.m in Sources */,
 				B51DF21D211F13B9009896CC /* ProfileViewController.swift in Sources */,
 				B5D90894214C0853000D3E2B /* InviteFriendsViewController.swift in Sources */,
 				B58B934E21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift in Sources */,
@@ -722,12 +729,15 @@
 			baseConfigurationReference = AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GNET3L3CRK;
 				INFOPLIST_FILE = Kraiz/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kraiz.Kraiz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Kraiz/Kraiz-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -738,6 +748,7 @@
 			baseConfigurationReference = 77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GNET3L3CRK;
 				ENABLE_TESTABILITY = YES;
@@ -745,6 +756,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kraiz.Kraiz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Kraiz/Kraiz-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

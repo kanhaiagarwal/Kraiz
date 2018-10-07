@@ -38,6 +38,7 @@ class ChatsTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         setFontSize()
         topInfoContainer.add(Border: .bottom, withColor: DeviceConstants.DEFAULT_SEPERATOR_COLOR, andWidth: 1.0)
     }
