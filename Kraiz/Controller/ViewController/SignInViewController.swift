@@ -183,6 +183,26 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
                 UserDefaults.standard.set(currentUser?.username!, forKey: DeviceConstants.USER_ID)
                 self.setMobileNumberInUserDefaults()
             }
+            AppSyncHelper.shared.getUserProfile(userId: (currentUser?.username!)!, success: { (profileModel) in
+                if profileModel.getId() != nil {
+                    UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                } else {
+                    UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                }
+            }, failure: { (error) in
+                APPUtilites.removeLoadingSpinner(spinner: sv)
+                print("Error")
+                print(error)
+                if error.userInfo["__type"] as! String == "NoInternetConnectionException" {
+                    APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
+                } else if error.userInfo["__type"] as! String == "UserNotConfirmedException" {
+                    self.gotoOTPPage()
+                } else if error.userInfo["__type"] as! String == "NotAuthorizedException" {
+                    APPUtilites.displayErrorSnackbar(message: "Mobile number/Password combination incorrect")
+                } else {
+                    APPUtilites.displayErrorSnackbar(message: error.userInfo["message"] as! String)
+                }
+            })
             self.gotoHomePage()
         }) { (error: NSError) in
             APPUtilites.removeLoadingSpinner(spinner: sv)

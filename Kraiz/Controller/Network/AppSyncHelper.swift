@@ -48,7 +48,7 @@ class AppSyncHelper {
     
     public func getUserProfileByUsername(username: String, success: @escaping (ProfileModel) -> Void, failure: @escaping (NSError) -> Void) {
         let queryInput = GetUserProfileByUsernameQuery(username: username)
-        var cachePolicy = CachePolicy.returnCacheDataElseFetch
+        var cachePolicy = CachePolicy.fetchIgnoringCacheData
         
         if !APPUtilites.isInternetConnectionAvailable() {
             cachePolicy = CachePolicy.returnCacheDataDontFetch
@@ -91,7 +91,7 @@ class AppSyncHelper {
     public func getUserProfile(userId: String, success: @escaping (ProfileModel) -> Void, failure: @escaping (NSError) -> Void) {
         let getQuery = GetUserProfileQuery(id: userId)
         print("getQuery.id: \(getQuery.id)")
-        var cachePolicy = CachePolicy.returnCacheDataElseFetch
+        var cachePolicy = CachePolicy.fetchIgnoringCacheData
         if !APPUtilites.isInternetConnectionAvailable() {
             print("Internet Connection is not available")
             cachePolicy = .returnCacheDataDontFetch

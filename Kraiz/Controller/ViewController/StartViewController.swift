@@ -32,10 +32,6 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
         UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)
         UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)
         
-        print("UserDefaults")
-        print("UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER): \(UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER))")
-        print("UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME): \(UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))")
-        
         /// Use the IDToken of the previous session if the internet is not available
         if !APPUtilites.isInternetConnectionAvailable() {
             // The ID Token for the session was already set previously
@@ -46,10 +42,6 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                 if UserDefaults.standard.string(forKey: DeviceConstants.ID_TOKEN) != nil {
                     AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (profile) in
                         DispatchQueue.main.async {
-                            print("******************************************")
-                            print("profile id: \(profile.getId())")
-                            print("profile name: \(profile.getName())")
-                            print("profile username: \(profile.getUsername())")
                             if profile.getId() != nil {
                                 UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
                             } else {
@@ -86,7 +78,6 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                                 for i in 0 ..< userAttributes.count {
                                     print("\(userAttributes[i].name): \(userAttributes[i].value)")
                                     if userAttributes[i].name == "phone_number" {
-                                        print("Phone Number inside StartViewController: \(userAttributes[i].value)")
                                         UserDefaults.standard.set(userAttributes[i].value!, forKey: DeviceConstants.MOBILE_NUMBER)
                                         break
                                     }
@@ -105,10 +96,6 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                     AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (profile) in
                         print("Inside the getUserProfile of StartViewController where the Internet Connection is available")
                         DispatchQueue.main.async {
-                            print("******************************************")
-                            print("profile id: \(profile.getId())")
-                            print("profile name: \(profile.getName())")
-                            print("profile username: \(profile.getUsername())")
                             if profile.getId() != nil {
                                 UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
                             } else {
