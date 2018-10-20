@@ -35,11 +35,11 @@ For iOS, Cloudinary provides an SDK for simplifying the integration even further
 To install CocoaPods:
 
 ```bash
-$ sudo gem install cocoapods
+sudo gem install cocoapods
 ```
 If you don't have a `Podfile` in your project yet, add it by running the command:
 ```bash
-$ pod init
+pod init
 ```
 
 Add the Cloudinary SDK to your `Podfile`:
@@ -57,7 +57,7 @@ end
 Then, run the command:
 
 ```bash
-$ pod install
+pod install
 ```
 
 ### Working with the Cloudinary iOS SDK Manually
@@ -69,13 +69,13 @@ Open Terminal and navigate to your project's top level directory.
 If your project is not initialized as a git repository, run the command:
 
 ```bash
-$ git init
+git init
 ```
 
 To add cloudinary as a git submodule, run the command:
 
 ```bash
-$ git submodule add https://github.com/cloudinary/cloudinary_ios.git
+git submodule add https://github.com/cloudinary/cloudinary_ios.git
 ```
 
 #### Embedded Framework
@@ -86,29 +86,20 @@ $ git submodule add https://github.com/cloudinary/cloudinary_ios.git
 
 #### Dependencies
 
-The Cloudinary iOS SDK depends on [Alamofire](https://github.com/Alamofire/Alamofire). If you add Cloudinary manually you will need to [add Alamofire manually to your project](https://github.com/Alamofire/Alamofire/tree/4.6.0#manually). Make sure to checkout the correct version after adding the submodule ([as explained here](#submodule)).
+The Cloudinary iOS SDK depends on [Alamofire](https://github.com/Alamofire/Alamofire). If you add Cloudinary manually you will need to [add Alamofire manually to your project](https://github.com/Alamofire/Alamofire/#manually). Make sure to checkout the correct version after adding the submodule ([as explained here](#submodule)).
 
 ### Build Framework
 
 Here's the steps to get the framework project to build, in case you want to work on the project itself.
 
-After cloning the repository, you will need to add Alamofire v4.6.0, there are several ways to do so:
+After cloning the repository, you will need to add Alamofire v4.7.2, there are several ways to do so:
 
 ##### Submodule
 
-1. Open Terminal, navigate to Cloudinary's cloned repository folder, then add Alamofire as a git submodule by running the command:
+1. Open Terminal, navigate to Cloudinary's cloned repository folder, then run the following command:
 
 ```bash
-$ git submodule add https://github.com/Alamofire/Alamofire.git
-```
-
-2. Checkout the desired Alamofire version:
-```bash
-$ cd Alamofire/
-```
-
-```bash
-$ git checkout 4.6.0
+git submodule update --init Alamofire
 ```
 
 ###### Add library
@@ -118,7 +109,7 @@ $ git checkout 4.6.0
 
 ##### Download source
 
-You can download Alamofire v4.6.0 from [here](https://github.com/Alamofire/Alamofire/archive/4.6.0.zip). Then follow the instruction in [Add library](#add_library)
+You can download Alamofire v4.7.2 from [here](https://github.com/Alamofire/Alamofire/archive/4.7.2.zip). Then follow the instruction in [Add library](#add-library).
 
 ## Usage
 
@@ -126,7 +117,7 @@ You can download Alamofire v4.6.0 from [here](https://github.com/Alamofire/Alamo
 
 To use the API, you will need a CLDCloudinary instance, which is initialized with an instance of CLDConfiguration.
 
-The CLDConfiguration must have its `cloudName` and `apiKey` properties set. Other properties are optional, but secure API requests must be signed using the `apiSecret` param (or alternatively by using [Safe Mobile Requests](#safe-mobile-requests)). 
+The CLDConfiguration must have its `cloudName` and `apiKey` properties set. Other properties are optional. 
 
 See [API, URLs and access identifiers](https://cloudinary.com/documentation/api_and_access_identifiers) for more details.
 
@@ -150,36 +141,6 @@ Now you can create a CLDCloudinary instance to work with
 let cloudinary = CLDCloudinary(configuration: config)
 ```
 
-### Safe Mobile Requests
-
-You should avoid keeping the sensitive `apiSecret` on the mobile device. Instead, it is recommended to generate the upload authentication signature on the server side.
-
-Cloudinary's iOS SDK allows providing a server-generated signature and any additional parameters that were generated on the server side (instead of signing using the `apiSecret` locally).
-
-You can use any Cloudinary libraries (Ruby on Rails, PHP, Python & Django, Java, Perl, .Net, etc.)
- on your server to generate the upload signature. The following JSON in an example response of an upload
-  authorization request to your server:  
-
-```Objective-C
-{
-  "signature": "sgjfdoigfjdgfdogidf9g87df98gfdb8f7d6gfdg7gfd8",
-  "public_id": "abdbasdasda76asd7sa789",
-  "timestamp": 1346925631,
-  "api_key": "123456789012345",
-}
-```
-
-After generating the signature on your server, create a `CLDSignature` instance and pass it to the desired secure request, in this case, to upload a file:
-```swift
-let config = CLDConfiguration(cloudName: "CLOUD_NAME", apiKey: "API_KEY", apiSecret: nil)
-let cloudinary = CLDCloudinary(configuration: config)
-let signature = CLDSignature(signature: signature, timestamp: timestamp)
-let params = CLDUploadRequestParams()
-params.setSignature(signature)
-cloudinary.createUploader().upload(file: fileURL, params: params, completionHandler: { (response, error) in
-            // Handle respone
-        })
-```
 
 ### URL generation
 
@@ -270,6 +231,14 @@ let request = cloudinary.createUploader().upload(file: fileUrl, params: params, 
 ```
 
 Every upload request returns a CLDUploadRequest instance, allowing options such as cancelling, suspending or resuming it.
+
+### Safe Mobile Requests
+
+You should avoid keeping the sensitive `apiSecret` on the mobile device. Instead, if you must perform a signed request, generate the authentication signature on the server side.
+
+You can use any server-side Cloudinary SDK (Ruby on Rails, PHP, Django(Python), Java, .NET, etc.) on your server to [generate the signature](https://cloudinary.com/documentation/upload_images#generating_authentication_signatures). 
+
+After generating the signature on your server, create a `CLDSignature` instance and pass it to the desired secure request.
 
 ### Download
 

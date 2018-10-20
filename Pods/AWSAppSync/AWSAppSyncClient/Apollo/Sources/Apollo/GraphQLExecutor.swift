@@ -112,7 +112,7 @@ public final class GraphQLExecutor {
     guard let value = cacheKeyForObject?(object) else { return nil }
     
     if let array = value as? [Any?] {
-      return array.flatMap { $0 }.map { String(describing: $0) }.joined(separator: "_")
+      return array.compactMap { $0 }.map { String(describing: $0) }.joined(separator: "_")
     } else {
       return String(describing: value)
     }
@@ -211,7 +211,10 @@ public final class GraphQLExecutor {
     
     return resultOrPromise.on(queue: queue).flatMap { value in
       guard let value = value else {
-        throw JSONDecodingError.missingValue
+        if case .nonNull(_) = firstField.type {
+            throw JSONDecodingError.missingValue
+        }
+        return try self.complete(value: NSNull(), ofType: firstField.type, info: info, accumulator: accumulator)
       }
       
       return try self.complete(value: value, ofType: firstField.type, info: info, accumulator: accumulator)

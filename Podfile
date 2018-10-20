@@ -12,7 +12,6 @@ target 'Kraiz' do
   pod 'BSImagePicker'
   pod 'Cloudinary'
   pod 'CropViewController'
-  pod 'RealmSwift'
   pod 'RxSwift'
   pod 'SDWebImage'
   pod 'TTGSnackbar'

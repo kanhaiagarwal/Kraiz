@@ -85,13 +85,13 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
         usernameField.layer.masksToBounds = true
         usernameField.layer.cornerRadius = usernameField.frame.height / 2
         usernameField.setPadding(left: 20, right: 20)
-        usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile number", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
+        usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile number", attributes: [NSAttributedString.Key.foregroundColor: PLACEHOLDER_COLOR])
         
         passwordField.borderStyle = .none
         passwordField.layer.masksToBounds = true
         passwordField.layer.cornerRadius = passwordField.frame.height / 2
         passwordField.setPadding(left: 20, right: 20)
-        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: PLACEHOLDER_COLOR])
         
         generateOTPButton.layer.cornerRadius = generateOTPButton.frame.height / 2
         generateOTPButton.clipsToBounds = true

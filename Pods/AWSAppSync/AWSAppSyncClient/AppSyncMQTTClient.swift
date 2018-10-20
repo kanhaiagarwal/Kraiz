@@ -42,7 +42,7 @@ class AppSyncMQTTClient: AWSIoTMQTTClientDelegate {
                     "failureReason" : "Disconnected from service."])
                 
                 topics.map({ self.topicSubscribers[$0] })
-                      .flatMap({$0})
+                      .compactMap({$0})
                       .flatMap({$0})
                       .forEach({$0.disconnectCallbackDelegate(error: error)})
             }

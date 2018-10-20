@@ -371,7 +371,7 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
             pathAnimation.toValue = 1
             pathAnimation.duration = 1.5 // in seconds
             pathAnimation.repeatCount = 1
-            pathAnimation.fillMode = kCAFillModeForwards
+            pathAnimation.fillMode = CAMediaTimingFillMode.forwards
             pathAnimation.isRemovedOnCompletion = false
             layer.add(pathAnimation, forKey: "pathanimation")
         }
@@ -441,8 +441,11 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
     }
     
     /// Method called after video picking is completed from the Photo Library.
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let videoUrl = info[UIImagePickerControllerMediaURL] as? URL {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        if let videoUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL {
             print("Media URL: \(videoUrl.absoluteString)")
             videoFromPhone = videoUrl
             self.dismiss(animated: true, completion: nil)
@@ -536,4 +539,14 @@ extension CreateVibeViewController: AudioRecorderProtocol, LetterInputProtocol {
         }
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

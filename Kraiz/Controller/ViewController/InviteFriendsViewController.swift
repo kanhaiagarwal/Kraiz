@@ -43,9 +43,9 @@ class InviteFriendsViewController: UIViewController {
             let appSchemeUrl = URL(string: appScheme)
             
             if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
-                UIApplication.shared.open(appSchemeUrl!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(appSchemeUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
-                UIApplication.shared.open(URL(string: "http://whatsapp.com")!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(URL(string: "http://whatsapp.com")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             }
         }
     }
@@ -60,9 +60,9 @@ class InviteFriendsViewController: UIViewController {
             let appSchemeUrl = URL(string: appScheme)
             
             if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
-                UIApplication.shared.open(appSchemeUrl!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(appSchemeUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
-                UIApplication.shared.open(URL(string: "http://facebook.com")!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(URL(string: "http://facebook.com")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             }
         }
     }
@@ -77,9 +77,9 @@ class InviteFriendsViewController: UIViewController {
             let appSchemeUrl = URL(string: appScheme)
             
             if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
-                UIApplication.shared.open(appSchemeUrl!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(appSchemeUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
-                UIApplication.shared.open(URL(string: "http://instagram.com")!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(URL(string: "http://instagram.com")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             }
         }
     }
@@ -88,4 +88,9 @@ class InviteFriendsViewController: UIViewController {
         let activityViewController = UIActivityViewController(activityItems: ["Please download Kraiz. Its a really cool and awesome app." as NSString], applicationActivities: nil)
         present(activityViewController, animated: true, completion: {})
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

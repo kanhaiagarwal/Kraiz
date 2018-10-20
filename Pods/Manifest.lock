@@ -1,38 +1,33 @@
 PODS:
-  - Alamofire (4.6.0)
-  - AWSAppSync (2.6.21):
+  - Alamofire (4.7.3)
+  - AWSAppSync (2.6.22):
     - AWSCore (~> 2.6.6)
     - ReachabilitySwift (~> 4.0.0)
     - SQLite.swift (= 0.11.4)
-  - AWSCognito (2.6.13):
-    - AWSCore (= 2.6.13)
-  - AWSCognitoIdentityProvider (2.6.13):
+  - AWSCognito (2.6.32):
+    - AWSCore (= 2.6.32)
+  - AWSCognitoIdentityProvider (2.6.32):
     - AWSCognitoIdentityProviderASF (= 1.0.1)
-    - AWSCore (= 2.6.13)
+    - AWSCore (= 2.6.32)
   - AWSCognitoIdentityProviderASF (1.0.1)
-  - AWSCore (2.6.13)
-  - BSGridCollectionViewLayout (1.2.0)
-  - BSImagePicker (2.7.1):
-    - BSGridCollectionViewLayout (~> 1.2.0)
-    - UIImageViewModeScaleAspect (= 1.5)
-  - Cloudinary (2.3.0):
-    - Alamofire (~> 4.6.0)
-  - CropViewController (2.3.6)
+  - AWSCore (2.6.32)
+  - BSGridCollectionViewLayout (1.2.2)
+  - BSImagePicker (2.9.0):
+    - BSGridCollectionViewLayout (= 1.2.2)
+    - BSImageView (= 1.0.2)
+  - BSImageView (1.0.2)
+  - Cloudinary (2.4.0):
+    - Alamofire (~> 4.7.2)
+  - CropViewController (2.3.8)
   - ReachabilitySwift (4.0.0)
-  - Realm (3.3.0):
-    - Realm/Headers (= 3.3.0)
-  - Realm/Headers (3.3.0)
-  - RealmSwift (3.3.0):
-    - Realm (= 3.3.0)
-  - RxSwift (4.1.2)
-  - SDWebImage (4.3.3):
-    - SDWebImage/Core (= 4.3.3)
-  - SDWebImage/Core (4.3.3)
+  - RxSwift (4.3.1)
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
   - SQLite.swift/standard (0.11.4)
-  - TTGSnackbar (1.7.2)
-  - UIImageViewModeScaleAspect (1.5)
+  - TTGSnackbar (1.7.5)
 
 DEPENDENCIES:
   - AWSAppSync (~> 2.6.19)
@@ -41,7 +36,6 @@ DEPENDENCIES:
   - BSImagePicker
   - Cloudinary
   - CropViewController
-  - RealmSwift
   - RxSwift
   - SDWebImage
   - TTGSnackbar
@@ -56,37 +50,33 @@ SPEC REPOS:
     - AWSCore
     - BSGridCollectionViewLayout
     - BSImagePicker
+    - BSImageView
     - Cloudinary
     - CropViewController
     - ReachabilitySwift
-    - Realm
-    - RealmSwift
     - RxSwift
     - SDWebImage
     - SQLite.swift
     - TTGSnackbar
-    - UIImageViewModeScaleAspect
 
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  AWSAppSync: 8ccbd921252fc3cce47c8dcbb5e847930cfd5866
-  AWSCognito: 26f1263726ddc4c16b2a9876402b4bc5c25199b7
-  AWSCognitoIdentityProvider: c532434167c99ec42126447a83c6a2f2ea18f678
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AWSAppSync: 5694ffc209ce6726b58a9cfd3bc49086d7120bd1
+  AWSCognito: 68f76e8e72ec28845fb60f88f6a76c65caf68aef
+  AWSCognitoIdentityProvider: 1ac74ed3ddc96a1e072868c10d43f8630eebdfed
   AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
-  AWSCore: 5da797bc476188fdaf00dec134fa18d84708eca9
-  BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
-  BSImagePicker: eb12948a6e71b9855c2c37723dfd989b9b4288bd
-  Cloudinary: fd611d907bd6608f3556c40673b628e466809816
-  CropViewController: e6d4bd512d15a1709e9ddf71fe7d98ffd05dda0f
+  AWSCore: bfb49938a3a4eb190bc68edf1fa9e90969de8fa2
+  BSGridCollectionViewLayout: 3e6f23b3a2b4f0ca9afae09ca01389d1057f7b32
+  BSImagePicker: 553707de1adaad42eac252e0b84d20dbdba83fe9
+  BSImageView: ab22ff8cae61f1ae17a3c9efeeb216af3cf84a09
+  Cloudinary: d87b545d6a5d00c4022bec964839fdaf359d7c53
+  CropViewController: 7be882b7d3fb3faef48a41924e80f689e9df2514
   ReachabilitySwift: e67b2cab4d5386053673d8a7421b5981e5f08259
-  Realm: 7d74ad6c5020432f58fe5e1df90bb6d97b2c7fef
-  RealmSwift: b2fa31a09c22e246026766557405505eeaad2b01
-  RxSwift: e49536837d9901277638493ea537394d4b55f570
-  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
-  TTGSnackbar: e23b4f1e9e9f271b22ce75dfd39c6384edff96c9
-  UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
+  TTGSnackbar: 2cf4e7b6ffbe5cddf248a73f3ee952b71bee8ea3
 
-PODFILE CHECKSUM: a17c3a79bd0b53aa0e1de77676e61a47a564e3f8
+PODFILE CHECKSUM: 4eb20ff4db66cfa41d6ab1cf05c39b0ff31337ed
 
 COCOAPODS: 1.5.3

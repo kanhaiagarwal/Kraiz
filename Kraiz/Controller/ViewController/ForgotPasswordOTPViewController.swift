@@ -117,12 +117,12 @@ class ForgotPasswordOTPViewController: UIViewController, AWSCognitoIdentityInter
         otpField.clipsToBounds = true
         otpField.layer.cornerRadius = otpField.frame.height / 2
         otpField.setPadding(left: 20, right: 20)
-        otpField.attributedPlaceholder = NSAttributedString(string: "OTP", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
+        otpField.attributedPlaceholder = NSAttributedString(string: "OTP", attributes: [NSAttributedString.Key.foregroundColor: PLACEHOLDER_COLOR])
         
         newPasswordField.clipsToBounds = true
         newPasswordField.layer.cornerRadius = newPasswordField.frame.height / 2
         newPasswordField.setPadding(left: 20, right: 20)
-        newPasswordField.attributedPlaceholder = NSAttributedString(string: "New Password", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
+        newPasswordField.attributedPlaceholder = NSAttributedString(string: "New Password", attributes: [NSAttributedString.Key.foregroundColor: PLACEHOLDER_COLOR])
         
         createToolbarForTextField(textField: otpField)
         createToolbarForTextField(textField: newPasswordField)

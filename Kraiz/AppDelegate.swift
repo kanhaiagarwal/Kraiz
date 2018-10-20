@@ -11,14 +11,13 @@ import CoreData
 import AWSAppSync
 import AWSCore
 import AWSCognitoIdentityProvider
-import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInteractiveAuthenticationDelegate {
     var window: UIWindow?
     var restrictRotation: UIInterfaceOrientationMask = .portrait
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let serviceConfiguration = AWSServiceConfiguration(region: AWSConstants.AWS_REGION, credentialsProvider: nil)
         let configuration = AWSCognitoIdentityUserPoolConfiguration(clientId: AWSConstants.COGNITO_APP_CLIENT_ID, clientSecret: AWSConstants.COGNITO_APP_CLIENT_SECRET, poolId: AWSConstants.COGNITO_USER_POOL_ID)

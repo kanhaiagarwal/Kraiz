@@ -49,7 +49,7 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
         otpField.layer.cornerRadius = otpField.frame.height / 2
         otpField.clipsToBounds = true
         otpField.setPadding(left: 10, right: 10)
-        otpField.attributedPlaceholder = NSAttributedString(string: "OTP", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
+        otpField.attributedPlaceholder = NSAttributedString(string: "OTP", attributes: [NSAttributedString.Key.foregroundColor: PLACEHOLDER_COLOR])
         
         otpButton.layer.cornerRadius = otpButton.frame.height / 2
         otpButton.clipsToBounds = true

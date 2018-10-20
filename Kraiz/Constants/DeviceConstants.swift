@@ -14,6 +14,7 @@ public class DeviceConstants {
     static public let IPHONE7_HEIGHT : CGFloat = 667.0
     static public let IPHONE7PLUS_HEIGHT : CGFloat = 736.0
     static public let IPHONEX_HEIGHT : CGFloat = 812.0
+    static public let IPHONEXR_HEIGHT : CGFloat = 896.0
     
     // Common Errors
     static public let NO_INTERNET_ERROR = NSError(domain: "NoInternetConnection", code: 503, userInfo: ["__type": "NoInternetConnectionException"])

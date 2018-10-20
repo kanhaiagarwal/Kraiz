@@ -117,7 +117,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         usernameField.layer.cornerRadius = usernameField.frame.height / 2
         usernameField.textColor = UIColor.white
         usernameField.setPadding(left: 20.0, right: 20.0)
-        usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile Number", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
+        usernameField.attributedPlaceholder = NSAttributedString(string: "Mobile Number", attributes: [NSAttributedString.Key.foregroundColor: PLACEHOLDER_COLOR])
         
         passwordField.borderStyle = .none
         passwordField.layer.borderWidth = 0
@@ -125,7 +125,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         passwordField.layer.cornerRadius = passwordField.frame.height / 2
         passwordField.textColor = UIColor.white
         passwordField.setPadding(left: 20.0, right: 20.0)
-        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: PLACEHOLDER_COLOR])
         
         signInButton.layer.cornerRadius = signInButton.frame.height / 2
         signInButton.layer.masksToBounds = true
@@ -136,7 +136,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         
         setupFontSize()
         hidePasswordButton.imageView?.contentMode = .scaleAspectFit
-        hidePasswordButton.imageEdgeInsets = UIEdgeInsetsMake(10, 0, 10, 0)
+        hidePasswordButton.imageEdgeInsets = UIEdgeInsets.init(top: 10, left: 0, bottom: 10, right: 0)
     }
     
     @IBAction func showPasswordPressed(_ sender: UIButton) {

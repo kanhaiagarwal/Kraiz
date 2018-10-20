@@ -231,7 +231,7 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
             return
         }
         cropViewController.dismiss(animated: true, completion: nil)
-        MediaHelper.shared.uploadProfileImage(fileData: UIImageJPEGRepresentation(image, 0.5)!, success: { (publicId) in
+        MediaHelper.shared.uploadProfileImage(fileData: image.jpegData(compressionQuality: 0.5)!, success: { (publicId) in
             APPUtilites.removeLoadingSpinner(spinner: sv)
             self.profilePicId = publicId
             self.profileImage.image = image

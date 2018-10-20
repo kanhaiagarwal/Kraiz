@@ -52,8 +52,8 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
         phoneNumberField.clipsToBounds = true
         phoneNumberField.textColor = UIColor.white
         phoneNumberField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: phoneNumberField.frame.height))
-        phoneNumberField.leftViewMode = UITextFieldViewMode.always
-        phoneNumberField.attributedPlaceholder = NSAttributedString(string: "Mobile Number", attributes: [NSAttributedStringKey.foregroundColor: PLACEHOLDER_COLOR])
+        phoneNumberField.leftViewMode = UITextField.ViewMode.always
+        phoneNumberField.attributedPlaceholder = NSAttributedString(string: "Mobile Number", attributes: [NSAttributedString.Key.foregroundColor: PLACEHOLDER_COLOR])
         countryCodeField.clipsToBounds = true
         countryCodeField.layer.cornerRadius = countryCodeField.frame.height / 2
         

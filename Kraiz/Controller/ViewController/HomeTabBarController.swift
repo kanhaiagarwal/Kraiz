@@ -43,13 +43,18 @@ extension UITabBarController {
     /// On pressing the button, we will open the CreateVibe.
     func addCreateVibeButton() {
         
+        print("height: \(view.frame.height)")
+        print("width: \(view.frame.width)")
+        
         var createButton : UIButton = UIButton()
         let itemWidth = self.view.frame.width / 5
         let itemHeight = self.tabBar.frame.height
         
         if self.view.frame.height == DeviceConstants.IPHONEX_HEIGHT {
             createButton = UIButton(frame: CGRect(x: itemWidth * 2 + 5, y: self.tabBar.frame.origin.y - (self.tabBar.frame.height / 2), width: itemWidth - 10, height: itemHeight - 10))
-        } else {
+        } else if self.view.frame.height == DeviceConstants.IPHONEXR_HEIGHT {
+            createButton = UIButton(frame: CGRect(x: itemWidth * 2 + 5, y: self.tabBar.frame.origin.y - (self.tabBar.frame.height / 2) - 5, width: itemWidth - 10, height: itemHeight - 10))
+        }else {
             createButton = UIButton(frame: CGRect(x: itemWidth * 2 + 5, y: self.tabBar.frame.origin.y + 5, width: itemWidth - 10, height: itemHeight - 10))
         }
         

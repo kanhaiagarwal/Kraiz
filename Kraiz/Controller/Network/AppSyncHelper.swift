@@ -62,7 +62,7 @@ class AppSyncHelper {
                     var profileModel = ProfileModel()
                     if let error = result?.errors {
                         print("Error inside result")
-                        failure(error[0] as! NSError)
+                        failure(error[0] as NSError)
                         return
                     }
                     if let data = result?.data {

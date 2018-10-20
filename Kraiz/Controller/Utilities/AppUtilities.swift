@@ -54,7 +54,7 @@ public class APPUtilites {
     public static func displayLoadingSpinner(onView: UIView) -> UIView {
         let spinnerView = UIView(frame: onView.frame)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let ai = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let ai = UIActivityIndicatorView(style: .whiteLarge)
         ai.startAnimating()
         ai.center = spinnerView.center
         spinnerView.addSubview(ai)

@@ -75,7 +75,7 @@ class LetterInputViewController: UIViewController {
     }
     
     @IBAction func closePressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Add Letter to the Story", message: "Do you wish to stop editing the letter", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Add Letter to the Story", message: "Do you wish to stop editing the letter", preferredStyle: UIAlertController.Style.alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
             self.navigationController?.popViewController(animated: true)

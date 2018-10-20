@@ -36,6 +36,7 @@ private struct Defines {
     static let defaultMemoryTotalCostLimit = 30 * 1024 * 1024  // 30 MB
     static let defaultMaxDiskCapacity = 150 * 1024 * 1024  // 150 MB
     static let thresholdPercentSize = UInt64(0.8)
+    static let defaultBytesPerPixel = 4
 }
 
 
@@ -47,6 +48,7 @@ internal class CLDImageCache {
     internal var maxMemoryTotalCost: Int = Defines.defaultMemoryTotalCostLimit {
         didSet{
             memoryCache.totalCostLimit = maxMemoryTotalCost
+            self.clearMemoryCache()
         }
     }
     
@@ -80,7 +82,7 @@ internal class CLDImageCache {
         calculateCurrentDiskCacheSize()
         clearDiskToMatchCapacityIfNeeded()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(CLDImageCache.clearMemoryCache), name: NSNotification.Name.UIApplicationDidReceiveMemoryWarning, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CLDImageCache.clearMemoryCache), name: UIApplication.didReceiveMemoryWarningNotification, object: nil)
     }
     
     deinit {
@@ -122,19 +124,28 @@ internal class CLDImageCache {
     internal func cacheImage(_ image: UIImage, data: Data?, key: String, completion: (() -> ())?) {
         cacheImage(image, data: data, key: key, includingDisk: true, completion: completion)
     }
-    
+
+    func costFor(image: UIImage) -> Int {
+        if let imageRef = image.cgImage {
+            return imageRef.bytesPerRow * imageRef.height
+        }
+
+        // Without the underlying cgImage we can only estimate, assuming 4 bytes per pixel (RGBA):
+        return Int(image.size.height * image.scale * image.size.width * image.scale) * Defines.defaultBytesPerPixel
+    }
+
     fileprivate func cacheImage(_ image: UIImage, data: Data?, key: String, includingDisk: Bool, completion: (() -> ())?) {
-        
+
         if cachePolicy == .memory || cachePolicy == .disk {
-            let cost = Int(image.size.height * image.scale * image.size.width * image.scale)
+            let cost = costFor(image: image)
             memoryCache.setObject(image, forKey: key as NSString, cost: cost)
         }
-        
+
         if cachePolicy == .disk && includingDisk {
             let path = getFilePathFromKey(key)
             readWriteQueue.async {
                 // If the original data was passed, save the data to the disk, otherwise default to UIImagePNGRepresentation to create the data from the image
-                if let data = data ?? UIImagePNGRepresentation(image) {
+                if let data = data ?? image.pngData() {
                     // create the cach directory if it doesn't exist
                     if !FileManager.default.fileExists(atPath: self.diskCacheDir) {
                         do {
@@ -143,7 +154,7 @@ internal class CLDImageCache {
                             printLog(.warning, text: "Failed while attempting to create the image cache directory.")
                         }
                     }
-                    
+
                     FileManager.default.createFile(atPath: path, contents: data, attributes: nil)
                     self.usedCacheSize += UInt64(data.count)
                     self.clearDiskToMatchCapacityIfNeeded()
@@ -302,6 +313,6 @@ internal class CLDImageCache {
             printLog(.warning, text: "Failed while attempting to retrive a cached file attributes for filr at path: \(path)")
         }
         return fileAttr
-    }    
-    
+    }
+
 }

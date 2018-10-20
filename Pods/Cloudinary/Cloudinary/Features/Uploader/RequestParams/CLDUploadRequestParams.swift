@@ -53,6 +53,14 @@ import Foundation
         self.params = params
     }
     
+    internal override func merge(_ other: CLDRequestParams?){
+        super.merge(other)
+       
+        if let uploadRequest = other as? CLDUploadRequestParams {
+            self.signed = uploadRequest.signed
+        }
+    }
+    
     // MARK: - Get Values
     
     open var publicId: String? {
@@ -126,7 +134,11 @@ import Foundation
     open var discardOriginalFilename: Bool? {
         return getParam(.DiscardOriginalFilename) as? Bool
     }
-    
+
+    open var async: Bool? {
+        return getParam(.Async) as? Bool
+    }
+
     open var eagerAsync: Bool? {
         return getParam(.EagerAsync) as? Bool
     }
@@ -483,7 +495,20 @@ import Foundation
         setBoolParam(.DiscardOriginalFilename, value: discardOriginalFilename)
         return self
     }
-    
+
+    /**
+    Set a boolean parameter indicating whether to perform the image generation asynchronously. default is false.
+
+    - parameter async:      The boolean parameter.
+
+    - returns:              The same instance of CLDUploadRequestParams.
+    */
+    @discardableResult
+    open func setAsync(_ async: Bool) -> Self {
+        setBoolParam(UploadRequestParams.Async, value: async)
+        return self
+    }
+
     /**
      Set A boolean parameter that determines whether to generate the eager transformations asynchronously in the background. default is false.
      
@@ -594,7 +619,8 @@ import Foundation
     }
     
     /**
-    A setter for any one of the simple boolean parameters.
+    A setter for any one of the simple boolean parameters. This is used to normalize boolean values in requests
+    to be consistent across different platforms.
     
     - parameter value:              The parameter value.
     - parameter param:              The boolean parameter to set.
@@ -829,8 +855,8 @@ import Foundation
     /**
      Set an array of transformations to create for the uploaded resource during the upload process, instead of lazily creating each of them when first accessed by your site's visitors.
      
-     - parameter eager:             The array of transformations.
-     
+     - parameter eager:             The array of transformations (CLDTransformation|CLDEagerTransformation)
+
      - returns:                     The same instance of CLDUploadRequestParams.
      
      */
@@ -839,7 +865,7 @@ import Foundation
     open func setEager(_ eager: [CLDTransformation]) -> Self {
         return setEager(buildEagerString(eager))
     }
-    
+
     /**
      Set an array of transformations to create for the uploaded resource during the upload process, instead of lazily creating each of them when first accessed by your site's visitors.
      
@@ -932,6 +958,7 @@ import Foundation
         case UseFilename =                          "use_filename"
         case UniqueFilename =                       "unique_filename"
         case DiscardOriginalFilename =              "discard_original_filename"
+        case Async =                                "async"
         case EagerAsync =                           "eager_async"
         case Invalidate =                           "invalidate"
         case Overwrite =                            "overwrite"

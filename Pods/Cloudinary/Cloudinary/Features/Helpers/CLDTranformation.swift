@@ -216,7 +216,7 @@ import Foundation
      */
     @objc(setWidthWithInt:)
     @discardableResult
-    open func setWidth(_ width: Int) -> CLDTransformation {
+    open func setWidth(_ width: Int) -> Self {
         return setWidth(String(width))
     }
     
@@ -229,7 +229,7 @@ import Foundation
      */
     @objc(setWidthWithFloat:)
     @discardableResult
-    open func setWidth(_ width: Float) -> CLDTransformation {
+    open func setWidth(_ width: Float) -> Self {
         return setWidth(width.cldFloatFormat())
     }
     
@@ -241,7 +241,7 @@ import Foundation
      - returns:              The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setWidth(_ width: String) -> CLDTransformation {
+    open func setWidth(_ width: String) -> Self {
         return setParam(TransformationParam.WIDTH, value: width)
     }
     
@@ -254,7 +254,7 @@ import Foundation
      */
     @objc(setHeightWithInt:)
     @discardableResult
-    open func setHeight(_ height: Int) -> CLDTransformation {
+    open func setHeight(_ height: Int) -> Self {
         return setHeight(String(height))
     }
     
@@ -267,7 +267,7 @@ import Foundation
      */
     @objc(setHeightWithFloat:)
     @discardableResult
-    open func setHeight(_ height: Float) -> CLDTransformation {
+    open func setHeight(_ height: Float) -> Self {
         return setHeight(height.cldFloatFormat())
     }
     
@@ -279,7 +279,7 @@ import Foundation
      - returns:              The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setHeight(_ height: String) -> CLDTransformation {
+    open func setHeight(_ height: String) -> Self {
         return setParam(TransformationParam.HEIGHT, value: height)
     }
     
@@ -293,7 +293,7 @@ import Foundation
      */
     @objc(setNamedWithArray:)
     @discardableResult
-    open func setNamed(_ names: [String]) -> CLDTransformation {
+    open func setNamed(_ names: [String]) -> Self {
         return setNamed(names.joined(separator: "."))
     }
     
@@ -306,7 +306,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setNamed(_ names: String) -> CLDTransformation {
+    open func setNamed(_ names: String) -> Self {
         return setParam(TransformationParam.NAMED, value: names)
     }
     
@@ -319,7 +319,7 @@ import Foundation
      */
     @objc(setCropWithCrop:)
     @discardableResult
-    open func setCrop(_ crop: CLDCrop) -> CLDTransformation {
+    open func setCrop(_ crop: CLDCrop) -> Self {
         return setCrop(String(describing: crop))
     }
     
@@ -331,7 +331,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setCrop(_ crop: String) -> CLDTransformation {
+    open func setCrop(_ crop: String) -> Self {
         return setParam(TransformationParam.CROP, value: crop)
     }
     
@@ -344,7 +344,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setBackground(_ background: String) -> CLDTransformation {
+    open func setBackground(_ background: String) -> Self {
         return setParam(TransformationParam.BACKGROUND, value: background.replacingOccurrences(of: "#", with: "rgb:"))
     }
     
@@ -357,7 +357,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setColor(_ color: String) -> CLDTransformation {
+    open func setColor(_ color: String) -> Self {
         return setParam(TransformationParam.COLOR, value: color.replacingOccurrences(of: "#", with: "rgb:"))
     }
     
@@ -370,7 +370,7 @@ import Foundation
      */
     @objc(setEffectWithEffect:)
     @discardableResult
-    open func setEffect(_ effect: CLDEffect) -> CLDTransformation {
+    open func setEffect(_ effect: CLDEffect) -> Self {
         return setEffect(String(describing: effect))
     }
     
@@ -385,7 +385,7 @@ import Foundation
      */
     @objc(setEffectWithEffect:param:)
     @discardableResult
-    open func setEffect(_ effect: CLDEffect, param: String) -> CLDTransformation {
+    open func setEffect(_ effect: CLDEffect, param: String) -> Self {
         return setEffect(String(describing: effect), param: param)
     }
     
@@ -399,7 +399,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setEffect(_ effect: String, param: String) -> CLDTransformation {
+    open func setEffect(_ effect: String, param: String) -> Self {
         return setEffect("\(effect):\(param)")
     }
     
@@ -411,7 +411,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setEffect(_ effect: String) -> CLDTransformation {
+    open func setEffect(_ effect: String) -> Self {
         return setParam(TransformationParam.EFFECT, value: effect)
     }
     
@@ -424,7 +424,7 @@ import Foundation
      */
     @objc(setAngleWithInt:)
     @discardableResult
-    open func setAngle(_ angle: Int) -> CLDTransformation {
+    open func setAngle(_ angle: Int) -> Self {
         return setAngle(String(angle))
     }
     
@@ -437,7 +437,7 @@ import Foundation
      */
     @objc(setAngleWithArray:)
     @discardableResult
-    open func setAngle(_ angles: [String]) -> CLDTransformation {
+    open func setAngle(_ angles: [String]) -> Self {
         return setAngle(angles.joined(separator: "."))
     }
     
@@ -449,7 +449,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setAngle(_ angles: String) -> CLDTransformation {
+    open func setAngle(_ angles: String) -> Self {
         return setParam(TransformationParam.ANGLE, value: angles)
     }
     
@@ -462,7 +462,7 @@ import Foundation
      */
     @objc(setOpacityWithInt:)
     @discardableResult
-    open func setOpacity(_ opacity: Int) -> CLDTransformation {
+    open func setOpacity(_ opacity: Int) -> Self {
         return setOpacity(String(opacity))
     }
     
@@ -474,7 +474,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setOpacity(_ opacity: String) -> CLDTransformation {
+    open func setOpacity(_ opacity: String) -> Self {
         return setParam(TransformationParam.OPACITY, value: opacity)
     }
     
@@ -487,7 +487,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setBorder(_ width: Int, color: String) -> CLDTransformation {
+    open func setBorder(_ width: Int, color: String) -> Self {
         return setBorder("\(width)px_solid_\(color)")
     }
     
@@ -500,7 +500,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setBorder(_ border: String) -> CLDTransformation {
+    open func setBorder(_ border: String) -> Self {
         return setParam(TransformationParam.BORDER, value: border.replacingOccurrences(of: "#", with: "rgb:"))
     }
     
@@ -513,7 +513,7 @@ import Foundation
      */
     @objc(setXFromInt:)
     @discardableResult
-    open func setX(_ x: Int) -> CLDTransformation {
+    open func setX(_ x: Int) -> Self {
         return setX(String(x))
     }
     
@@ -526,7 +526,7 @@ import Foundation
      */
     @objc(setXFromFloat:)
     @discardableResult
-    open func setX(_ x: Float) -> CLDTransformation {
+    open func setX(_ x: Float) -> Self {
         return setX(x.cldFloatFormat())
     }
     
@@ -538,7 +538,7 @@ import Foundation
      - returns:         The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setX(_ x: String) -> CLDTransformation {
+    open func setX(_ x: String) -> Self {
         return setParam(TransformationParam.X, value: x)
     }
     
@@ -551,7 +551,7 @@ import Foundation
      */
     @objc(setYFromInt:)
     @discardableResult
-    open func setY(_ y: Int) -> CLDTransformation {
+    open func setY(_ y: Int) -> Self {
         return setY(String(y))
     }
     
@@ -564,7 +564,7 @@ import Foundation
      */
     @objc(setYFromFloat:)
     @discardableResult
-    open func setY(_ y: Float) -> CLDTransformation {
+    open func setY(_ y: Float) -> Self {
         return setY(y.cldFloatFormat())
     }
     
@@ -576,7 +576,7 @@ import Foundation
      - returns:         The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setY(_ y: String) -> CLDTransformation {
+    open func setY(_ y: String) -> Self {
         return setParam(TransformationParam.Y, value: y)
     }
     
@@ -589,7 +589,7 @@ import Foundation
      */
     @objc(setRadiusFromInt:)
     @discardableResult
-    open func setRadius(_ radius: Int) -> CLDTransformation {
+    open func setRadius(_ radius: Int) -> Self {
         return setRadius(String(radius))
     }
     
@@ -601,8 +601,21 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setRadius(_ radius: String) -> CLDTransformation {
+    open func setRadius(_ radius: String) -> Self {
         return setParam(TransformationParam.RADIUS, value: radius)
+    }
+
+    /**
+    Set the image quality for the transformation, see CLDQuality for options.
+
+     - parameter quality:   A CLDQuality instance containing the quality settings.
+
+     - returns:             The same instance of CLDTransformation.
+     */
+    @objc(setQualityFromQuality:)
+    @discardableResult
+    open func setQuality(_ quality: CLDQuality) -> Self {
+        return setQuality(quality.description)
     }
     
     /**
@@ -618,7 +631,8 @@ import Foundation
      */
     @objc(setQualityFromInt:)
     @discardableResult
-    open func setQuality(_ quality: Int) -> CLDTransformation {
+    @available(*, deprecated, message: "Use setQuality(CLDQuality)")
+    open func setQuality(_ quality: Int) -> Self {
         return setQuality(String(quality))
     }
     
@@ -634,7 +648,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setQuality(_ quality: String) -> CLDTransformation {
+    open func setQuality(_ quality: String) -> Self {
         return setParam(TransformationParam.QUALITY, value: quality)
     }
     
@@ -646,7 +660,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setDefaultImage(_ defaultImage: String) -> CLDTransformation {
+    open func setDefaultImage(_ defaultImage: String) -> Self {
         return setParam(TransformationParam.DEFAULT_IMAGE, value: defaultImage)
     }
     
@@ -659,7 +673,7 @@ import Foundation
      */
     @objc(setGravityWithGravity:)
     @discardableResult
-    open func setGravity(_ gravity: CLDGravity) -> CLDTransformation {
+    open func setGravity(_ gravity: CLDGravity) -> Self {
         return setGravity(String(describing: gravity))
     }
     
@@ -671,7 +685,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setGravity(_ gravity: String) -> CLDTransformation {
+    open func setGravity(_ gravity: String) -> Self {
         return setParam(TransformationParam.GRAVITY, value: gravity)
     }
     
@@ -683,7 +697,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setColorSpace(_ colorSpace: String) -> CLDTransformation {
+    open func setColorSpace(_ colorSpace: String) -> Self {
         return setParam(TransformationParam.COLOR_SPACE, value: colorSpace)
     }
     
@@ -695,7 +709,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setPrefix(_ prefix: String) -> CLDTransformation {
+    open func setPrefix(_ prefix: String) -> Self {
         return setParam(TransformationParam.PREFIX, value: prefix)
     }
     
@@ -711,7 +725,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setOverlay(_ overlay: String) -> CLDTransformation {
+    open func setOverlay(_ overlay: String) -> Self {
         return setParam(TransformationParam.OVERLAY, value: overlay)
     }
     
@@ -728,7 +742,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setUnderlay(_ underlay: String) -> CLDTransformation {
+    open func setUnderlay(_ underlay: String) -> Self {
         return setParam(TransformationParam.UNDERLAY, value: underlay)
     }
     
@@ -740,7 +754,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setFetchFormat(_ fetchFormat: String) -> CLDTransformation {
+    open func setFetchFormat(_ fetchFormat: String) -> Self {
         return setParam(TransformationParam.FETCH_FORMAT, value: fetchFormat)
     }
     
@@ -753,7 +767,7 @@ import Foundation
      */
     @objc(setDensityWithInt:)
     @discardableResult
-    open func setDensity(_ density: Int) -> CLDTransformation {
+    open func setDensity(_ density: Int) -> Self {
         return setDensity(String(density))
     }
     
@@ -765,7 +779,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setDensity(_ density: String) -> CLDTransformation {
+    open func setDensity(_ density: String) -> Self {
         return setParam(TransformationParam.DENSITY, value: density)
     }
     
@@ -778,7 +792,7 @@ import Foundation
      */
     @objc(setPageWithInt:)
     @discardableResult
-    open func setPage(_ page: Int) -> CLDTransformation {
+    open func setPage(_ page: Int) -> Self {
         return setPage(String(page))
     }
     
@@ -790,7 +804,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setPage(_ page: String) -> CLDTransformation {
+    open func setPage(_ page: String) -> Self {
         return setParam(TransformationParam.PAGE, value: page)
     }
     
@@ -803,7 +817,7 @@ import Foundation
      */
     @objc(setDelayWithInt:)
     @discardableResult
-    open func setDelay(_ delay: Int) -> CLDTransformation {
+    open func setDelay(_ delay: Int) -> Self {
         return setDelay(String(delay))
     }
     
@@ -815,7 +829,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setDelay(_ delay: String) -> CLDTransformation {
+    open func setDelay(_ delay: String) -> Self {
         return setParam(TransformationParam.DELAY, value: delay)
     }
     
@@ -828,7 +842,7 @@ import Foundation
      - returns:                         The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setRawTransformation(_ rawTransformation: String) -> CLDTransformation {
+    open func setRawTransformation(_ rawTransformation: String) -> Self {
         return setParam(TransformationParam.RAW_TRANSFORMATION, value: rawTransformation)
     }
     
@@ -841,7 +855,7 @@ import Foundation
      */
     @objc(setFlagsWithArray:)
     @discardableResult
-    open func setFlags(_ flags: [String]) -> CLDTransformation {
+    open func setFlags(_ flags: [String]) -> Self {
         return setFlags(flags.joined(separator: "."))
     }
     
@@ -853,7 +867,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setFlags(_ flags: String) -> CLDTransformation {
+    open func setFlags(_ flags: String) -> Self {
         return setParam(TransformationParam.FLAGS, value: flags)
     }
     
@@ -866,7 +880,7 @@ import Foundation
      */
     @objc(setDprWithFloat:)
     @discardableResult
-    open func setDpr(_ dpr: Float) -> CLDTransformation {
+    open func setDpr(_ dpr: Float) -> Self {
         return setDpr(dpr.cldFloatFormat())
     }
     
@@ -876,7 +890,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setDprAuto() -> CLDTransformation {
+    open func setDprAuto() -> Self {
         let scale = Float(UIScreen.main.scale)
         return setDpr(scale)
     }
@@ -889,7 +903,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setDpr(_ dpr: String) -> CLDTransformation {
+    open func setDpr(_ dpr: String) -> Self {
         return setParam(TransformationParam.DPR, value: dpr)
     }
     
@@ -902,7 +916,7 @@ import Foundation
      */
     @objc(setZoomWithFloat:)
     @discardableResult
-    open func setZoom(_ zoom: Float) -> CLDTransformation {
+    open func setZoom(_ zoom: Float) -> Self {
         return setZoom(zoom.cldFloatFormat())
     }
     
@@ -914,7 +928,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setZoom(_ zoom: String) -> CLDTransformation {
+    open func setZoom(_ zoom: String) -> Self {
         return setParam(TransformationParam.ZOOM, value: zoom)
     }
     
@@ -928,7 +942,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setAspectRatio(nominator: Int, denominator: Int) -> CLDTransformation {
+    open func setAspectRatio(nominator: Int, denominator: Int) -> Self {
         return setAspectRatio("\(nominator):\(denominator)")
     }
     
@@ -942,7 +956,7 @@ import Foundation
      */
     @objc(setAspectRatioWithFloat:)
     @discardableResult
-    open func setAspectRatio(_ aspectRatio: Float) -> CLDTransformation {
+    open func setAspectRatio(_ aspectRatio: Float) -> Self {
         return setAspectRatio(aspectRatio.cldFloatFormat())
     }
     
@@ -955,7 +969,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setAspectRatio(_ aspectRatio: String) -> CLDTransformation {
+    open func setAspectRatio(_ aspectRatio: String) -> Self {
         return setParam(TransformationParam.ASPECT_RATIO, value: aspectRatio)
     }
     
@@ -972,7 +986,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setAudioCodec(_ audioCodec: String) -> CLDTransformation {
+    open func setAudioCodec(_ audioCodec: String) -> Self {
         return setParam(TransformationParam.AUDIO_CODEC, value: audioCodec)
     }
     
@@ -987,7 +1001,7 @@ import Foundation
      */
     @objc(setAudioFrequencyWithInt:)
     @discardableResult
-    open func setAudioFrequency(_ audioFrequency: Int) -> CLDTransformation {
+    open func setAudioFrequency(_ audioFrequency: Int) -> Self {
         return setAudioFrequency(String(audioFrequency))
     }
     
@@ -1001,7 +1015,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setAudioFrequency(_ audioFrequency: String) -> CLDTransformation {
+    open func setAudioFrequency(_ audioFrequency: String) -> Self {
         return setParam(TransformationParam.AUDIO_FREQUENCY, value: audioFrequency)
     }
     
@@ -1016,7 +1030,7 @@ import Foundation
      */
     @objc(setBitRateWithInt:)
     @discardableResult
-    open func setBitRate(_ bitRate: Int) -> CLDTransformation {
+    open func setBitRate(_ bitRate: Int) -> Self {
         return setBitRate(String(bitRate))
     }
     
@@ -1030,7 +1044,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setBitRate(kb bitRate: Int) -> CLDTransformation {
+    open func setBitRate(kb bitRate: Int) -> Self {
         return setBitRate("\(bitRate)k")
     }
     
@@ -1048,7 +1062,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setBitRate(_ bitRate: String) -> CLDTransformation {
+    open func setBitRate(_ bitRate: String) -> Self {
         return setParam(TransformationParam.BIT_RATE, value: bitRate)
     }
     
@@ -1060,7 +1074,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setVideoSampling(frames: Int) -> CLDTransformation {
+    open func setVideoSampling(frames: Int) -> Self {
         return setVideoSampling(String(frames))
     }
     
@@ -1072,7 +1086,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setVideoSampling(delay: Float) -> CLDTransformation {
+    open func setVideoSampling(delay: Float) -> Self {
         return setVideoSampling("\(delay.cldFloatFormat())s")
     }
     
@@ -1087,7 +1101,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setVideoSampling(_ videoSampling: String) -> CLDTransformation {
+    open func setVideoSampling(_ videoSampling: String) -> Self {
         return setParam(TransformationParam.VIDEO_SAMPLING, value: videoSampling)
     }
     
@@ -1101,7 +1115,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setDuration(seconds: Float) -> CLDTransformation {
+    open func setDuration(seconds: Float) -> Self {
         return setDuration(seconds.cldFloatFormat())
     }
     
@@ -1115,7 +1129,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setDuration(percent: Int) -> CLDTransformation {
+    open func setDuration(percent: Int) -> Self {
         return setDuration("\(percent)p")
     }
     
@@ -1129,7 +1143,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setDuration(_ duration: String) -> CLDTransformation {
+    open func setDuration(_ duration: String) -> Self {
         return setParam(TransformationParam.DURATION, value: duration)
     }
     
@@ -1141,7 +1155,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setStartOffset(seconds: Float) -> CLDTransformation {
+    open func setStartOffset(seconds: Float) -> Self {
         return setStartOffset(seconds.cldFloatFormat())
     }
     
@@ -1153,7 +1167,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setStartOffset(percent: Int) -> CLDTransformation {
+    open func setStartOffset(percent: Int) -> Self {
         return setStartOffset("\(percent)p")
     }
     
@@ -1166,7 +1180,7 @@ import Foundation
      */
     
     @discardableResult
-    open func setStartOffset(_ duration: String) -> CLDTransformation {
+    open func setStartOffset(_ duration: String) -> Self {
         return setParam(TransformationParam.START_OFFSET, value: duration)
     }
     
@@ -1178,7 +1192,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setEndOffset(seconds: Float) -> CLDTransformation {
+    open func setEndOffset(seconds: Float) -> Self {
         return setEndOffset(seconds.cldFloatFormat())
     }
     
@@ -1190,7 +1204,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setEndOffset(percent: Int) -> CLDTransformation {
+    open func setEndOffset(percent: Int) -> Self {
         return setEndOffset("\(percent)p")
     }
     
@@ -1202,7 +1216,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setEndOffset(_ duration: String) -> CLDTransformation {
+    open func setEndOffset(_ duration: String) -> Self {
         return setParam(TransformationParam.END_OFFSET, value: duration)
     }
     
@@ -1217,7 +1231,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setVideoCodecAndProfileAndLevel(_ videoCodec: String, videoProfile: String, level: String? = nil) -> CLDTransformation {
+    open func setVideoCodecAndProfileAndLevel(_ videoCodec: String, videoProfile: String, level: String? = nil) -> Self {
         return level == nil ? setVideoCodec("\(videoCodec):\(videoProfile)") : setVideoCodec("\(videoCodec):\(videoProfile):\(level!)")
     }
     
@@ -1230,18 +1244,18 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setVideoCodec(_ videoCodec: String) -> CLDTransformation {
+    open func setVideoCodec(_ videoCodec: String) -> Self {
         return setParam(TransformationParam.VIDEO_CODEC, value: videoCodec)
     }
     
     // MARK: Setters
     
-    fileprivate func setParam(_ key: TransformationParam, value: String) -> CLDTransformation {
+    fileprivate func setParam(_ key: TransformationParam, value: String) -> Self {
         return setParam(key.rawValue, value: value)
     }
     
     @discardableResult
-    open func setParam(_ key: String, value: String) -> CLDTransformation {
+    open func setParam(_ key: String, value: String) -> Self {
         currentTransformationParams[key] = value
         return self
     }
@@ -1255,7 +1269,7 @@ import Foundation
      
      - returns:                     The same instance of CLDTransformation.
      */
-    func setOffset(seconds: [Float]) -> CLDTransformation {
+    func setOffset(seconds: [Float]) -> Self {
         guard let
             start = seconds.first,
             let end = seconds.last else {
@@ -1271,7 +1285,7 @@ import Foundation
      
      - returns:                     The same instance of CLDTransformation.
      */
-    func setOffset(percents: [Int]) -> CLDTransformation {
+    func setOffset(percents: [Int]) -> Self {
         guard let
             start = percents.first,
             let end = percents.last else {
@@ -1288,7 +1302,7 @@ import Foundation
      
      - returns:                     The same instance of CLDTransformation.
      */
-    func setOffset(_ durations: [String]) -> CLDTransformation {
+    func setOffset(_ durations: [String]) -> Self {
         guard let
             start = durations.first,
             let end = durations.last else {
@@ -1308,7 +1322,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setStartOffsetAndEndOffset(startSeconds: Float, endSeconds: Float) -> CLDTransformation {
+    open func setStartOffsetAndEndOffset(startSeconds: Float, endSeconds: Float) -> Self {
         setStartOffset(seconds: startSeconds)
         setEndOffset(seconds: endSeconds)
         return self
@@ -1323,7 +1337,7 @@ import Foundation
      - returns:                     The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setStartOffsetAndEndOffset(startPercent: Int, endPercent: Int) -> CLDTransformation {
+    open func setStartOffsetAndEndOffset(startPercent: Int, endPercent: Int) -> Self {
         setStartOffset(percent: startPercent)
         setEndOffset(percent: endPercent)
         return self
@@ -1337,7 +1351,7 @@ import Foundation
      - returns:                 The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setOverlayWithLayer(_ layer: CLDLayer) -> CLDTransformation {
+    open func setOverlayWithLayer(_ layer: CLDLayer) -> Self {
         if let layerString = layer.asString() {
             return setOverlay(layerString)
         }
@@ -1354,7 +1368,7 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setUnderlayWithLayer(_ layer: CLDLayer) -> CLDTransformation {
+    open func setUnderlayWithLayer(_ layer: CLDLayer) -> Self {
         if let layerString = layer.asString() {
             return setUnderlay(layerString)
         }
@@ -1371,10 +1385,21 @@ import Foundation
      - returns:             The same instance of CLDTransformation.
      */
     @discardableResult
-    open func setTopLeftPoint(_ point: CGPoint) -> CLDTransformation {
+    open func setTopLeftPoint(_ point: CGPoint) -> Self {
         setX(Float(point.x))
         return setY(Float(point.y))
     }
+    
+    @discardableResult
+    open func setKeyframeInterval(interval: Float) -> Self {
+        return setKeyframeInterval(interval.description)
+    }
+    
+    @discardableResult
+    open func setKeyframeInterval(_ interval: String) -> Self {
+        return setParam(TransformationParam.KEYFRAME_INTERVAL, value: interval)
+    }
+
     
     // MARK: - Actions
     
@@ -1412,7 +1437,7 @@ import Foundation
     
     // MARK: - Private
     
-    fileprivate func getStringRepresentationFromParams(_ params: [String : String]) -> String? {
+    func getStringRepresentationFromParams(_ params: [String : String]) -> String? {
         
         let emptyParams = params.filter{$0.0.isEmpty || $0.1.isEmpty}
         if emptyParams.count > 0 {
@@ -1470,6 +1495,86 @@ import Foundation
         case END_OFFSET =                   "eo"
         case VIDEO_CODEC =                  "vc"
         case RAW_TRANSFORMATION =           "raw_transformation"
+        case KEYFRAME_INTERVAL =            "ki"
+    }
+
+
+    // MARK: CLDBaseParam
+    @objc public class CLDBaseParam: NSObject {
+        fileprivate let param: String
+        
+        fileprivate init(_ components: [String]) {
+            self.param = components.joined(separator: ":")
+        }
+        
+        fileprivate convenience init(_ components: String...) {
+            self.init(components)
+        }
+        
+        override public var description: String {
+            get {
+                return param
+            }
+        }
+    }
+    
+    // MARK: CLDQuality
+
+    /**
+     Image quality configuration object
+     */
+    @objc public class CLDQuality: CLDBaseParam {
+
+        /**
+         Build an instance of CLDQuality configured for fixed quality.
+
+         - parameter level: Quality level to set. Valid range is 1 through 100.
+         */
+        public static func fixed(_ level: Int) -> CLDQuality {
+            return CLDQuality(level.description)
+        }
+
+        /**
+         Build an instance of CLDQuality configured for automatic quality. See CLDAutoQuality enum for details.
+
+         - parameter level: Auto quality level.
+         */
+        public static func auto(_ level: CLDQualityAuto? = nil) -> CLDQuality {
+            if let level = level {
+                return CLDQuality("auto", level.description)
+            } else {
+                return CLDQuality("auto")
+            }
+        }
+
+        /**
+         Build an instance of CLDQuality configured to use jpegmini addon for automatic quality.
+         */
+        public static func jpegMini() -> CLDQuality {
+            return CLDQuality("jpegmini")
+        }
+    }
+
+    /**
+       Automatic optimal quality settings: the smallest file size without affecting their perceptual quality.
+         * best: Automatically calculate the optimal quality for images using a less aggressive algorithm
+         * good: Automatically calculate the optimal quality for an image
+         * eco: Automatically calculate the optimal quality for images using a more aggressive algorithm
+         * low: Automatically calculate the optimal quality for images using the most aggressive algorithm
+     */
+    @objc public enum CLDQualityAuto: Int, CustomStringConvertible {
+        case best, good, eco, low
+
+        public var description: String {
+            get {
+                switch self {
+                case .best:         return "best"
+                case .good:         return "good"
+                case .eco:          return "eco"
+                case .low:          return "low"
+                }
+            }
+        }
     }
     
     // MARK: Crop
@@ -1565,9 +1670,9 @@ import Foundation
                 case .center:           return "center"
                 case .auto:             return "auto"
                 case .face:             return "face"
-                case .faceCenter:       return "faceCenter"
+                case .faceCenter:       return "face:center"
                 case .faces:            return "faces"
-                case .facesCenter:      return "facesCenter"
+                case .facesCenter:      return "faces:center"
                 case .advFace:          return "adv_face"
                 case .advFaces:         return "adv_faces"
                 case .advEyes:          return "adv_eyes"

@@ -31,9 +31,9 @@ class AboutUsViewController: UIViewController {
             let appSchemeUrl = URL(string: appScheme)
             
             if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
-                UIApplication.shared.open(appSchemeUrl!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(appSchemeUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
-                UIApplication.shared.open(URL(string: "http://facebook.com")!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(URL(string: "http://facebook.com")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             }
         }
     }
@@ -48,10 +48,15 @@ class AboutUsViewController: UIViewController {
             let appSchemeUrl = URL(string: appScheme)
             
             if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
-                UIApplication.shared.open(appSchemeUrl!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(appSchemeUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
-                UIApplication.shared.open(URL(string: "http://instagram.com")!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(URL(string: "http://instagram.com")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             }
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
