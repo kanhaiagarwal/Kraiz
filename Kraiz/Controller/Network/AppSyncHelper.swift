@@ -48,7 +48,7 @@ class AppSyncHelper {
     
     public func getUserProfileByUsername(username: String, success: @escaping (ProfileModel) -> Void, failure: @escaping (NSError) -> Void) {
         let queryInput = GetUserProfileByUsernameQuery(username: username)
-        var cachePolicy = CachePolicy.fetchIgnoringCacheData
+        var cachePolicy = CachePolicy.returnCacheDataAndFetch
         
         if !APPUtilites.isInternetConnectionAvailable() {
             cachePolicy = CachePolicy.returnCacheDataDontFetch
@@ -71,7 +71,7 @@ class AppSyncHelper {
                                 print("Number of profiles is greater than 0")
                                 if let userProfile = snapshot[0] as? [String : Any?] {
                                     print("UserProfile is not nil")
-                                    profileModel = ProfileModel(id: userProfile["id"] as? String, username: userProfile["username"] as? String, mobileNumber: userProfile["mobileNumber"] as? String, name: userProfile["name"] as? String, gender: (userProfile["gender"] as? Gender).map { $0.rawValue }, dob: userProfile["dob"] as? String, profilePicId: userProfile["profilePicId"] as? String)
+                                    profileModel = ProfileModel(id: nil, username: userProfile["username"] as? String, mobileNumber: userProfile["mobileNumber"] as? String, name: userProfile["name"] as? String, gender: (userProfile["gender"] as? Gender).map { $0.rawValue }, dob: userProfile["dob"] as? String, profilePicId: userProfile["profilePicId"] as? String)
                                 }
                             } else {
                                 print("Number of profiles is 0")
@@ -91,7 +91,7 @@ class AppSyncHelper {
     public func getUserProfile(userId: String, success: @escaping (ProfileModel) -> Void, failure: @escaping (NSError) -> Void) {
         let getQuery = GetUserProfileQuery(id: userId)
         print("getQuery.id: \(getQuery.id)")
-        var cachePolicy = CachePolicy.fetchIgnoringCacheData
+        var cachePolicy = CachePolicy.returnCacheDataAndFetch
         if !APPUtilites.isInternetConnectionAvailable() {
             print("Internet Connection is not available")
             cachePolicy = .returnCacheDataDontFetch
@@ -138,6 +138,31 @@ class AppSyncHelper {
         }
     }
     
+    func getUserConnection(userId: String!, mobileNumber: String!, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
+        let fetchConnectionQuery = GetUserConnectionQuery(mobileNumber: mobileNumber, userId: userId)
+        var cachePolicy = CachePolicy.returnCacheDataAndFetch
+        if !APPUtilites.isInternetConnectionAvailable() {
+            print("Internet Connection is not available")
+            cachePolicy = .returnCacheDataDontFetch
+        }
+        
+        if appSyncClient == nil {
+            APPUtilites.displayErrorSnackbar(message: "Error in the user session. Please login again")
+        } else {
+            appSyncClient?.fetch(query: fetchConnectionQuery, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .background), resultHandler: { (result, error) in
+                if error != nil {
+                    print("Error")
+                    print(error)
+                    failure(error as! NSError)
+                } else {
+                    print("****************************************")
+                    print("FetchConnection: \(result)")
+                }
+            })
+        }
+        
+    }
+    
     public func createUserProfile(profile: ProfileModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
         let profileInput = CreateUserProfileInput.init(id: profile.getId()!, mobileNumber: profile.getMobileNumber()!, username: profile.getUsername()!, name: profile.getName(), dob: profile.getDob()?.description, gender: profile.getGender().map { Gender(rawValue: $0) }, profilePicId: profile.getProfilePicId())
         
@@ -151,6 +176,17 @@ class AppSyncHelper {
                 } else {
                     if result?.errors == nil {
                         success(true)
+                        let connectionInput = CreateUserConnectionInput.init(mobileNumber: profile.getMobileNumber()!, userId: profile.getId()!, managedChannelIds: "{}", queuedChannelIds: "{}", pendingVibeAccessIds: "{}", pendingVibeDeleteIds: "{}")
+                        let createConnectionQuery = CreateUserConnectionMutation(input: connectionInput)
+                        self.appSyncClient?.perform(mutation: createConnectionQuery, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
+                            print("******************************************")
+                            if error != nil {
+                                print("Error")
+                                print(error)
+                            } else {
+                                print("User Connection Creation is a success")
+                            }
+                        })
                     } else {
                         success(false)
                     }

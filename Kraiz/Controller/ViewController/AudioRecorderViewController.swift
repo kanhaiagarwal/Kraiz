@@ -55,7 +55,11 @@ class AudioRecorderViewController: UIViewController, AVAudioRecorderDelegate, AV
             NSLog(error.localizedDescription)
         }
     }
-    
+
+    @IBAction func closePressed(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
     func preparePlayer() {
         do {
             try audioPlayer = AVAudioPlayer(contentsOf: getFileUrl())

@@ -28,6 +28,17 @@ mutation UpdateUserProfile($input: UpdateUserProfileInput!) {
     }
 }
 
+mutation CreateUserConnection($input: CreateUserConnectionInput!) {
+    createUserConnection(input: $input) {
+        mobileNumber
+        userId
+        pendingVibeAccessIds
+        pendingVibeDeleteIds
+        managedChannelIds
+        queuedChannelIds
+    }
+}
+
 query GetUserProfile($id: ID!) {
     getUserProfile(id: $id) {
         id
@@ -42,7 +53,6 @@ query GetUserProfile($id: ID!) {
 
 query GetUserProfileByUsername($username: String!) {
     getUserProfileByUsername(username: $username) {
-        id
         mobileNumber
         username
         name
@@ -52,14 +62,24 @@ query GetUserProfileByUsername($username: String!) {
     }
 }
 
-query GetUserProfileByMobileNumber($mobileNumber: String!) {
+query GetUserProfileByMobileNumber($mobileNumber: ID!) {
     getUserProfileByMobileNumber(mobileNumber: $mobileNumber) {
-        id
         mobileNumber
         username
         name
         gender
         profilePicId
         dob
+    }
+}
+
+query GetUserConnection($mobileNumber: ID!, $userId: ID!) {
+    getUserConnection(mobileNumber: $mobileNumber, userId: $userId) {
+        userId
+        mobileNumber
+        managedChannelIds
+        queuedChannelIds
+        pendingVibeAccessIds
+        pendingVibeDeleteIds
     }
 }

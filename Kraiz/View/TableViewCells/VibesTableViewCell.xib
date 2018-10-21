@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="TimesNewRoman.ttf">
-            <string>TimesNewRomanPSMT</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -27,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3KM-Rg-w3M" userLabel="profilePicture">
-                        <rect key="frame" x="10" y="18.5" width="122.5" height="123"/>
+                        <rect key="frame" x="10" y="19.5" width="122.5" height="122.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="3KM-Rg-w3M" secondAttribute="height" multiplier="1:1" id="53Y-FM-BqV"/>
                         </constraints>
@@ -36,10 +29,10 @@
                         <rect key="frame" x="107.5" y="101.5" width="282.5" height="40.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ea-4F-zcM" userLabel="vibeNameContainer">
-                                <rect key="frame" x="2" y="2" width="280.5" height="37"/>
+                                <rect key="frame" x="2" y="2" width="280.5" height="36.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="show-password" translatesAutoresizingMaskIntoConstraints="NO" id="eu4-1d-0px">
-                                        <rect key="frame" x="247.5" y="7" width="23" height="23"/>
+                                        <rect key="frame" x="248" y="7" width="22.5" height="22.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="eu4-1d-0px" secondAttribute="height" multiplier="1:1" id="sps-j7-chS"/>
                                         </constraints>
@@ -53,7 +46,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hello" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="21Q-iq-EqS">
-                                <rect key="frame" x="15" y="2" width="224.5" height="37"/>
+                                <rect key="frame" x="15" y="2" width="225" height="36.5"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -89,19 +82,19 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pm8-VP-wpK">
-                        <rect key="frame" x="265.5" y="70.5" width="21.5" height="21"/>
+                        <rect key="frame" x="265.5" y="70.5" width="21" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Pm8-VP-wpK" secondAttribute="height" multiplier="1:1" id="TUR-BT-uRT"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rish_hdjdvdhvjd" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjs-sQ-A1m">
-                        <rect key="frame" x="140" y="18" width="180" height="19"/>
+                        <rect key="frame" x="140" y="19.5" width="180" height="19"/>
                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10/12/2018" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbm-KC-kmV">
-                        <rect key="frame" x="320" y="18" width="80" height="19"/>
+                        <rect key="frame" x="320" y="19.5" width="70" height="19"/>
                         <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
                         <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -116,6 +109,7 @@
                     <constraint firstItem="JoR-p4-sLr" firstAttribute="top" secondItem="1Td-Fk-Faa" secondAttribute="bottom" constant="10" id="EFD-c0-l35"/>
                     <constraint firstItem="1Td-Fk-Faa" firstAttribute="leading" secondItem="3KM-Rg-w3M" secondAttribute="trailing" constant="10" id="IdR-Cu-OMy"/>
                     <constraint firstItem="JoR-p4-sLr" firstAttribute="leading" secondItem="3KM-Rg-w3M" secondAttribute="trailing" constant="-25" id="NWF-uP-agk"/>
+                    <constraint firstItem="fbm-KC-kmV" firstAttribute="trailing" secondItem="2Ea-4F-zcM" secondAttribute="trailing" id="OJU-qT-4yx"/>
                     <constraint firstItem="Pm8-VP-wpK" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.13" id="RvS-hw-AML"/>
                     <constraint firstItem="H3n-bf-Wxr" firstAttribute="centerY" secondItem="lug-Fc-ewb" secondAttribute="centerY" id="S40-jA-wxj"/>
                     <constraint firstItem="xjs-sQ-A1m" firstAttribute="top" secondItem="3KM-Rg-w3M" secondAttribute="top" id="V0W-Pa-F4I"/>
@@ -123,7 +117,6 @@
                     <constraint firstItem="lug-Fc-ewb" firstAttribute="leading" secondItem="1Td-Fk-Faa" secondAttribute="trailing" constant="20" id="Wv5-jI-3iS"/>
                     <constraint firstItem="3KM-Rg-w3M" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bJl-Up-FbK"/>
                     <constraint firstItem="fbm-KC-kmV" firstAttribute="top" secondItem="3KM-Rg-w3M" secondAttribute="top" id="d6S-bu-0aA"/>
-                    <constraint firstAttribute="trailing" secondItem="fbm-KC-kmV" secondAttribute="trailing" id="dhR-gc-8Cg"/>
                     <constraint firstItem="Pm8-VP-wpK" firstAttribute="centerY" secondItem="H3n-bf-Wxr" secondAttribute="centerY" id="egX-nH-R16"/>
                     <constraint firstItem="lug-Fc-ewb" firstAttribute="centerY" secondItem="1Td-Fk-Faa" secondAttribute="centerY" id="gh9-zq-w2R"/>
                     <constraint firstItem="Pm8-VP-wpK" firstAttribute="leading" secondItem="H3n-bf-Wxr" secondAttribute="trailing" constant="20" id="hhj-ks-F7m"/>
@@ -154,6 +147,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="show-password" width="15" height="15"/>
+        <image name="show-password" width="30" height="30"/>
     </resources>
 </document>
