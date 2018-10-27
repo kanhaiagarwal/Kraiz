@@ -47,6 +47,10 @@ struct PhotoEntity {
     }
 }
 
+protocol PhotosInputProtocol {
+    func photosInput(photos: [PhotoEntity])
+}
+
 class PhotosInputViewController: UIViewController, CropViewControllerDelegate {
 
     @IBOutlet weak var photosCollectionView: UICollectionView!
@@ -60,17 +64,20 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate {
     let NUMBER_OF_PHOTOS_IN_ROW = 3
     let MAX_IMAGES = 9
 
+    var delegate: PhotosInputProtocol?
+
     var numberOfImagesSelected = 0
-    var selectedImages = [PhotoEntity]()
+    var selectedImages : [PhotoEntity] = []
     var presentCropState : CROP_STATES = .APPEND_AT_THE_END
     var presentImageToBeCroppped : Int = -1
     var updateImageInGrid = false
-    var shouldCropSingleImage = false
     var imagesToBeCropped = [PHAsset]()
     var currentCropIndex : Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("selectedImages.count: \(selectedImages.count)")
 
         photosCollectionView.delegate = self
         photosCollectionView.dataSource = self
@@ -101,11 +108,24 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate {
     }
 
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        print("No Action to perform right now")
     }
 
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        print("No Action To Perform Right Now")
+        print("inside nextButtonPressed")
+        if selectedImages.count == 0 {
+            print("selectedImages count is 0")
+            let action = UIAlertAction(title: "Okay", style: .default, handler: { (action) in
+                self.dismiss(animated: true, completion: nil)
+            })
+            let alertController = UIAlertController(title: "No Images in the Vibe", message: "Please add minimum one image in the Vibe", preferredStyle: .alert)
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            print("selectedImages count is greater than 0")
+            delegate?.photosInput(photos: selectedImages)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
@@ -124,9 +144,18 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photosCollectionView.dequeueReusableCell(withReuseIdentifier: CELL_IDENTIFIER, for: indexPath) as! PhotoInputCollectionViewCell
-        cell.photo.isHidden = true
-        cell.caption.isHidden = true
-        cell.crossButton.isHidden = true
+        if selectedImages.count > indexPath.row {
+            cell.photo.isHidden = false
+            cell.photo.image = selectedImages[indexPath.row].image!
+            cell.caption.isHidden = false
+            cell.caption.text = selectedImages[indexPath.row].caption == nil ? DEFAULT_CELL_CAPTION : selectedImages[indexPath.row].caption!
+            cell.crossButton.isHidden = false
+        } else {
+            cell.photo.isHidden = true
+            cell.caption.isHidden = true
+            cell.crossButton.isHidden = true
+        }
+        
         cell.crossButton.tag = indexPath.section * NUMBER_OF_PHOTOS_IN_ROW + indexPath.row
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.black.cgColor
@@ -145,13 +174,12 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
             // The user is selecting the image for the first time.
             // Or there are no images in the image grid.
             
-            imagePickerVC.maxNumberOfSelections = 9
+            imagePickerVC.maxNumberOfSelections = MAX_IMAGES
             bs_presentImagePickerController(imagePickerVC, animated: true, select: nil, deselect: nil, cancel: nil, finish: { (assets) in
                 self.presentCropState = .APPEND_AT_THE_END
                 DispatchQueue.main.async {
                     self.imagesToBeCropped = assets
                     self.currentCropIndex = 0
-                    self.shouldCropSingleImage = false
                     self.cropAndUpdateImagesInGrid(assets: assets, currentImageIndex: self.currentCropIndex)
                 }
             }, completion: nil, selectLimitReached: { (maxImages) in
@@ -163,13 +191,12 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
         } else if cellSelected > self.numberOfImagesSelected - 1 {
             // The images are present. But we are selecting the cell where the image is not loaded, and we want to populate a single image in the next empty cell.
             
-            imagePickerVC.maxNumberOfSelections = 1
+            imagePickerVC.maxNumberOfSelections = MAX_IMAGES - selectedImages.count
             bs_presentImagePickerController(imagePickerVC, animated: true, select: nil, deselect: nil, cancel: nil, finish: { (assets) in
                 self.presentCropState = .APPEND_AT_THE_END
                 DispatchQueue.main.async {
                     self.imagesToBeCropped = assets
                     self.currentCropIndex = 0
-                    self.shouldCropSingleImage = true
                     self.cropAndUpdateImagesInGrid(assets: assets, currentImageIndex: self.currentCropIndex)
                 }
             }, completion: nil, selectLimitReached: { (maxImages) in
@@ -190,7 +217,6 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
                         DispatchQueue.main.async {
                             self.imagesToBeCropped = assets
                             self.currentCropIndex = 0
-                            self.shouldCropSingleImage = true
                             self.cropAndUpdateImagesInGrid(assets: assets, currentImageIndex: self.currentCropIndex)
                         }
                     }, completion: nil, selectLimitReached: { (maxImages) in
@@ -227,14 +253,10 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
                 cell.caption.text = (photoEntity.caption != nil) ? photoEntity.caption : self.DEFAULT_CELL_CAPTION
                 cell.crossButton.isHidden = false
                 cell.photo.image = self.selectedImages[self.presentImageToBeCroppped].image!
-                if self.shouldCropSingleImage {
-                    cropViewController.dismiss(animated: true, completion: nil)
-                } else {
-                    self.currentCropIndex = self.currentCropIndex + 1
-                    cropViewController.dismiss(animated: true, completion: {
-                        self.cropAndUpdateImagesInGrid(assets: self.imagesToBeCropped, currentImageIndex: self.currentCropIndex)
-                    })
-                }
+                self.currentCropIndex = self.currentCropIndex + 1
+                cropViewController.dismiss(animated: true, completion: {
+                    self.cropAndUpdateImagesInGrid(assets: self.imagesToBeCropped, currentImageIndex: self.currentCropIndex)
+                })
             } else if self.presentCropState == .EDIT_PRESENT {
                 self.selectedImages[self.presentImageToBeCroppped].image = image
                 self.selectedImages[self.presentImageToBeCroppped].caption = nil

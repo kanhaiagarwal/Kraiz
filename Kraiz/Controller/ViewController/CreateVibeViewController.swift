@@ -72,8 +72,8 @@ class CreateVibeViewController: UIViewController {
     let TEXT_INPUT_SEGUE : String = "gotoTextInput"
     
     let MAX_IMAGES_TO_BE_SELECTED = 9
-    
-    var imagesSelectedFromGallery = [PHAsset]()
+
+    var photosSelected = [PhotoEntity]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,9 +117,19 @@ class CreateVibeViewController: UIViewController {
     }
     
     @IBAction func onClickPhotosCross(_ sender: UIButton) {
-        imagesSelectedFromGallery = []
-        isImagesSelected = false
-        performTickAnimation(checkbox: photosCheckbox, isSelected: isImagesSelected)
+        let alert = UIAlertController(title: "Remove Photos", message: "Are you sure you want to remove the photos from the vibe", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            self.photosSelected = []
+            self.isImagesSelected = false
+            self.photosCheckbox.isHidden = true
+            self.photosImageView.image = UIImage(named: "photos-unselected")
+            self.photosLabel.textColor = self.unselectedColor
+            self.photosCrossButton.isHidden = true
+            self.photosCrossButton.isEnabled = false
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func onClickVideoCross(_ sender: UIButton) {
@@ -251,37 +261,19 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
     
     /// Action performed on click of the Photos View
     @objc func onClickImagesIcon() {
-        if isImagesSelected {
-            performSegue(withIdentifier: PHOTOS_INPUT_SEGUE, sender: self)
-            isImagesSelected = false
-            photosCheckbox.isHidden = true
-            photosImageView.image = UIImage(named: "photos-unselected")
-            photosLabel.textColor = unselectedColor
-            photosCrossButton.isHidden = true
-            photosCrossButton.isEnabled = false
-        } else {
-//            openImagePicker()
-            isImagesSelected = true
-            self.isImagesSelected = true
-            self.photosCheckbox.isHidden = false
-            self.photosImageView.image = UIImage(named: "photos-selected")
-            self.photosLabel.textColor = self.selectedColor
-            self.photosCrossButton.isHidden = false
-            self.photosCrossButton.isEnabled = true
-        }
-        performTickAnimation(checkbox: photosCheckbox, isSelected: isImagesSelected)
+        performSegue(withIdentifier: PHOTOS_INPUT_SEGUE, sender: self)
     }
-    
+
     /// Action performed on click of the Video View
     @objc func onClickVideoIcon() {
             pickVideoFromPhone()
     }
-    
+
     /// Action performed on click of the Audio View
     @objc func onClickAudioIcon() {
         performSegue(withIdentifier: AUDIO_RECORDER_SEGUE, sender: self)
     }
-    
+
     /// Action performed on click of the Appreciation View
     @objc func onClickAppreciationIcon() {
         if isAppreciationSelected {
@@ -294,22 +286,22 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
             appreciationLabel.textColor = selectedColor
         }
     }
-    
+
     /// Action to perform on clicking the Review Icon
     @objc func onClickReviewIcon() {
         // Show the story here.
     }
-    
+
     /// Action to perform on clicking the Continue Icon
     @objc func onClickContinueIcon() {
         performSegue(withIdentifier: FINAL_APPROVAL_SEGUE, sender: self)
     }
-    
+
     /// Action to perform on clicking the My Vibe Icon
     @objc func onClickMyVibeIcon() {
         performSegue(withIdentifier: MY_VIBE_SEGUE, sender: self)
     }
-    
+
     /// Action performed on click of the Selection Button.
     @objc func onClickSelectionButton() {
         selectionButtonView.layer.sublayers = nil
@@ -338,8 +330,7 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
             })
         }
     }
-    
-    
+
     /// Performs the tick animation.
     /// Tick is displayed if the view is selected.
     /// - Parameters
@@ -376,7 +367,7 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
             layer.add(pathAnimation, forKey: "pathanimation")
         }
     }
-    
+
     /// Draws path in selection button
     /// - Parameter: Path Name
     func drawInSelectionButton(pathName: String) {
@@ -390,14 +381,14 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
         
         selectionButtonView.layer.addSublayer(layer)
     }
-    
+
     /// Sets the shadow layer of the selection button.
     func setShadowLayerOfSelectionButton() {
         selectionButtonView.layer.shadowColor = UIColor.black.cgColor
         selectionButtonView.layer.shadowOffset = CGSize(width: 0, height: 0)
         selectionButtonView.layer.shadowOpacity = 1
     }
-    
+
     /// Get the path for the tick mark of the selection button.
     /// - Returns: Tick Path.
     func getSelectionButtonTickPath() -> UIBezierPath {
@@ -412,7 +403,7 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
         
         return path
     }
-    
+
     /// Gets the path for the cross mark of the selection button.
     /// - Returns: Cross Path
     func getSelectionButtonCrossPath() -> UIBezierPath {
@@ -428,7 +419,7 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
         
         return path
     }
-    
+
     /// Function to pick the video from the Photo Library.
     public func pickVideoFromPhone() {
         let imagePickerController = UIImagePickerController()
@@ -439,11 +430,11 @@ extension CreateVibeViewController: UIImagePickerControllerDelegate, UINavigatio
         self.present(imagePickerController, animated: true) {
         }
     }
-    
+
     /// Method called after video picking is completed from the Photo Library.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         if let videoUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL {
             print("Media URL: \(videoUrl.absoluteString)")
@@ -465,29 +456,10 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         }
         performTickAnimation(checkbox: videoCheckbox, isSelected: isVideoSelected)
     }
-    
-    /// Method to open a custom Image Picker
-    func openImagePicker() {
-        let imagePicker = BSImagePickerViewController()
-        
-        imagePicker.maxNumberOfSelections = MAX_IMAGES_TO_BE_SELECTED
-        imagePicker.selectionCharacter = "√"
-        
-        bs_presentImagePickerController(imagePicker, animated: true, select: { (asset: PHAsset) -> Void in
-            print("Select: \(asset)")
-        }, deselect: { (asset: PHAsset) -> Void in
-            print("Deselect: \(asset)")
-        }, cancel: { (assets: [PHAsset]) -> Void in
-            print("Cancel: \(assets)")
-        }, finish: { (assets: [PHAsset]) -> Void in
-            print("Finish: \(assets)")
-            self.imagesSelectedFromGallery = assets
-            self.isImagesSelected = true
-        }, completion: nil)
-    }
 }
 
-extension CreateVibeViewController: AudioRecorderProtocol, LetterInputProtocol {
+extension CreateVibeViewController: AudioRecorderProtocol, LetterInputProtocol, PhotosInputProtocol {
+
     func letterInput(backgroundImage: Int, text: String) {
         letterBackground = backgroundImage
         letterText = text
@@ -500,8 +472,24 @@ extension CreateVibeViewController: AudioRecorderProtocol, LetterInputProtocol {
         
         performTickAnimation(checkbox: letterCheckbox, isSelected: isLetterSelected)
     }
-    
-    
+
+    func photosInput(photos: [PhotoEntity]) {
+        if photos.count > 0 {
+            photosSelected = []
+            for i in 0..<photos.count {
+                photosSelected.append(photos[i])
+            }
+            isImagesSelected = true
+            photosCheckbox.isHidden = false
+            photosImageView.image = UIImage(named: "photos-selected")
+            photosLabel.textColor = selectedColor
+            photosCrossButton.isHidden = false
+            photosCrossButton.isEnabled = true
+        }
+        print("photosSelected.count inside the delegate method: \(photosSelected.count)")
+        performTickAnimation(checkbox: photosCheckbox, isSelected: isImagesSelected)
+    }
+
     func audioRecording(recordingURL: URL) {
         print("Inside the delegate audioRecording")
         if (recordingURL.absoluteString != "") {
@@ -536,6 +524,12 @@ extension CreateVibeViewController: AudioRecorderProtocol, LetterInputProtocol {
             destinationVC.delegate = self
             destinationVC.backgroundSelected = letterBackground
             destinationVC.letterFromVC = letterText
+        } else if segue.identifier == PHOTOS_INPUT_SEGUE {
+            let destinationVC = segue.destination as! PhotosInputViewController
+            destinationVC.delegate = self
+            print("photosSelected.count inside the prepare method: \(photosSelected.count)")
+            destinationVC.numberOfImagesSelected = photosSelected.count
+            destinationVC.selectedImages = photosSelected
         }
     }
     
