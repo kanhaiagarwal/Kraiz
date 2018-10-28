@@ -51,7 +51,14 @@ protocol PhotosInputProtocol {
     func photosInput(photos: [PhotoEntity])
 }
 
-class PhotosInputViewController: UIViewController, CropViewControllerDelegate {
+class PhotosInputViewController: UIViewController, CropViewControllerDelegate, ImageCaptionsProtocol {
+    func setImageCaptions(photosSelected: [PhotoEntity]) {
+        self.selectedImages = photosSelected
+        self.numberOfImagesSelected = selectedImages.count
+        
+        photosCollectionView.reloadData()
+    }
+    
 
     @IBOutlet weak var photosCollectionView: UICollectionView!
     @IBOutlet weak var nextButton: UIButton!
@@ -61,11 +68,13 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate {
 
     let CELL_IDENTIFIER = "photoCell"
     let DEFAULT_CELL_CAPTION = "No Caption"
+    let IMAGE_CAPTIONS_SEGUE = "gotoImageCaptions"
     let NUMBER_OF_PHOTOS_IN_ROW = 3
     let MAX_IMAGES = 9
 
     var delegate: PhotosInputProtocol?
 
+    var selectedCell = 0
     var numberOfImagesSelected = 0
     var selectedImages : [PhotoEntity] = []
     var presentCropState : CROP_STATES = .APPEND_AT_THE_END
@@ -207,6 +216,7 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
         } else {
             // Cell selected is the cell in between of the selected images.
 
+            let mainVC = self
             let replaceImageAction = UIAlertAction(title: "Replace Image", style: .default) { (action) in
                 self.dismiss(animated: true, completion: nil)
                 imagePickerVC.maxNumberOfSelections = 1
@@ -227,7 +237,8 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
                 }
             }
             let captionAction = UIAlertAction(title: "Add / Edit Caption", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
+                mainVC.selectedCell = indexPath.row
+                mainVC.performSegue(withIdentifier: mainVC.IMAGE_CAPTIONS_SEGUE, sender: mainVC)
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
                 self.dismiss(animated: true, completion: nil)
@@ -346,5 +357,14 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
         alertController.addAction(removeAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == IMAGE_CAPTIONS_SEGUE {
+            let destinationVC = segue.destination as! ImageCaptionsViewController
+            destinationVC.delegate = self
+            destinationVC.photosSelected = selectedImages
+            destinationVC.selectedCell = selectedCell
+        }
     }
 }

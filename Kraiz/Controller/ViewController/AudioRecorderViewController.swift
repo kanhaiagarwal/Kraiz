@@ -57,7 +57,14 @@ class AudioRecorderViewController: UIViewController, AVAudioRecorderDelegate, AV
     }
 
     @IBAction func closePressed(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        let alertController = UIAlertController(title: "Close Audio Recorder", message: "Are you sure you want to close the audio recorder? Your recording would not be saved.", preferredStyle: .alert)
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     func preparePlayer() {
@@ -158,7 +165,7 @@ class AudioRecorderViewController: UIViewController, AVAudioRecorderDelegate, AV
                     print("recordingUrl is nil")
                     self.delegate?.audioRecording(recordingURL: URL(fileURLWithPath: ""))
                 }
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
             }
         }
         let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)

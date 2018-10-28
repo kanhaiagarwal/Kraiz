@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		571E508C2185807100271314 /* ImageCaptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571E508B2185807100271314 /* ImageCaptionsViewController.swift */; };
+		571E508E2185880700271314 /* ImageCaptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571E508D2185880700271314 /* ImageCaptionCollectionViewCell.swift */; };
 		57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */; };
 		57ABED84217CF19D009F3FC7 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57ABED82217CF19C009F3FC7 /* Realm.framework */; };
 		57ABED85217CF19D009F3FC7 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57ABED82217CF19C009F3FC7 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -57,8 +59,6 @@
 		B54073012120150400122FD0 /* PhotoInputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54073002120150400122FD0 /* PhotoInputCollectionViewCell.swift */; };
 		B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54073022120188F00122FD0 /* PhotosInputViewController.swift */; };
 		B54579A0213F010900C7424F /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545799F213F010900C7424F /* StartViewController.swift */; };
-		B5523B852120BFDF00CAC7BF /* ImageTextCombinationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5523B832120BFDF00CAC7BF /* ImageTextCombinationViewController.swift */; };
-		B5523B862120BFDF00CAC7BF /* ImageTextCombinationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */; };
 		B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */; };
 		B55346AE212B1FD8005353E4 /* VibeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55346AD212B1FD8005353E4 /* VibeModel.swift */; };
 		B5652C6E21482D9900B15E8F /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B5652C6D21482D9900B15E8F /* schema.json */; };
@@ -100,6 +100,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		571E508B2185807100271314 /* ImageCaptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptionsViewController.swift; sourceTree = "<group>"; };
+		571E508D2185880700271314 /* ImageCaptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionModel.swift; sourceTree = "<group>"; };
 		57ABED82217CF19C009F3FC7 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		57ABED83217CF19D009F3FC7 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
@@ -152,8 +154,6 @@
 		B54073002120150400122FD0 /* PhotoInputCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInputCollectionViewCell.swift; sourceTree = "<group>"; };
 		B54073022120188F00122FD0 /* PhotosInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosInputViewController.swift; sourceTree = "<group>"; };
 		B545799F213F010900C7424F /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		B5523B832120BFDF00CAC7BF /* ImageTextCombinationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCombinationViewController.swift; sourceTree = "<group>"; };
-		B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTextCombinationViewController.xib; sourceTree = "<group>"; };
 		B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllImagesTextViewController.swift; sourceTree = "<group>"; };
 		B55346AD212B1FD8005353E4 /* VibeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeModel.swift; sourceTree = "<group>"; };
 		B5652C6D21482D9900B15E8F /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
@@ -234,6 +234,7 @@
 				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
 				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
 				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
+				571E508B2185807100271314 /* ImageCaptionsViewController.swift */,
 				B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */,
 				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
 				B5C94319212947F8000DCF7A /* MyVibeViewController.swift */,
@@ -298,8 +299,6 @@
 				B5BC1CF321615A5E008CE09F /* UIView */,
 				B54072FF212014E100122FD0 /* CollectionViewCells */,
 				B51DF234211F15E3009896CC /* TableViewCells */,
-				B5523B832120BFDF00CAC7BF /* ImageTextCombinationViewController.swift */,
-				B5523B842120BFDF00CAC7BF /* ImageTextCombinationViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -380,6 +379,7 @@
 			children = (
 				B51DF20E211F13B7009896CC /* LetterInputCollectionViewCell.swift */,
 				B54073002120150400122FD0 /* PhotoInputCollectionViewCell.swift */,
+				571E508D2185880700271314 /* ImageCaptionCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -503,7 +503,6 @@
 				B513582F215D365C00139854 /* Hero.otf in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				B5BC1CF921615B61008CE09F /* ChatsTableViewCell.xib in Resources */,
-				B5523B862120BFDF00CAC7BF /* ImageTextCombinationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,12 +636,13 @@
 				B5A65832214D05A00003C034 /* MediaHelper.swift in Sources */,
 				B54073012120150400122FD0 /* PhotoInputCollectionViewCell.swift in Sources */,
 				B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */,
-				B5523B852120BFDF00CAC7BF /* ImageTextCombinationViewController.swift in Sources */,
+				571E508C2185807100271314 /* ImageCaptionsViewController.swift in Sources */,
 				B5A054E92169E6E400BA21AD /* Kraiz-Bridging-Header.m in Sources */,
 				B51DF21D211F13B9009896CC /* ProfileViewController.swift in Sources */,
 				57ABED8D217CF56E009F3FC7 /* LocalCache.swift in Sources */,
 				B5D90894214C0853000D3E2B /* InviteFriendsViewController.swift in Sources */,
 				B58B934E21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift in Sources */,
+				571E508E2185880700271314 /* ImageCaptionCollectionViewCell.swift in Sources */,
 				B51DF252211F17DA009896CC /* DraftsTableViewCell.swift in Sources */,
 				B51DF227211F13B9009896CC /* LetterInputViewController.swift in Sources */,
 				B51DF22F211F13B9009896CC /* AudioRecorderViewController.swift in Sources */,
