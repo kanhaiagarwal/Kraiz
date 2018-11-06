@@ -61,14 +61,14 @@ class VibesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             connections.append(ConnectionModel(username: "username_\(i + 1)", vibeName: "vibe \(i + 1)", isLetterPresent: true, isPhotosPresent: true, isVideoPresent: true, isAudioPresent: true, timestamp: "10/11/2018", isUserSender: i % 2 == 0 ? true : false))
         }
         
-        AppSyncHelper.shared.getUserConnection(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, mobileNumber: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)!, success: {
-            print("**************************************************")
-            print("Successfully fetched the user connection")
-        }) { (error) in
-            print("**************************************************")
-            print("Error in fetching the user connection")
-            print(error)
-        }
+//        AppSyncHelper.shared.getUserConnection(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, mobileNumber: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)!, success: {
+//            print("**************************************************")
+//            print("Successfully fetched the user connection")
+//        }) { (error) in
+//            print("**************************************************")
+//            print("Error in fetching the user connection")
+//            print(error)
+//        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

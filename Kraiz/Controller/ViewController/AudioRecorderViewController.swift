@@ -52,6 +52,8 @@ class AudioRecorderViewController: UIViewController, AVAudioRecorderDelegate, AV
             audioRecorder.delegate = self
             audioRecorder.prepareToRecord()
         } catch let error {
+            print("*********************************************")
+            print("Error in setting the audio recorder")
             NSLog(error.localizedDescription)
         }
     }
@@ -70,8 +72,12 @@ class AudioRecorderViewController: UIViewController, AVAudioRecorderDelegate, AV
     func preparePlayer() {
         do {
             try audioPlayer = AVAudioPlayer(contentsOf: getFileUrl())
+            print("audioPlayer: \(audioPlayer.debugDescription)")
             audioPlayer.delegate = self
         } catch let error {
+            print("************************************************")
+            print("Error in preparing the player")
+            print(error.localizedDescription)
             NSLog(error.localizedDescription)
         }
     }

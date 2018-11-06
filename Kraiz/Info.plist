@@ -28,6 +28,8 @@
 		<string>instagram</string>
 		<string>whatsapp</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The App needs to access the microphone to record the audio</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
