@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		571E508C2185807100271314 /* ImageCaptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571E508B2185807100271314 /* ImageCaptionsViewController.swift */; };
 		571E508E2185880700271314 /* ImageCaptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571E508D2185880700271314 /* ImageCaptionCollectionViewCell.swift */; };
+		571F44C621A47B46001C033B /* VibeCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F44C521A47B46001C033B /* VibeCategories.swift */; };
 		57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */; };
 		57ABED84217CF19D009F3FC7 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57ABED82217CF19C009F3FC7 /* Realm.framework */; };
 		57ABED85217CF19D009F3FC7 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57ABED82217CF19C009F3FC7 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -16,6 +17,10 @@
 		57ABED87217CF19D009F3FC7 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57ABED83217CF19D009F3FC7 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57ABED8D217CF56E009F3FC7 /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8C217CF56E009F3FC7 /* LocalCache.swift */; };
 		57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */; };
+		57BD53E8219841BF001B1010 /* PublicVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */; };
+		57BD53EA219841F0001B1010 /* FriendsVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */; };
+		57BD53ED2199CD38001B1010 /* VibesCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */; };
+		57BD53EE2199CD38001B1010 /* VibesCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57BD53EC2199CD38001B1010 /* VibesCategoryTableViewCell.xib */; };
 		B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507EF5C21244886007FC9F1 /* AWSConstants.swift */; };
 		B513582F215D365C00139854 /* Hero.otf in Resources */ = {isa = PBXBuildFile; fileRef = B513582E215D365C00139854 /* Hero.otf */; };
 		B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */; };
@@ -102,11 +107,16 @@
 /* Begin PBXFileReference section */
 		571E508B2185807100271314 /* ImageCaptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptionsViewController.swift; sourceTree = "<group>"; };
 		571E508D2185880700271314 /* ImageCaptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptionCollectionViewCell.swift; sourceTree = "<group>"; };
+		571F44C521A47B46001C033B /* VibeCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeCategories.swift; sourceTree = "<group>"; };
 		57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionModel.swift; sourceTree = "<group>"; };
 		57ABED82217CF19C009F3FC7 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		57ABED83217CF19D009F3FC7 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		57ABED8C217CF56E009F3FC7 /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
 		57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
+		57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibesViewController.swift; sourceTree = "<group>"; };
+		57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVibesViewController.swift; sourceTree = "<group>"; };
+		57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibesCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		57BD53EC2199CD38001B1010 /* VibesCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VibesCategoryTableViewCell.xib; sourceTree = "<group>"; };
 		77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.release.xcconfig"; sourceTree = "<group>"; };
 		AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.debug.xcconfig"; sourceTree = "<group>"; };
 		B507EF5C21244886007FC9F1 /* AWSConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSConstants.swift; sourceTree = "<group>"; };
@@ -232,6 +242,7 @@
 				B51DF214211F13B8009896CC /* DraftsViewController.swift */,
 				B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */,
 				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
+				57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */,
 				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
 				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
 				571E508B2185807100271314 /* ImageCaptionsViewController.swift */,
@@ -240,6 +251,7 @@
 				B5C94319212947F8000DCF7A /* MyVibeViewController.swift */,
 				B54073022120188F00122FD0 /* PhotosInputViewController.swift */,
 				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
+				57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */,
 				B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */,
 				B51DF207211F13B7009896CC /* SignInViewController.swift */,
 				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
@@ -318,6 +330,8 @@
 				B51DF23C211F15E3009896CC /* ProfileTableViewCell.xib */,
 				B51DF23D211F15E3009896CC /* VibesTableViewCell.swift */,
 				B51DF23E211F15E3009896CC /* VibesTableViewCell.xib */,
+				57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */,
+				57BD53EC2199CD38001B1010 /* VibesCategoryTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -341,6 +355,7 @@
 				B507EF5C21244886007FC9F1 /* AWSConstants.swift */,
 				B5E23DAE2129E677005C93C2 /* CountryCodes.swift */,
 				B5A6582F214D052F0003C034 /* MediaHelperConstants.swift */,
+				571F44C521A47B46001C033B /* VibeCategories.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -489,6 +504,7 @@
 				B5BC1CFD216164D6008CE09F /* playlist-script.otf in Resources */,
 				B51DF21B211F13B9009896CC /* AppIcon.png in Resources */,
 				B51DF24E211F174A009896CC /* HamburgerTableViewCell.xib in Resources */,
+				57BD53EE2199CD38001B1010 /* VibesCategoryTableViewCell.xib in Resources */,
 				B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */,
 				B51DF1FC211F1248009896CC /* LaunchScreen.storyboard in Resources */,
 				B5652C6E21482D9900B15E8F /* schema.json in Resources */,
@@ -603,6 +619,7 @@
 				B51DF222211F13B9009896CC /* HamburgerViewController.swift in Sources */,
 				B5E23DAF2129E677005C93C2 /* CountryCodes.swift in Sources */,
 				B51DF229211F13B9009896CC /* WelcomeViewController.swift in Sources */,
+				57BD53EA219841F0001B1010 /* FriendsVibesViewController.swift in Sources */,
 				B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */,
 				B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */,
 				B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */,
@@ -648,10 +665,13 @@
 				B51DF22F211F13B9009896CC /* AudioRecorderViewController.swift in Sources */,
 				B51DF24A211F16AA009896CC /* DeviceConstants.swift in Sources */,
 				B51DF232211F13B9009896CC /* ForgotPasswordViewController.swift in Sources */,
+				57BD53ED2199CD38001B1010 /* VibesCategoryTableViewCell.swift in Sources */,
+				57BD53E8219841BF001B1010 /* PublicVibesViewController.swift in Sources */,
 				B51DF228211F13B9009896CC /* SignUpOTPViewController.swift in Sources */,
 				B51DF221211F13B9009896CC /* CreateVibeViewController.swift in Sources */,
 				B51DF255211F17E6009896CC /* ProfileTableViewCell.swift in Sources */,
 				B51DF21F211F13B9009896CC /* SignInViewController.swift in Sources */,
+				571F44C621A47B46001C033B /* VibeCategories.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -95,7 +95,8 @@ class CreateVibeViewController: UIViewController {
     }
     
     @IBAction func crossButtonPressed(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+//        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onClickLetterCross(_ sender: UIButton) {

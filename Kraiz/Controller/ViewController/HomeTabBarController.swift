@@ -66,6 +66,6 @@ extension UITabBarController {
     
     // Goto the create story view controller
     @objc func onClickCreateButton() {
-        performSegue(withIdentifier: DeviceConstants.CREATE_STORY_SEGUE, sender: self)
+        performSegue(withIdentifier: DeviceConstants.GOTO_VIBE_DETAILS_FROM_HOME_SEGUE, sender: self)
     }
 }

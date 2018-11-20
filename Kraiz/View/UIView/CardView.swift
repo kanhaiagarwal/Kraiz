@@ -22,5 +22,11 @@ class CardView: UIView {
         layer.shadowOffset = CGSize(width: shadowOffsetWidth, height: shadowOffsetHeight)
         layer.shadowOpacity = shadowOpacity
     }
+//    override func layoutIfNeeded() {
+//        layer.cornerRadius = cornerRadius
+//        layer.shadowColor = shadowColor.cgColor
+//        layer.shadowOffset = CGSize(width: shadowOffsetWidth, height: shadowOffsetHeight)
+//        layer.shadowOpacity = shadowOpacity
+//    }
 
 }
