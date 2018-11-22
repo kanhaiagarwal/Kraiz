@@ -113,7 +113,8 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
     }
 
     @IBAction func closeButtonPressed(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+//        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func doneButtonPressed(_ sender: UIButton) {
@@ -133,7 +134,8 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
         } else {
             print("selectedImages count is greater than 0")
             delegate?.photosInput(photos: selectedImages)
-            self.navigationController?.popViewController(animated: true)
+//            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }

@@ -40,7 +40,6 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var contactListIcon: UIImageView!
     @IBOutlet weak var vibeNameField: UITextField!
     @IBOutlet weak var backgroundMusicSwitch: UISwitch!
-    @IBOutlet weak var anonymousSwitch: UISwitch!
     @IBOutlet weak var nextButton: UIButton!
     
     var isUsernameInputNumbers : Bool = false
@@ -105,11 +104,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
             playImageView.isHidden = true
         }
     }
-    
-    @IBAction func anonymousSwitchPressed(_ sender: UISwitch) {
-        isAnonymousEnabled = sender.isOn
-        print("isAnonymous: \(isAnonymousEnabled)")
-    }
+
     @IBAction func nextPressed(_ sender: UIButton) {
         performSegue(withIdentifier: DeviceConstants.GOTO_CREATE_VIBE_FROM_VIBE_DETAILS, sender: self)
     }
@@ -133,6 +128,13 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
 //            print("alpha numeric values inside the username textfield")
 //        }
 //    }
+    @IBAction func phoneNumberValueChanged(_ sender: UITextField) {
+        if usernameField.text != nil && usernameField.text!.starts(with: "+") {
+            removeCountryCodeTextField()
+        } else {
+            displayCountryCodeTextField()
+        }
+    }
     
     /// Displays the country code field when the text is totally numeric.
     func displayCountryCodeTextField() {
@@ -140,8 +142,8 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
         isUsernameInputNumbers = true
         usernameFieldLeadingConstraint.constant = 70
         
-        countryCodeSelected = "+91"
-        countryCodeField.text = "+91"
+        countryCodeSelected = CountryCodes.countryCodes[0]
+        countryCodeField.text = CountryCodes.countryCodes[0]
         countryCodeField.textAlignment = .center
         countryCodeField.adjustsFontSizeToFitWidth = true
         countryCodeField.minimumFontSize = 14
@@ -251,6 +253,9 @@ extension MyVibeViewController: CNContactPickerDelegate {
     func openContacts() {
         let contactPicker = CNContactPickerViewController.init()
         contactPicker.delegate = self
+        contactPicker.predicateForEnablingContact = NSPredicate(format: "phoneNumbers.@count > 0")
+        contactPicker.predicateForSelectionOfContact = NSPredicate(format: "phoneNumbers.@count > 0")
+        contactPicker.predicateForSelectionOfProperty = NSPredicate(format: "key == 'phoneNumbers'")
         self.present(contactPicker, animated: true, completion: nil)
     }
     
@@ -260,14 +265,36 @@ extension MyVibeViewController: CNContactPickerDelegate {
     
     /// When the user selects the contact
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        var contactNumber = contact.phoneNumbers[0].value.stringValue
-        contactNumber = contactNumber.replacingOccurrences(of: "-", with: "")
+        picker.dismiss(animated: true, completion: nil)
+        if contact.phoneNumbers.count == 1 {
+            addNumberToField(phoneNumber: contact.phoneNumbers[0].value.stringValue)
+        } else {
+            let alertController = UIAlertController(title: "Choose a Number", message: "Please choose a number from the list", preferredStyle: .actionSheet)
+            var actions = [UIAlertAction]()
+            for i in 0 ..< contact.phoneNumbers.count {
+                actions.append(UIAlertAction(title: contact.phoneNumbers[i].value.stringValue, style: .default, handler: { (action) in
+                    self.addNumberToField(phoneNumber: contact.phoneNumbers[i].value.stringValue)
+                }))
+            }
+            for i in 0 ..< contact.phoneNumbers.count {
+                alertController.addAction(actions[i])
+            }
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func addNumberToField(phoneNumber: String) {
+        var contactNumber = phoneNumber.replacingOccurrences(of: "-", with: "")
         contactNumber = contactNumber.replacingOccurrences(of: " ", with: "")
-        contactNumber = contactNumber.replacingOccurrences(of: "+", with: "")
+//        contactNumber = contactNumber.replacingOccurrences(of: "+", with: "")
         contactNumber = contactNumber.replacingOccurrences(of: "(", with: "")
         contactNumber = contactNumber.replacingOccurrences(of: ")", with: "")
         usernameField.text = contactNumber
-        displayCountryCodeTextField()
-        picker.dismiss(animated: true, completion: nil)
+        if contactNumber.starts(with: "+") {
+            removeCountryCodeTextField()
+        } else {
+            displayCountryCodeTextField()
+        }
     }
 }

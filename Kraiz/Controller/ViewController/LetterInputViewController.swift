@@ -71,14 +71,16 @@ class LetterInputViewController: UIViewController {
 
     @IBAction func donePressed(_ sender: UIButton) {
         delegate?.letterInput(backgroundImage: backgroundSelected, text: letterText.text)
-        self.navigationController?.popViewController(animated: true)
+//        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func closePressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "Add Letter to the Story", message: "Do you wish to stop editing the letter", preferredStyle: UIAlertController.Style.alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-            self.navigationController?.popViewController(animated: true)
+//            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
         }
         let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
         alert.addAction(yesAction)
