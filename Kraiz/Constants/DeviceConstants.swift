@@ -34,6 +34,7 @@ public class DeviceConstants {
     static public let CREATE_STORY_SEGUE = "gotoCreateStory"
     static public let GOTO_CREATE_VIBE_FROM_VIBE_DETAILS = "gotoCreateVibeFromVibeDetails"
     static public let GOTO_VIBE_DETAILS_FROM_HOME_SEGUE = "gotoMyVibeFromHome"
+    static public let GOTO_MY_VIBE_FROM_CREATE_VIBE = "gotoMyVibeFromCreateVibe"
     
     // Tab Bar Index
     static public let DEFAULT_SELECTED_INDEX = 0

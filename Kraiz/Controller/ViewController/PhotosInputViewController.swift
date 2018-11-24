@@ -27,26 +27,6 @@ enum CROP_STATES {
     }
 }
 
-struct PhotoEntity {
-    var image: UIImage?
-    var caption: String?
-    
-    init() {
-        image = nil
-        caption = nil
-    }
-
-    init(image: UIImage) {
-        self.image = image
-        self.caption = nil
-    }
-
-    init(image: UIImage, caption: String) {
-        self.image = image
-        self.caption = caption
-    }
-}
-
 protocol PhotosInputProtocol {
     func photosInput(photos: [PhotoEntity])
 }
@@ -220,7 +200,6 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
 
             let mainVC = self
             let replaceImageAction = UIAlertAction(title: "Replace Image", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
                 imagePickerVC.maxNumberOfSelections = 1
                 DispatchQueue.main.async {
                     self.bs_presentImagePickerController(imagePickerVC, animated: true, select: nil, deselect: nil, cancel: nil, finish: { (assets) in
@@ -243,7 +222,6 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
                 mainVC.performSegue(withIdentifier: mainVC.IMAGE_CAPTIONS_SEGUE, sender: mainVC)
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-                self.dismiss(animated: true, completion: nil)
             }
             let alertController = UIAlertController(title: "Edit Vibe Images", message: "Choose an action from below", preferredStyle: .actionSheet)
             alertController.addAction(replaceImageAction)

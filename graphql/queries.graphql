@@ -1,0 +1,131 @@
+# this is an auto generated file. This will be overwritten
+query GetUserProfile($id: ID!) {
+  getUserProfile(id: $id) {
+    id
+    mobileNumber
+    username
+    name
+    dob
+    gender
+    profilePicId
+    createdAt
+  }
+}
+query GetUserProfileByUsername($username: String!) {
+  getUserProfileByUsername(username: $username) {
+    id
+    mobileNumber
+    username
+    name
+    dob
+    gender
+    profilePicId
+    createdAt
+  }
+}
+query GetUserProfileByMobileNumber($mobileNumber: ID!) {
+  getUserProfileByMobileNumber(mobileNumber: $mobileNumber) {
+    id
+    mobileNumber
+    username
+    name
+    dob
+    gender
+    profilePicId
+    createdAt
+  }
+}
+query GetUserChannel {
+  getUserChannel {
+    userVibes {
+      nextToken
+      userVibes {
+        userId
+        vibeId
+        gsiPk
+        version
+        updatedTime
+        vibeName
+        isSender
+        isAnonymous
+        seen
+        reach
+        profileId
+        hailIds
+      }
+      profiles {
+        id
+        mobileNumber
+        username
+        name
+        dob
+        profilePicId
+        createdAt
+      }
+      hails {
+        id
+        vibeId
+        author
+        comment
+        createdAt
+      }
+    }
+    profiles {
+      id
+      mobileNumber
+      username
+      name
+      dob
+      gender
+      profilePicId
+      createdAt
+    }
+    lastPublicVibeFetchTime
+  }
+}
+query GetUserVibes(
+  $vibeCategory: VibeCategory!
+  $vibeType: VibeType!
+  $first: Int
+  $after: String
+) {
+  getUserVibes(
+    vibeCategory: $vibeCategory
+    vibeType: $vibeType
+    first: $first
+    after: $after
+  ) {
+    nextToken
+    userVibes {
+      userId
+      vibeId
+      gsiPk
+      version
+      updatedTime
+      vibeName
+      isSender
+      isAnonymous
+      seen
+      reach
+      profileId
+      hailIds
+    }
+    profiles {
+      id
+      mobileNumber
+      username
+      name
+      dob
+      gender
+      profilePicId
+      createdAt
+    }
+    hails {
+      id
+      vibeId
+      author
+      comment
+      createdAt
+    }
+  }
+}

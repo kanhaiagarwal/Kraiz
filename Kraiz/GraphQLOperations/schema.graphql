@@ -28,17 +28,6 @@ mutation UpdateUserProfile($input: UpdateUserProfileInput!) {
     }
 }
 
-mutation CreateUserConnection($input: CreateUserConnectionInput!) {
-    createUserConnection(input: $input) {
-        mobileNumber
-        userId
-        pendingVibeAccessIds
-        pendingVibeDeleteIds
-        managedChannelIds
-        queuedChannelIds
-    }
-}
-
 query GetUserProfile($id: ID!) {
     getUserProfile(id: $id) {
         id
@@ -73,13 +62,6 @@ query GetUserProfileByMobileNumber($mobileNumber: ID!) {
     }
 }
 
-query GetUserConnection($mobileNumber: ID!, $userId: ID!) {
-    getUserConnection(mobileNumber: $mobileNumber, userId: $userId) {
-        userId
-        mobileNumber
-        managedChannelIds
-        queuedChannelIds
-        pendingVibeAccessIds
-        pendingVibeDeleteIds
-    }
+mutation TriggerFsm($input: FsmInput!, $userId: ID!) {
+    triggerFsm(input: $input, userId: $userId)
 }

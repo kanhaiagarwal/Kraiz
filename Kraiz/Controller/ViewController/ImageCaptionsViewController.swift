@@ -44,20 +44,18 @@ class ImageCaptionsViewController: UIViewController, UITextFieldDelegate {
 
     func setCaptionTextField(currentIndex: Int) {
         captionTextField.text = photosSelected[currentIndex].caption
-        if captionTextField.text != nil {
-            characterLimitLabel.text = "\(MAX_CAPTION_LIMIT - captionTextField.text!.count)/\(MAX_CAPTION_LIMIT)"
-        } else {
-            characterLimitLabel.text = "\(MAX_CAPTION_LIMIT)/\(MAX_CAPTION_LIMIT)"
-        }
+//        if captionTextField.text != nil {
+//            characterLimitLabel.text = "\(MAX_CAPTION_LIMIT - captionTextField.text!.count)/\(MAX_CAPTION_LIMIT)"
+//        } else {
+//            characterLimitLabel.text = "\(MAX_CAPTION_LIMIT)/\(MAX_CAPTION_LIMIT)"
+//        }
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        print("inside textFieldDidChange")
         var limitString = String(MAX_CAPTION_LIMIT) + "/" + String(MAX_CAPTION_LIMIT)
         if textField.text != nil {
             limitString = String(MAX_CAPTION_LIMIT - captionTextField.text!.count) + "/" + String(MAX_CAPTION_LIMIT)
         }
-//        characterLimitLabel.text = limitString
         photosSelected[selectedCell].caption = textField.text
     }
     
@@ -180,5 +178,9 @@ extension ImageCaptionsViewController: UICollectionViewDelegate, UICollectionVie
         setCollectionViewCellBorder(cellIndex: Int(scrollPoint.x / photosScrollView.frame.width))
         selectedCell = Int(scrollPoint.x / photosScrollView.frame.width)
         photosCollectionView.scrollToItem(at: IndexPath(row: selectedCell, section: 0), at: .centeredVertically, animated: false)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        setCaptionTextField(currentIndex: selectedCell)
     }
 }

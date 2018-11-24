@@ -17,6 +17,9 @@
 		57ABED87217CF19D009F3FC7 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 57ABED83217CF19D009F3FC7 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		57ABED8D217CF56E009F3FC7 /* LocalCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8C217CF56E009F3FC7 /* LocalCache.swift */; };
 		57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */; };
+		57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2B21A705B500FA45E9 /* Entity.swift */; };
+		57B24F2E21A98B7700FA45E9 /* BackgroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */; };
+		57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */; };
 		57BD53E8219841BF001B1010 /* PublicVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */; };
 		57BD53EA219841F0001B1010 /* FriendsVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */; };
 		57BD53ED2199CD38001B1010 /* VibesCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */; };
@@ -113,6 +116,9 @@
 		57ABED83217CF19D009F3FC7 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		57ABED8C217CF56E009F3FC7 /* LocalCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCache.swift; sourceTree = "<group>"; };
 		57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
+		57B24F2B21A705B500FA45E9 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundMusic.swift; sourceTree = "<group>"; };
+		57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeTypesLocal.swift; sourceTree = "<group>"; };
 		57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibesViewController.swift; sourceTree = "<group>"; };
 		57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVibesViewController.swift; sourceTree = "<group>"; };
 		57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibesCategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -356,6 +362,8 @@
 				B5E23DAE2129E677005C93C2 /* CountryCodes.swift */,
 				B5A6582F214D052F0003C034 /* MediaHelperConstants.swift */,
 				571F44C521A47B46001C033B /* VibeCategories.swift */,
+				57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */,
+				57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -406,6 +414,7 @@
 				B55346AD212B1FD8005353E4 /* VibeModel.swift */,
 				B585CB152146D210008E80F8 /* ProfileModel.swift */,
 				57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */,
+				57B24F2B21A705B500FA45E9 /* Entity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -624,6 +633,7 @@
 				B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */,
 				B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */,
 				B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */,
+				57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */,
 				B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */,
 				B5C6E33221346A2700F8D5EC /* CognitoHelper.swift in Sources */,
 				B51DF231211F13B9009896CC /* VibesViewController.swift in Sources */,
@@ -645,6 +655,7 @@
 				B5D9F612214CDFC500BF2C0F /* DisplayImageViewController.swift in Sources */,
 				B5BC1CF821615B61008CE09F /* ChatsTableViewCell.swift in Sources */,
 				B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */,
+				57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */,
 				B51DF256211F17EC009896CC /* VibesTableViewCell.swift in Sources */,
 				B5BC1CFF216169DA008CE09F /* CornerRadiusView.swift in Sources */,
 				57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */,
@@ -670,6 +681,7 @@
 				B51DF228211F13B9009896CC /* SignUpOTPViewController.swift in Sources */,
 				B51DF221211F13B9009896CC /* CreateVibeViewController.swift in Sources */,
 				B51DF255211F17E6009896CC /* ProfileTableViewCell.swift in Sources */,
+				57B24F2E21A98B7700FA45E9 /* BackgroundMusic.swift in Sources */,
 				B51DF21F211F13B9009896CC /* SignInViewController.swift in Sources */,
 				571F44C621A47B46001C033B /* VibeCategories.swift in Sources */,
 			);

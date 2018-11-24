@@ -10,6 +10,7 @@ import Foundation
 import TTGSnackbar
 import Photos
 import Reachability
+import AWSAppSync
 
 public class APPUtilites {
     /// Displays an Error Snackbar for the message.
@@ -110,6 +111,35 @@ public class APPUtilites {
             return true
         }
         return false
+    }
+    
+    /// Gets the Vibe Image Ids as an GraphQL ID Array.
+    /// - Parameters
+    ///     - images: Images.
+    /// - Returns - Ids.
+    public static func getVibeImageIds(images: [PhotoEntity]) -> [GraphQLID] {
+        var ids = [GraphQLID]()
+        for i in 0 ..< images.count {
+            ids.append(images[i].imageLink != nil ? images[i].imageLink! : "null")
+        }
+        return ids
+    }
+    
+    /// Gets the Vibe Image Ids as an GraphQL ID Array.
+    /// - Parameters
+    ///     - images: Images.
+    /// - Returns - Ids.
+    public static func getVibeImageCaptions(images: [PhotoEntity]) -> [String] {
+        var captions = [String]()
+        print("image captions")
+        for i in 0 ..< images.count {
+            if images[i].caption != nil {
+                captions.append(images[i].caption!)
+            } else {
+                captions.append("none")
+            }
+        }
+        return captions
     }
     
     public static func getAccessHashForBidirectional(key1: String, key2: String) -> String {

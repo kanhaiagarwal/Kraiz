@@ -12,8 +12,8 @@ import AVFoundation
 import BSImagePicker
 import Photos
 
-class CreateVibeViewController: UIViewController {
-    
+class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
+
     @IBOutlet weak var squaresContainer: UIView!
     @IBOutlet weak var imagesView: UIView!
     @IBOutlet weak var letterView: UIView!
@@ -28,6 +28,7 @@ class CreateVibeViewController: UIViewController {
     @IBOutlet weak var photosCrossButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
     
+    var vibeModel = VibeModel()
     var isLetterSelected : Bool = false
     var isImagesSelected : Bool = false
     
@@ -38,7 +39,6 @@ class CreateVibeViewController: UIViewController {
     let unselectedColor = UIColor(displayP3Red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
     
     /// Segues
-    let AUDIO_RECORDER_SEGUE : String = "gotoAudioRecorder"
     let FINAL_APPROVAL_SEGUE : String = "gotoFinalApprovalPage"
     let IMAGE_PICKER_SEGUE : String = "gotoImagePicker"
     let MY_VIBE_SEGUE : String = "gotoMyVibeFromCreateVibe"
@@ -48,6 +48,14 @@ class CreateVibeViewController: UIViewController {
     let MAX_IMAGES_TO_BE_SELECTED = 9
 
     var photosSelected = [PhotoEntity]()
+    
+    func setVibeDetails(vibeModel: VibeModel) {
+        self.vibeModel.from = vibeModel.from
+        self.vibeModel.to = vibeModel.to
+        self.vibeModel.category = vibeModel.category
+        self.vibeModel.isBackgroundMusicEnabled = vibeModel.isBackgroundMusicEnabled
+        self.vibeModel.backgroundMusicIndex = vibeModel.backgroundMusicIndex
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +72,46 @@ class CreateVibeViewController: UIViewController {
         squaresContainer.roundCorners([.bottomLeft, .bottomRight], radius: squaresContainer.frame.height / 4)
     }
     
-    @IBAction func continuePressed(_ sender: UIButton) {
-        performSegue(withIdentifier: FINAL_APPROVAL_SEGUE, sender: self)
+    @IBAction func myVibePressed(_ sender: UIButton) {
+        performSegue(withIdentifier: DeviceConstants.GOTO_MY_VIBE_FROM_CREATE_VIBE, sender: self)
+    }
+    
+    @IBAction func sendPressed(_ sender: UIButton) {
+        if !isLetterSelected && !isImagesSelected {
+            APPUtilites.displayErrorSnackbar(message: "Please select atleast the Letter or the Photos")
+            return
+        }
+        if isLetterSelected {
+            print("Letter is selected")
+            vibeModel.setLetter(letterString: letterText, background: letterBackground)
+            vibeModel.isLetterPresent = true
+        } else {
+            print("letter is not selected")
+        }
+        if isImagesSelected {
+            print("photos are selected")
+            vibeModel.setImages(photos: photosSelected)
+            vibeModel.isPhotosPresent = true
+        } else {
+            print("photos are not selected")
+        }
+//        performSegue(withIdentifier: FINAL_APPROVAL_SEGUE, sender: self)
+        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+        AppSyncHelper.shared.createVibe(vibe: vibeModel, success: { (success) in
+            DispatchQueue.main.async {
+                APPUtilites.removeLoadingSpinner(spinner: sv)
+                if success {
+                    APPUtilites.displaySuccessSnackbar(message: "Vibe has been created")
+                } else {
+                    APPUtilites.displayErrorSnackbar(message: "Vibe Creation is not successful")
+                }
+            }
+        }) { (error) in
+            DispatchQueue.main.async {
+                APPUtilites.removeLoadingSpinner(spinner: sv)
+                print("Error: \(error.localizedDescription)")
+            }
+        }
     }
     
     @IBAction func crossButtonPressed(_ sender: UIButton) {
@@ -222,7 +268,9 @@ extension CreateVibeViewController: LetterInputProtocol, PhotosInputProtocol {
     func photosInput(photos: [PhotoEntity]) {
         if photos.count > 0 {
             photosSelected = []
+            print("captions inside photosInput of CreateVibeViewController")
             for i in 0..<photos.count {
+                print("caption \(i + 1): \(photos[i].caption)")
                 photosSelected.append(photos[i])
             }
             isImagesSelected = true
@@ -246,6 +294,10 @@ extension CreateVibeViewController: LetterInputProtocol, PhotosInputProtocol {
             print("photosSelected.count inside the prepare method: \(photosSelected.count)")
             destinationVC.numberOfImagesSelected = photosSelected.count
             destinationVC.selectedImages = photosSelected
+        } else if segue.identifier == DeviceConstants.GOTO_MY_VIBE_FROM_CREATE_VIBE {
+            let destinationVC = segue.destination as! MyVibeViewController
+            destinationVC.vibeModel = vibeModel
+            destinationVC.isSourceCreateVibe = true
         }
     }
     

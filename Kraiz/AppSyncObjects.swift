@@ -23,7 +23,7 @@ public struct DeleteUserProfileInput: GraphQLMapConvertible {
 public struct CreateUserProfileInput: GraphQLMapConvertible {
     public var graphQLMap: GraphQLMap
     
-    public init(id: GraphQLID, mobileNumber: GraphQLID, username: String, name: Optional<String?> = nil, dob: Optional<String?> = nil, gender: Optional<Gender?> = nil, profilePicId: Optional<String?> = nil) {
+    public init(id: GraphQLID, mobileNumber: GraphQLID, username: String, name: String? = nil, dob: String? = nil, gender: Gender? = nil, profilePicId: String? = nil) {
         graphQLMap = ["id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "dob": dob, "gender": gender, "profilePicId": profilePicId]
     }
     
@@ -54,36 +54,36 @@ public struct CreateUserProfileInput: GraphQLMapConvertible {
         }
     }
     
-    public var name: Optional<String?> {
+    public var name: String? {
         get {
-            return graphQLMap["name"] as! Optional<String?>
+            return graphQLMap["name"] as! String?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "name")
         }
     }
     
-    public var dob: Optional<String?> {
+    public var dob: String? {
         get {
-            return graphQLMap["dob"] as! Optional<String?>
+            return graphQLMap["dob"] as! String?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "dob")
         }
     }
     
-    public var gender: Optional<Gender?> {
+    public var gender: Gender? {
         get {
-            return graphQLMap["gender"] as! Optional<Gender?>
+            return graphQLMap["gender"] as! Gender?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "gender")
         }
     }
     
-    public var profilePicId: Optional<String?> {
+    public var profilePicId: String? {
         get {
-            return graphQLMap["profilePicId"] as! Optional<String?>
+            return graphQLMap["profilePicId"] as! String?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "profilePicId")
@@ -91,7 +91,6 @@ public struct CreateUserProfileInput: GraphQLMapConvertible {
     }
 }
 
-/// #Enums
 public enum Gender: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
     public typealias RawValue = String
     case male
@@ -132,7 +131,7 @@ public enum Gender: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
 public struct UpdateUserProfileInput: GraphQLMapConvertible {
     public var graphQLMap: GraphQLMap
     
-    public init(id: GraphQLID, username: Optional<String?> = nil, name: Optional<String?> = nil, dob: Optional<String?> = nil, gender: Optional<Gender?> = nil, profilePicId: Optional<String?> = nil) {
+    public init(id: GraphQLID, username: String? = nil, name: String? = nil, dob: String? = nil, gender: Gender? = nil, profilePicId: String? = nil) {
         graphQLMap = ["id": id, "username": username, "name": name, "dob": dob, "gender": gender, "profilePicId": profilePicId]
     }
     
@@ -145,45 +144,45 @@ public struct UpdateUserProfileInput: GraphQLMapConvertible {
         }
     }
     
-    public var username: Optional<String?> {
+    public var username: String? {
         get {
-            return graphQLMap["username"] as! Optional<String?>
+            return graphQLMap["username"] as! String?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "username")
         }
     }
     
-    public var name: Optional<String?> {
+    public var name: String? {
         get {
-            return graphQLMap["name"] as! Optional<String?>
+            return graphQLMap["name"] as! String?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "name")
         }
     }
     
-    public var dob: Optional<String?> {
+    public var dob: String? {
         get {
-            return graphQLMap["dob"] as! Optional<String?>
+            return graphQLMap["dob"] as! String?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "dob")
         }
     }
     
-    public var gender: Optional<Gender?> {
+    public var gender: Gender? {
         get {
-            return graphQLMap["gender"] as! Optional<Gender?>
+            return graphQLMap["gender"] as! Gender?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "gender")
         }
     }
     
-    public var profilePicId: Optional<String?> {
+    public var profilePicId: String? {
         get {
-            return graphQLMap["profilePicId"] as! Optional<String?>
+            return graphQLMap["profilePicId"] as! String?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "profilePicId")
@@ -191,65 +190,396 @@ public struct UpdateUserProfileInput: GraphQLMapConvertible {
     }
 }
 
-/// # UserConnection Inputs
-public struct CreateUserConnectionInput: GraphQLMapConvertible {
+public struct FsmInput: GraphQLMapConvertible {
     public var graphQLMap: GraphQLMap
     
-    public init(mobileNumber: GraphQLID, userId: Optional<GraphQLID?> = nil, managedChannelIds: Optional<String?> = nil, queuedChannelIds: Optional<String?> = nil, pendingVibeAccessIds: Optional<String?> = nil, pendingVibeDeleteIds: Optional<String?> = nil) {
-        graphQLMap = ["mobileNumber": mobileNumber, "userId": userId, "managedChannelIds": managedChannelIds, "queuedChannelIds": queuedChannelIds, "pendingVibeAccessIds": pendingVibeAccessIds, "pendingVibeDeleteIds": pendingVibeDeleteIds]
+    public init(action: Action, users: FsmComponent, vibes: FsmComponent, hails: FsmComponent) {
+        graphQLMap = ["action": action, "users": users, "vibes": vibes, "hails": hails]
     }
     
-    public var mobileNumber: GraphQLID {
+    public var action: Action {
         get {
-            return graphQLMap["mobileNumber"] as! GraphQLID
+            return graphQLMap["action"] as! Action
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "action")
+        }
+    }
+    
+    public var users: FsmComponent {
+        get {
+            return graphQLMap["users"] as! FsmComponent
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "users")
+        }
+    }
+    
+    public var vibes: FsmComponent {
+        get {
+            return graphQLMap["vibes"] as! FsmComponent
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "vibes")
+        }
+    }
+    
+    public var hails: FsmComponent {
+        get {
+            return graphQLMap["hails"] as! FsmComponent
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "hails")
+        }
+    }
+}
+
+public enum Action: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
+    public typealias RawValue = String
+    case createVibe
+    case updateStatus
+    case revokeVibeAccess
+    case addHail
+    case addReach
+    case updateProfile
+    /// Auto generated constant for unknown enum values
+    case unknown(RawValue)
+    
+    public init?(rawValue: RawValue) {
+        switch rawValue {
+        case "CREATE_VIBE": self = .createVibe
+        case "UPDATE_STATUS": self = .updateStatus
+        case "REVOKE_VIBE_ACCESS": self = .revokeVibeAccess
+        case "ADD_HAIL": self = .addHail
+        case "ADD_REACH": self = .addReach
+        case "UPDATE_PROFILE": self = .updateProfile
+        default: self = .unknown(rawValue)
+        }
+    }
+    
+    public var rawValue: RawValue {
+        switch self {
+        case .createVibe: return "CREATE_VIBE"
+        case .updateStatus: return "UPDATE_STATUS"
+        case .revokeVibeAccess: return "REVOKE_VIBE_ACCESS"
+        case .addHail: return "ADD_HAIL"
+        case .addReach: return "ADD_REACH"
+        case .updateProfile: return "UPDATE_PROFILE"
+        case .unknown(let value): return value
+        }
+    }
+    
+    public static func == (lhs: Action, rhs: Action) -> Bool {
+        switch (lhs, rhs) {
+        case (.createVibe, .createVibe): return true
+        case (.updateStatus, .updateStatus): return true
+        case (.revokeVibeAccess, .revokeVibeAccess): return true
+        case (.addHail, .addHail): return true
+        case (.addReach, .addReach): return true
+        case (.updateProfile, .updateProfile): return true
+        case (.unknown(let lhsValue), .unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+        }
+    }
+}
+
+public struct FsmComponent: GraphQLMapConvertible {
+    public var graphQLMap: GraphQLMap
+    
+    public init(exists: Bool, list: [FsmComponentInput]? = nil) {
+        graphQLMap = ["exists": exists, "list": list]
+    }
+    
+    public var exists: Bool {
+        get {
+            return graphQLMap["exists"] as! Bool
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "exists")
+        }
+    }
+    
+    public var list: [FsmComponentInput]? {
+        get {
+            return graphQLMap["list"] as! [FsmComponentInput]?
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "list")
+        }
+    }
+}
+
+public struct FsmComponentInput: GraphQLMapConvertible {
+    public var graphQLMap: GraphQLMap
+    
+    public init(type: VibeType? = nil, category: VibeCategory? = nil, isAnonymous: Bool? = nil, name: String? = nil, vibeComponents: [VibeComponentInput]? = nil, comment: String? = nil, mobileNumber: GraphQLID? = nil, id: GraphQLID? = nil, author: GraphQLID? = nil) {
+        graphQLMap = ["type": type, "category": category, "isAnonymous": isAnonymous, "name": name, "vibeComponents": vibeComponents, "comment": comment, "mobileNumber": mobileNumber, "id": id, "author": author]
+    }
+    
+    /// # Vibe Input
+    public var type: VibeType? {
+        get {
+            return graphQLMap["type"] as! VibeType?
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "type")
+        }
+    }
+    
+    public var category: VibeCategory? {
+        get {
+            return graphQLMap["category"] as! VibeCategory?
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "category")
+        }
+    }
+    
+    public var isAnonymous: Bool? {
+        get {
+            return graphQLMap["isAnonymous"] as! Bool?
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "isAnonymous")
+        }
+    }
+    
+    public var name: String? {
+        get {
+            return graphQLMap["name"] as! String?
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "name")
+        }
+    }
+    
+    public var vibeComponents: [VibeComponentInput]? {
+        get {
+            return graphQLMap["vibeComponents"] as! [VibeComponentInput]?
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "vibeComponents")
+        }
+    }
+    
+    /// # Hail Input
+    public var comment: String? {
+        get {
+            return graphQLMap["comment"] as! String?
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "comment")
+        }
+    }
+    
+    /// # Profile Input
+    public var mobileNumber: GraphQLID? {
+        get {
+            return graphQLMap["mobileNumber"] as! GraphQLID?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "mobileNumber")
         }
     }
     
-    public var userId: Optional<GraphQLID?> {
+    /// # Common Input
+    public var id: GraphQLID? {
         get {
-            return graphQLMap["userId"] as! Optional<GraphQLID?>
+            return graphQLMap["id"] as! GraphQLID?
         }
         set {
-            graphQLMap.updateValue(newValue, forKey: "userId")
+            graphQLMap.updateValue(newValue, forKey: "id")
         }
     }
     
-    public var managedChannelIds: Optional<String?> {
+    public var author: GraphQLID? {
         get {
-            return graphQLMap["managedChannelIds"] as! Optional<String?>
+            return graphQLMap["author"] as! GraphQLID?
         }
         set {
-            graphQLMap.updateValue(newValue, forKey: "managedChannelIds")
+            graphQLMap.updateValue(newValue, forKey: "author")
+        }
+    }
+}
+
+/// #Enums
+public enum VibeType: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
+    public typealias RawValue = String
+    case `public`
+    case `private`
+    /// Auto generated constant for unknown enum values
+    case unknown(RawValue)
+    
+    public init?(rawValue: RawValue) {
+        switch rawValue {
+        case "PUBLIC": self = .public
+        case "PRIVATE": self = .private
+        default: self = .unknown(rawValue)
         }
     }
     
-    public var queuedChannelIds: Optional<String?> {
-        get {
-            return graphQLMap["queuedChannelIds"] as! Optional<String?>
-        }
-        set {
-            graphQLMap.updateValue(newValue, forKey: "queuedChannelIds")
-        }
-    }
-    
-    public var pendingVibeAccessIds: Optional<String?> {
-        get {
-            return graphQLMap["pendingVibeAccessIds"] as! Optional<String?>
-        }
-        set {
-            graphQLMap.updateValue(newValue, forKey: "pendingVibeAccessIds")
+    public var rawValue: RawValue {
+        switch self {
+        case .public: return "PUBLIC"
+        case .private: return "PRIVATE"
+        case .unknown(let value): return value
         }
     }
     
-    public var pendingVibeDeleteIds: Optional<String?> {
+    public static func == (lhs: VibeType, rhs: VibeType) -> Bool {
+        switch (lhs, rhs) {
+        case (.public, .public): return true
+        case (.private, .private): return true
+        case (.unknown(let lhsValue), .unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+        }
+    }
+}
+
+public enum VibeCategory: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
+    public typealias RawValue = String
+    case love
+    case travel
+    case good
+    case party
+    case nostalgic
+    case occassion
+    /// Auto generated constant for unknown enum values
+    case unknown(RawValue)
+    
+    public init?(rawValue: RawValue) {
+        switch rawValue {
+        case "LOVE": self = .love
+        case "TRAVEL": self = .travel
+        case "GOOD": self = .good
+        case "PARTY": self = .party
+        case "NOSTALGIC": self = .nostalgic
+        case "OCCASSION": self = .occassion
+        default: self = .unknown(rawValue)
+        }
+    }
+    
+    public var rawValue: RawValue {
+        switch self {
+        case .love: return "LOVE"
+        case .travel: return "TRAVEL"
+        case .good: return "GOOD"
+        case .party: return "PARTY"
+        case .nostalgic: return "NOSTALGIC"
+        case .occassion: return "OCCASSION"
+        case .unknown(let value): return value
+        }
+    }
+    
+    public static func == (lhs: VibeCategory, rhs: VibeCategory) -> Bool {
+        switch (lhs, rhs) {
+        case (.love, .love): return true
+        case (.travel, .travel): return true
+        case (.good, .good): return true
+        case (.party, .party): return true
+        case (.nostalgic, .nostalgic): return true
+        case (.occassion, .occassion): return true
+        case (.unknown(let lhsValue), .unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+        }
+    }
+}
+
+/// # Fsm Input Data
+public struct VibeComponentInput: GraphQLMapConvertible {
+    public var graphQLMap: GraphQLMap
+    
+    public init(ids: [GraphQLID]? = nil, sequence: [Int]? = nil, texts: [String]? = nil, format: Format, globalSequence: Int) {
+        graphQLMap = ["ids": ids, "sequence": sequence, "texts": texts, "format": format, "globalSequence": globalSequence]
+    }
+    
+    public var ids: [GraphQLID]? {
         get {
-            return graphQLMap["pendingVibeDeleteIds"] as! Optional<String?>
+            return graphQLMap["ids"] as! [GraphQLID]?
         }
         set {
-            graphQLMap.updateValue(newValue, forKey: "pendingVibeDeleteIds")
+            graphQLMap.updateValue(newValue, forKey: "ids")
+        }
+    }
+    
+    public var sequence: [Int]? {
+        get {
+            return graphQLMap["sequence"] as! [Int]?
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "sequence")
+        }
+    }
+    
+    public var texts: [String]? {
+        get {
+            return graphQLMap["texts"] as! [String]?
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "texts")
+        }
+    }
+    
+    public var format: Format {
+        get {
+            return graphQLMap["format"] as! Format
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "format")
+        }
+    }
+    
+    public var globalSequence: Int {
+        get {
+            return graphQLMap["globalSequence"] as! Int
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "globalSequence")
+        }
+    }
+}
+
+public enum Format: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
+    public typealias RawValue = String
+    case text
+    case image
+    case video
+    case audio
+    case backgroundMusic
+    /// Auto generated constant for unknown enum values
+    case unknown(RawValue)
+    
+    public init?(rawValue: RawValue) {
+        switch rawValue {
+        case "TEXT": self = .text
+        case "IMAGE": self = .image
+        case "VIDEO": self = .video
+        case "AUDIO": self = .audio
+        case "BACKGROUND_MUSIC": self = .backgroundMusic
+        default: self = .unknown(rawValue)
+        }
+    }
+    
+    public var rawValue: RawValue {
+        switch self {
+        case .text: return "TEXT"
+        case .image: return "IMAGE"
+        case .video: return "VIDEO"
+        case .audio: return "AUDIO"
+        case .backgroundMusic: return "BACKGROUND_MUSIC"
+        case .unknown(let value): return value
+        }
+    }
+    
+    public static func == (lhs: Format, rhs: Format) -> Bool {
+        switch (lhs, rhs) {
+        case (.text, .text): return true
+        case (.image, .image): return true
+        case (.video, .video): return true
+        case (.audio, .audio): return true
+        case (.backgroundMusic, .backgroundMusic): return true
+        case (.unknown(let lhsValue), .unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
         }
     }
 }
@@ -605,135 +935,6 @@ public final class UpdateUserProfileMutation: GraphQLMutation {
                 }
                 set {
                     snapshot.updateValue(newValue, forKey: "dob")
-                }
-            }
-        }
-    }
-}
-
-public final class CreateUserConnectionMutation: GraphQLMutation {
-    public static let operationString =
-    "mutation CreateUserConnection($input: CreateUserConnectionInput!) {\n  createUserConnection(input: $input) {\n    __typename\n    mobileNumber\n    userId\n    pendingVibeAccessIds\n    pendingVibeDeleteIds\n    managedChannelIds\n    queuedChannelIds\n  }\n}"
-    
-    public var input: CreateUserConnectionInput
-    
-    public init(input: CreateUserConnectionInput) {
-        self.input = input
-    }
-    
-    public var variables: GraphQLMap? {
-        return ["input": input]
-    }
-    
-    public struct Data: GraphQLSelectionSet {
-        public static let possibleTypes = ["Mutation"]
-        
-        public static let selections: [GraphQLSelection] = [
-            GraphQLField("createUserConnection", arguments: ["input": GraphQLVariable("input")], type: .object(CreateUserConnection.selections)),
-            ]
-        
-        public var snapshot: Snapshot
-        
-        public init(snapshot: Snapshot) {
-            self.snapshot = snapshot
-        }
-        
-        public init(createUserConnection: CreateUserConnection? = nil) {
-            self.init(snapshot: ["__typename": "Mutation", "createUserConnection": createUserConnection.flatMap { $0.snapshot }])
-        }
-        
-        public var createUserConnection: CreateUserConnection? {
-            get {
-                return (snapshot["createUserConnection"] as? Snapshot).flatMap { CreateUserConnection(snapshot: $0) }
-            }
-            set {
-                snapshot.updateValue(newValue?.snapshot, forKey: "createUserConnection")
-            }
-        }
-        
-        public struct CreateUserConnection: GraphQLSelectionSet {
-            public static let possibleTypes = ["UserConnection"]
-            
-            public static let selections: [GraphQLSelection] = [
-                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("mobileNumber", type: .nonNull(.scalar(GraphQLID.self))),
-                GraphQLField("userId", type: .scalar(GraphQLID.self)),
-                GraphQLField("pendingVibeAccessIds", type: .list(.nonNull(.scalar(GraphQLID.self)))),
-                GraphQLField("pendingVibeDeleteIds", type: .list(.nonNull(.scalar(GraphQLID.self)))),
-                GraphQLField("managedChannelIds", type: .scalar(String.self)),
-                GraphQLField("queuedChannelIds", type: .scalar(String.self)),
-                ]
-            
-            public var snapshot: Snapshot
-            
-            public init(snapshot: Snapshot) {
-                self.snapshot = snapshot
-            }
-            
-            public init(mobileNumber: GraphQLID, userId: GraphQLID? = nil, pendingVibeAccessIds: [GraphQLID]? = nil, pendingVibeDeleteIds: [GraphQLID]? = nil, managedChannelIds: String? = nil, queuedChannelIds: String? = nil) {
-                self.init(snapshot: ["__typename": "UserConnection", "mobileNumber": mobileNumber, "userId": userId, "pendingVibeAccessIds": pendingVibeAccessIds, "pendingVibeDeleteIds": pendingVibeDeleteIds, "managedChannelIds": managedChannelIds, "queuedChannelIds": queuedChannelIds])
-            }
-            
-            public var __typename: String {
-                get {
-                    return snapshot["__typename"]! as! String
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "__typename")
-                }
-            }
-            
-            public var mobileNumber: GraphQLID {
-                get {
-                    return snapshot["mobileNumber"]! as! GraphQLID
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "mobileNumber")
-                }
-            }
-            
-            public var userId: GraphQLID? {
-                get {
-                    return snapshot["userId"] as? GraphQLID
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "userId")
-                }
-            }
-            
-            public var pendingVibeAccessIds: [GraphQLID]? {
-                get {
-                    return snapshot["pendingVibeAccessIds"] as? [GraphQLID]
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "pendingVibeAccessIds")
-                }
-            }
-            
-            public var pendingVibeDeleteIds: [GraphQLID]? {
-                get {
-                    return snapshot["pendingVibeDeleteIds"] as? [GraphQLID]
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "pendingVibeDeleteIds")
-                }
-            }
-            
-            public var managedChannelIds: String? {
-                get {
-                    return snapshot["managedChannelIds"] as? String
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "managedChannelIds")
-                }
-            }
-            
-            public var queuedChannelIds: String? {
-                get {
-                    return snapshot["queuedChannelIds"] as? String
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "queuedChannelIds")
                 }
             }
         }
@@ -1137,27 +1338,27 @@ public final class GetUserProfileByMobileNumberQuery: GraphQLQuery {
     }
 }
 
-public final class GetUserConnectionQuery: GraphQLQuery {
+public final class TriggerFsmMutation: GraphQLMutation {
     public static let operationString =
-    "query GetUserConnection($mobileNumber: ID!, $userId: ID!) {\n  getUserConnection(mobileNumber: $mobileNumber, userId: $userId) {\n    __typename\n    userId\n    mobileNumber\n    managedChannelIds\n    queuedChannelIds\n    pendingVibeAccessIds\n    pendingVibeDeleteIds\n  }\n}"
+    "mutation TriggerFsm($input: FsmInput!, $userId: ID!) {\n  triggerFsm(input: $input, userId: $userId)\n}"
     
-    public var mobileNumber: GraphQLID
+    public var input: FsmInput
     public var userId: GraphQLID
     
-    public init(mobileNumber: GraphQLID, userId: GraphQLID) {
-        self.mobileNumber = mobileNumber
+    public init(input: FsmInput, userId: GraphQLID) {
+        self.input = input
         self.userId = userId
     }
     
     public var variables: GraphQLMap? {
-        return ["mobileNumber": mobileNumber, "userId": userId]
+        return ["input": input, "userId": userId]
     }
     
     public struct Data: GraphQLSelectionSet {
-        public static let possibleTypes = ["Query"]
+        public static let possibleTypes = ["Mutation"]
         
         public static let selections: [GraphQLSelection] = [
-            GraphQLField("getUserConnection", arguments: ["mobileNumber": GraphQLVariable("mobileNumber"), "userId": GraphQLVariable("userId")], type: .object(GetUserConnection.selections)),
+            GraphQLField("triggerFsm", arguments: ["input": GraphQLVariable("input"), "userId": GraphQLVariable("userId")], type: .nonNull(.scalar(String.self))),
             ]
         
         public var snapshot: Snapshot
@@ -1166,103 +1367,16 @@ public final class GetUserConnectionQuery: GraphQLQuery {
             self.snapshot = snapshot
         }
         
-        public init(getUserConnection: GetUserConnection? = nil) {
-            self.init(snapshot: ["__typename": "Query", "getUserConnection": getUserConnection.flatMap { $0.snapshot }])
+        public init(triggerFsm: String) {
+            self.init(snapshot: ["__typename": "Mutation", "triggerFsm": triggerFsm])
         }
         
-        public var getUserConnection: GetUserConnection? {
+        public var triggerFsm: String {
             get {
-                return (snapshot["getUserConnection"] as? Snapshot).flatMap { GetUserConnection(snapshot: $0) }
+                return snapshot["triggerFsm"]! as! String
             }
             set {
-                snapshot.updateValue(newValue?.snapshot, forKey: "getUserConnection")
-            }
-        }
-        
-        public struct GetUserConnection: GraphQLSelectionSet {
-            public static let possibleTypes = ["UserConnection"]
-            
-            public static let selections: [GraphQLSelection] = [
-                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-                GraphQLField("userId", type: .scalar(GraphQLID.self)),
-                GraphQLField("mobileNumber", type: .nonNull(.scalar(GraphQLID.self))),
-                GraphQLField("managedChannelIds", type: .scalar(String.self)),
-                GraphQLField("queuedChannelIds", type: .scalar(String.self)),
-                GraphQLField("pendingVibeAccessIds", type: .list(.nonNull(.scalar(GraphQLID.self)))),
-                GraphQLField("pendingVibeDeleteIds", type: .list(.nonNull(.scalar(GraphQLID.self)))),
-                ]
-            
-            public var snapshot: Snapshot
-            
-            public init(snapshot: Snapshot) {
-                self.snapshot = snapshot
-            }
-            
-            public init(userId: GraphQLID? = nil, mobileNumber: GraphQLID, managedChannelIds: String? = nil, queuedChannelIds: String? = nil, pendingVibeAccessIds: [GraphQLID]? = nil, pendingVibeDeleteIds: [GraphQLID]? = nil) {
-                self.init(snapshot: ["__typename": "UserConnection", "userId": userId, "mobileNumber": mobileNumber, "managedChannelIds": managedChannelIds, "queuedChannelIds": queuedChannelIds, "pendingVibeAccessIds": pendingVibeAccessIds, "pendingVibeDeleteIds": pendingVibeDeleteIds])
-            }
-            
-            public var __typename: String {
-                get {
-                    return snapshot["__typename"]! as! String
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "__typename")
-                }
-            }
-            
-            public var userId: GraphQLID? {
-                get {
-                    return snapshot["userId"] as? GraphQLID
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "userId")
-                }
-            }
-            
-            public var mobileNumber: GraphQLID {
-                get {
-                    return snapshot["mobileNumber"]! as! GraphQLID
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "mobileNumber")
-                }
-            }
-            
-            public var managedChannelIds: String? {
-                get {
-                    return snapshot["managedChannelIds"] as? String
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "managedChannelIds")
-                }
-            }
-            
-            public var queuedChannelIds: String? {
-                get {
-                    return snapshot["queuedChannelIds"] as? String
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "queuedChannelIds")
-                }
-            }
-            
-            public var pendingVibeAccessIds: [GraphQLID]? {
-                get {
-                    return snapshot["pendingVibeAccessIds"] as? [GraphQLID]
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "pendingVibeAccessIds")
-                }
-            }
-            
-            public var pendingVibeDeleteIds: [GraphQLID]? {
-                get {
-                    return snapshot["pendingVibeDeleteIds"] as? [GraphQLID]
-                }
-                set {
-                    snapshot.updateValue(newValue, forKey: "pendingVibeDeleteIds")
-                }
+                snapshot.updateValue(newValue, forKey: "triggerFsm")
             }
         }
     }

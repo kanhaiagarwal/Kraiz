@@ -1,0 +1,40 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateUserProfile($input: CreateUserProfileInput!) {
+  createUserProfile(input: $input) {
+    id
+    mobileNumber
+    username
+    name
+    dob
+    gender
+    profilePicId
+    createdAt
+  }
+}
+mutation UpdateUserProfile($input: UpdateUserProfileInput!) {
+  updateUserProfile(input: $input) {
+    id
+    mobileNumber
+    username
+    name
+    dob
+    gender
+    profilePicId
+    createdAt
+  }
+}
+mutation DeleteUserProfile($input: DeleteUserProfileInput!) {
+  deleteUserProfile(input: $input) {
+    id
+    mobileNumber
+    username
+    name
+    dob
+    gender
+    profilePicId
+    createdAt
+  }
+}
+mutation TriggerFsm($input: FsmInput!, $userId: ID!) {
+  triggerFsm(input: $input, userId: $userId)
+}

@@ -137,34 +137,54 @@ class AppSyncHelper {
             APPUtilites.displayErrorSnackbar(message: "Error in the user session. Please login again")
         }
     }
-    
-    func getUserConnection(userId: String!, mobileNumber: String!, success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
-        let fetchConnectionQuery = GetUserConnectionQuery(mobileNumber: mobileNumber, userId: userId)
-        var cachePolicy = CachePolicy.returnCacheDataAndFetch
-        if !APPUtilites.isInternetConnectionAvailable() {
-            print("Internet Connection is not available")
-            cachePolicy = .returnCacheDataDontFetch
+
+    public func createVibe(vibe: VibeModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
+        let senderFsmComponentInput = FsmComponentInput(type: nil, category: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.from, id: nil, author: nil)
+        let receiverFsmComponentnput = FsmComponentInput(type: nil, category: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.to, id: nil, author: nil)
+        var userInputList = [FsmComponentInput]()
+        userInputList.append(senderFsmComponentInput)
+        userInputList.append(receiverFsmComponentnput)
+        let userComponent = FsmComponent(exists: true, list: userInputList)
+        var vibeComponents = [VibeComponentInput]()
+        if vibe.isLetterPresent {
+            print("Letter is present")
+            let letterComponent = VibeComponentInput(ids: nil, sequence: nil, texts: [vibe.letter.text!], format: Format.text, globalSequence: 1)
+            vibeComponents.append(letterComponent)
+        }
+        if vibe.isPhotosPresent {
+            print("images are present")
+            print("number of images: \(vibe.images.count)")
+            let imagesComponent = VibeComponentInput(ids: APPUtilites.getVibeImageIds(images: vibe.images), sequence: nil, texts: APPUtilites.getVibeImageCaptions(images: vibe.images), format: Format.image, globalSequence: vibe.isLetterPresent ? 2 : 1)
+            vibeComponents.append(imagesComponent)
         }
         
-        if appSyncClient == nil {
-            APPUtilites.displayErrorSnackbar(message: "Error in the user session. Please login again")
-        } else {
-            appSyncClient?.fetch(query: fetchConnectionQuery, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .background), resultHandler: { (result, error) in
+        let vibeComponentInput = FsmComponentInput(type: VibeTypesLocal.getVibeType(index: vibe.type), category: VibeCategories.getVibeCategory(index: vibe.category), isAnonymous: vibe.isSenderAnonymous, name: vibe.vibeName, vibeComponents: vibeComponents, comment: nil, mobileNumber: nil, id: nil, author: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
+        var list = [FsmComponentInput]()
+        list.append(vibeComponentInput)
+        let fsmInput = FsmInput(action: Action.createVibe, users: userComponent, vibes: FsmComponent(exists: true, list: list), hails: FsmComponent(exists: false))
+        let mutation = TriggerFsmMutation(input: fsmInput, userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
+        
+        if appSyncClient != nil {
+            appSyncClient?.perform(mutation: mutation, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
+                print("result: \(result)")
                 if error != nil {
-                    print("Error")
-                    print(error)
-                    failure(error as! NSError)
+                    failure(error! as NSError)
+                } else if result?.errors == nil {
+                    success(true)
                 } else {
-                    print("****************************************")
-                    print("FetchConnection: \(result)")
+                    print(result?.errors)
+                    success(false)
                 }
             })
+        } else {
+            DispatchQueue.main.async {
+                APPUtilites.displayErrorSnackbar(message: "Error in user session. Please login again")
+            }
         }
-        
     }
-    
+
     public func createUserProfile(profile: ProfileModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
-        let profileInput = CreateUserProfileInput.init(id: profile.getId()!, mobileNumber: profile.getMobileNumber()!, username: profile.getUsername()!, name: profile.getName(), dob: profile.getDob()?.description, gender: profile.getGender().map { Gender(rawValue: $0) }, profilePicId: profile.getProfilePicId())
+        let profileInput = CreateUserProfileInput.init(id: profile.getId()!, mobileNumber: profile.getMobileNumber()!, username: profile.getUsername()!, name: profile.getName(), dob: profile.getDob()?.description, gender: profile.getGender().map { Gender(rawValue: $0) }! ?? Gender(rawValue: "Male"), profilePicId: profile.getProfilePicId())
         
         let createQuery = CreateUserProfileMutation(input: profileInput)
         if appSyncClient == nil {
@@ -176,17 +196,6 @@ class AppSyncHelper {
                 } else {
                     if result?.errors == nil {
                         success(true)
-                        let connectionInput = CreateUserConnectionInput.init(mobileNumber: profile.getMobileNumber()!, userId: profile.getId()!, managedChannelIds: "{}", queuedChannelIds: "{}", pendingVibeAccessIds: "{}", pendingVibeDeleteIds: "{}")
-                        let createConnectionQuery = CreateUserConnectionMutation(input: connectionInput)
-                        self.appSyncClient?.perform(mutation: createConnectionQuery, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
-                            print("******************************************")
-                            if error != nil {
-                                print("Error")
-                                print(error)
-                            } else {
-                                print("User Connection Creation is a success")
-                            }
-                        })
                     } else {
                         success(false)
                     }
@@ -197,7 +206,7 @@ class AppSyncHelper {
     
     func updateUserProfile(profile: ProfileModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
         
-        let updateInput = UpdateUserProfileInput(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, username: profile.getUsername(), name: profile.getName(), dob: profile.getDob(), gender: profile.getGender().map { Gender(rawValue: $0) }, profilePicId: profile.getProfilePicId())
+        let updateInput = UpdateUserProfileInput(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, username: profile.getUsername(), name: profile.getName(), dob: profile.getDob(), gender: profile.getGender().map { Gender(rawValue: $0) }! ?? Gender(rawValue: "Male"), profilePicId: profile.getProfilePicId())
         let updateQuery = UpdateUserProfileMutation(input: updateInput)
         
         appSyncClient?.perform(mutation: updateQuery, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in

@@ -12,35 +12,100 @@ public class VibeModel {
     var vibeName: String
     var from: String
     var to: String
-    var isReceiverUsername: Bool
+    var category: Int
+    var type: Int
     var isBackgroundMusicEnabled: Bool
     var isSenderAnonymous: Bool
-    var isPhotosPresent: Bool?
-    var isLetterPresent: Bool?
-    var isVideoPresent: Bool?
-    var isAudioPresent: Bool?
-    var isAppreciationEnabled: Bool?
+    var isPhotosPresent: Bool
+    var isLetterPresent: Bool
+    var letter: LetterEntity
+    var images: [PhotoEntity]
+    var backgroundMusicIndex: Int
     
     init() {
         vibeName = ""
         from = ""
         to = ""
-        isReceiverUsername = false
+        category = 0
+        type = 0
         isBackgroundMusicEnabled = false
         isSenderAnonymous = false
         isPhotosPresent = false
         isLetterPresent = false
-        isVideoPresent = false
-        isAudioPresent = false
-        isAppreciationEnabled = false
+        letter = LetterEntity()
+        images = [PhotoEntity]()
+        backgroundMusicIndex = 0
     }
     
-    init(vibeName: String, from: String, to: String, isReceiverUsername: Bool, isBackgroundMusicEnabled: Bool, isSenderAnonymous: Bool) {
+    init(vibeName: String, from: String, to: String, isBackgroundMusicEnabled: Bool, isSenderAnonymous: Bool) {
         self.vibeName = vibeName
         self.from = from
         self.to = to
-        self.isReceiverUsername = isReceiverUsername
+        self.category = 0
+        self.type = 0
         self.isBackgroundMusicEnabled = isBackgroundMusicEnabled
         self.isSenderAnonymous = isSenderAnonymous
+        self.isLetterPresent = false
+        self.isPhotosPresent = false
+        self.letter = LetterEntity()
+        self.images = [PhotoEntity]()
+        self.backgroundMusicIndex = 0
+    }
+    
+    public func setLetter(letterString: String, background: Int) {
+        letter.text = letterString
+        letter.background = background
+    }
+    
+    public func setImages(photos: [PhotoEntity]) {
+        images = photos
+    }
+    
+    public func setLetterText(letterString: String) {
+        letter.text = letterString
+    }
+    
+    public func setLetterBackground(background: Int) {
+        letter.background = background
+    }
+    
+    public func setVibeName(name: String) {
+        vibeName = name
+    }
+    
+    public func setSender(sender: String) {
+        from = sender
+    }
+    
+    public func setReceiver(receiver: String) {
+        to = receiver
+    }
+    
+    public func setLetterPresent(isLetterPresent: Bool) {
+        self.isLetterPresent = isLetterPresent
+    }
+    
+    public func setPhotosPresent(isPhotosPresent: Bool) {
+        self.isPhotosPresent = isPhotosPresent
+    }
+    
+    public func setBackgroundMusicEnabled(isBackgroundMusicEnabled: Bool) {
+        self.isBackgroundMusicEnabled = isBackgroundMusicEnabled
+    }
+    
+    public func setBackgroundMusic(index: Int) {
+        self.backgroundMusicIndex = index
+    }
+    
+    public func setAnonymous(isSenderAnonymous: Bool) {
+         self.isSenderAnonymous = isSenderAnonymous
+    }
+    
+    public func setCategory(category: Int) {
+        self.category = category
+    }
+    
+    public func setVibeType(type: Int) {
+        self.type = type
     }
 }
