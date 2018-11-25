@@ -20,6 +20,7 @@
 		57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2B21A705B500FA45E9 /* Entity.swift */; };
 		57B24F2E21A98B7700FA45E9 /* BackgroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */; };
 		57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */; };
+		57B24F3221AA7B9500FA45E9 /* VibeSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */; };
 		57BD53E8219841BF001B1010 /* PublicVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */; };
 		57BD53EA219841F0001B1010 /* FriendsVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */; };
 		57BD53ED2199CD38001B1010 /* VibesCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */; };
@@ -119,6 +120,7 @@
 		57B24F2B21A705B500FA45E9 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundMusic.swift; sourceTree = "<group>"; };
 		57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeTypesLocal.swift; sourceTree = "<group>"; };
+		57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeSentViewController.swift; sourceTree = "<group>"; };
 		57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibesViewController.swift; sourceTree = "<group>"; };
 		57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVibesViewController.swift; sourceTree = "<group>"; };
 		57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibesCategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				B545799F213F010900C7424F /* StartViewController.swift */,
 				B51DF219211F13B9009896CC /* VibesViewController.swift */,
 				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
+				57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				B51DF232211F13B9009896CC /* ForgotPasswordViewController.swift in Sources */,
 				57BD53ED2199CD38001B1010 /* VibesCategoryTableViewCell.swift in Sources */,
 				57BD53E8219841BF001B1010 /* PublicVibesViewController.swift in Sources */,
+				57B24F3221AA7B9500FA45E9 /* VibeSentViewController.swift in Sources */,
 				B51DF228211F13B9009896CC /* SignUpOTPViewController.swift in Sources */,
 				B51DF221211F13B9009896CC /* CreateVibeViewController.swift in Sources */,
 				B51DF255211F17E6009896CC /* ProfileTableViewCell.swift in Sources */,

@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "kraizios-20181122200957-authRole",
+            "UnauthRoleArn": "arn:aws:iam::292872607610:role/kraizios-20181122200957-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::292872607610:role/kraizios-20181122200957-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "kraizios-20181122200957-deployment",
+            "UnauthRoleName": "kraizios-20181122200957-unauthRole",
+            "StackName": "kraizios-20181122200957",
+            "StackId": "arn:aws:cloudformation:us-west-2:292872607610:stack/kraizios-20181122200957/7cd11e60-ee64-11e8-b3c4-503f2a2cee4a"
+        }
+    }
+}

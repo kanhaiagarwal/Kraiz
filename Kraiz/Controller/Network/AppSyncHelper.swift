@@ -21,12 +21,15 @@ class AppSyncHelper {
     /// Sets the app sync client by fetching the idToken from the Cognito user session.
     public func setAppSyncClient() {
         
+        let urlSessionConfiguration = URLSessionConfiguration.default
+        urlSessionConfiguration.timeoutIntervalForRequest = TimeInterval(60)
+        urlSessionConfiguration.timeoutIntervalForResource = TimeInterval(60)
         let databaseURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(AWSConstants.DATABASE_NAME, isDirectory: false)
         do {
             let appSyncClientConfig = try AWSAppSyncClientConfiguration.init(url: AWSConstants.APP_SYNC_ENDPOINT,
                                serviceRegion: AWSConstants.AWS_REGION,
                                userPoolsAuthProvider: MyCognitoUserPoolsAuthProvider(),
-                               urlSessionConfiguration: URLSessionConfiguration.default,
+                               urlSessionConfiguration: urlSessionConfiguration,
                                databaseURL: databaseURL)
             AppSyncHelper.shared.appSyncClient = try AWSAppSyncClient(appSyncConfig: appSyncClientConfig)
 

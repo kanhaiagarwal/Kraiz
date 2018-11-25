@@ -11,6 +11,7 @@ import UIKit
 import AVFoundation
 import BSImagePicker
 import Photos
+import RxSwift
 
 class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
 
@@ -89,18 +90,38 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
             print("letter is not selected")
         }
         if isImagesSelected {
-            print("photos are selected")
             vibeModel.setImages(photos: photosSelected)
             vibeModel.isPhotosPresent = true
+            for i in 0 ..< vibeModel.images.count {
+                let timeNow = String(Int(Date().timeIntervalSince1970))
+                vibeModel.images[i].caption = "IMG_" + timeNow + "_" + NSUUID().uuidString
+            }
         } else {
             print("photos are not selected")
         }
-//        performSegue(withIdentifier: FINAL_APPROVAL_SEGUE, sender: self)
+
+        var imagesUploaded = 0
+        let counter = Variable(0)
+        let disposeBag = DisposeBag()
+        counter.asObservable().subscribe(onNext: { (counter) in
+            print("image uploaded")
+            imagesUploaded = imagesUploaded + 1
+        }, onError: { (error) in
+            print("error in uploading the picture")
+        }, onCompleted: {
+            print("upload completed")
+        }) {
+            print("disposed")
+        }.disposed(by: disposeBag)
         let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+
+        // Start the image upload in the background(if any images present.
+        MediaHelper.shared.uploadImagesAsync(images: vibeModel.images, folder: "Vibe", counter: counter)
         AppSyncHelper.shared.createVibe(vibe: vibeModel, success: { (success) in
             DispatchQueue.main.async {
                 APPUtilites.removeLoadingSpinner(spinner: sv)
                 if success {
+                    self.performSegue(withIdentifier: self.FINAL_APPROVAL_SEGUE, sender: self)
                     APPUtilites.displaySuccessSnackbar(message: "Vibe has been created")
                 } else {
                     APPUtilites.displayErrorSnackbar(message: "Vibe Creation is not successful")

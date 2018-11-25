@@ -1994,8 +1994,8 @@ mobile number +919003194776</string>
                         <segue destination="Zku-rO-OLl" kind="show" identifier="gotoAudioRecorder" id="8RS-Zu-kiD"/>
                         <segue destination="4R8-EI-p1B" kind="show" identifier="gotoTextInput" id="nkZ-Ht-Ppf"/>
                         <segue destination="qYy-1T-fKa" kind="show" identifier="gotoPhotosInput" id="b4a-c6-3ia"/>
-                        <segue destination="S9q-XB-SKE" kind="show" identifier="gotoFinalApprovalPage" id="M2w-rW-Vou"/>
                         <segue destination="SGl-gi-3i5" kind="presentation" identifier="gotoMyVibeFromCreateVibe" id="jey-vD-tun"/>
+                        <segue destination="Vs7-26-3x7" kind="show" identifier="gotoFinalApprovalPage" id="8KM-mM-V0M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="at9-8W-zj8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2370,13 +2370,13 @@ its the right one</string>
                                                 <rect key="frame" x="0.0" y="314.66666666666663" width="414" height="57"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blV-dE-aGm">
-                                                        <rect key="frame" x="28.000000000000004" y="5" width="34.333333333333343" height="52"/>
+                                                        <rect key="frame" x="28" y="5" width="30.333333333333329" height="52"/>
                                                         <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="26"/>
                                                         <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Risk_rk" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fNK-4C-n5O">
-                                                        <rect key="frame" x="67.333333333333343" y="0.0" width="316.66666666666663" height="57"/>
+                                                        <rect key="frame" x="63.333333333333343" y="0.0" width="320.66666666666663" height="57"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" red="0.18431372549019609" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
@@ -2398,13 +2398,13 @@ its the right one</string>
                                                 <rect key="frame" x="0.0" y="379.66666666666663" width="414" height="57.333333333333314"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7r-3i-aPf">
-                                                        <rect key="frame" x="28" y="0.0" width="178.66666666666666" height="57.333333333333336"/>
+                                                        <rect key="frame" x="28" y="0.0" width="142.33333333333334" height="57.333333333333336"/>
                                                         <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
                                                         <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="The Sutta" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4wH-Bn-kZh" userLabel="StoryNameLine1">
-                                                        <rect key="frame" x="216.66666666666663" y="0.0" width="167.33333333333337" height="57.333333333333336"/>
+                                                        <rect key="frame" x="180.33333333333337" y="0.0" width="203.66666666666663" height="57.333333333333336"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
@@ -2518,7 +2518,50 @@ its the right one</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nRY-Ly-QqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9811.5942028985519" y="-1712.771739130435"/>
+            <point key="canvasLocation" x="9293" y="-1714"/>
+        </scene>
+        <!--Vibe Sent View Controller-->
+        <scene sceneID="UDP-It-eqX">
+            <objects>
+                <viewController id="Vs7-26-3x7" customClass="VibeSentViewController" customModule="Kraiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9bU-wD-9ZI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="congrats-vibe" translatesAutoresizingMaskIntoConstraints="NO" id="zVx-Fp-vhI">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fge-QQ-RHS">
+                                <rect key="frame" x="124.33333333333333" y="643.33333333333337" width="165.33333333333337" height="57.333333333333371"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.18039215689999999" green="0.25882352939999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="donePressed:" destination="Vs7-26-3x7" eventType="touchUpInside" id="Oaw-CC-fGe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.18039215689999999" green="0.25882352939999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="zVx-Fp-vhI" firstAttribute="top" secondItem="X01-Jf-H54" secondAttribute="top" id="8a3-xl-YPE"/>
+                            <constraint firstItem="X01-Jf-H54" firstAttribute="bottom" secondItem="zVx-Fp-vhI" secondAttribute="bottom" id="APd-FB-my5"/>
+                            <constraint firstItem="zVx-Fp-vhI" firstAttribute="leading" secondItem="X01-Jf-H54" secondAttribute="leading" id="Kaf-mW-doa"/>
+                            <constraint firstItem="Fge-QQ-RHS" firstAttribute="height" secondItem="zVx-Fp-vhI" secondAttribute="height" multiplier="0.07" id="W8p-P1-etH"/>
+                            <constraint firstItem="X01-Jf-H54" firstAttribute="trailing" secondItem="zVx-Fp-vhI" secondAttribute="trailing" id="aJy-F6-FlF"/>
+                            <constraint firstItem="Fge-QQ-RHS" firstAttribute="width" secondItem="zVx-Fp-vhI" secondAttribute="width" multiplier="0.4" id="b27-R5-IS3"/>
+                            <constraint firstItem="Fge-QQ-RHS" firstAttribute="centerX" secondItem="9bU-wD-9ZI" secondAttribute="centerX" id="fFz-Ae-g49"/>
+                            <constraint firstItem="Fge-QQ-RHS" firstAttribute="centerY" secondItem="9bU-wD-9ZI" secondAttribute="centerY" multiplier="1.5" id="u4G-BW-QmU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="X01-Jf-H54"/>
+                    </view>
+                    <connections>
+                        <outlet property="doneButton" destination="Fge-QQ-RHS" id="Xu8-mO-hfO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JmT-J9-mv4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10572" y="-1713"/>
         </scene>
         <!--Photos Input View Controller-->
         <scene sceneID="DqS-9B-azH">
@@ -2962,7 +3005,7 @@ its the right one</string>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Recorder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4b8-eg-v3J">
-                                <rect key="frame" x="0.0" y="53.333333333333336" width="414" height="31.666666666666664"/>
+                                <rect key="frame" x="0.0" y="55.666666666666657" width="414" height="27"/>
                                 <fontDescription key="fontDescription" name="Hero" family="Hero" pointSize="27"/>
                                 <color key="textColor" red="0.18039215689999999" green="0.25882352939999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -4203,6 +4246,7 @@ its the right one</string>
         <image name="Profile_IOS_Inactive" width="24" height="24"/>
         <image name="audio-time-border" width="500" height="500"/>
         <image name="bin" width="24" height="24"/>
+        <image name="congrats-vibe" width="358.55999755859375" height="618.719970703125"/>
         <image name="contact-list" width="50" height="50"/>
         <image name="edit-my-vibe" width="37.5" height="37.5"/>
         <image name="facebook-invite" width="29" height="29"/>

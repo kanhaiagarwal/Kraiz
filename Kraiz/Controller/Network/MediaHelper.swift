@@ -34,8 +34,7 @@ class MediaHelper {
         if client == nil {
             setMediaHelper()
         }
-        
-        
+    
         let params = CLDUploadRequestParams().setFolder(PROFILE_PIC_FOLDER)
         self.client?.createUploader().signedUpload(data: fileData, params: params, progress: { (progress) in
             print("Upload Progress")
@@ -47,6 +46,26 @@ class MediaHelper {
                 success((result?.publicId)!)
             }
         })
+    }
+    
+    func uploadImagesAsync(images: [PhotoEntity], folder: String, counter: Variable<Int>) {
+        if client == nil {
+            setMediaHelper()
+        }
+        for i in 0 ..< images.count {
+            DispatchQueue.global(qos: .utility).async {
+                let params = CLDUploadRequestParams().setFolder(folder).setPublicId(images[i].caption!)
+                self.client?.createUploader().signedUpload(data: images[i].image!.jpegData(compressionQuality: 0.5)!, params: params, progress: { (progress) in
+                }, completionHandler: { (result, error) in
+                    if error != nil {
+                        print(error)
+                    } else {
+                        print("Upload done for the image \(images[i].caption!)")
+                        counter.value = 1
+                    }
+                })
+            }
+        }
     }
     
     func downloadProfileImage(publicId: String, success: @escaping (UIImage) -> Void, failure: @escaping (NSError) -> Void) {

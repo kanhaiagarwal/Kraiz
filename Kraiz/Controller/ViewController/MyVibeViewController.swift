@@ -117,7 +117,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
 
         // Set the Vibe Category field during load. This is set here because the category was not getting updated in the view in viewDidLoad().
-        vibeCategoryPicker.selectedRow(inComponent: vibeModel.category)
+        vibeCategoryPicker.selectRow(vibeModel.category, inComponent: 0, animated: false)
         vibeCategorySelected = vibeModel.category
         vibeCategoryField.text = VibeCategories.pickerStrings[vibeModel.category]
         setupNextButton()
