@@ -14,7 +14,7 @@ import AVFoundation
 protocol VibeDetailsProtocol {
     func setVibeDetails(vibeModel: VibeModel)
 }
-class MyVibeViewController: UIViewController, UITextFieldDelegate {
+class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayerDelegate {
     
     let countryCodePicker = UIPickerView()
     let vibeCategoryPicker = UIPickerView()
@@ -25,6 +25,8 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
     var musicSelected : Int?
     let GRADIENT_TOP_COLOR = UIColor(displayP3Red: 230/255, green: 158/255, blue: 55/255, alpha: 1.0)
     let GRADIENT_BOTTOM_COLOR = UIColor(displayP3Red: 227/255, green: 121/255, blue: 11/255, alpha: 1.0)
+    let PLAY_IMAGE = "recorder-play-enabled"
+    let PAUSE_IMAGE = "recorder-pause"
     
     @IBOutlet weak var vibeTypeSegment: UISegmentedControl!
     @IBOutlet weak var musicArrowLabel: UILabel!
@@ -42,6 +44,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var backgroundMusicSwitch: UISwitch!
     @IBOutlet weak var nextButton: UIButton!
     
+    var audioPlayer : AVAudioPlayer!
     var delegate : VibeDetailsProtocol?
     
     var isUsernameInputNumbers : Bool = false
@@ -51,6 +54,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
     
     var vibeModel = VibeModel()
     var isSourceCreateVibe = false
+    var isAudioPlaying = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,39 +92,73 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
             vibeNameField.text = vibeModel.vibeName
         }
         
+        countryCodeSelected = CountryCodes.countryCodes[0]
+        countryCodeField.text = countryCodeSelected!
+        vibeCategorySelected = 0
+        vibeCategoryField.text = VibeCategories.pickerStrings[vibeCategorySelected!]
+        countryCodeField.inputView = countryCodePicker
+        vibeCategoryField.inputView = vibeCategoryPicker
+        musicField.inputView = musicPicker
+        
+        // Make the play image view tappable to play the audio
+        addGestureToPlayIcon()
+        
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Set the Vibe Category field during load. This is set here because the category was not getting updated in the view in viewDidLoad().
+        vibeCategoryPicker.selectRow(vibeModel.category, inComponent: 0, animated: false)
+        vibeCategorySelected = vibeModel.category
+        vibeCategoryField.text = VibeCategories.pickerStrings[vibeModel.category]
+        
+        // Set the background music selected during load. This is set here because the music field was not getting updated in the view in viewDidLoad()
         // Set the background music field during load.
         if vibeModel.isBackgroundMusicEnabled {
             backgroundMusicSwitch.isOn = true
             musicField.isHidden = false
             musicField.text = BackgroundMusic.musicList[vibeModel.backgroundMusicIndex]
+            musicSelected = vibeModel.backgroundMusicIndex
             musicArrowLabel.isHidden = false
             playImageView.isHidden = false
         } else {
             backgroundMusicSwitch.isOn = false
             musicField.isHidden = true
-            musicField.text = nil
+            musicSelected = 0
+            musicField.text = BackgroundMusic.musicFiles[musicSelected!]
             musicArrowLabel.isHidden = true
             playImageView.isHidden = true
         }
         
-        countryCodeSelected = CountryCodes.countryCodes[0]
-        countryCodeField.text = countryCodeSelected!
-        vibeCategorySelected = 0
-        vibeCategoryField.text = VibeCategories.pickerStrings[vibeCategorySelected!]
-        musicSelected = 0
-        musicField.text = BackgroundMusic.musicList[musicSelected!]
-        countryCodeField.inputView = countryCodePicker
-        vibeCategoryField.inputView = vibeCategoryPicker
-        musicField.inputView = musicPicker
+        setupNextButton()
+    }
+
+    @IBAction func musicFieldTapped(_ sender: Any) {
+        print("music field editing began")
+        if audioPlayer != nil && audioPlayer.isPlaying {
+            isAudioPlaying = false
+            audioPlayer.pause()
+            playImageView.image = UIImage(named: PLAY_IMAGE)
+        }
+    }
+
+    func addGestureToPlayIcon() {
+        let playTapGesture = UITapGestureRecognizer(target: self, action: #selector(playImageTapped))
+        playImageView.addGestureRecognizer(playTapGesture)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-
-        // Set the Vibe Category field during load. This is set here because the category was not getting updated in the view in viewDidLoad().
-        vibeCategoryPicker.selectRow(vibeModel.category, inComponent: 0, animated: false)
-        vibeCategorySelected = vibeModel.category
-        vibeCategoryField.text = VibeCategories.pickerStrings[vibeModel.category]
-        setupNextButton()
+    @objc func playImageTapped() {
+        if isAudioPlaying {
+            playImageView.image = UIImage(named: PLAY_IMAGE)
+            pauseAudio()
+        } else {
+            let url = APPUtilites.getUrlForFileName(fileName: BackgroundMusic.musicFiles[musicSelected!], type: "mp3")
+            if url != nil {
+                playAudioForUrl(url: url!)
+            } else {
+                print("File not found for the file name \(BackgroundMusic.musicFiles[musicSelected!]) of type .mp3")
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -132,6 +170,42 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
         contactListIcon.addGestureRecognizer(tapGesture)
     }
     
+    func playAudioForUrl(url: URL) {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer.delegate = self
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+            playImageView.image = UIImage(named: PAUSE_IMAGE)
+            isAudioPlaying = true
+        } catch {
+            print("Error in playing the audio. Please try again!!")
+        }
+    }
+    
+    func playAudio() {
+        if audioPlayer != nil {
+            isAudioPlaying = true
+            audioPlayer.play()
+        }
+    }
+    
+    func pauseAudio() {
+        if audioPlayer != nil && audioPlayer.isPlaying {
+            isAudioPlaying = false
+            playImageView.image = UIImage(named: PLAY_IMAGE)
+            audioPlayer.pause()
+        }
+    }
+    
+    func stopAudio() {
+        if audioPlayer != nil && audioPlayer.isPlaying {
+            isAudioPlaying = false
+            playImageView.image = UIImage(named: PLAY_IMAGE)
+            audioPlayer.stop()
+        }
+    }
+    
     @IBAction func backgroundMusicSwitchPressed(_ sender: UISwitch) {
         if backgroundMusicSwitch.isOn {
             musicContainer.isHidden = false
@@ -139,6 +213,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
             musicArrowLabel.isHidden = false
             playImageView.isHidden = false
         } else {
+            stopAudio()
             musicContainer.isHidden = true
             musicField.isHidden = true
             musicArrowLabel.isHidden = true
@@ -165,6 +240,8 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate {
         if backgroundMusicSwitch.isOn {
             vibeModel.setBackgroundMusic(index: musicSelected!)
         }
+        
+        stopAudio()
         
         if isSourceCreateVibe {
             delegate?.setVibeDetails(vibeModel: vibeModel)

@@ -78,6 +78,10 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
+        if !APPUtilites.isInternetConnectionAvailable() {
+            APPUtilites.displayErrorSnackbar(message: "Please check your internet connection.")
+            return
+        }
         if !isLetterSelected && !isImagesSelected {
             APPUtilites.displayErrorSnackbar(message: "Please select atleast the Letter or the Photos")
             return
@@ -124,7 +128,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
                     self.performSegue(withIdentifier: self.FINAL_APPROVAL_SEGUE, sender: self)
                     APPUtilites.displaySuccessSnackbar(message: "Vibe has been created")
                 } else {
-                    APPUtilites.displayErrorSnackbar(message: "Vibe Creation is not successful")
+                    APPUtilites.displayErrorSnackbar(message: "Vibe Creation is not successful. Please check the receiver is present in the App. Or Check the Internet Connection.")
                 }
             }
         }) { (error) in

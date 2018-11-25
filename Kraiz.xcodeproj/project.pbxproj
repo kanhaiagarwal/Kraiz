@@ -21,6 +21,8 @@
 		57B24F2E21A98B7700FA45E9 /* BackgroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */; };
 		57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */; };
 		57B24F3221AA7B9500FA45E9 /* VibeSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */; };
+		57B24F3621AACFD600FA45E9 /* friends.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57B24F3421AACFD600FA45E9 /* friends.mp3 */; };
+		57B24F3721AACFD600FA45E9 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57B24F3521AACFD600FA45E9 /* piano.mp3 */; };
 		57BD53E8219841BF001B1010 /* PublicVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */; };
 		57BD53EA219841F0001B1010 /* FriendsVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */; };
 		57BD53ED2199CD38001B1010 /* VibesCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */; };
@@ -121,6 +123,8 @@
 		57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundMusic.swift; sourceTree = "<group>"; };
 		57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeTypesLocal.swift; sourceTree = "<group>"; };
 		57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeSentViewController.swift; sourceTree = "<group>"; };
+		57B24F3421AACFD600FA45E9 /* friends.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = friends.mp3; sourceTree = "<group>"; };
+		57B24F3521AACFD600FA45E9 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
 		57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibesViewController.swift; sourceTree = "<group>"; };
 		57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVibesViewController.swift; sourceTree = "<group>"; };
 		57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibesCategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -220,6 +224,15 @@
 			path = Cache;
 			sourceTree = "<group>";
 		};
+		57B24F3821AADD6900FA45E9 /* AudioFiles */ = {
+			isa = PBXGroup;
+			children = (
+				57B24F3421AACFD600FA45E9 /* friends.mp3 */,
+				57B24F3521AACFD600FA45E9 /* piano.mp3 */,
+			);
+			path = AudioFiles;
+			sourceTree = "<group>";
+		};
 		9B57BC13AFD4177F18214DF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +308,7 @@
 		B51DF1ED211F1248009896CC /* Kraiz */ = {
 			isa = PBXGroup;
 			children = (
+				57B24F3821AADD6900FA45E9 /* AudioFiles */,
 				B524CAC421453D8900316D84 /* GraphQLOperations */,
 				B55346AC212B1FC9005353E4 /* Model */,
 				B51DF24C211F16E4009896CC /* Controller */,
@@ -515,6 +529,7 @@
 			files = (
 				B5BC1CFD216164D6008CE09F /* playlist-script.otf in Resources */,
 				B51DF21B211F13B9009896CC /* AppIcon.png in Resources */,
+				57B24F3721AACFD600FA45E9 /* piano.mp3 in Resources */,
 				B51DF24E211F174A009896CC /* HamburgerTableViewCell.xib in Resources */,
 				57BD53EE2199CD38001B1010 /* VibesCategoryTableViewCell.xib in Resources */,
 				B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */,
@@ -524,6 +539,7 @@
 				B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */,
 				B51DF258211F1AA8009896CC /* frenchscriptmt.ttf in Resources */,
 				B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */,
+				57B24F3621AACFD600FA45E9 /* friends.mp3 in Resources */,
 				B51DF251211F1787009896CC /* ContactUsTableViewCell.xib in Resources */,
 				B56EFE99215AB05D008059ED /* Images.xcassets in Resources */,
 				B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */,

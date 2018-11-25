@@ -142,6 +142,21 @@ public class APPUtilites {
         return captions
     }
     
+    /// Gets the file url for the fileName and the file type.
+    /// - Parameters
+    ///     - fileName: Name of the file.
+    ///     - type: File Type.
+    public static func getUrlForFileName(fileName: String, type: String) -> URL? {
+        if Bundle.main.path(forResource: fileName, ofType: type) != nil {
+            print("File exists")
+        } else {
+            print("No File exists")
+            return nil
+        }
+        let path = Bundle.main.path(forResource: fileName, ofType: type)!
+        return URL(fileURLWithPath: path)
+    }
+    
     public static func getAccessHashForBidirectional(key1: String, key2: String) -> String {
         return key1 < key2 ? (key1 + "#" + key2).sha1 : (key2 + "#" + key1).sha1
     }
