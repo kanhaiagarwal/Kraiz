@@ -49,6 +49,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     let MAX_IMAGES_TO_BE_SELECTED = 9
 
     var photosSelected = [PhotoEntity]()
+    var imageBackdropSelected = 0
     
     func setVibeDetails(vibeModel: VibeModel) {
         self.vibeModel.from = vibeModel.from
@@ -87,28 +88,23 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
             return
         }
         if isLetterSelected {
-            print("Letter is selected")
             vibeModel.setLetter(letterString: letterText, background: letterBackground)
             vibeModel.isLetterPresent = true
-        } else {
-            print("letter is not selected")
         }
         if isImagesSelected {
             vibeModel.setImages(photos: photosSelected)
+            vibeModel.setImageBackdrop(backdrop: imageBackdropSelected)
             vibeModel.isPhotosPresent = true
             for i in 0 ..< vibeModel.images.count {
                 let timeNow = String(Int(Date().timeIntervalSince1970))
                 vibeModel.images[i].caption = "IMG_" + timeNow + "_" + NSUUID().uuidString
             }
-        } else {
-            print("photos are not selected")
         }
 
         var imagesUploaded = 0
         let counter = Variable(0)
         let disposeBag = DisposeBag()
         counter.asObservable().subscribe(onNext: { (counter) in
-            print("image uploaded")
             imagesUploaded = imagesUploaded + 1
         }, onError: { (error) in
             print("error in uploading the picture")
@@ -226,12 +222,16 @@ extension CreateVibeViewController {
     
     /// Action performed on click of the Photos View
     @objc func onClickImagesIcon() {
-        performSegue(withIdentifier: PHOTOS_INPUT_SEGUE, sender: self)
+        if isImagesSelected {
+            performSegue(withIdentifier: PHOTOS_INPUT_SEGUE, sender: self)
+        } else {
+            performSegue(withIdentifier: DeviceConstants.GOTO_IMAGE_BACKDROP_FROM_CREATE_VIBE, sender: self)
+        }
     }
 
     /// Action to perform on clicking the Review Icon
     @objc func onClickReviewIcon() {
-        // Show the story here.
+        // Show the vibe here.
     }
 
     /// Action to perform on clicking the My Vibe Icon
@@ -290,12 +290,11 @@ extension CreateVibeViewController: LetterInputProtocol, PhotosInputProtocol {
         performTickAnimation(checkbox: letterCheckbox, isSelected: isLetterSelected)
     }
 
-    func photosInput(photos: [PhotoEntity]) {
+    func photosInput(photos: [PhotoEntity], backdropSelected: Int) {
         if photos.count > 0 {
+            imageBackdropSelected = backdropSelected
             photosSelected = []
-            print("captions inside photosInput of CreateVibeViewController")
             for i in 0..<photos.count {
-                print("caption \(i + 1): \(photos[i].caption)")
                 photosSelected.append(photos[i])
             }
             isImagesSelected = true
@@ -316,12 +315,15 @@ extension CreateVibeViewController: LetterInputProtocol, PhotosInputProtocol {
         } else if segue.identifier == PHOTOS_INPUT_SEGUE {
             let destinationVC = segue.destination as! PhotosInputViewController
             destinationVC.delegate = self
-            print("photosSelected.count inside the prepare method: \(photosSelected.count)")
             destinationVC.numberOfImagesSelected = photosSelected.count
             destinationVC.selectedImages = photosSelected
+            destinationVC.backdropSelected = imageBackdropSelected
         } else if segue.identifier == DeviceConstants.GOTO_MY_VIBE_FROM_CREATE_VIBE {
             let destinationVC = segue.destination as! MyVibeViewController
             destinationVC.vibeModel = vibeModel
+            destinationVC.isSourceCreateVibe = true
+        } else if segue.identifier == DeviceConstants.GOTO_IMAGE_BACKDROP_FROM_CREATE_VIBE {
+            let destinationVC = segue.destination as! ImageBackdropViewController
             destinationVC.isSourceCreateVibe = true
         }
     }

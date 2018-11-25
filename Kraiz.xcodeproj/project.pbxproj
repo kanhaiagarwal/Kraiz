@@ -23,6 +23,9 @@
 		57B24F3221AA7B9500FA45E9 /* VibeSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */; };
 		57B24F3621AACFD600FA45E9 /* friends.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57B24F3421AACFD600FA45E9 /* friends.mp3 */; };
 		57B24F3721AACFD600FA45E9 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57B24F3521AACFD600FA45E9 /* piano.mp3 */; };
+		57B24F3A21AB138300FA45E9 /* ImageBackdropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F3921AB138300FA45E9 /* ImageBackdropViewController.swift */; };
+		57B24F3D21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F3B21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift */; };
+		57B24F3E21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57B24F3C21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib */; };
 		57BD53E8219841BF001B1010 /* PublicVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */; };
 		57BD53EA219841F0001B1010 /* FriendsVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */; };
 		57BD53ED2199CD38001B1010 /* VibesCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */; };
@@ -125,6 +128,9 @@
 		57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeSentViewController.swift; sourceTree = "<group>"; };
 		57B24F3421AACFD600FA45E9 /* friends.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = friends.mp3; sourceTree = "<group>"; };
 		57B24F3521AACFD600FA45E9 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
+		57B24F3921AB138300FA45E9 /* ImageBackdropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackdropViewController.swift; sourceTree = "<group>"; };
+		57B24F3B21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackdropTableViewCell.swift; sourceTree = "<group>"; };
+		57B24F3C21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageBackdropTableViewCell.xib; sourceTree = "<group>"; };
 		57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibesViewController.swift; sourceTree = "<group>"; };
 		57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVibesViewController.swift; sourceTree = "<group>"; };
 		57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibesCategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -266,6 +272,7 @@
 				57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */,
 				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
 				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
+				57B24F3921AB138300FA45E9 /* ImageBackdropViewController.swift */,
 				571E508B2185807100271314 /* ImageCaptionsViewController.swift */,
 				B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */,
 				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
@@ -349,6 +356,8 @@
 				B51DF238211F15E3009896CC /* DraftsTableViewCell.xib */,
 				B51DF239211F15E3009896CC /* HamburgerTableViewCell.swift */,
 				B51DF23A211F15E3009896CC /* HamburgerTableViewCell.xib */,
+				57B24F3B21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift */,
+				57B24F3C21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib */,
 				B51DF23B211F15E3009896CC /* ProfileTableViewCell.swift */,
 				B51DF23C211F15E3009896CC /* ProfileTableViewCell.xib */,
 				B51DF23D211F15E3009896CC /* VibesTableViewCell.swift */,
@@ -539,6 +548,7 @@
 				B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */,
 				B51DF258211F1AA8009896CC /* frenchscriptmt.ttf in Resources */,
 				B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */,
+				57B24F3E21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib in Resources */,
 				57B24F3621AACFD600FA45E9 /* friends.mp3 in Resources */,
 				B51DF251211F1787009896CC /* ContactUsTableViewCell.xib in Resources */,
 				B56EFE99215AB05D008059ED /* Images.xcassets in Resources */,
@@ -649,6 +659,7 @@
 				B51DF229211F13B9009896CC /* WelcomeViewController.swift in Sources */,
 				57BD53EA219841F0001B1010 /* FriendsVibesViewController.swift in Sources */,
 				B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */,
+				57B24F3A21AB138300FA45E9 /* ImageBackdropViewController.swift in Sources */,
 				B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */,
 				B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */,
 				B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */,
@@ -702,6 +713,7 @@
 				B51DF221211F13B9009896CC /* CreateVibeViewController.swift in Sources */,
 				B51DF255211F17E6009896CC /* ProfileTableViewCell.swift in Sources */,
 				57B24F2E21A98B7700FA45E9 /* BackgroundMusic.swift in Sources */,
+				57B24F3D21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift in Sources */,
 				B51DF21F211F13B9009896CC /* SignInViewController.swift in Sources */,
 				571F44C621A47B46001C033B /* VibeCategories.swift in Sources */,
 			);

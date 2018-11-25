@@ -28,10 +28,15 @@ enum CROP_STATES {
 }
 
 protocol PhotosInputProtocol {
-    func photosInput(photos: [PhotoEntity])
+    func photosInput(photos: [PhotoEntity], backdropSelected: Int)
 }
 
-class PhotosInputViewController: UIViewController, CropViewControllerDelegate, ImageCaptionsProtocol {
+class PhotosInputViewController: UIViewController, CropViewControllerDelegate, ImageCaptionsProtocol, ImagesBackdropSelection {
+
+    func imageBackdropSelected(backdropSelected: Int) {
+        self.backdropSelected = backdropSelected
+    }
+    
     func setImageCaptions(photosSelected: [PhotoEntity]) {
         self.selectedImages = photosSelected
         self.numberOfImagesSelected = selectedImages.count
@@ -62,6 +67,7 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
     var updateImageInGrid = false
     var imagesToBeCropped = [PHAsset]()
     var currentCropIndex : Int = 0
+    var backdropSelected : Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,8 +103,8 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
-        print("No Action to perform right now")
+    @IBAction func editBackdropPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: DeviceConstants.GOTO_IMAGE_BACKDROP_FROM_PHOTOS_INPUT, sender: self)
     }
 
     @IBAction func nextButtonPressed(_ sender: UIButton) {
@@ -113,7 +119,7 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
             self.present(alertController, animated: true, completion: nil)
         } else {
             print("selectedImages count is greater than 0")
-            delegate?.photosInput(photos: selectedImages)
+            delegate?.photosInput(photos: selectedImages, backdropSelected: backdropSelected)
 //            self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)
         }
@@ -345,6 +351,11 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
             destinationVC.delegate = self
             destinationVC.photosSelected = selectedImages
             destinationVC.selectedCell = selectedCell
+        } else if segue.identifier == DeviceConstants.GOTO_IMAGE_BACKDROP_FROM_PHOTOS_INPUT {
+            let destinationVC = segue.destination as! ImageBackdropViewController
+            destinationVC.backdropSelected = backdropSelected
+            destinationVC.isSourceCreateVibe = false
+            destinationVC.delegate = self
         }
     }
 }

@@ -21,6 +21,7 @@ public class VibeModel {
     var letter: LetterEntity
     var images: [PhotoEntity]
     var backgroundMusicIndex: Int
+    var imageBackdrop: Int
     
     init() {
         vibeName = ""
@@ -35,6 +36,7 @@ public class VibeModel {
         letter = LetterEntity()
         images = [PhotoEntity]()
         backgroundMusicIndex = 0
+        imageBackdrop = 0
     }
     
     init(vibeName: String, from: String, to: String, isBackgroundMusicEnabled: Bool, isSenderAnonymous: Bool) {
@@ -50,6 +52,7 @@ public class VibeModel {
         self.letter = LetterEntity()
         self.images = [PhotoEntity]()
         self.backgroundMusicIndex = 0
+        self.imageBackdrop = 0
     }
     
     public func setLetter(letterString: String, background: Int) {
@@ -107,5 +110,9 @@ public class VibeModel {
     
     public func setVibeType(type: Int) {
         self.type = type
+    }
+    
+    public func setImageBackdrop(backdrop: Int) {
+        self.imageBackdrop = backdrop
     }
 }

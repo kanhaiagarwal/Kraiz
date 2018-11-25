@@ -230,7 +230,6 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             APPUtilites.displayErrorSnackbar(message: "The Vibe Name cannot be nil")
             return
         }
-        print("countryCodeSelected: \(countryCodeSelected)")
         vibeModel.setReceiver(receiver: usernameField.text!.starts(with: "+") ? usernameField.text! : (countryCodeSelected! + usernameField.text!))
         vibeModel.setSender(sender: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)!)
         vibeModel.setVibeName(name: vibeNameField.text!)

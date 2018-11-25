@@ -33,8 +33,10 @@ public class DeviceConstants {
     // Segues
     static public let CREATE_STORY_SEGUE = "gotoCreateStory"
     static public let GOTO_CREATE_VIBE_FROM_VIBE_DETAILS = "gotoCreateVibeFromVibeDetails"
-    static public let GOTO_VIBE_DETAILS_FROM_HOME_SEGUE = "gotoMyVibeFromHome"
+    static public let GOTO_IMAGE_BACKDROP_FROM_CREATE_VIBE = "gotoImageBackdropFromCreateVibe"
+    static public let GOTO_IMAGE_BACKDROP_FROM_PHOTOS_INPUT = "gotoImageBackdropFromPhotosInput"
     static public let GOTO_MY_VIBE_FROM_CREATE_VIBE = "gotoMyVibeFromCreateVibe"
+    static public let GOTO_VIBE_DETAILS_FROM_HOME_SEGUE = "gotoMyVibeFromHome"
     
     // Tab Bar Index
     static public let DEFAULT_SELECTED_INDEX = 0
