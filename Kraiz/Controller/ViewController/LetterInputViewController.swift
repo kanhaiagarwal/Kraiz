@@ -127,17 +127,17 @@ extension LetterInputViewController: UICollectionViewDataSource, UICollectionVie
         
         switch viewHeight {
         case DeviceConstants.IPHONE7_HEIGHT:
-            letterText.font = UIFont(name: letterFont[backgroundIndex], size: 20)
+            letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: 20)
             letterText.textColor = fontColors[backgroundIndex]
             break
         case DeviceConstants.IPHONE7PLUS_HEIGHT:
-            letterText.font = UIFont(name: letterFont[backgroundIndex], size: 24)
+            letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: 24)
             letterText.textColor = fontColors[backgroundIndex]
         case DeviceConstants.IPHONEX_HEIGHT:
-            letterText.font = UIFont(name: letterFont[backgroundIndex], size: 24)
+            letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: 24)
             letterText.textColor = fontColors[backgroundIndex]
         default:
-            letterText.font = UIFont(name: letterFont[backgroundIndex], size: 20)
+            letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: 20)
             letterText.textColor = fontColors[backgroundIndex]
             break
         }

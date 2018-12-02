@@ -135,6 +135,18 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         }
     }
     
+    /// Action to perform on pressing the Preview Button
+    @IBAction func previewPressed(_ sender: UIButton) {
+        if vibeModel.isLetterPresent && vibeModel.letter.text != nil {
+            print("************************")
+            print("Letter is not nil")
+            performSegue(withIdentifier: DeviceConstants.GOTO_TEXT_PREVIEW_FROM_CREATE, sender: self)
+        } else {
+            print("************************")
+            print("Letter is nil or isLetterPresent is false")
+        }
+    }
+
     @IBAction func crossButtonPressed(_ sender: UIButton) {
 //        self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
@@ -280,6 +292,9 @@ extension CreateVibeViewController {
 extension CreateVibeViewController: LetterInputProtocol, PhotosInputProtocol {
 
     func letterInput(backgroundImage: Int, text: String) {
+        vibeModel.isLetterPresent = true
+        vibeModel.letter.text = text
+        vibeModel.letter.background = backgroundImage
         letterBackground = backgroundImage
         letterText = text
         isLetterSelected = true
@@ -325,6 +340,9 @@ extension CreateVibeViewController: LetterInputProtocol, PhotosInputProtocol {
         } else if segue.identifier == DeviceConstants.GOTO_IMAGE_BACKDROP_FROM_CREATE_VIBE {
             let destinationVC = segue.destination as! ImageBackdropViewController
             destinationVC.isSourceCreateVibe = true
+        } else if segue.identifier == DeviceConstants.GOTO_TEXT_PREVIEW_FROM_CREATE {
+            let destinationVC = segue.destination as! VibeTextViewController
+            destinationVC.vibeModel = vibeModel
         }
     }
     

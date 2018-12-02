@@ -37,6 +37,8 @@ public class DeviceConstants {
     static public let GOTO_IMAGE_BACKDROP_FROM_PHOTOS_INPUT = "gotoImageBackdropFromPhotosInput"
     static public let GOTO_MY_VIBE_FROM_CREATE_VIBE = "gotoMyVibeFromCreateVibe"
     static public let GOTO_VIBE_DETAILS_FROM_HOME_SEGUE = "gotoMyVibeFromHome"
+    static public let GOTO_TEXT_PREVIEW_FROM_CREATE = "gotoTextPreviewFromCreate"
+    static public let GOTO_IMAGES_PREVIEW_FROM_CREATE = "gotoImagesPreviewFromCreate"
     
     // Tab Bar Index
     static public let DEFAULT_SELECTED_INDEX = 0

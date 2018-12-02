@@ -30,6 +30,8 @@
 		57BD53EA219841F0001B1010 /* FriendsVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */; };
 		57BD53ED2199CD38001B1010 /* VibesCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */; };
 		57BD53EE2199CD38001B1010 /* VibesCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57BD53EC2199CD38001B1010 /* VibesCategoryTableViewCell.xib */; };
+		57C74A9621B2F42500D737FB /* VibeTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C74A9521B2F42500D737FB /* VibeTextViewController.swift */; };
+		57C74A9821B3B07400D737FB /* VibeTextBackgrounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C74A9721B3B07400D737FB /* VibeTextBackgrounds.swift */; };
 		B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507EF5C21244886007FC9F1 /* AWSConstants.swift */; };
 		B513582F215D365C00139854 /* Hero.otf in Resources */ = {isa = PBXBuildFile; fileRef = B513582E215D365C00139854 /* Hero.otf */; };
 		B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */; };
@@ -135,6 +137,8 @@
 		57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVibesViewController.swift; sourceTree = "<group>"; };
 		57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibesCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		57BD53EC2199CD38001B1010 /* VibesCategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VibesCategoryTableViewCell.xib; sourceTree = "<group>"; };
+		57C74A9521B2F42500D737FB /* VibeTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeTextViewController.swift; sourceTree = "<group>"; };
+		57C74A9721B3B07400D737FB /* VibeTextBackgrounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeTextBackgrounds.swift; sourceTree = "<group>"; };
 		77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.release.xcconfig"; sourceTree = "<group>"; };
 		AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.debug.xcconfig"; sourceTree = "<group>"; };
 		B507EF5C21244886007FC9F1 /* AWSConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSConstants.swift; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 				B51DF219211F13B9009896CC /* VibesViewController.swift */,
 				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
 				57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */,
+				57C74A9521B2F42500D737FB /* VibeTextViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				571F44C521A47B46001C033B /* VibeCategories.swift */,
 				57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */,
 				57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */,
+				57C74A9721B3B07400D737FB /* VibeTextBackgrounds.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -662,6 +668,7 @@
 				57B24F3A21AB138300FA45E9 /* ImageBackdropViewController.swift in Sources */,
 				B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */,
 				B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */,
+				57C74A9821B3B07400D737FB /* VibeTextBackgrounds.swift in Sources */,
 				B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */,
 				57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */,
 				B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */,
@@ -686,6 +693,7 @@
 				B5BC1CF821615B61008CE09F /* ChatsTableViewCell.swift in Sources */,
 				B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */,
 				57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */,
+				57C74A9621B2F42500D737FB /* VibeTextViewController.swift in Sources */,
 				B51DF256211F17EC009896CC /* VibesTableViewCell.swift in Sources */,
 				B5BC1CFF216169DA008CE09F /* CornerRadiusView.swift in Sources */,
 				57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */,
