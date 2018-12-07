@@ -26,6 +26,11 @@ public struct PhotoEntity {
         self.imageLink = nil
     }
     
+    init(image: UIImage, caption: String) {
+        self.image = image
+        self.caption = caption
+    }
+    
     init(image: UIImage, caption: String, link: String) {
         self.image = image
         self.caption = caption

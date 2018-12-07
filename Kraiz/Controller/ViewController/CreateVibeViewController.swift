@@ -138,17 +138,13 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     /// Action to perform on pressing the Preview Button
     @IBAction func previewPressed(_ sender: UIButton) {
         if vibeModel.isLetterPresent && vibeModel.letter.text != nil {
-            print("************************")
-            print("Letter is not nil")
             performSegue(withIdentifier: DeviceConstants.GOTO_TEXT_PREVIEW_FROM_CREATE, sender: self)
-        } else {
-            print("************************")
-            print("Letter is nil or isLetterPresent is false")
+        } else if vibeModel.isPhotosPresent && vibeModel.images.count > 0 {
+            performSegue(withIdentifier: DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_CREATE, sender: self)
         }
     }
 
     @IBAction func crossButtonPressed(_ sender: UIButton) {
-//        self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -311,7 +307,9 @@ extension CreateVibeViewController: LetterInputProtocol, PhotosInputProtocol {
             photosSelected = []
             for i in 0..<photos.count {
                 photosSelected.append(photos[i])
+                vibeModel.images.append(photos[i])
             }
+            vibeModel.isPhotosPresent = true
             isImagesSelected = true
             photosCheckbox.isHidden = false
             photosCrossButton.isHidden = false
@@ -343,6 +341,10 @@ extension CreateVibeViewController: LetterInputProtocol, PhotosInputProtocol {
         } else if segue.identifier == DeviceConstants.GOTO_TEXT_PREVIEW_FROM_CREATE {
             let destinationVC = segue.destination as! VibeTextViewController
             destinationVC.vibeModel = vibeModel
+        } else if segue.identifier == DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_CREATE {
+            let destinationVC = segue.destination as! VibeImagesViewController
+            destinationVC.vibeModel = vibeModel
+            destinationVC.isSourceLetter = false
         }
     }
     

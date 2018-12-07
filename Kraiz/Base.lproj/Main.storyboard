@@ -2692,21 +2692,38 @@ its the right one</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="mom-A5-bTY"/>
                     </view>
+                    <connections>
+                        <segue destination="1cj-U0-Amv" kind="show" identifier="gotoImagesPreviewFromTextPreview" id="i7q-Jt-iVl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uOA-By-hFQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6958" y="475"/>
         </scene>
-        <!--View Controller-->
+        <!--Vibe Images View Controller-->
         <scene sceneID="1og-x3-1eL">
             <objects>
-                <viewController id="1cj-U0-Amv" sceneMemberID="viewController">
+                <viewController id="1cj-U0-Amv" customClass="VibeImagesViewController" customModule="Kraiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xna-pf-cRp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="polaroid-background" translatesAutoresizingMaskIntoConstraints="NO" id="2hy-wV-9WZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uri-pg-8kM" firstAttribute="bottom" secondItem="2hy-wV-9WZ" secondAttribute="bottom" id="Mqv-Ln-GVL"/>
+                            <constraint firstItem="2hy-wV-9WZ" firstAttribute="leading" secondItem="uri-pg-8kM" secondAttribute="leading" id="fUs-MR-buE"/>
+                            <constraint firstItem="2hy-wV-9WZ" firstAttribute="top" secondItem="xna-pf-cRp" secondAttribute="top" id="nFu-tJ-eSU"/>
+                            <constraint firstItem="uri-pg-8kM" firstAttribute="trailing" secondItem="2hy-wV-9WZ" secondAttribute="trailing" id="ngt-jQ-ipk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="uri-pg-8kM"/>
                     </view>
+                    <connections>
+                        <outlet property="backgroundImage" destination="2hy-wV-9WZ" id="mqE-1h-mBi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oBS-NZ-uqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4413,6 +4430,7 @@ its the right one</string>
         <image name="myvibe-name" width="50" height="50"/>
         <image name="myvibe-username" width="52" height="52"/>
         <image name="pencil" width="22.5" height="22.5"/>
+        <image name="polaroid-background" width="76.800003051757812" height="136.32000732421875"/>
         <image name="preview-icon" width="39" height="39"/>
         <image name="profile-default" width="100" height="100"/>
         <image name="recorder-play-enabled" width="50" height="50"/>
@@ -4430,6 +4448,7 @@ its the right one</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="CPU-Kp-dc0"/>
+        <segue reference="i7q-Jt-iVl"/>
         <segue reference="S9L-Ur-bSB"/>
         <segue reference="ylo-g6-D3y"/>
         <segue reference="jey-vD-tun"/>
