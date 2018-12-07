@@ -122,13 +122,14 @@ extension VibeImagesViewController {
 
     func createOverlayView() -> UIView {
         let overlayView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
-        overlayView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
+        overlayView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.0)
+
         let dismissButton = UIButton(frame: CGRect(x: overlayView.frame.width / 20, y: overlayView.frame.height / 2 - 5, width: overlayView.frame.height / 2, height: overlayView.frame.height / 2))
-        dismissButton.backgroundColor = UIColor.white
-        dismissButton.setTitle("X", for: .normal)
+        dismissButton.setTitle("╳", for: .normal)
+        dismissButton.setTitleColor(UIColor.white, for: .normal)
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onCloseClick))
         dismissButton.addGestureRecognizer(tapGesture)
-        dismissButton.setTitleColor(UIColor.black, for: .normal)
         dismissButton.layer.cornerRadius = dismissButton.frame.height / 2
         overlayView.addSubview(dismissButton)
         view.addSubview(overlayView)

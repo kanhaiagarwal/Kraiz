@@ -145,24 +145,6 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
             print("textView1.text for \(i + 1): \(textView1.text)")
             
             vc.view.addSubview(textView1)
-            
-//            let closebuttonClick = UITapGestureRecognizer(target: self, action: #selector(self.onCloseClick))
-//
-//            let closebtn : UIButton = UIButton(frame: CGRect(x: 40, y: 40, width: 100, height: 100))
-//            closebtn.backgroundColor = UIColor.clear
-//            closebtn.setTitle("X", for: .normal)
-//            closebtn.addGestureRecognizer(closebuttonClick)
-//            vc.view.addSubview(closebtn)
-            
-//            if i == pageTexts.count - 1 {
-//                let nextbuttonClick = UITapGestureRecognizer(target: self, action: #selector(self.onNextClick))
-                
-//                let nextbtn : UIButton = UIButton(frame: CGRect(x: 9 * vc.view.frame.width / 10, y: vc.view.frame.height / 4, width: 30, height: vc.view.frame.height / 2))
-//                nextbtn.backgroundColor = UIColor.clear
-//                nextbtn.setTitle("->", for: .normal)
-//                nextbtn.addGestureRecognizer(nextbuttonClick)
-//                vc.view.addSubview(nextbtn)
-//            }
             controllers.append(vc)
         }
         
@@ -207,11 +189,10 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         let overlayView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
         overlayView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
         let dismissButton = UIButton(frame: CGRect(x: overlayView.frame.width / 20, y: overlayView.frame.height / 2 - 5, width: overlayView.frame.height / 2, height: overlayView.frame.height / 2))
-        dismissButton.backgroundColor = UIColor.white
-        dismissButton.setTitle("X", for: .normal)
+        dismissButton.setTitle("╳", for: .normal)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onCloseClick))
         dismissButton.addGestureRecognizer(tapGesture)
-        dismissButton.setTitleColor(UIColor.black, for: .normal)
+        dismissButton.setTitleColor(UIColor.white, for: .normal)
         dismissButton.layer.cornerRadius = dismissButton.frame.height / 2
         overlayView.addSubview(dismissButton)
         view.addSubview(overlayView)
