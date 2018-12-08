@@ -156,7 +156,7 @@ public class APPUtilites {
         let path = Bundle.main.path(forResource: fileName, ofType: type)!
         return URL(fileURLWithPath: path)
     }
-    
+
     public static func getAccessHashForBidirectional(key1: String, key2: String) -> String {
         return key1 < key2 ? (key1 + "#" + key2).sha1 : (key2 + "#" + key1).sha1
     }

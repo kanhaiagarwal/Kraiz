@@ -14,6 +14,7 @@ public class AudioControls {
     public static let shared = AudioControls()
     private var audioPlayer : AVAudioPlayer?
     private var pauseTime : TimeInterval?
+    private var playAudioOnForeground = false
     
     private init() {
         pauseTime = 0
@@ -30,9 +31,26 @@ public class AudioControls {
         return 0
     }
     
+    func isAudioPlaying() -> Bool {
+        if audioPlayer != nil && audioPlayer!.isPlaying {
+            return true
+        }
+        return false
+    }
+    
+    func setPlayAudioOnForeground(playAudio: Bool) {
+        playAudioOnForeground = playAudio
+    }
+    
+    func getPlayAudioOnForeground() -> Bool {
+        return playAudioOnForeground
+    }
+    
     func playBackgroundMusic(musicIndex: Int) {
         let aSound = NSURL(fileURLWithPath: Bundle.main.path(forResource: BackgroundMusic.musicFiles[musicIndex], ofType: "mp3")!)
         do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.duckOthers)
+            try AVAudioSession.sharedInstance().setActive(true, options: AVAudioSession.SetActiveOptions.notifyOthersOnDeactivation)
             audioPlayer = try AVAudioPlayer(contentsOf:aSound as URL)
             audioPlayer!.numberOfLoops = -1
             audioPlayer!.prepareToPlay()
@@ -47,35 +65,31 @@ public class AudioControls {
         if audioPlayer != nil && audioPlayer!.isPlaying {
             audioPlayer!.pauseFadeOut()
         }
-//        if audioPlayer != nil && audioPlayer!.isPlaying {
-//            audioPlayer!.setVolume(0, fadeDuration: 3.0)
-//            UIView.animate(withDuration: 3.0, animations: {
-//
-//            }) { (success) in
-//                self.pauseTime = self.audioPlayer!.currentTime
-//                self.audioPlayer!.pause()
-//            }
-//        }
     }
     
     func stopMusic() {
         if audioPlayer != nil && audioPlayer!.isPlaying {
             audioPlayer!.stopFadeOut()
         }
-//        if audioPlayer != nil && audioPlayer!.isPlaying {
-//            audioPlayer!.setVolume(0, fadeDuration: 3.0)
-//            UIView.animate(withDuration: 3.0, animations: {
-//
-//            }) { (success) in
-//                self.audioPlayer!.stop()
-//            }
-//        }
     }
     
     func resumeMusic() {
+        print("inside resumeMusic")
         if audioPlayer != nil {
-            audioPlayer!.setVolume(1.0, fadeDuration: 0)
-            audioPlayer!.play(atTime: pauseTime!)
+            print("audioPlayer is not nil")
+            do {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.duckOthers)
+                try AVAudioSession.sharedInstance().setActive(true, options: AVAudioSession.SetActiveOptions.notifyOthersOnDeactivation)
+                audioPlayer!.setVolume(1.0, fadeDuration: 0)
+                audioPlayer!.prepareToPlay()
+                audioPlayer!.play()
+                print("audioPlayer.isPlaying: \(audioPlayer!.isPlaying)")
+                print("audioPlayer.volume: \(audioPlayer!.volume)")
+            } catch {
+                print("Cannot resume the audio")
+            }
+        } else {
+            print("AudioPlayer is nil")
         }
     }
 }

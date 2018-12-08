@@ -166,6 +166,15 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         performSegue(withIdentifier: imagesSegue, sender: self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(resumeMusicIfPaused), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let index = controllers.index(of: viewController) {
             if self.isDismissOverlayVisible {
@@ -223,7 +232,17 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
 }
 
 extension VibeTextViewController {
-    
+
+    @objc func resumeMusicIfPaused() {
+        if AudioControls.shared.getPlayAudioOnForeground() {
+            print("AudioControls.shared.getPlayAudioOnForeground() is true")
+            AudioControls.shared.resumeMusic()
+            AudioControls.shared.setPlayAudioOnForeground(playAudio: false)
+        } else {
+            print("AudioControls.shared.getPlayAudioOnForeground() is false")
+        }
+    }
+
     func startMusic() {
         if vibeModel.isBackgroundMusicEnabled {
             AudioControls.shared.playBackgroundMusic(musicIndex: vibeModel.backgroundMusicIndex)

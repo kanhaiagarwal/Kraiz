@@ -33,7 +33,16 @@ class VibeImagesViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(resumeMusicIfPaused), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+
     func setViews() {
         for i in (0 ..< vibeModel!.images.count) {
             if let card = Bundle.main.loadNibNamed("VibeImageCardView", owner: self, options: nil)?.first as? VibeImageCardView {
@@ -119,6 +128,16 @@ class VibeImagesViewController: UIViewController {
 }
 
 extension VibeImagesViewController {
+
+    @objc func resumeMusicIfPaused() {
+        if AudioControls.shared.getPlayAudioOnForeground() {
+            print("AudioControls.shared.getPlayAudioOnForeground() is true")
+            AudioControls.shared.resumeMusic()
+            AudioControls.shared.setPlayAudioOnForeground(playAudio: false)
+        } else {
+            print("AudioControls.shared.getPlayAudioOnForeground() is false")
+        }
+    }
 
     func createOverlayCloseView() -> UIView {
         let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
