@@ -18,6 +18,7 @@ class LetterInputViewController: UIViewController {
     @IBOutlet weak var backgroundCollection: UICollectionView!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var letterText: UITextView!
+    @IBOutlet weak var textViewProportionalHeight: NSLayoutConstraint!
     
     var delegate: LetterInputProtocol?
     var letterFromVC : String = ""
@@ -45,6 +46,8 @@ class LetterInputViewController: UIViewController {
         letterText.text = letterFromVC
         setTextFont(backgroundIndex: backgroundSelected)
         letterText.textContainerInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
+        letterText.translatesAutoresizingMaskIntoConstraints = false
+        letterText.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,7 +93,7 @@ class LetterInputViewController: UIViewController {
     
 }
 
-extension LetterInputViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
+extension LetterInputViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate, UITextViewDelegate {
    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width / 5, height: backgroundCollection.frame.height)
@@ -143,8 +146,41 @@ extension LetterInputViewController: UICollectionViewDataSource, UICollectionVie
         }
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        print("textViewDidBeginEditing")
+        textViewProportionalHeight = textViewProportionalHeight.setMultiplier(multiplier: 0.5)
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        print("textViewDidBeginEditing")
+        textViewProportionalHeight = textViewProportionalHeight.setMultiplier(multiplier: 1.0)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+}
+
+extension NSLayoutConstraint {
+    func setMultiplier(multiplier:CGFloat) -> NSLayoutConstraint {
+        
+        NSLayoutConstraint.deactivate([self])
+        
+        let newConstraint = NSLayoutConstraint(
+            item: firstItem,
+            attribute: firstAttribute,
+            relatedBy: relation,
+            toItem: secondItem,
+            attribute: secondAttribute,
+            multiplier: multiplier,
+            constant: constant)
+        
+        newConstraint.priority = priority
+        newConstraint.shouldBeArchived = self.shouldBeArchived
+        newConstraint.identifier = self.identifier
+        
+        NSLayoutConstraint.activate([newConstraint])
+        return newConstraint
     }
 }

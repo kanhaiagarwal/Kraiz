@@ -2212,7 +2212,7 @@ mobile number +919003194776</string>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zpZ-ET-w9p">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="508.5"/>
                                                             </imageView>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="M3o-vc-b5e">
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="M3o-vc-b5e">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="508.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <fontDescription key="fontDescription" name="FreestyleScript-Regular" family="Freestyle Script" pointSize="17"/>
@@ -2225,7 +2225,7 @@ mobile number +919003194776</string>
                                                             <constraint firstItem="zpZ-ET-w9p" firstAttribute="top" secondItem="zRb-qF-qWk" secondAttribute="top" id="Pob-Gx-5CS"/>
                                                             <constraint firstAttribute="bottom" secondItem="zpZ-ET-w9p" secondAttribute="bottom" id="WO3-YU-468"/>
                                                             <constraint firstItem="M3o-vc-b5e" firstAttribute="leading" secondItem="zRb-qF-qWk" secondAttribute="leading" id="cwI-qc-FIf"/>
-                                                            <constraint firstAttribute="bottom" secondItem="M3o-vc-b5e" secondAttribute="bottom" id="d3Z-hi-IsK"/>
+                                                            <constraint firstItem="M3o-vc-b5e" firstAttribute="height" secondItem="zpZ-ET-w9p" secondAttribute="height" id="gJ7-NL-Ysd"/>
                                                             <constraint firstAttribute="trailing" secondItem="zpZ-ET-w9p" secondAttribute="trailing" id="hrX-1s-Q3Z"/>
                                                             <constraint firstItem="M3o-vc-b5e" firstAttribute="top" secondItem="zRb-qF-qWk" secondAttribute="top" id="x6M-zd-0k8"/>
                                                             <constraint firstAttribute="trailing" secondItem="M3o-vc-b5e" secondAttribute="trailing" id="xaR-xv-Ube"/>
@@ -2320,6 +2320,7 @@ mobile number +919003194776</string>
                         <outlet property="backgroundCollection" destination="sJM-4d-vWp" id="LMZ-tg-L8X"/>
                         <outlet property="backgroundImage" destination="zpZ-ET-w9p" id="JfT-Pi-6pl"/>
                         <outlet property="letterText" destination="M3o-vc-b5e" id="7Xh-v8-jlx"/>
+                        <outlet property="textViewProportionalHeight" destination="gJ7-NL-Ysd" id="Wmj-JJ-QcU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGn-l2-ruh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2838,7 +2839,7 @@ its the right one</string>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCX-Gn-7H7">
-                                                                                    <rect key="frame" x="8" y="28" width="34" height="60"/>
+                                                                                    <rect key="frame" x="9.5" y="-5" width="31" height="60"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                                                     <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
@@ -2850,7 +2851,7 @@ its the right one</string>
                                                                                     </constraints>
                                                                                 </imageView>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nrq-Xe-dfY" userLabel="CrossButton">
-                                                                                    <rect key="frame" x="37.5" y="3" width="7.5" height="7.5"/>
+                                                                                    <rect key="frame" x="39.5" y="3" width="7.5" height="7.5"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="Nrq-Xe-dfY" secondAttribute="height" multiplier="1:1" id="AJj-d7-RIE"/>
                                                                                     </constraints>
@@ -2860,26 +2861,25 @@ its the right one</string>
                                                                                 </button>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Caption" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xih-mg-70s" userLabel="Caption">
                                                                                     <rect key="frame" x="0.0" y="50" width="50" height="0.0"/>
-                                                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                             </subviews>
                                                                         </view>
                                                                         <constraints>
                                                                             <constraint firstItem="Xih-mg-70s" firstAttribute="leading" secondItem="DY5-Jq-8Zz" secondAttribute="leading" id="1aI-LS-8gU"/>
-                                                                            <constraint firstAttribute="trailingMargin" secondItem="FCX-Gn-7H7" secondAttribute="trailing" id="IAa-Hd-1wd"/>
+                                                                            <constraint firstItem="FCX-Gn-7H7" firstAttribute="centerY" secondItem="DY5-Jq-8Zz" secondAttribute="centerY" id="Fcu-V0-IGs"/>
                                                                             <constraint firstItem="Nrq-Xe-dfY" firstAttribute="top" secondItem="DY5-Jq-8Zz" secondAttribute="top" constant="3" id="JFT-5O-RoJ"/>
-                                                                            <constraint firstItem="FCX-Gn-7H7" firstAttribute="leading" secondItem="DY5-Jq-8Zz" secondAttribute="leadingMargin" id="UKA-hP-OFx"/>
+                                                                            <constraint firstItem="FCX-Gn-7H7" firstAttribute="centerX" secondItem="DY5-Jq-8Zz" secondAttribute="centerX" id="VkC-6e-kXd"/>
                                                                             <constraint firstItem="iSW-mJ-2Aj" firstAttribute="top" secondItem="DY5-Jq-8Zz" secondAttribute="top" id="YxI-2V-F8b"/>
                                                                             <constraint firstAttribute="trailing" secondItem="Xih-mg-70s" secondAttribute="trailing" id="Znq-bK-2qP"/>
-                                                                            <constraint firstItem="FCX-Gn-7H7" firstAttribute="top" secondItem="DY5-Jq-8Zz" secondAttribute="topMargin" id="Zq7-rY-2D0"/>
                                                                             <constraint firstItem="Nrq-Xe-dfY" firstAttribute="height" secondItem="DY5-Jq-8Zz" secondAttribute="height" multiplier="0.15" id="bOs-Me-k7U"/>
                                                                             <constraint firstItem="iSW-mJ-2Aj" firstAttribute="leading" secondItem="DY5-Jq-8Zz" secondAttribute="leading" id="grs-x3-uCT"/>
                                                                             <constraint firstItem="Xih-mg-70s" firstAttribute="top" secondItem="iSW-mJ-2Aj" secondAttribute="bottom" id="j0b-uL-9xv"/>
                                                                             <constraint firstAttribute="trailing" secondItem="iSW-mJ-2Aj" secondAttribute="trailing" id="mgy-oy-BIN"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="Nrq-Xe-dfY" secondAttribute="trailing" constant="5" id="qBV-DF-5bk"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="Nrq-Xe-dfY" secondAttribute="trailing" constant="3" id="qBV-DF-5bk"/>
                                                                             <constraint firstAttribute="bottom" secondItem="Xih-mg-70s" secondAttribute="bottom" id="sBe-cs-Eer"/>
                                                                         </constraints>
                                                                         <connections>
