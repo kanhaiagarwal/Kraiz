@@ -1613,6 +1613,9 @@ mobile number +919003194776</string>
                                                     <segment title="Public"/>
                                                 </segments>
                                                 <color key="tintColor" red="0.90196078431372551" green="0.61960784313725492" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="vibeTypePressed:" destination="SGl-gi-3i5" eventType="valueChanged" id="m07-Zq-vuj"/>
+                                                </connections>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ezu-xQ-WjO">
                                                 <rect key="frame" x="20" y="411.5" width="335" height="50"/>
@@ -1662,11 +1665,14 @@ mobile number +919003194776</string>
                         <outlet property="contactListIcon" destination="cin-nl-5e4" id="Urp-1F-JeF"/>
                         <outlet property="countryCodeField" destination="Lwz-Ti-QMy" id="d7d-au-Swh"/>
                         <outlet property="detailsContainer" destination="q0T-Nt-5XE" id="Kvt-fc-95i"/>
+                        <outlet property="detailsContainerHeightConstraint" destination="vK7-mR-ipM" id="0iE-zc-IvQ"/>
                         <outlet property="musicArrowLabel" destination="3h2-IN-nyT" id="Fdb-45-BJq"/>
                         <outlet property="musicContainer" destination="xR9-EN-hes" id="G5B-Ut-s7k"/>
                         <outlet property="musicField" destination="xR9-EN-hes" id="hor-iV-uD6"/>
                         <outlet property="nextButton" destination="Ezu-xQ-WjO" id="mlJ-zo-3ri"/>
+                        <outlet property="phoneNumberIcon" destination="3mt-yD-EcM" id="rAi-1I-OK8"/>
                         <outlet property="playImageView" destination="3gO-e5-0v5" id="WIj-kc-7WE"/>
+                        <outlet property="toLabel" destination="Lc2-It-KDv" id="MVE-N5-ewq"/>
                         <outlet property="usernameField" destination="NPK-5G-5Xw" id="WQ5-ww-bwa"/>
                         <outlet property="usernameFieldLeadingConstraint" destination="XHo-Ka-C5D" id="daS-7k-b3v"/>
                         <outlet property="usernameFieldTrailingConstraint" destination="O8J-81-nE6" id="LEn-GV-VQn"/>

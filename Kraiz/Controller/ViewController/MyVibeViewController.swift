@@ -28,6 +28,9 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     let PLAY_IMAGE = "recorder-play-enabled"
     let PAUSE_IMAGE = "recorder-pause"
     
+    @IBOutlet weak var detailsContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var phoneNumberIcon: UIImageView!
+    @IBOutlet weak var toLabel: UILabel!
     @IBOutlet weak var vibeTypeSegment: UISegmentedControl!
     @IBOutlet weak var musicArrowLabel: UILabel!
     @IBOutlet weak var musicContainer: UITextField!
@@ -130,7 +133,34 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             playImageView.isHidden = true
         }
         
+        vibeTypeSegment.selectedSegmentIndex = vibeModel.type
         setupNextButton()
+        setUsernameVisibility()
+    }
+
+    @IBAction func vibeTypePressed(_ sender: UISegmentedControl) {
+        setUsernameVisibility()
+    }
+    
+    func setUsernameVisibility() {
+        // If the selected index is Friends, then show receiver fields
+        if vibeTypeSegment.selectedSegmentIndex == 0 {
+            toLabel.isHidden = false
+            contactListIcon.isHidden = false
+            phoneNumberIcon.isHidden = false
+            usernameField.isHidden = false
+            if usernameField.text == nil || (usernameField.text != nil && usernameField.text!.starts(with: "+")) {
+                removeCountryCodeTextField()
+            } else {
+                displayCountryCodeTextField()
+            }
+        } else {
+            toLabel.isHidden = true
+            phoneNumberIcon.isHidden = true
+            countryCodeField.isHidden = true
+            usernameField.isHidden = true
+            contactListIcon.isHidden = true
+        }
     }
 
     @IBAction func musicFieldTapped(_ sender: Any) {
@@ -163,6 +193,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     
     override func viewDidLayoutSubviews() {
         gradientLayer.frame = nextButton.bounds
+        
     }
     
     func addGestureToContactListIcon() {
@@ -222,14 +253,23 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     }
 
     @IBAction func nextPressed(_ sender: UIButton) {
-        if usernameField.text == nil || usernameField.text == "" {
-            APPUtilites.displayErrorSnackbar(message: "The phone number cannot be empty")
-            return
+        if vibeTypeSegment.selectedSegmentIndex == 0 {
+            if usernameField.text == nil || usernameField.text == "" {
+                APPUtilites.displayErrorSnackbar(message: "The phone number cannot be empty")
+                return
+            }
+            
+            if !usernameField.text!.starts(with: "+") {
+                APPUtilites.displayErrorSnackbar(message: "Please make sure you are giving a valid mobile number")
+                return
+            }
         }
-        if vibeNameField.text == nil && vibeNameField.text == "" {
+        if vibeNameField.text == nil || vibeNameField.text == "" {
             APPUtilites.displayErrorSnackbar(message: "The Vibe Name cannot be nil")
             return
         }
+
+        vibeModel.setVibeType(type: vibeTypeSegment.selectedSegmentIndex)
         vibeModel.setReceiver(receiver: usernameField.text!.starts(with: "+") ? usernameField.text! : (countryCodeSelected! + usernameField.text!))
         vibeModel.setSender(sender: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)!)
         vibeModel.setVibeName(name: vibeNameField.text!)
@@ -246,11 +286,11 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             delegate?.setVibeDetails(vibeModel: vibeModel)
             self.dismiss(animated: true, completion: nil)
         }
-        
+
         let createVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateVibeViewController") as! CreateVibeViewController
         createVC.vibeModel = self.vibeModel
         let presentingVC = self.presentingViewController
-        
+
         self.dismiss(animated: true) {
             presentingVC?.present(createVC, animated: true, completion: nil)
         }
