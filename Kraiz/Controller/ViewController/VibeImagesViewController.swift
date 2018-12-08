@@ -19,12 +19,12 @@ class VibeImagesViewController: UIViewController {
     var isDismissOverlayVisible = false
     @IBOutlet weak var backgroundImage: UIImageView!
     
-    var overlayView: UIView = UIView()
+    var overlayCloseView: UIView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
-        overlayView = createOverlayView()
+        overlayCloseView = createOverlayCloseView()
         backgroundImage.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
         backgroundImage.addGestureRecognizer(tapGesture)
@@ -120,42 +120,55 @@ class VibeImagesViewController: UIViewController {
 
 extension VibeImagesViewController {
 
-    func createOverlayView() -> UIView {
-        let overlayView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
-        overlayView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.0)
+    func createOverlayCloseView() -> UIView {
+        let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
+        overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.0)
 
-        let dismissButton = UIButton(frame: CGRect(x: overlayView.frame.width / 20, y: overlayView.frame.height / 2 - 5, width: overlayView.frame.height / 2, height: overlayView.frame.height / 2))
+        let dismissButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width / 20, y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
         dismissButton.setTitle("╳", for: .normal)
         dismissButton.setTitleColor(UIColor.white, for: .normal)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onCloseClick))
         dismissButton.addGestureRecognizer(tapGesture)
         dismissButton.layer.cornerRadius = dismissButton.frame.height / 2
-        overlayView.addSubview(dismissButton)
-        view.addSubview(overlayView)
-        overlayView.isHidden = true
-        return overlayView
+        overlayCloseView.addSubview(dismissButton)
+        view.addSubview(overlayCloseView)
+        overlayCloseView.isHidden = true
+        return overlayCloseView
     }
 
     @objc func onCloseClick() {
-        print("Clicked on the close button")
-        self.dismiss(animated: true, completion: nil)
+        AudioControls.shared.stopMusic()
+        if !vibeModel!.isLetterPresent {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            let presentingVC = self.presentingViewController!.presentingViewController!
+            presentingVC.dismiss(animated: true) {
+                self.dismiss(animated: false, completion: nil)
+            }
+        }
     }
 
     @objc func changeDismissViewStatus() {
         UIView.animate(withDuration: 0.2, animations: {
             if self.isDismissOverlayVisible {
                 self.isDismissOverlayVisible = false
-                self.overlayView.frame.origin.y = -self.overlayView.frame.height
+                self.overlayCloseView.frame.origin.y = -self.overlayCloseView.frame.height
             } else {
                 self.isDismissOverlayVisible = true
-                self.overlayView.isHidden = false
-                self.overlayView.frame.origin.y = 0
+                self.overlayCloseView.isHidden = false
+                self.overlayCloseView.frame.origin.y = 0
             }
         }) { (success) in
             if !self.isDismissOverlayVisible {
-                self.overlayView.isHidden = true
+                self.overlayCloseView.isHidden = true
             }
+        }
+    }
+    
+    func startMusic() {
+        if !vibeModel!.isLetterPresent && vibeModel!.isBackgroundMusicEnabled {
+            AudioControls.shared.playBackgroundMusic(musicIndex: vibeModel!.backgroundMusicIndex)
         }
     }
 }

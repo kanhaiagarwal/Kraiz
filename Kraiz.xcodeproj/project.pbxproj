@@ -35,6 +35,7 @@
 		57C74A9A21BA44BD00D737FB /* VibeImageCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57C74A9921BA44BD00D737FB /* VibeImageCardView.xib */; };
 		57C74A9C21BA44D000D737FB /* VibeImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C74A9B21BA44D000D737FB /* VibeImageCardView.swift */; };
 		57C74A9E21BA521400D737FB /* VibeImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C74A9D21BA521400D737FB /* VibeImagesViewController.swift */; };
+		57C74AA021BAEA3300D737FB /* AudioControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C74A9F21BAEA3300D737FB /* AudioControls.swift */; };
 		B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507EF5C21244886007FC9F1 /* AWSConstants.swift */; };
 		B513582F215D365C00139854 /* Hero.otf in Resources */ = {isa = PBXBuildFile; fileRef = B513582E215D365C00139854 /* Hero.otf */; };
 		B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */; };
@@ -145,6 +146,7 @@
 		57C74A9921BA44BD00D737FB /* VibeImageCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VibeImageCardView.xib; sourceTree = "<group>"; };
 		57C74A9B21BA44D000D737FB /* VibeImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeImageCardView.swift; sourceTree = "<group>"; };
 		57C74A9D21BA521400D737FB /* VibeImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeImagesViewController.swift; sourceTree = "<group>"; };
+		57C74A9F21BAEA3300D737FB /* AudioControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioControls.swift; sourceTree = "<group>"; };
 		77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.release.xcconfig"; sourceTree = "<group>"; };
 		AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.debug.xcconfig"; sourceTree = "<group>"; };
 		B507EF5C21244886007FC9F1 /* AWSConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSConstants.swift; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				B5DC7928212D5CA600C69A13 /* AppUtilities.swift */,
+				57C74A9F21BAEA3300D737FB /* AudioControls.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -525,6 +528,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -669,6 +677,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57C74AA021BAEA3300D737FB /* AudioControls.swift in Sources */,
 				B5C9431A212947F8000DCF7A /* MyVibeViewController.swift in Sources */,
 				B51DF222211F13B9009896CC /* HamburgerViewController.swift in Sources */,
 				57C74A9E21BA521400D737FB /* VibeImagesViewController.swift in Sources */,

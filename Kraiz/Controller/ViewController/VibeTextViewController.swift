@@ -14,9 +14,12 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     var controllers = [UIViewController]()
     var vibeModel = VibeModel()
     var isDismissOverlayVisible = false
+    var isNextButtonVisible = false
+    var currentPage = 0
     
     var imagesSegue = "gotoImages"
-    var overlayView: UIView = UIView()
+    var overlayCloseView: UIView = UIView()
+    var overlayNextButton : UIButton = UIButton()
     
     let string0 : String = "kdhfkdh kdfkdfh kdhfkdhf"
     let string1 : String = "You can use Amazon Pinpoint to analyze funnels, which visualize how many users complete each of a series of steps in your app. For example, the series of steps in a funnel can be a conversion process that results in a purchase (as in a shopping cart), or some other intended user behavior.\nBy monitoring funnels, you can assess whether conversion rates have improved because of"
@@ -27,10 +30,9 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     let string4 : String = "Hitler sought Lebensraum ('living space') for the German people in Eastern Europe and his aggressive foreign policy is considered to be the primary cause of the outbreak of World War II in Europe. He directed large-scale rearmament and on 1 September 1939 invaded Poland, resulting in Britain and France declaring war on Germany. In June 1941, Hitler ordered an invasion of the Soviet Union. By the end of 1941, German forces and the European Axis powers occupied most of Europe and North Africa. In December 1941, he formally declared war on the United States, bringing them directly into the conflict. Failure to defeat the Soviets and the entry of the United States into the war forced Germany onto the defensive and it suffered a series of escalating defeats. In the final days of the war during the Battle of Berlin in 1945, he married his long-time lover Eva Braun. Less than two days later on 30 April 1945, the two committed suicide to avoid capture by the Soviet Red Army and their corpses were burned."
     
     let string5 : String = "Under Hitler's leadership and racially motivated ideology, the Nazi regime was responsible for the genocide of at least 5.5 million Jews and millions of other victims whom he and his followers deemed Untermenschen (sub-humans) or socially undesirable. Hitler and the Nazi regime were also responsible for the killing of an estimated 19.3 million civilians and prisoners of war. In addition, 29 million soldiers and civilians died as a result of military action in the European theatre. The number of civilians killed during the Second World War was unprecedented in warfare and the casualties constituted the deadliest conflict in human history."
-    //    let string5 : String = ""
     
     var allText : [String] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -123,7 +125,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
             textView1.textColor = UIColor(displayP3Red: 10/255, green: 21/255, blue: 53/255, alpha: 1.0)
             textView1.isScrollEnabled = false
             textView1.isUserInteractionEnabled = true
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeOverlayViewStatus))
             textView1.addGestureRecognizer(tapGesture)
             switch(vc.view.frame.height) {
             case DeviceConstants.IPHONEXR_HEIGHT : textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 32.0)
@@ -146,14 +148,17 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
             
             vc.view.addSubview(textView1)
             controllers.append(vc)
+            
+            startMusic()
         }
         
         pageController.setViewControllers([controllers[0]], direction: .forward, animated: false)
-        overlayView = createOverlayView()
+        overlayCloseView = createOverlayView()
+        overlayNextButton = createOverlayNextButton()
     }
     
     @objc func onCloseClick() {
-        print("Clicked on the close button")
+        AudioControls.shared.stopMusic()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -163,6 +168,15 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let index = controllers.index(of: viewController) {
+            if self.isDismissOverlayVisible {
+                self.isDismissOverlayVisible = false
+                self.overlayCloseView.frame.origin.y = -self.overlayCloseView.frame.height
+            }
+            if self.isNextButtonVisible {
+                self.isNextButtonVisible = false
+                self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width
+            }
+            currentPage = index - 1 > 0 ? index - 1 : 0
             if index > 0 {
                 return controllers[index - 1]
             } else {
@@ -175,6 +189,15 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if let index = controllers.index(of: viewController) {
+            currentPage = index + 1 < controllers.count - 1 ? index + 1 : controllers.count - 1
+            if self.isDismissOverlayVisible {
+                self.isDismissOverlayVisible = false
+                self.overlayCloseView.frame.origin.y = -self.overlayCloseView.frame.height
+            }
+            if self.isNextButtonVisible {
+                self.isNextButtonVisible = false
+                self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width
+            }
             if index < controllers.count - 1 {
                 return controllers[index + 1]
             } else {
@@ -185,38 +208,6 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         return nil
     }
 
-    func createOverlayView() -> UIView {
-        let overlayView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
-        overlayView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
-        let dismissButton = UIButton(frame: CGRect(x: overlayView.frame.width / 20, y: overlayView.frame.height / 2 - 5, width: overlayView.frame.height / 2, height: overlayView.frame.height / 2))
-        dismissButton.setTitle("╳", for: .normal)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onCloseClick))
-        dismissButton.addGestureRecognizer(tapGesture)
-        dismissButton.setTitleColor(UIColor.white, for: .normal)
-        dismissButton.layer.cornerRadius = dismissButton.frame.height / 2
-        overlayView.addSubview(dismissButton)
-        view.addSubview(overlayView)
-        overlayView.isHidden = true
-        return overlayView
-    }
-    
-    @objc func changeDismissViewStatus() {
-        UIView.animate(withDuration: 0.2, animations: {
-            if self.isDismissOverlayVisible {
-                self.isDismissOverlayVisible = false
-                self.overlayView.frame.origin.y = -self.overlayView.frame.height
-            } else {
-                self.isDismissOverlayVisible = true
-                self.overlayView.isHidden = false
-                self.overlayView.frame.origin.y = 0
-            }
-        }) { (success) in
-            if !self.isDismissOverlayVisible {
-                self.overlayView.isHidden = true
-            }
-        }
-    }
-    
     func randomCGFloat() -> CGFloat {
         return CGFloat(arc4random()) / CGFloat(UInt32.max)
     }
@@ -228,5 +219,95 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     func getWords(text : String) -> [Substring] {
         let words : [Substring] = text.split(separator: " ")
         return words
+    }
+}
+
+extension VibeTextViewController {
+    
+    func startMusic() {
+        if vibeModel.isBackgroundMusicEnabled {
+            AudioControls.shared.playBackgroundMusic(musicIndex: vibeModel.backgroundMusicIndex)
+        }
+    }
+
+    func createOverlayView() -> UIView {
+        let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
+        overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
+        let dismissButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width / 20, y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
+        dismissButton.setTitle("╳", for: .normal)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onCloseClick))
+        dismissButton.addGestureRecognizer(tapGesture)
+        dismissButton.setTitleColor(UIColor.white, for: .normal)
+        dismissButton.layer.cornerRadius = dismissButton.frame.height / 2
+        overlayCloseView.addSubview(dismissButton)
+        view.addSubview(overlayCloseView)
+        overlayCloseView.isHidden = true
+        return overlayCloseView
+    }
+    
+    func createOverlayNextButton() -> UIButton {
+        let overlayNextButton = UIButton(frame: CGRect(x: view.frame.width, y: view.frame.height / 4, width: view.frame.width / 10, height: view.frame.height / 2))
+        let titleAttributedString = NSMutableAttributedString(string: "»", attributes: [.foregroundColor: UIColor.white, NSMutableAttributedString.Key.font: UIFont.systemFont(ofSize: 50)])
+        overlayNextButton.setAttributedTitle(titleAttributedString, for: .normal)
+//        overlayNextButton.setTitle("»", for: .normal)
+//        overlayNextButton.setTitleColor(UIColor.white, for: .normal)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(nextPressed))
+        overlayNextButton.addGestureRecognizer(tapGesture)
+        view.addSubview(overlayNextButton)
+        overlayNextButton.isHidden = true
+
+        return overlayNextButton
+    }
+
+    @objc func nextPressed() {
+        self.isDismissOverlayVisible = false
+        self.overlayCloseView.frame.origin.y = -self.overlayCloseView.frame.height
+
+        if vibeModel.isPhotosPresent {
+            self.isNextButtonVisible = false
+            self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width
+        }
+
+        performSegue(withIdentifier: DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW, sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW {
+            let destinationVC = segue.destination as! VibeImagesViewController
+            destinationVC.vibeModel = vibeModel
+            destinationVC.isSourceLetter = true
+        }
+    }
+
+    @objc func changeOverlayViewStatus() {
+        UIView.animate(withDuration: 0.2, animations: {
+            if self.isDismissOverlayVisible {
+                self.isDismissOverlayVisible = false
+                self.overlayCloseView.frame.origin.y = -self.overlayCloseView.frame.height
+            } else {
+                self.isDismissOverlayVisible = true
+                self.overlayCloseView.isHidden = false
+                self.overlayCloseView.frame.origin.y = 0
+            }
+            if self.vibeModel.isPhotosPresent && self.currentPage == self.controllers.count - 1 {
+                if self.isNextButtonVisible {
+                    self.isNextButtonVisible = false
+                    self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width
+                } else {
+                    self.isNextButtonVisible = true
+                    self.overlayNextButton.isHidden = false
+                    self.overlayNextButton.frame.origin.x -= self.overlayNextButton.frame.width
+                }
+            }
+        }) { (success) in
+            if !self.isDismissOverlayVisible {
+                self.overlayCloseView.isHidden = true
+            }
+            if self.vibeModel.isPhotosPresent && self.currentPage == self.controllers.count - 1 {
+                if !self.isNextButtonVisible {
+                    self.overlayNextButton.isHidden = true
+                }
+            }
+        }
     }
 }

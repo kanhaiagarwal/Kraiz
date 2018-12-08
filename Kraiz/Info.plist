@@ -28,8 +28,6 @@
 		<string>instagram</string>
 		<string>whatsapp</string>
 	</array>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>The App needs to access the microphone to record the audio</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -39,6 +37,8 @@
 	</dict>
 	<key>NSContactsUsageDescription</key>
 	<string>Kraiz needs to Access your Contacts List</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>The App needs to access the microphone to record the audio</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need to access the Photo Library</string>
 	<key>UIAppFonts</key>
@@ -48,6 +48,10 @@
 		<string>monotype-corsiva.ttf</string>
 		<string>Hero.otf</string>
 		<string>playlist-script.otf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

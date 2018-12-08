@@ -157,6 +157,9 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
             self.letterCheckbox.isHidden = true
             self.letterCrossButton.isHidden = true
             self.letterCrossButton.isEnabled = false
+            self.vibeModel.isLetterPresent = false
+            self.vibeModel.letter.background = nil
+            self.vibeModel.letter.text = nil
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
             
@@ -172,6 +175,8 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
             self.photosCheckbox.isHidden = true
             self.photosCrossButton.isHidden = true
             self.photosCrossButton.isEnabled = false
+            self.vibeModel.isPhotosPresent = false
+            self.vibeModel.images.removeAll()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
         }))
