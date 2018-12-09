@@ -35,7 +35,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     @IBOutlet weak var musicArrowLabel: UILabel!
     @IBOutlet weak var musicContainer: UITextField!
     @IBOutlet weak var playImageView: UIImageView!
-    @IBOutlet weak var detailsContainer: CardView!
+    @IBOutlet weak var friendsVibeDetailsContainer: CardView!
     @IBOutlet weak var usernameFieldLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var usernameFieldTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var countryCodeField: UITextField!
@@ -145,6 +145,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     func setUsernameVisibility() {
         // If the selected index is Friends, then show receiver fields
         if vibeTypeSegment.selectedSegmentIndex == 0 {
+            
             toLabel.isHidden = false
             contactListIcon.isHidden = false
             phoneNumberIcon.isHidden = false
@@ -193,7 +194,6 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     
     override func viewDidLayoutSubviews() {
         gradientLayer.frame = nextButton.bounds
-        
     }
     
     func addGestureToContactListIcon() {
@@ -258,8 +258,8 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
                 APPUtilites.displayErrorSnackbar(message: "The phone number cannot be empty")
                 return
             }
-            
-            if !usernameField.text!.starts(with: "+") {
+
+            if !usernameField.text!.starts(with: "+") && (Int(usernameField.text!) == nil) {
                 APPUtilites.displayErrorSnackbar(message: "Please make sure you are giving a valid mobile number")
                 return
             }
@@ -375,12 +375,19 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     
     /// Give styles to the next button.
     func setupNextButton() {
-        nextButton.layer.cornerRadius = 10
-        nextButton.clipsToBounds = true
-
-        gradientLayer.frame = nextButton.bounds
-        gradientLayer.colors = [GRADIENT_TOP_COLOR.cgColor, GRADIENT_BOTTOM_COLOR.cgColor]
-        nextButton.layer.insertSublayer(gradientLayer, above: nil)
+        if nextButton.layer.sublayers != nil && nextButton.layer.sublayers!.count > 0 {
+            print("Layers present on the next button")
+            print("Layers count: \(nextButton.layer.sublayers!.count)")
+        } else {
+            print("No layers on the next button")
+            nextButton.layer.cornerRadius = 10
+            nextButton.clipsToBounds = true
+            
+            gradientLayer.frame = nextButton.bounds
+            gradientLayer.colors = [GRADIENT_TOP_COLOR.cgColor, GRADIENT_BOTTOM_COLOR.cgColor]
+            nextButton.layer.insertSublayer(gradientLayer, above: nil)
+            nextButton.setTitle("Next", for: .normal)
+        }
     }
 }
 
@@ -430,6 +437,9 @@ extension MyVibeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
 extension MyVibeViewController: CNContactPickerDelegate {
     @objc func contactListPressed() {
+        if isAudioPlaying {
+            stopAudio()
+        }
         let entity = CNEntityType.contacts
         let authorizationStatus = CNContactStore.authorizationStatus(for: entity)
         

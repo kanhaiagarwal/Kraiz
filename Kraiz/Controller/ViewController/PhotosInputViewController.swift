@@ -38,6 +38,7 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
     }
     
     func setImageCaptions(photosSelected: [PhotoEntity]) {
+        print("inside setImageCaptions")
         self.selectedImages = photosSelected
         self.numberOfImagesSelected = selectedImages.count
         
@@ -58,6 +59,7 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
     let MAX_IMAGES = 9
 
     var delegate: PhotosInputProtocol?
+    let gradientLayer = CAGradientLayer()
 
     var selectedCell = 0
     var numberOfImagesSelected = 0
@@ -83,19 +85,33 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         photosCollectionView!.collectionViewLayout = layout
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         setupNextButton()
     }
 
+    override func viewDidLayoutSubviews() {
+        gradientLayer.frame = nextButton.bounds
+    }
+
     /// Sets up the next button
     func setupNextButton() {
-        nextButton.layer.cornerRadius = 10
-        nextButton.clipsToBounds = true
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = nextButton.bounds
-        gradientLayer.colors = [GRADIENT_TOP_COLOR.cgColor, GRADIENT_BOTTOM_COLOR.cgColor]
-        nextButton.layer.insertSublayer(gradientLayer, at: 1)
+        print("inside setupNextButton")
+        if nextButton.layer.sublayers != nil && nextButton.layer.sublayers!.count > 0 {
+            print("nextButton layers is not nil")
+            print("nextButton layers count: \(nextButton.layer.sublayers!.count)")
+        } else {
+            print("layers is 0")
+            nextButton.layer.cornerRadius = 10
+            nextButton.clipsToBounds = true
+
+            gradientLayer.frame = nextButton.bounds
+            gradientLayer.colors = [GRADIENT_TOP_COLOR.cgColor, GRADIENT_BOTTOM_COLOR.cgColor]
+            nextButton.layer.insertSublayer(gradientLayer, at: 1)
+        }
     }
 
     @IBAction func closeButtonPressed(_ sender: UIButton) {
@@ -142,6 +158,7 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photosCollectionView.dequeueReusableCell(withReuseIdentifier: CELL_IDENTIFIER, for: indexPath) as! PhotoInputCollectionViewCell
         if selectedImages.count > indexPath.row {
+            print("selectedImages[indexPath.row].caption: \(selectedImages[indexPath.row].caption)")
             cell.photo.isHidden = false
             cell.photo.image = selectedImages[indexPath.row].image!
             cell.caption.isHidden = false

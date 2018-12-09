@@ -16,7 +16,6 @@ class ImageCaptionsViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var photosScrollView: UIScrollView!
     @IBOutlet weak var captionTextField: UITextField!
-    @IBOutlet weak var characterLimitLabel: UILabel!
     @IBOutlet weak var photosCollectionView: UICollectionView!
 
     let MAX_CAPTION_LIMIT = 80
@@ -44,19 +43,15 @@ class ImageCaptionsViewController: UIViewController, UITextFieldDelegate {
 
     func setCaptionTextField(currentIndex: Int) {
         captionTextField.text = photosSelected[currentIndex].caption
-//        if captionTextField.text != nil {
-//            characterLimitLabel.text = "\(MAX_CAPTION_LIMIT - captionTextField.text!.count)/\(MAX_CAPTION_LIMIT)"
-//        } else {
-//            characterLimitLabel.text = "\(MAX_CAPTION_LIMIT)/\(MAX_CAPTION_LIMIT)"
-//        }
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        var limitString = String(MAX_CAPTION_LIMIT) + "/" + String(MAX_CAPTION_LIMIT)
-        if textField.text != nil {
-            limitString = String(MAX_CAPTION_LIMIT - captionTextField.text!.count) + "/" + String(MAX_CAPTION_LIMIT)
+
+        if textField.text == nil || (textField.text != nil && textField.text!.trimmingCharacters(in: .whitespaces).isEmpty) {
+            photosSelected[selectedCell].caption = nil
+        } else {
+            photosSelected[selectedCell].caption = textField.text
         }
-        photosSelected[selectedCell].caption = textField.text
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -126,13 +121,19 @@ class ImageCaptionsViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         photosScrollView.isScrollEnabled = false
         animateViewMoving(field: textField, up: true, moveValue: 150)
-        animateViewMoving(field: characterLimitLabel, up: true, moveValue: 150)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         photosScrollView.isScrollEnabled = true
         animateViewMoving(field: textField, up: false, moveValue: 150)
-        animateViewMoving(field: characterLimitLabel, up: false, moveValue: 150)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let str = ((captionTextField.text != nil ?captionTextField.text! : "") + string)
+        if str.count <= MAX_CAPTION_LIMIT {
+            return true
+        }
+        return false
     }
 
     func animateViewMoving (field: UIView, up:Bool, moveValue :CGFloat){

@@ -1423,7 +1423,7 @@ mobile number +919003194776</string>
                                                                     <constraint firstAttribute="width" secondItem="XqQ-IK-8YX" secondAttribute="height" multiplier="1:1" id="Tp5-pV-QW5"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Give a Name to your Vibe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QfS-XT-VwV">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Give a Name to your Vibe" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QfS-XT-VwV">
                                                                 <rect key="frame" x="65" y="0.0" width="230" height="33.5"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1664,8 +1664,8 @@ mobile number +919003194776</string>
                         <outlet property="backgroundMusicSwitch" destination="0UZ-zb-2ny" id="czz-P1-4Kj"/>
                         <outlet property="contactListIcon" destination="cin-nl-5e4" id="Urp-1F-JeF"/>
                         <outlet property="countryCodeField" destination="Lwz-Ti-QMy" id="d7d-au-Swh"/>
-                        <outlet property="detailsContainer" destination="q0T-Nt-5XE" id="Kvt-fc-95i"/>
                         <outlet property="detailsContainerHeightConstraint" destination="vK7-mR-ipM" id="0iE-zc-IvQ"/>
+                        <outlet property="friendsVibeDetailsContainer" destination="q0T-Nt-5XE" id="Kvt-fc-95i"/>
                         <outlet property="musicArrowLabel" destination="3h2-IN-nyT" id="Fdb-45-BJq"/>
                         <outlet property="musicContainer" destination="xR9-EN-hes" id="G5B-Ut-s7k"/>
                         <outlet property="musicField" destination="xR9-EN-hes" id="hor-iV-uD6"/>
@@ -2496,13 +2496,13 @@ its the right one</string>
                                                 <rect key="frame" x="0.0" y="235" width="375" height="43"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blV-dE-aGm">
-                                                        <rect key="frame" x="28" y="5" width="30.5" height="38"/>
+                                                        <rect key="frame" x="28" y="5" width="34.5" height="38"/>
                                                         <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="26"/>
                                                         <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Risk_rk" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fNK-4C-n5O">
-                                                        <rect key="frame" x="63.5" y="0.0" width="281.5" height="43"/>
+                                                        <rect key="frame" x="67.5" y="0.0" width="277.5" height="43"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" red="0.18431372549019609" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
@@ -2523,13 +2523,13 @@ its the right one</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEs-5h-F59" userLabel="StoryNameContainer1">
                                                 <rect key="frame" x="0.0" y="286" width="375" height="42.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7r-3i-aPf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Story Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7r-3i-aPf">
                                                         <rect key="frame" x="28" y="0.0" width="142.5" height="42.5"/>
                                                         <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
                                                         <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="The Sutta" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4wH-Bn-kZh" userLabel="StoryNameLine1">
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="The Sutta" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4wH-Bn-kZh" userLabel="StoryNameLine1">
                                                         <rect key="frame" x="180.5" y="0.0" width="164.5" height="42.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
@@ -3028,13 +3028,6 @@ its the right one</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80/80" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBy-7R-qUr">
-                                                <rect key="frame" x="308" y="394" width="47" height="30"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fwA-NL-Z6c">
                                                 <rect key="frame" x="10" y="500" width="355" height="88"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3076,14 +3069,11 @@ its the right one</string>
                                             <constraint firstItem="XJa-Hq-BiV" firstAttribute="width" secondItem="qGw-aW-gCN" secondAttribute="width" id="Rr8-HF-Iuc"/>
                                             <constraint firstItem="XJa-Hq-BiV" firstAttribute="centerY" secondItem="qGw-aW-gCN" secondAttribute="centerY" multiplier="0.6" id="RyH-Xn-zR6"/>
                                             <constraint firstItem="uLE-8J-y0R" firstAttribute="width" secondItem="qGw-aW-gCN" secondAttribute="width" multiplier="0.75" id="WMx-PF-MvP"/>
-                                            <constraint firstItem="bBy-7R-qUr" firstAttribute="height" secondItem="uLE-8J-y0R" secondAttribute="height" id="dCs-xu-huT"/>
                                             <constraint firstItem="uLE-8J-y0R" firstAttribute="leading" secondItem="qGw-aW-gCN" secondAttribute="leading" constant="20" id="dKm-a3-x0G"/>
-                                            <constraint firstItem="bBy-7R-qUr" firstAttribute="centerY" secondItem="uLE-8J-y0R" secondAttribute="centerY" id="gNa-Gg-vWh"/>
                                             <constraint firstAttribute="trailing" secondItem="fwA-NL-Z6c" secondAttribute="trailing" constant="10" id="gox-nK-vmw"/>
                                             <constraint firstItem="uLE-8J-y0R" firstAttribute="top" secondItem="XJa-Hq-BiV" secondAttribute="bottom" constant="30" id="hVY-lU-q4d"/>
                                             <constraint firstItem="fwA-NL-Z6c" firstAttribute="height" secondItem="qGw-aW-gCN" secondAttribute="height" multiplier="0.15" id="m8w-Q7-Jvt"/>
                                             <constraint firstAttribute="bottom" secondItem="fwA-NL-Z6c" secondAttribute="bottom" id="sc5-vc-lBC"/>
-                                            <constraint firstAttribute="trailing" secondItem="bBy-7R-qUr" secondAttribute="trailing" constant="20" id="vPj-GH-w2I"/>
                                             <constraint firstItem="fwA-NL-Z6c" firstAttribute="leading" secondItem="qGw-aW-gCN" secondAttribute="leading" constant="10" id="zgy-KM-gwu"/>
                                         </constraints>
                                     </view>
@@ -3104,7 +3094,6 @@ its the right one</string>
                     </view>
                     <connections>
                         <outlet property="captionTextField" destination="uLE-8J-y0R" id="CqN-fe-5g6"/>
-                        <outlet property="characterLimitLabel" destination="bBy-7R-qUr" id="kbr-is-yoW"/>
                         <outlet property="photosCollectionView" destination="fwA-NL-Z6c" id="nSd-Uj-Cr0"/>
                         <outlet property="photosScrollView" destination="XJa-Hq-BiV" id="MOs-aQ-p1J"/>
                     </connections>

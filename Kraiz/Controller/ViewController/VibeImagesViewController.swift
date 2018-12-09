@@ -50,6 +50,10 @@ class VibeImagesViewController: UIViewController {
                 card.frame.origin.x = view.frame.width / 20
                 card.frame.size.width = 0.95 * view.frame.width
                 card.frame.origin.y = view.frame.height / 8
+                card.layer.borderWidth = 3
+                card.layer.borderColor = UIColor.clear.cgColor
+                card.layer.shouldRasterize = true
+                view.layer.rasterizationScale = UIScreen.main.scale
                 cards.append(card)
                 cards[i].imageView.image = vibeModel?.images[i].image!
                 if let caption = vibeModel?.images[i].caption {
