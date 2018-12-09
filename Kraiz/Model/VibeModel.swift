@@ -55,6 +55,10 @@ public class VibeModel {
         self.imageBackdrop = 0
     }
     
+    public func getLetter() -> LetterEntity {
+        return letter
+    }
+    
     public func setLetter(letterString: String, background: Int) {
         letter.text = letterString
         letter.background = background
@@ -62,6 +66,10 @@ public class VibeModel {
     
     public func setImages(photos: [PhotoEntity]) {
         images = photos
+    }
+    
+    public func getImages() -> [PhotoEntity] {
+        return images
     }
     
     public func setLetterText(letterString: String) {

@@ -24,7 +24,7 @@ class LetterInputViewController: UIViewController {
     var letterFromVC : String = ""
     
     let backgroundImages = ["letter-love", "letter-royal", "letter-ancient", "letter-basic", "letter-starry"]
-    let backgroundLabels = ["Love", "Royal", "Ancient", "Basic", "Starry"]
+    let backgroundLabels = ["Love", "Royal", "Parchment", "Basic", "Dreamy"]
     let letterFont = ["Monotype Corsiva", "Freestyle Script", "French Script MT", "French Script MT", "Monotype Corsiva"]
     let fontColors : [UIColor] = [UIColor(displayP3Red: 0, green: 4/255, blue: 0, alpha: 1.0),
                                   UIColor(displayP3Red: 191/255, green: 134/255, blue: 52/255, alpha: 1.0),
@@ -73,13 +73,22 @@ class LetterInputViewController: UIViewController {
     }
 
     @IBAction func donePressed(_ sender: UIButton) {
-        delegate?.letterInput(backgroundImage: backgroundSelected, text: letterText.text)
+        if letterText.text == nil || (letterText.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) {
+            let alertController = UIAlertController(title: "Letter Empty", message: "Please add something to send a Letter", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Okay", style: .default, handler: nil)
+
+            alertController.addAction(ok)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            delegate?.letterInput(backgroundImage: backgroundSelected, text: letterText.text)
+            self.dismiss(animated: true, completion: nil)
+        }
 //        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+
     }
     
     @IBAction func closePressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Add Letter to the Story", message: "Do you wish to stop editing the letter", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Exit Leter", message: "Your Changes will not be saved", preferredStyle: UIAlertController.Style.alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
 //            self.navigationController?.popViewController(animated: true)
@@ -113,6 +122,7 @@ extension LetterInputViewController: UICollectionViewDataSource, UICollectionVie
         cell.layer.borderColor = UIColor.black.cgColor
         cell.backgroundImage.image = UIImage(named: backgroundImages[indexPath.row])
         cell.backgroundLabel.text = backgroundLabels[indexPath.row]
+        cell.backgroundLabel.textColor = fontColors[indexPath.row]
         cell.tag = indexPath.row
         
         return cell

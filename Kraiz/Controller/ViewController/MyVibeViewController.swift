@@ -17,34 +17,44 @@ protocol VibeDetailsProtocol {
 class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayerDelegate {
     
     let countryCodePicker = UIPickerView()
-    let vibeCategoryPicker = UIPickerView()
-    let musicPicker = UIPickerView()
+    let friendsVibeTagPicker = UIPickerView()
+    let publicVibeTagPicker = UIPickerView()
+    let friendsMusicPicker = UIPickerView()
+    let publicMusicPicker = UIPickerView()
     var countryCodeSelected : String?
-    var vibeCategorySelected : Int?
+    var friendsVibeTagSelected : Int?
+    var publicVibeTagSelected : Int?
     var vibeTypeSelected : Int?
-    var musicSelected : Int?
+    var friendsMusicSelected : Int?
+    var publicMusicSelected : Int?
     let GRADIENT_TOP_COLOR = UIColor(displayP3Red: 230/255, green: 158/255, blue: 55/255, alpha: 1.0)
     let GRADIENT_BOTTOM_COLOR = UIColor(displayP3Red: 227/255, green: 121/255, blue: 11/255, alpha: 1.0)
-    let PLAY_IMAGE = "recorder-play-enabled"
-    let PAUSE_IMAGE = "recorder-pause"
-    
-    @IBOutlet weak var detailsContainerHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var phoneNumberIcon: UIImageView!
-    @IBOutlet weak var toLabel: UILabel!
+    let PLAY_IMAGE = "myvibe-play-music"
+    let PAUSE_IMAGE = "myvibe-pause-music"
+
+    @IBOutlet weak var friendsDetailsContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var friendsPhoneNumberIcon: UIImageView!
+    @IBOutlet weak var friendsToLabel: UILabel!
     @IBOutlet weak var vibeTypeSegment: UISegmentedControl!
-    @IBOutlet weak var musicArrowLabel: UILabel!
-    @IBOutlet weak var musicContainer: UITextField!
-    @IBOutlet weak var playImageView: UIImageView!
+    @IBOutlet weak var friendsMusicArrowLabel: UILabel!
+    @IBOutlet weak var publicMusicArrowLabel: UILabel!
+    @IBOutlet weak var friendsPlayImageView: UIImageView!
+    @IBOutlet weak var publicPlayImageView: UIImageView!
     @IBOutlet weak var friendsVibeDetailsContainer: CardView!
+    @IBOutlet weak var publicVibeDetailsContainer: CardView!
     @IBOutlet weak var usernameFieldLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var usernameFieldTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var countryCodeField: UITextField!
-    @IBOutlet weak var usernameField: UITextField!
-    @IBOutlet weak var vibeCategoryField: UITextField!
-    @IBOutlet weak var musicField: UITextField!
+    @IBOutlet weak var friendsCountryCodeField: UITextField!
+    @IBOutlet weak var friendsUsernameField: UITextField!
+    @IBOutlet weak var publicVibeTagField: UITextField!
+    @IBOutlet weak var friendsVibeTagField: UITextField!
+    @IBOutlet weak var friendsMusicField: UITextField!
+    @IBOutlet weak var publicMusicField: UITextField!
     @IBOutlet weak var contactListIcon: UIImageView!
-    @IBOutlet weak var vibeNameField: UITextField!
-    @IBOutlet weak var backgroundMusicSwitch: UISwitch!
+    @IBOutlet weak var friendsVibeNameField: UITextField!
+    @IBOutlet weak var publicVibeNameField: UITextField!
+    @IBOutlet weak var friendsBackgroundMusicSwitch: UISwitch!
+    @IBOutlet weak var publicBackgroundMusicSwitch: UISwitch!
     @IBOutlet weak var nextButton: UIButton!
     
     var audioPlayer : AVAudioPlayer!
@@ -63,14 +73,19 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         super.viewDidLoad()
 
         countryCodePicker.tag = 0
-        vibeCategoryPicker.tag = 1
-        musicPicker.tag = 2
+        friendsVibeTagPicker.tag = 1
+        friendsMusicPicker.tag = 2
+        publicVibeTagPicker.tag = 3
+        publicMusicPicker.tag = 4
 
-        musicPicker.delegate = self
+        friendsMusicPicker.delegate = self
+        publicMusicPicker.delegate = self
         countryCodePicker.delegate = self
-        vibeCategoryPicker.delegate = self
-        usernameField.delegate = self
-        vibeNameField.delegate = self
+        friendsVibeTagPicker.delegate = self
+        publicVibeTagPicker.delegate = self
+        friendsUsernameField.delegate = self
+        friendsVibeNameField.delegate = self
+        publicVibeNameField.delegate = self
         
         createToolbarForPickerView()
         addGestureToContactListIcon()
@@ -82,112 +97,149 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         // Set the mobile number field during the loading of the view.
         if vibeModel.to == "" {
             displayCountryCodeTextField()
-            usernameField.text = nil
+            friendsUsernameField.text = nil
         } else {
             removeCountryCodeTextField()
-            usernameField.text = vibeModel.to
+            friendsUsernameField.text = vibeModel.to
         }
         
         // Set the vibe name field during the loading of the view.
         if vibeModel.vibeName == "" {
-            vibeNameField.text = nil
+            friendsVibeNameField.text = nil
+            publicVibeNameField.text = nil
         } else {
-            vibeNameField.text = vibeModel.vibeName
+            friendsVibeNameField.text = vibeModel.vibeName
+            publicVibeNameField.text = vibeModel.vibeName
         }
         
         countryCodeSelected = CountryCodes.countryCodes[0]
-        countryCodeField.text = countryCodeSelected!
-        vibeCategorySelected = 0
-        vibeCategoryField.text = VibeCategories.pickerStrings[vibeCategorySelected!]
-        countryCodeField.inputView = countryCodePicker
-        vibeCategoryField.inputView = vibeCategoryPicker
-        musicField.inputView = musicPicker
+        friendsCountryCodeField.text = countryCodeSelected!
+        friendsVibeTagSelected = 0
+        publicVibeTagSelected = 0
+        friendsVibeTagField.text = VibeCategories.pickerStrings[friendsVibeTagSelected!]
+        publicVibeTagField.text = VibeCategories.pickerStrings[publicVibeTagSelected!]
+        friendsCountryCodeField.inputView = countryCodePicker
+        friendsVibeTagField.inputView = friendsVibeTagPicker
+        publicVibeTagField.inputView = publicVibeTagPicker
+        friendsMusicField.inputView = friendsMusicPicker
+        publicMusicField.inputView = publicMusicPicker
         
-        // Make the play image view tappable to play the audio
+        // Make the play image views tappable to play the audio
         addGestureToPlayIcon()
         
+        chooseDetailsContainer(shouldTransferData: false)
+    }
+
+    func chooseDetailsContainer(shouldTransferData: Bool) {
+        if vibeTypeSegment.selectedSegmentIndex == 0 {
+            friendsVibeDetailsContainer.isHidden = false
+            publicVibeDetailsContainer.isHidden = true
+            if shouldTransferData {
+                friendsVibeNameField.text = publicVibeNameField.text
+                friendsVibeTagField.text = publicVibeTagField.text
+            }
+        } else {
+            friendsVibeDetailsContainer.isHidden = true
+            publicVibeDetailsContainer.isHidden = false
+            if shouldTransferData {
+                publicVibeNameField.text = friendsVibeNameField.text
+                publicVibeTagField.text = friendsVibeTagField.text
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         
         // Set the Vibe Category field during load. This is set here because the category was not getting updated in the view in viewDidLoad().
-        vibeCategoryPicker.selectRow(vibeModel.category, inComponent: 0, animated: false)
-        vibeCategorySelected = vibeModel.category
-        vibeCategoryField.text = VibeCategories.pickerStrings[vibeModel.category]
+        friendsVibeTagPicker.selectRow(vibeModel.category, inComponent: 0, animated: false)
+        friendsVibeTagSelected = vibeModel.category
+        friendsVibeTagField.text = VibeCategories.pickerStrings[vibeModel.category]
+        
+        publicVibeTagPicker.selectRow(vibeModel.category, inComponent: 0, animated: false)
+        publicVibeTagSelected = vibeModel.category
+        publicVibeTagField.text = VibeCategories.pickerStrings[vibeModel.category]
         
         // Set the background music selected during load. This is set here because the music field was not getting updated in the view in viewDidLoad()
         // Set the background music field during load.
         if vibeModel.isBackgroundMusicEnabled {
-            backgroundMusicSwitch.isOn = true
-            musicField.isHidden = false
-            musicField.text = BackgroundMusic.musicList[vibeModel.backgroundMusicIndex]
-            musicSelected = vibeModel.backgroundMusicIndex
-            musicArrowLabel.isHidden = false
-            playImageView.isHidden = false
+            friendsBackgroundMusicSwitch.isOn = true
+            friendsMusicField.isHidden = false
+            friendsMusicField.text = BackgroundMusic.musicList[vibeModel.backgroundMusicIndex]
+            friendsMusicSelected = vibeModel.backgroundMusicIndex
+            friendsMusicArrowLabel.isHidden = false
+            friendsPlayImageView.isHidden = false
+            
+            publicBackgroundMusicSwitch.isOn = true
+            publicMusicField.isHidden = false
+            publicMusicField.text = BackgroundMusic.musicList[vibeModel.backgroundMusicIndex]
+            publicMusicSelected = vibeModel.backgroundMusicIndex
+            publicMusicArrowLabel.isHidden = false
+            publicPlayImageView.isHidden = false
         } else {
-            backgroundMusicSwitch.isOn = false
-            musicField.isHidden = true
-            musicSelected = 0
-            musicField.text = BackgroundMusic.musicFiles[musicSelected!]
-            musicArrowLabel.isHidden = true
-            playImageView.isHidden = true
+            friendsBackgroundMusicSwitch.isOn = false
+            friendsMusicField.isHidden = true
+            friendsMusicSelected = 0
+            friendsMusicField.text = BackgroundMusic.musicFiles[friendsMusicSelected!]
+            friendsMusicArrowLabel.isHidden = true
+            friendsPlayImageView.isHidden = true
+            
+            publicBackgroundMusicSwitch.isOn = false
+            publicMusicField.isHidden = true
+            publicMusicSelected = 0
+            publicMusicField.text = BackgroundMusic.musicFiles[friendsMusicSelected!]
+            publicMusicArrowLabel.isHidden = true
+            publicPlayImageView.isHidden = true
         }
         
         vibeTypeSegment.selectedSegmentIndex = vibeModel.type
         setupNextButton()
-        setUsernameVisibility()
     }
 
     @IBAction func vibeTypePressed(_ sender: UISegmentedControl) {
-        setUsernameVisibility()
-    }
-    
-    func setUsernameVisibility() {
-        // If the selected index is Friends, then show receiver fields
-        if vibeTypeSegment.selectedSegmentIndex == 0 {
-            
-            toLabel.isHidden = false
-            contactListIcon.isHidden = false
-            phoneNumberIcon.isHidden = false
-            usernameField.isHidden = false
-            if usernameField.text == nil || (usernameField.text != nil && usernameField.text!.starts(with: "+")) {
-                removeCountryCodeTextField()
-            } else {
-                displayCountryCodeTextField()
-            }
-        } else {
-            toLabel.isHidden = true
-            phoneNumberIcon.isHidden = true
-            countryCodeField.isHidden = true
-            usernameField.isHidden = true
-            contactListIcon.isHidden = true
+        dismissKeyboard()
+        if vibeTypeSegment.selectedSegmentIndex != vibeTypeSelected! {
+            vibeTypeSelected = vibeTypeSegment.selectedSegmentIndex
+            chooseDetailsContainer(shouldTransferData: true)
         }
+        
     }
 
-    @IBAction func musicFieldTapped(_ sender: Any) {
-        print("music field editing began")
+    @IBAction func friendsMusicFieldTapped(_ sender: Any) {
+        musicFieldTappedCommonAction()
+    }
+
+    @IBAction func publicMusicFieldTapped(_ sender: UITextField) {
+        musicFieldTappedCommonAction()
+    }
+
+    func musicFieldTappedCommonAction() {
         if audioPlayer != nil && audioPlayer.isPlaying {
             isAudioPlaying = false
             audioPlayer.pause()
-            playImageView.image = UIImage(named: PLAY_IMAGE)
+            friendsPlayImageView.image = UIImage(named: PLAY_IMAGE)
+            publicPlayImageView.image = UIImage(named: PLAY_IMAGE)
         }
     }
 
     func addGestureToPlayIcon() {
-        let playTapGesture = UITapGestureRecognizer(target: self, action: #selector(playImageTapped))
-        playImageView.addGestureRecognizer(playTapGesture)
+        let friendsPlayTapGesture = UITapGestureRecognizer(target: self, action: #selector(playImageTapped))
+        let publicPlayTapGesture = UITapGestureRecognizer(target: self, action: #selector(playImageTapped))
+        friendsPlayImageView.addGestureRecognizer(friendsPlayTapGesture)
+        publicPlayImageView.addGestureRecognizer(publicPlayTapGesture)
     }
     
     @objc func playImageTapped() {
         if isAudioPlaying {
-            playImageView.image = UIImage(named: PLAY_IMAGE)
+            friendsPlayImageView.image = UIImage(named: PLAY_IMAGE)
+            publicPlayImageView.image = UIImage(named: PLAY_IMAGE)
             pauseAudio()
         } else {
-            let url = APPUtilites.getUrlForFileName(fileName: BackgroundMusic.musicFiles[musicSelected!], type: "mp3")
+            let audioFileName = vibeTypeSegment.selectedSegmentIndex == 0 ? BackgroundMusic.musicFiles[friendsMusicSelected!] : BackgroundMusic.musicFiles[publicMusicSelected!]
+            let url = APPUtilites.getUrlForFileName(fileName: audioFileName, type: "mp3")
             if url != nil {
                 playAudioForUrl(url: url!)
             } else {
-                print("File not found for the file name \(BackgroundMusic.musicFiles[musicSelected!]) of type .mp3")
+                print("File not found for the file name \(BackgroundMusic.musicFiles[friendsMusicSelected!]) of type .mp3")
             }
         }
     }
@@ -207,7 +259,9 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             audioPlayer.delegate = self
             audioPlayer.prepareToPlay()
             audioPlayer.play()
-            playImageView.image = UIImage(named: PAUSE_IMAGE)
+
+            friendsPlayImageView.image = UIImage(named: PAUSE_IMAGE)
+            publicPlayImageView.image = UIImage(named: PAUSE_IMAGE)
             isAudioPlaying = true
         } catch {
             print("Error in playing the audio. Please try again!!")
@@ -224,7 +278,8 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     func pauseAudio() {
         if audioPlayer != nil && audioPlayer.isPlaying {
             isAudioPlaying = false
-            playImageView.image = UIImage(named: PLAY_IMAGE)
+            friendsPlayImageView.image = UIImage(named: PLAY_IMAGE)
+            publicPlayImageView.image = UIImage(named: PLAY_IMAGE)
             audioPlayer.pause()
         }
     }
@@ -232,53 +287,86 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     func stopAudio() {
         if audioPlayer != nil && audioPlayer.isPlaying {
             isAudioPlaying = false
-            playImageView.image = UIImage(named: PLAY_IMAGE)
+            friendsPlayImageView.image = UIImage(named: PLAY_IMAGE)
+            publicPlayImageView.image = UIImage(named: PLAY_IMAGE)
             audioPlayer.stop()
         }
     }
     
-    @IBAction func backgroundMusicSwitchPressed(_ sender: UISwitch) {
-        if backgroundMusicSwitch.isOn {
-            musicContainer.isHidden = false
-            musicField.isHidden = false
-            musicArrowLabel.isHidden = false
-            playImageView.isHidden = false
+    @IBAction func friendsBackgroundMusicSwitchPressed(_ sender: UISwitch) {
+        if friendsBackgroundMusicSwitch.isOn {
+            showMusicFields()
+            publicBackgroundMusicSwitch.setOn(true, animated: false)
         } else {
             stopAudio()
-            musicContainer.isHidden = true
-            musicField.isHidden = true
-            musicArrowLabel.isHidden = true
-            playImageView.isHidden = true
+            hideMusicFields()
+            publicBackgroundMusicSwitch.setOn(false, animated: false)
         }
+    }
+
+    @IBAction func publicBackgroundMusicSwitchPressed(_ sender: UISwitch) {
+        if publicBackgroundMusicSwitch.isOn {
+            friendsBackgroundMusicSwitch.setOn(true, animated: false)
+            showMusicFields()
+        } else {
+            stopAudio()
+            hideMusicFields()
+            friendsBackgroundMusicSwitch.setOn(false, animated: false)
+        }
+    }
+    
+    func showMusicFields() {
+        friendsMusicField.isHidden = false
+        friendsMusicArrowLabel.isHidden = false
+        friendsPlayImageView.isHidden = false
+        publicMusicField.isHidden = false
+        publicMusicArrowLabel.isHidden = false
+        publicPlayImageView.isHidden = false
+    }
+    
+    func hideMusicFields() {
+        friendsMusicField.isHidden = true
+        friendsMusicArrowLabel.isHidden = true
+        friendsPlayImageView.isHidden = true
+        publicMusicField.isHidden = true
+        publicMusicArrowLabel.isHidden = true
+        publicPlayImageView.isHidden = true
     }
 
     @IBAction func nextPressed(_ sender: UIButton) {
         if vibeTypeSegment.selectedSegmentIndex == 0 {
-            if usernameField.text == nil || usernameField.text == "" {
+            if friendsUsernameField.text == nil || friendsUsernameField.text! == "" {
                 APPUtilites.displayErrorSnackbar(message: "The phone number cannot be empty")
                 return
             }
 
-            if !usernameField.text!.starts(with: "+") && (Int(usernameField.text!) == nil) {
+            if !friendsUsernameField.text!.starts(with: "+") && (Int(friendsUsernameField.text!) == nil) {
                 APPUtilites.displayErrorSnackbar(message: "Please make sure you are giving a valid mobile number")
                 return
             }
-        }
-        if vibeNameField.text == nil || vibeNameField.text == "" {
-            APPUtilites.displayErrorSnackbar(message: "The Vibe Name cannot be nil")
-            return
+
+            if friendsVibeNameField.text == nil || friendsVibeNameField.text == "" {
+                APPUtilites.displayErrorSnackbar(message: "The Vibe Name cannot be nil")
+                return
+            }
+
+            vibeModel.setReceiver(receiver: friendsUsernameField.text!.starts(with: "+") ? friendsUsernameField.text! : (countryCodeSelected! + friendsUsernameField.text!))
+        } else {
+            if publicVibeNameField.text == nil || publicVibeNameField.text == "" {
+                APPUtilites.displayErrorSnackbar(message: "The Vibe Name cannot be nil")
+                return
+            }
         }
 
-        vibeModel.setVibeType(type: vibeTypeSegment.selectedSegmentIndex)
-        vibeModel.setReceiver(receiver: usernameField.text!.starts(with: "+") ? usernameField.text! : (countryCodeSelected! + usernameField.text!))
         vibeModel.setSender(sender: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)!)
-        vibeModel.setVibeName(name: vibeNameField.text!)
-        vibeModel.setCategory(category: vibeCategorySelected!)
-        vibeModel.setAnonymous(isSenderAnonymous: false)
-        vibeModel.setBackgroundMusicEnabled(isBackgroundMusicEnabled: backgroundMusicSwitch.isOn)
-        if backgroundMusicSwitch.isOn {
-            vibeModel.setBackgroundMusic(index: musicSelected!)
+        vibeModel.setVibeType(type: vibeTypeSegment.selectedSegmentIndex)
+        vibeModel.setVibeName(name: vibeTypeSegment.selectedSegmentIndex == 0 ? friendsVibeNameField.text! : publicVibeNameField.text!)
+        vibeModel.setCategory(category: vibeTypeSegment.selectedSegmentIndex == 0 ?friendsVibeTagSelected! : publicVibeTagSelected!)
+        vibeModel.setBackgroundMusicEnabled(isBackgroundMusicEnabled: vibeTypeSegment.selectedSegmentIndex == 0 ? friendsBackgroundMusicSwitch.isOn : publicBackgroundMusicSwitch.isOn)
+        if vibeModel.isBackgroundMusicEnabled {
+            vibeModel.setBackgroundMusic(index: vibeTypeSegment.selectedSegmentIndex == 0 ? friendsMusicSelected! : publicMusicSelected!)
         }
+        vibeModel.setAnonymous(isSenderAnonymous: false)
         
         stopAudio()
         
@@ -311,42 +399,32 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         self.view.endEditing(true)
         return false
     }
-    
-    /// Event triggered when value inside the username field changes.
-//    @IBAction func onChangeUsername(_ sender: UITextField) {
-//        if Int(sender.text!) != nil && !isUsernameInputNumbers {
-//            displayCountryCodeTextField()
-//
-//        } else if Int(sender.text!) == nil && isUsernameInputNumbers {
-//            removeCountryCodeTextField()
-//            print("alpha numeric values inside the username textfield")
-//        }
-//    }
+
     @IBAction func phoneNumberValueChanged(_ sender: UITextField) {
-        if usernameField.text != nil && usernameField.text!.starts(with: "+") {
+        if friendsUsernameField.text != nil && friendsUsernameField.text!.starts(with: "+") {
             removeCountryCodeTextField()
-        } else if countryCodeField.isHidden == true {
+        } else if friendsCountryCodeField.isHidden == true {
             displayCountryCodeTextField()
         }
     }
     
     /// Displays the country code field when the text is totally numeric.
     func displayCountryCodeTextField() {
-        countryCodeField.isHidden = false
+        friendsCountryCodeField.isHidden = false
         isUsernameInputNumbers = true
         usernameFieldLeadingConstraint.constant = 70
         
         countryCodeSelected = CountryCodes.countryCodes[0]
-        countryCodeField.text = CountryCodes.countryCodes[0]
-        countryCodeField.textAlignment = .center
-        countryCodeField.adjustsFontSizeToFitWidth = true
-        countryCodeField.minimumFontSize = 14
-        countryCodeField.inputView = countryCodePicker
+        friendsCountryCodeField.text = CountryCodes.countryCodes[0]
+        friendsCountryCodeField.textAlignment = .center
+        friendsCountryCodeField.adjustsFontSizeToFitWidth = true
+        friendsCountryCodeField.minimumFontSize = 14
+        friendsCountryCodeField.inputView = countryCodePicker
     }
     
     /// Removes the country code field when the text is totally alpha-numeric.
     func removeCountryCodeTextField() {
-        countryCodeField.isHidden = true
+        friendsCountryCodeField.isHidden = true
         isUsernameInputNumbers = false
         usernameFieldLeadingConstraint.constant = 20
     }
@@ -362,11 +440,14 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         toolbar.setItems([doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         
-        countryCodeField.inputAccessoryView = toolbar
-        vibeCategoryField.inputAccessoryView = toolbar
-        musicField.inputAccessoryView = toolbar
-        usernameField.inputAccessoryView = toolbar
-        vibeNameField.inputAccessoryView = toolbar
+        friendsCountryCodeField.inputAccessoryView = toolbar
+        friendsVibeTagField.inputAccessoryView = toolbar
+        publicVibeTagField.inputAccessoryView = toolbar
+        friendsMusicField.inputAccessoryView = toolbar
+        publicMusicField.inputAccessoryView = toolbar
+        friendsUsernameField.inputAccessoryView = toolbar
+        friendsVibeNameField.inputAccessoryView = toolbar
+        publicVibeNameField.inputAccessoryView = toolbar
     }
     
     @objc func dismissKeyboard() {
@@ -399,9 +480,9 @@ extension MyVibeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0 {
             return CountryCodes.countryCodes.count
-        } else if pickerView.tag == 1 {
+        } else if pickerView.tag == 1 || pickerView.tag == 3 {
             return VibeCategories.pickerStrings.count
-        } else if pickerView.tag == 2 {
+        } else if pickerView.tag == 2 || pickerView.tag == 4 {
             return BackgroundMusic.musicList.count
         }
         return 0
@@ -410,28 +491,33 @@ extension MyVibeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 0 {
             return CountryCodes.pickerStrings[row]
-        } else if pickerView.tag == 1 {
+        } else if pickerView.tag == 1 || pickerView.tag == 3 {
             return VibeCategories.pickerStrings[row]
-        } else if pickerView.tag == 2 {
+        } else if pickerView.tag == 2 || pickerView.tag == 4 {
             return BackgroundMusic.musicList[row]
         }
         return nil
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("inside didSelectRow of pickerView")
-        print("pickerView.tag: \(pickerView.tag)")
         if pickerView.tag == 0 {
             countryCodeSelected = CountryCodes.countryCodes[row]
-            countryCodeField.text = countryCodeSelected
-        } else if pickerView.tag == 1 {
-            vibeCategorySelected = row
-            vibeCategoryField.text = VibeCategories.pickerStrings[row]
-        } else if pickerView.tag == 2 {
-            musicSelected = row
-            musicField.text = BackgroundMusic.musicList[row]
+            friendsCountryCodeField.text = countryCodeSelected
+        } else if pickerView.tag == 1 || pickerView.tag == 3 {
+            friendsVibeTagSelected = row
+            publicVibeTagSelected = row
+            friendsVibeTagField.text = VibeCategories.pickerStrings[row]
+            publicVibeTagField.text = VibeCategories.pickerStrings[row]
+            friendsVibeTagPicker.selectRow(row, inComponent: 0, animated: true)
+            publicVibeTagPicker.selectRow(row, inComponent: 0, animated: true)
+        } else if pickerView.tag == 2 || pickerView.tag == 4 {
+            friendsMusicSelected = row
+            publicMusicSelected = row
+            friendsMusicField.text = BackgroundMusic.musicList[row]
+            publicMusicField.text = BackgroundMusic.musicList[row]
+            friendsMusicPicker.selectRow(row, inComponent: 0, animated: true)
+            publicMusicPicker.selectRow(row, inComponent: 0, animated: true)
         }
-        print("countryCodeSelected: \(countryCodeSelected)")
     }
 }
 
@@ -497,7 +583,7 @@ extension MyVibeViewController: CNContactPickerDelegate {
 //        contactNumber = contactNumber.replacingOccurrences(of: "+", with: "")
         contactNumber = contactNumber.replacingOccurrences(of: "(", with: "")
         contactNumber = contactNumber.replacingOccurrences(of: ")", with: "")
-        usernameField.text = contactNumber
+        friendsUsernameField.text = contactNumber
         if contactNumber.starts(with: "+") {
             removeCountryCodeTextField()
         } else {

@@ -33,7 +33,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     var isLetterSelected : Bool = false
     var isImagesSelected : Bool = false
     
-    var letterText : String = "Hello World"
+    var letterText : String = ""
     var letterBackground : Int = 0
     
     let selectedColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0)
@@ -145,7 +145,21 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     }
 
     @IBAction func crossButtonPressed(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        let alertController = UIAlertController(title: "Exit", message: "Do you want to exit right now? You can edit this Vibe later", preferredStyle: .actionSheet)
+        
+        let saveAndCloseAction = UIAlertAction(title: "Save and Exit", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        let justCloseAction = UIAlertAction(title: "Exit", style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(saveAndCloseAction)
+        alertController.addAction(justCloseAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func onClickLetterCross(_ sender: UIButton) {
@@ -188,14 +202,6 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         letterCrossButton.isEnabled = false
         photosCrossButton.isHidden = true
         photosCrossButton.isEnabled = false
-        
-        letterCrossButton.layer.cornerRadius = letterCrossButton.frame.height / 2
-        letterCrossButton.layer.borderWidth = 1.0
-        letterCrossButton.layer.borderColor = UIColor.gray.cgColor
-        
-        photosCrossButton.layer.cornerRadius = photosCrossButton.frame.height / 2
-        photosCrossButton.layer.borderWidth = 1.0
-        photosCrossButton.layer.borderColor = UIColor.gray.cgColor
     }
     
     /// Adds Tap Gestures to icon views and selection button

@@ -13,10 +13,10 @@ import Reachability
 import AWSAppSync
 
 public class APPUtilites {
-    /// Displays an Error Snackbar for the message.
+    /// Displays an elevated Error Snackbar for the message.
     /// - Parameters
     ///     - message: Message to be displayed in the snackbar.
-    public static func displayErrorSnackbar(message: String) {
+    public static func displayElevatedErrorSnackbar(message: String) {
         let errorBar = TTGSnackbar()
         errorBar.message = message
         errorBar.backgroundColor = UIColor.red
@@ -26,10 +26,22 @@ public class APPUtilites {
         errorBar.show()
     }
     
-    /// Displays an Error Snacbar for the message with a long duration
+    /// Displays an Error Snackbar for the message.
     /// - Parameters
     ///     - message: Message to be displayed in the snackbar.
-    public static func displayErrorSnackbarForLongDuration(message: String) {
+    public static func displayErrorSnackbar(message: String) {
+        let errorBar = TTGSnackbar()
+        errorBar.message = message
+        errorBar.backgroundColor = UIColor.red
+        errorBar.messageTextAlign = .center
+        errorBar.duration = .short
+        errorBar.show()
+    }
+    
+    /// Displays an elevated Error Snacbar for the message with a long duration
+    /// - Parameters
+    ///     - message: Message to be displayed in the snackbar.
+    public static func displayElevatedErrorSnackbarForLongDuration(message: String) {
         let errorBar = TTGSnackbar()
         errorBar.message = message
         errorBar.backgroundColor = UIColor.red
@@ -38,7 +50,32 @@ public class APPUtilites {
         errorBar.bottomMargin = 50.0
         errorBar.show()
     }
-    
+
+    /// Displays an elevated Error Snacbar for the message with a long duration
+    /// - Parameters
+    ///     - message: Message to be displayed in the snackbar.
+    public static func displayErrorSnackbarForLongDuration(message: String) {
+        let errorBar = TTGSnackbar()
+        errorBar.message = message
+        errorBar.backgroundColor = UIColor.red
+        errorBar.messageTextAlign = .center
+        errorBar.duration = .middle
+        errorBar.show()
+    }
+
+    /// Displays an Elevated Success Snackbar for the message.
+    /// - Parameters
+    ///     - message: Message to be displayed in the snackbar.
+    public static func displayElevatedSuccessSnackbar(message: String) {
+        let successBar = TTGSnackbar()
+        successBar.message = message
+        successBar.backgroundColor = UIColor(displayP3Red: 103/255, green: 186/255, blue: 38/255, alpha: 1.0)
+        successBar.messageTextAlign = .center
+        successBar.duration = .short
+        successBar.bottomMargin = 50.0
+        successBar.show()
+    }
+
     /// Displays a Success Snackbar for the message.
     /// - Parameters
     ///     - message: Message to be displayed in the snackbar.
@@ -48,10 +85,9 @@ public class APPUtilites {
         successBar.backgroundColor = UIColor(displayP3Red: 103/255, green: 186/255, blue: 38/255, alpha: 1.0)
         successBar.messageTextAlign = .center
         successBar.duration = .short
-        successBar.bottomMargin = 50.0
         successBar.show()
     }
-    
+
     public static func displayLoadingSpinner(onView: UIView) -> UIView {
         let spinnerView = UIView(frame: onView.frame)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)

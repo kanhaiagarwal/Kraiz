@@ -121,9 +121,9 @@ extension ImageBackdropViewController {
             let path = UIBezierPath()
             let layer = CAShapeLayer()
             
-            path.move(to: CGPoint(x: checkboxWidth / 7, y: checkboxHeight / 2))
-            path.addLine(to: CGPoint(x: checkboxWidth / 3, y: 2 * checkboxHeight / 3))
-            path.addLine(to: CGPoint(x: 2 * checkboxWidth / 3, y: checkboxHeight / 3))
+            path.move(to: CGPoint(x: checkboxWidth / 4, y: checkboxHeight / 2))
+            path.addLine(to: CGPoint(x: checkboxWidth / 2.5, y: 2 * checkboxHeight / 3))
+            path.addLine(to: CGPoint(x: 3 * checkboxWidth / 4, y: checkboxHeight / 3))
             path.stroke()
             
             layer.path = path.cgPath

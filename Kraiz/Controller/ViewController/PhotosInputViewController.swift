@@ -116,7 +116,16 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
 
     @IBAction func closeButtonPressed(_ sender: UIButton) {
 //        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+        let alert = UIAlertController(title: "Exit Photos", message: "Your Changes will not be saved", preferredStyle: UIAlertController.Style.alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+            //            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
+        }
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true, completion: nil)
     }
 
     @IBAction func editBackdropPressed(_ sender: UIButton) {
@@ -162,6 +171,10 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
             cell.photo.isHidden = false
             cell.photo.image = selectedImages[indexPath.row].image!
             cell.caption.isHidden = false
+            if cell.caption.layer.sublayers == nil || cell.caption.layer.sublayers!.count == 0 {
+                cell.caption.layer.borderWidth = 0.5
+                cell.caption.layer.borderColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0).cgColor
+            }
             cell.caption.text = selectedImages[indexPath.row].caption == nil ? DEFAULT_CELL_CAPTION : selectedImages[indexPath.row].caption!
             cell.crossButton.isHidden = false
         } else {
@@ -264,6 +277,10 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
                 let cell = self.photosCollectionView.cellForItem(at: IndexPath(row: self.presentImageToBeCroppped, section: 0)) as!PhotoInputCollectionViewCell
                 cell.photo.isHidden = false
                 cell.caption.isHidden = false
+                if cell.caption.layer.sublayers == nil || cell.caption.layer.sublayers!.count == 0 {
+                    cell.caption.layer.borderWidth = 0.5
+                    cell.caption.layer.borderColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0).cgColor
+                }
                 cell.caption.text = (photoEntity.caption != nil) ? photoEntity.caption : self.DEFAULT_CELL_CAPTION
                 cell.crossButton.isHidden = false
                 cell.photo.image = self.selectedImages[self.presentImageToBeCroppped].image!
@@ -278,6 +295,10 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
                 let cell = self.photosCollectionView.cellForItem(at: IndexPath(row: self.presentImageToBeCroppped, section: 0)) as!PhotoInputCollectionViewCell
                 cell.photo.isHidden = false
                 cell.caption.isHidden = false
+                if cell.caption.layer.sublayers == nil || cell.caption.layer.sublayers!.count == 0 {
+                    cell.caption.layer.borderWidth = 0.5
+                    cell.caption.layer.borderColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0).cgColor
+                }
                 cell.caption.text = (photoEntity.caption != nil) ? photoEntity.caption : self.DEFAULT_CELL_CAPTION
                 cell.crossButton.isHidden = false
                 cell.photo.image = self.selectedImages[self.presentImageToBeCroppped].image
