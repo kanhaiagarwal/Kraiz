@@ -120,14 +120,14 @@
                             "description": null,
                             "args": [
                                 {
-                                    "name": "vibeCategory",
+                                    "name": "vibeTag",
                                     "description": null,
                                     "type": {
                                         "kind": "NON_NULL",
                                         "name": null,
                                         "ofType": {
                                             "kind": "ENUM",
-                                            "name": "VibeCategory",
+                                            "name": "VibeTag",
                                             "ofType": null
                                         }
                                     },
@@ -547,7 +547,7 @@
                         },
                         {
                             "name": "gsiPk",
-                            "description": " # GSI PK (userId_category_type)",
+                            "description": " # GSI PK (userId_tag_type)",
                             "args": [],
                             "type": {
                                 "kind": "NON_NULL",
@@ -828,7 +828,7 @@
                 },
                 {
                     "kind": "ENUM",
-                    "name": "VibeCategory",
+                    "name": "VibeTag",
                     "description": null,
                     "fields": null,
                     "inputFields": null,
@@ -865,7 +865,7 @@
                             "deprecationReason": null
                         },
                         {
-                            "name": "OCCASSION",
+                            "name": "OCCASION",
                             "description": null,
                             "isDeprecated": false,
                             "deprecationReason": null
@@ -1250,13 +1250,9 @@
                             "name": "users",
                             "description": null,
                             "type": {
-                                "kind": "NON_NULL",
-                                "name": null,
-                                "ofType": {
-                                    "kind": "INPUT_OBJECT",
-                                    "name": "FsmComponent",
-                                    "ofType": null
-                                }
+                                "kind": "INPUT_OBJECT",
+                                "name": "FsmComponent",
+                                "ofType": null
                             },
                             "defaultValue": null
                         },
@@ -1264,13 +1260,9 @@
                             "name": "vibes",
                             "description": null,
                             "type": {
-                                "kind": "NON_NULL",
-                                "name": null,
-                                "ofType": {
-                                    "kind": "INPUT_OBJECT",
-                                    "name": "FsmComponent",
-                                    "ofType": null
-                                }
+                                "kind": "INPUT_OBJECT",
+                                "name": "FsmComponent",
+                                "ofType": null
                             },
                             "defaultValue": null
                         },
@@ -1278,13 +1270,9 @@
                             "name": "hails",
                             "description": null,
                             "type": {
-                                "kind": "NON_NULL",
-                                "name": null,
-                                "ofType": {
-                                    "kind": "INPUT_OBJECT",
-                                    "name": "FsmComponent",
-                                    "ofType": null
-                                }
+                                "kind": "INPUT_OBJECT",
+                                "name": "FsmComponent",
+                                "ofType": null
                             },
                             "defaultValue": null
                         }
@@ -1400,11 +1388,11 @@
                             "defaultValue": null
                         },
                         {
-                            "name": "category",
+                            "name": "tag",
                             "description": null,
                             "type": {
                                 "kind": "ENUM",
-                                "name": "VibeCategory",
+                                "name": "VibeTag",
                                 "ofType": null
                             },
                             "defaultValue": null
@@ -1567,6 +1555,16 @@
                             "defaultValue": null
                         },
                         {
+                            "name": "template",
+                            "description": null,
+                            "type": {
+                                "kind": "ENUM",
+                                "name": "VibeComponentTemplate",
+                                "ofType": null
+                            },
+                            "defaultValue": null
+                        },
+                        {
                             "name": "globalSequence",
                             "description": null,
                             "type": {
@@ -1635,36 +1633,127 @@
                     "interfaces": null,
                     "enumValues": [
                         {
-                            "name": "LETTER_LOVE",
+                            "name": "LOVE",
                             "description": null,
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
                         {
-                            "name": "LETTER_ROYAL",
+                            "name": "ROYAL",
                             "description": null,
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
                         {
-                            "name": "LETTER_PARCHMENT",
+                            "name": "PARCHMENT",
                             "description": null,
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
                         {
-                            "name": "LETTER_BASIC",
+                            "name": "BASIC",
                             "description": null,
                             "isDeprecated": false,
                             "deprecationReason": null
                         },
                         {
-                            "name": "LETTER_DREAMY",
+                            "name": "DREAMY",
+                            "description": null,
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        },
+                        {
+                            "name": "POLAROID",
+                            "description": null,
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        },
+                        {
+                            "name": "TUNER",
                             "description": null,
                             "isDeprecated": false,
                             "deprecationReason": null
                         }
                     ],
+                    "possibleTypes": null
+                },
+                {
+                    "kind": "OBJECT",
+                    "name": "UserChannel",
+                    "description": null,
+                    "fields": [
+                        {
+                            "name": "userId",
+                            "description": null,
+                            "args": [],
+                            "type": {
+                                "kind": "NON_NULL",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "SCALAR",
+                                    "name": "ID",
+                                    "ofType": null
+                                }
+                            },
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        },
+                        {
+                            "name": "liveVibeBucketIds",
+                            "description": " # Dynamic bucket to push live Vibes to clients",
+                            "args": [],
+                            "type": {
+                                "kind": "LIST",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "ID",
+                                        "ofType": null
+                                    }
+                                }
+                            },
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        },
+                        {
+                            "name": "liveProfileBucketIds",
+                            "description": " # Dyanmic bucket to push updated profiles to clients",
+                            "args": [],
+                            "type": {
+                                "kind": "LIST",
+                                "name": null,
+                                "ofType": {
+                                    "kind": "NON_NULL",
+                                    "name": null,
+                                    "ofType": {
+                                        "kind": "SCALAR",
+                                        "name": "ID",
+                                        "ofType": null
+                                    }
+                                }
+                            },
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        },
+                        {
+                            "name": "lastPublicVibeFetchTime",
+                            "description": " # Required to show public vibes after a stipulated time duration",
+                            "args": [],
+                            "type": {
+                                "kind": "SCALAR",
+                                "name": "AWSTimestamp",
+                                "ofType": null
+                            },
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        }
+                    ],
+                    "inputFields": null,
+                    "interfaces": [],
+                    "enumValues": null,
                     "possibleTypes": null
                 },
                 {
@@ -1824,85 +1913,6 @@
                     "fields": null,
                     "inputFields": null,
                     "interfaces": null,
-                    "enumValues": null,
-                    "possibleTypes": null
-                },
-                {
-                    "kind": "OBJECT",
-                    "name": "UserChannel",
-                    "description": null,
-                    "fields": [
-                        {
-                            "name": "userId",
-                            "description": null,
-                            "args": [],
-                            "type": {
-                                "kind": "NON_NULL",
-                                "name": null,
-                                "ofType": {
-                                    "kind": "SCALAR",
-                                    "name": "ID",
-                                    "ofType": null
-                                }
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "liveVibeBucketIds",
-                            "description": " # Dynamic bucket to push live Vibes to clients",
-                            "args": [],
-                            "type": {
-                                "kind": "LIST",
-                                "name": null,
-                                "ofType": {
-                                    "kind": "NON_NULL",
-                                    "name": null,
-                                    "ofType": {
-                                        "kind": "SCALAR",
-                                        "name": "ID",
-                                        "ofType": null
-                                    }
-                                }
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "liveProfileBucketIds",
-                            "description": " # Dyanmic bucket to push updated profiles to clients",
-                            "args": [],
-                            "type": {
-                                "kind": "LIST",
-                                "name": null,
-                                "ofType": {
-                                    "kind": "NON_NULL",
-                                    "name": null,
-                                    "ofType": {
-                                        "kind": "SCALAR",
-                                        "name": "ID",
-                                        "ofType": null
-                                    }
-                                }
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        },
-                        {
-                            "name": "lastPublicVibeFetchTime",
-                            "description": " # Required to show public vibes after a stipulated time duration",
-                            "args": [],
-                            "type": {
-                                "kind": "SCALAR",
-                                "name": "AWSTimestamp",
-                                "ofType": null
-                            },
-                            "isDeprecated": false,
-                            "deprecationReason": null
-                        }
-                    ],
-                    "inputFields": null,
-                    "interfaces": [],
                     "enumValues": null,
                     "possibleTypes": null
                 },
@@ -2184,6 +2194,18 @@
                                     "name": "Format",
                                     "ofType": null
                                 }
+                            },
+                            "isDeprecated": false,
+                            "deprecationReason": null
+                        },
+                        {
+                            "name": "template",
+                            "description": null,
+                            "args": [],
+                            "type": {
+                                "kind": "ENUM",
+                                "name": "VibeComponentTemplate",
+                                "ofType": null
                             },
                             "isDeprecated": false,
                             "deprecationReason": null
@@ -2510,7 +2532,7 @@
                             "deprecationReason": null
                         },
                         {
-                            "name": "category",
+                            "name": "tag",
                             "description": null,
                             "args": [],
                             "type": {
@@ -2518,7 +2540,7 @@
                                 "name": null,
                                 "ofType": {
                                     "kind": "ENUM",
-                                    "name": "VibeCategory",
+                                    "name": "VibeTag",
                                     "ofType": null
                                 }
                             },

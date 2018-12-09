@@ -193,7 +193,7 @@ public struct UpdateUserProfileInput: GraphQLMapConvertible {
 public struct FsmInput: GraphQLMapConvertible {
     public var graphQLMap: GraphQLMap
     
-    public init(action: Action, users: FsmComponent, vibes: FsmComponent, hails: FsmComponent) {
+    public init(action: Action, users: FsmComponent? = nil, vibes: FsmComponent? = nil, hails: FsmComponent? = nil) {
         graphQLMap = ["action": action, "users": users, "vibes": vibes, "hails": hails]
     }
     
@@ -206,27 +206,27 @@ public struct FsmInput: GraphQLMapConvertible {
         }
     }
     
-    public var users: FsmComponent {
+    public var users: FsmComponent? {
         get {
-            return graphQLMap["users"] as! FsmComponent
+            return graphQLMap["users"] as! FsmComponent?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "users")
         }
     }
     
-    public var vibes: FsmComponent {
+    public var vibes: FsmComponent? {
         get {
-            return graphQLMap["vibes"] as! FsmComponent
+            return graphQLMap["vibes"] as! FsmComponent?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "vibes")
         }
     }
     
-    public var hails: FsmComponent {
+    public var hails: FsmComponent? {
         get {
-            return graphQLMap["hails"] as! FsmComponent
+            return graphQLMap["hails"] as! FsmComponent?
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "hails")
@@ -312,8 +312,8 @@ public struct FsmComponent: GraphQLMapConvertible {
 public struct FsmComponentInput: GraphQLMapConvertible {
     public var graphQLMap: GraphQLMap
     
-    public init(type: VibeType? = nil, category: VibeCategory? = nil, isAnonymous: Bool? = nil, name: String? = nil, vibeComponents: [VibeComponentInput]? = nil, comment: String? = nil, mobileNumber: GraphQLID? = nil, id: GraphQLID? = nil, author: GraphQLID? = nil) {
-        graphQLMap = ["type": type, "category": category, "isAnonymous": isAnonymous, "name": name, "vibeComponents": vibeComponents, "comment": comment, "mobileNumber": mobileNumber, "id": id, "author": author]
+    public init(type: VibeType? = nil, tag: VibeTag? = nil, isAnonymous: Bool? = nil, name: String? = nil, vibeComponents: [VibeComponentInput]? = nil, comment: String? = nil, mobileNumber: GraphQLID? = nil, id: GraphQLID? = nil, author: GraphQLID? = nil) {
+        graphQLMap = ["type": type, "tag": tag, "isAnonymous": isAnonymous, "name": name, "vibeComponents": vibeComponents, "comment": comment, "mobileNumber": mobileNumber, "id": id, "author": author]
     }
     
     /// # Vibe Input
@@ -326,12 +326,12 @@ public struct FsmComponentInput: GraphQLMapConvertible {
         }
     }
     
-    public var category: VibeCategory? {
+    public var tag: VibeTag? {
         get {
-            return graphQLMap["category"] as! VibeCategory?
+            return graphQLMap["tag"] as! VibeTag?
         }
         set {
-            graphQLMap.updateValue(newValue, forKey: "category")
+            graphQLMap.updateValue(newValue, forKey: "tag")
         }
     }
     
@@ -436,14 +436,14 @@ public enum VibeType: RawRepresentable, Equatable, JSONDecodable, JSONEncodable 
     }
 }
 
-public enum VibeCategory: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
+public enum VibeTag: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
     public typealias RawValue = String
     case love
     case travel
     case good
     case party
     case nostalgic
-    case occassion
+    case occasion
     /// Auto generated constant for unknown enum values
     case unknown(RawValue)
     
@@ -454,7 +454,7 @@ public enum VibeCategory: RawRepresentable, Equatable, JSONDecodable, JSONEncoda
         case "GOOD": self = .good
         case "PARTY": self = .party
         case "NOSTALGIC": self = .nostalgic
-        case "OCCASSION": self = .occassion
+        case "OCCASION": self = .occasion
         default: self = .unknown(rawValue)
         }
     }
@@ -466,19 +466,19 @@ public enum VibeCategory: RawRepresentable, Equatable, JSONDecodable, JSONEncoda
         case .good: return "GOOD"
         case .party: return "PARTY"
         case .nostalgic: return "NOSTALGIC"
-        case .occassion: return "OCCASSION"
+        case .occasion: return "OCCASION"
         case .unknown(let value): return value
         }
     }
     
-    public static func == (lhs: VibeCategory, rhs: VibeCategory) -> Bool {
+    public static func == (lhs: VibeTag, rhs: VibeTag) -> Bool {
         switch (lhs, rhs) {
         case (.love, .love): return true
         case (.travel, .travel): return true
         case (.good, .good): return true
         case (.party, .party): return true
         case (.nostalgic, .nostalgic): return true
-        case (.occassion, .occassion): return true
+        case (.occasion, .occasion): return true
         case (.unknown(let lhsValue), .unknown(let rhsValue)): return lhsValue == rhsValue
         default: return false
         }
@@ -489,8 +489,8 @@ public enum VibeCategory: RawRepresentable, Equatable, JSONDecodable, JSONEncoda
 public struct VibeComponentInput: GraphQLMapConvertible {
     public var graphQLMap: GraphQLMap
     
-    public init(ids: [GraphQLID]? = nil, sequence: [Int]? = nil, texts: [String]? = nil, format: Format, globalSequence: Int) {
-        graphQLMap = ["ids": ids, "sequence": sequence, "texts": texts, "format": format, "globalSequence": globalSequence]
+    public init(ids: [GraphQLID]? = nil, sequence: [Int]? = nil, texts: [String]? = nil, format: Format, template: VibeComponentTemplate? = nil, globalSequence: Int) {
+        graphQLMap = ["ids": ids, "sequence": sequence, "texts": texts, "format": format, "template": template, "globalSequence": globalSequence]
     }
     
     public var ids: [GraphQLID]? {
@@ -526,6 +526,15 @@ public struct VibeComponentInput: GraphQLMapConvertible {
         }
         set {
             graphQLMap.updateValue(newValue, forKey: "format")
+        }
+    }
+    
+    public var template: VibeComponentTemplate? {
+        get {
+            return graphQLMap["template"] as! VibeComponentTemplate?
+        }
+        set {
+            graphQLMap.updateValue(newValue, forKey: "template")
         }
     }
     
@@ -578,6 +587,59 @@ public enum Format: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
         case (.video, .video): return true
         case (.audio, .audio): return true
         case (.backgroundMusic, .backgroundMusic): return true
+        case (.unknown(let lhsValue), .unknown(let rhsValue)): return lhsValue == rhsValue
+        default: return false
+        }
+    }
+}
+
+public enum VibeComponentTemplate: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
+    public typealias RawValue = String
+    case love
+    case royal
+    case parchment
+    case basic
+    case dreamy
+    case polaroid
+    case tuner
+    /// Auto generated constant for unknown enum values
+    case unknown(RawValue)
+    
+    public init?(rawValue: RawValue) {
+        switch rawValue {
+        case "LOVE": self = .love
+        case "ROYAL": self = .royal
+        case "PARCHMENT": self = .parchment
+        case "BASIC": self = .basic
+        case "DREAMY": self = .dreamy
+        case "POLAROID": self = .polaroid
+        case "TUNER": self = .tuner
+        default: self = .unknown(rawValue)
+        }
+    }
+    
+    public var rawValue: RawValue {
+        switch self {
+        case .love: return "LOVE"
+        case .royal: return "ROYAL"
+        case .parchment: return "PARCHMENT"
+        case .basic: return "BASIC"
+        case .dreamy: return "DREAMY"
+        case .polaroid: return "POLAROID"
+        case .tuner: return "TUNER"
+        case .unknown(let value): return value
+        }
+    }
+    
+    public static func == (lhs: VibeComponentTemplate, rhs: VibeComponentTemplate) -> Bool {
+        switch (lhs, rhs) {
+        case (.love, .love): return true
+        case (.royal, .royal): return true
+        case (.parchment, .parchment): return true
+        case (.basic, .basic): return true
+        case (.dreamy, .dreamy): return true
+        case (.polaroid, .polaroid): return true
+        case (.tuner, .tuner): return true
         case (.unknown(let lhsValue), .unknown(let rhsValue)): return lhsValue == rhsValue
         default: return false
         }

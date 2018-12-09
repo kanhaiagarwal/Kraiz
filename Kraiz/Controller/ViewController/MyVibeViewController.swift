@@ -336,7 +336,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     @IBAction func nextPressed(_ sender: UIButton) {
         if vibeTypeSegment.selectedSegmentIndex == 0 {
             if friendsUsernameField.text == nil || friendsUsernameField.text! == "" {
-                APPUtilites.displayErrorSnackbar(message: "The phone number cannot be empty")
+                APPUtilites.displayErrorSnackbar(message: "Please make sure you are giving a valid mobile number")
                 return
             }
 
@@ -345,15 +345,15 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
                 return
             }
 
-            if friendsVibeNameField.text == nil || friendsVibeNameField.text == "" {
-                APPUtilites.displayErrorSnackbar(message: "The Vibe Name cannot be nil")
+            if friendsVibeNameField.text == nil || friendsVibeNameField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
+                APPUtilites.displayErrorSnackbar(message: "Please give a name to the Vibe")
                 return
             }
 
             vibeModel.setReceiver(receiver: friendsUsernameField.text!.starts(with: "+") ? friendsUsernameField.text! : (countryCodeSelected! + friendsUsernameField.text!))
         } else {
-            if publicVibeNameField.text == nil || publicVibeNameField.text == "" {
-                APPUtilites.displayErrorSnackbar(message: "The Vibe Name cannot be nil")
+            if publicVibeNameField.text == nil || publicVibeNameField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
+                APPUtilites.displayErrorSnackbar(message: "Please give a name to the Vibe")
                 return
             }
         }

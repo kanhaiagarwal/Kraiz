@@ -51,7 +51,7 @@ class AppSyncHelper {
     
     public func getUserProfileByUsername(username: String, success: @escaping (ProfileModel) -> Void, failure: @escaping (NSError) -> Void) {
         let queryInput = GetUserProfileByUsernameQuery(username: username)
-        var cachePolicy = CachePolicy.returnCacheDataAndFetch
+        var cachePolicy = CachePolicy.returnCacheDataElseFetch
         
         if !APPUtilites.isInternetConnectionAvailable() {
             cachePolicy = CachePolicy.returnCacheDataDontFetch
@@ -94,7 +94,7 @@ class AppSyncHelper {
     public func getUserProfile(userId: String, success: @escaping (ProfileModel) -> Void, failure: @escaping (NSError) -> Void) {
         let getQuery = GetUserProfileQuery(id: userId)
         print("getQuery.id: \(getQuery.id)")
-        var cachePolicy = CachePolicy.returnCacheDataAndFetch
+        var cachePolicy = CachePolicy.returnCacheDataElseFetch
         if !APPUtilites.isInternetConnectionAvailable() {
             print("Internet Connection is not available")
             cachePolicy = .returnCacheDataDontFetch
@@ -142,8 +142,8 @@ class AppSyncHelper {
     }
 
     public func createVibe(vibe: VibeModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
-        let senderFsmComponentInput = FsmComponentInput(type: nil, category: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.from, id: nil, author: nil)
-        let receiverFsmComponentnput = FsmComponentInput(type: nil, category: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.to, id: nil, author: nil)
+        let senderFsmComponentInput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.from, id: nil, author: nil)
+        let receiverFsmComponentnput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.to, id: nil, author: nil)
         var userInputList = [FsmComponentInput]()
         userInputList.append(senderFsmComponentInput)
         userInputList.append(receiverFsmComponentnput)
@@ -155,18 +155,16 @@ class AppSyncHelper {
             vibeComponents.append(letterComponent)
         }
         if vibe.isPhotosPresent {
-            print("images are present")
-            print("number of images: \(vibe.images.count)")
             let imagesComponent = VibeComponentInput(ids: APPUtilites.getVibeImageIds(images: vibe.images), sequence: nil, texts: APPUtilites.getVibeImageCaptions(images: vibe.images), format: Format.image, globalSequence: vibe.isLetterPresent ? 2 : 1)
             vibeComponents.append(imagesComponent)
         }
-        
-        let vibeComponentInput = FsmComponentInput(type: VibeTypesLocal.getVibeType(index: vibe.type), category: VibeCategories.getVibeCategory(index: vibe.category), isAnonymous: vibe.isSenderAnonymous, name: vibe.vibeName, vibeComponents: vibeComponents, comment: nil, mobileNumber: nil, id: nil, author: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
+
+        let vibeComponentInput = FsmComponentInput(type: VibeTypesLocal.getVibeType(index: vibe.type), tag: VibeCategories.getVibeTag(index: vibe.category), isAnonymous: vibe.isSenderAnonymous, name: vibe.vibeName, vibeComponents: vibeComponents, comment: nil, mobileNumber: nil, id: nil, author: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
         var list = [FsmComponentInput]()
         list.append(vibeComponentInput)
         let fsmInput = FsmInput(action: Action.createVibe, users: userComponent, vibes: FsmComponent(exists: true, list: list), hails: FsmComponent(exists: false))
         let mutation = TriggerFsmMutation(input: fsmInput, userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
-        
+
         if appSyncClient != nil {
             appSyncClient?.perform(mutation: mutation, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
                 print("result: \(result)")

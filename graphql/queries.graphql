@@ -84,13 +84,13 @@ query GetUserChannel {
   }
 }
 query GetUserVibes(
-  $vibeCategory: VibeCategory!
+  $vibeTag: VibeTag!
   $vibeType: VibeType!
   $first: Int
   $after: String
 ) {
   getUserVibes(
-    vibeCategory: $vibeCategory
+    vibeTag: $vibeTag
     vibeType: $vibeType
     first: $first
     after: $after

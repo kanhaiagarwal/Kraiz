@@ -115,7 +115,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         }.disposed(by: disposeBag)
         let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
 
-        // Start the image upload in the background(if any images present.
+        // Start the image upload in the background(if any images present).
         MediaHelper.shared.uploadImagesAsync(images: vibeModel.images, folder: "Vibe", counter: counter)
         AppSyncHelper.shared.createVibe(vibe: vibeModel, success: { (success) in
             DispatchQueue.main.async {

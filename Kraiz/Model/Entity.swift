@@ -46,11 +46,3 @@ public struct LetterEntity {
         background = nil
     }
 }
-
-public enum VibeComponentTemplate {
-    case LETTER_LOVE
-    case LETTER_ROYAL
-    case LETTER_PARCHMENT
-    case LETTER_BASIC
-    case LETTER_DREAMY
-}
