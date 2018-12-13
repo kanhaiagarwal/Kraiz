@@ -19,11 +19,13 @@ PODS:
   - Cloudinary (2.4.0):
     - Alamofire (~> 4.7.2)
   - CropViewController (2.3.8)
+  - ObjectBox (0.5.5):
+    - Sourcery
   - ReachabilitySwift (4.0.0)
-  - RxSwift (4.3.1)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
+  - RxAtomic (4.4.0)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
+  - Sourcery (0.15.0)
   - SQLite.swift (0.11.4):
     - SQLite.swift/standard (= 0.11.4)
   - SQLite.swift/standard (0.11.4)
@@ -35,9 +37,9 @@ DEPENDENCIES:
   - AWSCognitoIdentityProvider
   - BSImagePicker
   - Cloudinary
-  - CropViewController
+  - CropViewController (= 2.3.8)
+  - ObjectBox
   - RxSwift
-  - SDWebImage
   - TTGSnackbar
 
 SPEC REPOS:
@@ -53,9 +55,11 @@ SPEC REPOS:
     - BSImageView
     - Cloudinary
     - CropViewController
+    - ObjectBox
     - ReachabilitySwift
+    - RxAtomic
     - RxSwift
-    - SDWebImage
+    - Sourcery
     - SQLite.swift
     - TTGSnackbar
 
@@ -71,12 +75,14 @@ SPEC CHECKSUMS:
   BSImageView: ab22ff8cae61f1ae17a3c9efeeb216af3cf84a09
   Cloudinary: d87b545d6a5d00c4022bec964839fdaf359d7c53
   CropViewController: 7be882b7d3fb3faef48a41924e80f689e9df2514
+  ObjectBox: ad31ce901b502a51016923c97534b816eb120a97
   ReachabilitySwift: e67b2cab4d5386053673d8a7421b5981e5f08259
-  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  Sourcery: 5895672cae353cdbfa95f3f4aaeb75a664d76f6a
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   TTGSnackbar: 2cf4e7b6ffbe5cddf248a73f3ee952b71bee8ea3
 
-PODFILE CHECKSUM: 4eb20ff4db66cfa41d6ab1cf05c39b0ff31337ed
+PODFILE CHECKSUM: 716e3737457f4c465fe0cab23e9e336382740644
 
 COCOAPODS: 1.5.3

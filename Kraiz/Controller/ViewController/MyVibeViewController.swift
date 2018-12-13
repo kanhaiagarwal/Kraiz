@@ -279,7 +279,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             audioPlayer.play()
         }
     }
-    
+
     func pauseAudio() {
         if audioPlayer != nil && audioPlayer.isPlaying {
             isAudioPlaying = false
@@ -288,7 +288,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             audioPlayer.pause()
         }
     }
-    
+
     func stopAudio() {
         if audioPlayer != nil && audioPlayer.isPlaying {
             isAudioPlaying = false
@@ -297,7 +297,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             audioPlayer.stop()
         }
     }
-    
+
     @IBAction func friendsBackgroundMusicSwitchPressed(_ sender: UISwitch) {
         if friendsBackgroundMusicSwitch.isOn {
             showMusicFields()
@@ -321,7 +321,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             friendsBackgroundMusicSwitch.setOn(false, animated: false)
         }
     }
-    
+
     func showMusicFields() {
         friendsMusicField.isHidden = false
         friendsMusicArrowLabel.isHidden = false
@@ -330,7 +330,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         publicMusicArrowLabel.isHidden = false
         publicPlayImageView.isHidden = false
     }
-    
+
     func hideMusicFields() {
         friendsMusicField.isHidden = true
         friendsMusicArrowLabel.isHidden = true
@@ -390,14 +390,14 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             presentingVC?.present(createVC, animated: true, completion: nil)
         }
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == DeviceConstants.GOTO_CREATE_VIBE_FROM_VIBE_DETAILS {
             let destinationVC = segue.destination as! CreateVibeViewController
             destinationVC.vibeModel = vibeModel
         }
     }
-    
+
     @IBAction func backPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -414,7 +414,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             displayCountryCodeTextField()
         }
     }
-    
+
     /// Displays the country code field when the text is totally numeric.
     func displayCountryCodeTextField() {
         friendsCountryCodeField.isHidden = false
@@ -431,25 +431,24 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         friendsCountryCodeField.minimumFontSize = 14
         friendsCountryCodeField.inputView = countryCodePicker
     }
-    
+
     /// Removes the country code field when the text is totally alpha-numeric.
     func removeCountryCodeTextField() {
         friendsCountryCodeField.isHidden = true
         isUsernameInputNumbers = false
         usernameFieldLeadingConstraint.constant = 20
     }
-    
+
     /// Creates a toolbar for the picker view to choose the country code for the Username.
     func createToolbarForPickerView() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        
+
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.dismissKeyboard))
-        
-        
+
         toolbar.setItems([doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
-        
+
         friendsCountryCodeField.inputAccessoryView = toolbar
         friendsVibeTagField.inputAccessoryView = toolbar
         publicVibeTagField.inputAccessoryView = toolbar
@@ -459,11 +458,11 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         friendsVibeNameField.inputAccessoryView = toolbar
         publicVibeNameField.inputAccessoryView = toolbar
     }
-    
+
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
+
     /// Give styles to the next button.
     func setupNextButton() {
         if nextButton.layer.sublayers != nil && nextButton.layer.sublayers!.count > 0 {
@@ -473,7 +472,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             print("No layers on the next button")
             nextButton.layer.cornerRadius = 10
             nextButton.clipsToBounds = true
-            
+
             gradientLayer.frame = nextButton.bounds
             gradientLayer.colors = [GRADIENT_TOP_COLOR.cgColor, GRADIENT_BOTTOM_COLOR.cgColor]
             nextButton.layer.insertSublayer(gradientLayer, above: nil)
@@ -486,7 +485,7 @@ extension MyVibeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0 {
             return CountryCodes.countryCodes.count
@@ -497,7 +496,7 @@ extension MyVibeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
         return 0
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 0 {
             return CountryCodes.pickerStrings[row]
@@ -508,7 +507,7 @@ extension MyVibeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
         return nil
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0 {
             countryCodeSelected = row
@@ -552,7 +551,7 @@ extension MyVibeViewController: CNContactPickerDelegate {
             openContacts()
         }
     }
-    
+
     func openContacts() {
         let contactPicker = CNContactPickerViewController.init()
         contactPicker.delegate = self
@@ -561,11 +560,11 @@ extension MyVibeViewController: CNContactPickerDelegate {
         contactPicker.predicateForSelectionOfProperty = NSPredicate(format: "key == 'phoneNumbers'")
         self.present(contactPicker, animated: true, completion: nil)
     }
-    
+
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
+
     /// When the user selects the contact
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
         picker.dismiss(animated: true, completion: nil)
@@ -586,11 +585,10 @@ extension MyVibeViewController: CNContactPickerDelegate {
             self.present(alertController, animated: true, completion: nil)
         }
     }
-    
+
     func addNumberToField(phoneNumber: String) {
         var contactNumber = phoneNumber.replacingOccurrences(of: "-", with: "")
         contactNumber = contactNumber.replacingOccurrences(of: " ", with: "")
-//        contactNumber = contactNumber.replacingOccurrences(of: "+", with: "")
         contactNumber = contactNumber.replacingOccurrences(of: "(", with: "")
         contactNumber = contactNumber.replacingOccurrences(of: ")", with: "")
         friendsUsernameField.text = contactNumber
