@@ -99,12 +99,10 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
 
     /// Sets up the next button
     func setupNextButton() {
-        print("inside setupNextButton")
         if nextButton.layer.sublayers != nil && nextButton.layer.sublayers!.count > 0 {
             print("nextButton layers is not nil")
             print("nextButton layers count: \(nextButton.layer.sublayers!.count)")
         } else {
-            print("layers is 0")
             nextButton.layer.cornerRadius = 10
             nextButton.clipsToBounds = true
 

@@ -28,6 +28,7 @@ class VibeImagesViewController: UIViewController {
         backgroundImage.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
         backgroundImage.addGestureRecognizer(tapGesture)
+        startMusic()
     }
 
     override func viewDidLayoutSubviews() {

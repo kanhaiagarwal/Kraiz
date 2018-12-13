@@ -156,7 +156,11 @@ public class APPUtilites {
     public static func getVibeImageIds(images: [PhotoEntity]) -> [GraphQLID] {
         var ids = [GraphQLID]()
         for i in 0 ..< images.count {
+            print("imageLink: \(images[i].imageLink!)")
             ids.append(images[i].imageLink != nil ? images[i].imageLink! : "null")
+        }
+        for i in 0 ..< ids.count {
+            print("imageID: \(ids[i])")
         }
         return ids
     }
@@ -172,7 +176,7 @@ public class APPUtilites {
             if images[i].caption != nil {
                 captions.append(images[i].caption!)
             } else {
-                captions.append("none")
+                captions.append("NULL")
             }
         }
         return captions

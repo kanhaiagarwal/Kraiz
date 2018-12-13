@@ -20,6 +20,7 @@ class LetterInputViewController: UIViewController {
     @IBOutlet weak var letterText: UITextView!
     @IBOutlet weak var textViewProportionalHeight: NSLayoutConstraint!
     
+    
     var delegate: LetterInputProtocol?
     var letterFromVC : String = ""
     

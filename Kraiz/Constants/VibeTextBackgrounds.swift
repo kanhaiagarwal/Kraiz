@@ -17,4 +17,15 @@ public class VibeTextBackgrounds {
                                                                   UIColor.black,
                                                                   UIColor(displayP3Red: 10/255, green: 9/255, blue: 22/255, alpha: 1.0),
                                                                   UIColor.white]
+    public static func getLetterTemplate(index: Int) -> VibeComponentTemplate {
+        switch index {
+            case 0: return VibeComponentTemplate.love
+            case 1: return VibeComponentTemplate.royal
+            case 2: return VibeComponentTemplate.parchment
+            case 3: return VibeComponentTemplate.basic
+            case 4: return VibeComponentTemplate.dreamy
+            default: return VibeComponentTemplate.basic
+        }
+        return VibeComponentTemplate.basic
+    }
 }

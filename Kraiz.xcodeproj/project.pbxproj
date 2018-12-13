@@ -36,6 +36,7 @@
 		57C74A9C21BA44D000D737FB /* VibeImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C74A9B21BA44D000D737FB /* VibeImageCardView.swift */; };
 		57C74A9E21BA521400D737FB /* VibeImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C74A9D21BA521400D737FB /* VibeImagesViewController.swift */; };
 		57C74AA021BAEA3300D737FB /* AudioControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C74A9F21BAEA3300D737FB /* AudioControls.swift */; };
+		57C74AA421BEE5EC00D737FB /* VibeImagesBackdrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C74AA321BEE5EC00D737FB /* VibeImagesBackdrop.swift */; };
 		B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507EF5C21244886007FC9F1 /* AWSConstants.swift */; };
 		B513582F215D365C00139854 /* Hero.otf in Resources */ = {isa = PBXBuildFile; fileRef = B513582E215D365C00139854 /* Hero.otf */; };
 		B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */; };
@@ -147,6 +148,7 @@
 		57C74A9B21BA44D000D737FB /* VibeImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeImageCardView.swift; sourceTree = "<group>"; };
 		57C74A9D21BA521400D737FB /* VibeImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeImagesViewController.swift; sourceTree = "<group>"; };
 		57C74A9F21BAEA3300D737FB /* AudioControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioControls.swift; sourceTree = "<group>"; };
+		57C74AA321BEE5EC00D737FB /* VibeImagesBackdrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeImagesBackdrop.swift; sourceTree = "<group>"; };
 		77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.release.xcconfig"; sourceTree = "<group>"; };
 		AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.debug.xcconfig"; sourceTree = "<group>"; };
 		B507EF5C21244886007FC9F1 /* AWSConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSConstants.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */,
 				57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */,
 				57C74A9721B3B07400D737FB /* VibeTextBackgrounds.swift */,
+				57C74AA321BEE5EC00D737FB /* VibeImagesBackdrop.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				B5BC1CFB21615D05008CE09F /* ChatsViewController.swift in Sources */,
 				B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */,
 				B5A65830214D052F0003C034 /* MediaHelperConstants.swift in Sources */,
+				57C74AA421BEE5EC00D737FB /* VibeImagesBackdrop.swift in Sources */,
 				B5DC7929212D5CA600C69A13 /* AppUtilities.swift in Sources */,
 				57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */,
 				B51DF220211F13B9009896CC /* ContactUsViewController.swift in Sources */,

@@ -142,6 +142,7 @@ class AppSyncHelper {
     }
 
     public func createVibe(vibe: VibeModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
+        print("vibe: \(vibe)")
         let senderFsmComponentInput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.from, id: nil, author: nil)
         let receiverFsmComponentnput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.to, id: nil, author: nil)
         var userInputList = [FsmComponentInput]()
@@ -151,12 +152,17 @@ class AppSyncHelper {
         var vibeComponents = [VibeComponentInput]()
         if vibe.isLetterPresent {
             print("Letter is present")
-            let letterComponent = VibeComponentInput(ids: nil, sequence: nil, texts: [vibe.letter.text!], format: Format.text, globalSequence: 1)
+            let letterComponent = VibeComponentInput(ids: nil, sequence: nil, texts: [vibe.letter.text!], format: Format.text, template: VibeTextBackgrounds.getLetterTemplate(index: vibe.letter.background!), globalSequence: 1)
             vibeComponents.append(letterComponent)
         }
         if vibe.isPhotosPresent {
-            let imagesComponent = VibeComponentInput(ids: APPUtilites.getVibeImageIds(images: vibe.images), sequence: nil, texts: APPUtilites.getVibeImageCaptions(images: vibe.images), format: Format.image, globalSequence: vibe.isLetterPresent ? 2 : 1)
+            let imagesComponent = VibeComponentInput(ids: APPUtilites.getVibeImageIds(images: vibe.images), sequence: nil, texts: APPUtilites.getVibeImageCaptions(images: vibe.images), format: Format.image, template: VibeImagesBackdrop.getImagesBackdrop(index: vibe.imageBackdrop), globalSequence: vibe.isLetterPresent ? 2 : 1)
             vibeComponents.append(imagesComponent)
+        }
+        
+        if vibe.isBackgroundMusicEnabled {
+            let musicComponent = VibeComponentInput(ids: [BackgroundMusic.musicList[vibe.backgroundMusicIndex]], sequence: nil, texts: nil, format: Format.backgroundMusic, template: nil, globalSequence: 0)
+            vibeComponents.append(musicComponent)
         }
 
         let vibeComponentInput = FsmComponentInput(type: VibeTypesLocal.getVibeType(index: vibe.type), tag: VibeCategories.getVibeTag(index: vibe.category), isAnonymous: vibe.isSenderAnonymous, name: vibe.vibeName, vibeComponents: vibeComponents, comment: nil, mobileNumber: nil, id: nil, author: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)

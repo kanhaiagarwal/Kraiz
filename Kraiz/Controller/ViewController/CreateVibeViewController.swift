@@ -22,7 +22,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     @IBOutlet weak var photosImageView: UIImageView!
     @IBOutlet weak var letterLabel: UILabel!
     @IBOutlet weak var photosLabel: UILabel!
-    
+
     @IBOutlet weak var letterCheckbox: UIView!
     @IBOutlet weak var photosCheckbox: UIView!
     @IBOutlet weak var letterCrossButton: UIButton!
@@ -97,32 +97,34 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
             vibeModel.isPhotosPresent = true
             for i in 0 ..< vibeModel.images.count {
                 let timeNow = String(Int(Date().timeIntervalSince1970))
-                vibeModel.images[i].caption = "IMG_" + timeNow + "_" + NSUUID().uuidString
+                vibeModel.images[i].imageLink = "IMG_" + timeNow + "_" + NSUUID().uuidString
             }
         }
 
-        var imagesUploaded = 0
+        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+        var totalUpload = 0
         let counter = Variable(0)
-        let disposeBag = DisposeBag()
         counter.asObservable().subscribe(onNext: { (counter) in
-            imagesUploaded = imagesUploaded + 1
+            totalUpload = totalUpload + 1
+            if (self.isImagesSelected && totalUpload == self.vibeModel.images.count + 2) || (!self.isImagesSelected && totalUpload == 2) {
+                APPUtilites.removeLoadingSpinner(spinner: sv)
+                self.performSegue(withIdentifier: self.FINAL_APPROVAL_SEGUE, sender: self)
+            }
         }, onError: { (error) in
             print("error in uploading the picture")
         }, onCompleted: {
             print("upload completed")
         }) {
             print("disposed")
-        }.disposed(by: disposeBag)
-        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+        }
 
         // Start the image upload in the background(if any images present).
-        MediaHelper.shared.uploadImagesAsync(images: vibeModel.images, folder: "Vibe", counter: counter)
+        MediaHelper.shared.uploadImagesAsync(images: vibeModel.images, folder: MediaHelperConstants.VIBE_IMAGES_FOLDER, counter: counter)
         AppSyncHelper.shared.createVibe(vibe: vibeModel, success: { (success) in
             DispatchQueue.main.async {
-                APPUtilites.removeLoadingSpinner(spinner: sv)
+                
                 if success {
-                    self.performSegue(withIdentifier: self.FINAL_APPROVAL_SEGUE, sender: self)
-                    APPUtilites.displaySuccessSnackbar(message: "Vibe has been created")
+                    counter.value = 1
                 } else {
                     APPUtilites.displayErrorSnackbar(message: "Vibe Creation is not successful. Please check the receiver is present in the App. Or Check the Internet Connection.")
                 }

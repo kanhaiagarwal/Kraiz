@@ -54,13 +54,13 @@ class MediaHelper {
         }
         for i in 0 ..< images.count {
             DispatchQueue.global(qos: .utility).async {
-                let params = CLDUploadRequestParams().setFolder(folder).setPublicId(images[i].caption!)
+                let params = CLDUploadRequestParams().setFolder(folder).setPublicId(images[i].imageLink!)
                 self.client?.createUploader().signedUpload(data: images[i].image!.jpegData(compressionQuality: 0.5)!, params: params, progress: { (progress) in
                 }, completionHandler: { (result, error) in
                     if error != nil {
                         print(error)
                     } else {
-                        print("Upload done for the image \(images[i].caption!)")
+                        print("Upload done for the image \(images[i].imageLink!)")
                         counter.value = 1
                     }
                 })

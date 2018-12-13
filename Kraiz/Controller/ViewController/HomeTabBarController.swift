@@ -66,6 +66,10 @@ extension UITabBarController {
     
     // Goto the create story view controller
     @objc func onClickCreateButton() {
-        performSegue(withIdentifier: DeviceConstants.GOTO_VIBE_DETAILS_FROM_HOME_SEGUE, sender: self)
+        if !APPUtilites.isInternetConnectionAvailable() {
+            APPUtilites.displayElevatedErrorSnackbar(message: "Please check your Internet Connection")
+        } else {
+            performSegue(withIdentifier: DeviceConstants.GOTO_VIBE_DETAILS_FROM_HOME_SEGUE, sender: self)
+        }
     }
 }

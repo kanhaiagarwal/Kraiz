@@ -21,7 +21,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     let publicVibeTagPicker = UIPickerView()
     let friendsMusicPicker = UIPickerView()
     let publicMusicPicker = UIPickerView()
-    var countryCodeSelected : String?
+    var countryCodeSelected : Int?
     var friendsVibeTagSelected : Int?
     var publicVibeTagSelected : Int?
     var vibeTypeSelected : Int?
@@ -112,8 +112,8 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             publicVibeNameField.text = vibeModel.vibeName
         }
         
-        countryCodeSelected = CountryCodes.countryCodes[0]
-        friendsCountryCodeField.text = countryCodeSelected!
+        countryCodeSelected = 0
+        friendsCountryCodeField.text = CountryCodes.countryCodes[countryCodeSelected!]
         friendsVibeTagSelected = 0
         publicVibeTagSelected = 0
         friendsVibeTagField.text = VibeCategories.pickerStrings[friendsVibeTagSelected!]
@@ -161,17 +161,20 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         
         // Set the background music selected during load. This is set here because the music field was not getting updated in the view in viewDidLoad()
         // Set the background music field during load.
+        print("=========> vibeModel.backgroundMusicIndex: \(vibeModel.backgroundMusicIndex)")
         if vibeModel.isBackgroundMusicEnabled {
             friendsBackgroundMusicSwitch.isOn = true
             friendsMusicField.isHidden = false
             friendsMusicField.text = BackgroundMusic.musicList[vibeModel.backgroundMusicIndex]
+            friendsMusicPicker.selectRow(vibeModel.backgroundMusicIndex, inComponent: 0, animated: false)
             friendsMusicSelected = vibeModel.backgroundMusicIndex
             friendsMusicArrowLabel.isHidden = false
             friendsPlayImageView.isHidden = false
-            
+
             publicBackgroundMusicSwitch.isOn = true
             publicMusicField.isHidden = false
             publicMusicField.text = BackgroundMusic.musicList[vibeModel.backgroundMusicIndex]
+            publicMusicPicker.selectRow(vibeModel.backgroundMusicIndex, inComponent: 0, animated: false)
             publicMusicSelected = vibeModel.backgroundMusicIndex
             publicMusicArrowLabel.isHidden = false
             publicPlayImageView.isHidden = false
@@ -180,17 +183,19 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             friendsMusicField.isHidden = true
             friendsMusicSelected = 0
             friendsMusicField.text = BackgroundMusic.musicFiles[friendsMusicSelected!]
+            friendsMusicPicker.selectRow(0, inComponent: 0, animated: false)
             friendsMusicArrowLabel.isHidden = true
             friendsPlayImageView.isHidden = true
-            
+
             publicBackgroundMusicSwitch.isOn = false
             publicMusicField.isHidden = true
             publicMusicSelected = 0
             publicMusicField.text = BackgroundMusic.musicFiles[friendsMusicSelected!]
+            publicMusicPicker.selectRow(0, inComponent: 0, animated: false)
             publicMusicArrowLabel.isHidden = true
             publicPlayImageView.isHidden = true
         }
-        
+
         vibeTypeSegment.selectedSegmentIndex = vibeModel.type
         setupNextButton()
     }
@@ -298,6 +303,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             showMusicFields()
             publicBackgroundMusicSwitch.setOn(true, animated: false)
         } else {
+            dismissKeyboard()
             stopAudio()
             hideMusicFields()
             publicBackgroundMusicSwitch.setOn(false, animated: false)
@@ -309,6 +315,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             friendsBackgroundMusicSwitch.setOn(true, animated: false)
             showMusicFields()
         } else {
+            dismissKeyboard()
             stopAudio()
             hideMusicFields()
             friendsBackgroundMusicSwitch.setOn(false, animated: false)
@@ -350,7 +357,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
                 return
             }
 
-            vibeModel.setReceiver(receiver: friendsUsernameField.text!.starts(with: "+") ? friendsUsernameField.text! : (countryCodeSelected! + friendsUsernameField.text!))
+            vibeModel.setReceiver(receiver: friendsUsernameField.text!.starts(with: "+") ? friendsUsernameField.text! : (CountryCodes.countryCodes[countryCodeSelected!] + friendsUsernameField.text!))
         } else {
             if publicVibeNameField.text == nil || publicVibeNameField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
                 APPUtilites.displayErrorSnackbar(message: "Please give a name to the Vibe")
@@ -414,8 +421,11 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         isUsernameInputNumbers = true
         usernameFieldLeadingConstraint.constant = 70
         
-        countryCodeSelected = CountryCodes.countryCodes[0]
-        friendsCountryCodeField.text = CountryCodes.countryCodes[0]
+        if countryCodeSelected == nil {
+            countryCodeSelected = 0
+        }
+        friendsCountryCodeField.text = CountryCodes.countryCodes[countryCodeSelected!]
+        countryCodePicker.selectRow(countryCodeSelected!, inComponent: 0, animated: false)
         friendsCountryCodeField.textAlignment = .center
         friendsCountryCodeField.adjustsFontSizeToFitWidth = true
         friendsCountryCodeField.minimumFontSize = 14
@@ -501,8 +511,8 @@ extension MyVibeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0 {
-            countryCodeSelected = CountryCodes.countryCodes[row]
-            friendsCountryCodeField.text = countryCodeSelected
+            countryCodeSelected = row
+            friendsCountryCodeField.text = CountryCodes.countryCodes[countryCodeSelected!]
         } else if pickerView.tag == 1 || pickerView.tag == 3 {
             friendsVibeTagSelected = row
             publicVibeTagSelected = row
