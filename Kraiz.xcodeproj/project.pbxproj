@@ -10,6 +10,9 @@
 		571E508C2185807100271314 /* ImageCaptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571E508B2185807100271314 /* ImageCaptionsViewController.swift */; };
 		571E508E2185880700271314 /* ImageCaptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571E508D2185880700271314 /* ImageCaptionCollectionViewCell.swift */; };
 		571F44C621A47B46001C033B /* VibeCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F44C521A47B46001C033B /* VibeCategories.swift */; };
+		579854B621C5259F00406BF8 /* HailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854B521C5259F00406BF8 /* HailsViewController.swift */; };
+		579854B921C5525C00406BF8 /* HailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854B721C5525C00406BF8 /* HailsTableViewCell.swift */; };
+		579854BA21C5525C00406BF8 /* HailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579854B821C5525C00406BF8 /* HailsTableViewCell.xib */; };
 		57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */; };
 		57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */; };
 		57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2B21A705B500FA45E9 /* Entity.swift */; };
@@ -120,6 +123,9 @@
 		571E508B2185807100271314 /* ImageCaptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptionsViewController.swift; sourceTree = "<group>"; };
 		571E508D2185880700271314 /* ImageCaptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		571F44C521A47B46001C033B /* VibeCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeCategories.swift; sourceTree = "<group>"; };
+		579854B521C5259F00406BF8 /* HailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsViewController.swift; sourceTree = "<group>"; };
+		579854B721C5525C00406BF8 /* HailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsTableViewCell.swift; sourceTree = "<group>"; };
+		579854B821C5525C00406BF8 /* HailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HailsTableViewCell.xib; sourceTree = "<group>"; };
 		57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionModel.swift; sourceTree = "<group>"; };
 		57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		57B24F2B21A705B500FA45E9 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -270,6 +276,7 @@
 				B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */,
 				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
 				57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */,
+				579854B521C5259F00406BF8 /* HailsViewController.swift */,
 				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
 				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
 				57B24F3921AB138300FA45E9 /* ImageBackdropViewController.swift */,
@@ -354,6 +361,8 @@
 				B51DF236211F15E3009896CC /* ContactUsTableViewCell.xib */,
 				B51DF237211F15E3009896CC /* DraftsTableViewCell.swift */,
 				B51DF238211F15E3009896CC /* DraftsTableViewCell.xib */,
+				579854B721C5525C00406BF8 /* HailsTableViewCell.swift */,
+				579854B821C5525C00406BF8 /* HailsTableViewCell.xib */,
 				B51DF239211F15E3009896CC /* HamburgerTableViewCell.swift */,
 				B51DF23A211F15E3009896CC /* HamburgerTableViewCell.xib */,
 				57B24F3B21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift */,
@@ -550,6 +559,7 @@
 				B5BC1CFD216164D6008CE09F /* playlist-script.otf in Resources */,
 				B51DF21B211F13B9009896CC /* AppIcon.png in Resources */,
 				57B24F3721AACFD600FA45E9 /* piano.mp3 in Resources */,
+				579854BA21C5525C00406BF8 /* HailsTableViewCell.xib in Resources */,
 				B51DF24E211F174A009896CC /* HamburgerTableViewCell.xib in Resources */,
 				57BD53EE2199CD38001B1010 /* VibesCategoryTableViewCell.xib in Resources */,
 				B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */,
@@ -674,7 +684,9 @@
 				B5BC1CFB21615D05008CE09F /* ChatsViewController.swift in Sources */,
 				B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */,
 				B5A65830214D052F0003C034 /* MediaHelperConstants.swift in Sources */,
+				579854B921C5525C00406BF8 /* HailsTableViewCell.swift in Sources */,
 				57C74AA421BEE5EC00D737FB /* VibeImagesBackdrop.swift in Sources */,
+				579854B621C5259F00406BF8 /* HailsViewController.swift in Sources */,
 				B5DC7929212D5CA600C69A13 /* AppUtilities.swift in Sources */,
 				57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */,
 				B51DF220211F13B9009896CC /* ContactUsViewController.swift in Sources */,

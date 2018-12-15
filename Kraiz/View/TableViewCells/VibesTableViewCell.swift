@@ -11,9 +11,10 @@ import UIKit
 class VibesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var vibeName: UITextView!
-    @IBOutlet weak var timestamp: UITextView!
+    @IBOutlet weak var vibeName: UILabel!
     @IBOutlet weak var senderName: UILabel!
+    @IBOutlet weak var timestamp: UILabel!
+    @IBOutlet weak var vibeStatus: UILabel!
     @IBOutlet weak var hailButton: UIButton!
 
     override func awakeFromNib() {

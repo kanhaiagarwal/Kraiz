@@ -33,6 +33,7 @@ class VibeCategoryCollectionViewCell: UICollectionViewCell {
             if isSelected {
                 categoryImage.layer.borderWidth = 4.0
             } else {
+                categoryName.textColor = VibeCategories.UNHIGHLIGHTED_VIBE_COLOR
                 categoryImage.layer.borderWidth = 0.0
             }
         }

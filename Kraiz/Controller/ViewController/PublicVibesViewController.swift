@@ -12,11 +12,10 @@ class PublicVibesViewController: UIViewController, UICollectionViewDelegate, UIC
     
     @IBOutlet weak var vibeCategoriesCollectionView: UICollectionView!
     @IBOutlet weak var vibesTable: UITableView!
-    
-    private let vibeCategories : [String] = ["Love Vibes", "Travel Vibes", "Good Vibes", "Party Vibes", "Nostalgic Vibes", "Occasion Vibes"]
+
+    var vibesTableBackgroundImageView = UIImageView(image: UIImage(named: VibeCategories.categoryBackground[0]))
 
     private var selectedCategory : Int = 0
-    
     private let DEFAULT_PROFILE = "profile-default"
 
     override func viewDidLoad() {
@@ -32,7 +31,11 @@ class PublicVibesViewController: UIViewController, UICollectionViewDelegate, UIC
         super.viewWillAppear(animated)
 
         vibeCategoriesCollectionView.layer.cornerRadius = 10
+        vibesTableBackgroundImageView.frame = vibesTable.frame
+        vibesTableBackgroundImageView.contentMode = .scaleAspectFill
+        vibesTable.backgroundView = vibesTableBackgroundImageView
     }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return VibeCategories.pickerStrings.count
     }
@@ -53,6 +56,7 @@ class PublicVibesViewController: UIViewController, UICollectionViewDelegate, UIC
         cell.categoryName.textColor = VibeCategories.vibeColors[indexPath.row]
         cell.categoryImage.layer.borderColor = VibeCategories.vibeColors[indexPath.row].cgColor
         if selectedCategory != indexPath.row {
+            cell.categoryName.textColor = VibeCategories.UNHIGHLIGHTED_VIBE_COLOR
             cell.categoryImage.layer.borderWidth = 0.0
         }
 
@@ -74,7 +78,9 @@ class PublicVibesViewController: UIViewController, UICollectionViewDelegate, UIC
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let currentSelectedCell = collectionView.cellForItem(at: indexPath) as! VibeCategoryCollectionViewCell
         currentSelectedCell.categoryImage.layer.borderWidth = 4.0
+        currentSelectedCell.categoryName.textColor = VibeCategories.vibeColors[indexPath.row]
         selectedCategory = indexPath.row
+        vibesTableBackgroundImageView.image = UIImage(named: VibeCategories.categoryBackground[indexPath.row])
         vibeCategoriesCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 
@@ -116,6 +122,10 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
     
     @objc func hailButtonPressed(sender: UITapGestureRecognizer) {
         
-        print("sender.tag: \(sender.view?.tag)")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let hailVC = storyboard.instantiateViewController(withIdentifier: "HailsViewController") as! HailsViewController
+        hailVC.modalPresentationStyle = .overCurrentContext
+        
+        present(hailVC, animated: true, completion: nil)
     }
 }

@@ -8,55 +8,125 @@
 
 import UIKit
 
-class FriendsVibesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FriendsVibesViewController: UIViewController {
 
-    @IBOutlet weak var vibeCategoriesTable: UITableView!
+    @IBOutlet weak var vibeCategoriesCollectionView: UICollectionView!
+    @IBOutlet weak var vibesTable: UITableView!
 
-    private let vibeCategories : [String] = ["Love Vibes", "Travel Vibes", "Good Vibes", "Party Vibes", "Nostalgic Vibes", "Occasion Vibes"]
-    private let categoryImages : [String] = ["LoveVibes", "TravelVibes", "GoodVibes", "PartyVibes", "NostalgicVibes", "OccasionVibes"]
-    private let vibeColors : [UIColor] = [UIColor(displayP3Red: 187/255, green: 10/255, blue: 30/255, alpha: 1.0), UIColor(displayP3Red: 0/255, green: 114/255, blue: 54/255, alpha: 1.0), UIColor(displayP3Red: 68/255, green: 140/255, blue: 203/255, alpha: 1.0), UIColor(displayP3Red: 78/255, green: 46/255, blue: 40/255, alpha: 1.0), UIColor(displayP3Red: 240/255, green: 126/255, blue: 7/255, alpha: 1.0), UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0)]
+    var vibesTableBackgroundImageView = UIImageView(image: UIImage(named: VibeCategories.categoryBackground[0]))
     private var selectedCategory : Int = 0
+    private let DEFAULT_PROFILE = "profile-default"
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        vibeCategoriesCollectionView.register(UINib(nibName: "VibeCategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "vibeCategoryCell")
+        vibeCategoriesCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        vibeCategoriesCollectionView.layer.cornerRadius = 10
+        vibesTableBackgroundImageView.frame = vibesTable.frame
+        vibesTableBackgroundImageView.contentMode = .scaleAspectFill
+        vibesTable.backgroundView = vibesTableBackgroundImageView
+    }
+}
+
+extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vibeCategories.count
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = Bundle.main.loadNibNamed("VibesCategoryTableViewCell", owner: self, options: nil)?.first as! VibesCategoryTableViewCell
-        cell.categoryLabel.text = vibeCategories[indexPath.row]
-        cell.categoryLabel.textColor = vibeColors[indexPath.row]
-        cell.categoryArrow.textColor = vibeColors[indexPath.row]
-        cell.categoryImage.image = UIImage(named: categoryImages[indexPath.row])
-        cell.categoryImage.layer.borderColor = vibeColors[indexPath.row].cgColor
-        if selectedCategory == indexPath.row {
-            cell.categoryImage.layer.borderWidth = 4.0
-            cell.categoryArrow.isHidden = false
-        } else {
-            cell.categoryImage.layer.borderWidth = 0.0
-            cell.categoryArrow.isHidden = true
-        }
+        let cell = Bundle.main.loadNibNamed("VibesTableViewCell", owner: self, options: nil)?.first as! VibesTableViewCell
+        cell.profileImage.image = UIImage(named: DEFAULT_PROFILE)
+        cell.hailButton.tag = indexPath.row
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hailButtonPressed(sender:)))
+        cell.hailButton.addGestureRecognizer(tapGesture)
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 6
+        return vibesTable.frame.height / 3
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        let previousSelectedCell = tableView.cellForRow(at: IndexPath(row: selectedCategory, section: 0)) as! VibesCategoryTableViewCell
-        let currentSelectedCell = tableView.cellForRow(at: indexPath) as! VibesCategoryTableViewCell
-        previousSelectedCell.categoryImage.layer.borderWidth = 0.0
-        previousSelectedCell.categoryArrow.isHidden = true
-        currentSelectedCell.categoryImage.layer.borderWidth = 4.0
-        currentSelectedCell.categoryArrow.isHidden = false
-        selectedCategory = indexPath.row
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @objc func hailButtonPressed(sender: UITapGestureRecognizer) {
         
-        vibeCategoriesTable.delegate = self
-        vibeCategoriesTable.dataSource = self
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let hailVC = storyboard.instantiateViewController(withIdentifier: "HailsViewController") as! HailsViewController
+        hailVC.modalPresentationStyle = .overCurrentContext
+        
+        present(hailVC, animated: true, completion: nil)
+    }
+
+}
+
+extension FriendsVibesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return VibeCategories.pickerStrings.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width / 6, height: vibeCategoriesCollectionView.frame.height)
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = vibeCategoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "vibeCategoryCell", for: indexPath) as! VibeCategoryCollectionViewCell
+        cell.layoutIfNeeded()
+        cell.categoryName.text = VibeCategories.pickerStrings[indexPath.row]
+        cell.categoryImage.image = UIImage(named: VibeCategories.categoryImages[indexPath.row])
+        cell.categoryName.textColor = VibeCategories.vibeColors[indexPath.row]
+        cell.categoryImage.layer.borderColor = VibeCategories.vibeColors[indexPath.row].cgColor
+        if selectedCategory != indexPath.row {
+            cell.categoryName.textColor = VibeCategories.UNHIGHLIGHTED_VIBE_COLOR
+            cell.categoryImage.layer.borderWidth = 0.0
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let currentSelectedCell = collectionView.cellForItem(at: indexPath) as! VibeCategoryCollectionViewCell
+        currentSelectedCell.categoryImage.layer.borderWidth = 4.0
+        currentSelectedCell.categoryName.textColor = VibeCategories.vibeColors[indexPath.row]
+        selectedCategory = indexPath.row
+        vibesTableBackgroundImageView.image = UIImage(named: VibeCategories.categoryBackground[indexPath.row])
+        vibeCategoriesCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let previousSelectedCell = collectionView.cellForItem(at: indexPath) as? VibeCategoryCollectionViewCell
+        if previousSelectedCell != nil {
+            previousSelectedCell!.categoryImage.layer.borderWidth = 0.0
+        }
     }
 }
