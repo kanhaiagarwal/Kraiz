@@ -84,15 +84,12 @@ class LetterInputViewController: UIViewController {
             delegate?.letterInput(backgroundImage: backgroundSelected, text: letterText.text)
             self.dismiss(animated: true, completion: nil)
         }
-//        self.navigationController?.popViewController(animated: true)
-
     }
     
     @IBAction func closePressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "Exit Leter", message: "Your Changes will not be saved", preferredStyle: UIAlertController.Style.alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-//            self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)
         }
         let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)

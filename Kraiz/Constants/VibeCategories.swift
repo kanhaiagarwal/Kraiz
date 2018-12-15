@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 public class VibeCategories {
     static public let pickerStrings = ["Love", "Travel", "Good", "Party", "Nostalgic", "Occasion"]
+    static public let categoryImages : [String] = ["LoveVibes", "TravelVibes", "GoodVibes", "PartyVibes", "NostalgicVibes", "OccasionVibes"]
+    static public let vibeColors : [UIColor] = [UIColor(displayP3Red: 187/255, green: 10/255, blue: 30/255, alpha: 1.0), UIColor(displayP3Red: 0/255, green: 114/255, blue: 54/255, alpha: 1.0), UIColor(displayP3Red: 68/255, green: 140/255, blue: 203/255, alpha: 1.0), UIColor(displayP3Red: 78/255, green: 46/255, blue: 40/255, alpha: 1.0), UIColor(displayP3Red: 240/255, green: 126/255, blue: 7/255, alpha: 1.0), UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0)]
     
     public static func getVibeTag(index: Int) -> VibeTag {
         switch index {
