@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VibesTableViewCell: UITableViewCell {
+class FriendsVibesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var vibeName: UILabel!

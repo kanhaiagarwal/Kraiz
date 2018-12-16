@@ -27,7 +27,6 @@ class HailsViewController: UIViewController {
         hailsView.isUserInteractionEnabled = true
         let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(dismissVC))
         hailsView.addGestureRecognizer(swipeGesture)
-        print("inside HailsViewController viewDidLoad")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,13 +43,7 @@ class HailsViewController: UIViewController {
     }
     
     @objc func dismissVC() {
-        print("inside dismissVC")
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("inside HailsViewController viewWillDisappear")
     }
 
     @IBAction func dismissPressed(_ sender: UIButton) {

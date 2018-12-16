@@ -13,6 +13,8 @@
 		579854B621C5259F00406BF8 /* HailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854B521C5259F00406BF8 /* HailsViewController.swift */; };
 		579854B921C5525C00406BF8 /* HailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854B721C5525C00406BF8 /* HailsTableViewCell.swift */; };
 		579854BA21C5525C00406BF8 /* HailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579854B821C5525C00406BF8 /* HailsTableViewCell.xib */; };
+		579854BD21C611C200406BF8 /* MyPublicVibeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854BB21C611C200406BF8 /* MyPublicVibeTableViewCell.swift */; };
+		579854BE21C611C200406BF8 /* MyPublicVibeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579854BC21C611C200406BF8 /* MyPublicVibeTableViewCell.xib */; };
 		57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */; };
 		57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */; };
 		57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2B21A705B500FA45E9 /* Entity.swift */; };
@@ -66,13 +68,13 @@
 		B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51DF238211F15E3009896CC /* DraftsTableViewCell.xib */; };
 		B51DF24E211F174A009896CC /* HamburgerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23A211F15E3009896CC /* HamburgerTableViewCell.xib */; };
 		B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23C211F15E3009896CC /* ProfileTableViewCell.xib */; };
-		B51DF250211F1783009896CC /* VibesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23E211F15E3009896CC /* VibesTableViewCell.xib */; };
+		B51DF250211F1783009896CC /* FriendsVibesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23E211F15E3009896CC /* FriendsVibesTableViewCell.xib */; };
 		B51DF251211F1787009896CC /* ContactUsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51DF236211F15E3009896CC /* ContactUsTableViewCell.xib */; };
 		B51DF252211F17DA009896CC /* DraftsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF237211F15E3009896CC /* DraftsTableViewCell.swift */; };
 		B51DF253211F17E0009896CC /* ContactUsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF235211F15E3009896CC /* ContactUsTableViewCell.swift */; };
 		B51DF254211F17E3009896CC /* HamburgerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF239211F15E3009896CC /* HamburgerTableViewCell.swift */; };
 		B51DF255211F17E6009896CC /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF23B211F15E3009896CC /* ProfileTableViewCell.swift */; };
-		B51DF256211F17EC009896CC /* VibesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF23D211F15E3009896CC /* VibesTableViewCell.swift */; };
+		B51DF256211F17EC009896CC /* FriendsVibesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF23D211F15E3009896CC /* FriendsVibesTableViewCell.swift */; };
 		B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B51DF241211F15FF009896CC /* monotype-corsiva.ttf */; };
 		B51DF258211F1AA8009896CC /* frenchscriptmt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B51DF240211F15FD009896CC /* frenchscriptmt.ttf */; };
 		B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B51DF23F211F15FB009896CC /* FREESCPT.TTF */; };
@@ -126,6 +128,8 @@
 		579854B521C5259F00406BF8 /* HailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsViewController.swift; sourceTree = "<group>"; };
 		579854B721C5525C00406BF8 /* HailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsTableViewCell.swift; sourceTree = "<group>"; };
 		579854B821C5525C00406BF8 /* HailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HailsTableViewCell.xib; sourceTree = "<group>"; };
+		579854BB21C611C200406BF8 /* MyPublicVibeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPublicVibeTableViewCell.swift; sourceTree = "<group>"; };
+		579854BC21C611C200406BF8 /* MyPublicVibeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPublicVibeTableViewCell.xib; sourceTree = "<group>"; };
 		57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionModel.swift; sourceTree = "<group>"; };
 		57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		57B24F2B21A705B500FA45E9 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -187,8 +191,8 @@
 		B51DF23A211F15E3009896CC /* HamburgerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HamburgerTableViewCell.xib; sourceTree = "<group>"; };
 		B51DF23B211F15E3009896CC /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		B51DF23C211F15E3009896CC /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
-		B51DF23D211F15E3009896CC /* VibesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibesTableViewCell.swift; sourceTree = "<group>"; };
-		B51DF23E211F15E3009896CC /* VibesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VibesTableViewCell.xib; sourceTree = "<group>"; };
+		B51DF23D211F15E3009896CC /* FriendsVibesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVibesTableViewCell.swift; sourceTree = "<group>"; };
+		B51DF23E211F15E3009896CC /* FriendsVibesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendsVibesTableViewCell.xib; sourceTree = "<group>"; };
 		B51DF23F211F15FB009896CC /* FREESCPT.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = FREESCPT.TTF; sourceTree = "<group>"; };
 		B51DF240211F15FD009896CC /* frenchscriptmt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = frenchscriptmt.ttf; sourceTree = "<group>"; };
 		B51DF241211F15FF009896CC /* monotype-corsiva.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "monotype-corsiva.ttf"; sourceTree = "<group>"; };
@@ -361,16 +365,18 @@
 				B51DF236211F15E3009896CC /* ContactUsTableViewCell.xib */,
 				B51DF237211F15E3009896CC /* DraftsTableViewCell.swift */,
 				B51DF238211F15E3009896CC /* DraftsTableViewCell.xib */,
+				B51DF23D211F15E3009896CC /* FriendsVibesTableViewCell.swift */,
+				B51DF23E211F15E3009896CC /* FriendsVibesTableViewCell.xib */,
 				579854B721C5525C00406BF8 /* HailsTableViewCell.swift */,
 				579854B821C5525C00406BF8 /* HailsTableViewCell.xib */,
 				B51DF239211F15E3009896CC /* HamburgerTableViewCell.swift */,
 				B51DF23A211F15E3009896CC /* HamburgerTableViewCell.xib */,
 				57B24F3B21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift */,
 				57B24F3C21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib */,
+				579854BB21C611C200406BF8 /* MyPublicVibeTableViewCell.swift */,
+				579854BC21C611C200406BF8 /* MyPublicVibeTableViewCell.xib */,
 				B51DF23B211F15E3009896CC /* ProfileTableViewCell.swift */,
 				B51DF23C211F15E3009896CC /* ProfileTableViewCell.xib */,
-				B51DF23D211F15E3009896CC /* VibesTableViewCell.swift */,
-				B51DF23E211F15E3009896CC /* VibesTableViewCell.xib */,
 				57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */,
 				57BD53EC2199CD38001B1010 /* VibesCategoryTableViewCell.xib */,
 			);
@@ -565,7 +571,7 @@
 				B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */,
 				B51DF1FC211F1248009896CC /* LaunchScreen.storyboard in Resources */,
 				B5652C6E21482D9900B15E8F /* schema.json in Resources */,
-				B51DF250211F1783009896CC /* VibesTableViewCell.xib in Resources */,
+				B51DF250211F1783009896CC /* FriendsVibesTableViewCell.xib in Resources */,
 				B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */,
 				B51DF258211F1AA8009896CC /* frenchscriptmt.ttf in Resources */,
 				B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */,
@@ -580,6 +586,7 @@
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				57D4C0F421C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib in Resources */,
 				B5BC1CF921615B61008CE09F /* ChatsTableViewCell.xib in Resources */,
+				579854BE21C611C200406BF8 /* MyPublicVibeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +677,7 @@
 				B5E23DAF2129E677005C93C2 /* CountryCodes.swift in Sources */,
 				B51DF229211F13B9009896CC /* WelcomeViewController.swift in Sources */,
 				57BD53EA219841F0001B1010 /* FriendsVibesViewController.swift in Sources */,
+				579854BD21C611C200406BF8 /* MyPublicVibeTableViewCell.swift in Sources */,
 				B5523B882120C15C00CAC7BF /* AllImagesTextViewController.swift in Sources */,
 				57B24F3A21AB138300FA45E9 /* ImageBackdropViewController.swift in Sources */,
 				B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */,
@@ -704,7 +712,7 @@
 				B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */,
 				57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */,
 				57C74A9621B2F42500D737FB /* VibeTextViewController.swift in Sources */,
-				B51DF256211F17EC009896CC /* VibesTableViewCell.swift in Sources */,
+				B51DF256211F17EC009896CC /* FriendsVibesTableViewCell.swift in Sources */,
 				B5BC1CFF216169DA008CE09F /* CornerRadiusView.swift in Sources */,
 				57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */,
 				B51DF226211F13B9009896CC /* LetterInputCollectionViewCell.swift in Sources */,
