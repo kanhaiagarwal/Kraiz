@@ -1,0 +1,127 @@
+//
+//  VibeDataEntity.swift
+//  Kraiz
+//
+//  Created by Kanhai Agarwal on 16/12/18.
+//  Copyright © 2018 Kumar Agarwal, Kanhai. All rights reserved.
+//
+
+import Foundation
+import RealmSwift
+
+class VibeDataEntity: Object {
+
+    @objc dynamic private var id: String?
+    @objc dynamic private var version: String?
+    @objc dynamic private var updatedTime: Int = 0
+    @objc dynamic private var gsiPK: String?
+    @objc dynamic private var vibeName: String?
+    @objc dynamic private var isSender: Bool = false
+    @objc dynamic private var isAnonymous: Bool = false
+    @objc dynamic private var isSeen: Bool = false
+    @objc dynamic private var reach: Int = 0
+    @objc dynamic private var profileId: String?
+    
+    /// MARK: - Getters Start.
+    
+    public func getId() -> String? {
+        return id
+    }
+
+    public func getVersion() -> String? {
+        return version
+    }
+
+    public func getUpdatedTime() -> Int {
+        return updatedTime
+    }
+
+    public func getVibeName() -> String? {
+        return vibeName
+    }
+
+    public func getIsSender() -> Bool {
+        return isSender
+    }
+    
+    public func getIsAnonymous() -> Bool {
+        return isAnonymous
+    }
+
+    public func getIsSeen() -> Bool {
+        return isSeen
+    }
+
+    public func getReach() -> Int {
+        return reach
+    }
+
+    public func getProfileId() -> String? {
+        return profileId
+    }
+
+    public func getGsiPK() -> String? {
+        return gsiPK
+    }
+    
+    /// MARK: - Getters End.
+    
+    /// MARK: - Setters Start.
+    
+    public func setVibeId(_ id: String?) {
+        self.id = id
+    }
+
+    public func setVersion(_ version: String?) {
+        self.version = version
+    }
+
+    public func setUpdatedTime(_ updatedTime: Int) {
+        self.updatedTime = updatedTime
+    }
+
+    public func setVibeName(_ vibeName: String?) {
+        self.vibeName = vibeName
+    }
+
+    public func setIsSender(_ isSender: Bool) {
+        self.isSender = isSender
+    }
+
+    public func setIsSeen(_ isSeen: Bool) {
+        self.isSeen = isSeen
+    }
+
+    public func setIsAnonymous(_ isAnonymous: Bool) {
+        self.isAnonymous = isAnonymous
+    }
+
+    public func setReach(_ reach: Int) {
+        self.reach = reach
+    }
+
+    public func setProfileId(_ profileId: String?) {
+        self.profileId = profileId
+    }
+
+    public func setGsiPK(_ gsiPK: String?) {
+        self.gsiPK = gsiPK
+    }
+
+    // MARK: - Setters End.
+
+    /// Increments the reach of the Vibe by the Number.
+    /// - Parameters:
+    ///     - incrementBy - Number by which the reach needs to be incremented.
+    public func incrementReach(incrementBy: Int) {
+        self.reach = self.reach + incrementBy
+    }
+
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    override static func indexedProperties() -> [String] {
+        return ["gsiPK"]
+    }
+}

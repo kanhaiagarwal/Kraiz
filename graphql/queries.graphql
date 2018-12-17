@@ -52,6 +52,7 @@ query GetUserChannel {
         reach
         profileId
         hailIds
+        hailProfileIds
       }
       profiles {
         id
@@ -109,6 +110,7 @@ query GetUserVibes(
       reach
       profileId
       hailIds
+      hailProfileIds
     }
     profiles {
       id

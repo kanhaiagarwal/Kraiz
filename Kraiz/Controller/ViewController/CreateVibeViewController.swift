@@ -262,9 +262,8 @@ extension CreateVibeViewController {
 
     /// Performs the tick animation.
     /// Tick is displayed if the view is selected.
-    /// - Parameters
-    ///     - ckeckbox: The view in which the tick shape has to be drawn or removed.
-    ///     - isSelected: If the View is in selection mode or not.
+    /// - Parameter ckeckbox: The view in which the tick shape has to be drawn or removed.
+    /// - Parameter isSelected: If the View is in selection mode or not.
     func performTickAnimation(checkbox: UIView, isSelected: Bool) {
         
         if !isSelected {

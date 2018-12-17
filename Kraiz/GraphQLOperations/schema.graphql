@@ -65,3 +65,47 @@ query GetUserProfileByMobileNumber($mobileNumber: ID!) {
 mutation TriggerFsm($input: FsmInput!, $userId: ID!) {
     triggerFsm(input: $input, userId: $userId)
 }
+
+query GetUserChannelView {
+    getUserChannel {
+        userVibes {
+            nextToken
+            userVibes {
+                vibeId
+                gsiPk
+                version
+                updatedTime
+                vibeName
+                isSender
+                isAnonymous
+                seen
+                reach
+                profileId
+                hailIds
+            },
+            profiles {
+                id
+                mobileNumber
+                username
+                name
+                profilePicId
+            },
+            hails {
+                id
+                vibeId
+            }
+        },
+        profiles {
+            id
+            mobileNumber
+            username
+            name
+            profilePicId
+        },
+        lastPublicVibeFetchTime
+    }
+}
+
+mutation DeleteUserChannelUpdates($liveVibeBucketIds: [ID!], $liveProfileBucketIds: [ID!]) {
+    deleteUserChannelUpdates(liveVibeBucketIds: $liveVibeBucketIds, liveProfileBucketIds: $liveProfileBucketIds)
+}

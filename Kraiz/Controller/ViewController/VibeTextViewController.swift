@@ -162,10 +162,6 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func onNextClick() {
-        performSegue(withIdentifier: imagesSegue, sender: self)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(resumeMusicIfPaused), name: UIApplication.didBecomeActiveNotification, object: nil)
@@ -175,6 +171,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
+    /// Called just before the Paginated ViewController starts the transition to the next or previous view controller.
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let index = controllers.index(of: viewController) {
             if self.isDismissOverlayVisible {
@@ -195,7 +192,8 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         
         return nil
     }
-    
+
+    /// Called after the Paginated ViewController completes the transition.
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         if let index = controllers.index(of: viewController) {
             currentPage = index + 1 < controllers.count - 1 ? index + 1 : controllers.count - 1
@@ -224,7 +222,11 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     func randomColor() -> UIColor {
         return UIColor(red: randomCGFloat(), green: randomCGFloat(), blue: randomCGFloat(), alpha: 1)
     }
-    
+
+    /// Get all the words from the text.
+    /// - Parameters:
+    ///     - text: The text which needs to be divided into words.
+    /// - Returns: An Array of words.
     func getWords(text : String) -> [Substring] {
         let words : [Substring] = text.split(separator: " ")
         return words
@@ -233,6 +235,8 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
 
 extension VibeTextViewController {
 
+    /// Resume Music if it was paused.
+    /// This will be called when the app comes back to the foreground and the music was initially playing.
     @objc func resumeMusicIfPaused() {
         if AudioControls.shared.getPlayAudioOnForeground() {
             print("AudioControls.shared.getPlayAudioOnForeground() is true")
@@ -243,12 +247,16 @@ extension VibeTextViewController {
         }
     }
 
+    /// Starts the Music if its enabled in the Vibe.
     func startMusic() {
         if vibeModel.isBackgroundMusicEnabled {
             AudioControls.shared.playBackgroundMusic(musicIndex: vibeModel.backgroundMusicIndex)
         }
     }
 
+    /// Creates the Overlay view which emerges when the user taps on the textview.
+    /// It is initially present outside the view bounds at the top.
+    /// - Returns: Overlay UIView.
     func createOverlayView() -> UIView {
         let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
         overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -263,13 +271,13 @@ extension VibeTextViewController {
         overlayCloseView.isHidden = true
         return overlayCloseView
     }
-    
+
+    /// Creates an Overlay Button to move to the next Vibe Component.
+    /// - Returns: Next Button.
     func createOverlayNextButton() -> UIButton {
         let overlayNextButton = UIButton(frame: CGRect(x: view.frame.width, y: view.frame.height / 4, width: view.frame.width / 10, height: view.frame.height / 2))
         let titleAttributedString = NSMutableAttributedString(string: "»", attributes: [.foregroundColor: UIColor.white, NSMutableAttributedString.Key.font: UIFont.systemFont(ofSize: 50)])
         overlayNextButton.setAttributedTitle(titleAttributedString, for: .normal)
-//        overlayNextButton.setTitle("»", for: .normal)
-//        overlayNextButton.setTitleColor(UIColor.white, for: .normal)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(nextPressed))
         overlayNextButton.addGestureRecognizer(tapGesture)
         view.addSubview(overlayNextButton)
@@ -278,6 +286,7 @@ extension VibeTextViewController {
         return overlayNextButton
     }
 
+    /// Next Button pressed on the right.
     @objc func nextPressed() {
         self.isDismissOverlayVisible = false
         self.overlayCloseView.frame.origin.y = -self.overlayCloseView.frame.height
@@ -290,6 +299,7 @@ extension VibeTextViewController {
         performSegue(withIdentifier: DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW, sender: self)
     }
 
+    /// Segue Preparation method.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW {
             let destinationVC = segue.destination as! VibeImagesViewController
@@ -298,6 +308,9 @@ extension VibeTextViewController {
         }
     }
 
+    /// Changes the Overlay View Status. Either the Overlay view will be displayed, or it will move out of the view's bounds.
+    /// If it's visible, then move it out of the view from the top.
+    /// If it's not visible, then move it inside the view from the top.
     @objc func changeOverlayViewStatus() {
         UIView.animate(withDuration: 0.2, animations: {
             if self.isDismissOverlayVisible {

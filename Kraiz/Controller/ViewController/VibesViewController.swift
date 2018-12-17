@@ -10,11 +10,6 @@
 import UIKit
 
 class VibesViewController: UIViewController {
-    
-    let IS_RECEIVER_COLOR = UIColor(displayP3Red: 230/255, green: 158/255, blue: 55/255, alpha: 1.0)
-    let IS_SENDER_COLOR = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0)
-    
-    var connections = [ConnectionModel]()
 
     @IBOutlet weak var vibesSegment: UISegmentedControl!
     @IBOutlet weak var viewContainers: UIView!
@@ -32,13 +27,6 @@ class VibesViewController: UIViewController {
         self.add(asChildViewController: viewController)
         return viewController
     }()
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        for i in 0..<10 {
-//            connections.append(ConnectionModel(username: "username_\(i + 1)", vibeName: "vibe \(i + 1)", isLetterPresent: true, isPhotosPresent: true, isVideoPresent: true, isAudioPresent: true, timestamp: "10/11/2018", isUserSender: i % 2 == 0 ? true : false))
-//        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,22 +71,5 @@ class VibesViewController: UIViewController {
         
         // Notify Child View Controller
         viewController.removeFromParent()
-    }
-
-    func getImagesForComponents(connection: ConnectionModel) -> [String] {
-        var componentImages = [String]()
-        if (connection.isLetterPresent!) {
-            componentImages.append("letter-on-all-vibes")
-        }
-        if (connection.isPhotosPresent!) {
-            componentImages.append("photos-on-all-vibes")
-        }
-        if (connection.isVideoPresent!) {
-            componentImages.append("video-on-all-vibes")
-        }
-        if (connection.isAudioPresent!) {
-            componentImages.append("audio-on-all-vibes")
-        }
-        return componentImages
     }
 }

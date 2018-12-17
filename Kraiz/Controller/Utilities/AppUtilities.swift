@@ -14,7 +14,7 @@ import AWSAppSync
 
 public class APPUtilites {
     /// Displays an elevated Error Snackbar for the message.
-    /// - Parameters
+    /// - Parameters:
     ///     - message: Message to be displayed in the snackbar.
     public static func displayElevatedErrorSnackbar(message: String) {
         let errorBar = TTGSnackbar()
@@ -27,7 +27,7 @@ public class APPUtilites {
     }
     
     /// Displays an Error Snackbar for the message.
-    /// - Parameters
+    /// - Parameters:
     ///     - message: Message to be displayed in the snackbar.
     public static func displayErrorSnackbar(message: String) {
         let errorBar = TTGSnackbar()
@@ -39,7 +39,7 @@ public class APPUtilites {
     }
     
     /// Displays an elevated Error Snacbar for the message with a long duration
-    /// - Parameters
+    /// - Parameters:
     ///     - message: Message to be displayed in the snackbar.
     public static func displayElevatedErrorSnackbarForLongDuration(message: String) {
         let errorBar = TTGSnackbar()
@@ -52,7 +52,7 @@ public class APPUtilites {
     }
 
     /// Displays an elevated Error Snacbar for the message with a long duration
-    /// - Parameters
+    /// - Parameters:
     ///     - message: Message to be displayed in the snackbar.
     public static func displayErrorSnackbarForLongDuration(message: String) {
         let errorBar = TTGSnackbar()
@@ -64,7 +64,7 @@ public class APPUtilites {
     }
 
     /// Displays an Elevated Success Snackbar for the message.
-    /// - Parameters
+    /// - Parameters:
     ///     - message: Message to be displayed in the snackbar.
     public static func displayElevatedSuccessSnackbar(message: String) {
         let successBar = TTGSnackbar()
@@ -77,7 +77,7 @@ public class APPUtilites {
     }
 
     /// Displays a Success Snackbar for the message.
-    /// - Parameters
+    /// - Parameters:
     ///     - message: Message to be displayed in the snackbar.
     public static func displaySuccessSnackbar(message: String) {
         let successBar = TTGSnackbar()
@@ -88,6 +88,10 @@ public class APPUtilites {
         successBar.show()
     }
 
+    /// Displays a Loading Activity Spinner on the view which comes as input. Returns the loading spinner view.
+    /// - Parameters:
+    ///     - onView: The view on which the loading spinner needs to be displayed.
+    /// - Returns: Loading Spinner UIView.
     public static func displayLoadingSpinner(onView: UIView) -> UIView {
         let spinnerView = UIView(frame: onView.frame)
         spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
@@ -100,16 +104,27 @@ public class APPUtilites {
         return spinnerView
     }
     
+    /// Removes the Loading Activity Spinner.
+    /// - Parameters:
+    ///     - spinner: Spinner
     public static func removeLoadingSpinner(spinner: UIView) {
         spinner.removeFromSuperview()
     }
     
+    /// Inverses the Date for presentation purposes.
+    /// - Parameters:
+    ///     - inputDate: Date which needs to be inversed.
+    /// - Returns: Inversed Date.
     public static func inverseDate(inputDate: String) -> String {
         let dateParts = inputDate.split(separator: "-")
         let newDate = dateParts[2] + "-" + dateParts[1] + "-" + dateParts[0]
         return newDate
     }
     
+    /// Returns a UIImage from the PHAsset if it exists.
+    /// - Parameters:
+    ///     - asset: PHAsset of the Image.
+    ///     - Returns: UIImage if it exists.
     public static func getUIImage(asset: PHAsset) -> UIImage? {
         var img: UIImage?
         let manager = PHImageManager.default()
@@ -125,6 +140,8 @@ public class APPUtilites {
         return img
     }
     
+    /// Checks if the Internet Connection is available or not
+    /// - Returns: Availability.
     public static func isInternetConnectionAvailable() -> Bool {
         let reachability = Reachability()
         if reachability?.connection == Reachability.Connection.none {
@@ -135,6 +152,9 @@ public class APPUtilites {
     
     /// Only alphanumeric and special characters like .-_@ are allowed.
     /// Special characters should not be present in the end.
+    /// - Parameters:
+    ///     - username: The username to be checked.
+    /// - Returns: Valid or Not.
     public static func isUsernameValid(username: String) -> Bool {
         if username.count > 30 {
             return false
@@ -150,9 +170,9 @@ public class APPUtilites {
     }
     
     /// Gets the Vibe Image Ids as an GraphQL ID Array.
-    /// - Parameters
+    /// - Parameters:
     ///     - images: Images.
-    /// - Returns - Ids.
+    /// - Returns: Ids.
     public static func getVibeImageIds(images: [PhotoEntity]) -> [GraphQLID] {
         var ids = [GraphQLID]()
         for i in 0 ..< images.count {
@@ -166,9 +186,9 @@ public class APPUtilites {
     }
     
     /// Gets the Vibe Image Ids as an GraphQL ID Array.
-    /// - Parameters
+    /// - Parameters:
     ///     - images: Images.
-    /// - Returns - Ids.
+    /// - Returns: Ids.
     public static func getVibeImageCaptions(images: [PhotoEntity]) -> [String] {
         var captions = [String]()
         print("image captions")
@@ -183,9 +203,10 @@ public class APPUtilites {
     }
     
     /// Gets the file url for the fileName and the file type.
-    /// - Parameters
+    /// - Parameters:
     ///     - fileName: Name of the file.
     ///     - type: File Type.
+    /// - Returns: NSURL of the File.
     public static func getUrlForFileName(fileName: String, type: String) -> URL? {
         if Bundle.main.path(forResource: fileName, ofType: type) != nil {
             print("File exists")
@@ -195,6 +216,23 @@ public class APPUtilites {
         }
         let path = Bundle.main.path(forResource: fileName, ofType: type)!
         return URL(fileURLWithPath: path)
+    }
+
+    public static func getDateFromEpochTime(epochTime: Int) -> String {
+        let calendar = Calendar.current
+        let date = Date(timeIntervalSince1970: TimeInterval(exactly: epochTime / 1000)!)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .short
+        dateFormatter.dateStyle = .short
+        if calendar.isDateInToday(date) {
+            dateFormatter.dateFormat = "HH:mm"
+            return dateFormatter.string(from: date)
+        } else if calendar.isDateInYesterday(date) {
+            return "Yesterday"
+        } else {
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            return dateFormatter.string(from: date)
+        }
     }
 
     public static func getAccessHashForBidirectional(key1: String, key2: String) -> String {

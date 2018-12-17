@@ -12,7 +12,7 @@ target 'Kraiz' do
   pod 'BSImagePicker'
   pod 'Cloudinary'
   pod 'CropViewController', '2.3.8'
-  pod 'ObjectBox'
+  pod 'RealmSwift'
   pod 'RxSwift'
   pod 'TTGSnackbar'
 

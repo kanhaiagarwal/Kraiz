@@ -7,18 +7,43 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendsVibesViewController: UIViewController {
 
     @IBOutlet weak var vibeCategoriesCollectionView: UICollectionView!
     @IBOutlet weak var vibesTable: UITableView!
 
+    var privateVibes = [String : Results<VibeDataEntity>]()
+    var notifications = [NotificationToken]()
+
     var vibesTableBackgroundImageView = UIImageView(image: UIImage(named: VibeCategories.categoryBackground[0]))
     private var selectedCategory : Int = 0
-    private let DEFAULT_PROFILE = "profile-default"
-
+    private let DEFAULT_PROFILE_PIC = "profile-default"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        AppSyncHelper.shared.getUserChannel()
+        for i in 0 ..< VibeCategories.PRIVATE_CATEGORIES_INDEX.count {
+            let privateVibeIndex : String = "\(UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)_\(VibeCategories.PRIVATE_CATEGORIES_INDEX[i])"
+            print("privateVibeIndex: \(privateVibeIndex)")
+            if let results = CacheHelper.shared.getVibesByIndex(index: privateVibeIndex) {
+                print("========> results are present")
+                print("results.count: \(results.count)")
+                privateVibes[VibeCategories.PRIVATE_CATEGORIES_INDEX[i]] = results
+
+                notifications.append(results.observe { [weak self] (change) in
+                    self?.vibesTable.reloadData()
+                })
+            }
+            
+            
+            if selectedCategory == i {
+                print("=======> inside the selectedCategory if")
+                vibesTable.reloadData()
+            }
+        }
 
         vibeCategoriesCollectionView.register(UINib(nibName: "VibeCategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "vibeCategoryCell")
         vibeCategoriesCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
@@ -36,12 +61,36 @@ class FriendsVibesViewController: UIViewController {
 
 extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return privateVibes[VibeCategories.PRIVATE_CATEGORIES_INDEX[selectedCategory]]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("FriendsVibesTableViewCell", owner: self, options: nil)?.first as! FriendsVibesTableViewCell
-        cell.profileImage.image = UIImage(named: DEFAULT_PROFILE)
+        let profileId = privateVibes[VibeCategories.PRIVATE_CATEGORIES_INDEX[selectedCategory]]![indexPath.row].getProfileId()!
+        if let profile = CacheHelper.shared.getProfileById(id: profileId) {
+            cell.senderName.text = profile.getUsername()!
+            if profile.getProfilePicId() != "NONE" {
+                MediaHelper.shared.downloadProfileImage(publicId: profile.getProfilePicId()!, success: { (image) in
+                    cell.profileImage.image = image
+                }) { [weak self] (error) in
+                    cell.profileImage.image = UIImage(named: self!.DEFAULT_PROFILE_PIC)
+                }
+            }
+        } else {
+            cell.senderName.text = "None"
+        }
+
+        cell.vibeName.text = privateVibes[VibeCategories.PRIVATE_CATEGORIES_INDEX[selectedCategory]]![indexPath.row].getVibeName()!
+        cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: privateVibes[VibeCategories.PRIVATE_CATEGORIES_INDEX[selectedCategory]]![indexPath.row].getUpdatedTime())
+        if privateVibes[VibeCategories.PRIVATE_CATEGORIES_INDEX[selectedCategory]]![indexPath.row].getIsSender() {
+            if privateVibes[VibeCategories.PRIVATE_CATEGORIES_INDEX[selectedCategory]]![indexPath.row].getIsSeen() {
+                cell.vibeStatus.text = "Opened"
+            } else {
+                cell.vibeStatus.text = "Sent"
+            }
+        } else {
+            cell.vibeStatus.isHidden = true
+        }
         cell.hailButton.tag = indexPath.row
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hailButtonPressed(sender:)))
@@ -121,6 +170,8 @@ extension FriendsVibesViewController: UICollectionViewDelegate, UICollectionView
         selectedCategory = indexPath.row
         vibesTableBackgroundImageView.image = UIImage(named: VibeCategories.categoryBackground[indexPath.row])
         vibeCategoriesCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        vibesTable.reloadData()
+        vibesTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

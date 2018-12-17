@@ -1443,3 +1443,548 @@ public final class TriggerFsmMutation: GraphQLMutation {
     }
   }
 }
+
+public final class GetUserChannelViewQuery: GraphQLQuery {
+  public static let operationString =
+    "query GetUserChannelView {\n  getUserChannel {\n    __typename\n    userVibes {\n      __typename\n      nextToken\n      userVibes {\n        __typename\n        vibeId\n        gsiPk\n        version\n        updatedTime\n        vibeName\n        isSender\n        isAnonymous\n        seen\n        reach\n        profileId\n        hailIds\n      }\n      profiles {\n        __typename\n        id\n        mobileNumber\n        username\n        name\n        profilePicId\n      }\n      hails {\n        __typename\n        id\n        vibeId\n      }\n    }\n    profiles {\n      __typename\n      id\n      mobileNumber\n      username\n      name\n      profilePicId\n    }\n    lastPublicVibeFetchTime\n  }\n}"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getUserChannel", type: .object(GetUserChannel.selections)),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(getUserChannel: GetUserChannel? = nil) {
+      self.init(snapshot: ["__typename": "Query", "getUserChannel": getUserChannel.flatMap { $0.snapshot }])
+    }
+
+    public var getUserChannel: GetUserChannel? {
+      get {
+        return (snapshot["getUserChannel"] as? Snapshot).flatMap { GetUserChannel(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "getUserChannel")
+      }
+    }
+
+    public struct GetUserChannel: GraphQLSelectionSet {
+      public static let possibleTypes = ["UserChannelView"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("userVibes", type: .object(UserVibe.selections)),
+        GraphQLField("profiles", type: .list(.nonNull(.object(Profile.selections)))),
+        GraphQLField("lastPublicVibeFetchTime", type: .scalar(Int.self)),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(userVibes: UserVibe? = nil, profiles: [Profile]? = nil, lastPublicVibeFetchTime: Int? = nil) {
+        self.init(snapshot: ["__typename": "UserChannelView", "userVibes": userVibes.flatMap { $0.snapshot }, "profiles": profiles.flatMap { $0.map { $0.snapshot } }, "lastPublicVibeFetchTime": lastPublicVibeFetchTime])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var userVibes: UserVibe? {
+        get {
+          return (snapshot["userVibes"] as? Snapshot).flatMap { UserVibe(snapshot: $0) }
+        }
+        set {
+          snapshot.updateValue(newValue?.snapshot, forKey: "userVibes")
+        }
+      }
+
+      public var profiles: [Profile]? {
+        get {
+          return (snapshot["profiles"] as? [Snapshot]).flatMap { $0.map { Profile(snapshot: $0) } }
+        }
+        set {
+          snapshot.updateValue(newValue.flatMap { $0.map { $0.snapshot } }, forKey: "profiles")
+        }
+      }
+
+      public var lastPublicVibeFetchTime: Int? {
+        get {
+          return snapshot["lastPublicVibeFetchTime"] as? Int
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "lastPublicVibeFetchTime")
+        }
+      }
+
+      public struct UserVibe: GraphQLSelectionSet {
+        public static let possibleTypes = ["UserVibeConnection"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("nextToken", type: .scalar(String.self)),
+          GraphQLField("userVibes", type: .list(.nonNull(.object(UserVibe.selections)))),
+          GraphQLField("profiles", type: .list(.nonNull(.object(Profile.selections)))),
+          GraphQLField("hails", type: .list(.nonNull(.object(Hail.selections)))),
+        ]
+
+        public var snapshot: Snapshot
+
+        public init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        public init(nextToken: String? = nil, userVibes: [UserVibe]? = nil, profiles: [Profile]? = nil, hails: [Hail]? = nil) {
+          self.init(snapshot: ["__typename": "UserVibeConnection", "nextToken": nextToken, "userVibes": userVibes.flatMap { $0.map { $0.snapshot } }, "profiles": profiles.flatMap { $0.map { $0.snapshot } }, "hails": hails.flatMap { $0.map { $0.snapshot } }])
+        }
+
+        public var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var nextToken: String? {
+          get {
+            return snapshot["nextToken"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "nextToken")
+          }
+        }
+
+        public var userVibes: [UserVibe]? {
+          get {
+            return (snapshot["userVibes"] as? [Snapshot]).flatMap { $0.map { UserVibe(snapshot: $0) } }
+          }
+          set {
+            snapshot.updateValue(newValue.flatMap { $0.map { $0.snapshot } }, forKey: "userVibes")
+          }
+        }
+
+        public var profiles: [Profile]? {
+          get {
+            return (snapshot["profiles"] as? [Snapshot]).flatMap { $0.map { Profile(snapshot: $0) } }
+          }
+          set {
+            snapshot.updateValue(newValue.flatMap { $0.map { $0.snapshot } }, forKey: "profiles")
+          }
+        }
+
+        public var hails: [Hail]? {
+          get {
+            return (snapshot["hails"] as? [Snapshot]).flatMap { $0.map { Hail(snapshot: $0) } }
+          }
+          set {
+            snapshot.updateValue(newValue.flatMap { $0.map { $0.snapshot } }, forKey: "hails")
+          }
+        }
+
+        public struct UserVibe: GraphQLSelectionSet {
+          public static let possibleTypes = ["UserVibe"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("vibeId", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("gsiPk", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("version", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("updatedTime", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("vibeName", type: .nonNull(.scalar(String.self))),
+            GraphQLField("isSender", type: .nonNull(.scalar(Bool.self))),
+            GraphQLField("isAnonymous", type: .nonNull(.scalar(Bool.self))),
+            GraphQLField("seen", type: .nonNull(.scalar(Bool.self))),
+            GraphQLField("reach", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("profileId", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("hailIds", type: .list(.nonNull(.scalar(GraphQLID.self)))),
+          ]
+
+          public var snapshot: Snapshot
+
+          public init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+          }
+
+          public init(vibeId: GraphQLID, gsiPk: GraphQLID, version: Int, updatedTime: Int, vibeName: String, isSender: Bool, isAnonymous: Bool, seen: Bool, reach: Int, profileId: GraphQLID, hailIds: [GraphQLID]? = nil) {
+            self.init(snapshot: ["__typename": "UserVibe", "vibeId": vibeId, "gsiPk": gsiPk, "version": version, "updatedTime": updatedTime, "vibeName": vibeName, "isSender": isSender, "isAnonymous": isAnonymous, "seen": seen, "reach": reach, "profileId": profileId, "hailIds": hailIds])
+          }
+
+          public var __typename: String {
+            get {
+              return snapshot["__typename"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var vibeId: GraphQLID {
+            get {
+              return snapshot["vibeId"]! as! GraphQLID
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "vibeId")
+            }
+          }
+
+          /// # GSI PK (userId_tag_type)
+          public var gsiPk: GraphQLID {
+            get {
+              return snapshot["gsiPk"]! as! GraphQLID
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "gsiPk")
+            }
+          }
+
+          public var version: Int {
+            get {
+              return snapshot["version"]! as! Int
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "version")
+            }
+          }
+
+          public var updatedTime: Int {
+            get {
+              return snapshot["updatedTime"]! as! Int
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "updatedTime")
+            }
+          }
+
+          /// # Vibe Info
+          public var vibeName: String {
+            get {
+              return snapshot["vibeName"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "vibeName")
+            }
+          }
+
+          public var isSender: Bool {
+            get {
+              return snapshot["isSender"]! as! Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "isSender")
+            }
+          }
+
+          public var isAnonymous: Bool {
+            get {
+              return snapshot["isAnonymous"]! as! Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "isAnonymous")
+            }
+          }
+
+          public var seen: Bool {
+            get {
+              return snapshot["seen"]! as! Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "seen")
+            }
+          }
+
+          public var reach: Int {
+            get {
+              return snapshot["reach"]! as! Int
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "reach")
+            }
+          }
+
+          /// # Profile Info
+          public var profileId: GraphQLID {
+            get {
+              return snapshot["profileId"]! as! GraphQLID
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "profileId")
+            }
+          }
+
+          /// # Hail Info
+          public var hailIds: [GraphQLID]? {
+            get {
+              return snapshot["hailIds"] as? [GraphQLID]
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hailIds")
+            }
+          }
+        }
+
+        public struct Profile: GraphQLSelectionSet {
+          public static let possibleTypes = ["UserProfile"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("mobileNumber", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("username", type: .nonNull(.scalar(String.self))),
+            GraphQLField("name", type: .scalar(String.self)),
+            GraphQLField("profilePicId", type: .scalar(String.self)),
+          ]
+
+          public var snapshot: Snapshot
+
+          public init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+          }
+
+          public init(id: GraphQLID, mobileNumber: GraphQLID, username: String, name: String? = nil, profilePicId: String? = nil) {
+            self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "profilePicId": profilePicId])
+          }
+
+          public var __typename: String {
+            get {
+              return snapshot["__typename"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var id: GraphQLID {
+            get {
+              return snapshot["id"]! as! GraphQLID
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          public var mobileNumber: GraphQLID {
+            get {
+              return snapshot["mobileNumber"]! as! GraphQLID
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "mobileNumber")
+            }
+          }
+
+          public var username: String {
+            get {
+              return snapshot["username"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "username")
+            }
+          }
+
+          public var name: String? {
+            get {
+              return snapshot["name"] as? String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "name")
+            }
+          }
+
+          public var profilePicId: String? {
+            get {
+              return snapshot["profilePicId"] as? String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "profilePicId")
+            }
+          }
+        }
+
+        public struct Hail: GraphQLSelectionSet {
+          public static let possibleTypes = ["Hail"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("vibeId", type: .nonNull(.scalar(GraphQLID.self))),
+          ]
+
+          public var snapshot: Snapshot
+
+          public init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+          }
+
+          public init(id: GraphQLID, vibeId: GraphQLID) {
+            self.init(snapshot: ["__typename": "Hail", "id": id, "vibeId": vibeId])
+          }
+
+          public var __typename: String {
+            get {
+              return snapshot["__typename"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var id: GraphQLID {
+            get {
+              return snapshot["id"]! as! GraphQLID
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          public var vibeId: GraphQLID {
+            get {
+              return snapshot["vibeId"]! as! GraphQLID
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "vibeId")
+            }
+          }
+        }
+      }
+
+      public struct Profile: GraphQLSelectionSet {
+        public static let possibleTypes = ["UserProfile"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+          GraphQLField("mobileNumber", type: .nonNull(.scalar(GraphQLID.self))),
+          GraphQLField("username", type: .nonNull(.scalar(String.self))),
+          GraphQLField("name", type: .scalar(String.self)),
+          GraphQLField("profilePicId", type: .scalar(String.self)),
+        ]
+
+        public var snapshot: Snapshot
+
+        public init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        public init(id: GraphQLID, mobileNumber: GraphQLID, username: String, name: String? = nil, profilePicId: String? = nil) {
+          self.init(snapshot: ["__typename": "UserProfile", "id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "profilePicId": profilePicId])
+        }
+
+        public var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return snapshot["id"]! as! GraphQLID
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var mobileNumber: GraphQLID {
+          get {
+            return snapshot["mobileNumber"]! as! GraphQLID
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "mobileNumber")
+          }
+        }
+
+        public var username: String {
+          get {
+            return snapshot["username"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "username")
+          }
+        }
+
+        public var name: String? {
+          get {
+            return snapshot["name"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        public var profilePicId: String? {
+          get {
+            return snapshot["profilePicId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "profilePicId")
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class DeleteUserChannelUpdatesMutation: GraphQLMutation {
+  public static let operationString =
+    "mutation DeleteUserChannelUpdates($liveVibeBucketIds: [ID!], $liveProfileBucketIds: [ID!]) {\n  deleteUserChannelUpdates(liveVibeBucketIds: $liveVibeBucketIds, liveProfileBucketIds: $liveProfileBucketIds)\n}"
+
+  public var liveVibeBucketIds: [GraphQLID]?
+  public var liveProfileBucketIds: [GraphQLID]?
+
+  public init(liveVibeBucketIds: [GraphQLID]?, liveProfileBucketIds: [GraphQLID]?) {
+    self.liveVibeBucketIds = liveVibeBucketIds
+    self.liveProfileBucketIds = liveProfileBucketIds
+  }
+
+  public var variables: GraphQLMap? {
+    return ["liveVibeBucketIds": liveVibeBucketIds, "liveProfileBucketIds": liveProfileBucketIds]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("deleteUserChannelUpdates", arguments: ["liveVibeBucketIds": GraphQLVariable("liveVibeBucketIds"), "liveProfileBucketIds": GraphQLVariable("liveProfileBucketIds")], type: .nonNull(.scalar(String.self))),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(deleteUserChannelUpdates: String) {
+      self.init(snapshot: ["__typename": "Mutation", "deleteUserChannelUpdates": deleteUserChannelUpdates])
+    }
+
+    public var deleteUserChannelUpdates: String {
+      get {
+        return snapshot["deleteUserChannelUpdates"]! as! String
+      }
+      set {
+        snapshot.updateValue(newValue, forKey: "deleteUserChannelUpdates")
+      }
+    }
+  }
+}

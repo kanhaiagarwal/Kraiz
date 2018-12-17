@@ -44,6 +44,8 @@ class VibeImagesViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
+    /// Creates all the Image Cards with the images and captions.
+    /// Gives the swiping gestures to the cards.
     func setViews() {
         for i in (0 ..< vibeModel!.images.count) {
             if let card = Bundle.main.loadNibNamed("VibeImageCardView", owner: self, options: nil)?.first as? VibeImageCardView {
@@ -81,7 +83,7 @@ class VibeImagesViewController: UIViewController {
         let swipeViewGesture = UIPanGestureRecognizer(target: self, action: #selector(self.onSwipeView(sender:)))
         view.addGestureRecognizer(swipeViewGesture)
     }
-    
+
     @objc func onSwipeCard(sender: UIPanGestureRecognizer) {
         
         let tag = sender.view!.tag
@@ -136,14 +138,12 @@ extension VibeImagesViewController {
 
     @objc func resumeMusicIfPaused() {
         if AudioControls.shared.getPlayAudioOnForeground() {
-            print("AudioControls.shared.getPlayAudioOnForeground() is true")
             AudioControls.shared.resumeMusic()
             AudioControls.shared.setPlayAudioOnForeground(playAudio: false)
-        } else {
-            print("AudioControls.shared.getPlayAudioOnForeground() is false")
         }
     }
 
+    /// Creates the Overlay View which will contain the close button.
     func createOverlayCloseView() -> UIView {
         let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
         overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.0)

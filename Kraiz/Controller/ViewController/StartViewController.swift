@@ -20,12 +20,15 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("inside viewDidLoad of StartViewControlller.")
     }
     
     /// Executed everytime the user arrives on this view controller.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 
+        print("inside viewWillAppear of StartViewControlller.")
         activityIndicator.startAnimating()
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         
@@ -110,6 +113,7 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                         }
                     })
                 } else {
+                    print("Session result is nil for the current user")
                     performSegue(withIdentifier: self.WELCOME_PAGE_SEGUE, sender: self)
                 }
             } else {

@@ -38,3 +38,12 @@ mutation DeleteUserProfile($input: DeleteUserProfileInput!) {
 mutation TriggerFsm($input: FsmInput!, $userId: ID!) {
   triggerFsm(input: $input, userId: $userId)
 }
+mutation DeleteUserChannelUpdates(
+  $liveVibeBucketIds: [ID!]
+  $liveProfileBucketIds: [ID!]
+) {
+  deleteUserChannelUpdates(
+    liveVibeBucketIds: $liveVibeBucketIds
+    liveProfileBucketIds: $liveProfileBucketIds
+  )
+}
