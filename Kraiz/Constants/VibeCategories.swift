@@ -9,6 +9,21 @@
 import Foundation
 import UIKit
 
+public enum IndexType {
+    case VibeType
+    case VibeTypeTag
+    
+    public static func getIndexType(index: IndexType) -> String {
+        switch index {
+            case .VibeType:
+                    return "vibeType"
+            case .VibeTypeTag:
+                    return "vibeTypeTag"
+            default: return "vibeType"
+        }
+    }
+}
+
 public class VibeCategories {
     static public let pickerStrings = ["Love", "Travel", "Good", "Party", "Nostalgic", "Occasion"]
     static public let categoryImages : [String] = ["LoveVibes", "TravelVibes", "GoodVibes", "PartyVibes", "NostalgicVibes", "OccasionVibes"]
@@ -28,6 +43,42 @@ public class VibeCategories {
             case 4: return VibeTag.nostalgic
             case 5: return VibeTag.occasion
             default: return VibeTag.love
+        }
+    }
+
+    static public func getVibeCategoryImage(vibeCategory: String) -> String {
+        switch vibeCategory {
+            case "LOVE": return categoryImages[0]
+            case "TRAVEL": return categoryImages[1]
+            case "GOOD": return categoryImages[2]
+            case "PARTY": return categoryImages[3]
+            case "NOSTALGIC": return categoryImages[4]
+            case "OCCASION": return categoryImages[5]
+            default: return categoryImages[0]
+        }
+    }
+    
+    static public func getVibeCategoryColor(vibeCategory: String) -> UIColor {
+        switch vibeCategory {
+            case "LOVE": return vibeColors[0]
+            case "TRAVEL": return vibeColors[1]
+            case "GOOD": return vibeColors[2]
+            case "PARTY": return vibeColors[3]
+            case "NOSTALGIC": return vibeColors[4]
+            case "OCCASION": return vibeColors[5]
+            default: return vibeColors[0]
+        }
+    }
+
+    static public func getVibeCategoryDisplayName(vibeCategory: String) -> String {
+        switch vibeCategory {
+            case "LOVE": return pickerStrings[0]
+            case "TRAVEL": return pickerStrings[1]
+            case "GOOD": return pickerStrings[2]
+            case "PARTY": return pickerStrings[3]
+            case "NOSTALGIC": return pickerStrings[4]
+            case "OCCASION": return pickerStrings[5]
+            default: return pickerStrings[0]
         }
     }
 }

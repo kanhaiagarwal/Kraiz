@@ -43,7 +43,6 @@ class FriendsVibesViewController: UIViewController {
                 vibesTable.reloadData()
             }
         }
-        AppSyncHelper.shared.getUserChannel()
 
         vibeCategoriesCollectionView.register(UINib(nibName: "VibeCategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "vibeCategoryCell")
         vibeCategoriesCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
@@ -52,6 +51,7 @@ class FriendsVibesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        AppSyncHelper.shared.getUserChannel()
         vibeCategoriesCollectionView.layer.cornerRadius = 10
         vibesTableBackgroundImageView.frame = vibesTable.frame
         vibesTableBackgroundImageView.contentMode = .scaleAspectFill

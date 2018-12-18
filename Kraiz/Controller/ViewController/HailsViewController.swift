@@ -29,15 +29,12 @@ class HailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("========> vibeId: \(vibeId!)")
         hailsView.isUserInteractionEnabled = true
         let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(dismissVC))
         hailsView.addGestureRecognizer(swipeGesture)
         if let hailResult = CacheHelper.shared.getHailsOfVibe(vibeId: vibeId!) {
-            print("hailResult.count: \(hailResult.count)")
             hails = hailResult
             notification = hailResult.observe { [weak self] (changes) in
-                print("change happened")
                 self!.hailsTable.reloadData()
             }
         }

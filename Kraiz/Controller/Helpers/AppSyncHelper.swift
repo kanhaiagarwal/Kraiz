@@ -163,7 +163,7 @@ class AppSyncHelper {
         if appSyncClient != nil {
             appSyncClient?.fetch(query: getChannelQuery, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated), resultHandler: { [weak self] (result, error) in
                 if error != nil {
-                    print("========> error: \(error)")
+                    print("========> error in getUserChannel: \(error)")
                 } else if let data = result?.data {
                     if let userChannel = data.snapshot["getUserChannel"] as? [String: Any] {
                         var liveBucketVibeIds = [GraphQLID]()

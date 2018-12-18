@@ -225,7 +225,7 @@ public class APPUtilites {
         dateFormatter.timeStyle = .short
         dateFormatter.dateStyle = .short
         if calendar.isDateInToday(date) {
-            dateFormatter.dateFormat = "HH:mm"
+            dateFormatter.dateFormat = "h:mm a"
             return dateFormatter.string(from: date)
         } else if calendar.isDateInYesterday(date) {
             return "Yesterday"
@@ -257,6 +257,14 @@ public class APPUtilites {
     
     public static func getAccessHashForAnonymous(key: String) -> String {
         return (key + "_a").sha1
+    }
+
+    /// Get the Vibe Tag from the vibeTypeTag.
+    /// - Parameters:
+    ///     - vibeTypeTag: The vibeTagType index of the vibe.
+    public static func getVibeTag(vibeTypeTag: String) -> String {
+        let splitStrings = vibeTypeTag.split(separator: "_")
+        return String(splitStrings[1])
     }
 }
 
