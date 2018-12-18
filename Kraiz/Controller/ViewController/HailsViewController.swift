@@ -17,6 +17,7 @@ class HailsViewController: UIViewController {
     @IBOutlet weak var hailsTable: UITableView!
     
     let HAILS_VIEW_MIN_HEIGHT_PROPORTION = 0.2
+    let HAILS_ANIMATION_TIME = 0.2
     let HAILS_VIEW_HEIGHT_INCREASE_STEPS = 0.1
     let HAILS_VIEW_MAX_HEIGHT_PROPORTION = 0.8
     let MAX_HAILS_IN_SINGLE_VIEW = 8
@@ -48,17 +49,32 @@ class HailsViewController: UIViewController {
         } else {
             hailsHeightConstraint = hailsHeightConstraint.setMultiplier(multiplier: 1.0)
         }
-        
+
         hailsTable.estimatedRowHeight = UITableView.automaticDimension
         hailsTable.rowHeight = UITableView.automaticDimension
     }
+
+    override func viewDidLayoutSubviews() {
+        UIView.animate(withDuration: TimeInterval(exactly: HAILS_ANIMATION_TIME)!) {[weak self] in
+            self?.hailsView.frame = CGRect(x: 0, y: ((self?.view.frame.height)! - (self?.hailsView.frame.height)!), width: (self?.view.frame.width)!, height: (self?.hailsView.frame.height)!)
+        }
+    }
     
     @objc func dismissVC() {
-        self.dismiss(animated: true, completion: nil)
+        UIView.animate(withDuration: TimeInterval(exactly: HAILS_ANIMATION_TIME)!, animations: { [weak self] in
+            self!.hailsView.frame = CGRect(x: 0, y: self!.view.frame.height, width: self!.hailsView.frame.width
+                , height: (self?.hailsView.frame.height)!)
+        }) { [weak self] (completed) in
+            self!.dismiss(animated: false, completion: nil)
+        }
     }
 
     @IBAction func dismissPressed(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        UIView.animate(withDuration: TimeInterval(exactly: HAILS_ANIMATION_TIME)!, animations: { [weak self] in
+            self?.hailsView.frame = CGRect(x: 0, y: (self?.view.frame.height)!, width: (self?.hailsView.frame.width)!, height: (self?.hailsView.frame.height)!)
+        }) { [weak self] (completed) in
+            self?.dismiss(animated: false, completion: nil)
+        }
     }
 }
 

@@ -119,7 +119,7 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         hailVC.modalPresentationStyle = .overCurrentContext
         hailVC.vibeId = privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]![tag!].getId()!
         
-        present(hailVC, animated: true, completion: nil)
+        present(hailVC, animated: false, completion: nil)
     }
 
 }
@@ -173,7 +173,6 @@ extension FriendsVibesViewController: UICollectionViewDelegate, UICollectionView
         vibesTableBackgroundImageView.image = UIImage(named: VibeCategories.categoryBackground[indexPath.row])
         vibeCategoriesCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         vibesTable.reloadData()
-//        vibesTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

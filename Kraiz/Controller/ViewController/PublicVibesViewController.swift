@@ -73,6 +73,6 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
         hailVC.vibeId = publicVibes![tag!].getId()!
         hailVC.modalPresentationStyle = .overCurrentContext
         
-        present(hailVC, animated: true, completion: nil)
+        present(hailVC, animated: false, completion: nil)
     }
 }
