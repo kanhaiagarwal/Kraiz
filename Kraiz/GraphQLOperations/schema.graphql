@@ -72,7 +72,8 @@ query GetUserChannelView {
             nextToken
             userVibes {
                 vibeId
-                gsiPk
+                vibeTypeTagGsiPk
+                vibeTypeGsiPk
                 version
                 updatedTime
                 vibeName
@@ -93,7 +94,10 @@ query GetUserChannelView {
             hails {
                 id
                 vibeId
-            }
+                author
+                comment
+                createdAt
+            },
         },
         profiles {
             id
@@ -108,4 +112,39 @@ query GetUserChannelView {
 
 mutation DeleteUserChannelUpdates($liveVibeBucketIds: [ID!], $liveProfileBucketIds: [ID!]) {
     deleteUserChannelUpdates(liveVibeBucketIds: $liveVibeBucketIds, liveProfileBucketIds: $liveProfileBucketIds)
+}
+
+query GetPaginatedUserVibes($vibeTag: VibeTag!, $vibeType: VibeType!, $first: Int, $after: String) {
+    getUserVibes(vibeTag: $vibeTag, vibeType: $vibeType, first: $first, after: $after) {
+        nextToken
+        userVibes {
+            vibeId
+            vibeTypeTagGsiPk
+            vibeTypeGsiPk
+            version
+            updatedTime
+            vibeName
+            isSender
+            isAnonymous
+            seen
+            reach
+            profileId
+            hailIds
+            hailProfileIds
+        },
+        profiles {
+            id
+            mobileNumber
+            username
+            name
+            profilePicId
+        },
+        hails {
+            id
+            vibeId
+            author
+            comment
+            createdAt
+        }
+    }
 }

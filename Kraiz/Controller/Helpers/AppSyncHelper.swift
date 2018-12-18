@@ -182,13 +182,29 @@ class AppSyncHelper {
                                         vibeDataForCache.setReach(vibe["reach"] as! Int)
                                         vibeDataForCache.setVibeId(vibe["vibeId"] as? String)
                                         vibeDataForCache.setVersion(vibe["version"] as? String)
-                                        vibeDataForCache.setIsSender(!(vibe["isSender"] as! Bool))
+                                        vibeDataForCache.setIsSender(vibe["isSender"] as! Bool)
                                         vibeDataForCache.setVibeName(vibe["vibeName"] as? String)
                                         vibeDataForCache.setProfileId(vibe["profileId"] as? String)
                                         vibeDataForCache.setIsAnonymous(vibe["isAnonymous"] as! Bool)
                                         vibeDataForCache.setUpdatedTime(vibe["updatedTime"] as! Int)
-                                        vibeDataForCache.setGsiPK(vibe["gsiPk"] as? String)
+                                        vibeDataForCache.setVibeTypeGsiPK(vibe["vibeTypeGsiPk"] as? String)
+                                        vibeDataForCache.setVibeTypeTagGsiPK(vibe["vibeTypeTagGsiPk"] as? String)
                                         CacheHelper.shared.writeVibeToCache(vibeDataForCache)
+                                    }
+                                }
+                            }
+                            if let hailsOuter = userVibesOuter["hails"] {
+                                print("hails: \(hailsOuter)")
+                                let hails = hailsOuter as! [Any]
+                                for i in 0 ..< hails.count {
+                                    if let hail = hails[i] as? [String : Any] {
+                                        let hailForCache = HailsEntity()
+                                        hailForCache.setId(id: hail["id"] as! String)
+                                        hailForCache.setAuthor(author: hail["author"] as! String)
+                                        hailForCache.setVibeId(vibeId: hail["vibeId"] as! String)
+                                        hailForCache.setComment(comment: hail["comment"] as! String)
+                                        hailForCache.setCreatedAt(createdAt: hail["createdAt"] as! Int)
+                                        CacheHelper.shared.writeHailToCache(hailForCache)
                                     }
                                 }
                             }
@@ -216,6 +232,75 @@ class AppSyncHelper {
                 }
             })
         }
+    }
+
+    /// Gets the User Vibes based on the Vibe Tag and Vibe Type.
+    /// Gets only the requested number of Vibes with the after token not null.
+    /// If the after token is null, then there are no more Vibes to be fetched.
+    /// - Parameters:
+    ///     - vibeTag: Vibe Category.
+    ///     - vibeType: Public or Private.
+    ///     - first: Number of vibes to be fetched in each of the passes.
+    ///     - after: The next token for fetching the next set of vibes. If it is null, then don't fetch.
+    func getUserVibesPaginated(requestedVibeTag: VibeTag, requestedVibeType: VibeType, first: Int, after: String?) {
+        print("==========> inside getUserVibesPaginated")
+        let query = GetPaginatedUserVibesQuery(vibeTag: requestedVibeTag, vibeType: requestedVibeType, first: first, after: after != nil ? after! : nil)
+        let cachePolicy = CachePolicy.fetchIgnoringCacheData
+        if appSyncClient == nil {
+            setAppSyncClient()
+        }
+        appSyncClient?.fetch(query: query, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: DispatchQoS.userInteractive.qosClass), resultHandler: { [weak self] (result, error) in
+            if error != nil {
+                print("error in the query: \(error)")
+                return
+            }
+            if let data = result?.data {
+                print("data for VibeTag: \(requestedVibeTag)")
+                print("data: \(data)")
+                if let userVibesOuter = data.snapshot["getUserVibes"] as? [String : Any] {
+                    let nextToken = userVibesOuter["nextToken"] as? String
+                    if let hailsOuter = userVibesOuter["hails"] {
+                        print("hails: \(hailsOuter)")
+                        let hails = hailsOuter as! [Any]
+                        for i in 0 ..< hails.count {
+                            if let hail = hails[i] as? [String : Any] {
+                                let hailForCache = HailsEntity()
+                                hailForCache.setId(id: hail["id"] as! String)
+                                hailForCache.setAuthor(author: hail["author"] as! String)
+                                hailForCache.setVibeId(vibeId: hail["vibeId"] as! String)
+                                hailForCache.setComment(comment: hail["comment"] as! String)
+                                hailForCache.setCreatedAt(createdAt: hail["createdAt"] as! Int)
+                                CacheHelper.shared.writeHailToCache(hailForCache)
+                            }
+                        }
+                    }
+                    if let vibesOuter = userVibesOuter["userVibes"] {
+                        let allVibes = vibesOuter as! [Any?]
+                        for i in 0 ..< allVibes.count {
+                            if let vibe = allVibes[i] as? [String : Any] {
+                                let vibeDataForCache = VibeDataEntity()
+                                vibeDataForCache.setIsSeen(vibe["seen"] as! Bool)
+                                vibeDataForCache.setReach(vibe["reach"] as! Int)
+                                vibeDataForCache.setVibeId(vibe["vibeId"] as? String)
+                                vibeDataForCache.setVersion(vibe["version"] as? String)
+                                vibeDataForCache.setIsSender(vibe["isSender"] as! Bool)
+                                vibeDataForCache.setVibeName(vibe["vibeName"] as? String)
+                                vibeDataForCache.setProfileId(vibe["profileId"] as? String)
+                                vibeDataForCache.setIsAnonymous(vibe["isAnonymous"] as! Bool)
+                                vibeDataForCache.setUpdatedTime(vibe["updatedTime"] as! Int)
+                                vibeDataForCache.setVibeTypeGsiPK(vibe["vibeTypeGsiPk"] as? String)
+                                vibeDataForCache.setVibeTypeTagGsiPK(vibe["vibeTypeTagGsiPk"] as? String)
+                                CacheHelper.shared.writeVibeToCache(vibeDataForCache)
+                            }
+                        }
+                    }
+                    print("=======> nextToken: \(nextToken)")
+                    if nextToken != nil {
+                        self?.getUserVibesPaginated(requestedVibeTag: requestedVibeTag, requestedVibeType: requestedVibeType, first: first, after: nextToken!)
+                    }
+                }
+            }
+        })
     }
 
     /// Deletes the profiles and vibe updates from the User Channel.

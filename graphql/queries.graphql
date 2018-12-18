@@ -42,7 +42,8 @@ query GetUserChannel {
       userVibes {
         userId
         vibeId
-        gsiPk
+        vibeTypeTagGsiPk
+        vibeTypeGsiPk
         version
         updatedTime
         vibeName
@@ -85,7 +86,7 @@ query GetUserChannel {
   }
 }
 query GetUserVibes(
-  $vibeTag: VibeTag!
+  $vibeTag: VibeTag
   $vibeType: VibeType!
   $first: Int
   $after: String
@@ -100,7 +101,8 @@ query GetUserVibes(
     userVibes {
       userId
       vibeId
-      gsiPk
+      vibeTypeTagGsiPk
+      vibeTypeGsiPk
       version
       updatedTime
       vibeName

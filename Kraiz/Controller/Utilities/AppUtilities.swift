@@ -235,6 +235,22 @@ public class APPUtilites {
         }
     }
 
+    /// Gets the Vibe Index to query in the Cache.
+    /// - Parameters:
+    ///     - indexType: Index is vibeTypeGsiPK or vibeTypeTagGsiPK.
+    ///     - vibeType: Vibe is PUBLIC or PRIVATE.
+    ///     - vibeTag: Position of the Vibe Tag. Can be nil if indexType is vibeTypeGsiPK.
+    public static func getVibeIndex(indexType: String, vibeType: String, vibeTag: Int?) -> String {
+        let userId = UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!
+        switch indexType {
+        case "vibeType":
+            return "\(userId)_\(vibeType)"
+        case "vibeTypeTag":
+            return "\(userId)_\(VibeCategories.TAG_INDEX[vibeTag!])_\(vibeType)"
+        default: return ""
+        }
+    }
+
     public static func getAccessHashForBidirectional(key1: String, key2: String) -> String {
         return key1 < key2 ? (key1 + "#" + key2).sha1 : (key2 + "#" + key1).sha1
     }

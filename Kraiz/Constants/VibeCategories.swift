@@ -16,8 +16,8 @@ public class VibeCategories {
     static public let vibeColors : [UIColor] = [UIColor(displayP3Red: 187/255, green: 10/255, blue: 30/255, alpha: 1.0), UIColor(displayP3Red: 0/255, green: 114/255, blue: 54/255, alpha: 1.0), UIColor(displayP3Red: 68/255, green: 140/255, blue: 203/255, alpha: 1.0), UIColor(displayP3Red: 78/255, green: 46/255, blue: 40/255, alpha: 1.0), UIColor(displayP3Red: 240/255, green: 126/255, blue: 7/255, alpha: 1.0), UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0)]
     static public let UNHIGHLIGHTED_VIBE_COLOR = UIColor(displayP3Red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
     
-    static public let PRIVATE_CATEGORIES_INDEX = ["LOVE_PRIVATE", "TRAVEL_PRIVATE", "GOOD_PRIVATE", "PARTY_PRIVATE", "NOSTALGIC_PRIVATE", "OCCASION_PRIVATE"]
-    static public let PUBLIC_CATEGORIES_INDEX = ["LOVE_PUBLIC", "TRAVEL_PUBLIC", "GOOD_PUBLIC", "PARTY_PUBLIC", "NOSTALGIC_PUBLIC", "OCCASION_PUBLIC"]
+    static public let TAG_INDEX = ["LOVE", "TRAVEL", "GOOD", "PARTY", "NOSTALGIC", "OCCASION"]
+    static public let TYPE_INDEX = ["PRIVATE", "PUBLIC"]
     
     public static func getVibeTag(index: Int) -> VibeTag {
         switch index {

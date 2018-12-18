@@ -81,6 +81,7 @@ class LetterInputViewController: UIViewController {
             alertController.addAction(ok)
             self.present(alertController, animated: true, completion: nil)
         } else {
+            dismissKeyboard()
             delegate?.letterInput(backgroundImage: backgroundSelected, text: letterText.text)
             self.dismiss(animated: true, completion: nil)
         }
@@ -89,8 +90,9 @@ class LetterInputViewController: UIViewController {
     @IBAction func closePressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "Exit Leter", message: "Your Changes will not be saved", preferredStyle: UIAlertController.Style.alert)
         
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-            self.dismiss(animated: true, completion: nil)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { [weak self] (action) in
+            self?.dismissKeyboard()
+            self?.dismiss(animated: true, completion: nil)
         }
         let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
         alert.addAction(yesAction)

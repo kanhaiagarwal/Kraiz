@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class HailsViewController: UIViewController {
 
@@ -20,19 +21,32 @@ class HailsViewController: UIViewController {
     let HAILS_VIEW_MAX_HEIGHT_PROPORTION = 0.8
     let MAX_HAILS_IN_SINGLE_VIEW = 8
     let NUMBER_OF_HAILS = 3
+    
+    var hails : Results<HailsEntity>?
+    var vibeId : String?
+    var notification = NotificationToken()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("========> vibeId: \(vibeId!)")
         hailsView.isUserInteractionEnabled = true
         let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(dismissVC))
         hailsView.addGestureRecognizer(swipeGesture)
+        if let hailResult = CacheHelper.shared.getHailsOfVibe(vibeId: vibeId!) {
+            print("hailResult.count: \(hailResult.count)")
+            hails = hailResult
+            notification = hailResult.observe { [weak self] (changes) in
+                print("change happened")
+                self!.hailsTable.reloadData()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if NUMBER_OF_HAILS <= MAX_HAILS_IN_SINGLE_VIEW / 2 {
+        if (hails == nil) || ((hails!.count) <= MAX_HAILS_IN_SINGLE_VIEW / 2) {
             hailsHeightConstraint = hailsHeightConstraint.setMultiplier(multiplier: 0.5)
         } else {
             hailsHeightConstraint = hailsHeightConstraint.setMultiplier(multiplier: 1.0)
@@ -53,11 +67,16 @@ class HailsViewController: UIViewController {
 
 extension HailsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NUMBER_OF_HAILS
+        return hails != nil ? hails!.count : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("HailsTableViewCell", owner: self, options: nil)?.first as! HailsTableViewCell
+        print("inside cellForRowAt")
+        let profile = CacheHelper.shared.getProfileById(id: hails![indexPath.row].getAuthor())
+        cell.senderName.text = profile?.getUsername()!
+        cell.hailText.text = hails![indexPath.row].getComment()
+        cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: hails![indexPath.row].getCreatedAt())
         return cell
     }
     

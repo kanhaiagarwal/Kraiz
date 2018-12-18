@@ -18,6 +18,7 @@
 		579854C121C65A1B00406BF8 /* VibeDataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854C021C65A1B00406BF8 /* VibeDataEntity.swift */; };
 		579854C321C6673900406BF8 /* CacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854C221C6673900406BF8 /* CacheHelper.swift */; };
 		579854C521C6704A00406BF8 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854C421C6704A00406BF8 /* ProfileEntity.swift */; };
+		579854CB21C8B6FE00406BF8 /* HailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CA21C8B6FE00406BF8 /* HailsEntity.swift */; };
 		57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */; };
 		57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */; };
 		57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2B21A705B500FA45E9 /* Entity.swift */; };
@@ -136,6 +137,7 @@
 		579854C021C65A1B00406BF8 /* VibeDataEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeDataEntity.swift; sourceTree = "<group>"; };
 		579854C221C6673900406BF8 /* CacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHelper.swift; sourceTree = "<group>"; };
 		579854C421C6704A00406BF8 /* ProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
+		579854CA21C8B6FE00406BF8 /* HailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsEntity.swift; sourceTree = "<group>"; };
 		57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionModel.swift; sourceTree = "<group>"; };
 		57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		57B24F2B21A705B500FA45E9 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			children = (
 				579854C021C65A1B00406BF8 /* VibeDataEntity.swift */,
 				579854C421C6704A00406BF8 /* ProfileEntity.swift */,
+				579854CA21C8B6FE00406BF8 /* HailsEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				B51DF252211F17DA009896CC /* DraftsTableViewCell.swift in Sources */,
 				B51DF227211F13B9009896CC /* LetterInputViewController.swift in Sources */,
 				B51DF22F211F13B9009896CC /* AudioRecorderViewController.swift in Sources */,
+				579854CB21C8B6FE00406BF8 /* HailsEntity.swift in Sources */,
 				B51DF24A211F16AA009896CC /* DeviceConstants.swift in Sources */,
 				B51DF232211F13B9009896CC /* ForgotPasswordViewController.swift in Sources */,
 				57BD53ED2199CD38001B1010 /* VibesCategoryTableViewCell.swift in Sources */,

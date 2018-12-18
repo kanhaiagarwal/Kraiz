@@ -14,7 +14,8 @@ class VibeDataEntity: Object {
     @objc dynamic private var id: String?
     @objc dynamic private var version: String?
     @objc dynamic private var updatedTime: Int = 0
-    @objc dynamic private var gsiPK: String?
+    @objc dynamic private var vibeTypeGsiPK: String?
+    @objc dynamic private var vibeTypeTagGsiPK: String?
     @objc dynamic private var vibeName: String?
     @objc dynamic private var isSender: Bool = false
     @objc dynamic private var isAnonymous: Bool = false
@@ -60,8 +61,12 @@ class VibeDataEntity: Object {
         return profileId
     }
 
-    public func getGsiPK() -> String? {
-        return gsiPK
+    public func getVibeTypeGsiPK() -> String? {
+        return vibeTypeGsiPK
+    }
+
+    public func getVibeTypeTagGsiPK() -> String? {
+        return vibeTypeTagGsiPK
     }
     
     /// MARK: - Getters End.
@@ -104,8 +109,12 @@ class VibeDataEntity: Object {
         self.profileId = profileId
     }
 
-    public func setGsiPK(_ gsiPK: String?) {
-        self.gsiPK = gsiPK
+    public func setVibeTypeGsiPK(_ gsiPK: String?) {
+        self.vibeTypeGsiPK = gsiPK
+    }
+
+    public func setVibeTypeTagGsiPK(_ gsiPK: String?) {
+        self.vibeTypeTagGsiPK = gsiPK
     }
 
     // MARK: - Setters End.
@@ -122,6 +131,6 @@ class VibeDataEntity: Object {
     }
     
     override static func indexedProperties() -> [String] {
-        return ["gsiPK"]
+        return ["vibeTypeGsiPK", "vibeTypeTagGsiPK"]
     }
 }

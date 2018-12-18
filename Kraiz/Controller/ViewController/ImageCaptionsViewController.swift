@@ -91,12 +91,14 @@ class ImageCaptionsViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func backPressed(_ sender: UIButton) {
 //        self.navigationController?.popViewController(animated: true)
+        dismissKeyboard()
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func savePressed(_ sender: UIButton) {
         delegate?.setImageCaptions(photosSelected: photosSelected)
 //        self.navigationController?.popViewController(animated: true)
+        dismissKeyboard()
         self.dismiss(animated: true, completion: nil)
     }
 

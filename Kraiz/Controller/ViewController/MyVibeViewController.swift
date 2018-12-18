@@ -376,7 +376,8 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         vibeModel.setAnonymous(isSenderAnonymous: false)
         
         stopAudio()
-        
+
+        dismissKeyboard()
         if isSourceCreateVibe {
             delegate?.setVibeDetails(vibeModel: vibeModel)
             self.dismiss(animated: true, completion: nil)
@@ -399,6 +400,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     }
 
     @IBAction func backPressed(_ sender: UIButton) {
+        dismissKeyboard()
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -14,6 +14,9 @@ public class CacheHelper {
 
     private init(){}
 
+    /// Writes the profile to cache.
+    /// - Parameters:
+    ///     - object: Profile Object
     func writeProfileToCache(_ object: ProfileEntity) {
         do {
             let realm = try Realm()
@@ -30,6 +33,9 @@ public class CacheHelper {
         }
     }
 
+    /// Writes the Vibe to Cache.
+    /// - Parameters:
+    ///     - object: VibeData object
     func writeVibeToCache(_ object: VibeDataEntity) {
         do {
             let realm = try Realm()
@@ -46,11 +52,47 @@ public class CacheHelper {
         }
     }
 
-    func getVibesByIndex(index: String) -> Results<VibeDataEntity>? {
+    /// Writes Hail to Cache.
+    /// - Parameters:
+    ///     - object: Hail object.
+    func writeHailToCache(_ object: HailsEntity) {
+        do {
+            let realm = try Realm()
+            let result = realm.object(ofType: HailsEntity.self, forPrimaryKey: object.getId())
+            try realm.write {
+                if result == nil {
+                    realm.add(object)
+                } else {
+                    realm.add(object, update: true)
+                }
+            }
+        } catch {
+            print("Could not write hail to the cache: \(error)")
+        }
+    }
+
+    /// Gets all the hails corresponding to the Vibe.
+    /// - Parameters:
+    ///     - vibeId: Vibe ID for which the Hails are to be fetched.
+    func getHailsOfVibe(vibeId: String) -> Results<HailsEntity>? {
+        do {
+            let realm = try Realm()
+            return realm.objects(HailsEntity.self).filter("vibeId == '\(vibeId)'").sorted(byKeyPath: "createdAt", ascending: false)
+        } catch {
+            print("error in fetching the hails for the vibe: \(error)")
+        }
+        return nil
+    }
+
+    /// Get all the Vibes of a particular index.
+    /// - Parameters:
+    ///     - index: Vibe Index.
+    ///     - value: Index Value
+    func getVibesByIndex(index: String, value: String) -> Results<VibeDataEntity>? {
         do {
             let realm = try Realm()
             print(Realm.Configuration.defaultConfiguration.fileURL ?? "No File Url")
-            let results = realm.objects(VibeDataEntity.self).filter("gsiPK == '\(index)'").sorted(byKeyPath: "updatedTime", ascending: false)
+            let results = realm.objects(VibeDataEntity.self).filter("\(index) == '\(value)'").sorted(byKeyPath: "updatedTime", ascending: false)
             return results
         } catch {
             print("error in realm: \(error)")
@@ -58,6 +100,9 @@ public class CacheHelper {
         return nil
     }
 
+    /// Gets the profile by Id.
+    /// - Parameters:
+    ///     - id: Profile ID.
     func getProfileById(id: String) -> ProfileEntity? {
         do {
             let realm = try Realm()
