@@ -11,6 +11,7 @@ import UIKit
 class FriendsVibesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var unseenDot: UIView!
     @IBOutlet weak var vibeName: UILabel!
     @IBOutlet weak var senderName: UILabel!
     @IBOutlet weak var timestamp: UILabel!
@@ -30,6 +31,9 @@ class FriendsVibesTableViewCell: UITableViewCell {
 
         profileImage.layer.cornerRadius = profileImage.frame.height / 2
         profileImage.clipsToBounds = true
+
+        unseenDot.layer.cornerRadius = unseenDot.frame.height / 2
+        unseenDot.clipsToBounds = true
     }
     
     override func layoutSubviews() {

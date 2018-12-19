@@ -13,6 +13,7 @@ class VibeCategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryName: UILabel!
     @IBOutlet weak var notificationLabel: UILabel!
+    @IBOutlet weak var notificationLabelBackgroundView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +27,8 @@ class VibeCategoryCollectionViewCell: UICollectionViewCell {
         categoryImage.clipsToBounds = true
         notificationLabel.layer.cornerRadius = notificationLabel.frame.height / 2
         notificationLabel.clipsToBounds = true
+        notificationLabelBackgroundView.layer.cornerRadius = notificationLabelBackgroundView.frame.height / 2
+        notificationLabelBackgroundView.clipsToBounds = true
     }
     
     override var isSelected: Bool {

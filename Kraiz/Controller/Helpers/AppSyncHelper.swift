@@ -167,13 +167,12 @@ class AppSyncHelper {
                 } else if let data = result?.data {
                     if let userChannel = data.snapshot["getUserChannel"] as? [String: Any] {
                         var liveBucketVibeIds = [GraphQLID]()
-                        var liveBucketProfileIds = [GraphQLID]()
+                        let liveBucketProfileIds = [GraphQLID]()
                         var nonVibeProfiles = userChannel["profiles"]
                         var lastPublicVibeFetchTime = userChannel["lastPublicVibeFetchTime"]
                         if let userVibesOuter = userChannel["userVibes"] as? [String: Any] {
                             if let vibesInner = userVibesOuter["userVibes"] {
                                 let allVibes = vibesInner as! [Any?]
-                                print("allVibes.count: \(allVibes.count)")
                                 for i in 0 ..< allVibes.count {
                                     if let vibe = allVibes[i] as? [String : Any] {
                                         liveBucketVibeIds.append((vibe["vibeId"] as? String)!)
@@ -310,6 +309,26 @@ class AppSyncHelper {
     func deleteUserChannelUpdates(liveBucketVibeIds: [GraphQLID], liveBucketProfileIds: [GraphQLID]) {
         let query = DeleteUserChannelUpdatesMutation(liveVibeBucketIds: liveBucketVibeIds.count > 0 ? liveBucketVibeIds : nil, liveProfileBucketIds: liveBucketProfileIds.count > 0 ? liveBucketProfileIds : nil)
         appSyncClient?.perform(mutation: query)
+    }
+
+    /// Updates the Seen Status of the Vibe
+    /// - Parameters:
+    ///     - vibeId: Vibe ID.
+    ///     - seenStatus: Seen Status.
+    func updateSeenStatusOfVibe(vibeId: String, seenStatus: Bool) {
+        var userInputList = [FsmComponentInput]()
+        userInputList.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: nil, id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, author: nil))
+        let userComponent = FsmComponent(exists: true, list: userInputList)
+        var vibesInputList = [FsmComponentInput]()
+        vibesInputList.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: nil, id: vibeId, author: nil))
+        let vibesComponent = FsmComponent(exists: true, list: vibesInputList)
+        let fsmInput = FsmInput(action: .updateStatus, users: userComponent, vibes: vibesComponent, hails: nil)
+        let updateStatusMutation = TriggerFsmMutation(input: fsmInput, userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
+
+        if appSyncClient == nil {
+            setAppSyncClient()
+        }
+        appSyncClient?.perform(mutation: updateStatusMutation)
     }
 
     /// Create Vibe with the Vibe Model Data.

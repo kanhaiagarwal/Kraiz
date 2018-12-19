@@ -99,6 +99,52 @@ public class CacheHelper {
         }
         return nil
     }
+    
+    /// Returns all the unseen vibes of a particular index.
+    /// - Parameters:
+    ///     - index: Vibe Index.
+    ///     - value: Index Value.
+    func getUnseenVibesByIndex(index: String, value: String) -> Results<VibeDataEntity>? {
+        do {
+            let realm = try Realm()
+            let results = realm.objects(VibeDataEntity.self).filter("\(index) == '\(value)' AND isSeen == false AND isSender == false   ")
+            return results
+        } catch {
+            print("error in realm: \(error)")
+        }
+        return nil
+    }
+
+    /// Returns the Seen status of the Vibe.
+    /// - Parameters:
+    ///     -vibe: Vibe Entity.
+    /// - Returns: Seen Status of the Vibe.
+    func getSeenStatusOfVibe(vibe: VibeDataEntity) -> Bool {
+        do {
+            let realm = try Realm()
+            let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: vibe)
+            return result?.getIsSeen() ?? false
+        } catch {
+            print("error in realm: \(error)")
+        }
+        return false
+    }
+
+    /// Updates the seen status of the vibe in the local cache.
+    /// - Parameters:
+    ///     - vibeId: Vibe ID whose status is changed.
+    ///     - seenStatus - Seen Status.
+    func updateVibeSeenStatus(vibeId: String, seenStatus: Bool) {
+        do {
+            let realm = try Realm()
+            let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: vibeId)
+            realm.beginWrite()
+            result?.setIsSeen(seenStatus)
+            try! realm.commitWrite()
+        } catch {
+            print("error in realm: \(error)")
+        }
+    }
 
     /// Gets the profile by Id.
     /// - Parameters:
