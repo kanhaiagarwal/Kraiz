@@ -16,18 +16,40 @@ public class CacheHelper {
 
     /// Writes the profile to cache.
     /// - Parameters:
-    ///     - object: Profile Object
+    ///     - object: Profile Object.
     func writeProfileToCache(_ object: ProfileEntity) {
+        print("inside writeProfileToCache with id: \(object.getId()!)")
         do {
             let realm = try Realm()
             let result = realm.object(ofType: ProfileEntity.self, forPrimaryKey: object.getId()!)
-            try realm.write {
-                if result == nil {
-                    realm.add(object)
-                } else {
-                    realm.add(object, update: true)
-                }
-            }
+            realm.beginWrite()
+            realm.add(object, update: true)
+//                if result == nil {
+//                    realm.add(object)
+//                } else {
+//                    if result!.getId() != object.getId() {
+//                        result!.setId(object.getId()!)
+//                    }
+//                    if result!.getDob() != object.getDob() {
+//                        result!.setDob(object.getDob())
+//                    }
+//                    if result!.getName() != object.getName() {
+//                        result!.setName(object.getName())
+//                    }
+//                    if result!.getGender() != object.getGender() {
+//                        result!.setGender(object.getGender())
+//                    }
+//                    if result!.getUsername() != object.getUsername() {
+//                        result!.setUsername(object.getUsername())
+//                    }
+//                    if result!.getMobileNumber() != object.getMobileNumber() {
+//                        result!.setMobileNumber(object.getMobileNumber())
+//                    }
+//                    if result!.getProfilePicId() != object.getProfilePicId() {
+//                        result!.setProfilePicId(object.getProfilePicId())
+//                    }
+//                }
+            try realm.commitWrite()
         } catch {
             print("Could not write profile to the cache: \(error)")
         }
@@ -36,17 +58,69 @@ public class CacheHelper {
     /// Writes the Vibe to Cache.
     /// - Parameters:
     ///     - object: VibeData object
-    func writeVibeToCache(_ object: VibeDataEntity) {
+    ///     - checkVersion: True only if object needs to be added or updated if the cache version is less than the object version.
+    func writeVibeToCache(_ object: VibeDataEntity, checkVersion: Bool) {
+        print("inside writeVibeToCache for vibeId: \(object.getId()!)")
         do {
             let realm = try Realm()
             let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: object.getId()!)
-            try realm.write {
-                if result == nil {
-                    realm.add(object)
-                } else {
-                    realm.add(object, update: true)
-                }
+            if result == nil || (result!.getVersion() < object.getVersion()) {
+                realm.beginWrite()
+                realm.add(object, update: true)
+                try realm.commitWrite()
             }
+//            if result != nil {
+//                let cacheVersion = result!.getVersion()
+//                if !checkVersion || (object.getVersion() > cacheVersion) {
+//                    realm.beginWrite()
+//                    if result!.getId() != object.getId() {
+//                        result?.setVibeId(object.getId())
+//                    }
+//                    if result!.getHasNewHails() != object.getHasNewHails() {
+//                        result?.setHasNewHails(hasNewHails: object.getHasNewHails())
+//                    }
+//                    if result!.getReach() != object.getReach() {
+//                        result?.setReach(object.getReach())
+//                    }
+//                    if result!.getIsSeen() != object.getIsSeen() {
+//                        result?.setIsSeen(object.getIsSeen())
+//                    }
+//                    result!.setVersion(object.getVersion())
+//                    if result!.getIsSender() != object.getIsSender() {
+//                        result!.setIsSender(object.getIsSender())
+//                    }
+//                    if result!.getVibeName() != object.getVibeName() {
+//                        result?.setVibeName(object.getVibeName())
+//                    }
+//                    if result?.getCreatedAt() != object.getCreatedAt() {
+//                        result?.setCreatedAt(object.getCreatedAt())
+//                    }
+//                    if result?.getProfileId() != object.getProfileId() {
+//                        result?.setProfileId(object.getProfileId())
+//                    }
+//                    if result?.getIsAnonymous() != object.getIsAnonymous() {
+//                        result?.setIsAnonymous(object.getIsAnonymous())
+//                    }
+//                    if result?.getUpdatedTime() != object.getUpdatedTime() {
+//                        result?.setUpdatedTime(object.getUpdatedTime())
+//                    }
+//                    if result?.getVibeTypeGsiPK() != object.getVibeTypeGsiPK() {
+//                        result?.setVibeTypeGsiPK(object.getVibeTypeGsiPK())
+//                    }
+//                    if result?.getVibeTypeTagGsiPK() != object.getVibeTypeTagGsiPK() {
+//                        result?.setVibeTypeTagGsiPK(object.getVibeTypeTagGsiPK())
+//                    }
+//                    try realm.commitWrite()
+//                }
+//            } else {
+//                realm.beginWrite()
+//                if result == nil {
+//                    realm.add(object)
+//                } else {
+//                    realm.add(object, update: true)
+//                }
+//                try realm.commitWrite()
+//            }
         } catch {
             print("Could not write vibe to the cache: \(error)")
         }
@@ -58,14 +132,32 @@ public class CacheHelper {
     func writeHailToCache(_ object: HailsEntity) {
         do {
             let realm = try Realm()
-            let result = realm.object(ofType: HailsEntity.self, forPrimaryKey: object.getId())
-            try realm.write {
-                if result == nil {
-                    realm.add(object)
-                } else {
-                    realm.add(object, update: true)
-                }
-            }
+            realm.beginWrite()
+            realm.add(object, update: true)
+            try realm.commitWrite()
+//            if let result = realm.object(ofType: HailsEntity.self, forPrimaryKey: object.getId()) {
+//                try realm.write {
+//                    if result.getCreatedAt() != object.getCreatedAt() {
+//                        result.setCreatedAt(createdAt: object.getCreatedAt())
+//                    }
+//                    if result.getId() != object.getId() {
+//                        result.setId(id: object.getId())
+//                    }
+//                    if result.getAuthor() != object.getAuthor() {
+//                        result.setAuthor(author: object.getAuthor())
+//                    }
+//                    if result.getVibeId() != object.getVibeId() {
+//                        result.setVibeId(vibeId: object.getVibeId())
+//                    }
+//                    if result.getComment() != object.getComment() {
+//                        result.setComment(comment: object.getComment())
+//                    }
+//                }
+//            } else {
+//                try realm.write {
+//                    realm.add(object)
+//                }
+//            }
         } catch {
             print("Could not write hail to the cache: \(error)")
         }
@@ -214,6 +306,43 @@ public class CacheHelper {
         } catch {
             print("error in realm: \(error)")
         }
+    }
+
+    /// Sets the hasNewHails for the Vibe.
+    /// - Parameters:
+    ///     - hasNewHails: true if the vibe has new hails. Else false.
+    func setHasNewHailsInVibe(hasNewHails: Bool, vibeId: String) {
+        do {
+            let realm = try Realm()
+            if let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: vibeId) {
+                realm.beginWrite()
+                result.setHasNewHails(hasNewHails: hasNewHails)
+                try realm.commitWrite()
+            }
+        } catch {
+            print("error in realm: \(error)")
+        }
+    }
+    
+    /// Gets the Hails Count of the Vibe.
+    /// - Parameters:
+    ///     - vibeId: Vibe ID.
+    func getHailsCountForVibe(vibeId: String) -> Int {
+        print("vibeId inside getHailsCountForVibe: \(vibeId)")
+        do {
+            let realm = try Realm()
+            let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: vibeId)
+            if result != nil {
+                let hails = result!.getAllHails()
+                print("hails inside getHailsCountForVibe for vibeId \(vibeId): \(hails)")
+                return hails.count
+            } else {
+                return 0
+            }
+        } catch {
+            print("error in realm: \(error)")
+        }
+        return 0
     }
 
     /// Clears all the data from the default Realm Cache.

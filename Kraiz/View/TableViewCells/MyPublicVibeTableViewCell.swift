@@ -15,8 +15,9 @@ class MyPublicVibeTableViewCell: UITableViewCell {
     @IBOutlet weak var vibeName: UILabel!
     @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var hailButton: UIButton!
-    @IBOutlet weak var hailsCount: UILabel!
-
+    @IBOutlet weak var reachCount: UILabel!
+    @IBOutlet weak var unseenHailsDot: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -32,6 +33,8 @@ class MyPublicVibeTableViewCell: UITableViewCell {
         super.layoutIfNeeded()
 
         vibeCategoryImage.layer.cornerRadius = vibeCategoryImage.frame.height / 2
+        unseenHailsDot.layer.cornerRadius = unseenHailsDot.frame.height / 2
+        unseenHailsDot.clipsToBounds = true
     }
     
 }

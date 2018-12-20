@@ -32,7 +32,7 @@ class FriendsVibesViewController: UIViewController {
 
             if let results = CacheHelper.shared.getVibesByIndex(index: "vibeTypeTagGsiPK", value: privateVibeIndex) {
                 if results.count == 0 {
-                    AppSyncHelper.shared.getUserVibesPaginated(requestedVibeTag: VibeCategories.getVibeTag(index: i), requestedVibeType: VibeType.private, first: NUMBER_OF_VIBES_IN_ONE_PAGE, after: nil)
+                    AppSyncHelper.shared.getUserVibesPaginated(requestedVibeTag: VibeCategories.getVibeTag(index: i), requestedVibeType: VibeType.private, first: NUMBER_OF_VIBES_IN_ONE_PAGE, after: nil, completionHandler: nil)
                 }
                 privateVibes["\(VibeCategories.TAG_INDEX[i])_\(VibeCategories.TYPE_INDEX[1])"] = results
 
@@ -89,7 +89,9 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
             cell.senderName.text = profile.getUsername()!
             if profile.getProfilePicId() != "NONE" {
                 MediaHelper.shared.downloadProfileImage(publicId: profile.getProfilePicId()!, success: { (image) in
-                    cell.profileImage.image = image
+                    DispatchQueue.main.async {
+                        cell.profileImage.image = image
+                    }
                 }) { [weak self] (error) in
                     DispatchQueue.main.async {
                         cell.profileImage.image = UIImage(named: self!.DEFAULT_PROFILE_PIC)
@@ -102,14 +104,23 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
 
         cell.vibeName.text = vibe.getVibeName()!
         cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: vibe.getUpdatedTime())
+        cell.vibeSeenImage.isHidden = true
         if vibe.getIsSender() {
             cell.unseenVibeDot.isHidden = true
-            if vibe.getIsSeen() {
-                cell.vibeStatus.text = "Opened"
+            if vibe.getHasNewHails() {
+                cell.unseenHailDot.isHidden = false
             } else {
-                cell.vibeStatus.text = "Sent"
+                cell.unseenHailDot.isHidden = true
+            }
+            if vibe.getIsSeen() {
+                cell.vibeStatus.isHidden = true
+                cell.vibeSeenImage.isHidden = false
+            } else {
+                cell.vibeStatus.isHidden = false
+                cell.vibeSeenImage.isHidden = true
             }
         } else {
+            cell.unseenHailDot.isHidden = true
             cell.vibeStatus.isHidden = true
             if !vibe.getIsSeen() {
                 cell.unseenVibeDot.isHidden = false
@@ -153,6 +164,7 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         let tag = sender.view?.tag
         let cell = vibesTable.cellForRow(at: IndexPath(row: tag!, section: 0)) as? FriendsVibesTableViewCell
         cell?.unseenHailDot.isHidden = true
+        CacheHelper.shared.setHasNewHailsInVibe(hasNewHails: false, vibeId: privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]![tag!].getId()!)
         let hailVC = storyboard.instantiateViewController(withIdentifier: "HailsViewController") as! HailsViewController
         hailVC.modalPresentationStyle = .overCurrentContext
         hailVC.vibeId = privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]![tag!].getId()!
@@ -183,7 +195,7 @@ extension FriendsVibesViewController: UICollectionViewDelegate, UICollectionView
         cell.categoryImage.image = UIImage(named: VibeCategories.categoryImages[indexPath.row])
         cell.categoryName.textColor = VibeCategories.vibeColors[indexPath.row]
         cell.categoryImage.layer.borderColor = VibeCategories.vibeColors[indexPath.row].cgColor
-        if unseenPrivateVibes["\(VibeCategories.TAG_INDEX[indexPath.row])_\(VibeCategories.TYPE_INDEX[1])"]?.count == 0 {
+        if unseenPrivateVibes["\(VibeCategories.TAG_INDEX[indexPath.row])_\(VibeCategories.TYPE_INDEX[1])"] == nil || unseenPrivateVibes["\(VibeCategories.TAG_INDEX[indexPath.row])_\(VibeCategories.TYPE_INDEX[1])"]!.count == 0 {
             cell.notificationLabelBackgroundView.isHidden = true
             cell.notificationLabel.isHidden = true
         } else {
@@ -218,6 +230,9 @@ extension FriendsVibesViewController: UICollectionViewDelegate, UICollectionView
         vibesTableBackgroundImageView.image = UIImage(named: VibeCategories.categoryBackground[indexPath.row])
         vibeCategoriesCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         vibesTable.reloadData()
+        if privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"] != nil && privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]!.count > 0 {
+            vibesTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

@@ -250,7 +250,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		579854BF21C659FC00406BF8 /* Entities */ = {
+		579854BF21C659FC00406BF8 /* CacheEntities */ = {
 			isa = PBXGroup;
 			children = (
 				579854C021C65A1B00406BF8 /* VibeDataEntity.swift */,
@@ -258,7 +258,7 @@
 				579854CA21C8B6FE00406BF8 /* HailsEntity.swift */,
 				579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */,
 			);
-			path = Entities;
+			path = CacheEntities;
 			sourceTree = "<group>";
 		};
 		57B24F3821AADD6900FA45E9 /* AudioFiles */ = {
@@ -349,7 +349,7 @@
 			children = (
 				57B24F3821AADD6900FA45E9 /* AudioFiles */,
 				B524CAC421453D8900316D84 /* GraphQLOperations */,
-				579854BF21C659FC00406BF8 /* Entities */,
+				579854BF21C659FC00406BF8 /* CacheEntities */,
 				B55346AC212B1FC9005353E4 /* Model */,
 				B51DF24C211F16E4009896CC /* Controller */,
 				B51DF24B211F16BC009896CC /* Constants */,

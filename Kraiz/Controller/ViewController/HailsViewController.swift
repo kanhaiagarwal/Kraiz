@@ -13,6 +13,7 @@ class HailsViewController: UIViewController {
 
     
     @IBOutlet weak var hailsView: CornerRadiusView!
+    @IBOutlet weak var hailsHeading: UILabel!
     @IBOutlet weak var hailsHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var hailsTable: UITableView!
     
@@ -22,7 +23,9 @@ class HailsViewController: UIViewController {
     let HAILS_VIEW_MAX_HEIGHT_PROPORTION = 0.8
     let MAX_HAILS_IN_SINGLE_VIEW = 8
     let NUMBER_OF_HAILS = 3
-    
+    let NO_HAILS_HEADING = "No Hails Yet."
+    let HAILS_HEADING = "Hails"
+
     var hails : Results<HailsEntity>?
     var vibeId : String?
     var notification = NotificationToken()
@@ -34,8 +37,18 @@ class HailsViewController: UIViewController {
         let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(dismissVC))
         hailsView.addGestureRecognizer(swipeGesture)
         if let hailResult = CacheHelper.shared.getHailsOfVibe(vibeId: vibeId!) {
+            if hailResult.count == 0 {
+                hailsHeading.text = NO_HAILS_HEADING
+            } else {
+                self.hailsHeading.text = self.HAILS_HEADING
+            }
             hails = hailResult
             notification = hailResult.observe { [weak self] (changes) in
+                if hailResult.count == 0 {
+                    self?.hailsHeading.text = self?.NO_HAILS_HEADING
+                } else {
+                    self?.hailsHeading.text = self?.HAILS_HEADING
+                }
                 self!.hailsTable.reloadData()
             }
         }
@@ -52,6 +65,12 @@ class HailsViewController: UIViewController {
 
         hailsTable.estimatedRowHeight = UITableView.automaticDimension
         hailsTable.rowHeight = UITableView.automaticDimension
+        
+        if hails == nil || hails!.count == 0 {
+            hailsHeading.text = NO_HAILS_HEADING
+        } else {
+            hailsHeading.text = HAILS_HEADING
+        }
     }
 
     override func viewDidLayoutSubviews() {

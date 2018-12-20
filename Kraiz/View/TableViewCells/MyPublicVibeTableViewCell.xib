@@ -33,7 +33,7 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Love" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bwe-nf-1mf">
                                         <rect key="frame" x="0.0" y="43.5" width="55.5" height="12"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -60,16 +60,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iUp-G5-2gf" customClass="CornerRadiusView" customModule="Kraiz" customModuleProvider="target">
                                 <rect key="frame" x="56.5" y="0.0" width="236.5" height="65.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends, Romans and Countrymen. Lend me your ears" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjO-5C-vva">
-                                        <rect key="frame" x="10" y="15" width="177.5" height="47"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends, Romans and Countrymen. Lend me your ears" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjO-5C-vva">
+                                        <rect key="frame" x="10" y="30" width="177.5" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22/12/2020" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJE-mc-LZj">
-                                        <rect key="frame" x="181" y="15" width="50.5" height="11"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="152" y="5" width="74.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hails-eye" translatesAutoresizingMaskIntoConstraints="NO" id="Suh-90-Kwj">
@@ -85,13 +85,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFH-X0-Ggs">
-                                        <rect key="frame" x="201.5" y="47.5" width="30" height="13"/>
-                                        <state key="normal" title="Hail">
+                                        <rect key="frame" x="192.5" y="47.5" width="34" height="13"/>
+                                        <state key="normal" title="Hails">
                                             <color key="titleColor" red="0.18039215689999999" green="0.25882352939999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILK-Sd-hxU">
-                                        <rect key="frame" x="223.5" y="39.5" width="8" height="8"/>
+                                        <rect key="frame" x="222.5" y="48.5" width="4" height="4"/>
                                         <color key="backgroundColor" red="0.8901960784313725" green="0.47450980392156861" blue="0.043137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ILK-Sd-hxU" secondAttribute="height" multiplier="1:1" id="YQW-gf-Kte"/>
@@ -102,18 +102,19 @@
                                 <constraints>
                                     <constraint firstItem="ILK-Sd-hxU" firstAttribute="trailing" secondItem="sFH-X0-Ggs" secondAttribute="trailing" id="1WT-mi-YWZ"/>
                                     <constraint firstItem="sFH-X0-Ggs" firstAttribute="top" secondItem="Suh-90-Kwj" secondAttribute="top" id="2I5-qO-woW"/>
-                                    <constraint firstItem="sFH-X0-Ggs" firstAttribute="top" secondItem="ILK-Sd-hxU" secondAttribute="bottom" id="406-i8-lfx"/>
+                                    <constraint firstItem="sFH-X0-Ggs" firstAttribute="top" secondItem="ILK-Sd-hxU" secondAttribute="bottom" constant="-5" id="406-i8-lfx"/>
+                                    <constraint firstItem="KjO-5C-vva" firstAttribute="top" secondItem="yJE-mc-LZj" secondAttribute="bottom" constant="8" id="56w-bC-BZN"/>
                                     <constraint firstItem="Suh-90-Kwj" firstAttribute="height" secondItem="iUp-G5-2gf" secondAttribute="height" multiplier="0.2" id="7VU-L2-Mcg"/>
                                     <constraint firstItem="Suh-90-Kwj" firstAttribute="leading" secondItem="KjO-5C-vva" secondAttribute="leading" id="EhE-ip-NcV"/>
-                                    <constraint firstItem="yJE-mc-LZj" firstAttribute="top" secondItem="KjO-5C-vva" secondAttribute="top" id="FgX-o1-8Yc"/>
                                     <constraint firstItem="Gco-gj-n5u" firstAttribute="top" secondItem="Suh-90-Kwj" secondAttribute="top" id="GNk-ln-Ep7"/>
                                     <constraint firstItem="KjO-5C-vva" firstAttribute="leading" secondItem="iUp-G5-2gf" secondAttribute="leading" constant="10" id="QkD-rV-Ftv"/>
                                     <constraint firstItem="Gco-gj-n5u" firstAttribute="leading" secondItem="Suh-90-Kwj" secondAttribute="trailing" constant="5" id="Uk9-YM-WXe"/>
                                     <constraint firstItem="KjO-5C-vva" firstAttribute="width" secondItem="iUp-G5-2gf" secondAttribute="width" multiplier="0.75" id="XYM-7m-40G"/>
-                                    <constraint firstItem="ILK-Sd-hxU" firstAttribute="height" secondItem="sFH-X0-Ggs" secondAttribute="height" multiplier="0.6" id="aCe-qE-CWy"/>
+                                    <constraint firstItem="ILK-Sd-hxU" firstAttribute="height" secondItem="sFH-X0-Ggs" secondAttribute="height" multiplier="0.3" id="aCe-qE-CWy"/>
                                     <constraint firstItem="Gco-gj-n5u" firstAttribute="height" secondItem="Suh-90-Kwj" secondAttribute="height" id="cOB-fR-zcC"/>
-                                    <constraint firstAttribute="trailing" secondItem="yJE-mc-LZj" secondAttribute="trailing" constant="5" id="g4a-Mp-udK"/>
-                                    <constraint firstAttribute="trailing" secondItem="sFH-X0-Ggs" secondAttribute="trailing" constant="5" id="h6r-eQ-p7O"/>
+                                    <constraint firstAttribute="trailing" secondItem="yJE-mc-LZj" secondAttribute="trailing" constant="10" id="g4a-Mp-udK"/>
+                                    <constraint firstItem="yJE-mc-LZj" firstAttribute="top" secondItem="iUp-G5-2gf" secondAttribute="top" constant="5" id="gHx-cv-CM4"/>
+                                    <constraint firstAttribute="trailing" secondItem="sFH-X0-Ggs" secondAttribute="trailing" constant="10" id="h6r-eQ-p7O"/>
                                     <constraint firstAttribute="bottom" secondItem="Suh-90-Kwj" secondAttribute="bottom" constant="5" id="rnO-16-aW5"/>
                                     <constraint firstItem="sFH-X0-Ggs" firstAttribute="height" secondItem="Suh-90-Kwj" secondAttribute="height" id="vkg-h3-N7p"/>
                                 </constraints>
@@ -136,7 +137,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="20w-kT-yrj" firstAttribute="leading" secondItem="iGL-nr-ab1" secondAttribute="leading" id="0kI-WE-52S"/>
-                            <constraint firstItem="KjO-5C-vva" firstAttribute="top" secondItem="y7T-jH-snr" secondAttribute="top" id="780-Pm-acE"/>
                             <constraint firstItem="6bZ-us-gTR" firstAttribute="centerY" secondItem="iGL-nr-ab1" secondAttribute="centerY" id="BLy-zH-YCv"/>
                             <constraint firstItem="6bZ-us-gTR" firstAttribute="leading" secondItem="20w-kT-yrj" secondAttribute="trailing" id="BXC-EB-dZy"/>
                             <constraint firstItem="6bZ-us-gTR" firstAttribute="height" secondItem="iGL-nr-ab1" secondAttribute="height" multiplier="0.7" id="CXb-Ch-YqY"/>
@@ -173,8 +173,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="hailButton" destination="sFH-X0-Ggs" id="zzC-Mx-usn"/>
-                <outlet property="hailsCount" destination="Gco-gj-n5u" id="BBS-MG-r5R"/>
+                <outlet property="reachCount" destination="Gco-gj-n5u" id="BBS-MG-r5R"/>
                 <outlet property="timestamp" destination="yJE-mc-LZj" id="r3t-iJ-6jD"/>
+                <outlet property="unseenHailsDot" destination="ILK-Sd-hxU" id="CZg-FF-s3O"/>
                 <outlet property="vibeCategoryImage" destination="y7T-jH-snr" id="6Cv-Hj-7jT"/>
                 <outlet property="vibeCategoryName" destination="Bwe-nf-1mf" id="QUP-l3-7jD"/>
                 <outlet property="vibeName" destination="KjO-5C-vva" id="NLO-Dq-3oL"/>

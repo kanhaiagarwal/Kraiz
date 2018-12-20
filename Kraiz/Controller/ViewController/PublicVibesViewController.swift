@@ -22,11 +22,22 @@ class PublicVibesViewController: UIViewController {
         let indexValue = APPUtilites.getVibeIndex(indexType: "vibeType", vibeType: "PUBLIC", vibeTag: nil)
         print("indexValue: \(indexValue)")
         if let vibeResults = CacheHelper.shared.getVibesByIndex(index: "vibeTypeGsiPK", value: indexValue) {
+            if vibeResults.count == 0 {
+                AppSyncHelper.shared.getUserVibesPaginated(requestedVibeTag: nil, requestedVibeType: VibeType.public, first: 10, after: nil, completionHandler: nil)
+            }
             publicVibes = vibeResults
             notification = vibeResults._observe({ [weak self] (changes) in
                 self?.vibesTable.reloadData()
             })
+        } else {
+            AppSyncHelper.shared.getUserVibesPaginated(requestedVibeTag: nil, requestedVibeType: VibeType.public, first: 10, after: nil, completionHandler: nil)
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        AppSyncHelper.shared.getUserChannel()
     }
 }
 
@@ -38,7 +49,7 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("MyPublicVibeTableViewCell", owner: self, options: nil)?.first as! MyPublicVibeTableViewCell
         let vibe = publicVibes![indexPath.row]
-        cell.hailsCount.text = String(vibe.getReach())
+        cell.reachCount.text = String(vibe.getReach())
         cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: vibe.getUpdatedTime())
         cell.vibeName.text = vibe.getVibeName()!
         let vibeCategory = APPUtilites.getVibeTag(vibeTypeTag: vibe.getVibeTypeTagGsiPK()!)
@@ -48,13 +59,18 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
         cell.hailButton.tag = indexPath.row
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hailButtonPressed(sender:)))
+        if vibe.getHasNewHails() {
+            cell.unseenHailsDot.isHidden = false
+        } else {
+            cell.unseenHailsDot.isHidden = true
+        }
         cell.hailButton.addGestureRecognizer(tapGesture)
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 6
+        return view.frame.height / 4.5
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -70,6 +86,7 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
         let tag = sender.view?.tag
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let hailVC = storyboard.instantiateViewController(withIdentifier: "HailsViewController") as! HailsViewController
+        CacheHelper.shared.setHasNewHailsInVibe(hasNewHails: false, vibeId: publicVibes![tag!].getId()!)
         hailVC.vibeId = publicVibes![tag!].getId()!
         hailVC.modalPresentationStyle = .overCurrentContext
         

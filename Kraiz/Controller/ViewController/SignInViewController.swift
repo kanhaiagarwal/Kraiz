@@ -176,7 +176,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
         
         CognitoHelper.shared.signIn(pool: pool!, usernameText: usernameText, passwordText: password, success: {
             CognitoHelper.shared.currentUser = self.pool?.currentUser()
-            APPUtilites.removeLoadingSpinner(spinner: sv)
             let currentUser = self.pool?.currentUser()
             if currentUser?.username != nil {
                 AppSyncHelper.shared.setAppSyncClient()
@@ -184,10 +183,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
                 self.setMobileNumberInUserDefaults()
             }
             AppSyncHelper.shared.getUserProfile(userId: (currentUser?.username!)!, success: { (profileModel) in
-                if profileModel.getId() != nil {
-                    UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
-                } else {
-                    UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                DispatchQueue.main.async {
+                    APPUtilites.removeLoadingSpinner(spinner: sv)
+                    if profileModel.getId() != nil {
+                        UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                    } else {
+                        UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                    }
+                    self.gotoHomePage()
                 }
             }, failure: { (error) in
                 APPUtilites.removeLoadingSpinner(spinner: sv)
@@ -203,7 +206,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
                     APPUtilites.displayErrorSnackbar(message: error.userInfo["message"] as! String)
                 }
             })
-            self.gotoHomePage()
         }) { (error: NSError) in
             APPUtilites.removeLoadingSpinner(spinner: sv)
             print("Error")
@@ -238,8 +240,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     }
     
     func gotoHomePage() {
-        let homePageVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabBarController")
-        self.navigationController?.pushViewController(homePageVC!, animated: true)
+        print("========> inside gotoHomePage")
+        UserDefaults.standard.set(true, forKey: DeviceConstants.START_BACKGROUND_FETCH)
+        DispatchQueue.main.async {
+            let homePageVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabBarController") as! HomeTabBarController
+            self.navigationController?.pushViewController(homePageVC, animated: true)
+        }
     }
     
     func gotoOTPPage() {

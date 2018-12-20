@@ -34,6 +34,7 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
         
         UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)
         UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)
+        UserDefaults.standard.set(false, forKey: DeviceConstants.START_BACKGROUND_FETCH)
         
         /// Use the IDToken of the previous session if the internet is not available
         if !APPUtilites.isInternetConnectionAvailable() {
@@ -44,6 +45,7 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                 // Check if the ID token might have expired. The UserDefaults will be set to nil if the setAppClient() fails because of token expiry.
                 if UserDefaults.standard.string(forKey: DeviceConstants.ID_TOKEN) != nil {
                     AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (profile) in
+                        print("==========> inside the success closure of getUserProfile")
                         DispatchQueue.main.async {
                             if profile.getId() != nil {
                                 UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)

@@ -1612,7 +1612,7 @@ mobile number +919003194776</string>
                                                     <segment title="Friends"/>
                                                     <segment title="Public"/>
                                                 </segments>
-                                                <color key="tintColor" red="0.90196078431372551" green="0.61960784313725492" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="0.8901960784313725" green="0.47450980392156861" blue="0.043137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="vibeTypePressed:" destination="SGl-gi-3i5" eventType="valueChanged" id="m07-Zq-vuj"/>
                                                 </connections>
@@ -3568,6 +3568,7 @@ its the right one</string>
                         <viewLayoutGuide key="safeArea" id="nOT-4Q-mu8"/>
                     </view>
                     <connections>
+                        <outlet property="hailsHeading" destination="owl-ub-A5w" id="1kt-Ip-epq"/>
                         <outlet property="hailsHeightConstraint" destination="hYP-T3-FGI" id="w8I-EA-Xob"/>
                         <outlet property="hailsTable" destination="M1A-2l-D80" id="wKb-Df-2ge"/>
                         <outlet property="hailsView" destination="fwk-db-x0Z" id="syF-RL-J3K"/>
@@ -3597,7 +3598,7 @@ its the right one</string>
                                                     <segment title="Friends"/>
                                                     <segment title="Public"/>
                                                 </segments>
-                                                <color key="tintColor" red="0.97516566514968872" green="0.77521616220474243" blue="0.34840402007102966" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="0.8901960784313725" green="0.47450980392156861" blue="0.043137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="segmentValueChanged:" destination="pvA-3O-Psn" eventType="valueChanged" id="D6e-eo-1ha"/>
                                                 </connections>

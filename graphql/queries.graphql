@@ -133,3 +133,36 @@ query GetUserVibes(
     }
   }
 }
+query GetRandomPublicVibes($vibeTag: VibeTag!) {
+  getRandomPublicVibes(vibeTag: $vibeTag) {
+    vibes {
+      id
+      version
+      type
+      createdAt
+      updatedTime
+      isAnonymous
+      name
+      author
+      tag
+      vibeComponents {
+        ids
+        sequence
+        texts
+        format
+        template
+        globalSequence
+      }
+    }
+    profiles {
+      id
+      mobileNumber
+      username
+      name
+      dob
+      gender
+      profilePicId
+      createdAt
+    }
+  }
+}

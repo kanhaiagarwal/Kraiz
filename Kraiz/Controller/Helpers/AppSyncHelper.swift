@@ -8,6 +8,7 @@
 
 import Foundation
 import AWSAppSync
+import RealmSwift
 
 class AppSyncHelper {
     
@@ -163,12 +164,26 @@ class AppSyncHelper {
         if appSyncClient != nil {
             appSyncClient?.fetch(query: getChannelQuery, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated), resultHandler: { [weak self] (result, error) in
                 if error != nil {
-                    print("========> error in getUserChannel: \(error)")
                 } else if let data = result?.data {
                     if let userChannel = data.snapshot["getUserChannel"] as? [String: Any] {
                         var liveBucketVibeIds = [GraphQLID]()
-                        let liveBucketProfileIds = [GraphQLID]()
-                        var nonVibeProfiles = userChannel["profiles"]
+                        var liveBucketProfileIds = [GraphQLID]()
+                        let nonVibeProfiles = userChannel["profiles"] as? [Any]
+                        if nonVibeProfiles != nil && nonVibeProfiles!.count > 0 {
+                            for i in 0 ..< nonVibeProfiles!.count {
+                                if let profile = nonVibeProfiles![i] as? [String : Any] {
+                                    let profileForCache = ProfileEntity()
+                                    liveBucketProfileIds.append(profile["id"] as! String)
+                                    profileForCache.setMobileNumber(profile["mobileNumber"] as? String)
+                                    profileForCache.setUsername(profile["username"] as? String)
+                                    profileForCache.setId(profile["id"] as? String)
+                                    profileForCache.setName(profile["name"] as? String)
+                                    profileForCache.setProfilePicId(profile["profilePicId"] as? String)
+                                    CacheHelper.shared.writeProfileToCache(profileForCache)
+                                }
+                                
+                            }
+                        }
                         var lastPublicVibeFetchTime = userChannel["lastPublicVibeFetchTime"]
                         if let userVibesOuter = userChannel["userVibes"] as? [String: Any] {
                             if let vibesInner = userVibesOuter["userVibes"] {
@@ -177,10 +192,11 @@ class AppSyncHelper {
                                     if let vibe = allVibes[i] as? [String : Any] {
                                         liveBucketVibeIds.append((vibe["vibeId"] as? String)!)
                                         let vibeDataForCache = VibeDataEntity()
+                                        vibeDataForCache.setHails(hails: List<HailsEntity>())
                                         vibeDataForCache.setIsSeen(vibe["seen"] as! Bool)
                                         vibeDataForCache.setReach(vibe["reach"] as! Int)
                                         vibeDataForCache.setVibeId(vibe["vibeId"] as? String)
-                                        vibeDataForCache.setVersion(vibe["version"] as? String)
+                                        vibeDataForCache.setVersion(vibe["version"] as! Int)
                                         vibeDataForCache.setIsSender(vibe["isSender"] as! Bool)
                                         vibeDataForCache.setVibeName(vibe["vibeName"] as? String)
                                         vibeDataForCache.setProfileId(vibe["profileId"] as? String)
@@ -188,7 +204,16 @@ class AppSyncHelper {
                                         vibeDataForCache.setUpdatedTime(vibe["updatedTime"] as! Int)
                                         vibeDataForCache.setVibeTypeGsiPK(vibe["vibeTypeGsiPk"] as? String)
                                         vibeDataForCache.setVibeTypeTagGsiPK(vibe["vibeTypeTagGsiPk"] as? String)
-                                        CacheHelper.shared.writeVibeToCache(vibeDataForCache)
+                                        CacheHelper.shared.writeVibeToCache(vibeDataForCache, checkVersion: true)
+                                        let hailIds = vibe["hailIds"] as? [Any]
+                                        if hailIds != nil && hailIds!.count > 0 {
+                                            print("hailIds.count: \(hailIds!.count)")
+                                            print("CacheHelper.shared.getHailsCountForVibe(vibeId: vibe[vibeId] as! String): \(CacheHelper.shared.getHailsCountForVibe(vibeId: vibe["vibeId"] as! String))")
+                                            if hailIds!.count != CacheHelper.shared.getHailsCountForVibe(vibeId: vibe["vibeId"] as! String) {
+                                                CacheHelper.shared.setHasNewHailsInVibe(hasNewHails: true, vibeId: vibe["vibeId"] as! String)
+                                            }
+                                        }
+                                        
                                     }
                                 }
                             }
@@ -242,9 +267,8 @@ class AppSyncHelper {
     ///     - vibeType: Public or Private.
     ///     - first: Number of vibes to be fetched in each of the passes.
     ///     - after: The next token for fetching the next set of vibes. If it is null, then don't fetch.
-    func getUserVibesPaginated(requestedVibeTag: VibeTag, requestedVibeType: VibeType, first: Int, after: String?) {
-        print("==========> inside getUserVibesPaginated")
-        let query = GetPaginatedUserVibesQuery(vibeTag: requestedVibeTag, vibeType: requestedVibeType, first: first, after: after != nil ? after! : nil)
+    func getUserVibesPaginated(requestedVibeTag: VibeTag?, requestedVibeType: VibeType, first: Int, after: String?, completionHandler: (() -> Void)?) {
+        let query = GetPaginatedUserVibesQuery(vibeTag: requestedVibeTag != nil ? requestedVibeTag! : nil, vibeType: requestedVibeType, first: first, after: after != nil ? after! : nil)
         let cachePolicy = CachePolicy.fetchIgnoringCacheData
         if appSyncClient == nil {
             setAppSyncClient()
@@ -255,8 +279,6 @@ class AppSyncHelper {
                 return
             }
             if let data = result?.data {
-                print("data for VibeTag: \(requestedVibeTag)")
-                print("data: \(data)")
                 if let userVibesOuter = data.snapshot["getUserVibes"] as? [String : Any] {
                     let nextToken = userVibesOuter["nextToken"] as? String
 
@@ -265,10 +287,11 @@ class AppSyncHelper {
                         for i in 0 ..< allVibes.count {
                             if let vibe = allVibes[i] as? [String : Any] {
                                 let vibeDataForCache = VibeDataEntity()
+                                vibeDataForCache.setHails(hails: List<HailsEntity>())
                                 vibeDataForCache.setIsSeen(vibe["seen"] as! Bool)
                                 vibeDataForCache.setReach(vibe["reach"] as! Int)
                                 vibeDataForCache.setVibeId(vibe["vibeId"] as? String)
-                                vibeDataForCache.setVersion(vibe["version"] as? String)
+                                vibeDataForCache.setVersion(vibe["version"] as! Int)
                                 vibeDataForCache.setIsSender(vibe["isSender"] as! Bool)
                                 vibeDataForCache.setVibeName(vibe["vibeName"] as? String)
                                 vibeDataForCache.setProfileId(vibe["profileId"] as? String)
@@ -276,11 +299,27 @@ class AppSyncHelper {
                                 vibeDataForCache.setUpdatedTime(vibe["updatedTime"] as! Int)
                                 vibeDataForCache.setVibeTypeGsiPK(vibe["vibeTypeGsiPk"] as? String)
                                 vibeDataForCache.setVibeTypeTagGsiPK(vibe["vibeTypeTagGsiPk"] as? String)
-                                CacheHelper.shared.writeVibeToCache(vibeDataForCache)
+                                CacheHelper.shared.writeVibeToCache(vibeDataForCache, checkVersion: true)
                             }
                         }
                     }
 
+                    if let profilesOuter = userVibesOuter["profiles"] {
+                        print("profilesOuter: \(profilesOuter)")
+                        let profiles = profilesOuter as! [Any]
+                        for i in 0 ..< profiles.count {
+                            if let profile = profiles[i] as? [String : Any] {
+                                let profileForCache = ProfileEntity()
+                                profileForCache.setMobileNumber(profile["mobileNumber"] as? String)
+                                profileForCache.setUsername(profile["username"] as? String)
+                                profileForCache.setId(profile["id"] as? String)
+                                profileForCache.setName(profile["name"] as? String)
+                                profileForCache.setProfilePicId(profile["profilePicId"] as? String)
+                                CacheHelper.shared.writeProfileToCache(profileForCache)
+                            }
+                        }
+                    }
+                    
                     if let hailsOuter = userVibesOuter["hails"] {
                         print("hails: \(hailsOuter)")
                         let hails = hailsOuter as! [Any]
@@ -299,7 +338,9 @@ class AppSyncHelper {
                     }
                     print("=======> nextToken: \(nextToken)")
                     if nextToken != nil {
-                        self?.getUserVibesPaginated(requestedVibeTag: requestedVibeTag, requestedVibeType: requestedVibeType, first: first, after: nextToken!)
+                        self?.getUserVibesPaginated(requestedVibeTag: requestedVibeTag, requestedVibeType: requestedVibeType, first: first, after: nextToken!, completionHandler: completionHandler)
+                    } else if completionHandler != nil {
+                        completionHandler!()
                     }
                 }
             }
@@ -395,7 +436,15 @@ class AppSyncHelper {
     ///     - success: Success Closure to be invoked if the Create Query succeeds.
     ///     - failure: Failure Closure to be invoked if the Create Query fails.
     public func createUserProfile(profile: ProfileModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
-        let profileInput = CreateUserProfileInput.init(id: profile.getId()!, mobileNumber: profile.getMobileNumber()!, username: profile.getUsername()!, name: profile.getName(), dob: profile.getDob()?.description, gender: profile.getGender().map { Gender(rawValue: $0) }! ?? Gender(rawValue: "Male"), profilePicId: profile.getProfilePicId())
+        print("profile.getDob(): \(profile.getDob())")
+        print("profile.getId(): \(profile.getId())")
+        print("profile.getMobileNumber(): \(profile.getMobileNumber())")
+        print("profile.getName(): \(profile.getName())")
+        print("profile.getGender: \(profile.getGender())")
+        print("profile.getGender().map { Gender(rawValue: $0) }: \(profile.getGender().map { Gender(rawValue: $0) })")
+        print("profile.getProfilePicId(): \(profile.getProfilePicId())")
+        print("profile.getUsername(): \(profile.getUsername())")
+        let profileInput = CreateUserProfileInput.init(id: profile.getId()!, mobileNumber: profile.getMobileNumber()!, username: profile.getUsername()!, name: profile.getName(), dob: profile.getDob()?.description, gender: profile.getGender().map { Gender(rawValue: $0) } != nil ? profile.getGender().map { Gender(rawValue: $0) }! : Gender.male, profilePicId: profile.getProfilePicId())
         
         let createQuery = CreateUserProfileMutation(input: profileInput)
         if appSyncClient == nil {
@@ -403,11 +452,16 @@ class AppSyncHelper {
         } else {
             appSyncClient?.perform(mutation: createQuery, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
                 if error != nil {
+                    print("=========> error is not nil")
+                    print("=========> error: \(error!)")
                     failure(error! as NSError)
                 } else {
                     if result?.errors == nil {
+                        print("=========> result.error is nil")
                         success(true)
                     } else {
+                        print("=========> result.errors: \(result?.errors!)")
+                        print("=========> result.error is not nil")
                         success(false)
                     }
                 }

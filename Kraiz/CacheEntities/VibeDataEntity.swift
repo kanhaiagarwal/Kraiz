@@ -12,17 +12,19 @@ import RealmSwift
 class VibeDataEntity: Object {
 
     @objc dynamic private var id: String?
-    @objc dynamic private var version: String?
+    @objc dynamic private var version: Int = 0
     @objc dynamic private var updatedTime: Int = 0
+    @objc dynamic private var createdAt: Int = 0
     @objc dynamic private var vibeTypeGsiPK: String?
     @objc dynamic private var vibeTypeTagGsiPK: String?
     @objc dynamic private var vibeName: String?
     @objc dynamic private var isSender: Bool = false
     @objc dynamic private var isAnonymous: Bool = false
     @objc dynamic private var isSeen: Bool = false
+    @objc dynamic private var hasNewHails = false
     @objc dynamic private var reach: Int = 0
     @objc dynamic private var profileId: String?
-    private var hails: List<HailsEntity>?
+    private var hails: List<HailsEntity> = List<HailsEntity>()
     
     /// MARK: - Getters Start.
     
@@ -30,7 +32,7 @@ class VibeDataEntity: Object {
         return id
     }
 
-    public func getVersion() -> String? {
+    public func getVersion() -> Int {
         return version
     }
 
@@ -70,8 +72,16 @@ class VibeDataEntity: Object {
         return vibeTypeTagGsiPK
     }
 
-    public func getAllHails() -> List<HailsEntity>? {
+    public func getAllHails() -> List<HailsEntity> {
         return hails
+    }
+
+    public func getHasNewHails() -> Bool {
+        return hasNewHails
+    }
+
+    public func getCreatedAt() -> Int {
+        return createdAt
     }
     
     /// MARK: - Getters End.
@@ -82,7 +92,7 @@ class VibeDataEntity: Object {
         self.id = id
     }
 
-    public func setVersion(_ version: String?) {
+    public func setVersion(_ version: Int) {
         self.version = version
     }
 
@@ -126,6 +136,14 @@ class VibeDataEntity: Object {
         self.hails = hails
     }
 
+    public func setHasNewHails(hasNewHails: Bool) {
+        self.hasNewHails = hasNewHails
+    }
+
+    public func setCreatedAt(_ createdAt: Int) {
+        self.createdAt = createdAt
+    }
+
     // MARK: - Setters End.
 
     /// Increments the reach of the Vibe by the Number.
@@ -139,10 +157,7 @@ class VibeDataEntity: Object {
     /// - Parameters:
     ///     - hail: Hail.
     public func addHailToVibe(hail: HailsEntity) {
-        if self.hails == nil {
-            self.hails = List<HailsEntity>()
-        }
-        self.hails?.append(hail)
+        self.hails.append(hail)
     }
 
     override static func primaryKey() -> String? {

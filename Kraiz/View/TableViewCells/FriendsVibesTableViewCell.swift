@@ -18,7 +18,8 @@ class FriendsVibesTableViewCell: UITableViewCell {
     @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var vibeStatus: UILabel!
     @IBOutlet weak var hailButton: UIButton!
-
+    @IBOutlet weak var vibeSeenImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

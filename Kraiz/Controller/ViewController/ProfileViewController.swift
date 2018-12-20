@@ -34,11 +34,11 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
             if UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT) {
                 AppSyncHelper.shared.updateUserProfilePicture(profilePictureId: "none", success: { (success) in
                     DispatchQueue.main.async {
-                        APPUtilites.displaySuccessSnackbar(message: "Profile Picture Removed")
+                        APPUtilites.displayElevatedSuccessSnackbar(message: "Profile Picture Removed")
                     }
                 }, failure: { (error) in
                     DispatchQueue.main.async {
-                        APPUtilites.displayErrorSnackbar(message: "Profile Picture Removal Failed")
+                        APPUtilites.displayElevatedErrorSnackbar(message: "Profile Picture Removal Failed")
                     }
                 })
             }
@@ -216,7 +216,7 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
                     self.present(cropVC, animated: true, completion: nil)
                 }
             } else {
-                APPUtilites.displayErrorSnackbar(message: "Error in selecting the image from the image picker")
+                APPUtilites.displayElevatedErrorSnackbar(message: "Error in selecting the image from the image picker")
             }
         }, completion: nil)
     }
@@ -226,7 +226,7 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
         let sv = APPUtilites.displayLoadingSpinner(onView: (self.tabBarController?.view)!)
         if !APPUtilites.isInternetConnectionAvailable() {
             APPUtilites.removeLoadingSpinner(spinner: sv)
-            APPUtilites.displayErrorSnackbar(message: "Please Check your Internet Connection")
+            APPUtilites.displayElevatedErrorSnackbar(message: "Please Check your Internet Connection")
             cropViewController.dismiss(animated: true, completion: nil)
             return
         }
@@ -239,25 +239,25 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
             if UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT) {
                 AppSyncHelper.shared.updateUserProfilePicture(profilePictureId: self.profilePicId!, success: { (success) in
                     DispatchQueue.main.async {
-                        APPUtilites.displaySuccessSnackbar(message: "Profile Picture Updated")
+                        APPUtilites.displayElevatedSuccessSnackbar(message: "Profile Picture Updated")
                     }
                 }, failure: { (error) in
                     DispatchQueue.main.async {
                         print("Error: \(error)")
-                        APPUtilites.displayErrorSnackbar(message: "Profile Picture Update Failed")
+                        APPUtilites.displayElevatedErrorSnackbar(message: "Profile Picture Update Failed")
                     }
                 })
             }
         }) { (error) in
             print("Error: \(error)")
             APPUtilites.removeLoadingSpinner(spinner: sv)
-            APPUtilites.displayErrorSnackbar(message: error.userInfo["message"] as! String)
+            APPUtilites.displayElevatedErrorSnackbar(message: error.userInfo["message"] as! String)
         }
     }
     
     func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
         cropViewController.dismiss(animated: true, completion: nil)
-        APPUtilites.displayErrorSnackbar(message: "Didn't pick the image")
+        APPUtilites.displayElevatedErrorSnackbar(message: "Didn't pick the image")
     }
     
     /// On pressing the Save Button.
@@ -265,7 +265,7 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
         dismissKeyboard()
         
         if !APPUtilites.isInternetConnectionAvailable() {
-            APPUtilites.displayErrorSnackbar(message: "Please Check your Internet Connection")
+            APPUtilites.displayElevatedErrorSnackbar(message: "Please Check your Internet Connection")
             return
         }
         
@@ -276,18 +276,18 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
         let genderCell = tableView.cellForRow(at: IndexPath.init(row: 4, section: 0)) as! ProfileTableViewCell
         
         if mobileCell.inputField.text == nil || mobileCell.inputField.text == "" {
-            APPUtilites.displayErrorSnackbar(message: "Mobile number is mandatory")
+            APPUtilites.displayElevatedErrorSnackbar(message: "Mobile number is mandatory")
             return
         }
         
         if usernameCell.inputField.text == nil || usernameCell.inputField.text == "" {
-            APPUtilites.displayErrorSnackbar(message: "Username is mandatory")
+            APPUtilites.displayElevatedErrorSnackbar(message: "Username is mandatory")
             return
         } else if (usernameCell.inputField.text?.contains(" "))! {
-            APPUtilites.displayErrorSnackbar(message: "Username cannot contain spaces")
+            APPUtilites.displayElevatedErrorSnackbar(message: "Username cannot contain spaces")
             return
         } else if !APPUtilites.isUsernameValid(username: usernameCell.inputField.text!) {
-            APPUtilites.displayErrorSnackbarForLongDuration(message: "Username should contain only alphanumeric and special characters like . - @ _")
+            APPUtilites.displayElevatedErrorSnackbarForLongDuration(message: "Username should contain only alphanumeric and special characters like . - @ _")
             return
         }
         
@@ -324,27 +324,27 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
                             DispatchQueue.main.async {
                                 APPUtilites.removeLoadingSpinner(spinner: sv)
                                 if success == true {
-                                    APPUtilites.displaySuccessSnackbar(message: "Profile Creation Succeeded!")
+                                    APPUtilites.displayElevatedSuccessSnackbar(message: "Profile Creation Succeeded!")
                                     self.tabBarController?.selectedIndex = DeviceConstants.DEFAULT_SELECTED_INDEX
                                     self.tabBarController?.addCreateVibeButton()
                                     self.tabBarController?.tabBar.isHidden = false
                                     UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
                                 } else {
-                                    APPUtilites.displayErrorSnackbar(message: "Profile Creation Failed. Please Check your inputs")
+                                    APPUtilites.displayElevatedErrorSnackbar(message: "Profile Creation Failed. Please Check your inputs")
                                 }
                             }
                         }, failure: { (error) in
                             APPUtilites.removeLoadingSpinner(spinner: sv)
-                            APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
+                            APPUtilites.displayElevatedErrorSnackbar(message: error.localizedDescription)
                         })
                     } else {
                         AppSyncHelper.shared.updateUserProfile(profile: inputProfile, success: { (success) in
                             DispatchQueue.main.async {
                                 APPUtilites.removeLoadingSpinner(spinner: sv)
                                 if success == true {
-                                    APPUtilites.displaySuccessSnackbar(message: "Profile Update Succeeded!")
+                                    APPUtilites.displayElevatedSuccessSnackbar(message: "Profile Update Succeeded!")
                                 } else {
-                                    APPUtilites.displayErrorSnackbar(message: "Profile Update Failed")
+                                    APPUtilites.displayElevatedErrorSnackbar(message: "Profile Update Failed")
                                 }
                             }
                         }, failure: { (error) in
@@ -355,12 +355,12 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
                         })
                     }
                 } else {
-                    APPUtilites.displayErrorSnackbar(message: "This username is not available")
+                    APPUtilites.displayElevatedErrorSnackbar(message: "This username is not available")
                 }
             }
         }) { (error) in
             DispatchQueue.main.async {
-                APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
+                APPUtilites.displayElevatedErrorSnackbar(message: error.localizedDescription)
             }
         }
     }

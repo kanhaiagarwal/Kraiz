@@ -17,7 +17,8 @@ class HomeTabBarController: UITabBarController {
     let PROFILE_SELECTED_INDEX : Int = 3
 
     var appSyncClient: AWSAppSyncClient?
-    var startBackgroundFetch : Bool = false
+    var backgroundTaskPublic: UIBackgroundTaskIdentifier = .invalid
+    var backgroundTaskPrivate: UIBackgroundTaskIdentifier = .invalid
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +26,54 @@ class HomeTabBarController: UITabBarController {
         self.tabBar.itemPositioning = .centered
         appSyncClient = AppSyncHelper.shared.getAppSyncClient()
         setTabBarSelection(isProfilePresent: UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT))
+
+        print("========> isProfilePresent: \(UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT))")
         
+        let startBackgroundFetch = UserDefaults.standard.bool(forKey: DeviceConstants.START_BACKGROUND_FETCH)
+        print("============> startBackgroundFetch: \(startBackgroundFetch)")
+//        if startBackgroundFetch {
+//            registerBackgroundTaskPublic()
+//            registerBackgroundTaskPrivate()
+//            DispatchQueue.global(qos: .background).async {
+//                print("started private paginated vibes in the background")
+//                AppSyncHelper.shared.getUserVibesPaginated(requestedVibeTag: nil, requestedVibeType: .private, first: 10, after: nil, completionHandler: self.endBackgroundTaskPrivate)
+//            }
+//
+//            DispatchQueue.global(qos: .background).async {
+//                print("started public paginated vibes in the background")
+//                AppSyncHelper.shared.getUserVibesPaginated(requestedVibeTag: nil, requestedVibeType: .public, first: 10, after: nil, completionHandler: self.endBackgroundTaskPublic)
+//            }
+//        }
+    }
+
+    func registerBackgroundTaskPublic() {
+        print("=======> registerBackgroundTaskPublic")
+        backgroundTaskPublic = UIApplication.shared.beginBackgroundTask { [weak self] in
+            self?.endBackgroundTaskPublic()
+        }
+        assert(backgroundTaskPublic != .invalid)
+    }
+
+    func registerBackgroundTaskPrivate() {
+        print("=======> registerBackgroundTaskPrivate")
+        backgroundTaskPrivate = UIApplication.shared.beginBackgroundTask { [weak self] in
+            self?.endBackgroundTaskPrivate()
+        }
+        assert(backgroundTaskPrivate != .invalid)
+    }
+
+    func endBackgroundTaskPrivate() {
+        print("=======> Private Background task ended.")
+        UIApplication.shared.endBackgroundTask(backgroundTaskPrivate)
+        backgroundTaskPrivate = .invalid
     }
     
+    func endBackgroundTaskPublic() {
+        print("=======> Public Background task ended.")
+        UIApplication.shared.endBackgroundTask(backgroundTaskPublic)
+        backgroundTaskPublic = .invalid
+    }
+
     func setTabBarSelection(isProfilePresent: Bool) {
         if isProfilePresent {
             self.selectedIndex = DeviceConstants.DEFAULT_SELECTED_INDEX

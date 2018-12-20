@@ -27,6 +27,7 @@ public class DeviceConstants {
     static public let MOBILE_NUMBER : String = "mobileNumber"
     static public let NAME : String = "name"
     static public let PROFILE_PICTURE : String = "profilePicture"
+    static public let START_BACKGROUND_FETCH = "startBackgroundFetch"
     static public let USER_ID : String = "userId"
     static public let USER_NAME : String = "username"
     

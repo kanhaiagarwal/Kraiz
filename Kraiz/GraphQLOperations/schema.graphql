@@ -114,7 +114,7 @@ mutation DeleteUserChannelUpdates($liveVibeBucketIds: [ID!], $liveProfileBucketI
     deleteUserChannelUpdates(liveVibeBucketIds: $liveVibeBucketIds, liveProfileBucketIds: $liveProfileBucketIds)
 }
 
-query GetPaginatedUserVibes($vibeTag: VibeTag!, $vibeType: VibeType!, $first: Int, $after: String) {
+query GetPaginatedUserVibes($vibeTag: VibeTag, $vibeType: VibeType!, $first: Int, $after: String) {
     getUserVibes(vibeTag: $vibeTag, vibeType: $vibeType, first: $first, after: $after) {
         nextToken
         userVibes {

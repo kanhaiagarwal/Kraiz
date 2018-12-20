@@ -50,7 +50,10 @@ class MediaHelper {
             if error != nil {
                 failure(error!)
             } else {
-                success((result?.publicId)!)
+                print("=======> publicId: \(result?.publicId)")
+                var id = result?.publicId?.split(separator: "/")
+                print("id:\(id![1])")
+                success(String(id![1]))
             }
         })
     }
@@ -90,8 +93,9 @@ class MediaHelper {
         if client == nil {
             setMediaHelper()
         }
-        
-        let imageUrl = client?.createUrl().generate(publicId, signUrl: true)
+
+        let id = "\(PROFILE_PIC_FOLDER)/\(publicId)"
+        let imageUrl = client?.createUrl().generate(id, signUrl: true)
         print("imageUrl generated in downloadProfileImage: \(imageUrl)")
         client?.createDownloader().fetchImage(imageUrl!, { (progress) in
             print("Progress: \(progress.fractionCompleted)")

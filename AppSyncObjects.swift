@@ -2032,14 +2032,14 @@ public final class DeleteUserChannelUpdatesMutation: GraphQLMutation {
 
 public final class GetPaginatedUserVibesQuery: GraphQLQuery {
   public static let operationString =
-    "query GetPaginatedUserVibes($vibeTag: VibeTag!, $vibeType: VibeType!, $first: Int, $after: String) {\n  getUserVibes(vibeTag: $vibeTag, vibeType: $vibeType, first: $first, after: $after) {\n    __typename\n    nextToken\n    userVibes {\n      __typename\n      vibeId\n      vibeTypeTagGsiPk\n      vibeTypeGsiPk\n      version\n      updatedTime\n      vibeName\n      isSender\n      isAnonymous\n      seen\n      reach\n      profileId\n      hailIds\n      hailProfileIds\n    }\n    profiles {\n      __typename\n      id\n      mobileNumber\n      username\n      name\n      profilePicId\n    }\n    hails {\n      __typename\n      id\n      vibeId\n      author\n      comment\n      createdAt\n    }\n  }\n}"
+    "query GetPaginatedUserVibes($vibeTag: VibeTag, $vibeType: VibeType!, $first: Int, $after: String) {\n  getUserVibes(vibeTag: $vibeTag, vibeType: $vibeType, first: $first, after: $after) {\n    __typename\n    nextToken\n    userVibes {\n      __typename\n      vibeId\n      vibeTypeTagGsiPk\n      vibeTypeGsiPk\n      version\n      updatedTime\n      vibeName\n      isSender\n      isAnonymous\n      seen\n      reach\n      profileId\n      hailIds\n      hailProfileIds\n    }\n    profiles {\n      __typename\n      id\n      mobileNumber\n      username\n      name\n      profilePicId\n    }\n    hails {\n      __typename\n      id\n      vibeId\n      author\n      comment\n      createdAt\n    }\n  }\n}"
 
-  public var vibeTag: VibeTag
+  public var vibeTag: VibeTag?
   public var vibeType: VibeType
   public var first: Int?
   public var after: String?
 
-  public init(vibeTag: VibeTag, vibeType: VibeType, first: Int? = nil, after: String? = nil) {
+  public init(vibeTag: VibeTag? = nil, vibeType: VibeType, first: Int? = nil, after: String? = nil) {
     self.vibeTag = vibeTag
     self.vibeType = vibeType
     self.first = first
