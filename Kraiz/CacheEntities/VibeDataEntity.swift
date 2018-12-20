@@ -22,7 +22,7 @@ class VibeDataEntity: Object {
     @objc dynamic private var isSeen: Bool = false
     @objc dynamic private var reach: Int = 0
     @objc dynamic private var profileId: String?
-    @objc dynamic private var hails: [HailsEntity]?
+    private var hails: List<HailsEntity>?
     
     /// MARK: - Getters Start.
     
@@ -70,7 +70,7 @@ class VibeDataEntity: Object {
         return vibeTypeTagGsiPK
     }
 
-    public func getAllHails() -> [HailsEntity]? {
+    public func getAllHails() -> List<HailsEntity>? {
         return hails
     }
     
@@ -122,7 +122,7 @@ class VibeDataEntity: Object {
         self.vibeTypeTagGsiPK = gsiPK
     }
     
-    public func setHails(hails: [HailsEntity]) {
+    public func setHails(hails: List<HailsEntity>) {
         self.hails = hails
     }
 
@@ -140,7 +140,7 @@ class VibeDataEntity: Object {
     ///     - hail: Hail.
     public func addHailToVibe(hail: HailsEntity) {
         if self.hails == nil {
-            self.hails = [HailsEntity]()
+            self.hails = List<HailsEntity>()
         }
         self.hails?.append(hail)
     }
