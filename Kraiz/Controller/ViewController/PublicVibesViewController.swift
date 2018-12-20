@@ -50,7 +50,7 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = Bundle.main.loadNibNamed("MyPublicVibeTableViewCell", owner: self, options: nil)?.first as! MyPublicVibeTableViewCell
         let vibe = publicVibes![indexPath.row]
         cell.reachCount.text = String(vibe.getReach())
-        cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: vibe.getUpdatedTime())
+        cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: vibe.getCreatedAt())
         cell.vibeName.text = vibe.getVibeName()!
         let vibeCategory = APPUtilites.getVibeTag(vibeTypeTag: vibe.getVibeTypeTagGsiPK()!)
         cell.vibeCategoryImage.image = UIImage(named: VibeCategories.getVibeCategoryImage(vibeCategory: vibeCategory))

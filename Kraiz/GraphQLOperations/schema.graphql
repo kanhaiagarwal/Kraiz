@@ -76,6 +76,7 @@ query GetUserChannelView {
                 vibeTypeGsiPk
                 version
                 updatedTime
+                createdAt
                 vibeName
                 isSender
                 isAnonymous
@@ -123,6 +124,7 @@ query GetPaginatedUserVibes($vibeTag: VibeTag, $vibeType: VibeType!, $first: Int
             vibeTypeGsiPk
             version
             updatedTime
+            createdAt
             vibeName
             isSender
             isAnonymous

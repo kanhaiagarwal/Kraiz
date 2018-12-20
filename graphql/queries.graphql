@@ -45,6 +45,7 @@ query GetUserChannel {
         vibeTypeTagGsiPk
         vibeTypeGsiPk
         version
+        createdAt
         updatedTime
         vibeName
         isSender
@@ -104,6 +105,7 @@ query GetUserVibes(
       vibeTypeTagGsiPk
       vibeTypeGsiPk
       version
+      createdAt
       updatedTime
       vibeName
       isSender

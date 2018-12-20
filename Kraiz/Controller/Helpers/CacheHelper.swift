@@ -202,7 +202,7 @@ public class CacheHelper {
         do {
             let realm = try Realm()
             print(Realm.Configuration.defaultConfiguration.fileURL ?? "No File Url")
-            let results = realm.objects(VibeDataEntity.self).filter("\(index) == '\(value)'").sorted(byKeyPath: "updatedTime", ascending: false)
+            let results = realm.objects(VibeDataEntity.self).filter("\(index) == '\(value)'").sorted(byKeyPath: "createdAt", ascending: false)
             return results
         } catch {
             print("error in realm: \(error)")

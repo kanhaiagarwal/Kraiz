@@ -1446,7 +1446,7 @@ public final class TriggerFsmMutation: GraphQLMutation {
 
 public final class GetUserChannelViewQuery: GraphQLQuery {
   public static let operationString =
-    "query GetUserChannelView {\n  getUserChannel {\n    __typename\n    userVibes {\n      __typename\n      nextToken\n      userVibes {\n        __typename\n        vibeId\n        vibeTypeTagGsiPk\n        vibeTypeGsiPk\n        version\n        updatedTime\n        vibeName\n        isSender\n        isAnonymous\n        seen\n        reach\n        profileId\n        hailIds\n      }\n      profiles {\n        __typename\n        id\n        mobileNumber\n        username\n        name\n        profilePicId\n      }\n      hails {\n        __typename\n        id\n        vibeId\n        author\n        comment\n        createdAt\n      }\n    }\n    profiles {\n      __typename\n      id\n      mobileNumber\n      username\n      name\n      profilePicId\n    }\n    lastPublicVibeFetchTime\n  }\n}"
+    "query GetUserChannelView {\n  getUserChannel {\n    __typename\n    userVibes {\n      __typename\n      nextToken\n      userVibes {\n        __typename\n        vibeId\n        vibeTypeTagGsiPk\n        vibeTypeGsiPk\n        version\n        updatedTime\n        createdAt\n        vibeName\n        isSender\n        isAnonymous\n        seen\n        reach\n        profileId\n        hailIds\n      }\n      profiles {\n        __typename\n        id\n        mobileNumber\n        username\n        name\n        profilePicId\n      }\n      hails {\n        __typename\n        id\n        vibeId\n        author\n        comment\n        createdAt\n      }\n    }\n    profiles {\n      __typename\n      id\n      mobileNumber\n      username\n      name\n      profilePicId\n    }\n    lastPublicVibeFetchTime\n  }\n}"
 
   public init() {
   }
@@ -1609,6 +1609,7 @@ public final class GetUserChannelViewQuery: GraphQLQuery {
             GraphQLField("vibeTypeGsiPk", type: .nonNull(.scalar(GraphQLID.self))),
             GraphQLField("version", type: .nonNull(.scalar(Int.self))),
             GraphQLField("updatedTime", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("createdAt", type: .nonNull(.scalar(Int.self))),
             GraphQLField("vibeName", type: .nonNull(.scalar(String.self))),
             GraphQLField("isSender", type: .nonNull(.scalar(Bool.self))),
             GraphQLField("isAnonymous", type: .nonNull(.scalar(Bool.self))),
@@ -1624,8 +1625,8 @@ public final class GetUserChannelViewQuery: GraphQLQuery {
             self.snapshot = snapshot
           }
 
-          public init(vibeId: GraphQLID, vibeTypeTagGsiPk: GraphQLID, vibeTypeGsiPk: GraphQLID, version: Int, updatedTime: Int, vibeName: String, isSender: Bool, isAnonymous: Bool, seen: Bool, reach: Int, profileId: GraphQLID? = nil, hailIds: [GraphQLID]? = nil) {
-            self.init(snapshot: ["__typename": "UserVibe", "vibeId": vibeId, "vibeTypeTagGsiPk": vibeTypeTagGsiPk, "vibeTypeGsiPk": vibeTypeGsiPk, "version": version, "updatedTime": updatedTime, "vibeName": vibeName, "isSender": isSender, "isAnonymous": isAnonymous, "seen": seen, "reach": reach, "profileId": profileId, "hailIds": hailIds])
+          public init(vibeId: GraphQLID, vibeTypeTagGsiPk: GraphQLID, vibeTypeGsiPk: GraphQLID, version: Int, updatedTime: Int, createdAt: Int, vibeName: String, isSender: Bool, isAnonymous: Bool, seen: Bool, reach: Int, profileId: GraphQLID? = nil, hailIds: [GraphQLID]? = nil) {
+            self.init(snapshot: ["__typename": "UserVibe", "vibeId": vibeId, "vibeTypeTagGsiPk": vibeTypeTagGsiPk, "vibeTypeGsiPk": vibeTypeGsiPk, "version": version, "updatedTime": updatedTime, "createdAt": createdAt, "vibeName": vibeName, "isSender": isSender, "isAnonymous": isAnonymous, "seen": seen, "reach": reach, "profileId": profileId, "hailIds": hailIds])
           }
 
           public var __typename: String {
@@ -1681,6 +1682,15 @@ public final class GetUserChannelViewQuery: GraphQLQuery {
             }
             set {
               snapshot.updateValue(newValue, forKey: "updatedTime")
+            }
+          }
+
+          public var createdAt: Int {
+            get {
+              return snapshot["createdAt"]! as! Int
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "createdAt")
             }
           }
 
@@ -2032,7 +2042,7 @@ public final class DeleteUserChannelUpdatesMutation: GraphQLMutation {
 
 public final class GetPaginatedUserVibesQuery: GraphQLQuery {
   public static let operationString =
-    "query GetPaginatedUserVibes($vibeTag: VibeTag, $vibeType: VibeType!, $first: Int, $after: String) {\n  getUserVibes(vibeTag: $vibeTag, vibeType: $vibeType, first: $first, after: $after) {\n    __typename\n    nextToken\n    userVibes {\n      __typename\n      vibeId\n      vibeTypeTagGsiPk\n      vibeTypeGsiPk\n      version\n      updatedTime\n      vibeName\n      isSender\n      isAnonymous\n      seen\n      reach\n      profileId\n      hailIds\n      hailProfileIds\n    }\n    profiles {\n      __typename\n      id\n      mobileNumber\n      username\n      name\n      profilePicId\n    }\n    hails {\n      __typename\n      id\n      vibeId\n      author\n      comment\n      createdAt\n    }\n  }\n}"
+    "query GetPaginatedUserVibes($vibeTag: VibeTag, $vibeType: VibeType!, $first: Int, $after: String) {\n  getUserVibes(vibeTag: $vibeTag, vibeType: $vibeType, first: $first, after: $after) {\n    __typename\n    nextToken\n    userVibes {\n      __typename\n      vibeId\n      vibeTypeTagGsiPk\n      vibeTypeGsiPk\n      version\n      updatedTime\n      createdAt\n      vibeName\n      isSender\n      isAnonymous\n      seen\n      reach\n      profileId\n      hailIds\n      hailProfileIds\n    }\n    profiles {\n      __typename\n      id\n      mobileNumber\n      username\n      name\n      profilePicId\n    }\n    hails {\n      __typename\n      id\n      vibeId\n      author\n      comment\n      createdAt\n    }\n  }\n}"
 
   public var vibeTag: VibeTag?
   public var vibeType: VibeType
@@ -2152,6 +2162,7 @@ public final class GetPaginatedUserVibesQuery: GraphQLQuery {
           GraphQLField("vibeTypeGsiPk", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("version", type: .nonNull(.scalar(Int.self))),
           GraphQLField("updatedTime", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("createdAt", type: .nonNull(.scalar(Int.self))),
           GraphQLField("vibeName", type: .nonNull(.scalar(String.self))),
           GraphQLField("isSender", type: .nonNull(.scalar(Bool.self))),
           GraphQLField("isAnonymous", type: .nonNull(.scalar(Bool.self))),
@@ -2168,8 +2179,8 @@ public final class GetPaginatedUserVibesQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(vibeId: GraphQLID, vibeTypeTagGsiPk: GraphQLID, vibeTypeGsiPk: GraphQLID, version: Int, updatedTime: Int, vibeName: String, isSender: Bool, isAnonymous: Bool, seen: Bool, reach: Int, profileId: GraphQLID? = nil, hailIds: [GraphQLID]? = nil, hailProfileIds: [GraphQLID]? = nil) {
-          self.init(snapshot: ["__typename": "UserVibe", "vibeId": vibeId, "vibeTypeTagGsiPk": vibeTypeTagGsiPk, "vibeTypeGsiPk": vibeTypeGsiPk, "version": version, "updatedTime": updatedTime, "vibeName": vibeName, "isSender": isSender, "isAnonymous": isAnonymous, "seen": seen, "reach": reach, "profileId": profileId, "hailIds": hailIds, "hailProfileIds": hailProfileIds])
+        public init(vibeId: GraphQLID, vibeTypeTagGsiPk: GraphQLID, vibeTypeGsiPk: GraphQLID, version: Int, updatedTime: Int, createdAt: Int, vibeName: String, isSender: Bool, isAnonymous: Bool, seen: Bool, reach: Int, profileId: GraphQLID? = nil, hailIds: [GraphQLID]? = nil, hailProfileIds: [GraphQLID]? = nil) {
+          self.init(snapshot: ["__typename": "UserVibe", "vibeId": vibeId, "vibeTypeTagGsiPk": vibeTypeTagGsiPk, "vibeTypeGsiPk": vibeTypeGsiPk, "version": version, "updatedTime": updatedTime, "createdAt": createdAt, "vibeName": vibeName, "isSender": isSender, "isAnonymous": isAnonymous, "seen": seen, "reach": reach, "profileId": profileId, "hailIds": hailIds, "hailProfileIds": hailProfileIds])
         }
 
         public var __typename: String {
@@ -2225,6 +2236,15 @@ public final class GetPaginatedUserVibesQuery: GraphQLQuery {
           }
           set {
             snapshot.updateValue(newValue, forKey: "updatedTime")
+          }
+        }
+
+        public var createdAt: Int {
+          get {
+            return snapshot["createdAt"]! as! Int
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "createdAt")
           }
         }
 

@@ -103,7 +103,7 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         }
 
         cell.vibeName.text = vibe.getVibeName()!
-        cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: vibe.getUpdatedTime())
+        cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: vibe.getCreatedAt())
         cell.vibeSeenImage.isHidden = true
         if vibe.getIsSender() {
             cell.unseenVibeDot.isHidden = true
