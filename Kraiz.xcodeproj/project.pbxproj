@@ -19,6 +19,7 @@
 		579854C321C6673900406BF8 /* CacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854C221C6673900406BF8 /* CacheHelper.swift */; };
 		579854C521C6704A00406BF8 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854C421C6704A00406BF8 /* ProfileEntity.swift */; };
 		579854CB21C8B6FE00406BF8 /* HailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CA21C8B6FE00406BF8 /* HailsEntity.swift */; };
+		579854CD21CAB28700406BF8 /* PublicVibeTimeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */; };
 		57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */; };
 		57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */; };
 		57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2B21A705B500FA45E9 /* Entity.swift */; };
@@ -138,6 +139,7 @@
 		579854C221C6673900406BF8 /* CacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHelper.swift; sourceTree = "<group>"; };
 		579854C421C6704A00406BF8 /* ProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
 		579854CA21C8B6FE00406BF8 /* HailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsEntity.swift; sourceTree = "<group>"; };
+		579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibeTimeEntity.swift; sourceTree = "<group>"; };
 		57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionModel.swift; sourceTree = "<group>"; };
 		57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		57B24F2B21A705B500FA45E9 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				579854C021C65A1B00406BF8 /* VibeDataEntity.swift */,
 				579854C421C6704A00406BF8 /* ProfileEntity.swift */,
 				579854CA21C8B6FE00406BF8 /* HailsEntity.swift */,
+				579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -764,6 +767,7 @@
 				B51DF221211F13B9009896CC /* CreateVibeViewController.swift in Sources */,
 				B51DF255211F17E6009896CC /* ProfileTableViewCell.swift in Sources */,
 				57B24F2E21A98B7700FA45E9 /* BackgroundMusic.swift in Sources */,
+				579854CD21CAB28700406BF8 /* PublicVibeTimeEntity.swift in Sources */,
 				57B24F3D21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift in Sources */,
 				B51DF21F211F13B9009896CC /* SignInViewController.swift in Sources */,
 				571F44C621A47B46001C033B /* VibeCategories.swift in Sources */,

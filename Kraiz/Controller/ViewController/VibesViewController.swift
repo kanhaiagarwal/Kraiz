@@ -13,6 +13,7 @@ class VibesViewController: UIViewController {
 
     @IBOutlet weak var vibesSegment: UISegmentedControl!
     @IBOutlet weak var viewContainers: UIView!
+    @IBOutlet weak var publicVibeButton: UIButton!
     
     private lazy var friendsVibesVC : FriendsVibesViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -31,7 +32,27 @@ class VibesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView()
+
+        /// Fetch the last accessed time here from the server, and cache it. Schedule the timer only if the server time and current time difference is less than the decided time to the public vibe.
+//        var publicVibeTimer = CacheHelper.shared.getPublicVibeTimeEntity()
+//        if publicVibeTimer == nil {
+//            CacheHelper.shared.initializePublicVibeEntity()
+//            publicVibeTimer = CacheHelper.shared.getPublicVibeTimeEntity()
+//        }
+//        let timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: false)
+//        timer.fire()
     }
+    
+//    @objc func updateTimer(timer: Timer) {
+//        let timeDifference = Int(Date().timeIntervalSince1970) - CacheHelper.shared.getPublicVibeLastAccessedTime()
+//        if timeDifference >= DeviceConstants.TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS {
+//            timer.invalidate()
+//            publicVibeButton.isEnabled = true
+//        } else {
+//            publicVibeButton.isEnabled = false
+//            publicVibeButton.setTitle("\(String(Int(timeDifference / 60))) minutes to go", for: .disabled)
+//        }
+//    }
 
     @IBAction func segmentValueChanged(_ sender: Any) {
         updateView()

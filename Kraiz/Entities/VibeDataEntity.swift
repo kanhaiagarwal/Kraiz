@@ -22,6 +22,7 @@ class VibeDataEntity: Object {
     @objc dynamic private var isSeen: Bool = false
     @objc dynamic private var reach: Int = 0
     @objc dynamic private var profileId: String?
+    @objc dynamic private var hails: [HailsEntity]?
     
     /// MARK: - Getters Start.
     
@@ -67,6 +68,10 @@ class VibeDataEntity: Object {
 
     public func getVibeTypeTagGsiPK() -> String? {
         return vibeTypeTagGsiPK
+    }
+
+    public func getAllHails() -> [HailsEntity]? {
+        return hails
     }
     
     /// MARK: - Getters End.
@@ -116,6 +121,10 @@ class VibeDataEntity: Object {
     public func setVibeTypeTagGsiPK(_ gsiPK: String?) {
         self.vibeTypeTagGsiPK = gsiPK
     }
+    
+    public func setHails(hails: [HailsEntity]) {
+        self.hails = hails
+    }
 
     // MARK: - Setters End.
 
@@ -124,6 +133,16 @@ class VibeDataEntity: Object {
     ///     - incrementBy - Number by which the reach needs to be incremented.
     public func incrementReach(incrementBy: Int) {
         self.reach = self.reach + incrementBy
+    }
+
+    /// Adds a single hail to the vibe.
+    /// - Parameters:
+    ///     - hail: Hail.
+    public func addHailToVibe(hail: HailsEntity) {
+        if self.hails == nil {
+            self.hails = [HailsEntity]()
+        }
+        self.hails?.append(hail)
     }
 
     override static func primaryKey() -> String? {

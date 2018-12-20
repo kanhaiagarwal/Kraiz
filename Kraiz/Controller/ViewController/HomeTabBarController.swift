@@ -17,6 +17,7 @@ class HomeTabBarController: UITabBarController {
     let PROFILE_SELECTED_INDEX : Int = 3
 
     var appSyncClient: AWSAppSyncClient?
+    var startBackgroundFetch : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class HomeTabBarController: UITabBarController {
         self.tabBar.itemPositioning = .centered
         appSyncClient = AppSyncHelper.shared.getAppSyncClient()
         setTabBarSelection(isProfilePresent: UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT))
+        
     }
     
     func setTabBarSelection(isProfilePresent: Bool) {

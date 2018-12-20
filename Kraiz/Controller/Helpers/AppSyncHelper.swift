@@ -204,6 +204,7 @@ class AppSyncHelper {
                                         hailForCache.setComment(comment: hail["comment"] as! String)
                                         hailForCache.setCreatedAt(createdAt: hail["createdAt"] as! Int)
                                         CacheHelper.shared.writeHailToCache(hailForCache)
+                                        CacheHelper.shared.addHailToVibe(hail: hailForCache, vibeId: hailForCache.getVibeId())
                                     }
                                 }
                             }
@@ -258,21 +259,7 @@ class AppSyncHelper {
                 print("data: \(data)")
                 if let userVibesOuter = data.snapshot["getUserVibes"] as? [String : Any] {
                     let nextToken = userVibesOuter["nextToken"] as? String
-                    if let hailsOuter = userVibesOuter["hails"] {
-                        print("hails: \(hailsOuter)")
-                        let hails = hailsOuter as! [Any]
-                        for i in 0 ..< hails.count {
-                            if let hail = hails[i] as? [String : Any] {
-                                let hailForCache = HailsEntity()
-                                hailForCache.setId(id: hail["id"] as! String)
-                                hailForCache.setAuthor(author: hail["author"] as! String)
-                                hailForCache.setVibeId(vibeId: hail["vibeId"] as! String)
-                                hailForCache.setComment(comment: hail["comment"] as! String)
-                                hailForCache.setCreatedAt(createdAt: hail["createdAt"] as! Int)
-                                CacheHelper.shared.writeHailToCache(hailForCache)
-                            }
-                        }
-                    }
+
                     if let vibesOuter = userVibesOuter["userVibes"] {
                         let allVibes = vibesOuter as! [Any?]
                         for i in 0 ..< allVibes.count {
@@ -290,6 +277,23 @@ class AppSyncHelper {
                                 vibeDataForCache.setVibeTypeGsiPK(vibe["vibeTypeGsiPk"] as? String)
                                 vibeDataForCache.setVibeTypeTagGsiPK(vibe["vibeTypeTagGsiPk"] as? String)
                                 CacheHelper.shared.writeVibeToCache(vibeDataForCache)
+                            }
+                        }
+                    }
+
+                    if let hailsOuter = userVibesOuter["hails"] {
+                        print("hails: \(hailsOuter)")
+                        let hails = hailsOuter as! [Any]
+                        for i in 0 ..< hails.count {
+                            if let hail = hails[i] as? [String : Any] {
+                                let hailForCache = HailsEntity()
+                                hailForCache.setId(id: hail["id"] as! String)
+                                hailForCache.setAuthor(author: hail["author"] as! String)
+                                hailForCache.setVibeId(vibeId: hail["vibeId"] as! String)
+                                hailForCache.setComment(comment: hail["comment"] as! String)
+                                hailForCache.setCreatedAt(createdAt: hail["createdAt"] as! Int)
+                                CacheHelper.shared.writeHailToCache(hailForCache)
+                                CacheHelper.shared.addHailToVibe(hail: hailForCache, vibeId: hailForCache.getVibeId())
                             }
                         }
                     }

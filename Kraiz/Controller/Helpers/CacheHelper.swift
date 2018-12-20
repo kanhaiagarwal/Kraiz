@@ -84,6 +84,24 @@ public class CacheHelper {
         return nil
     }
 
+    /// Adds the hail to the vibe.
+    /// - Parameters:
+    ///     - hail: Hail.
+    ///     - vibeId: Vibe ID.
+    func addHailToVibe(hail: HailsEntity, vibeId: String) {
+        do {
+            let realm = try Realm()
+            let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: vibeId)
+            if result != nil {
+                realm.beginWrite()
+                result?.addHailToVibe(hail: hail)
+                try realm.commitWrite()
+            }
+        } catch {
+            print("Error in realm: \(error)")
+        }
+    }
+
     /// Get all the Vibes of a particular index.
     /// - Parameters:
     ///     - index: Vibe Index.
@@ -158,5 +176,55 @@ public class CacheHelper {
             print("error in realm: \(error)")
         }
         return nil
+    }
+
+    /// Gets the Public Vibe Time Entity.
+    func getPublicVibeTimeEntity() -> PublicVibeTimeEntity? {
+        do {
+            let realm = try Realm()
+            return realm.object(ofType: PublicVibeTimeEntity.self, forPrimaryKey: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
+            
+        } catch {
+            print("realm has error: \(error)")
+        }
+        return nil
+    }
+
+    func getPublicVibeLastAccessedTime() -> Int {
+        do {
+            let realm = try Realm()
+            return (realm.object(ofType: PublicVibeTimeEntity.self, forPrimaryKey: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)?.getLastVibeAccessTime())!
+        } catch {
+            print("realm has error: \(error)")
+        }
+        return Int(Date().timeIntervalSinceNow)
+    }
+
+    /// Initializes the Public Vibe Time Entity. This happens if the entity is not present for the first time in the app.
+    func initializePublicVibeEntity() {
+        do {
+            let realm = try Realm()
+            let publicVibeTimeEntity = PublicVibeTimeEntity()
+            publicVibeTimeEntity.setUserId(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
+            publicVibeTimeEntity.setPublicVibeSeen(publicVibeSeen: false)
+            publicVibeTimeEntity.setLastVibeAccessTime(currentTime: Int(Date().timeIntervalSince1970))
+            try realm.write {
+                realm.add(publicVibeTimeEntity)
+            }
+        } catch {
+            print("error in realm: \(error)")
+        }
+    }
+
+    /// Clears all the data from the default Realm Cache.
+    func clearCache() {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.deleteAll()
+            }
+        } catch {
+            print("error in realm: \(error)")
+        }
     }
 }

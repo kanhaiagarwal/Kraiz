@@ -103,7 +103,7 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         cell.vibeName.text = vibe.getVibeName()!
         cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: vibe.getUpdatedTime())
         if vibe.getIsSender() {
-            cell.unseenDot.isHidden = true
+            cell.unseenVibeDot.isHidden = true
             if vibe.getIsSeen() {
                 cell.vibeStatus.text = "Opened"
             } else {
@@ -112,9 +112,9 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         } else {
             cell.vibeStatus.isHidden = true
             if !vibe.getIsSeen() {
-                cell.unseenDot.isHidden = false
+                cell.unseenVibeDot.isHidden = false
             } else {
-                cell.unseenDot.isHidden = true
+                cell.unseenVibeDot.isHidden = true
             }
         }
         cell.hailButton.tag = indexPath.row
@@ -140,7 +140,7 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         if !vibe.getIsSender() {
             if !vibe.getIsSeen() {
                 let cell = tableView.cellForRow(at: indexPath) as? FriendsVibesTableViewCell
-                cell?.unseenDot.isHidden = true
+                cell?.unseenVibeDot.isHidden = true
                 CacheHelper.shared.updateVibeSeenStatus(vibeId: vibe.getId()!, seenStatus: true)
 //                AppSyncHelper.shared.updateSeenStatusOfVibe(vibeId: vibe.getId()!, seenStatus: true)
             }
@@ -151,6 +151,8 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tag = sender.view?.tag
+        let cell = vibesTable.cellForRow(at: IndexPath(row: tag!, section: 0)) as? FriendsVibesTableViewCell
+        cell?.unseenHailDot.isHidden = true
         let hailVC = storyboard.instantiateViewController(withIdentifier: "HailsViewController") as! HailsViewController
         hailVC.modalPresentationStyle = .overCurrentContext
         hailVC.vibeId = privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]![tag!].getId()!

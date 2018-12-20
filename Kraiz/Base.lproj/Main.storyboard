@@ -3653,6 +3653,7 @@ its the right one</string>
                     </view>
                     <tabBarItem key="tabBarItem" title="Vibes" image="vibes-inactive" selectedImage="vibes-active" id="yap-WQ-IbC"/>
                     <connections>
+                        <outlet property="publicVibeButton" destination="FRQ-bc-xqr" id="0q6-Ai-Ncj"/>
                         <outlet property="vibesSegment" destination="OGh-Xe-ujB" id="W05-WN-q6b"/>
                         <outlet property="viewContainers" destination="jIC-YY-RMJ" id="ILH-NP-KRy"/>
                     </connections>

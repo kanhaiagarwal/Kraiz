@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
+        print("========> inside applicationDidEnterBackground")
         if AudioControls.shared.isAudioPlaying() {
             AudioControls.shared.setPlayAudioOnForeground(playAudio: true)
             AudioControls.shared.setPauseTime(time: AudioControls.shared.getCurrentTime())
@@ -55,6 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+        print("========> applicationWillTerminate is called")
+        sleep(20)
+        print("========> allicationWillTerminate after 10 seconds")
         self.saveContext()
         if AudioControls.shared.isAudioPlaying() {
             AudioControls.shared.setPlayAudioOnForeground(playAudio: false)
