@@ -150,3 +150,32 @@ query GetPaginatedUserVibes($vibeTag: VibeTag, $vibeType: VibeType!, $first: Int
         }
     }
 }
+
+query GetRandomPublicVibes($vibeTag: VibeTag!){
+    getRandomPublicVibes(vibeTag: $vibeTag) {
+        vibes {
+            id
+            version
+            tag
+            name
+            author
+            createdAt
+            updatedTime
+            isAnonymous
+            vibeComponents {
+                ids
+                sequence
+                texts
+                format
+                template
+                globalSequence
+            }
+        },
+        profiles {
+            id
+            name
+            username
+            profilePicId
+        }
+    }
+}

@@ -382,6 +382,65 @@ class AppSyncHelper {
         appSyncClient?.perform(mutation: updateStatusMutation)
     }
 
+    func getRandomPublicVibes(vibeTag: VibeTag, completionHandler: @escaping (Error?, [VibeModel]?, [String : ProfileModel]?) -> Void) {
+        let query = GetRandomPublicVibesQuery(vibeTag: vibeTag)
+        let cachePolicy = CachePolicy.fetchIgnoringCacheData
+        
+        if appSyncClient == nil {
+            setAppSyncClient()
+        }
+        
+        appSyncClient?.fetch(query: query, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .userInteractive), resultHandler: { (result, error) in
+            if error != nil {
+                completionHandler(error, nil, nil)
+            } else if result?.errors != nil {
+                completionHandler(result?.errors?.first, nil, nil)
+            } else {
+                var allProfiles = [String : ProfileModel]()
+                var allVibes = [VibeModel]()
+                if let data = result?.data {
+                    if let snapshot = data.snapshot["getRandomPublicVibes"] as? [String : Any] {
+                        if let profilesOuter = snapshot["profiles"] as Any? {
+                            let profiles = profilesOuter as! [Any]
+                            for i in 0 ..< profiles.count {
+                                let profile = profiles[i] as! [String : Any]
+                                let profileModel = ProfileModel()
+                                profileModel.setId(id: profile["id"] as? String)
+                                profileModel.setName(name: profile["name"] as? String)
+                                profileModel.setProfilePicId(profilePicId: profile["profilePicId"] as? String)
+                                profileModel.setUsername(username: profile["username"] as? String)
+                                allProfiles[profileModel.getId()!] = profileModel
+                            }
+                        }
+                        if let vibesOuter = snapshot["vibes"] as Any? {
+                            let vibes = vibesOuter as! [Any]
+                            for i in 0 ..< vibes.count {
+                                let vibe = vibes[i] as! [String : Any]
+                                let vibeModel = VibeModel()
+                                vibeModel.setVibeName(name: vibe["name"] as! String)
+                                vibeModel.setSender(sender: vibe["author"] as! String)
+                                vibeModel.setId(id: vibe["id"] as! String)
+                                allVibes.append(vibeModel)
+                            }
+                        }
+                    }
+                }
+                
+                for (key, value) in allProfiles {
+                    print("profileId: \(value.getId())")
+                    print("name: \(value.getName())")
+                    print("username: \(value.getUsername())")
+                }
+                for i in 0 ..< allVibes.count {
+                    print("vibeName: \(allVibes[i].vibeName)")
+                    print("id: \(allVibes[i].id)")
+                    print("author: \(allVibes[i].from)")
+                }
+                completionHandler(nil, allVibes, allProfiles)
+            }
+        })
+    }
+
     /// Create Vibe with the Vibe Model Data.
     /// - Parameters:
     ///     - vibe: VibeModel.

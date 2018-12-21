@@ -9,6 +9,7 @@
 import Foundation
 
 public class VibeModel {
+    var id: String
     var vibeName: String
     var from: String
     var to: String
@@ -24,6 +25,7 @@ public class VibeModel {
     var imageBackdrop: Int
     
     init() {
+        id = ""
         vibeName = ""
         from = ""
         to = ""
@@ -40,6 +42,7 @@ public class VibeModel {
     }
     
     init(vibeName: String, from: String, to: String, isBackgroundMusicEnabled: Bool, isSenderAnonymous: Bool) {
+        self.id = ""
         self.vibeName = vibeName
         self.from = from
         self.to = to
@@ -71,7 +74,10 @@ public class VibeModel {
     public func getImages() -> [PhotoEntity] {
         return images
     }
-    
+
+    public func setId(id: String) {
+        self.id = id
+    }
     public func setLetterText(letterString: String) {
         letter.text = letterString
     }

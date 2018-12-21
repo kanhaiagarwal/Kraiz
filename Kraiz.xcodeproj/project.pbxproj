@@ -319,6 +319,7 @@
 				B5C94319212947F8000DCF7A /* MyVibeViewController.swift */,
 				B54073022120188F00122FD0 /* PhotosInputViewController.swift */,
 				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
+				57AC145721CD43F5001FA686 /* PublicVibesChoiceViewController.swift */,
 				57AC145521CCDD90001FA686 /* PublicVibeTagsViewController.swift */,
 				57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */,
 				B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */,
@@ -331,7 +332,6 @@
 				57C74A9D21BA521400D737FB /* VibeImagesViewController.swift */,
 				57C74A9521B2F42500D737FB /* VibeTextViewController.swift */,
 				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
-				57AC145721CD43F5001FA686 /* PublicVibesChoiceViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

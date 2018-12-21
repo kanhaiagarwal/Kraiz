@@ -58,9 +58,21 @@ class PublicVibeTagsViewController: UIViewController {
 
     @objc func imageViewPressed(sender: UITapGestureRecognizer) {
         let tag = sender.view?.tag
-        print("tag: \(tag)")
-        let vibeChoiceVC = self.storyboard?.instantiateViewController(withIdentifier: "PublicVibesChoiceViewController") as! PublicVibesChoiceViewController
-        vibeChoiceVC.tagSelected = tag!
-        self.present(vibeChoiceVC, animated: true, completion: nil)
+        let loadingSpinnerView = APPUtilites.displayLoadingSpinner(onView: view)
+        AppSyncHelper.shared.getRandomPublicVibes(vibeTag: VibeCategories.getVibeTag(index: tag!)) {(error, allVibes, allProfiles)  in
+            DispatchQueue.main.async {
+                APPUtilites.removeLoadingSpinner(spinner: loadingSpinnerView)
+                if error != nil {
+                    print(error)
+                }
+                if allVibes != nil && allVibes!.count > 0 {
+                    let vibeChoiceVC = self.storyboard?.instantiateViewController(withIdentifier: "PublicVibesChoiceViewController") as! PublicVibesChoiceViewController
+                    vibeChoiceVC.tagSelected = tag!
+                    vibeChoiceVC.allVibes = allVibes
+                    vibeChoiceVC.allProfiles = allProfiles
+                    self.present(vibeChoiceVC, animated: true, completion: nil)
+                }
+            }
+        }
     }
 }

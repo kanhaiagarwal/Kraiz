@@ -18,7 +18,8 @@ class PublicVibesChoiceViewController: UIViewController {
     @IBOutlet weak var heading: UILabel!
     
     var tagSelected : Int = 0
-    var publicVibes: [VibeDataEntity]?
+    var allVibes: [VibeModel]?
+    var allProfiles: [String : ProfileModel]?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,14 +47,16 @@ class PublicVibesChoiceViewController: UIViewController {
 
 extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return publicVibes != nil ? publicVibes!.count : 0
-        return 4
+        return allVibes != nil ? allVibes!.count : 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("VibeChoiceTableViewCell", owner: self, options: nil)?.first as! VibeChoiceTableViewCell
         cell.profileImage.image = UIImage(named: "profile-default")
-        cell.usernameLabel.text = "helloWorld"
+        let vibe = allVibes![indexPath.row]
+        let profile = allProfiles![vibe.from]
+        cell.usernameLabel.text = profile?.getUsername()!
+        cell.vibeNameLabel.text = vibe.vibeName
         return cell
     }
 
