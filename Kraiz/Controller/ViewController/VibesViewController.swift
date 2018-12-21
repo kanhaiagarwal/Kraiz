@@ -14,6 +14,9 @@ class VibesViewController: UIViewController {
     @IBOutlet weak var vibesSegment: UISegmentedControl!
     @IBOutlet weak var viewContainers: UIView!
     @IBOutlet weak var publicVibeButton: UIButton!
+
+    var isPublicVibeReady = false
+    var timer : Timer?
     
     private lazy var friendsVibesVC : FriendsVibesViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -32,27 +35,64 @@ class VibesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView()
+        
+        print("inside viewDidLoad of VibeViewController")
 
         /// Fetch the last accessed time here from the server, and cache it. Schedule the timer only if the server time and current time difference is less than the decided time to the public vibe.
-//        var publicVibeTimer = CacheHelper.shared.getPublicVibeTimeEntity()
-//        if publicVibeTimer == nil {
-//            CacheHelper.shared.initializePublicVibeEntity()
-//            publicVibeTimer = CacheHelper.shared.getPublicVibeTimeEntity()
-//        }
-//        let timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: false)
-//        timer.fire()
+        var publicVibeTimer = CacheHelper.shared.getPublicVibeTimeEntity()
+        if publicVibeTimer == nil {
+            CacheHelper.shared.initializePublicVibeEntity()
+            publicVibeTimer = CacheHelper.shared.getPublicVibeTimeEntity()
+        }
     }
     
-//    @objc func updateTimer(timer: Timer) {
-//        let timeDifference = Int(Date().timeIntervalSince1970) - CacheHelper.shared.getPublicVibeLastAccessedTime()
-//        if timeDifference >= DeviceConstants.TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS {
-//            timer.invalidate()
-//            publicVibeButton.isEnabled = true
-//        } else {
-//            publicVibeButton.isEnabled = false
-//            publicVibeButton.setTitle("\(String(Int(timeDifference / 60))) minutes to go", for: .disabled)
-//        }
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("inside viewWillAppear of VibeViewController")
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        if timer != nil {
+            timer!.invalidate()
+        }
+        timer = nil
+    }
+
+    @objc func updateTimer() {
+        let currentTime = Int(Date().timeIntervalSince1970)
+        let lastTime = CacheHelper.shared.getPublicVibeLastAccessedTime() / 1000
+
+        let timeDifference = currentTime - lastTime
+        print("timeDifference: \(timeDifference)")
+        if timeDifference >= DeviceConstants.TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS {
+            publicVibeButton.setTitleColor(UIColor.blue, for: .normal)
+            if timer != nil {
+                timer!.invalidate()
+            }
+            timer = nil
+            isPublicVibeReady = true
+        } else {
+            publicVibeButton.setTitleColor(UIColor.gray, for: .normal)
+            isPublicVibeReady = false
+        }
+    }
+
+    @IBAction func publicVibeButtonPressed(_ sender: UIButton) {
+        if isPublicVibeReady {
+            let choosePublicTagVC = self.storyboard?.instantiateViewController(withIdentifier: "PublicVibeTagsViewController")
+            self.present(choosePublicTagVC!, animated: true, completion: nil)
+        } else {
+            let currentTime = Int(Date().timeIntervalSince1970)
+            let lastTime = CacheHelper.shared.getPublicVibeLastAccessedTime() / 1000
+            let timeDifference = (DeviceConstants.TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS - (currentTime - lastTime)) / 60 > 0 ? "\((DeviceConstants.TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS - (currentTime - lastTime)) / 60 > 0)" : "\((DeviceConstants.TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS - (currentTime - lastTime)) / 3600)"
+            APPUtilites.displayElevatedErrorSnackbar(message: "There are still \(timeDifference) minutes to go")
+        }
+    }
 
     @IBAction func segmentValueChanged(_ sender: Any) {
         updateView()

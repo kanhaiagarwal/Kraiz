@@ -22,6 +22,10 @@
 		579854CD21CAB28700406BF8 /* PublicVibeTimeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */; };
 		57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */; };
 		57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */; };
+		57AC145621CCDD90001FA686 /* PublicVibeTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC145521CCDD90001FA686 /* PublicVibeTagsViewController.swift */; };
+		57AC145821CD43F5001FA686 /* PublicVibesChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC145721CD43F5001FA686 /* PublicVibesChoiceViewController.swift */; };
+		57AC145B21CD5A33001FA686 /* VibeChoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC145921CD5A33001FA686 /* VibeChoiceTableViewCell.swift */; };
+		57AC145C21CD5A33001FA686 /* VibeChoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57AC145A21CD5A33001FA686 /* VibeChoiceTableViewCell.xib */; };
 		57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2B21A705B500FA45E9 /* Entity.swift */; };
 		57B24F2E21A98B7700FA45E9 /* BackgroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */; };
 		57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */; };
@@ -142,6 +146,10 @@
 		579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibeTimeEntity.swift; sourceTree = "<group>"; };
 		57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionModel.swift; sourceTree = "<group>"; };
 		57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
+		57AC145521CCDD90001FA686 /* PublicVibeTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibeTagsViewController.swift; sourceTree = "<group>"; };
+		57AC145721CD43F5001FA686 /* PublicVibesChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibesChoiceViewController.swift; sourceTree = "<group>"; };
+		57AC145921CD5A33001FA686 /* VibeChoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeChoiceTableViewCell.swift; sourceTree = "<group>"; };
+		57AC145A21CD5A33001FA686 /* VibeChoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VibeChoiceTableViewCell.xib; sourceTree = "<group>"; };
 		57B24F2B21A705B500FA45E9 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundMusic.swift; sourceTree = "<group>"; };
 		57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeTypesLocal.swift; sourceTree = "<group>"; };
@@ -311,6 +319,7 @@
 				B5C94319212947F8000DCF7A /* MyVibeViewController.swift */,
 				B54073022120188F00122FD0 /* PhotosInputViewController.swift */,
 				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
+				57AC145521CCDD90001FA686 /* PublicVibeTagsViewController.swift */,
 				57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */,
 				B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */,
 				B51DF207211F13B7009896CC /* SignInViewController.swift */,
@@ -318,10 +327,11 @@
 				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
 				B545799F213F010900C7424F /* StartViewController.swift */,
 				B51DF219211F13B9009896CC /* VibesViewController.swift */,
-				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
 				57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */,
 				57C74A9D21BA521400D737FB /* VibeImagesViewController.swift */,
 				57C74A9521B2F42500D737FB /* VibeTextViewController.swift */,
+				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
+				57AC145721CD43F5001FA686 /* PublicVibesChoiceViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -401,6 +411,8 @@
 				B51DF23C211F15E3009896CC /* ProfileTableViewCell.xib */,
 				57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */,
 				57BD53EC2199CD38001B1010 /* VibesCategoryTableViewCell.xib */,
+				57AC145921CD5A33001FA686 /* VibeChoiceTableViewCell.swift */,
+				57AC145A21CD5A33001FA686 /* VibeChoiceTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -605,6 +617,7 @@
 				B56EFE99215AB05D008059ED /* Images.xcassets in Resources */,
 				B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */,
 				B524CACC214544BF00316D84 /* schema.graphql in Resources */,
+				57AC145C21CD5A33001FA686 /* VibeChoiceTableViewCell.xib in Resources */,
 				B513582F215D365C00139854 /* Hero.otf in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				57D4C0F421C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib in Resources */,
@@ -709,6 +722,7 @@
 				B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */,
 				B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */,
 				57C74A9821B3B07400D737FB /* VibeTextBackgrounds.swift in Sources */,
+				57AC145B21CD5A33001FA686 /* VibeChoiceTableViewCell.swift in Sources */,
 				B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */,
 				57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */,
 				57C74A9C21BA44D000D737FB /* VibeImageCardView.swift in Sources */,
@@ -727,6 +741,7 @@
 				B585CB162146D210008E80F8 /* ProfileModel.swift in Sources */,
 				579854C321C6673900406BF8 /* CacheHelper.swift in Sources */,
 				B5652C7021482DFC00B15E8F /* AppSyncObjects.swift in Sources */,
+				57AC145821CD43F5001FA686 /* PublicVibesChoiceViewController.swift in Sources */,
 				B54579A0213F010900C7424F /* StartViewController.swift in Sources */,
 				B51DF254211F17E3009896CC /* HamburgerTableViewCell.swift in Sources */,
 				B5BC1CF521615A71008CE09F /* CardView.swift in Sources */,
@@ -742,6 +757,7 @@
 				57C74A9621B2F42500D737FB /* VibeTextViewController.swift in Sources */,
 				B51DF256211F17EC009896CC /* FriendsVibesTableViewCell.swift in Sources */,
 				B5BC1CFF216169DA008CE09F /* CornerRadiusView.swift in Sources */,
+				57AC145621CCDD90001FA686 /* PublicVibeTagsViewController.swift in Sources */,
 				57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */,
 				B51DF226211F13B9009896CC /* LetterInputCollectionViewCell.swift in Sources */,
 				B51DF253211F17E0009896CC /* ContactUsTableViewCell.swift in Sources */,

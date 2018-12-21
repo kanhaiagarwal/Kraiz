@@ -184,7 +184,11 @@ class AppSyncHelper {
                                 
                             }
                         }
-                        var lastPublicVibeFetchTime = userChannel["lastPublicVibeFetchTime"]
+                        var lastPublicVibeFetchTimeOptional = userChannel["lastPublicVibeFetchTime"] as? Int
+                        print("lastPublicVibeFetchTime: \(lastPublicVibeFetchTimeOptional)")
+                        if let lastPublicFetchTime = lastPublicVibeFetchTimeOptional {
+                            CacheHelper.shared.setPublicVibeLastAccessedime(lastVibeFetchTime: lastPublicFetchTime)
+                        }
                         if let userVibesOuter = userChannel["userVibes"] as? [String: Any] {
                             if let vibesInner = userVibesOuter["userVibes"] {
                                 let allVibes = vibesInner as! [Any?]

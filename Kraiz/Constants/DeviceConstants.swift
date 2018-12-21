@@ -49,6 +49,6 @@ public class DeviceConstants {
     static public let DEFAULT_SEPERATOR_COLOR = UIColor(displayP3Red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
 
     // Time to next Public Vibe
-    static public let TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS = 7200
+    static public let TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS = 13200
 }
 

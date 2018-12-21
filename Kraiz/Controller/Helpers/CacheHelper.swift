@@ -292,6 +292,27 @@ public class CacheHelper {
         return Int(Date().timeIntervalSinceNow)
     }
 
+    func setPublicVibeLastAccessedime(lastVibeFetchTime: Int) {
+        do {
+            let realm = try Realm()
+            if let result = realm.object(ofType: PublicVibeTimeEntity.self, forPrimaryKey: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!) {
+                realm.beginWrite()
+                result.setLastVibeAccessTime(currentTime: lastVibeFetchTime)
+                try realm.commitWrite()
+            } else {
+                let object = PublicVibeTimeEntity()
+                object.setLastVibeAccessTime(currentTime: lastVibeFetchTime)
+                object.setUserId(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
+                object.setPublicVibeSeen(publicVibeSeen: false)
+                realm.beginWrite()
+                realm.add(object)
+                try realm.commitWrite()
+            }
+        } catch {
+            print("realm has error: \(error)")
+        }
+    }
+
     /// Initializes the Public Vibe Time Entity. This happens if the entity is not present for the first time in the app.
     func initializePublicVibeEntity() {
         do {
