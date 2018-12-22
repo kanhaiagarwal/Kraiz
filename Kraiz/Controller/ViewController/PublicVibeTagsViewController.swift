@@ -57,6 +57,10 @@ class PublicVibeTagsViewController: UIViewController {
     }
 
     @objc func imageViewPressed(sender: UITapGestureRecognizer) {
+        if !APPUtilites.isInternetConnectionAvailable() {
+            APPUtilites.displayErrorSnackbar(message: "Please check your internet connection")
+            return
+        }
         let tag = sender.view?.tag
         let loadingSpinnerView = APPUtilites.displayLoadingSpinner(onView: view)
         AppSyncHelper.shared.getRandomPublicVibes(vibeTag: VibeCategories.getVibeTag(index: tag!)) {(error, allVibes, allProfiles)  in

@@ -26,6 +26,11 @@
 		57AC145821CD43F5001FA686 /* PublicVibesChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC145721CD43F5001FA686 /* PublicVibesChoiceViewController.swift */; };
 		57AC145B21CD5A33001FA686 /* VibeChoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC145921CD5A33001FA686 /* VibeChoiceTableViewCell.swift */; };
 		57AC145C21CD5A33001FA686 /* VibeChoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57AC145A21CD5A33001FA686 /* VibeChoiceTableViewCell.xib */; };
+		57AC145E21CE116C001FA686 /* DraftEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC145D21CE116C001FA686 /* DraftEntity.swift */; };
+		57AC146021CE1BC0001FA686 /* VibeComponentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC145F21CE1BC0001FA686 /* VibeComponentEntity.swift */; };
+		57AC146221CE2F46001FA686 /* CacheLetterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC146121CE2F46001FA686 /* CacheLetterEntity.swift */; };
+		57AC146421CE3038001FA686 /* CachePhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC146321CE3038001FA686 /* CachePhotoEntity.swift */; };
+		57AC146621CE3B6C001FA686 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC146521CE3B6C001FA686 /* Extensions.swift */; };
 		57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2B21A705B500FA45E9 /* Entity.swift */; };
 		57B24F2E21A98B7700FA45E9 /* BackgroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */; };
 		57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */; };
@@ -150,6 +155,11 @@
 		57AC145721CD43F5001FA686 /* PublicVibesChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibesChoiceViewController.swift; sourceTree = "<group>"; };
 		57AC145921CD5A33001FA686 /* VibeChoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeChoiceTableViewCell.swift; sourceTree = "<group>"; };
 		57AC145A21CD5A33001FA686 /* VibeChoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VibeChoiceTableViewCell.xib; sourceTree = "<group>"; };
+		57AC145D21CE116C001FA686 /* DraftEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftEntity.swift; sourceTree = "<group>"; };
+		57AC145F21CE1BC0001FA686 /* VibeComponentEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeComponentEntity.swift; sourceTree = "<group>"; };
+		57AC146121CE2F46001FA686 /* CacheLetterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheLetterEntity.swift; sourceTree = "<group>"; };
+		57AC146321CE3038001FA686 /* CachePhotoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePhotoEntity.swift; sourceTree = "<group>"; };
+		57AC146521CE3B6C001FA686 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		57B24F2B21A705B500FA45E9 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundMusic.swift; sourceTree = "<group>"; };
 		57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeTypesLocal.swift; sourceTree = "<group>"; };
@@ -265,6 +275,10 @@
 				579854C421C6704A00406BF8 /* ProfileEntity.swift */,
 				579854CA21C8B6FE00406BF8 /* HailsEntity.swift */,
 				579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */,
+				57AC145D21CE116C001FA686 /* DraftEntity.swift */,
+				57AC145F21CE1BC0001FA686 /* VibeComponentEntity.swift */,
+				57AC146121CE2F46001FA686 /* CacheLetterEntity.swift */,
+				57AC146321CE3038001FA686 /* CachePhotoEntity.swift */,
 			);
 			path = CacheEntities;
 			sourceTree = "<group>";
@@ -525,6 +539,7 @@
 			children = (
 				B5DC7928212D5CA600C69A13 /* AppUtilities.swift */,
 				57C74A9F21BAEA3300D737FB /* AudioControls.swift */,
+				57AC146521CE3B6C001FA686 /* Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -725,6 +740,7 @@
 				57AC145B21CD5A33001FA686 /* VibeChoiceTableViewCell.swift in Sources */,
 				B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */,
 				57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */,
+				57AC146621CE3B6C001FA686 /* Extensions.swift in Sources */,
 				57C74A9C21BA44D000D737FB /* VibeImageCardView.swift in Sources */,
 				B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */,
 				B5C6E33221346A2700F8D5EC /* CognitoHelper.swift in Sources */,
@@ -740,11 +756,13 @@
 				B51DF220211F13B9009896CC /* ContactUsViewController.swift in Sources */,
 				B585CB162146D210008E80F8 /* ProfileModel.swift in Sources */,
 				579854C321C6673900406BF8 /* CacheHelper.swift in Sources */,
+				57AC145E21CE116C001FA686 /* DraftEntity.swift in Sources */,
 				B5652C7021482DFC00B15E8F /* AppSyncObjects.swift in Sources */,
 				57AC145821CD43F5001FA686 /* PublicVibesChoiceViewController.swift in Sources */,
 				B54579A0213F010900C7424F /* StartViewController.swift in Sources */,
 				B51DF254211F17E3009896CC /* HamburgerTableViewCell.swift in Sources */,
 				B5BC1CF521615A71008CE09F /* CardView.swift in Sources */,
+				57AC146421CE3038001FA686 /* CachePhotoEntity.swift in Sources */,
 				B51DF224211F13B9009896CC /* HomeTabBarController.swift in Sources */,
 				B55346AE212B1FD8005353E4 /* VibeModel.swift in Sources */,
 				B524CABE21453AD000316D84 /* AppSyncHelper.swift in Sources */,
@@ -767,10 +785,12 @@
 				571E508C2185807100271314 /* ImageCaptionsViewController.swift in Sources */,
 				B5A054E92169E6E400BA21AD /* Kraiz-Bridging-Header.m in Sources */,
 				B51DF21D211F13B9009896CC /* ProfileViewController.swift in Sources */,
+				57AC146021CE1BC0001FA686 /* VibeComponentEntity.swift in Sources */,
 				B5D90894214C0853000D3E2B /* InviteFriendsViewController.swift in Sources */,
 				B58B934E21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift in Sources */,
 				571E508E2185880700271314 /* ImageCaptionCollectionViewCell.swift in Sources */,
 				B51DF252211F17DA009896CC /* DraftsTableViewCell.swift in Sources */,
+				57AC146221CE2F46001FA686 /* CacheLetterEntity.swift in Sources */,
 				B51DF227211F13B9009896CC /* LetterInputViewController.swift in Sources */,
 				B51DF22F211F13B9009896CC /* AudioRecorderViewController.swift in Sources */,
 				579854CB21C8B6FE00406BF8 /* HailsEntity.swift in Sources */,

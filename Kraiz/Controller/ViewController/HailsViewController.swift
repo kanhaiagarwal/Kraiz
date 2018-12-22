@@ -108,7 +108,7 @@ extension HailsViewController: UITableViewDataSource, UITableViewDelegate {
         let profile = CacheHelper.shared.getProfileById(id: hails![indexPath.row].getAuthor())
         cell.senderName.text = profile?.getUsername()!
         cell.hailText.text = hails![indexPath.row].getComment()
-        cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: hails![indexPath.row].getCreatedAt())
+        cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: hails![indexPath.row].getCreatedAt(), isTimeInMiliseconds: true)
         return cell
     }
     

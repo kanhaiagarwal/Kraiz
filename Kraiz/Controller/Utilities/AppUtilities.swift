@@ -218,9 +218,13 @@ public class APPUtilites {
         return URL(fileURLWithPath: path)
     }
 
-    public static func getDateFromEpochTime(epochTime: Int) -> String {
+    /// Gets the date from the epoch time. The epoch time can be in seconds or milliseconds
+    /// - Parameters:
+    ///     - epochTime: Epoch Time.
+    ///     - isTimeInMilliseconds - Is the time in milliseconds.
+    public static func getDateFromEpochTime(epochTime: Int, isTimeInMiliseconds: Bool) -> String {
         let calendar = Calendar.current
-        let date = Date(timeIntervalSince1970: TimeInterval(exactly: epochTime / 1000)!)
+        let date = Date(timeIntervalSince1970: TimeInterval(exactly: isTimeInMiliseconds ? (epochTime / 1000) : epochTime)!)
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .short
         dateFormatter.dateStyle = .short

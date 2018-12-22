@@ -9,15 +9,14 @@
 import UIKit
 
 class DraftsTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var usernameField: UILabel!
-    @IBOutlet weak var timestampField: UILabel!
-    @IBOutlet weak var textPresentImage: UIImageView!
-    @IBOutlet weak var photosPresentImage: UIImageView!
-    @IBOutlet weak var videoPresentImage: UIImageView!
-    @IBOutlet weak var audioPresentImage: UIImageView!
-    @IBOutlet weak var vibeNameField: UITextField!
     
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var vibeTypeLabel: UILabel!
+    @IBOutlet weak var vibeNameLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var separatorLabel: UILabel!
+    @IBOutlet weak var vibeTagLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,9 +30,5 @@ class DraftsTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        setupFontSize()
-    }
-    
-    func setupFontSize() {
     }
 }

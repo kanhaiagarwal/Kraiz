@@ -13,27 +13,33 @@ public struct PhotoEntity {
     var image: UIImage?
     var caption: String?
     var imageLink: String?
+    var localPath: String?
     
     init() {
         image = nil
         caption = nil
         imageLink = nil
+        localPath = nil
     }
     
     init(image: UIImage) {
         self.image = image
         self.caption = nil
         self.imageLink = nil
+        self.localPath = nil
     }
     
     init(image: UIImage, caption: String) {
         self.image = image
         self.caption = caption
+        self.localPath = nil
     }
     
     init(image: UIImage, caption: String, link: String) {
         self.image = image
         self.caption = caption
+        self.imageLink = link
+        self.localPath = nil
     }
 }
 

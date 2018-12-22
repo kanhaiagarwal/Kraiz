@@ -12,6 +12,7 @@ import AVFoundation
 import BSImagePicker
 import Photos
 import RxSwift
+import RealmSwift
 
 class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
 
@@ -35,6 +36,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     
     var letterText : String = ""
     var letterBackground : Int = 0
+    var draftId : String?
     
     let selectedColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0)
     let unselectedColor = UIColor(displayP3Red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
@@ -61,13 +63,55 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setVibeModelFromDraftIfPresent()
         setInputViewShadow(inputView: letterView)
         setInputViewShadow(inputView: imagesView)
         setupCheckboxes()
         addGesturesToIcons()
         setupCrossButtons()
     }
-    
+
+    func setVibeModelFromDraftIfPresent() {
+        if draftId != nil {
+            let loadingSpinner = APPUtilites.displayLoadingSpinner(onView: view)
+            CacheHelper.shared.setVibeModelFromVibeComponentEntity(draftId: draftId!) { (vibe) in
+                DispatchQueue.main.async {
+                    APPUtilites.removeLoadingSpinner(spinner: loadingSpinner)
+                    self.vibeModel = vibe
+                    self.letterText = self.vibeModel.getLetter().text != nil ? self.vibeModel.getLetter().text! : ""
+                    self.letterBackground = self.vibeModel.getLetter().background != nil ? self.vibeModel.getLetter().background! : 0
+                    self.imageBackdropSelected = self.vibeModel.imageBackdrop
+                    if self.vibeModel.isLetterPresent {
+                        self.isLetterSelected = true
+                        self.letterCheckbox.isHidden = false
+                        self.letterCrossButton.isHidden = false
+                        self.letterCrossButton.isEnabled = true
+                    } else {
+                        self.isLetterSelected = false
+                        self.letterCheckbox.isHidden = true
+                        self.letterCrossButton.isHidden = true
+                        self.letterCrossButton.isEnabled = false
+                    }
+                    if self.vibeModel.isPhotosPresent {
+                        self.isImagesSelected = true
+                        self.photosCheckbox.isHidden = false
+                        self.photosCrossButton.isHidden = false
+                        self.photosCrossButton.isEnabled = true
+                    } else {
+                        self.isImagesSelected = false
+                        self.photosCheckbox.isHidden = true
+                        self.photosCrossButton.isHidden = true
+                        self.photosCrossButton.isEnabled = false
+                    }
+                    self.photosSelected = self.vibeModel.images
+                    self.performTickAnimation(checkbox: self.letterCheckbox, isSelected: self.isLetterSelected)
+                    self.performTickAnimation(checkbox: self.photosCheckbox, isSelected: self.isImagesSelected)
+                }
+            }
+        }
+    }
+
     override func viewDidLayoutSubviews() {
         continueButton.layer.cornerRadius = continueButton.frame.height / 2
         squaresContainer.clipsToBounds = true
@@ -108,6 +152,9 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
             totalUpload = totalUpload + 1
             if (self.isImagesSelected && totalUpload == self.vibeModel.images.count + 2) || (!self.isImagesSelected && totalUpload == 2) {
                 APPUtilites.removeLoadingSpinner(spinner: sv)
+                if self.draftId != nil {
+                    CacheHelper.shared.deleteDraft(draftId: self.draftId!)
+                }
                 self.performSegue(withIdentifier: self.FINAL_APPROVAL_SEGUE, sender: self)
             }
         }, onError: { (error) in
@@ -150,6 +197,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         let alertController = UIAlertController(title: "Exit", message: "Do you want to exit right now? You can edit this Vibe later", preferredStyle: .actionSheet)
         
         let saveAndCloseAction = UIAlertAction(title: "Save and Exit", style: .default) { (action) in
+            CacheHelper.shared.storeDraft(draftId: self.draftId, vibeModel: self.vibeModel)
             self.dismiss(animated: true, completion: nil)
         }
         let justCloseAction = UIAlertAction(title: "Exit", style: .default) { (action) in
@@ -205,7 +253,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         photosCrossButton.isHidden = true
         photosCrossButton.isEnabled = false
     }
-    
+
     /// Adds Tap Gestures to icon views and selection button
     func addGesturesToIcons() {
         let letterTapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickLetterIcon))
@@ -316,11 +364,12 @@ extension CreateVibeViewController: LetterInputProtocol, PhotosInputProtocol {
     func photosInput(photos: [PhotoEntity], backdropSelected: Int) {
         if photos.count > 0 {
             imageBackdropSelected = backdropSelected
+            vibeModel.imageBackdrop = backdropSelected
             photosSelected = []
             for i in 0..<photos.count {
                 photosSelected.append(photos[i])
-                vibeModel.images.append(photos[i])
             }
+            vibeModel.setImages(photos: photosSelected)
             vibeModel.isPhotosPresent = true
             isImagesSelected = true
             photosCheckbox.isHidden = false

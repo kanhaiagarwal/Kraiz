@@ -49,7 +49,44 @@ class AppSyncHelper {
         }
         return nil
     }
-    
+
+    public func getUserProfileByMobileNumber(mobileNumber: String, completionHandler: @escaping (Error?, ProfileModel?) -> Void) {
+        let query = GetUserProfileByMobileNumberQuery(mobileNumber: mobileNumber)
+        let cachePolicy = CachePolicy.fetchIgnoringCacheData
+        
+        if appSyncClient != nil {
+            setAppSyncClient()
+        }
+
+        appSyncClient?.fetch(query: query, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .userInitiated), resultHandler: { (result, error) in
+            if error != nil {
+                print("error in getUserProfileByMobileNumber: \(error)")
+                completionHandler(error, nil)
+            } else if result?.errors != nil {
+                print("error in result of getUserProfileByMobileNumber: \(result?.errors)")
+                completionHandler(result?.errors?.first, nil)
+            } else {
+                var profileModel = ProfileModel()
+                if let data = result?.data {
+                    if let snapshot = data.snapshot["getUserProfileByMobileNumber"] as? [Any?] {
+                        if snapshot.count > 0 {
+                            print("Number of profiles is greater than 0")
+                            if let userProfile = snapshot[0] as? [String : Any?] {
+                                print("UserProfile is not nil")
+                                profileModel = ProfileModel(id: nil, username: userProfile["username"] as? String, mobileNumber: userProfile["mobileNumber"] as? String, name: userProfile["name"] as? String, gender: (userProfile["gender"] as? Gender).map { $0.rawValue }, dob: userProfile["dob"] as? String, profilePicId: userProfile["profilePicId"] as? String)
+                            }
+                        } else {
+                            print("Number of profiles is 0")
+                        }
+                    } else {
+                        print("data snapshot is nil")
+                    }
+                }
+                completionHandler(nil, profileModel)
+            }
+        })
+    }
+
     /// Fetch the UserProfile by Username. Using returnCacheElseFetch for faster fetch.
     /// - Parameters:
     ///     - username: Username.
@@ -382,6 +419,10 @@ class AppSyncHelper {
         appSyncClient?.perform(mutation: updateStatusMutation)
     }
 
+    /// Gets the Random Public vibes for the user according to the Vibe Tag.
+    /// - Parameters:
+    ///     - vibeTag: Vibe Tag.
+    ///     - completionHandler: Completion method to be executed after the query is completed.
     func getRandomPublicVibes(vibeTag: VibeTag, completionHandler: @escaping (Error?, [VibeModel]?, [String : ProfileModel]?) -> Void) {
         let query = GetRandomPublicVibesQuery(vibeTag: vibeTag)
         let cachePolicy = CachePolicy.fetchIgnoringCacheData

@@ -99,10 +99,7 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
 
     /// Sets up the next button
     func setupNextButton() {
-        if nextButton.layer.sublayers != nil && nextButton.layer.sublayers!.count > 0 {
-            print("nextButton layers is not nil")
-            print("nextButton layers count: \(nextButton.layer.sublayers!.count)")
-        } else {
+        if nextButton.layer.sublayers == nil || nextButton.layer.sublayers!.count == 0 {
             nextButton.layer.cornerRadius = 10
             nextButton.clipsToBounds = true
 
@@ -113,7 +110,6 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
     }
 
     @IBAction func closeButtonPressed(_ sender: UIButton) {
-//        self.navigationController?.popViewController(animated: true)
         let alert = UIAlertController(title: "Exit Photos", message: "Your Changes will not be saved", preferredStyle: UIAlertController.Style.alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
@@ -264,7 +260,7 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
             self.present(alertController, animated: true, completion: nil)
         }
     }
-
+    
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
         DispatchQueue.main.async {
             if self.presentCropState == .APPEND_AT_THE_END {
@@ -324,6 +320,11 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
     func cropAndUpdateImagesInGrid(assets: [PHAsset], currentImageIndex: Int) {
         if currentImageIndex < assets.count {
             DispatchQueue.main.async {
+                assets[currentImageIndex].requestContentEditingInput(with: PHContentEditingInputRequestOptions()) { (editingInput, info) in
+                    if let input = editingInput, let imgURL = input.fullSizeImageURL {
+                        print("======> imgUrl for \(currentImageIndex): \(imgURL)")
+                    }
+                }
                 let selectedImage = APPUtilites.getUIImage(asset: assets[currentImageIndex])
                 
                 // If there is an error in fetching the selected image from the gallery, move to the next image.
@@ -392,6 +393,31 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
             destinationVC.backdropSelected = backdropSelected
             destinationVC.isSourceCreateVibe = false
             destinationVC.delegate = self
+        }
+    }
+}
+
+extension PHAsset {
+    func getURL(completionHandler : @escaping ((_ responseURL : URL?) -> Void)){
+        if self.mediaType == .image {
+            let options: PHContentEditingInputRequestOptions = PHContentEditingInputRequestOptions()
+            options.canHandleAdjustmentData = {(adjustmeta: PHAdjustmentData) -> Bool in
+                return true
+            }
+            self.requestContentEditingInput(with: options, completionHandler: {(contentEditingInput: PHContentEditingInput?, info: [AnyHashable : Any]) -> Void in
+                completionHandler(contentEditingInput!.fullSizeImageURL as URL?)
+            })
+        } else if self.mediaType == .video {
+            let options: PHVideoRequestOptions = PHVideoRequestOptions()
+            options.version = .original
+            PHImageManager.default().requestAVAsset(forVideo: self, options: options, resultHandler: {(asset: AVAsset?, audioMix: AVAudioMix?, info: [AnyHashable : Any]?) -> Void in
+                if let urlAsset = asset as? AVURLAsset {
+                    let localVideoUrl: URL = urlAsset.url as URL
+                    completionHandler(localVideoUrl)
+                } else {
+                    completionHandler(nil)
+                }
+            })
         }
     }
 }

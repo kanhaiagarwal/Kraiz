@@ -13,6 +13,8 @@ public class VibeModel {
     var vibeName: String
     var from: String
     var to: String
+    var receiverUsername: String
+    var receiverProfilePic: String
     var category: Int
     var type: Int
     var isBackgroundMusicEnabled: Bool
@@ -29,6 +31,8 @@ public class VibeModel {
         vibeName = ""
         from = ""
         to = ""
+        receiverUsername = ""
+        receiverProfilePic = ""
         category = 0
         type = 0
         isBackgroundMusicEnabled = false
@@ -46,6 +50,8 @@ public class VibeModel {
         self.vibeName = vibeName
         self.from = from
         self.to = to
+        self.receiverUsername = ""
+        self.receiverProfilePic = ""
         self.category = 0
         self.type = 0
         self.isBackgroundMusicEnabled = isBackgroundMusicEnabled
@@ -73,6 +79,14 @@ public class VibeModel {
     
     public func getImages() -> [PhotoEntity] {
         return images
+    }
+
+    public func setReceiverUsername(username: String) {
+        self.receiverUsername = username
+    }
+
+    public func setReceiverProfilePic(profilePic: String) {
+        self.receiverProfilePic = profilePic
     }
 
     public func setId(id: String) {

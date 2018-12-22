@@ -342,6 +342,10 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
 
     @IBAction func nextPressed(_ sender: UIButton) {
         if vibeTypeSegment.selectedSegmentIndex == 0 {
+            if !APPUtilites.isInternetConnectionAvailable() {
+                APPUtilites.displayErrorSnackbar(message: "Please check your internet connection")
+                return
+            }
             if friendsUsernameField.text == nil || friendsUsernameField.text! == "" {
                 APPUtilites.displayErrorSnackbar(message: "Please make sure you are giving a valid mobile number")
                 return
@@ -378,15 +382,38 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         stopAudio()
 
         dismissKeyboard()
+
+        /// Check if the user exists before going forward to create the vibe.
+        if vibeTypeSegment.selectedSegmentIndex == 0 {
+            let loadingSpinner = APPUtilites.displayLoadingSpinner(onView: view)
+            AppSyncHelper.shared.getUserProfileByMobileNumber(mobileNumber: vibeModel.to) { [weak self] (error, profileModel) in
+                DispatchQueue.main.async {
+                    APPUtilites.removeLoadingSpinner(spinner: loadingSpinner)
+                    if error != nil {
+                        APPUtilites.displayErrorSnackbar(message: "Oops, something went wrong.")
+                    } else if profileModel == nil || profileModel?.getUsername() == nil {
+                        APPUtilites.displayErrorSnackbar(message: "The user does not exist. Please create the vibe for an existing user.")
+                    } else {
+                        self?.vibeModel.receiverUsername = profileModel!.getUsername()!
+                        self?.gotoCreateVibe()
+                    }
+                }
+            }
+        } else {
+            gotoCreateVibe()
+        }
+    }
+    
+    func gotoCreateVibe() {
         if isSourceCreateVibe {
             delegate?.setVibeDetails(vibeModel: vibeModel)
             self.dismiss(animated: true, completion: nil)
         }
-
+        
         let createVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateVibeViewController") as! CreateVibeViewController
         createVC.vibeModel = self.vibeModel
         let presentingVC = self.presentingViewController
-
+        
         self.dismiss(animated: true) {
             presentingVC?.present(createVC, animated: true, completion: nil)
         }
