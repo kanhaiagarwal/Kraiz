@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "background-travel-vibe.jpg",
+      "filename" : "fragment_vibes_bg_travel.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "background-travel-vibe-1.jpg",
+      "filename" : "fragment_vibes_bg_travel-1.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "background-travel-vibe-2.jpg",
+      "filename" : "fragment_vibes_bg_travel-2.jpg",
       "scale" : "3x"
     }
   ],

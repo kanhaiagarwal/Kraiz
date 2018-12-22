@@ -67,6 +67,13 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.height / 6
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.alpha = 0
+        UIView.animate(withDuration: 1, animations: {
+            cell.alpha = 1
+        }, completion: nil)
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
