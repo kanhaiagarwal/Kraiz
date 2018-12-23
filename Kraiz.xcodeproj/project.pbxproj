@@ -31,6 +31,7 @@
 		57AC146221CE2F46001FA686 /* CacheLetterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC146121CE2F46001FA686 /* CacheLetterEntity.swift */; };
 		57AC146421CE3038001FA686 /* CachePhotoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC146321CE3038001FA686 /* CachePhotoEntity.swift */; };
 		57AC146621CE3B6C001FA686 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC146521CE3B6C001FA686 /* Extensions.swift */; };
+		57AC146821CF9879001FA686 /* VibeQuotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC146721CF9879001FA686 /* VibeQuotes.swift */; };
 		57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2B21A705B500FA45E9 /* Entity.swift */; };
 		57B24F2E21A98B7700FA45E9 /* BackgroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */; };
 		57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */; };
@@ -160,6 +161,7 @@
 		57AC146121CE2F46001FA686 /* CacheLetterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheLetterEntity.swift; sourceTree = "<group>"; };
 		57AC146321CE3038001FA686 /* CachePhotoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePhotoEntity.swift; sourceTree = "<group>"; };
 		57AC146521CE3B6C001FA686 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		57AC146721CF9879001FA686 /* VibeQuotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeQuotes.swift; sourceTree = "<group>"; };
 		57B24F2B21A705B500FA45E9 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundMusic.swift; sourceTree = "<group>"; };
 		57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeTypesLocal.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 				57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */,
 				57C74A9721B3B07400D737FB /* VibeTextBackgrounds.swift */,
 				57C74AA321BEE5EC00D737FB /* VibeImagesBackdrop.swift */,
+				57AC146721CF9879001FA686 /* VibeQuotes.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -772,6 +775,7 @@
 				B5D9F612214CDFC500BF2C0F /* DisplayImageViewController.swift in Sources */,
 				B5BC1CF821615B61008CE09F /* ChatsTableViewCell.swift in Sources */,
 				B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */,
+				57AC146821CF9879001FA686 /* VibeQuotes.swift in Sources */,
 				579854C121C65A1B00406BF8 /* VibeDataEntity.swift in Sources */,
 				57B24F2C21A705B500FA45E9 /* Entity.swift in Sources */,
 				57C74A9621B2F42500D737FB /* VibeTextViewController.swift in Sources */,

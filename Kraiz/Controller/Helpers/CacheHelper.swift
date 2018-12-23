@@ -23,6 +23,24 @@ public class CacheHelper {
             realm.beginWrite()
             realm.add(object, update: true)
         } catch {
+            print("Could not write profile to the cache: \(error)")
+        }
+    }
+
+    /// Writes the Vibe to Cache.
+    /// - Parameters:
+    ///     - object: VibeData object
+    ///     - checkVersion: True only if object needs to be added or updated if the cache version is less than the object version.
+    func writeVibeToCache(_ object: VibeDataEntity, checkVersion: Bool) {
+        do {
+            let realm = try Realm()
+            let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: object.getId()!)
+            if result == nil || (result!.getVersion() < object.getVersion()) {
+                realm.beginWrite()
+                realm.add(object, update: true)
+                try realm.commitWrite()
+            }
+        } catch {
             print("Could not write vibe to the cache: \(error)")
         }
     }

@@ -3934,6 +3934,7 @@ its the right one</string>
                         <outlet property="bgView" destination="iQq-eN-oje" id="GmH-68-vEx"/>
                         <outlet property="heading" destination="t3c-sr-YMv" id="x3b-m4-FAW"/>
                         <outlet property="publicVibesTableView" destination="20U-z0-12d" id="Erm-ks-32O"/>
+                        <outlet property="quoteLabel" destination="ePf-xb-8sw" id="t18-D0-GwK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u5c-1W-fdr" userLabel="First Responder" sceneMemberID="firstResponder"/>

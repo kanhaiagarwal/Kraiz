@@ -12,6 +12,7 @@ class PublicVibesChoiceViewController: UIViewController {
 
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var publicVibesTableView: UITableView!
+    @IBOutlet weak var quoteLabel: UILabel!
     
     let gradientColors = [[UIColor(displayP3Red: 1, green: 65/255, blue: 108/255, alpha: 1.0).cgColor, UIColor(displayP3Red: 1, green: 75/255, blue: 43/255, alpha: 1.0).cgColor], [UIColor(displayP3Red: 17/255, green: 153/255, blue: 142/255, alpha: 1.0).cgColor, UIColor(displayP3Red: 56/255, green: 239/255, blue: 135/255, alpha: 1.0).cgColor], [UIColor(displayP3Red: 0, green: 131/255, blue: 176/255, alpha: 1.0).cgColor, UIColor(displayP3Red: 0, green: 180/255, blue: 219/255, alpha: 1.0).cgColor], [UIColor(displayP3Red: 119/255, green: 47/255, blue: 26/255, alpha: 1.0).cgColor, UIColor(displayP3Red: 242/255, green: 166/255, blue: 90/255, alpha: 1.0).cgColor], [UIColor(displayP3Red: 243/255, green: 115/255, blue: 53/255, alpha: 1.0).cgColor, UIColor(displayP3Red: 253/255, green: 200/255, blue: 48/255, alpha: 1.0).cgColor], [UIColor(displayP3Red: 2/255, green: 27/255, blue: 121/255, alpha: 1.0).cgColor, UIColor(displayP3Red: 5/255, green: 117/255, blue: 230/255, alpha: 1.0).cgColor]]
     var gradientLayer: CAGradientLayer?
@@ -24,6 +25,7 @@ class PublicVibesChoiceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        quoteLabel.text = VibeQuotes.shared.getQuote(tagIndex: tagSelected, quoteIndex: Int.random(in: 0..<VibeQuotes.shared.getNumberOfQuotesForATag(tagIndex: tagSelected)))
         heading.text = VibeCategories.pickerStrings[tagSelected]
         if allVibes != nil {
             for i in 0 ..< allVibes!.count {

@@ -229,6 +229,7 @@ extension FriendsVibesViewController: UICollectionViewDelegate, UICollectionView
         selectedCategory = indexPath.row
         vibesTableBackgroundImageView.image = UIImage(named: VibeCategories.categoryBackground[indexPath.row])
         vibeCategoriesCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        AppSyncHelper.shared.getUserChannel()
         vibesTable.reloadData()
         if privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"] != nil && privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]!.count > 0 {
             vibesTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
