@@ -27,10 +27,7 @@ class HomeTabBarController: UITabBarController {
         appSyncClient = AppSyncHelper.shared.getAppSyncClient()
         setTabBarSelection(isProfilePresent: UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT))
 
-        print("========> isProfilePresent: \(UserDefaults.standard.bool(forKey: DeviceConstants.IS_PROFILE_PRESENT))")
-        
         let startBackgroundFetch = UserDefaults.standard.bool(forKey: DeviceConstants.START_BACKGROUND_FETCH)
-        print("============> startBackgroundFetch: \(startBackgroundFetch)")
 //        if startBackgroundFetch {
 //            registerBackgroundTaskPublic()
 //            registerBackgroundTaskPrivate()

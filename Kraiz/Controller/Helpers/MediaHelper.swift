@@ -15,7 +15,9 @@ class MediaHelper {
     private var client: CLDCloudinary?
     
     private let PROFILE_PIC_FOLDER = "profile"
-    
+    private let COMMON_FOLDER = "Library/Caches"
+    private let VIBE_IMAGES_FOLDER = "Vibe_Images"
+
     private init() {
     }
     
@@ -77,6 +79,7 @@ class MediaHelper {
                         print(error)
                     } else {
                         print("Upload done for the image \(images[i].imageLink!)")
+                        FileManagerHelper.shared.storeImageInFolder(image: images[i].image!, folder: "/\(self.COMMON_FOLDER)/\(self.VIBE_IMAGES_FOLDER)", fileName: images[i].imageLink!)
                         counter.value = 1
                     }
                 })
@@ -84,12 +87,20 @@ class MediaHelper {
         }
     }
     
-    /// Downloads the image from the Media Store.
+    /// Downloads the image from the Media Store. Checks the Cache first. If the image not present in the cache, then downloads it from the Remote media source.
     /// - Parameters:
     ///     - publicId: Public ID of the image.
     ///     - success: Success Closure which will be invoked if the image download succeeds.
     ///     - counter: Failure Closure which will be invoked if the image download fails.
-    func downloadProfileImage(publicId: String, success: @escaping (UIImage) -> Void, failure: @escaping (NSError) -> Void) {
+    func getProfileImage(publicId: String, success: @escaping (UIImage) -> Void, failure: @escaping (NSError) -> Void) {
+        let filePath = "/\(COMMON_FOLDER)/\(PROFILE_PIC_FOLDER)/\(publicId)"
+        if let data = FileManagerHelper.shared.getImageDataFromPath(filePath: filePath, isJpgExtensionRequired: true) {
+            if let image = UIImage(data: data) {
+                success(image)
+                return
+            }
+        }
+
         if client == nil {
             setMediaHelper()
         }
@@ -105,6 +116,7 @@ class MediaHelper {
                 failure(e)
             } else {
                 print("Image Downloaded")
+                FileManagerHelper.shared.storeImageInFolder(image: image!, folder: "/\(self.COMMON_FOLDER)/\(self.PROFILE_PIC_FOLDER)", fileName: publicId)
                 success(image!)
             }
         })

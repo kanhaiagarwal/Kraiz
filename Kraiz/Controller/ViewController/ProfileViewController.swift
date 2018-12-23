@@ -179,7 +179,7 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
                 uploadPhotoButton.setTitle("Upload Photo", for: .normal)
                 return
             }
-            MediaHelper.shared.downloadProfileImage(publicId: profile.getProfilePicId()!, success: { (image) in
+            MediaHelper.shared.getProfileImage(publicId: profile.getProfilePicId()!, success: { (image) in
                 DispatchQueue.main.async {
                     self.uploadPhotoButton.setTitle("Change Photo", for: .normal)
                     APPUtilites.removeLoadingSpinner(spinner: spinner)

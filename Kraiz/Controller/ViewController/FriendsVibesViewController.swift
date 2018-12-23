@@ -42,7 +42,6 @@ class FriendsVibesViewController: UIViewController {
             }
             
             if let unseenResults = CacheHelper.shared.getUnseenVibesByIndex(index: "vibeTypeTagGsiPK", value: privateVibeIndex) {
-                print("=======> unseen vibes: \(unseenResults.count)")
                 unseenPrivateVibes["\(VibeCategories.TAG_INDEX[i])_\(VibeCategories.TYPE_INDEX[1])"] = unseenResults
                 unseenVibesNotification.append(unseenResults.observe({ [weak self] (change) in
                     let cell = self?.vibeCategoriesCollectionView.cellForItem(at: IndexPath(row: (self?.selectedCategory)!, section: 0)) as? VibeCategoryCollectionViewCell
@@ -88,7 +87,7 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         if let profile = CacheHelper.shared.getProfileById(id: profileId) {
             cell.senderName.text = profile.getUsername()!
             if profile.getProfilePicId() != "NONE" {
-                MediaHelper.shared.downloadProfileImage(publicId: profile.getProfilePicId()!, success: { (image) in
+                MediaHelper.shared.getProfileImage(publicId: profile.getProfilePicId()!, success: { (image) in
                     DispatchQueue.main.async {
                         cell.profileImage.image = image
                     }

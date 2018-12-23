@@ -38,7 +38,6 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
     }
     
     func setImageCaptions(photosSelected: [PhotoEntity]) {
-        print("inside setImageCaptions")
         self.selectedImages = photosSelected
         self.numberOfImagesSelected = selectedImages.count
         
@@ -73,8 +72,6 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("selectedImages.count: \(selectedImages.count)")
 
         photosCollectionView.delegate = self
         photosCollectionView.dataSource = self
@@ -127,9 +124,7 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
     }
 
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        print("inside nextButtonPressed")
         if selectedImages.count == 0 {
-            print("selectedImages count is 0")
             let action = UIAlertAction(title: "Okay", style: .default, handler: { (action) in
                 self.dismiss(animated: true, completion: nil)
             })
@@ -137,7 +132,6 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
             alertController.addAction(action)
             self.present(alertController, animated: true, completion: nil)
         } else {
-            print("selectedImages count is greater than 0")
             delegate?.photosInput(photos: selectedImages, backdropSelected: backdropSelected)
 //            self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)
@@ -161,7 +155,6 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photosCollectionView.dequeueReusableCell(withReuseIdentifier: CELL_IDENTIFIER, for: indexPath) as! PhotoInputCollectionViewCell
         if selectedImages.count > indexPath.row {
-            print("selectedImages[indexPath.row].caption: \(selectedImages[indexPath.row].caption)")
             cell.photo.isHidden = false
             cell.photo.image = selectedImages[indexPath.row].image!
             cell.caption.isHidden = false
@@ -320,11 +313,6 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
     func cropAndUpdateImagesInGrid(assets: [PHAsset], currentImageIndex: Int) {
         if currentImageIndex < assets.count {
             DispatchQueue.main.async {
-                assets[currentImageIndex].requestContentEditingInput(with: PHContentEditingInputRequestOptions()) { (editingInput, info) in
-                    if let input = editingInput, let imgURL = input.fullSizeImageURL {
-                        print("======> imgUrl for \(currentImageIndex): \(imgURL)")
-                    }
-                }
                 let selectedImage = APPUtilites.getUIImage(asset: assets[currentImageIndex])
                 
                 // If there is an error in fetching the selected image from the gallery, move to the next image.

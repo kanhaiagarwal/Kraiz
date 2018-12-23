@@ -46,7 +46,7 @@ class HamburgerViewController: UIViewController, AWSCognitoIdentityInteractiveAu
                     self.usernameLabel.text = profileModel.getUsername()!
                 }
                 if profileModel.getProfilePicId() != nil && profileModel.getProfilePicId()! != "none" {
-                    MediaHelper.shared.downloadProfileImage(publicId: profileModel.getProfilePicId()!, success: { (image) in
+                    MediaHelper.shared.getProfileImage(publicId: profileModel.getProfilePicId()!, success: { (image) in
                         DispatchQueue.main.async {
                             self.profileImage.image = image
                         }

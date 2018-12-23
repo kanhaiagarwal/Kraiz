@@ -22,6 +22,7 @@ public class CacheHelper {
             let realm = try Realm()
             realm.beginWrite()
             realm.add(object, update: true)
+            try realm.commitWrite()
         } catch {
             print("Could not write profile to the cache: \(error)")
         }
