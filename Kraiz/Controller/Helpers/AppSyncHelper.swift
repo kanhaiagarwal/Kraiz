@@ -36,7 +36,6 @@ class AppSyncHelper {
 
             AppSyncHelper.shared.appSyncClient?.apolloClient?.cacheKeyForObject = { $0["id"] }
         } catch {
-            print("Error in initializing the AppSync Client")
             print("Error: \(error)")
             UserDefaults.standard.set(nil, forKey: DeviceConstants.ID_TOKEN)
         }
@@ -70,16 +69,10 @@ class AppSyncHelper {
                 if let data = result?.data {
                     if let snapshot = data.snapshot["getUserProfileByMobileNumber"] as? [Any?] {
                         if snapshot.count > 0 {
-                            print("Number of profiles is greater than 0")
                             if let userProfile = snapshot[0] as? [String : Any?] {
-                                print("UserProfile is not nil")
                                 profileModel = ProfileModel(id: nil, username: userProfile["username"] as? String, mobileNumber: userProfile["mobileNumber"] as? String, name: userProfile["name"] as? String, gender: (userProfile["gender"] as? Gender).map { $0.rawValue }, dob: userProfile["dob"] as? String, profilePicId: userProfile["profilePicId"] as? String)
                             }
-                        } else {
-                            print("Number of profiles is 0")
                         }
-                    } else {
-                        print("data snapshot is nil")
                     }
                 }
                 completionHandler(nil, profileModel)
@@ -107,23 +100,16 @@ class AppSyncHelper {
                 } else {
                     var profileModel = ProfileModel()
                     if let error = result?.errors {
-                        print("Error inside result")
                         failure(error[0] as NSError)
                         return
                     }
                     if let data = result?.data {
                         if let snapshot = data.snapshot["getUserProfileByUsername"] as? [Any?] {
                             if snapshot.count > 0 {
-                                print("Number of profiles is greater than 0")
                                 if let userProfile = snapshot[0] as? [String : Any?] {
-                                    print("UserProfile is not nil")
                                     profileModel = ProfileModel(id: nil, username: userProfile["username"] as? String, mobileNumber: userProfile["mobileNumber"] as? String, name: userProfile["name"] as? String, gender: (userProfile["gender"] as? Gender).map { $0.rawValue }, dob: userProfile["dob"] as? String, profilePicId: userProfile["profilePicId"] as? String)
                                 }
-                            } else {
-                                print("Number of profiles is 0")
                             }
-                        } else {
-                            print("data snapshot is nil")
                         }
                     }
                     success(profileModel)
@@ -141,22 +127,17 @@ class AppSyncHelper {
     ///     - failure: Failure Closure if the Get query fails.
     public func getUserProfile(userId: String, success: @escaping (ProfileModel) -> Void, failure: @escaping (NSError) -> Void) {
         let getQuery = GetUserProfileQuery(id: userId)
-        print("getQuery.id: \(getQuery.id)")
         var cachePolicy = CachePolicy.returnCacheDataElseFetch
         if !APPUtilites.isInternetConnectionAvailable() {
-            print("Internet Connection is not available")
             cachePolicy = .returnCacheDataDontFetch
         }
         if appSyncClient != nil {
-            print("AppSyncClient is not nil")
                 appSyncClient?.fetch(query: getQuery, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .background), resultHandler: { (result, error) in
                     if error != nil {
                         failure(error! as NSError)
                     } else {
                         var profileModel = ProfileModel()
-                        print("result: \(result)")
                         if let data = result?.data {
-                            print("data: \(data)")
                             if let userProfile = data.snapshot["getUserProfile"] as? [String: Any?] {
                                 profileModel = ProfileModel(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID), username: userProfile["username"] as? String, mobileNumber: userProfile["mobileNumber"] as? String, name: userProfile["name"] as? String, gender: (userProfile["gender"] as? Gender).map { $0.rawValue }, dob: userProfile["dob"] as? String, profilePicId: userProfile["profilePicId"] as? String)
                                 success(profileModel)
@@ -166,15 +147,10 @@ class AppSyncHelper {
                                         failure(error as! NSError)
                                         return
                                     } else {
-                                        print("data.snapshot is nil from the cache")
                                         var profileModel = ProfileModel()
-                                        print("result: \(result)")
                                         if let data = result?.data {
-                                            print("data: \(data)")
                                             if let userProfile = data.snapshot["getUserProfile"] as? [String: Any?] {
                                                 profileModel = ProfileModel(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID), username: userProfile["username"] as? String, mobileNumber: userProfile["mobileNumber"] as? String, name: userProfile["name"] as? String, gender: (userProfile["gender"] as? Gender).map { $0.rawValue }, dob: userProfile["dob"] as? String, profilePicId: userProfile["profilePicId"] as? String)
-                                            } else {
-                                                print("data.snapshot is nil from Server")
                                             }
                                         }
                                         success(profileModel)
@@ -194,7 +170,6 @@ class AppSyncHelper {
     ///     1. New Vibes which have been sent to the user.
     ///     2. Profiles which have been updated by other Users.
     public func getUserChannel() {
-        print("=======> Inside getUserChannel")
         let getChannelQuery = GetUserChannelViewQuery()
         let cachePolicy = CachePolicy.fetchIgnoringCacheData
 
@@ -207,8 +182,10 @@ class AppSyncHelper {
                         var liveBucketProfileIds = [GraphQLID]()
                         let nonVibeProfiles = userChannel["profiles"] as? [Any]
                         if nonVibeProfiles != nil && nonVibeProfiles!.count > 0 {
+                            print("nonVibeProfiles count is greater than 0")
                             for i in 0 ..< nonVibeProfiles!.count {
                                 if let profile = nonVibeProfiles![i] as? [String : Any] {
+                                    print("inside the profile.")
                                     let profileForCache = ProfileEntity()
                                     liveBucketProfileIds.append(profile["id"] as! String)
                                     profileForCache.setMobileNumber(profile["mobileNumber"] as? String)
@@ -249,8 +226,6 @@ class AppSyncHelper {
                                         CacheHelper.shared.writeVibeToCache(vibeDataForCache, checkVersion: true)
                                         let hailIds = vibe["hailIds"] as? [Any]
                                         if hailIds != nil && hailIds!.count > 0 {
-                                            print("hailIds.count: \(hailIds!.count)")
-                                            print("CacheHelper.shared.getHailsCountForVibe(vibeId: vibe[vibeId] as! String): \(CacheHelper.shared.getHailsCountForVibe(vibeId: vibe["vibeId"] as! String))")
                                             if hailIds!.count != CacheHelper.shared.getHailsCountForVibe(vibeId: vibe["vibeId"] as! String) {
                                                 CacheHelper.shared.setHasNewHailsInVibe(hasNewHails: true, vibeId: vibe["vibeId"] as! String)
                                             }
@@ -260,7 +235,6 @@ class AppSyncHelper {
                                 }
                             }
                             if let hailsOuter = userVibesOuter["hails"] {
-                                print("hails: \(hailsOuter)")
                                 let hails = hailsOuter as! [Any]
                                 for i in 0 ..< hails.count {
                                     if let hail = hails[i] as? [String : Any] {
@@ -348,7 +322,6 @@ class AppSyncHelper {
                     }
 
                     if let profilesOuter = userVibesOuter["profiles"] {
-                        print("profilesOuter: \(profilesOuter)")
                         let profiles = profilesOuter as! [Any]
                         for i in 0 ..< profiles.count {
                             if let profile = profiles[i] as? [String : Any] {
@@ -364,7 +337,6 @@ class AppSyncHelper {
                     }
                     
                     if let hailsOuter = userVibesOuter["hails"] {
-                        print("hails: \(hailsOuter)")
                         let hails = hailsOuter as! [Any]
                         for i in 0 ..< hails.count {
                             if let hail = hails[i] as? [String : Any] {
@@ -379,7 +351,6 @@ class AppSyncHelper {
                             }
                         }
                     }
-                    print("=======> nextToken: \(nextToken)")
                     if nextToken != nil {
                         self?.getUserVibesPaginated(requestedVibeTag: requestedVibeTag, requestedVibeType: requestedVibeType, first: first, after: nextToken!, completionHandler: completionHandler)
                     } else if completionHandler != nil {
@@ -388,6 +359,35 @@ class AppSyncHelper {
                 }
             }
         })
+    }
+
+    /// Increment the reach of a vibe.
+    /// - Parameters:
+    ///     - vibeId: Vibe ID.
+    ///     - completionHandler: Completion Handler
+    func incrementReachOfVibe(vibeId: String, completionHandler: ((Bool) -> Void)?) {
+        var userInputList = [FsmComponentInput]()
+        userInputList.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: nil, id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, author: nil))
+        let userComponent = FsmComponent(exists: true, list: userInputList)
+        var vibesInputList = [FsmComponentInput]()
+        vibesInputList.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: nil, id: vibeId, author: nil))
+        let vibesComponent = FsmComponent(exists: true, list: vibesInputList)
+        let fsmInput = FsmInput(action: .addReach, users: userComponent, vibes: vibesComponent, hails: nil)
+        let incrementReachMutation = TriggerFsmMutation(input: fsmInput, userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
+        if appSyncClient == nil {
+            setAppSyncClient()
+        }
+        if completionHandler == nil {
+            appSyncClient?.perform(mutation: incrementReachMutation)
+        } else {
+            appSyncClient?.perform(mutation: incrementReachMutation, queue: DispatchQueue.global(qos: .userInteractive), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
+                if (error != nil) || ((result?.errors) != nil) {
+                    completionHandler!(false)
+                } else {
+                    completionHandler!(true)
+                }
+            })
+        }
     }
 
     /// Deletes the profiles and vibe updates from the User Channel.
@@ -466,17 +466,6 @@ class AppSyncHelper {
                         }
                     }
                 }
-                
-                for (key, value) in allProfiles {
-                    print("profileId: \(value.getId())")
-                    print("name: \(value.getName())")
-                    print("username: \(value.getUsername())")
-                }
-                for i in 0 ..< allVibes.count {
-                    print("vibeName: \(allVibes[i].vibeName)")
-                    print("id: \(allVibes[i].id)")
-                    print("author: \(allVibes[i].from)")
-                }
                 completionHandler(nil, allVibes, allProfiles)
             }
         })
@@ -488,7 +477,6 @@ class AppSyncHelper {
     ///     - success: Success Closure which will be invoked if the CreateVibe query succeeds.
     ///     - failure: Failure Closure which will be invoked if the CreateVibe fails.
     public func createVibe(vibe: VibeModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
-        print("vibe: \(vibe)")
         let senderFsmComponentInput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.from, id: nil, author: nil)
         let receiverFsmComponentnput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.to, id: nil, author: nil)
         var userInputList = [FsmComponentInput]()
@@ -497,7 +485,6 @@ class AppSyncHelper {
         let userComponent = FsmComponent(exists: true, list: userInputList)
         var vibeComponents = [VibeComponentInput]()
         if vibe.isLetterPresent {
-            print("Letter is present")
             let letterComponent = VibeComponentInput(ids: nil, sequence: nil, texts: [vibe.letter.text!], format: Format.text, template: VibeTextBackgrounds.getLetterTemplate(index: vibe.letter.background!), globalSequence: 1)
             vibeComponents.append(letterComponent)
         }
@@ -519,7 +506,6 @@ class AppSyncHelper {
 
         if appSyncClient != nil {
             appSyncClient?.perform(mutation: mutation, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
-                print("result: \(result)")
                 if error != nil {
                     failure(error! as NSError)
                 } else if result?.errors == nil {
@@ -542,14 +528,6 @@ class AppSyncHelper {
     ///     - success: Success Closure to be invoked if the Create Query succeeds.
     ///     - failure: Failure Closure to be invoked if the Create Query fails.
     public func createUserProfile(profile: ProfileModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
-        print("profile.getDob(): \(profile.getDob())")
-        print("profile.getId(): \(profile.getId())")
-        print("profile.getMobileNumber(): \(profile.getMobileNumber())")
-        print("profile.getName(): \(profile.getName())")
-        print("profile.getGender: \(profile.getGender())")
-        print("profile.getGender().map { Gender(rawValue: $0) }: \(profile.getGender().map { Gender(rawValue: $0) })")
-        print("profile.getProfilePicId(): \(profile.getProfilePicId())")
-        print("profile.getUsername(): \(profile.getUsername())")
         let profileInput = CreateUserProfileInput.init(id: profile.getId()!, mobileNumber: profile.getMobileNumber()!, username: profile.getUsername()!, name: profile.getName(), dob: profile.getDob()?.description, gender: profile.getGender().map { Gender(rawValue: $0) } != nil ? profile.getGender().map { Gender(rawValue: $0) }! : Gender.male, profilePicId: profile.getProfilePicId())
         
         let createQuery = CreateUserProfileMutation(input: profileInput)
@@ -558,16 +536,11 @@ class AppSyncHelper {
         } else {
             appSyncClient?.perform(mutation: createQuery, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
                 if error != nil {
-                    print("=========> error is not nil")
-                    print("=========> error: \(error!)")
                     failure(error! as NSError)
                 } else {
                     if result?.errors == nil {
-                        print("=========> result.error is nil")
                         success(true)
                     } else {
-                        print("=========> result.errors: \(result?.errors!)")
-                        print("=========> result.error is not nil")
                         success(false)
                     }
                 }
@@ -590,6 +563,7 @@ class AppSyncHelper {
                 failure(error! as NSError)
             } else {
                 if result?.errors == nil {
+                    self.performUpdateProfileForAllUsers(completionHandler: nil)
                     success(true)
                 } else {
                     print("result.errors in updateUserProfile: \(result?.errors)")
@@ -598,7 +572,29 @@ class AppSyncHelper {
             }
         })
     }
-    
+
+    func performUpdateProfileForAllUsers(completionHandler: ((Bool) -> Void)?) {
+        var userInputList = [FsmComponentInput]()
+        userInputList.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: nil, id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, author: nil))
+        let userComponent = FsmComponent(exists: true, list: userInputList)
+        let fsmInput = FsmInput(action: .updateProfile, users: userComponent, vibes: nil, hails: nil)
+        let incrementReachMutation = TriggerFsmMutation(input: fsmInput, userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
+        if appSyncClient == nil {
+            setAppSyncClient()
+        }
+        if completionHandler == nil {
+            appSyncClient?.perform(mutation: incrementReachMutation)
+        } else {
+            appSyncClient?.perform(mutation: incrementReachMutation, queue: DispatchQueue.global(qos: .userInteractive), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
+                if (error != nil) || ((result?.errors) != nil) {
+                    completionHandler!(false)
+                } else {
+                    completionHandler!(true)
+                }
+            })
+        }
+    }
+
     /// Updates the User's Profile Picture.
     /// - Parameters:
     ///     - profilePictureId: Picture Id.
@@ -629,7 +625,6 @@ class MyCognitoUserPoolsAuthProvider: AWSCognitoUserPoolsAuthProvider {
     
     /// background thread - asynchronous
     func getLatestAuthToken() -> String {
-        print("Inside getLatestAuthToken")
         var token: String? = nil
         if let tokenString = UserDefaults.standard.string(forKey: DeviceConstants.ID_TOKEN) {
             token = tokenString

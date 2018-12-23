@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85E02549C64544D54B1EDBC0789B4D6B"
-               BlueprintName = "Realm"
+               BlueprintIdentifier = "F66972AC823B1D7C578D9EE496708E1F"
+               BlueprintName = "LinearProgressBar"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Realm.framework">
+               BuildableName = "LinearProgressBar.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

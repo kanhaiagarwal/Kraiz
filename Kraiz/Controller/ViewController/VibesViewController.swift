@@ -14,6 +14,8 @@ class VibesViewController: UIViewController {
     @IBOutlet weak var vibesSegment: UISegmentedControl!
     @IBOutlet weak var viewContainers: UIView!
     @IBOutlet weak var publicVibeButton: UIButton!
+    
+    let PUBLIC_VIBE_READY_COLOR = UIColor(displayP3Red: 37/255, green: 40/255, blue: 69/255, alpha: 1.0)
 
     var isPublicVibeReady = false
     var timer : Timer?
@@ -70,7 +72,7 @@ class VibesViewController: UIViewController {
         let timeDifference = currentTime - lastTime
         print("timeDifference: \(timeDifference)")
         if timeDifference >= DeviceConstants.TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS {
-            publicVibeButton.setTitleColor(UIColor.blue, for: .normal)
+            publicVibeButton.setTitleColor(PUBLIC_VIBE_READY_COLOR, for: .normal)
             if timer != nil {
                 timer!.invalidate()
             }

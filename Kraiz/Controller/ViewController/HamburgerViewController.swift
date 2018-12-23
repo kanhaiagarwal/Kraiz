@@ -121,20 +121,27 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
                 APPUtilites.displayErrorSnackbar(message: "Please Check your Internet Connection")
                 return
             }
-            let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
-            UserDefaults.standard.set(nil, forKey: DeviceConstants.ID_TOKEN)
-            UserDefaults.standard.set(nil, forKey: DeviceConstants.USER_ID)
-            UserDefaults.standard.set(nil, forKey: DeviceConstants.USER_NAME)
-            UserDefaults.standard.set(nil, forKey: DeviceConstants.MOBILE_NUMBER)
-            CognitoHelper.shared.signOut(success: {
-                APPUtilites.removeLoadingSpinner(spinner: sv)
-                self.tabBarController?.navigationController?.popToRootViewController(animated: true)
-            }, failure: { (error) in
-                APPUtilites.displayErrorSnackbar(message: "Sorry, cannot Sign Out right now. Please try again")
-                APPUtilites.removeLoadingSpinner(spinner: sv)
-            })
+            DispatchQueue.main.async {
+                let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
+                UserDefaults.standard.set(nil, forKey: DeviceConstants.ID_TOKEN)
+                UserDefaults.standard.set(nil, forKey: DeviceConstants.USER_ID)
+                UserDefaults.standard.set(nil, forKey: DeviceConstants.USER_NAME)
+                UserDefaults.standard.set(nil, forKey: DeviceConstants.MOBILE_NUMBER)
+                CognitoHelper.shared.signOut(success: {
+                    DispatchQueue.main.async {
+                        APPUtilites.removeLoadingSpinner(spinner: sv)
+                        CacheHelper.shared.clearCache()
+                        self.tabBarController?.navigationController?.popToRootViewController(animated: true)
+                    }
+                }, failure: { (error) in
+                    DispatchQueue.main.async {
+                        print("error in sign out: \(error)")
+                        APPUtilites.displayErrorSnackbar(message: "Sorry, cannot Sign Out right now. Please try again")
+                        APPUtilites.removeLoadingSpinner(spinner: sv)
+                    }
+                })
+            }
         }
-        
         let noAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             self.dismiss(animated: true, completion: nil)
         }

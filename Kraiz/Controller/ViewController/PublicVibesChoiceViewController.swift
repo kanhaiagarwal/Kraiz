@@ -20,10 +20,30 @@ class PublicVibesChoiceViewController: UIViewController {
     var tagSelected : Int = 0
     var allVibes: [VibeModel]?
     var allProfiles: [String : ProfileModel]?
+    var loadingLabel = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
         heading.text = VibeCategories.pickerStrings[tagSelected]
+        if allVibes != nil {
+            for i in 0 ..< allVibes!.count {
+                AppSyncHelper.shared.incrementReachOfVibe(vibeId: allVibes![i].id, completionHandler: nil)
+            }
+        }
+        
+        AppSyncHelper.shared.getRandomPublicVibes(vibeTag: VibeCategories.getVibeTag(index: tagSelected)) {(error, allVibes, allProfiles)  in
+            DispatchQueue.main.async {
+                if error != nil {
+                    print(error)
+                }
+                if allVibes != nil && allVibes!.count > 0 {
+                    self.allVibes = allVibes
+                    self.allProfiles = allProfiles
+                    self.publicVibesTableView.backgroundView = nil
+                    self.publicVibesTableView.reloadData()
+                }
+            }
+        }
     }
 
     override func viewWillLayoutSubviews() {
@@ -33,6 +53,12 @@ class PublicVibesChoiceViewController: UIViewController {
         gradientLayer?.frame = view.bounds
         gradientLayer?.colors = gradientColors[tagSelected]
         bgView.layer.addSublayer(gradientLayer!)
+        loadingLabel.text = "Loading ...."
+        loadingLabel.textColor = UIColor.white
+        loadingLabel.font = UIFont.systemFont(ofSize: 26)
+        loadingLabel.frame = publicVibesTableView.frame
+        loadingLabel.textAlignment = .center
+        publicVibesTableView.backgroundView = loadingLabel
     }
 
     @IBAction func backPressed(_ sender: UIButton) {

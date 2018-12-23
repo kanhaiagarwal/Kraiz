@@ -3454,11 +3454,6 @@ its the right one</string>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kNv-R5-kvu">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="517.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <view key="tableFooterView" contentMode="scaleToFill" id="ysq-L4-xVE">
-                                                    <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </view>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="BYc-jG-0vl">
                                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -4927,7 +4922,7 @@ its the right one</string>
         <image name="myvibe-background-music" width="48" height="48"/>
         <image name="myvibe-name" width="39" height="39"/>
         <image name="myvibe-play-music" width="180" height="180"/>
-        <image name="myvibe-tag" width="50" height="50"/>
+        <image name="myvibe-tag" width="36" height="36"/>
         <image name="myvibe-username" width="52" height="52"/>
         <image name="pencil" width="180" height="180"/>
         <image name="polaroid-background" width="76.800003051757812" height="136.32000732421875"/>
