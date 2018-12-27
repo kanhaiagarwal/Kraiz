@@ -142,6 +142,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
             for i in 0 ..< vibeModel.images.count {
                 let timeNow = String(Int(Date().timeIntervalSince1970))
                 vibeModel.images[i].imageLink = "IMG_" + timeNow + "_" + NSUUID().uuidString + ".jpg"
+                FileManagerHelper.shared.storeImageInFolder(image: vibeModel.images[i].image!, folder: "\(MediaHelper.shared.COMMON_FOLDER)/\(MediaHelper.shared.VIBE_IMAGES_FOLDER)", fileName: vibeModel.images[i].imageLink!)
             }
         }
 
@@ -186,11 +187,10 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     
     /// Action to perform on pressing the Preview Button
     @IBAction func previewPressed(_ sender: UIButton) {
-        if vibeModel.isLetterPresent && vibeModel.letter.text != nil {
-            performSegue(withIdentifier: DeviceConstants.GOTO_TEXT_PREVIEW_FROM_CREATE, sender: self)
-        } else if vibeModel.isPhotosPresent && vibeModel.images.count > 0 {
-            performSegue(withIdentifier: DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_CREATE, sender: self)
-        }
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+        vibeWelcomeVC.vibeModel = vibeModel
+        self.present(vibeWelcomeVC, animated: true, completion: nil)
     }
 
     @IBAction func crossButtonPressed(_ sender: UIButton) {

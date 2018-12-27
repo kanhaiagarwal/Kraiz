@@ -164,9 +164,12 @@ extension VibeImagesViewController {
     @objc func onCloseClick() {
         AudioControls.shared.stopMusic()
         if !vibeModel!.isLetterPresent {
-            self.dismiss(animated: true, completion: nil)
-        } else {
             let presentingVC = self.presentingViewController!.presentingViewController!
+            presentingVC.dismiss(animated: true) {
+                self.dismiss(animated: false, completion: nil)
+            }
+        } else {
+            let presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!
             presentingVC.dismiss(animated: true) {
                 self.dismiss(animated: false, completion: nil)
             }

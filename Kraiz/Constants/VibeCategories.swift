@@ -28,6 +28,7 @@ public class VibeCategories {
     static public let pickerStrings = ["Love", "Travel", "Good", "Party", "Nostalgic", "Occasion"]
     static public let categoryImages : [String] = ["LoveVibes", "TravelVibes", "GoodVibes", "PartyVibes", "NostalgicVibes", "OccasionVibes"]
     static public let categoryBackground = ["background-love-vibe", "background-travel-vibe", "background-good-vibe", "background-party-vibe", "background-nostalgia-vibe", "background-occasion-vibe"]
+    static public let vibeWelcomebackground = ["vibe-welcome-love", "vibe-welcome-travel", "vibe-welcome-good", "vibe-welcome-party", "vibe-welcome-nostalgic", "vibe-welcome-occasion"]
     static public let vibeColors : [UIColor] = [UIColor(displayP3Red: 187/255, green: 10/255, blue: 30/255, alpha: 1.0), UIColor(displayP3Red: 0/255, green: 114/255, blue: 54/255, alpha: 1.0), UIColor(displayP3Red: 68/255, green: 140/255, blue: 203/255, alpha: 1.0), UIColor(displayP3Red: 78/255, green: 46/255, blue: 40/255, alpha: 1.0), UIColor(displayP3Red: 240/255, green: 126/255, blue: 7/255, alpha: 1.0), UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0)]
     static public let UNHIGHLIGHTED_VIBE_COLOR = UIColor(displayP3Red: 149/255, green: 149/255, blue: 149/255, alpha: 1.0)
     
@@ -43,6 +44,18 @@ public class VibeCategories {
             case 4: return VibeTag.nostalgic
             case 5: return VibeTag.occasion
             default: return VibeTag.love
+        }
+    }
+
+    public static func getVibeTagIndex(vibeTag: VibeTag) -> Int {
+        switch vibeTag {
+            case .love: return 0
+            case .travel: return 1
+            case .good: return 2
+            case .party: return 3
+            case .nostalgic: return 4
+            case .occasion: return 5
+            default: return 0
         }
     }
 

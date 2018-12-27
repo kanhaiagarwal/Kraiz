@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double LinearProgressBarVersionNumber;
-FOUNDATION_EXPORT const unsigned char LinearProgressBarVersionString[];
+FOUNDATION_EXPORT double LinearProgressBarMaterialVersionNumber;
+FOUNDATION_EXPORT const unsigned char LinearProgressBarMaterialVersionString[];
 

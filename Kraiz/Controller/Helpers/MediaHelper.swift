@@ -14,9 +14,9 @@ class MediaHelper {
     static let shared = MediaHelper()
     private var client: CLDCloudinary?
     
-    private let PROFILE_PIC_FOLDER = "profile"
-    private let COMMON_FOLDER = "Library/Caches"
-    private let VIBE_IMAGES_FOLDER = "Vibe_Images"
+    public let PROFILE_PIC_FOLDER = "profile"
+    public let COMMON_FOLDER = "Library/Caches"
+    public let VIBE_IMAGES_FOLDER = "Vibe"
 
     private init() {
     }
@@ -120,5 +120,41 @@ class MediaHelper {
                 success(image!)
             }
         })
+    }
+
+    /// Gets all the vibe images from the media store. Stores them in the local cache.
+    /// - Parameters:
+    ///     - images: Vibe Image IDs.
+    ///     - counter: Variable counter to find out if the image has been downloaded.
+    ///     - completionHandler: Completion closure to be executed after each file has been downloaded.
+    func getVibeImages(images: [String], counter: Variable<Int>, completionHandler: ((Error?) -> Void)?) {
+        if client == nil {
+            setMediaHelper()
+        }
+
+        for i in 0 ..< images.count {
+            let id = "\(VIBE_IMAGES_FOLDER)/\(images[i])".appending(".jpg")
+            let imageUrl = client?.createUrl().generate(id)
+            print("imageUrl: \(imageUrl!)")
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.client?.createDownloader().fetchImage(imageUrl!, { (progress) in
+                    print("progress of \(images[i]): \(progress.fractionCompleted)")
+                }, completionHandler: { (image, error) in
+                    if let e = error {
+                        print("Error: \(e)")
+                        if completionHandler != nil {
+                            completionHandler!(e)
+                        }
+                        return
+                    }
+                    print("Image Downloaded")
+                    FileManagerHelper.shared.storeImageInFolder(image: image!, folder: "/\(self.COMMON_FOLDER)/\(self.VIBE_IMAGES_FOLDER)", fileName: images[i])
+                    counter.value = 1
+                    if completionHandler != nil {
+                        completionHandler!(nil)
+                    }
+                })
+            }
+        }
     }
 }

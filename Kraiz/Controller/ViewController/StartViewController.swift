@@ -102,6 +102,7 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                         print("Inside the getUserProfile of StartViewController where the Internet Connection is available")
                         DispatchQueue.main.async {
                             if profile.getId() != nil {
+                                UserDefaults.standard.set(profile.getUsername()!, forKey: DeviceConstants.USER_NAME)
                                 UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
                             } else {
                                 UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)

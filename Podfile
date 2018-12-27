@@ -12,7 +12,7 @@ target 'Kraiz' do
   pod 'BSImagePicker'
   pod 'Cloudinary'
   pod 'CropViewController', '2.3.8'
-  pod 'LinearProgressBar'
+  pod 'LinearProgressBarMaterial'
   pod 'RealmSwift'
   pod 'RxSwift'
   pod 'TTGSnackbar'

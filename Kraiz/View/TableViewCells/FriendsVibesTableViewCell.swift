@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import LinearProgressBarMaterial
 
 class FriendsVibesTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var cardView: CardView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var unseenVibeDot: UIView!
     @IBOutlet weak var unseenHailDot: UIView!
@@ -19,7 +21,8 @@ class FriendsVibesTableViewCell: UITableViewCell {
     @IBOutlet weak var vibeStatus: UILabel!
     @IBOutlet weak var hailButton: UIButton!
     @IBOutlet weak var vibeSeenImage: UIImageView!
-    
+
+    let progressBar = LinearProgressBar()
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -39,6 +42,13 @@ class FriendsVibesTableViewCell: UITableViewCell {
 
         unseenHailDot.layer.cornerRadius = unseenHailDot.frame.height / 2
         unseenHailDot.clipsToBounds = true
+
+        cardView.addSubview(progressBar)
+        progressBar.frame = CGRect(x: 0, y: progressBar.superview!.frame.height - 5, width: progressBar.superview!.frame.width, height: 2)
+        progressBar.progressBarColor = UIColor(displayP3Red: 227/255, green: 121/255, blue: 11/255, alpha: 1.0)
+        progressBar.backgroundProgressBarColor = UIColor(displayP3Red: 227/255, green: 121/255, blue: 11/255, alpha: 0.5)
+        progressBar.widthForLinearBar = cardView.frame.width
+        progressBar.heightForLinearBar = 2
     }
     
     override func layoutSubviews() {

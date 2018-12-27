@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import RxSwift
 
 class FriendsVibesViewController: UIViewController {
 
@@ -131,7 +132,15 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hailButtonPressed(sender:)))
         cell.hailButton.addGestureRecognizer(tapGesture)
-        
+
+        if vibe.getIsDownloadInProgress() {
+            cell.progressBar.isHidden = false
+            cell.progressBar.startAnimation()
+        } else {
+            cell.progressBar.isHidden = false
+            cell.progressBar.stopAnimation()
+        }
+
         return cell
     }
     
@@ -146,14 +155,109 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
 
+        let cell = tableView.cellForRow(at: indexPath) as? FriendsVibesTableViewCell
+        print("cell.progressBar.isHidden: \(cell!.progressBar.isHidden)")
         let vibe = privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]![indexPath.row]
+
+        if !vibe.getIsDownloadInProgress() {
+            let spinnerView = APPUtilites.displayLoadingSpinner(onView: view)
+            AppSyncHelper.shared.getUserVibe(vibeId: vibe.getId()!, vibeType: 0, vibeTag: selectedCategory) { (error, vibeModel) in
+                DispatchQueue.main.async {
+                    print("====> inside the completionHandler of getUserVibe")
+                    APPUtilites.removeLoadingSpinner(spinner: spinnerView)
+                    if error != nil {
+                        APPUtilites.displayErrorSnackbar(message: "Error in fetching the vibe.")
+                    }
+                    if vibeModel == nil {
+                        APPUtilites.displayErrorSnackbar(message: "Cannot get the vibe components. Please try again")
+                    }
+                    if !vibeModel!.isLetterPresent && !vibeModel!.isPhotosPresent {
+                        APPUtilites.displayErrorSnackbar(message: "No data present in the vibe. Please try again")
+                    }
+                    if !vibeModel!.isPhotosPresent {
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+                        vibeWelcomeVC.vibeModel = vibeModel
+                        self.present(vibeWelcomeVC, animated: true, completion: nil)
+                    } else {
+                        var imagesToBeDownloaded = [String]()
+                        let allImages = vibeModel!.images
+                        for i in 0 ..< vibeModel!.getImages().count {
+                            if !FileManagerHelper.shared.doesFileExist(filePath: "/\(MediaHelper.shared.COMMON_FOLDER)/\(MediaHelper.shared.VIBE_IMAGES_FOLDER)/\(allImages[i].imageLink!)") {
+                                imagesToBeDownloaded.append(allImages[i].imageLink!)
+                            }
+                        }
+
+                        
+                        if imagesToBeDownloaded.count == 0 {
+                            print("====> All images present in local.")
+                            for i in 0 ..< allImages.count {
+                                vibeModel!.images[i].image = UIImage(data: FileManagerHelper.shared.getImageDataFromPath(filePath: "/\(MediaHelper.shared.COMMON_FOLDER)/\(MediaHelper.shared.VIBE_IMAGES_FOLDER)/\(allImages[i].imageLink!)", isJpgExtensionRequired: false)!)
+                            }
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+                            vibeWelcomeVC.vibeModel = vibeModel
+                            self.present(vibeWelcomeVC, animated: true, completion: nil)
+                        } else {
+                            print("not all images present in local.")
+                            print("imagesToBeDownloaded: \(imagesToBeDownloaded)")
+
+                            var totalUpload = 0
+                            let counter = Variable(0)
+                            counter.asObservable().subscribe(onNext: { (counter) in
+                                totalUpload = totalUpload + 1
+                                if (totalUpload == imagesToBeDownloaded.count + 1) {
+                                    print("all images downloaded")
+                                    DispatchQueue.main.async {
+                                        for i in 0 ..< allImages.count {
+                                            CacheHelper.shared.updateVibeDownloadStatus(vibe: vibe, isDownloadInProgress: false)
+                                            vibeModel!.images[i].image = UIImage(data: FileManagerHelper.shared.getImageDataFromPath(filePath: "/\(MediaHelper.shared.COMMON_FOLDER)/\(MediaHelper.shared.VIBE_IMAGES_FOLDER)/\(allImages[i].imageLink!)", isJpgExtensionRequired: false)!)
+                                        }
+                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                        let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+                                        vibeWelcomeVC.vibeModel = vibeModel
+                                        self.present(vibeWelcomeVC, animated: true, completion: nil)
+                                    }
+                                }
+                            }, onError: { (error) in
+                                print("error in uploading the picture")
+                            }, onCompleted: {
+                                print("upload completed")
+                            }) {
+                                print("disposed")
+                            }
+
+                            MediaHelper.shared.getVibeImages(images: imagesToBeDownloaded, counter: counter, completionHandler: nil)
+                            CacheHelper.shared.updateVibeDownloadStatus(vibe: vibe, isDownloadInProgress: true)
+                        }
+                    }
+                }
+            }
+        } else {
+            cell?.progressBar.startAnimation()
+            cell?.progressBar.isHidden = false
+        }
         if !vibe.getIsSender() {
             if !vibe.getIsSeen() {
-                let cell = tableView.cellForRow(at: indexPath) as? FriendsVibesTableViewCell
                 cell?.unseenVibeDot.isHidden = true
                 CacheHelper.shared.updateVibeSeenStatus(vibeId: vibe.getId()!, seenStatus: true)
 //                AppSyncHelper.shared.updateSeenStatusOfVibe(vibeId: vibe.getId()!, seenStatus: true)
             }
+        }
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("inside willDisplay for indexPath: \(indexPath.row)")
+        let cell = tableView.cellForRow(at: indexPath) as? FriendsVibesTableViewCell
+        print("cell != nil: \(cell != nil)")
+        let vibe = privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]![indexPath.row]
+
+        if vibe.getIsDownloadInProgress() {
+            cell?.progressBar.stopAnimation()
+            cell?.progressBar.isHidden = true
+        } else {
+            cell?.progressBar.startAnimation()
+            cell?.progressBar.isHidden = false
         }
     }
 

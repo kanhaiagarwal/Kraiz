@@ -24,6 +24,7 @@ class VibeDataEntity: Object {
     @objc dynamic private var hasNewHails = false
     @objc dynamic private var reach: Int = 0
     @objc dynamic private var profileId: String?
+    @objc dynamic private var isDownloadInProgress = false
     private var hails: List<HailsEntity> = List<HailsEntity>()
     
     /// MARK: - Getters Start.
@@ -82,6 +83,10 @@ class VibeDataEntity: Object {
 
     public func getCreatedAt() -> Int {
         return createdAt
+    }
+
+    public func getIsDownloadInProgress() -> Bool {
+        return isDownloadInProgress
     }
     
     /// MARK: - Getters End.
@@ -142,6 +147,10 @@ class VibeDataEntity: Object {
 
     public func setCreatedAt(_ createdAt: Int) {
         self.createdAt = createdAt
+    }
+
+    public func setIsDownloadInProgress(_ isInProgress: Bool) {
+        self.isDownloadInProgress = isInProgress
     }
 
     // MARK: - Setters End.

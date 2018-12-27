@@ -159,7 +159,10 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     
     @objc func onCloseClick() {
         AudioControls.shared.stopMusic()
-        self.dismiss(animated: true, completion: nil)
+        let presentingVC = self.presentingViewController!.presentingViewController!
+        presentingVC.dismiss(animated: true) {
+            self.dismiss(animated: false, completion: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

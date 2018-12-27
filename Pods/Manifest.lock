@@ -19,7 +19,7 @@ PODS:
   - Cloudinary (2.4.0):
     - Alamofire (~> 4.7.2)
   - CropViewController (2.3.8)
-  - LinearProgressBar (1.0.1)
+  - LinearProgressBarMaterial (1.3)
   - ReachabilitySwift (4.0.0)
   - Realm (3.13.0):
     - Realm/Headers (= 3.13.0)
@@ -41,7 +41,7 @@ DEPENDENCIES:
   - BSImagePicker
   - Cloudinary
   - CropViewController (= 2.3.8)
-  - LinearProgressBar
+  - LinearProgressBarMaterial
   - RealmSwift
   - RxSwift
   - TTGSnackbar
@@ -59,7 +59,7 @@ SPEC REPOS:
     - BSImageView
     - Cloudinary
     - CropViewController
-    - LinearProgressBar
+    - LinearProgressBarMaterial
     - ReachabilitySwift
     - Realm
     - RealmSwift
@@ -80,7 +80,7 @@ SPEC CHECKSUMS:
   BSImageView: ab22ff8cae61f1ae17a3c9efeeb216af3cf84a09
   Cloudinary: d87b545d6a5d00c4022bec964839fdaf359d7c53
   CropViewController: 7be882b7d3fb3faef48a41924e80f689e9df2514
-  LinearProgressBar: f6a74dbabed229dbb1a7978089e2e4317a3a0ee0
+  LinearProgressBarMaterial: 84df3135c27a0fc5e0219da10ee98304de159b06
   ReachabilitySwift: e67b2cab4d5386053673d8a7421b5981e5f08259
   Realm: 5edd2ee65406aef591a4f9895de5a3440e51b3d8
   RealmSwift: be5ebc7930e37cd3376b41cec7f21984528aaa16
@@ -89,6 +89,6 @@ SPEC CHECKSUMS:
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   TTGSnackbar: 2cf4e7b6ffbe5cddf248a73f3ee952b71bee8ea3
 
-PODFILE CHECKSUM: 59e754c105668064de72ee401d598cba26356036
+PODFILE CHECKSUM: c28be9812da0ce19690128967a92e34fd70d6542
 
 COCOAPODS: 1.5.3

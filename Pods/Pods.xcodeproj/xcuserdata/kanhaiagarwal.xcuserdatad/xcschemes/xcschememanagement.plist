@@ -95,7 +95,7 @@
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
-		<key>LinearProgressBar.xcscheme</key>
+		<key>LinearProgressBarMaterial.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

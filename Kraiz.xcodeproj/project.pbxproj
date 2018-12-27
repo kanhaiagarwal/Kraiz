@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5711AD1521D3C06F005650C3 /* VibeWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5711AD1421D3C06F005650C3 /* VibeWelcomeViewController.swift */; };
 		571E508C2185807100271314 /* ImageCaptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571E508B2185807100271314 /* ImageCaptionsViewController.swift */; };
 		571E508E2185880700271314 /* ImageCaptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571E508D2185880700271314 /* ImageCaptionCollectionViewCell.swift */; };
 		571F44C621A47B46001C033B /* VibeCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F44C521A47B46001C033B /* VibeCategories.swift */; };
@@ -138,6 +139,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5711AD1421D3C06F005650C3 /* VibeWelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeWelcomeViewController.swift; sourceTree = "<group>"; };
 		571E508B2185807100271314 /* ImageCaptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptionsViewController.swift; sourceTree = "<group>"; };
 		571E508D2185880700271314 /* ImageCaptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		571F44C521A47B46001C033B /* VibeCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeCategories.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */,
 				57C74A9D21BA521400D737FB /* VibeImagesViewController.swift */,
 				57C74A9521B2F42500D737FB /* VibeTextViewController.swift */,
+				5711AD1421D3C06F005650C3 /* VibeWelcomeViewController.swift */,
 				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
 			);
 			path = ViewController;
@@ -686,7 +689,7 @@
 				"${BUILT_PRODUCTS_DIR}/BSImageView/BSImageView.framework",
 				"${BUILT_PRODUCTS_DIR}/Cloudinary/Cloudinary.framework",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
-				"${BUILT_PRODUCTS_DIR}/LinearProgressBar/LinearProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/LinearProgressBarMaterial/LinearProgressBarMaterial.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -708,7 +711,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImageView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cloudinary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinearProgressBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinearProgressBarMaterial.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -810,6 +813,7 @@
 				57BD53E8219841BF001B1010 /* PublicVibesViewController.swift in Sources */,
 				57B24F3221AA7B9500FA45E9 /* VibeSentViewController.swift in Sources */,
 				B51DF228211F13B9009896CC /* SignUpOTPViewController.swift in Sources */,
+				5711AD1521D3C06F005650C3 /* VibeWelcomeViewController.swift in Sources */,
 				B51DF221211F13B9009896CC /* CreateVibeViewController.swift in Sources */,
 				B51DF255211F17E6009896CC /* ProfileTableViewCell.swift in Sources */,
 				57B24F2E21A98B7700FA45E9 /* BackgroundMusic.swift in Sources */,

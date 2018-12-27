@@ -172,6 +172,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cardView" destination="iGL-nr-ab1" id="c91-Hl-H9C"/>
                 <outlet property="hailButton" destination="sFH-X0-Ggs" id="zzC-Mx-usn"/>
                 <outlet property="reachCount" destination="Gco-gj-n5u" id="BBS-MG-r5R"/>
                 <outlet property="timestamp" destination="yJE-mc-LZj" id="r3t-iJ-6jD"/>

@@ -153,6 +153,17 @@ public class CacheHelper {
         }
     }
 
+    func updateVibeDownloadStatus(vibe: VibeDataEntity, isDownloadInProgress: Bool) {
+        do {
+            let realm = try! Realm()
+            realm.beginWrite()
+            vibe.setIsDownloadInProgress(isDownloadInProgress)
+            try realm.commitWrite()
+        } catch {
+            print("error in realm: \(error)")
+        }
+    }
+
     /// Gets the profile by Id.
     /// - Parameters:
     ///     - id: Profile ID.

@@ -70,4 +70,12 @@ class FileManagerHelper {
         }
         return nil
     }
+
+    /// Checks if the file exists at the file path.
+    /// - Parameters:
+    ///     - filePath: File Path.
+    /// - Returns: File Existence.
+    public func doesFileExist(filePath: String) -> Bool {
+        return FileManager.default.fileExists(atPath: NSHomeDirectory().appending(filePath))
+    }
 }

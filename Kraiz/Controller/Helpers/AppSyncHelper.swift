@@ -361,6 +361,88 @@ class AppSyncHelper {
         })
     }
 
+    func getUserVibe(vibeId: String, vibeType: Int, vibeTag: Int, completionHandler: ((Error?, VibeModel?) -> Void)?) {
+        print("inside getUserVibe")
+        print("vibeId: \(vibeId)")
+        let query = FetchVibeDataQuery(vibeId: vibeId)
+        let cachePolicy = CachePolicy.returnCacheDataAndFetch
+
+        if appSyncClient == nil {
+            setAppSyncClient()
+        }
+        appSyncClient?.fetch(query: query, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .userInitiated), resultHandler: { (result, error) in
+            if error != nil {
+                print("error in fetch vibe data: \(error)")
+                if completionHandler != nil {
+                    completionHandler!(error, nil)
+                }
+                return
+            }
+            print("result: \(result)")
+            if result?.errors != nil {
+                print("error in the result of fetch vibe data: \(result?.errors?.first)")
+                if completionHandler != nil {
+                    completionHandler!(result?.errors?.first, nil)
+                }
+                return
+            }
+            if let data = result?.data {
+                let vibeModel = VibeModel()
+                if let vibeData = data.snapshot["fetchVibeData"] as? [String: Any?] {
+                    print("vibeData: \(vibeData)")
+                    vibeModel.setId(id: vibeData["id"] as! String)
+                    vibeModel.setVibeName(name: vibeData["name"] as! String)
+                    vibeModel.setVibeType(type: vibeType)
+                    vibeModel.setCategory(category: vibeTag)
+                    let sender = vibeData["author"] as! String
+                    print("UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!: \(UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))")
+                    if sender == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! {
+                        vibeModel.setSender(sender: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!)
+                    } else {
+                        let profile = CacheHelper.shared.getProfileById(id: sender)
+                        vibeModel.setSender(sender: profile?.getUsername()! ?? "User")
+                    }
+                    vibeModel.setAnonymous(isSenderAnonymous: vibeData["isAnonymous"] as! Bool)
+                    let vibeComponents = vibeData["vibeComponents"] as! [Any]
+                    for i in 0 ..< vibeComponents.count {
+                        if let component = vibeComponents[i] as? [String : Any] {
+                            let format = component["format"] as! Format
+                            print("format: \(format)")
+                            let componentTexts = component["texts"] as! [Any]
+                            if format == Format.text {
+                                vibeModel.setLetterPresent(isLetterPresent: true)
+                                vibeModel.setLetterText(letterString: componentTexts[0] as! String)
+                                print("component[template] as! VibeComponentTemplate: \(component["template"] as! VibeComponentTemplate)")
+                                vibeModel.setLetterBackground(background: VibeTextBackgrounds.getletterTemplateIndexFromTemplate(template: component["template"] as! VibeComponentTemplate))
+                            }
+                            if format == Format.backgroundMusic {
+                                let componentIds = component["ids"] as! [Any]
+                                vibeModel.setBackgroundMusicEnabled(isBackgroundMusicEnabled: true)
+                                vibeModel.setBackgroundMusic(index: componentIds[0] as! Int)
+                            }
+                            if format == Format.image {
+                                let componentIds = component["ids"] as! [Any]
+                                vibeModel.setPhotosPresent(isPhotosPresent: true)
+                                var photos = [PhotoEntity]()
+                                for j in 0 ..< componentIds.count {
+                                    var photo = PhotoEntity()
+                                    photo.caption = componentTexts[j] as? String
+                                    photo.imageLink = componentIds[j] as? String
+                                    photos.append(photo)
+                                }
+                                vibeModel.setImages(photos: photos)
+                            }
+                        }
+                    }
+                    print("=====> vibeModel inside result of fetchVibeData: \(vibeModel)")
+                    if completionHandler != nil {
+                        completionHandler!(nil, vibeModel)
+                    }
+                }
+            }
+        })
+    }
+
     /// Increment the reach of a vibe.
     /// - Parameters:
     ///     - vibeId: Vibe ID.
@@ -456,11 +538,52 @@ class AppSyncHelper {
                         if let vibesOuter = snapshot["vibes"] as Any? {
                             let vibes = vibesOuter as! [Any]
                             for i in 0 ..< vibes.count {
-                                let vibe = vibes[i] as! [String : Any]
+                                let vibeData = vibes[i] as! [String : Any]
                                 let vibeModel = VibeModel()
-                                vibeModel.setVibeName(name: vibe["name"] as! String)
-                                vibeModel.setSender(sender: vibe["author"] as! String)
-                                vibeModel.setId(id: vibe["id"] as! String)
+                                vibeModel.setId(id: vibeData["id"] as! String)
+                                vibeModel.setVibeName(name: vibeData["name"] as! String)
+                                vibeModel.setVibeType(type: 0)
+                                vibeModel.setCategory(category: VibeCategories.getVibeTagIndex(vibeTag: vibeTag))
+                                let sender = vibeData["author"] as! String
+                                print("UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!: \(UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))")
+                                if sender == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! {
+                                    vibeModel.setSender(sender: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!)
+                                } else {
+                                    let profile = CacheHelper.shared.getProfileById(id: sender)
+                                    vibeModel.setSender(sender: profile?.getUsername()! ?? "User")
+                                }
+                                vibeModel.setAnonymous(isSenderAnonymous: vibeData["isAnonymous"] as! Bool)
+                                let vibeComponents = vibeData["vibeComponents"] as! [Any]
+                                for i in 0 ..< vibeComponents.count {
+                                    if let component = vibeComponents[i] as? [String : Any] {
+                                        let format = component["format"] as! Format
+                                        print("format: \(format)")
+                                        let componentTexts = component["texts"] as! [Any]
+                                        if format == Format.text {
+                                            vibeModel.setLetterPresent(isLetterPresent: true)
+                                            vibeModel.setLetterText(letterString: componentTexts[0] as! String)
+                                            print("component[template] as! VibeComponentTemplate: \(component["template"] as! VibeComponentTemplate)")
+                                            vibeModel.setLetterBackground(background: VibeTextBackgrounds.getletterTemplateIndexFromTemplate(template: component["template"] as! VibeComponentTemplate))
+                                        }
+                                        if format == Format.backgroundMusic {
+                                            let componentIds = component["ids"] as! [Any]
+                                            vibeModel.setBackgroundMusicEnabled(isBackgroundMusicEnabled: true)
+                                            vibeModel.setBackgroundMusic(index: componentIds[0] as! Int)
+                                        }
+                                        if format == Format.image {
+                                            let componentIds = component["ids"] as! [Any]
+                                            vibeModel.setPhotosPresent(isPhotosPresent: true)
+                                            var photos = [PhotoEntity]()
+                                            for j in 0 ..< componentIds.count {
+                                                var photo = PhotoEntity()
+                                                photo.caption = componentTexts[j] as? String
+                                                photo.imageLink = componentIds[j] as? String
+                                                photos.append(photo)
+                                            }
+                                            vibeModel.setImages(photos: photos)
+                                        }
+                                    }
+                                }
                                 allVibes.append(vibeModel)
                             }
                         }

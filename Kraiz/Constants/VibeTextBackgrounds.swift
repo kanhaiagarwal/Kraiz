@@ -28,4 +28,15 @@ public class VibeTextBackgrounds {
         }
         return VibeComponentTemplate.basic
     }
+
+    public static func getletterTemplateIndexFromTemplate(template: VibeComponentTemplate) -> Int {
+        switch template {
+            case .love: return 0
+            case .royal: return 1
+            case .parchment: return 2
+            case .basic: return 3
+            case .dreamy: return 4
+            default: return 3
+        }
+    }
 }

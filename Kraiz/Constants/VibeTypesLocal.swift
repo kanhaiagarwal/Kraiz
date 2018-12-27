@@ -18,4 +18,12 @@ public class VibeTypesLocal {
             default: return VibeType.private
         }
     }
+
+    public static func getVibeTypeIndex(type: VibeType) -> Int {
+        switch type {
+            case .private: return 0
+            case .public: return 1
+            default: return 0
+        }
+    }
 }

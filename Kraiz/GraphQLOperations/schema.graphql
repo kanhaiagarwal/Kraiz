@@ -179,3 +179,29 @@ query GetRandomPublicVibes($vibeTag: VibeTag!){
         }
     }
 }
+
+query FetchVibeData($vibeId: ID!){
+    fetchVibeData(vibeId: $vibeId) {
+        id
+        version
+        type
+        createdAt
+        updatedTime
+        isAnonymous
+        name
+        author
+        tag
+        vibeComponents {
+            ids
+            sequence
+            texts
+            format
+            template
+            globalSequence
+        }
+        ... on PrivateVibe {
+            accessGroup
+            seenCount
+        }
+    }
+}

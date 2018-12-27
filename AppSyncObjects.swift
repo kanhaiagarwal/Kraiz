@@ -2840,3 +2840,513 @@ public final class GetRandomPublicVibesQuery: GraphQLQuery {
     }
   }
 }
+
+public final class FetchVibeDataQuery: GraphQLQuery {
+  public static let operationString =
+    "query FetchVibeData($vibeId: ID!) {\n  fetchVibeData(vibeId: $vibeId) {\n    __typename\n    id\n    version\n    type\n    createdAt\n    updatedTime\n    isAnonymous\n    name\n    author\n    tag\n    vibeComponents {\n      __typename\n      ids\n      sequence\n      texts\n      format\n      template\n      globalSequence\n    }\n    ... on PrivateVibe {\n      accessGroup\n      seenCount\n    }\n  }\n}"
+
+  public var vibeId: GraphQLID
+
+  public init(vibeId: GraphQLID) {
+    self.vibeId = vibeId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["vibeId": vibeId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("fetchVibeData", arguments: ["vibeId": GraphQLVariable("vibeId")], type: .object(FetchVibeDatum.selections)),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(fetchVibeData: FetchVibeDatum? = nil) {
+      self.init(snapshot: ["__typename": "Query", "fetchVibeData": fetchVibeData.flatMap { $0.snapshot }])
+    }
+
+    public var fetchVibeData: FetchVibeDatum? {
+      get {
+        return (snapshot["fetchVibeData"] as? Snapshot).flatMap { FetchVibeDatum(snapshot: $0) }
+      }
+      set {
+        snapshot.updateValue(newValue?.snapshot, forKey: "fetchVibeData")
+      }
+    }
+
+    public struct FetchVibeDatum: GraphQLSelectionSet {
+      public static let possibleTypes = ["PublicVibe", "PrivateVibe"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLTypeCase(
+          variants: ["PrivateVibe": AsPrivateVibe.selections],
+          default: [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("version", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("type", type: .nonNull(.scalar(VibeType.self))),
+            GraphQLField("createdAt", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("updatedTime", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("isAnonymous", type: .scalar(Bool.self)),
+            GraphQLField("name", type: .nonNull(.scalar(String.self))),
+            GraphQLField("author", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("tag", type: .nonNull(.scalar(VibeTag.self))),
+            GraphQLField("vibeComponents", type: .list(.nonNull(.object(VibeComponent.selections)))),
+          ]
+        )
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public static func makePublicVibe(id: GraphQLID, version: Int, type: VibeType, createdAt: Int, updatedTime: Int, isAnonymous: Bool? = nil, name: String, author: GraphQLID, tag: VibeTag, vibeComponents: [VibeComponent]? = nil) -> FetchVibeDatum {
+        return FetchVibeDatum(snapshot: ["__typename": "PublicVibe", "id": id, "version": version, "type": type, "createdAt": createdAt, "updatedTime": updatedTime, "isAnonymous": isAnonymous, "name": name, "author": author, "tag": tag, "vibeComponents": vibeComponents.flatMap { $0.map { $0.snapshot } }])
+      }
+
+      public static func makePrivateVibe(id: GraphQLID, version: Int, type: VibeType, createdAt: Int, updatedTime: Int, isAnonymous: Bool? = nil, name: String, author: GraphQLID, tag: VibeTag, vibeComponents: [AsPrivateVibe.VibeComponent]? = nil, accessGroup: [GraphQLID]? = nil, seenCount: Int) -> FetchVibeDatum {
+        return FetchVibeDatum(snapshot: ["__typename": "PrivateVibe", "id": id, "version": version, "type": type, "createdAt": createdAt, "updatedTime": updatedTime, "isAnonymous": isAnonymous, "name": name, "author": author, "tag": tag, "vibeComponents": vibeComponents.flatMap { $0.map { $0.snapshot } }, "accessGroup": accessGroup, "seenCount": seenCount])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return snapshot["id"]! as! GraphQLID
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var version: Int {
+        get {
+          return snapshot["version"]! as! Int
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "version")
+        }
+      }
+
+      public var type: VibeType {
+        get {
+          return snapshot["type"]! as! VibeType
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "type")
+        }
+      }
+
+      public var createdAt: Int {
+        get {
+          return snapshot["createdAt"]! as! Int
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "createdAt")
+        }
+      }
+
+      public var updatedTime: Int {
+        get {
+          return snapshot["updatedTime"]! as! Int
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "updatedTime")
+        }
+      }
+
+      public var isAnonymous: Bool? {
+        get {
+          return snapshot["isAnonymous"] as? Bool
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "isAnonymous")
+        }
+      }
+
+      public var name: String {
+        get {
+          return snapshot["name"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "name")
+        }
+      }
+
+      public var author: GraphQLID {
+        get {
+          return snapshot["author"]! as! GraphQLID
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "author")
+        }
+      }
+
+      public var tag: VibeTag {
+        get {
+          return snapshot["tag"]! as! VibeTag
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "tag")
+        }
+      }
+
+      public var vibeComponents: [VibeComponent]? {
+        get {
+          return (snapshot["vibeComponents"] as? [Snapshot]).flatMap { $0.map { VibeComponent(snapshot: $0) } }
+        }
+        set {
+          snapshot.updateValue(newValue.flatMap { $0.map { $0.snapshot } }, forKey: "vibeComponents")
+        }
+      }
+
+      public struct VibeComponent: GraphQLSelectionSet {
+        public static let possibleTypes = ["VibeComponent"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("ids", type: .list(.nonNull(.scalar(GraphQLID.self)))),
+          GraphQLField("sequence", type: .list(.nonNull(.scalar(Int.self)))),
+          GraphQLField("texts", type: .list(.nonNull(.scalar(String.self)))),
+          GraphQLField("format", type: .nonNull(.scalar(Format.self))),
+          GraphQLField("template", type: .scalar(VibeComponentTemplate.self)),
+          GraphQLField("globalSequence", type: .nonNull(.scalar(Int.self))),
+        ]
+
+        public var snapshot: Snapshot
+
+        public init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        public init(ids: [GraphQLID]? = nil, sequence: [Int]? = nil, texts: [String]? = nil, format: Format, template: VibeComponentTemplate? = nil, globalSequence: Int) {
+          self.init(snapshot: ["__typename": "VibeComponent", "ids": ids, "sequence": sequence, "texts": texts, "format": format, "template": template, "globalSequence": globalSequence])
+        }
+
+        public var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var ids: [GraphQLID]? {
+          get {
+            return snapshot["ids"] as? [GraphQLID]
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "ids")
+          }
+        }
+
+        public var sequence: [Int]? {
+          get {
+            return snapshot["sequence"] as? [Int]
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "sequence")
+          }
+        }
+
+        public var texts: [String]? {
+          get {
+            return snapshot["texts"] as? [String]
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "texts")
+          }
+        }
+
+        public var format: Format {
+          get {
+            return snapshot["format"]! as! Format
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "format")
+          }
+        }
+
+        public var template: VibeComponentTemplate? {
+          get {
+            return snapshot["template"] as? VibeComponentTemplate
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "template")
+          }
+        }
+
+        public var globalSequence: Int {
+          get {
+            return snapshot["globalSequence"]! as! Int
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "globalSequence")
+          }
+        }
+      }
+
+      public var asPrivateVibe: AsPrivateVibe? {
+        get {
+          if !AsPrivateVibe.possibleTypes.contains(__typename) { return nil }
+          return AsPrivateVibe(snapshot: snapshot)
+        }
+        set {
+          guard let newValue = newValue else { return }
+          snapshot = newValue.snapshot
+        }
+      }
+
+      public struct AsPrivateVibe: GraphQLSelectionSet {
+        public static let possibleTypes = ["PrivateVibe"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+          GraphQLField("version", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("type", type: .nonNull(.scalar(VibeType.self))),
+          GraphQLField("createdAt", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("updatedTime", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("isAnonymous", type: .scalar(Bool.self)),
+          GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("author", type: .nonNull(.scalar(GraphQLID.self))),
+          GraphQLField("tag", type: .nonNull(.scalar(VibeTag.self))),
+          GraphQLField("vibeComponents", type: .list(.nonNull(.object(VibeComponent.selections)))),
+          GraphQLField("accessGroup", type: .list(.nonNull(.scalar(GraphQLID.self)))),
+          GraphQLField("seenCount", type: .nonNull(.scalar(Int.self))),
+        ]
+
+        public var snapshot: Snapshot
+
+        public init(snapshot: Snapshot) {
+          self.snapshot = snapshot
+        }
+
+        public init(id: GraphQLID, version: Int, type: VibeType, createdAt: Int, updatedTime: Int, isAnonymous: Bool? = nil, name: String, author: GraphQLID, tag: VibeTag, vibeComponents: [VibeComponent]? = nil, accessGroup: [GraphQLID]? = nil, seenCount: Int) {
+          self.init(snapshot: ["__typename": "PrivateVibe", "id": id, "version": version, "type": type, "createdAt": createdAt, "updatedTime": updatedTime, "isAnonymous": isAnonymous, "name": name, "author": author, "tag": tag, "vibeComponents": vibeComponents.flatMap { $0.map { $0.snapshot } }, "accessGroup": accessGroup, "seenCount": seenCount])
+        }
+
+        public var __typename: String {
+          get {
+            return snapshot["__typename"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return snapshot["id"]! as! GraphQLID
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var version: Int {
+          get {
+            return snapshot["version"]! as! Int
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "version")
+          }
+        }
+
+        public var type: VibeType {
+          get {
+            return snapshot["type"]! as! VibeType
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "type")
+          }
+        }
+
+        public var createdAt: Int {
+          get {
+            return snapshot["createdAt"]! as! Int
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "createdAt")
+          }
+        }
+
+        public var updatedTime: Int {
+          get {
+            return snapshot["updatedTime"]! as! Int
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "updatedTime")
+          }
+        }
+
+        public var isAnonymous: Bool? {
+          get {
+            return snapshot["isAnonymous"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "isAnonymous")
+          }
+        }
+
+        public var name: String {
+          get {
+            return snapshot["name"]! as! String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        public var author: GraphQLID {
+          get {
+            return snapshot["author"]! as! GraphQLID
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "author")
+          }
+        }
+
+        public var tag: VibeTag {
+          get {
+            return snapshot["tag"]! as! VibeTag
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "tag")
+          }
+        }
+
+        public var vibeComponents: [VibeComponent]? {
+          get {
+            return (snapshot["vibeComponents"] as? [Snapshot]).flatMap { $0.map { VibeComponent(snapshot: $0) } }
+          }
+          set {
+            snapshot.updateValue(newValue.flatMap { $0.map { $0.snapshot } }, forKey: "vibeComponents")
+          }
+        }
+
+        public var accessGroup: [GraphQLID]? {
+          get {
+            return snapshot["accessGroup"] as? [GraphQLID]
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "accessGroup")
+          }
+        }
+
+        public var seenCount: Int {
+          get {
+            return snapshot["seenCount"]! as! Int
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "seenCount")
+          }
+        }
+
+        public struct VibeComponent: GraphQLSelectionSet {
+          public static let possibleTypes = ["VibeComponent"]
+
+          public static let selections: [GraphQLSelection] = [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("ids", type: .list(.nonNull(.scalar(GraphQLID.self)))),
+            GraphQLField("sequence", type: .list(.nonNull(.scalar(Int.self)))),
+            GraphQLField("texts", type: .list(.nonNull(.scalar(String.self)))),
+            GraphQLField("format", type: .nonNull(.scalar(Format.self))),
+            GraphQLField("template", type: .scalar(VibeComponentTemplate.self)),
+            GraphQLField("globalSequence", type: .nonNull(.scalar(Int.self))),
+          ]
+
+          public var snapshot: Snapshot
+
+          public init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+          }
+
+          public init(ids: [GraphQLID]? = nil, sequence: [Int]? = nil, texts: [String]? = nil, format: Format, template: VibeComponentTemplate? = nil, globalSequence: Int) {
+            self.init(snapshot: ["__typename": "VibeComponent", "ids": ids, "sequence": sequence, "texts": texts, "format": format, "template": template, "globalSequence": globalSequence])
+          }
+
+          public var __typename: String {
+            get {
+              return snapshot["__typename"]! as! String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var ids: [GraphQLID]? {
+            get {
+              return snapshot["ids"] as? [GraphQLID]
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "ids")
+            }
+          }
+
+          public var sequence: [Int]? {
+            get {
+              return snapshot["sequence"] as? [Int]
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "sequence")
+            }
+          }
+
+          public var texts: [String]? {
+            get {
+              return snapshot["texts"] as? [String]
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "texts")
+            }
+          }
+
+          public var format: Format {
+            get {
+              return snapshot["format"]! as! Format
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "format")
+            }
+          }
+
+          public var template: VibeComponentTemplate? {
+            get {
+              return snapshot["template"] as? VibeComponentTemplate
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "template")
+            }
+          }
+
+          public var globalSequence: Int {
+            get {
+              return snapshot["globalSequence"]! as! Int
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "globalSequence")
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class PublicVibesChoiceViewController: UIViewController {
 
@@ -43,6 +44,8 @@ class PublicVibesChoiceViewController: UIViewController {
                     self.allProfiles = allProfiles
                     self.publicVibesTableView.backgroundView = nil
                     self.publicVibesTableView.reloadData()
+                } else {
+                    self.loadingLabel.text = "Sorry, no vibes are available right now. Please try after sometime."
                 }
             }
         }
@@ -90,6 +93,95 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        
+        let vibe = allVibes![indexPath.row]
+        let spinnerView = APPUtilites.displayLoadingSpinner(onView: view)
+        if !vibe.isLetterPresent && !vibe.isPhotosPresent {
+            APPUtilites.displayErrorSnackbar(message: "No data present in the vibe. Please try again")
+        }
+        if !vibe.isPhotosPresent {
+            APPUtilites.removeLoadingSpinner(spinner: spinnerView)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+            vibeWelcomeVC.vibeModel = vibe
+            let presentingVC = self.presentingViewController!.presentingViewController!
+            let homeVC = self.presentingViewController!.presentingViewController!
+            presentingVC.dismiss(animated: true) {
+                print("inside presentingVC.dismiss")
+                homeVC.present(vibeWelcomeVC, animated: true, completion: {
+                    print("inside homeVC.present")
+                })
+            }
+        } else {
+            var imagesToBeDownloaded = [String]()
+            let allImages = vibe.images
+            for i in 0 ..< vibe.getImages().count {
+                if !FileManagerHelper.shared.doesFileExist(filePath: "/\(MediaHelper.shared.COMMON_FOLDER)/\(MediaHelper.shared.VIBE_IMAGES_FOLDER)/\(allImages[i].imageLink!)") {
+                    imagesToBeDownloaded.append(allImages[i].imageLink!)
+                }
+            }
+            if imagesToBeDownloaded.count == 0 {
+                print("====> All images present in local.")
+                for i in 0 ..< allImages.count {
+                    vibe.images[i].image = UIImage(data: FileManagerHelper.shared.getImageDataFromPath(filePath: "/\(MediaHelper.shared.COMMON_FOLDER)/\(MediaHelper.shared.VIBE_IMAGES_FOLDER)/\(allImages[i].imageLink!)", isJpgExtensionRequired: false)!)
+                }
+                APPUtilites.removeLoadingSpinner(spinner: spinnerView)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+                vibeWelcomeVC.vibeModel = vibe
+                let presentingVC = self.presentingViewController!.presentingViewController!
+                let homeVC = self.presentingViewController!.presentingViewController!.presentingViewController!
+                presentingVC.dismiss(animated: true) {
+                    print("inside presentingVC.dismiss")
+                    self.dismiss(animated: false, completion: {
+                        print("inside self.dismiss")
+                        homeVC.present(vibeWelcomeVC, animated: true, completion: {
+                            print("inside homeVC.present")
+                        })
+                    })
+                }
+            } else {
+                print("not all images present in local.")
+                print("imagesToBeDownloaded: \(imagesToBeDownloaded)")
+                
+                var totalUpload = 0
+                let counter = Variable(0)
+                counter.asObservable().subscribe(onNext: { (counter) in
+                    totalUpload = totalUpload + 1
+                    if (totalUpload == imagesToBeDownloaded.count + 1) {
+                        print("all images downloaded")
+                        DispatchQueue.main.async {
+                            for i in 0 ..< allImages.count {
+                                vibe.images[i].image = UIImage(data: FileManagerHelper.shared.getImageDataFromPath(filePath: "/\(MediaHelper.shared.COMMON_FOLDER)/\(MediaHelper.shared.VIBE_IMAGES_FOLDER)/\(allImages[i].imageLink!)", isJpgExtensionRequired: false)!)
+                            }
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            APPUtilites.removeLoadingSpinner(spinner: spinnerView)
+                            let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+                            vibeWelcomeVC.vibeModel = vibe
+                            let presentingVC = self.presentingViewController!.presentingViewController!
+                            let homeVC = self.presentingViewController!.presentingViewController!.presentingViewController!
+                            presentingVC.dismiss(animated: true) {
+                                print("inside presentingVC.dismiss")
+                                self.dismiss(animated: false, completion: {
+                                    print("inside self.dismiss")
+                                    homeVC.present(vibeWelcomeVC, animated: true, completion: {
+                                        print("inside homeVC.present")
+                                    })
+                                })
+                            }
+                        }
+                    }
+                }, onError: { (error) in
+                    print("error in uploading the picture")
+                }, onCompleted: {
+                    print("upload completed")
+                }) {
+                    print("disposed")
+                }
+                
+                MediaHelper.shared.getVibeImages(images: imagesToBeDownloaded, counter: counter, completionHandler: nil)
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
