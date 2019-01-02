@@ -52,6 +52,7 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                             } else {
                                 UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
                             }
+                            UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_IN)
                             self.performSegue(withIdentifier: self.HOME_PAGE_SEGUE, sender: self)
                         }
                     }, failure: { (error) in
@@ -67,14 +68,14 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                 performSegue(withIdentifier: WELCOME_PAGE_SEGUE, sender: self)
             }
         } else {
-            
             let currentUser = pool?.currentUser()
-            
+
             if currentUser != nil {
                 print("Current User is not nil")
                 let result = currentUser?.getSession().result
                 if result != nil {
                     print("result is not nil")
+                    print("result?.idToken?.tokenString: \(result?.idToken?.tokenString)")
                     UserDefaults.standard.set(result?.idToken?.tokenString, forKey: DeviceConstants.ID_TOKEN)
                     CognitoHelper.shared.currentUser = currentUser
                     currentUser?.getDetails().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserGetDetailsResponse>) -> Any? in
@@ -107,6 +108,7 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                             } else {
                                 UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
                             }
+                            UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_IN)
                             self.performSegue(withIdentifier: self.HOME_PAGE_SEGUE, sender: self)
                         }
                     }, failure: { (error) in

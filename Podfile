@@ -13,6 +13,7 @@ target 'Kraiz' do
   pod 'Cloudinary'
   pod 'CropViewController', '2.3.8'
   pod 'LinearProgressBarMaterial'
+  pod 'MaterialShowcase'
   pod 'RealmSwift'
   pod 'RxSwift'
   pod 'TTGSnackbar'

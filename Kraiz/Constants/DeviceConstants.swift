@@ -24,6 +24,7 @@ public class DeviceConstants {
     static public let GENDER : String = "gender"
     static public let ID_TOKEN : String = "tokenString"
     static public let IS_PROFILE_PRESENT : String = "isProfilePresent"
+    static public let IS_SIGN_IN : String = "isSignIn"
     static public let MOBILE_NUMBER : String = "mobileNumber"
     static public let NAME : String = "name"
     static public let PROFILE_PICTURE : String = "profilePicture"

@@ -138,6 +138,7 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     
     func gotoHomePage() {
         let homePageVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabBarController")
+        UserDefaults.standard.set(true, forKey: DeviceConstants.IS_SIGN_IN)
         self.navigationController?.pushViewController(homePageVC!, animated: true)
     }
     

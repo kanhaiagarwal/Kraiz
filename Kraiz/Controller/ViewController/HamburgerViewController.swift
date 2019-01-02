@@ -128,12 +128,14 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
                 UserDefaults.standard.set(nil, forKey: DeviceConstants.USER_NAME)
                 UserDefaults.standard.set(nil, forKey: DeviceConstants.MOBILE_NUMBER)
                 CognitoHelper.shared.signOut(success: {
+                    UserDefaults.standard.set(nil, forKey: DeviceConstants.ID_TOKEN)
                     DispatchQueue.main.async {
                         APPUtilites.removeLoadingSpinner(spinner: sv)
                         CacheHelper.shared.clearCache()
                         self.tabBarController?.navigationController?.popToRootViewController(animated: true)
                     }
                 }, failure: { (error) in
+                    UserDefaults.standard.set(nil, forKey: DeviceConstants.ID_TOKEN)
                     DispatchQueue.main.async {
                         print("error in sign out: \(error)")
                         APPUtilites.displayErrorSnackbar(message: "Sorry, cannot Sign Out right now. Please try again")

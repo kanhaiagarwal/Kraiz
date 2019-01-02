@@ -28,6 +28,13 @@ class DraftsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                                  width: topBar.frame.size.width,
                                                  height: 1))
         topBorderView.backgroundColor = DeviceConstants.DEFAULT_SEPERATOR_COLOR
+
+        if drafts == nil || drafts!.count == 0 {
+            let imageView = UIImageView(image: UIImage(named: "saved-empty"))
+            imageView.contentMode = .scaleAspectFit
+            draftsTable.backgroundView = imageView
+        }
+
         topBar.addSubview(topBorderView)
     }
     

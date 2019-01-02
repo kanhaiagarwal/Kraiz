@@ -242,6 +242,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     func gotoHomePage() {
         print("========> inside gotoHomePage")
         UserDefaults.standard.set(true, forKey: DeviceConstants.START_BACKGROUND_FETCH)
+        UserDefaults.standard.set(true, forKey: DeviceConstants.IS_SIGN_IN)
         DispatchQueue.main.async {
             let homePageVC = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabBarController") as! HomeTabBarController
             self.navigationController?.pushViewController(homePageVC, animated: true)

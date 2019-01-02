@@ -14,8 +14,12 @@ class PublicVibesViewController: UIViewController {
 
     @IBOutlet weak var vibesTable: UITableView!
 
+    var emptyImageView = UIImageView()
+
     var publicVibes: Results<VibeDataEntity>?
     var notification: NotificationToken?
+
+    let EMPTY_VIBES_IMAGE : String = "empty-vibes-public"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,7 @@ class PublicVibesViewController: UIViewController {
             publicVibes = vibeResults
             notification = vibeResults._observe({ [weak self] (changes) in
                 self?.vibesTable.reloadData()
+                self?.updateEmptyVibeBackground()
             })
         } else {
             AppSyncHelper.shared.getUserVibesPaginated(requestedVibeTag: nil, requestedVibeType: VibeType.public, first: 10, after: nil, completionHandler: nil)
@@ -39,6 +44,26 @@ class PublicVibesViewController: UIViewController {
         super.viewWillAppear(animated)
 
         AppSyncHelper.shared.getUserChannel()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        vibesTable.addSubview(emptyImageView)
+        emptyImageView.frame = CGRect(x: 30, y: emptyImageView.superview!.frame.height / 4, width: emptyImageView.superview!.frame.width - 60, height: emptyImageView.superview!.frame.height / 3)
+        emptyImageView.contentMode = .scaleAspectFit
+        emptyImageView.image = UIImage(named: EMPTY_VIBES_IMAGE)
+        updateEmptyVibeBackground()
+    }
+
+    func updateEmptyVibeBackground() {
+        DispatchQueue.main.async {
+            if self.publicVibes == nil || self.publicVibes!.count == 0 {
+                self.emptyImageView.isHidden = false
+            } else {
+                self.emptyImageView.isHidden = true
+            }
+        }
     }
 }
 
@@ -61,10 +86,33 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hailButtonPressed(sender:)))
         cell.hailButton.addGestureRecognizer(tapGesture)
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height / 4.5
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+
+        let cell = tableView.cellForRow(at: indexPath) as! MyPublicVibeTableViewCell
+
+        let vibe = publicVibes![indexPath.row]
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hailButtonPressed(sender:)))
+        cell.hailButton.addGestureRecognizer(tapGesture)
+        
+        let vibeTag = VibeCategories.getVibeTagIndex(vibeTag: VibeTag(rawValue: String(vibe.getVibeTypeTagGsiPK()!.split(separator: "_")[1]))!)
         
         if !vibe.getIsDownloadInProgress() {
             let spinnerView = APPUtilites.displayLoadingSpinner(onView: view)
-            AppSyncHelper.shared.getUserVibe(vibeId: vibe.getId()!, vibeType: 1, vibeTag: 0) { (error, vibeModel) in
+            AppSyncHelper.shared.getUserVibe(vibeId: vibe.getId()!, vibeType: 0, vibeTag: vibeTag) { (error, vibeModel) in
                 DispatchQueue.main.async {
                     print("====> inside the completionHandler of getUserVibe")
                     APPUtilites.removeLoadingSpinner(spinner: spinnerView)
@@ -81,6 +129,7 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
                         vibeWelcomeVC.vibeModel = vibeModel
+                        CacheHelper.shared.updateVibeDownloadStatus(vibe: vibe, isDownloadInProgress: false)
                         self.present(vibeWelcomeVC, animated: true, completion: nil)
                     } else {
                         var imagesToBeDownloaded = [String]()
@@ -98,6 +147,7 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
                             let storyboard = UIStoryboard(name: "Main", bundle: nil)
                             let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
                             vibeWelcomeVC.vibeModel = vibeModel
+                            CacheHelper.shared.updateVibeDownloadStatus(vibe: vibe, isDownloadInProgress: false)
                             self.present(vibeWelcomeVC, animated: true, completion: nil)
                         } else {
                             print("not all images present in local.")
@@ -139,29 +189,6 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
             cell.progressBar.isHidden = false
         }
 
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 4.5
-    }
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-
-        let cell = tableView.cellForRow(at: indexPath) as! MyPublicVibeTableViewCell
-
-        let vibe = publicVibes![indexPath.row]
-
-        if !vibe.getIsDownloadInProgress() {
-            CacheHelper.shared.updateVibeDownloadStatus(vibe: vibe, isDownloadInProgress: true)
-        } else {
-            CacheHelper.shared.updateVibeDownloadStatus(vibe: vibe, isDownloadInProgress: false)
-        }
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

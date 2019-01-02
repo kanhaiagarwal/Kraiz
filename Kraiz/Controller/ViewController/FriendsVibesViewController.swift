@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import MaterialShowcase
 import RealmSwift
 import RxSwift
 
-class FriendsVibesViewController: UIViewController {
+class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
 
     @IBOutlet weak var vibeCategoriesCollectionView: UICollectionView!
     @IBOutlet weak var vibesTable: UITableView!
@@ -24,6 +25,10 @@ class FriendsVibesViewController: UIViewController {
     var vibesTableBackgroundImageView = UIImageView(image: UIImage(named: VibeCategories.categoryBackground[0]))
     private var selectedCategory : Int = 0
     private let DEFAULT_PROFILE_PIC = "profile-default"
+    private let EMPTY_VIBES_IMAGE = "empty-vibes-private"
+    let emptyImageView = UIImageView()
+    
+    let firstShowcase = MaterialShowcase()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +45,7 @@ class FriendsVibesViewController: UIViewController {
 
                 notifications.append(results.observe { [weak self] (change) in
                     self?.vibesTable.reloadData()
+                    self?.updateEmptyVibeBackground()
                 })
             }
             
@@ -59,11 +65,23 @@ class FriendsVibesViewController: UIViewController {
             
             if selectedCategory == i {
                 vibesTable.reloadData()
+                updateEmptyVibeBackground()
             }
         }
 
         vibeCategoriesCollectionView.register(UINib(nibName: "VibeCategoryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "vibeCategoryCell")
         vibeCategoriesCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+    }
+
+    func updateEmptyVibeBackground() {
+        DispatchQueue.main.async {
+            let privateVibeIndex : String = APPUtilites.getVibeIndex(indexType: "vibeTypeTag", vibeType: "PRIVATE", vibeTag: self.selectedCategory)
+            if self.privateVibes[privateVibeIndex] == nil || self.privateVibes[privateVibeIndex]!.count == 0 {
+                self.emptyImageView.isHidden = false
+            } else {
+                self.emptyImageView.isHidden = true
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +92,28 @@ class FriendsVibesViewController: UIViewController {
         vibesTableBackgroundImageView.frame = vibesTable.frame
         vibesTableBackgroundImageView.contentMode = .scaleAspectFill
         vibesTable.backgroundView = vibesTableBackgroundImageView
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if UserDefaults.standard.bool(forKey: DeviceConstants.IS_SIGN_IN) {
+            let firstCollectionCell = vibeCategoriesCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! VibeCategoryCollectionViewCell
+            firstShowcase.backgroundPromptColor = UIColor.red.withAlphaComponent(0.4)
+            firstShowcase.tag = 0
+            firstShowcase.delegate = self
+            firstShowcase.setTargetView(view: firstCollectionCell.categoryImage)
+            firstShowcase.primaryText = "This is a Vibe Tag. All the Vibes that you create with this tag appears under it."
+            firstShowcase.secondaryText = ""
+            firstShowcase.show(animated: true) {
+                print("=======> showcase.show has been completed")
+            }
+        }
+        
+        vibesTableBackgroundImageView.addSubview(emptyImageView)
+        emptyImageView.frame = CGRect(x: 30, y: emptyImageView.superview!.frame.height / 4, width: emptyImageView.superview!.frame.width - 60, height: emptyImageView.superview!.frame.height / 3)
+        emptyImageView.image = UIImage(named: EMPTY_VIBES_IMAGE)
+        updateEmptyVibeBackground()
     }
 }
 
@@ -88,7 +128,7 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         let profileId = vibe.getProfileId()!
         if let profile = CacheHelper.shared.getProfileById(id: profileId) {
             cell.senderName.text = profile.getUsername()!
-            if profile.getProfilePicId() != "NONE" {
+            if profile.getProfilePicId() != "NONE" && profile.getProfilePicId() != nil {
                 MediaHelper.shared.getProfileImage(publicId: profile.getProfilePicId()!, success: { (image) in
                     DispatchQueue.main.async {
                         cell.profileImage.image = image
@@ -335,6 +375,7 @@ extension FriendsVibesViewController: UICollectionViewDelegate, UICollectionView
         vibeCategoriesCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         AppSyncHelper.shared.getUserChannel()
         vibesTable.reloadData()
+        updateEmptyVibeBackground()
         if privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"] != nil && privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]!.count > 0 {
             vibesTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         }
@@ -345,5 +386,23 @@ extension FriendsVibesViewController: UICollectionViewDelegate, UICollectionView
         if previousSelectedCell != nil {
             previousSelectedCell!.categoryImage.layer.borderWidth = 0.0
         }
+    }
+}
+
+extension FriendsVibesViewController {
+    func showCaseDidDismiss(showcase: MaterialShowcase, didTapTarget: Bool) {
+        if showcase.tag == 0 {
+            let parent = self.parent as! VibesViewController
+            let publicVibeButton = parent.publicVibeButton
+            let showcase = MaterialShowcase()
+            showcase.backgroundPromptColor = UIColor.red.withAlphaComponent(0.4)
+            showcase.setTargetView(view: publicVibeButton!)
+            showcase.primaryText = "Clicking on it, you can see vibes created by people from all around the world, after every 2 hours."
+            showcase.secondaryText = ""
+            showcase.show(animated: true) {
+                print("=======> showcase.show has been completed")
+            }
+        }
+        UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_IN)
     }
 }
