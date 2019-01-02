@@ -14,6 +14,7 @@ class VibeWelcomeViewController: UIViewController {
     @IBOutlet weak var vibeTag: UILabel!
     @IBOutlet weak var vibeName: UILabel!
     @IBOutlet weak var senderUsername: UILabel!
+    var isPreview = false
 
     var vibeModel: VibeModel?
 
@@ -21,8 +22,22 @@ class VibeWelcomeViewController: UIViewController {
         super.viewDidLoad()
         vibeTag.text = VibeCategories.pickerStrings[vibeModel!.category]
         vibeName.text = vibeModel!.vibeName
-        senderUsername.text = vibeModel!.from
         backgroundImage.image = UIImage(named: VibeCategories.vibeWelcomebackground[vibeModel!.category])
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        print("vibeModel?.from?.getUsername(): \(vibeModel?.from?.getUsername())")
+        print("vibeModel.from.getUserId(): \(vibeModel?.from?.getId())")
+        if vibeModel?.from?.getUsername() != nil {
+            senderUsername.text = vibeModel?.from?.getUsername()
+        } else {
+            let profile = CacheHelper.shared.getProfileById(id: (vibeModel?.from?.getId())!)
+            print("profile: \(profile)")
+            print("profile?.getUsername()!: \(profile?.getUsername()!)")
+            senderUsername.text = profile?.getUsername()!
+        }
     }
 
     override func viewWillLayoutSubviews() {
@@ -44,11 +59,17 @@ class VibeWelcomeViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let vibeTextVC = storyboard.instantiateViewController(withIdentifier: "VibeTextViewController") as! VibeTextViewController
             vibeTextVC.vibeModel = vibeModel!
+            if isPreview {
+                vibeTextVC.isPreview = true
+            }
             self.present(vibeTextVC, animated: true, completion: nil)
         } else if vibeModel!.isPhotosPresent {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let vibeImagesVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesViewController") as! VibeImagesViewController
             vibeImagesVC.vibeModel = vibeModel!
+            if isPreview {
+                vibeImagesVC.isPreview = true
+            }
             self.present(vibeImagesVC, animated: true, completion: nil)
         }
     }

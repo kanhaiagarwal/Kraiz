@@ -15,6 +15,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     var vibeModel = VibeModel()
     var isDismissOverlayVisible = false
     var isNextButtonVisible = false
+    var isPreview = false
     var currentPage = 0
     
     var imagesSegue = "gotoImages"
@@ -35,6 +36,9 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("self.vibeModel.from?.getId(): \(self.vibeModel.from?.getId())")
+        print("UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!: \(UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)")
         
         let textView : UITextView = UITextView(frame: CGRect(x: view.frame.width / 20, y: view.frame.height / 15, width: 4 * view.frame.width / 5, height: 9 * view.frame.height / 10))
         textView.isEditable = false
@@ -294,12 +298,17 @@ extension VibeTextViewController {
         self.isDismissOverlayVisible = false
         self.overlayCloseView.frame.origin.y = -self.overlayCloseView.frame.height
 
-        if vibeModel.isPhotosPresent {
-            self.isNextButtonVisible = false
-            self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width
-        }
+        self.isNextButtonVisible = false
+        self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width
 
-        performSegue(withIdentifier: DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW, sender: self)
+        if vibeModel.isPhotosPresent {
+            performSegue(withIdentifier: DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW, sender: self)
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let hailinputVC = storyboard.instantiateViewController(withIdentifier: "VibeHailInputViewController") as! VibeHailInputViewController
+            hailinputVC.vibeModel = vibeModel
+            self.present(hailinputVC, animated: true, completion: nil)
+        }
     }
 
     /// Segue Preparation method.
@@ -307,6 +316,9 @@ extension VibeTextViewController {
         if segue.identifier == DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW {
             let destinationVC = segue.destination as! VibeImagesViewController
             destinationVC.vibeModel = vibeModel
+            if isPreview {
+                destinationVC.isPreview = true
+            }
             destinationVC.isSourceLetter = true
         }
     }
@@ -324,7 +336,8 @@ extension VibeTextViewController {
                 self.overlayCloseView.isHidden = false
                 self.overlayCloseView.frame.origin.y = 0
             }
-            if self.vibeModel.isPhotosPresent && self.currentPage == self.controllers.count - 1 {
+            if self.currentPage == self.controllers.count - 1 {
+                print("inside the changeOverlayViewStatus for the next button")
                 if self.isNextButtonVisible {
                     self.isNextButtonVisible = false
                     self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width

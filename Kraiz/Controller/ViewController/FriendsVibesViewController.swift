@@ -32,6 +32,7 @@ class FriendsVibesViewController: UIViewController {
             let privateVibeIndex : String = APPUtilites.getVibeIndex(indexType: "vibeTypeTag", vibeType: "PRIVATE", vibeTag: i)
 
             if let results = CacheHelper.shared.getVibesByIndex(index: "vibeTypeTagGsiPK", value: privateVibeIndex) {
+                print("results.count for privateVibeIndex: \(privateVibeIndex): \(results.count)")
                 if results.count == 0 {
                     AppSyncHelper.shared.getUserVibesPaginated(requestedVibeTag: VibeCategories.getVibeTag(index: i), requestedVibeType: VibeType.private, first: NUMBER_OF_VIBES_IN_ONE_PAGE, after: nil, completionHandler: nil)
                 }

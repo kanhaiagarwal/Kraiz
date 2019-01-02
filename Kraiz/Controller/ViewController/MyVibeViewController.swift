@@ -95,12 +95,12 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         vibeTypeSegment.selectedSegmentIndex = vibeModel.type
 
         // Set the mobile number field during the loading of the view.
-        if vibeModel.to == "" {
+        if vibeModel.to?.getMobileNumber() == "" {
             displayCountryCodeTextField()
             friendsUsernameField.text = nil
         } else {
             removeCountryCodeTextField()
-            friendsUsernameField.text = vibeModel.to
+            vibeModel.to?.setMobileNumber(mobileNumber: friendsUsernameField.text)
         }
         
         // Set the vibe name field during the loading of the view.
@@ -361,7 +361,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
                 return
             }
 
-            vibeModel.setReceiver(receiver: friendsUsernameField.text!.starts(with: "+") ? friendsUsernameField.text! : (CountryCodes.countryCodes[countryCodeSelected!] + friendsUsernameField.text!))
+            vibeModel.setReceiverMobileNumber(mobileNumber: friendsUsernameField.text!.starts(with: "+") ? friendsUsernameField.text! : (CountryCodes.countryCodes[countryCodeSelected!] + friendsUsernameField.text!))
         } else {
             if publicVibeNameField.text == nil || publicVibeNameField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
                 APPUtilites.displayErrorSnackbar(message: "Please give a name to the Vibe")
@@ -369,7 +369,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             }
         }
 
-        vibeModel.setSender(sender: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)!)
+        vibeModel.setSenderId(sender: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)!)
         vibeModel.setVibeType(type: vibeTypeSegment.selectedSegmentIndex)
         vibeModel.setVibeName(name: vibeTypeSegment.selectedSegmentIndex == 0 ? friendsVibeNameField.text! : publicVibeNameField.text!)
         vibeModel.setCategory(category: vibeTypeSegment.selectedSegmentIndex == 0 ?friendsVibeTagSelected! : publicVibeTagSelected!)
@@ -386,7 +386,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         /// Check if the user exists before going forward to create the vibe.
         if vibeTypeSegment.selectedSegmentIndex == 0 {
             let loadingSpinner = APPUtilites.displayLoadingSpinner(onView: view)
-            AppSyncHelper.shared.getUserProfileByMobileNumber(mobileNumber: vibeModel.to) { [weak self] (error, profileModel) in
+            AppSyncHelper.shared.getUserProfileByMobileNumber(mobileNumber: (vibeModel.to?.getMobileNumber())!) { [weak self] (error, profileModel) in
                 DispatchQueue.main.async {
                     APPUtilites.removeLoadingSpinner(spinner: loadingSpinner)
                     if error != nil {

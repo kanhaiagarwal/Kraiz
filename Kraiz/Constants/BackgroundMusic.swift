@@ -9,6 +9,6 @@
 import Foundation
 
 public class BackgroundMusic {
-    public static let musicList = ["friends", "piano"]
-    public static let musicFiles = ["friends", "piano"]
+    public static let musicList = ["Guitar", "Piano", "Happiness", "Celebration", "Jazz", "Soothing", "Adventure"]
+    public static let musicFiles = ["Guitar", "Piano", "Happiness", "Celebration", "Jazz", "Soothing", "Adventure"]
 }

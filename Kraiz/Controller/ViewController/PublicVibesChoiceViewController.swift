@@ -85,7 +85,7 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
         let cell = Bundle.main.loadNibNamed("VibeChoiceTableViewCell", owner: self, options: nil)?.first as! VibeChoiceTableViewCell
         cell.profileImage.image = UIImage(named: "profile-default")
         let vibe = allVibes![indexPath.row]
-        let profile = allProfiles![vibe.from]
+        let profile = allProfiles![(vibe.from?.getId())!]
         cell.usernameLabel.text = profile?.getUsername()!
         cell.vibeNameLabel.text = vibe.vibeName
         return cell

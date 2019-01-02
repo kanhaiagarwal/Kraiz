@@ -21,6 +21,14 @@
 		579854C521C6704A00406BF8 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854C421C6704A00406BF8 /* ProfileEntity.swift */; };
 		579854CB21C8B6FE00406BF8 /* HailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CA21C8B6FE00406BF8 /* HailsEntity.swift */; };
 		579854CD21CAB28700406BF8 /* PublicVibeTimeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */; };
+		57A7911C21D538470025F8FE /* Celebration.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911521D538460025F8FE /* Celebration.mp3 */; };
+		57A7911D21D538470025F8FE /* Guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911621D538460025F8FE /* Guitar.mp3 */; };
+		57A7911E21D538470025F8FE /* Jazz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911721D538460025F8FE /* Jazz.mp3 */; };
+		57A7911F21D538470025F8FE /* Piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911821D538460025F8FE /* Piano.mp3 */; };
+		57A7912021D538470025F8FE /* Soothing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911921D538460025F8FE /* Soothing.mp3 */; };
+		57A7912121D538470025F8FE /* Happiness.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911A21D538470025F8FE /* Happiness.mp3 */; };
+		57A7912221D538470025F8FE /* Adventure.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911B21D538470025F8FE /* Adventure.mp3 */; };
+		57A7912421D53AF40025F8FE /* VibeHailInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A7912321D53AF40025F8FE /* VibeHailInputViewController.swift */; };
 		57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */; };
 		57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */; };
 		57AC145621CCDD90001FA686 /* PublicVibeTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AC145521CCDD90001FA686 /* PublicVibeTagsViewController.swift */; };
@@ -38,8 +46,6 @@
 		57B24F2E21A98B7700FA45E9 /* BackgroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */; };
 		57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */; };
 		57B24F3221AA7B9500FA45E9 /* VibeSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */; };
-		57B24F3621AACFD600FA45E9 /* friends.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57B24F3421AACFD600FA45E9 /* friends.mp3 */; };
-		57B24F3721AACFD600FA45E9 /* piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57B24F3521AACFD600FA45E9 /* piano.mp3 */; };
 		57B24F3A21AB138300FA45E9 /* ImageBackdropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F3921AB138300FA45E9 /* ImageBackdropViewController.swift */; };
 		57B24F3D21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F3B21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift */; };
 		57B24F3E21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57B24F3C21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib */; };
@@ -153,6 +159,14 @@
 		579854C421C6704A00406BF8 /* ProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
 		579854CA21C8B6FE00406BF8 /* HailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsEntity.swift; sourceTree = "<group>"; };
 		579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibeTimeEntity.swift; sourceTree = "<group>"; };
+		57A7911521D538460025F8FE /* Celebration.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Celebration.mp3; sourceTree = "<group>"; };
+		57A7911621D538460025F8FE /* Guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Guitar.mp3; sourceTree = "<group>"; };
+		57A7911721D538460025F8FE /* Jazz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Jazz.mp3; sourceTree = "<group>"; };
+		57A7911821D538460025F8FE /* Piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Piano.mp3; sourceTree = "<group>"; };
+		57A7911921D538460025F8FE /* Soothing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Soothing.mp3; sourceTree = "<group>"; };
+		57A7911A21D538470025F8FE /* Happiness.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Happiness.mp3; sourceTree = "<group>"; };
+		57A7911B21D538470025F8FE /* Adventure.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Adventure.mp3; sourceTree = "<group>"; };
+		57A7912321D53AF40025F8FE /* VibeHailInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeHailInputViewController.swift; sourceTree = "<group>"; };
 		57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionModel.swift; sourceTree = "<group>"; };
 		57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		57AC145521CCDD90001FA686 /* PublicVibeTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibeTagsViewController.swift; sourceTree = "<group>"; };
@@ -170,8 +184,6 @@
 		57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundMusic.swift; sourceTree = "<group>"; };
 		57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeTypesLocal.swift; sourceTree = "<group>"; };
 		57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeSentViewController.swift; sourceTree = "<group>"; };
-		57B24F3421AACFD600FA45E9 /* friends.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = friends.mp3; sourceTree = "<group>"; };
-		57B24F3521AACFD600FA45E9 /* piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = piano.mp3; sourceTree = "<group>"; };
 		57B24F3921AB138300FA45E9 /* ImageBackdropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackdropViewController.swift; sourceTree = "<group>"; };
 		57B24F3B21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackdropTableViewCell.swift; sourceTree = "<group>"; };
 		57B24F3C21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageBackdropTableViewCell.xib; sourceTree = "<group>"; };
@@ -292,8 +304,13 @@
 		57B24F3821AADD6900FA45E9 /* AudioFiles */ = {
 			isa = PBXGroup;
 			children = (
-				57B24F3421AACFD600FA45E9 /* friends.mp3 */,
-				57B24F3521AACFD600FA45E9 /* piano.mp3 */,
+				57A7911621D538460025F8FE /* Guitar.mp3 */,
+				57A7911821D538460025F8FE /* Piano.mp3 */,
+				57A7911A21D538470025F8FE /* Happiness.mp3 */,
+				57A7911521D538460025F8FE /* Celebration.mp3 */,
+				57A7911721D538460025F8FE /* Jazz.mp3 */,
+				57A7911921D538460025F8FE /* Soothing.mp3 */,
+				57A7911B21D538470025F8FE /* Adventure.mp3 */,
 			);
 			path = AudioFiles;
 			sourceTree = "<group>";
@@ -353,6 +370,7 @@
 				57C74A9521B2F42500D737FB /* VibeTextViewController.swift */,
 				5711AD1421D3C06F005650C3 /* VibeWelcomeViewController.swift */,
 				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
+				57A7912321D53AF40025F8FE /* VibeHailInputViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -622,20 +640,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5BC1CFD216164D6008CE09F /* playlist-script.otf in Resources */,
+				57A7911C21D538470025F8FE /* Celebration.mp3 in Resources */,
 				B51DF21B211F13B9009896CC /* AppIcon.png in Resources */,
-				57B24F3721AACFD600FA45E9 /* piano.mp3 in Resources */,
 				579854BA21C5525C00406BF8 /* HailsTableViewCell.xib in Resources */,
 				B51DF24E211F174A009896CC /* HamburgerTableViewCell.xib in Resources */,
 				57BD53EE2199CD38001B1010 /* VibesCategoryTableViewCell.xib in Resources */,
+				57A7911D21D538470025F8FE /* Guitar.mp3 in Resources */,
 				B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */,
 				B51DF1FC211F1248009896CC /* LaunchScreen.storyboard in Resources */,
 				B5652C6E21482D9900B15E8F /* schema.json in Resources */,
 				B51DF250211F1783009896CC /* FriendsVibesTableViewCell.xib in Resources */,
+				57A7911F21D538470025F8FE /* Piano.mp3 in Resources */,
+				57A7912121D538470025F8FE /* Happiness.mp3 in Resources */,
 				B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */,
 				B51DF258211F1AA8009896CC /* frenchscriptmt.ttf in Resources */,
+				57A7912021D538470025F8FE /* Soothing.mp3 in Resources */,
 				B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */,
 				57B24F3E21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib in Resources */,
-				57B24F3621AACFD600FA45E9 /* friends.mp3 in Resources */,
 				57C74A9A21BA44BD00D737FB /* VibeImageCardView.xib in Resources */,
 				B51DF251211F1787009896CC /* ContactUsTableViewCell.xib in Resources */,
 				B56EFE99215AB05D008059ED /* Images.xcassets in Resources */,
@@ -643,8 +664,10 @@
 				B524CACC214544BF00316D84 /* schema.graphql in Resources */,
 				57AC145C21CD5A33001FA686 /* VibeChoiceTableViewCell.xib in Resources */,
 				B513582F215D365C00139854 /* Hero.otf in Resources */,
+				57A7912221D538470025F8FE /* Adventure.mp3 in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				57D4C0F421C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib in Resources */,
+				57A7911E21D538470025F8FE /* Jazz.mp3 in Resources */,
 				B5BC1CF921615B61008CE09F /* ChatsTableViewCell.xib in Resources */,
 				579854BE21C611C200406BF8 /* MyPublicVibeTableViewCell.xib in Resources */,
 			);
@@ -769,6 +792,7 @@
 				B585CB162146D210008E80F8 /* ProfileModel.swift in Sources */,
 				579854C321C6673900406BF8 /* CacheHelper.swift in Sources */,
 				57AC145E21CE116C001FA686 /* DraftEntity.swift in Sources */,
+				57A7912421D53AF40025F8FE /* VibeHailInputViewController.swift in Sources */,
 				B5652C7021482DFC00B15E8F /* AppSyncObjects.swift in Sources */,
 				57AC145821CD43F5001FA686 /* PublicVibesChoiceViewController.swift in Sources */,
 				B54579A0213F010900C7424F /* StartViewController.swift in Sources */,

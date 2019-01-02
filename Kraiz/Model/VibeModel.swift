@@ -11,8 +11,8 @@ import Foundation
 public class VibeModel {
     var id: String
     var vibeName: String
-    var from: String
-    var to: String
+    var from: ProfileModel?
+    var to: ProfileModel?
     var receiverUsername: String
     var receiverProfilePic: String
     var category: Int
@@ -29,8 +29,8 @@ public class VibeModel {
     init() {
         id = ""
         vibeName = ""
-        from = ""
-        to = ""
+        from = ProfileModel()
+        to = ProfileModel()
         receiverUsername = ""
         receiverProfilePic = ""
         category = 0
@@ -45,7 +45,7 @@ public class VibeModel {
         imageBackdrop = 0
     }
     
-    init(vibeName: String, from: String, to: String, isBackgroundMusicEnabled: Bool, isSenderAnonymous: Bool) {
+    init(vibeName: String, from: ProfileModel, to: ProfileModel, isBackgroundMusicEnabled: Bool, isSenderAnonymous: Bool) {
         self.id = ""
         self.vibeName = vibeName
         self.from = from
@@ -85,6 +85,10 @@ public class VibeModel {
         self.receiverUsername = username
     }
 
+    public func setReceiverMobileNumber(mobileNumber: String) {
+        self.to?.setMobileNumber(mobileNumber: mobileNumber)
+    }
+
     public func setReceiverProfilePic(profilePic: String) {
         self.receiverProfilePic = profilePic
     }
@@ -104,12 +108,12 @@ public class VibeModel {
         vibeName = name
     }
     
-    public func setSender(sender: String) {
-        from = sender
+    public func setSenderId(sender: String) {
+        from?.setId(id: sender)
     }
     
-    public func setReceiver(receiver: String) {
-        to = receiver
+    public func setReceiverId(receiver: String) {
+        to?.setId(id: receiver)
     }
     
     public func setLetterPresent(isLetterPresent: Bool) {

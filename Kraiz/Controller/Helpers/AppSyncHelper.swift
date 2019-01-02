@@ -11,14 +11,14 @@ import AWSAppSync
 import RealmSwift
 
 class AppSyncHelper {
-    
+
     private var appSyncClient: AWSAppSyncClient?
-    
+
     static let shared = AppSyncHelper()
-    
+
     private init() {
     }
-    
+
     /// Sets the app sync client by fetching the idToken from the Cognito user session.
     public func setAppSyncClient() {
         
@@ -395,21 +395,17 @@ class AppSyncHelper {
                     vibeModel.setVibeType(type: vibeType)
                     vibeModel.setCategory(category: vibeTag)
                     let sender = vibeData["author"] as! String
-                    print("UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!: \(UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))")
-                    if sender == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! {
-                        vibeModel.setSender(sender: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!)
-                    } else {
-                        let profile = CacheHelper.shared.getProfileById(id: sender)
-                        vibeModel.setSender(sender: profile?.getUsername()! ?? "User")
-                    }
+                    vibeModel.setSenderId(sender: sender)
                     vibeModel.setAnonymous(isSenderAnonymous: vibeData["isAnonymous"] as! Bool)
                     let vibeComponents = vibeData["vibeComponents"] as! [Any]
                     for i in 0 ..< vibeComponents.count {
                         if let component = vibeComponents[i] as? [String : Any] {
                             let format = component["format"] as! Format
                             print("format: \(format)")
-                            let componentTexts = component["texts"] as! [Any]
                             if format == Format.text {
+                               
+                                print("component['texts']: \(component["texts"])")
+                               let componentTexts = component["texts"] as! [Any]
                                 vibeModel.setLetterPresent(isLetterPresent: true)
                                 vibeModel.setLetterText(letterString: componentTexts[0] as! String)
                                 print("component[template] as! VibeComponentTemplate: \(component["template"] as! VibeComponentTemplate)")
@@ -418,9 +414,12 @@ class AppSyncHelper {
                             if format == Format.backgroundMusic {
                                 let componentIds = component["ids"] as! [Any]
                                 vibeModel.setBackgroundMusicEnabled(isBackgroundMusicEnabled: true)
-                                vibeModel.setBackgroundMusic(index: componentIds[0] as! Int)
+                                print("componentIds in backgroundMusic: \(componentIds)")
+                                vibeModel.setBackgroundMusic(index: Int(componentIds[0] as! String) != nil ? Int(componentIds[0] as! String)! : 0)
                             }
                             if format == Format.image {
+                                print("component['texts']: \(component["texts"])")
+                                let componentTexts = component["texts"] as! [Any]
                                 let componentIds = component["ids"] as! [Any]
                                 vibeModel.setPhotosPresent(isPhotosPresent: true)
                                 var photos = [PhotoEntity]()
@@ -470,6 +469,55 @@ class AppSyncHelper {
                 }
             })
         }
+    }
+
+    /// Send the hail of the vibe.
+    /// - Parameters:
+    ///     - hailText: Hail Text.
+    ///     - vibeId: Vibe ID.
+    ///     - sender: User ID of the hail sender.
+    func sendHail(hailText: String, vibeId: String, sender: String, completionHandler: ((Bool) -> Void)?) {
+        print("inside sendHail")
+        print("hailtext: \(hailText)")
+        print("vibeId: \(vibeId)")
+        print("sender: \(sender)")
+        var allHailsComponents = [FsmComponentInput]()
+        allHailsComponents.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: hailText, mobileNumber: nil, id: nil, author: sender))
+        let hailComponent = FsmComponent(exists: true, list: allHailsComponents)
+        var allVibesComponents = [FsmComponentInput]()
+        allVibesComponents.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: nil, id: vibeId, author: nil))
+        let vibeComponent = FsmComponent(exists: true, list: allVibesComponents)
+        var allUsersComponent = [FsmComponentInput]()
+        allUsersComponent.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: nil, id: sender, author: nil))
+        let userComponent = FsmComponent(exists: true, list: allUsersComponent)
+        let fsmInput = FsmInput(action: .addHail, users: userComponent, vibes: vibeComponent, hails: hailComponent)
+        let mutation = TriggerFsmMutation(input: fsmInput, userId: sender)
+
+        if appSyncClient == nil {
+            setAppSyncClient()
+        }
+
+        appSyncClient?.perform(mutation: mutation, queue: DispatchQueue.global(qos: .userInitiated), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
+            if error != nil {
+                print("error: \(error.debugDescription)")
+                if completionHandler != nil {
+                    completionHandler!(false)
+                    return
+                }
+            }
+            if result?.errors != nil {
+                print("errors: \(result?.errors.debugDescription)")
+                print(result?.errors)
+                if completionHandler != nil {
+                    completionHandler!(false)
+                    return
+                }
+            }
+            if completionHandler != nil {
+                completionHandler!(true)
+                return
+            }
+        })
     }
 
     /// Deletes the profiles and vibe updates from the User Channel.
@@ -547,10 +595,10 @@ class AppSyncHelper {
                                 let sender = vibeData["author"] as! String
                                 print("UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!: \(UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))")
                                 if sender == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! {
-                                    vibeModel.setSender(sender: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!)
+                                    vibeModel.setSenderId(sender: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!)
                                 } else {
                                     let profile = CacheHelper.shared.getProfileById(id: sender)
-                                    vibeModel.setSender(sender: profile?.getUsername()! ?? "User")
+                                    vibeModel.setSenderId(sender: profile?.getUsername()! ?? "User")
                                 }
                                 vibeModel.setAnonymous(isSenderAnonymous: vibeData["isAnonymous"] as! Bool)
                                 let vibeComponents = vibeData["vibeComponents"] as! [Any]
@@ -600,8 +648,8 @@ class AppSyncHelper {
     ///     - success: Success Closure which will be invoked if the CreateVibe query succeeds.
     ///     - failure: Failure Closure which will be invoked if the CreateVibe fails.
     public func createVibe(vibe: VibeModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
-        let senderFsmComponentInput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.from, id: nil, author: nil)
-        let receiverFsmComponentnput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.to, id: nil, author: nil)
+        let senderFsmComponentInput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.from?.getId(), id: nil, author: nil)
+        let receiverFsmComponentnput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.to?.getId(), id: nil, author: nil)
         var userInputList = [FsmComponentInput]()
         userInputList.append(senderFsmComponentInput)
         userInputList.append(receiverFsmComponentnput)

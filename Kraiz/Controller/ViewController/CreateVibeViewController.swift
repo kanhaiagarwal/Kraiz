@@ -190,6 +190,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
         vibeWelcomeVC.vibeModel = vibeModel
+        vibeWelcomeVC.isPreview = true
         self.present(vibeWelcomeVC, animated: true, completion: nil)
     }
 

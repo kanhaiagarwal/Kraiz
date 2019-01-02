@@ -17,6 +17,7 @@ class VibeImagesViewController: UIViewController {
     var cardOutside : Int = -1
     var isSourceLetter = false
     var isDismissOverlayVisible = false
+    var isPreview = false
     @IBOutlet weak var backgroundImage: UIImageView!
     
     var overlayCloseView: UIView = UIView()
@@ -156,6 +157,18 @@ extension VibeImagesViewController {
         dismissButton.addGestureRecognizer(tapGesture)
         dismissButton.layer.cornerRadius = dismissButton.frame.height / 2
         overlayCloseView.addSubview(dismissButton)
+        
+        let nextButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width - (overlayCloseView.frame.width / 20 + overlayCloseView.frame.height / 2), y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
+        nextButton.setTitle("→", for: .normal)
+        nextButton.setTitleColor(UIColor.white, for: .normal)
+
+        if !isPreview {
+            let nextTapGesture = UITapGestureRecognizer(target: self, action: #selector(onCloseClick))
+            nextButton.addGestureRecognizer(nextTapGesture)
+            nextButton.layer.cornerRadius = nextButton.frame.height / 2
+            overlayCloseView.addSubview(nextButton)
+        }
+
         view.addSubview(overlayCloseView)
         overlayCloseView.isHidden = true
         return overlayCloseView
@@ -174,6 +187,13 @@ extension VibeImagesViewController {
                 self.dismiss(animated: false, completion: nil)
             }
         }
+    }
+
+    @objc func nextPressed() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let hailsInputVC = storyboard.instantiateViewController(withIdentifier: "VibeHailInputViewController") as! VibeHailInputViewController
+        hailsInputVC.vibeModel = vibeModel
+        self.present(hailsInputVC, animated: true, completion: nil)
     }
 
     @objc func changeDismissViewStatus() {
