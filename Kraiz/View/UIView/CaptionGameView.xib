@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CaptionGameView" customModule="Kraiz" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Faj-ba-36H">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cq0-yr-Egb">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hQC-5j-UVa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjI-Lf-oXn" customClass="CardView" customModule="Kraiz" customModuleProvider="target">
+                    <rect key="frame" x="19" y="131" width="337.5" height="405"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fvn-K6-HtH">
+                            <rect key="frame" x="5" y="5" width="327.5" height="327.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Fvn-K6-HtH" secondAttribute="height" multiplier="1:1" id="Opd-Md-rcD"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a sample caption. There will be some caption from the user" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjt-8t-am7">
+                            <rect key="frame" x="5" y="337.5" width="327.5" height="67.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Sjt-8t-am7" firstAttribute="top" secondItem="Fvn-K6-HtH" secondAttribute="bottom" constant="5" id="KW5-vP-tf9"/>
+                        <constraint firstAttribute="width" secondItem="hjI-Lf-oXn" secondAttribute="height" multiplier="1:1.2" id="L66-Fi-cj7"/>
+                        <constraint firstItem="Fvn-K6-HtH" firstAttribute="leading" secondItem="hjI-Lf-oXn" secondAttribute="leading" constant="5" id="dA1-54-URT"/>
+                        <constraint firstAttribute="trailing" secondItem="Fvn-K6-HtH" secondAttribute="trailing" constant="5" id="hQu-sx-5UM"/>
+                        <constraint firstAttribute="bottom" secondItem="Sjt-8t-am7" secondAttribute="bottom" id="md8-q7-Amy"/>
+                        <constraint firstItem="Fvn-K6-HtH" firstAttribute="top" secondItem="hjI-Lf-oXn" secondAttribute="top" constant="5" id="mxm-Vg-Kwq"/>
+                        <constraint firstItem="Sjt-8t-am7" firstAttribute="leading" secondItem="Fvn-K6-HtH" secondAttribute="leading" id="q0S-ol-Vfv"/>
+                        <constraint firstItem="Sjt-8t-am7" firstAttribute="trailing" secondItem="Fvn-K6-HtH" secondAttribute="trailing" id="xqY-GV-uzF"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetWidth">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetHeight">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="hjI-Lf-oXn" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="3ap-Ye-ABE"/>
+                <constraint firstItem="Cq0-yr-Egb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9RB-de-zFQ"/>
+                <constraint firstItem="Faj-ba-36H" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ESy-BI-2f4"/>
+                <constraint firstItem="Faj-ba-36H" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="K1l-te-jYi"/>
+                <constraint firstItem="Cq0-yr-Egb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MQN-Kk-9t5"/>
+                <constraint firstItem="Faj-ba-36H" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="QTr-b1-OXE"/>
+                <constraint firstItem="Cq0-yr-Egb" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Y1v-eC-Lld"/>
+                <constraint firstItem="Faj-ba-36H" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="imv-Ag-yeB"/>
+                <constraint firstItem="hjI-Lf-oXn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ngS-bY-SwA"/>
+                <constraint firstItem="hjI-Lf-oXn" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" multiplier="0.9" id="pT5-bP-HVs"/>
+                <constraint firstItem="Cq0-yr-Egb" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="yQx-ku-11c"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="captionLabel" destination="Sjt-8t-am7" id="SM6-7p-gLD"/>
+                <outlet property="imageView" destination="Fvn-K6-HtH" id="Y0g-24-c3D"/>
+            </connections>
+            <point key="canvasLocation" x="138.40000000000001" y="113.79310344827587"/>
+        </view>
+    </objects>
+</document>

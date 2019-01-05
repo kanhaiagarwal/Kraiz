@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "empty-vibes-private.jpg",
+      "filename" : "ic_fragment_vibes_create_vibe_instruction_ios.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "empty-vibes-private-1.jpg",
+      "filename" : "ic_fragment_vibes_create_vibe_instruction_ios-1.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "empty-vibes-private-2.jpg",
+      "filename" : "ic_fragment_vibes_create_vibe_instruction_ios-2.jpg",
       "scale" : "3x"
     }
   ],

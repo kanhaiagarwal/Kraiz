@@ -72,6 +72,9 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let attr = NSDictionary(object: UIFont(name: "Product Sans", size: 16.0)!, forKey: NSAttributedString.Key.font as NSCopying)
+        vibeTypeSegment.setTitleTextAttributes(attr as? [NSAttributedString.Key : Any], for: .normal)
+
         countryCodePicker.tag = 0
         friendsVibeTagPicker.tag = 1
         friendsMusicPicker.tag = 2
@@ -260,16 +263,19 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     
     func playAudioForUrl(url: URL) {
         do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.duckOthers)
+            try AVAudioSession.sharedInstance().setActive(true, options: AVAudioSession.SetActiveOptions.notifyOthersOnDeactivation)
             audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer.delegate = self
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
+            audioPlayer!.numberOfLoops = -1
+            audioPlayer!.prepareToPlay()
+            audioPlayer!.setVolume(1.0, fadeDuration: 0)
+            audioPlayer!.play()
 
             friendsPlayImageView.image = UIImage(named: PAUSE_IMAGE)
             publicPlayImageView.image = UIImage(named: PAUSE_IMAGE)
             isAudioPlaying = true
         } catch {
-            print("Error in playing the audio. Please try again!!")
+            print("Cannot play the file")
         }
     }
     

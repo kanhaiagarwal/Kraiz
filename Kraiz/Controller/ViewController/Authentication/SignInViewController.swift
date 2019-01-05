@@ -199,7 +199,21 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
                 if error.userInfo["__type"] as! String == "NoInternetConnectionException" {
                     APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
                 } else if error.userInfo["__type"] as! String == "UserNotConfirmedException" {
-                    self.gotoOTPPage()
+                    CognitoHelper.shared.generateOTPForSignUp(pool: self.pool!, usernameText: usernameText, passwordText: self.passwordField.text!, success: { (sessionUser: AWSCognitoIdentityUser) in
+                        self.user = sessionUser
+                        self.gotoOTPPage()
+                    }) { (error: NSError) in
+                        print(error)
+                        if String(describing: error.userInfo["__type"]!) == "NoInternetConnectionException" {
+                            APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
+                        } else if String(describing: error.userInfo["__type"]!) == "UsernameExistsException" {
+                            APPUtilites.displayErrorSnackbar(message: "Mobile number already exists")
+                        } else if String(describing: error.userInfo["__type"]!) == "InvalidPasswordException" {
+                            APPUtilites.displayErrorSnackbar(message: "Please make sure that the password is minimum 8 characters.")
+                        } else if String(describing: error.userInfo["__type"]!) == "InvalidParameterException" {
+                            APPUtilites.displayErrorSnackbar(message: "Please enter a valid mobile number")
+                        }
+                    }
                 } else if error.userInfo["__type"] as! String == "NotAuthorizedException" {
                     APPUtilites.displayErrorSnackbar(message: "Mobile number/Password combination incorrect")
                 } else {
@@ -213,7 +227,22 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
             if error.userInfo["__type"] as! String == "NoInternetConnectionException" {
                 APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
             } else if error.userInfo["__type"] as! String == "UserNotConfirmedException" {
-                self.gotoOTPPage()
+                print("======> self.pool!.currentUser(): \(self.pool!.currentUser())")
+                CognitoHelper.shared.resendOTPForSignUp(pool: self.pool!, user: self.pool!.currentUser()!, success: {
+                    self.user = self.pool!.currentUser()
+                    self.gotoOTPPage()
+                }, failure: { (error) in
+                    print("========> error: \(error)")
+                    if String(describing: error.userInfo["__type"]!) == "NoInternetConnectionException" {
+                        APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
+                    } else if String(describing: error.userInfo["__type"]!) == "UsernameExistsException" {
+                        APPUtilites.displayErrorSnackbar(message: "Mobile number already exists")
+                    } else if String(describing: error.userInfo["__type"]!) == "InvalidPasswordException" {
+                        APPUtilites.displayErrorSnackbar(message: "Please make sure that the password is minimum 8 characters.")
+                    } else if String(describing: error.userInfo["__type"]!) == "InvalidParameterException" {
+                        APPUtilites.displayErrorSnackbar(message: "Please enter a valid mobile number")
+                    }
+                })
             } else if error.userInfo["__type"] as! String == "NotAuthorizedException" {
                 APPUtilites.displayErrorSnackbar(message: "Mobile number/Password combination incorrect")
             } else {
@@ -256,7 +285,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == GOTO_OTP_FROM_SIGN_IN {
             let destinationVC = segue.destination as? SignUpOTPViewController
-            
+            destinationVC?.pool = pool
+            destinationVC?.cognitoUser = user
+
             let usernameText = countryCodeField.text! + usernameField.text!
             destinationVC?.username = usernameText
         }

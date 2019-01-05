@@ -36,13 +36,18 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
         typeOTPLabel.text = standardText + username
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         pool?.delegate = self
-    self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        print("pool: \(pool)")
+        print("currentUser: \(self.cognitoUser)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupViews()
         otpField.becomeFirstResponder()
+    }
+
+    override func viewDidLayoutSubviews() {
+        setupViews()
     }
     
     func setupViews() {
@@ -145,7 +150,7 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     @IBAction func onClickResendOTP(_ sender: UIButton) {
         dismissKeyboard()
         let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
-        
+
         CognitoHelper.shared.resendOTPForSignUp(pool: pool!, user: self.cognitoUser!, success: {
             APPUtilites.removeLoadingSpinner(spinner: sv)
             APPUtilites.displaySuccessSnackbar(message: "The confirmation code has been sent again to " + self.username)

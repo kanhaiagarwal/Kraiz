@@ -39,6 +39,9 @@ class VibesViewController: UIViewController {
         updateView()
         
         print("inside viewDidLoad of VibeViewController")
+        
+        let attr = NSDictionary(object: UIFont(name: "Product Sans", size: 16.0)!, forKey: NSAttributedString.Key.font as NSCopying)
+        vibesSegment.setTitleTextAttributes(attr as? [NSAttributedString.Key : Any], for: .normal)
 
         /// Fetch the last accessed time here from the server, and cache it. Schedule the timer only if the server time and current time difference is less than the decided time to the public vibe.
         var publicVibeTimer = CacheHelper.shared.getPublicVibeTimeEntity()
