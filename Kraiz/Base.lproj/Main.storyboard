@@ -387,7 +387,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMv-C2-cUM">
-                                <rect key="frame" x="169" y="43" width="76" height="48.666666666666657"/>
+                                <rect key="frame" x="169.33333333333334" y="43" width="75.666666666666657" height="48.666666666666657"/>
                                 <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="40"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -1283,7 +1283,9 @@ mobile number +919003194776</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="tw5-t2-syO"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="CreateButton" id="SdX-Lo-Vnu">
+                    <tabBarItem key="tabBarItem" title="" image="CreateButton" selectedImage="CreateButton" id="SdX-Lo-Vnu">
+                        <inset key="imageInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="100" maxX="0.0" maxY="0.0"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                 </viewController>
@@ -3106,7 +3108,7 @@ its the right one</string>
                                         <constraint firstItem="ntr-U3-yoA" firstAttribute="centerY" secondItem="jlA-Q9-HlV" secondAttribute="centerY" id="x6p-cJ-vEM"/>
                                     </constraints>
                                 </view>
-                                <blurEffect style="light"/>
+                                <blurEffect style="regular"/>
                             </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4488,7 +4490,7 @@ its the right one</string>
                                                                         <rect key="frame" x="0.0" y="0.0" width="165.66666666666666" height="203.33333333333334"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1b9-EC-hXf">
-                                                                                <rect key="frame" x="6.3333333333333286" y="25" width="153" height="153.33333333333334"/>
+                                                                                <rect key="frame" x="6.3333333333333286" y="25" width="153.33333333333337" height="153.33333333333334"/>
                                                                                 <color key="backgroundColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="1b9-EC-hXf" secondAttribute="height" multiplier="1:1" id="kb1-3T-er6"/>
@@ -5339,8 +5341,8 @@ its the right one</string>
         <segue reference="i7q-Jt-iVl"/>
         <segue reference="8oh-yI-riF"/>
         <segue reference="Lbh-sf-AQL"/>
-        <segue reference="ylo-g6-D3y"/>
-        <segue reference="jey-vD-tun"/>
+        <segue reference="eqt-dD-DA2"/>
+        <segue reference="GFf-Ia-2GJ"/>
         <segue reference="h9a-dj-IR4"/>
         <segue reference="h3y-kV-xul"/>
         <segue reference="QEA-am-gG3"/>

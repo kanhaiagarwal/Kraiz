@@ -46,22 +46,25 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
         
         startMusic()
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         setupScrollView()
     }
 
     func setupScrollView() {
-        imageScrollView.showsVerticalScrollIndicator = false
-        imageScrollView.contentSize = CGSize(width: imageScrollView.frame.width * CGFloat(imagesToDisplay.count), height: imageScrollView.frame.width)
-        imageScrollView.isPagingEnabled = true
-        for i in 0 ..< imagesToDisplay.count {
-            let imageView = UIImageView(frame: CGRect(x: imageScrollView.frame.width * CGFloat(i), y: 0, width: imageScrollView.frame.width, height: imageScrollView.frame.height))
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = imagesToDisplay[i].image
-            imageScrollView.addSubview(imageView)
+        if imageScrollView.contentSize.height == 0 && imageScrollView.contentSize.width == 0 {
+            imageScrollView.showsVerticalScrollIndicator = false
+            imageScrollView.contentSize = CGSize(width: imageScrollView.frame.width * CGFloat(imagesToDisplay.count), height: imageScrollView.frame.width)
+            imageScrollView.isPagingEnabled = true
+            for i in 0 ..< imagesToDisplay.count {
+                let imageView = UIImageView(frame: CGRect(x: imageScrollView.frame.width * CGFloat(i), y: 0, width: imageScrollView.frame.width, height: imageScrollView.frame.height))
+                imageView.contentMode = .scaleAspectFit
+                imageView.image = imagesToDisplay[i].image
+                imageScrollView.addSubview(imageView)
+            }
+            setCaptionLabel(currentIndex: selectedImage)
         }
     }
 

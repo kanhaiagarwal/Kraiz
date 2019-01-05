@@ -362,6 +362,55 @@
 			path = VibeImagesGame;
 			sourceTree = "<group>";
 		};
+		57E6909421E0B88D003F0CFC /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */,
+				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
+				B51DF207211F13B7009896CC /* SignInViewController.swift */,
+				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
+				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
+				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		57E6909521E0BE96003F0CFC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				57E6909621E0BEE5003F0CFC /* Hamburger */,
+				B51DF214211F13B8009896CC /* DraftsViewController.swift */,
+				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
+				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
+				B51DF219211F13B9009896CC /* VibesViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		57E6909621E0BEE5003F0CFC /* Hamburger */ = {
+			isa = PBXGroup;
+			children = (
+				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
+				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
+				B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */,
+			);
+			path = Hamburger;
+			sourceTree = "<group>";
+		};
+		57E6909721E0C0B3003F0CFC /* CreateVibe */ = {
+			isa = PBXGroup;
+			children = (
+				B51DF209211F13B7009896CC /* CreateVibeViewController.swift */,
+				B5C94319212947F8000DCF7A /* MyVibeViewController.swift */,
+				57B24F3921AB138300FA45E9 /* ImageBackdropViewController.swift */,
+				571E508B2185807100271314 /* ImageCaptionsViewController.swift */,
+				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
+				B54073022120188F00122FD0 /* PhotosInputViewController.swift */,
+				57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */,
+			);
+			path = CreateVibe;
+			sourceTree = "<group>";
+		};
 		9B57BC13AFD4177F18214DF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,39 +431,22 @@
 		B508AC5B214C4AB2001E3BB3 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				57E6909721E0C0B3003F0CFC /* CreateVibe */,
+				57E6909521E0BE96003F0CFC /* Home */,
+				57E6909421E0B88D003F0CFC /* Authentication */,
 				57E6908621DD3BAE003F0CFC /* VibeComponents */,
-				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
 				B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */,
 				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
 				B5BC1CFA21615D05008CE09F /* ChatsViewController.swift */,
-				B51DF208211F13B7009896CC /* ContactUsViewController.swift */,
-				B51DF209211F13B7009896CC /* CreateVibeViewController.swift */,
 				B5D9F611214CDFC500BF2C0F /* DisplayImageViewController.swift */,
-				B51DF214211F13B8009896CC /* DraftsViewController.swift */,
-				B58B934D21313CD30027FBC2 /* ForgotPasswordOTPViewController.swift */,
-				B51DF21A211F13B9009896CC /* ForgotPasswordViewController.swift */,
 				57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */,
 				579854B521C5259F00406BF8 /* HailsViewController.swift */,
-				B51DF20A211F13B7009896CC /* HamburgerViewController.swift */,
 				B51DF20C211F13B7009896CC /* HomeTabBarController.swift */,
-				57B24F3921AB138300FA45E9 /* ImageBackdropViewController.swift */,
-				571E508B2185807100271314 /* ImageCaptionsViewController.swift */,
-				B5D90893214C0853000D3E2B /* InviteFriendsViewController.swift */,
-				B51DF20F211F13B7009896CC /* LetterInputViewController.swift */,
-				B5C94319212947F8000DCF7A /* MyVibeViewController.swift */,
-				B54073022120188F00122FD0 /* PhotosInputViewController.swift */,
-				B51DF205211F13B6009896CC /* ProfileViewController.swift */,
 				57AC145721CD43F5001FA686 /* PublicVibesChoiceViewController.swift */,
 				57AC145521CCDD90001FA686 /* PublicVibeTagsViewController.swift */,
 				57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */,
 				B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */,
-				B51DF207211F13B7009896CC /* SignInViewController.swift */,
-				B51DF210211F13B7009896CC /* SignUpOTPViewController.swift */,
-				B51DF216211F13B8009896CC /* SignUpViewController.swift */,
 				B545799F213F010900C7424F /* StartViewController.swift */,
-				B51DF219211F13B9009896CC /* VibesViewController.swift */,
-				57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */,
-				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
