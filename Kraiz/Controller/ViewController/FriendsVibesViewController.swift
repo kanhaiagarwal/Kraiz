@@ -74,13 +74,14 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
     }
 
     func updateEmptyVibeBackground() {
-        DispatchQueue.main.async {
-            let privateVibeIndex : String = APPUtilites.getVibeIndex(indexType: "vibeTypeTag", vibeType: "PRIVATE", vibeTag: self.selectedCategory)
-            if self.privateVibes[privateVibeIndex] == nil || self.privateVibes[privateVibeIndex]!.count == 0 {
-                self.emptyImageView.isHidden = false
-            } else {
-                self.emptyImageView.isHidden = true
-            }
+        print("====> inside updateEmptyVibeBackground")
+        let privateVibeIndex : String = "\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"
+        if privateVibes[privateVibeIndex] == nil || privateVibes[privateVibeIndex]!.count == 0 {
+            print("private vibes are empty")
+            emptyImageView.isHidden = false
+        } else {
+            print("private vibes are not empty")
+            emptyImageView.isHidden = true
         }
     }
     
@@ -363,7 +364,7 @@ extension FriendsVibesViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 10, bottom: 0, right: 10)
+        return UIEdgeInsets(top: 40, left: 10, bottom: 0, right: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

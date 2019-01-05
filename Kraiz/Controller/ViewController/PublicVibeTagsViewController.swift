@@ -38,12 +38,13 @@ class PublicVibeTagsViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
         gradientLayer = CAGradientLayer()
         gradientLayer!.frame = bgView.bounds
-        gradientLayer!.colors = [UIColor(displayP3Red: 255/255, green: 95/255, blue: 109/255, alpha: 1.0).cgColor, UIColor(displayP3Red: 255/255, green: 195/255, blue: 113/255, alpha: 1.0).cgColor]
-        bgView.layer.addSublayer(gradientLayer!)
+        gradientLayer!.colors = [UIColor.blue.cgColor, UIColor.red.cgColor]
+        bgView.layer.insertSublayer(gradientLayer!, at: 0)
     }
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if gradientLayer != nil {

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="monotype-corsiva.ttf">
+            <string>MonotypeCorsiva</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="VibeImageGameCaptionsTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="VibeImageGameCaptionsTableViewCell" rowHeight="98" id="KGk-i7-Jjw" customClass="VibeImageGameCaptionsTableViewCell" customModule="Kraiz" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="322" height="98"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="322" height="97.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gPh-c3-gUO" customClass="CardView" customModule="Kraiz" customModuleProvider="target">
+                        <rect key="frame" x="20" y="20" width="282" height="77.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No caption here, but you can still select this." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHh-Eb-MF9">
+                                <rect key="frame" x="0.0" y="29" width="282" height="20"/>
+                                <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="18"/>
+                                <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="VHh-Eb-MF9" secondAttribute="trailing" id="6HW-zA-V4J"/>
+                            <constraint firstItem="VHh-Eb-MF9" firstAttribute="centerY" secondItem="gPh-c3-gUO" secondAttribute="centerY" id="IOO-N9-onv"/>
+                            <constraint firstItem="VHh-Eb-MF9" firstAttribute="leading" secondItem="gPh-c3-gUO" secondAttribute="leading" id="vw0-8q-9wX"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetHeight">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photos-logo" translatesAutoresizingMaskIntoConstraints="NO" id="bGO-Th-qBh">
+                        <rect key="frame" x="281" y="10" width="31" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="bGO-Th-qBh" secondAttribute="height" multiplier="1:1" id="4Ey-gg-3vm"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="gPh-c3-gUO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="GiU-3L-tde"/>
+                    <constraint firstAttribute="trailing" secondItem="gPh-c3-gUO" secondAttribute="trailing" constant="20" id="R4X-dL-erh"/>
+                    <constraint firstItem="gPh-c3-gUO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="gE4-i7-2eC"/>
+                    <constraint firstItem="gPh-c3-gUO" firstAttribute="top" secondItem="bGO-Th-qBh" secondAttribute="top" constant="10" id="gQS-tl-yTp"/>
+                    <constraint firstItem="bGO-Th-qBh" firstAttribute="trailing" secondItem="gPh-c3-gUO" secondAttribute="trailing" constant="10" id="hcD-80-8Nb"/>
+                    <constraint firstItem="bGO-Th-qBh" firstAttribute="height" secondItem="gPh-c3-gUO" secondAttribute="height" multiplier="0.4" id="sTp-yX-w0O"/>
+                    <constraint firstAttribute="bottom" secondItem="gPh-c3-gUO" secondAttribute="bottom" id="t2e-4B-cef"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="captionLabel" destination="VHh-Eb-MF9" id="CP1-Rj-6f5"/>
+                <outlet property="selectImage" destination="bGO-Th-qBh" id="gxS-xZ-I9g"/>
+            </connections>
+            <point key="canvasLocation" x="153.59999999999999" y="72.863568215892059"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="photos-logo" width="64" height="64"/>
+    </resources>
+</document>

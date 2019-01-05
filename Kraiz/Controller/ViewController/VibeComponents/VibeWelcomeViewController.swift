@@ -63,9 +63,17 @@ class VibeWelcomeViewController: UIViewController {
                 vibeTextVC.isPreview = true
             }
             self.present(vibeTextVC, animated: true, completion: nil)
-        } else if vibeModel!.isPhotosPresent {
+        } else if vibeModel!.isPhotosPresent && vibeModel!.imageBackdrop == 0 {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let vibeImagesVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesViewController") as! VibeImagesViewController
+            vibeImagesVC.vibeModel = vibeModel!
+            if isPreview {
+                vibeImagesVC.isPreview = true
+            }
+            self.present(vibeImagesVC, animated: true, completion: nil)
+        } else if vibeModel!.isPhotosPresent && vibeModel!.imageBackdrop == 1 {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let vibeImagesVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameCaptionsViewController") as! VibeImagesGameCaptionsViewController
             vibeImagesVC.vibeModel = vibeModel!
             if isPreview {
                 vibeImagesVC.isPreview = true

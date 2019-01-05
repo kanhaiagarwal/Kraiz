@@ -9,12 +9,12 @@
 import UIKit
 
 class InviteFriendsViewController: UIViewController {
-
-    @IBOutlet weak var whatsappImage: UIImageView!
+    
     @IBOutlet weak var facebookImage: UIImageView!
+    @IBOutlet weak var whatsappImage: UIImageView!
     @IBOutlet weak var instagramImage: UIImageView!
     @IBOutlet weak var commonShareImage: UIImageView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +29,14 @@ class InviteFriendsViewController: UIViewController {
         commonShareImage.addGestureRecognizer(commonShareGestureRecognizer)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("view.layer.sublayers: \(view.layer.sublayers)")
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor(displayP3Red: 100/255, green: 43/255, blue: 115/255, alpha: 1.0).cgColor, UIColor(displayP3Red: 198/255, green: 66/255, blue: 110/255, alpha: 1.0).cgColor]
+        view.layer.insertSublayer(gradientLayer, at: 0)
+    }
     @IBAction func backPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -38,7 +46,7 @@ class InviteFriendsViewController: UIViewController {
             let canOpenURL = UIApplication.shared.canOpenURL(appURL)
             print("\(canOpenURL)")
             
-            let appName = "Whatsapp"
+            let appName = "WhatsApp"
             let appScheme = "\(appName)://"
             let appSchemeUrl = URL(string: appScheme)
             

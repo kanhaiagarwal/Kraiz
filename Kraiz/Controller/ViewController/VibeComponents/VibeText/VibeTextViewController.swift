@@ -302,7 +302,22 @@ extension VibeTextViewController {
         self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width
 
         if vibeModel.isPhotosPresent {
-            performSegue(withIdentifier: DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW, sender: self)
+            switch vibeModel.imageBackdrop {
+                case 0:
+                    performSegue(withIdentifier: DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW, sender: self)
+                    break
+                case 1:
+                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                    let imagesVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameCaptionsViewController") as! VibeImagesGameCaptionsViewController
+                    imagesVC.vibeModel = vibeModel
+                    imagesVC.isPreview = true
+                    self.present(imagesVC, animated: true, completion: nil)
+                    break
+            default:
+                performSegue(withIdentifier: DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW, sender: self)
+                break
+                
+            }
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let hailinputVC = storyboard.instantiateViewController(withIdentifier: "VibeHailInputViewController") as! VibeHailInputViewController

@@ -63,6 +63,11 @@
 		57D4C0F321C2E4ED007DD51F /* VibeCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D4C0F121C2E4ED007DD51F /* VibeCategoryCollectionViewCell.swift */; };
 		57D4C0F421C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57D4C0F221C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib */; };
 		57D4C0F621C44008007DD51F /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D4C0F521C44008007DD51F /* TriangleView.swift */; };
+		57E6908B21DD3C63003F0CFC /* VibeImagesGameImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6908A21DD3C63003F0CFC /* VibeImagesGameImagesViewController.swift */; };
+		57E6908D21DD3D1C003F0CFC /* VibeImagesGameCaptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6908C21DD3D1C003F0CFC /* VibeImagesGameCaptionsViewController.swift */; };
+		57E6909021DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6908E21DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.swift */; };
+		57E6909121DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E6908F21DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib */; };
+		57E6909321E09178003F0CFC /* productsans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57E6909221E09178003F0CFC /* productsans.ttf */; };
 		B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507EF5C21244886007FC9F1 /* AWSConstants.swift */; };
 		B513582F215D365C00139854 /* Hero.otf in Resources */ = {isa = PBXBuildFile; fileRef = B513582E215D365C00139854 /* Hero.otf */; };
 		B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */; };
@@ -201,6 +206,11 @@
 		57D4C0F121C2E4ED007DD51F /* VibeCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		57D4C0F221C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VibeCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		57D4C0F521C44008007DD51F /* TriangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
+		57E6908A21DD3C63003F0CFC /* VibeImagesGameImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeImagesGameImagesViewController.swift; sourceTree = "<group>"; };
+		57E6908C21DD3D1C003F0CFC /* VibeImagesGameCaptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeImagesGameCaptionsViewController.swift; sourceTree = "<group>"; };
+		57E6908E21DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeImageGameCaptionsTableViewCell.swift; sourceTree = "<group>"; };
+		57E6908F21DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VibeImageGameCaptionsTableViewCell.xib; sourceTree = "<group>"; };
+		57E6909221E09178003F0CFC /* productsans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsans.ttf; sourceTree = "<group>"; };
 		77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.release.xcconfig"; sourceTree = "<group>"; };
 		AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.debug.xcconfig"; sourceTree = "<group>"; };
 		B507EF5C21244886007FC9F1 /* AWSConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSConstants.swift; sourceTree = "<group>"; };
@@ -315,6 +325,43 @@
 			path = AudioFiles;
 			sourceTree = "<group>";
 		};
+		57E6908621DD3BAE003F0CFC /* VibeComponents */ = {
+			isa = PBXGroup;
+			children = (
+				57E6908921DD3C2C003F0CFC /* VibeImagesGame */,
+				57E6908821DD3BFC003F0CFC /* VibeImagesPolaroid */,
+				57E6908721DD3BEC003F0CFC /* VibeText */,
+				5711AD1421D3C06F005650C3 /* VibeWelcomeViewController.swift */,
+				57A7912321D53AF40025F8FE /* VibeHailInputViewController.swift */,
+			);
+			path = VibeComponents;
+			sourceTree = "<group>";
+		};
+		57E6908721DD3BEC003F0CFC /* VibeText */ = {
+			isa = PBXGroup;
+			children = (
+				57C74A9521B2F42500D737FB /* VibeTextViewController.swift */,
+			);
+			path = VibeText;
+			sourceTree = "<group>";
+		};
+		57E6908821DD3BFC003F0CFC /* VibeImagesPolaroid */ = {
+			isa = PBXGroup;
+			children = (
+				57C74A9D21BA521400D737FB /* VibeImagesViewController.swift */,
+			);
+			path = VibeImagesPolaroid;
+			sourceTree = "<group>";
+		};
+		57E6908921DD3C2C003F0CFC /* VibeImagesGame */ = {
+			isa = PBXGroup;
+			children = (
+				57E6908A21DD3C63003F0CFC /* VibeImagesGameImagesViewController.swift */,
+				57E6908C21DD3D1C003F0CFC /* VibeImagesGameCaptionsViewController.swift */,
+			);
+			path = VibeImagesGame;
+			sourceTree = "<group>";
+		};
 		9B57BC13AFD4177F18214DF2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +382,7 @@
 		B508AC5B214C4AB2001E3BB3 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				57E6908621DD3BAE003F0CFC /* VibeComponents */,
 				B51DF206211F13B6009896CC /* AboutUsViewController.swift */,
 				B5523B872120C15C00CAC7BF /* AllImagesTextViewController.swift */,
 				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
@@ -366,11 +414,7 @@
 				B545799F213F010900C7424F /* StartViewController.swift */,
 				B51DF219211F13B9009896CC /* VibesViewController.swift */,
 				57B24F3121AA7B9500FA45E9 /* VibeSentViewController.swift */,
-				57C74A9D21BA521400D737FB /* VibeImagesViewController.swift */,
-				57C74A9521B2F42500D737FB /* VibeTextViewController.swift */,
-				5711AD1421D3C06F005650C3 /* VibeWelcomeViewController.swift */,
 				B51DF211211F13B8009896CC /* WelcomeViewController.swift */,
-				57A7912321D53AF40025F8FE /* VibeHailInputViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -452,6 +496,8 @@
 				57BD53EC2199CD38001B1010 /* VibesCategoryTableViewCell.xib */,
 				57AC145921CD5A33001FA686 /* VibeChoiceTableViewCell.swift */,
 				57AC145A21CD5A33001FA686 /* VibeChoiceTableViewCell.xib */,
+				57E6908E21DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.swift */,
+				57E6908F21DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -459,6 +505,7 @@
 		B51DF242211F1608009896CC /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				57E6909221E09178003F0CFC /* productsans.ttf */,
 				B51DF23F211F15FB009896CC /* FREESCPT.TTF */,
 				B51DF240211F15FD009896CC /* frenchscriptmt.ttf */,
 				B513582E215D365C00139854 /* Hero.otf */,
@@ -646,6 +693,7 @@
 				B51DF24E211F174A009896CC /* HamburgerTableViewCell.xib in Resources */,
 				57BD53EE2199CD38001B1010 /* VibesCategoryTableViewCell.xib in Resources */,
 				57A7911D21D538470025F8FE /* Guitar.mp3 in Resources */,
+				57E6909321E09178003F0CFC /* productsans.ttf in Resources */,
 				B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */,
 				B51DF1FC211F1248009896CC /* LaunchScreen.storyboard in Resources */,
 				B5652C6E21482D9900B15E8F /* schema.json in Resources */,
@@ -669,6 +717,7 @@
 				57D4C0F421C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib in Resources */,
 				57A7911E21D538470025F8FE /* Jazz.mp3 in Resources */,
 				B5BC1CF921615B61008CE09F /* ChatsTableViewCell.xib in Resources */,
+				57E6909121DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib in Resources */,
 				579854BE21C611C200406BF8 /* MyPublicVibeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -762,6 +811,7 @@
 				57C74AA021BAEA3300D737FB /* AudioControls.swift in Sources */,
 				B5C9431A212947F8000DCF7A /* MyVibeViewController.swift in Sources */,
 				57D4C0F321C2E4ED007DD51F /* VibeCategoryCollectionViewCell.swift in Sources */,
+				57E6909021DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.swift in Sources */,
 				B51DF222211F13B9009896CC /* HamburgerViewController.swift in Sources */,
 				57C74A9E21BA521400D737FB /* VibeImagesViewController.swift in Sources */,
 				B5E23DAF2129E677005C93C2 /* CountryCodes.swift in Sources */,
@@ -784,6 +834,7 @@
 				B51DF231211F13B9009896CC /* VibesViewController.swift in Sources */,
 				B5BC1CFB21615D05008CE09F /* ChatsViewController.swift in Sources */,
 				B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */,
+				57E6908D21DD3D1C003F0CFC /* VibeImagesGameCaptionsViewController.swift in Sources */,
 				B5A65830214D052F0003C034 /* MediaHelperConstants.swift in Sources */,
 				579854B921C5525C00406BF8 /* HailsTableViewCell.swift in Sources */,
 				57C74AA421BEE5EC00D737FB /* VibeImagesBackdrop.swift in Sources */,
@@ -806,6 +857,7 @@
 				B524CABE21453AD000316D84 /* AppSyncHelper.swift in Sources */,
 				B51DF22E211F13B9009896CC /* SignUpViewController.swift in Sources */,
 				B5D9F612214CDFC500BF2C0F /* DisplayImageViewController.swift in Sources */,
+				57E6908B21DD3C63003F0CFC /* VibeImagesGameImagesViewController.swift in Sources */,
 				B5BC1CF821615B61008CE09F /* ChatsTableViewCell.swift in Sources */,
 				B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */,
 				57AC146821CF9879001FA686 /* VibeQuotes.swift in Sources */,
