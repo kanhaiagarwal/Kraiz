@@ -58,11 +58,13 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
     }
 
     func prepareImagesArray() {
+        print("captionsSelected: \(captionsSelected)")
         for i in 0 ..< vibeModel!.getImages().count {
             if captionsSelected![i]! {
                 imagesToDisplay.append(vibeModel!.getImages()[i])
             }
         }
+        print("imagesToDisplay.count: \(imagesToDisplay.count)")
     }
 
     /// Creates the Overlay View which will contain the close button.
@@ -71,20 +73,28 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
         overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
         
         let dismissButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width / 20, y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
-        dismissButton.setTitle("╳", for: .normal)
-        dismissButton.setTitleColor(UIColor.white, for: .normal)
+        
+        var dismissButtonTitleAttributes = [NSAttributedString.Key : Any]()
+        dismissButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
+        dismissButtonTitleAttributes[.foregroundColor] = UIColor.white
+        let dismissButtonAttributedTitle = NSAttributedString(string: "⨯", attributes: dismissButtonTitleAttributes)
+        dismissButton.setAttributedTitle(dismissButtonAttributedTitle, for: .normal)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onCloseClick))
         dismissButton.addGestureRecognizer(tapGesture)
         dismissButton.layer.cornerRadius = dismissButton.frame.height / 2
         overlayCloseView.addSubview(dismissButton)
         
-        let nextButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width - (overlayCloseView.frame.width / 20 + overlayCloseView.frame.height / 2), y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
-        nextButton.setTitle("→", for: .normal)
-        nextButton.setTitleColor(UIColor.white, for: .normal)
+        let nextButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width - overlayCloseView.frame.height / 2, y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
         
-        if !isPreview {
-            let nextTapGesture = UITapGestureRecognizer(target: self, action: #selector(onCloseClick))
+        var nextButtonTitleAttributes = [NSAttributedString.Key : Any]()
+        nextButtonTitleAttributes[.font] = UIFont.systemFont(ofSize: 35)
+        nextButtonTitleAttributes[.foregroundColor] = UIColor.white
+        let nextButtonAttributedTitle = NSAttributedString(string: "→", attributes: nextButtonTitleAttributes)
+        nextButton.setAttributedTitle(nextButtonAttributedTitle, for: .normal)
+
+        if !isPreview && (vibeModel!.to?.getUsername() != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)){
+            let nextTapGesture = UITapGestureRecognizer(target: self, action: #selector(nextPressed))
             nextButton.addGestureRecognizer(nextTapGesture)
             nextButton.layer.cornerRadius = nextButton.frame.height / 2
             overlayCloseView.addSubview(nextButton)
@@ -98,8 +108,13 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
     @objc func onCloseClick() {
         AudioControls.shared.stopMusic()
         if !vibeModel!.isLetterPresent {
-            let presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!
-            presentingVC.dismiss(animated: true) {
+            var presentingVC: UIViewController?
+            if vibeModel!.seenIds.count == 0 {
+                presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!
+            } else {
+                presentingVC = self.presentingViewController!.presentingViewController!
+            }
+            presentingVC!.dismiss(animated: true) {
                 self.dismiss(animated: false, completion: nil)
             }
         } else {

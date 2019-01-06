@@ -242,6 +242,7 @@ public enum Action: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
   case addHail
   case addReach
   case updateProfile
+  case updateVibeImageSeenIds
   /// Auto generated constant for unknown enum values
   case unknown(RawValue)
 
@@ -253,6 +254,7 @@ public enum Action: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
       case "ADD_HAIL": self = .addHail
       case "ADD_REACH": self = .addReach
       case "UPDATE_PROFILE": self = .updateProfile
+      case "UPDATE_VIBE_IMAGE_SEEN_IDS": self = .updateVibeImageSeenIds
       default: self = .unknown(rawValue)
     }
   }
@@ -265,6 +267,7 @@ public enum Action: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
       case .addHail: return "ADD_HAIL"
       case .addReach: return "ADD_REACH"
       case .updateProfile: return "UPDATE_PROFILE"
+      case .updateVibeImageSeenIds: return "UPDATE_VIBE_IMAGE_SEEN_IDS"
       case .unknown(let value): return value
     }
   }
@@ -277,6 +280,7 @@ public enum Action: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
       case (.addHail, .addHail): return true
       case (.addReach, .addReach): return true
       case (.updateProfile, .updateProfile): return true
+      case (.updateVibeImageSeenIds, .updateVibeImageSeenIds): return true
       case (.unknown(let lhsValue), .unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
     }
@@ -489,8 +493,8 @@ public enum VibeTag: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
 public struct VibeComponentInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(ids: [GraphQLID]? = nil, sequence: [Int]? = nil, texts: [String]? = nil, format: Format, template: VibeComponentTemplate? = nil, globalSequence: Int) {
-    graphQLMap = ["ids": ids, "sequence": sequence, "texts": texts, "format": format, "template": template, "globalSequence": globalSequence]
+  public init(ids: [GraphQLID]? = nil, seenIds: [GraphQLID]? = nil, sequence: [Int]? = nil, texts: [String]? = nil, format: Format, template: VibeComponentTemplate? = nil, globalSequence: Int) {
+    graphQLMap = ["ids": ids, "seenIds": seenIds, "sequence": sequence, "texts": texts, "format": format, "template": template, "globalSequence": globalSequence]
   }
 
   public var ids: [GraphQLID]? {
@@ -499,6 +503,15 @@ public struct VibeComponentInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "ids")
+    }
+  }
+
+  public var seenIds: [GraphQLID]? {
+    get {
+      return graphQLMap["seenIds"] as! [GraphQLID]?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "seenIds")
     }
   }
 
@@ -601,7 +614,7 @@ public enum VibeComponentTemplate: RawRepresentable, Equatable, JSONDecodable, J
   case basic
   case dreamy
   case polaroid
-  case tuner
+  case upYourCaptionGame
   /// Auto generated constant for unknown enum values
   case unknown(RawValue)
 
@@ -613,7 +626,7 @@ public enum VibeComponentTemplate: RawRepresentable, Equatable, JSONDecodable, J
       case "BASIC": self = .basic
       case "DREAMY": self = .dreamy
       case "POLAROID": self = .polaroid
-      case "TUNER": self = .tuner
+      case "UP_YOUR_CAPTION_GAME": self = .upYourCaptionGame
       default: self = .unknown(rawValue)
     }
   }
@@ -626,7 +639,7 @@ public enum VibeComponentTemplate: RawRepresentable, Equatable, JSONDecodable, J
       case .basic: return "BASIC"
       case .dreamy: return "DREAMY"
       case .polaroid: return "POLAROID"
-      case .tuner: return "TUNER"
+      case .upYourCaptionGame: return "UP_YOUR_CAPTION_GAME"
       case .unknown(let value): return value
     }
   }
@@ -639,7 +652,7 @@ public enum VibeComponentTemplate: RawRepresentable, Equatable, JSONDecodable, J
       case (.basic, .basic): return true
       case (.dreamy, .dreamy): return true
       case (.polaroid, .polaroid): return true
-      case (.tuner, .tuner): return true
+      case (.upYourCaptionGame, .upYourCaptionGame): return true
       case (.unknown(let lhsValue), .unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
     }
@@ -2843,7 +2856,7 @@ public final class GetRandomPublicVibesQuery: GraphQLQuery {
 
 public final class FetchVibeDataQuery: GraphQLQuery {
   public static let operationString =
-    "query FetchVibeData($vibeId: ID!) {\n  fetchVibeData(vibeId: $vibeId) {\n    __typename\n    id\n    version\n    type\n    createdAt\n    updatedTime\n    isAnonymous\n    name\n    author\n    tag\n    vibeComponents {\n      __typename\n      ids\n      sequence\n      texts\n      format\n      template\n      globalSequence\n    }\n    ... on PrivateVibe {\n      accessGroup\n      seenCount\n    }\n  }\n}"
+    "query FetchVibeData($vibeId: ID!) {\n  fetchVibeData(vibeId: $vibeId) {\n    __typename\n    id\n    version\n    type\n    createdAt\n    updatedTime\n    isAnonymous\n    name\n    author\n    tag\n    vibeComponents {\n      __typename\n      ids\n      seenIds\n      sequence\n      texts\n      format\n      template\n      globalSequence\n    }\n    ... on PrivateVibe {\n      accessGroup\n      seenCount\n    }\n  }\n}"
 
   public var vibeId: GraphQLID
 
@@ -3022,6 +3035,7 @@ public final class FetchVibeDataQuery: GraphQLQuery {
         public static let selections: [GraphQLSelection] = [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("ids", type: .list(.nonNull(.scalar(GraphQLID.self)))),
+          GraphQLField("seenIds", type: .list(.nonNull(.scalar(GraphQLID.self)))),
           GraphQLField("sequence", type: .list(.nonNull(.scalar(Int.self)))),
           GraphQLField("texts", type: .list(.nonNull(.scalar(String.self)))),
           GraphQLField("format", type: .nonNull(.scalar(Format.self))),
@@ -3035,8 +3049,8 @@ public final class FetchVibeDataQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(ids: [GraphQLID]? = nil, sequence: [Int]? = nil, texts: [String]? = nil, format: Format, template: VibeComponentTemplate? = nil, globalSequence: Int) {
-          self.init(snapshot: ["__typename": "VibeComponent", "ids": ids, "sequence": sequence, "texts": texts, "format": format, "template": template, "globalSequence": globalSequence])
+        public init(ids: [GraphQLID]? = nil, seenIds: [GraphQLID]? = nil, sequence: [Int]? = nil, texts: [String]? = nil, format: Format, template: VibeComponentTemplate? = nil, globalSequence: Int) {
+          self.init(snapshot: ["__typename": "VibeComponent", "ids": ids, "seenIds": seenIds, "sequence": sequence, "texts": texts, "format": format, "template": template, "globalSequence": globalSequence])
         }
 
         public var __typename: String {
@@ -3054,6 +3068,15 @@ public final class FetchVibeDataQuery: GraphQLQuery {
           }
           set {
             snapshot.updateValue(newValue, forKey: "ids")
+          }
+        }
+
+        public var seenIds: [GraphQLID]? {
+          get {
+            return snapshot["seenIds"] as? [GraphQLID]
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "seenIds")
           }
         }
 
@@ -3266,6 +3289,7 @@ public final class FetchVibeDataQuery: GraphQLQuery {
           public static let selections: [GraphQLSelection] = [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
             GraphQLField("ids", type: .list(.nonNull(.scalar(GraphQLID.self)))),
+            GraphQLField("seenIds", type: .list(.nonNull(.scalar(GraphQLID.self)))),
             GraphQLField("sequence", type: .list(.nonNull(.scalar(Int.self)))),
             GraphQLField("texts", type: .list(.nonNull(.scalar(String.self)))),
             GraphQLField("format", type: .nonNull(.scalar(Format.self))),
@@ -3279,8 +3303,8 @@ public final class FetchVibeDataQuery: GraphQLQuery {
             self.snapshot = snapshot
           }
 
-          public init(ids: [GraphQLID]? = nil, sequence: [Int]? = nil, texts: [String]? = nil, format: Format, template: VibeComponentTemplate? = nil, globalSequence: Int) {
-            self.init(snapshot: ["__typename": "VibeComponent", "ids": ids, "sequence": sequence, "texts": texts, "format": format, "template": template, "globalSequence": globalSequence])
+          public init(ids: [GraphQLID]? = nil, seenIds: [GraphQLID]? = nil, sequence: [Int]? = nil, texts: [String]? = nil, format: Format, template: VibeComponentTemplate? = nil, globalSequence: Int) {
+            self.init(snapshot: ["__typename": "VibeComponent", "ids": ids, "seenIds": seenIds, "sequence": sequence, "texts": texts, "format": format, "template": template, "globalSequence": globalSequence])
           }
 
           public var __typename: String {
@@ -3298,6 +3322,15 @@ public final class FetchVibeDataQuery: GraphQLQuery {
             }
             set {
               snapshot.updateValue(newValue, forKey: "ids")
+            }
+          }
+
+          public var seenIds: [GraphQLID]? {
+            get {
+              return snapshot["seenIds"] as? [GraphQLID]
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "seenIds")
             }
           }
 

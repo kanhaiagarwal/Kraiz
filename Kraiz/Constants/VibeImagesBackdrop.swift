@@ -10,14 +10,22 @@
 import Foundation
 
 public class VibeImagesBackdrop {
-    public static let BACKDROPS = ["Polaroid", "Tuner"]
+    public static let BACKDROPS = ["Polaroid", "Up Your Caption Game"]
     
     public static func getImagesBackdrop(index: Int) -> VibeComponentTemplate {
         switch(index) {
             case 0: return VibeComponentTemplate.polaroid
-            case 1: return VibeComponentTemplate.tuner
+            case 1: return VibeComponentTemplate.upYourCaptionGame
             default: return VibeComponentTemplate.polaroid
         }
-        return VibeComponentTemplate.polaroid
     }
+    
+    public static func getImagesBackdropIndex(template: VibeComponentTemplate) -> Int {
+        switch(template) {
+            case .polaroid: return 0
+            case .upYourCaptionGame: return 1
+            default: return 0
+        }
+    }
+
 }

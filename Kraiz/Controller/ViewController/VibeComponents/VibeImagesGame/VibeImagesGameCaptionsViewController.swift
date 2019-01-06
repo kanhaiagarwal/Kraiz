@@ -61,11 +61,20 @@ class VibeImagesGameCaptionsViewController: UIViewController {
             APPUtilites.displayErrorSnackbar(message: "Please select atleast one caption")
             return
         }
+        if !isPreview && vibeModel!.from?.getUsername() != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! {
+            var seenIds = [String]()
+            for i in 0 ..< vibeModel!.getImages().count {
+                if captionsSelected[i]! {
+                    seenIds.append(vibeModel!.getImages()[i].imageLink!)
+                }
+            }
+            AppSyncHelper.shared.setImagesSeenIdsInPrivateVibe(vibeId: vibeModel!.id, seenIds: seenIds, completionHandler: nil)
+        }
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let imagesVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameImagesViewController") as! VibeImagesGameImagesViewController
         imagesVC.vibeModel = vibeModel
         imagesVC.captionsSelected = captionsSelected
-        imagesVC.isPreview = true
+        imagesVC.isPreview = isPreview
         self.present(imagesVC, animated: true, completion: nil)
     }
     override func viewDidLayoutSubviews() {

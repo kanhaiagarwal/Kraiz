@@ -72,6 +72,11 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("UserDefaults.standard.string(forKey: DeviceConstants.USER_ID): \(UserDefaults.standard.string(forKey: DeviceConstants.USER_ID))")
+        vibeModel.from?.setId(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID))
+        vibeModel.from?.setUsername(username: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))
+        vibeModel.from?.setMobileNumber(mobileNumber: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER))
+
         let attr = NSDictionary(object: UIFont(name: "Product Sans", size: 16.0)!, forKey: NSAttributedString.Key.font as NSCopying)
         vibeTypeSegment.setTitleTextAttributes(attr as? [NSAttributedString.Key : Any], for: .normal)
 
@@ -368,6 +373,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             }
 
             vibeModel.setReceiverMobileNumber(mobileNumber: friendsUsernameField.text!.starts(with: "+") ? friendsUsernameField.text! : (CountryCodes.countryCodes[countryCodeSelected!] + friendsUsernameField.text!))
+            vibeModel.to?.setMobileNumber(mobileNumber: friendsUsernameField.text!.starts(with: "+") ? friendsUsernameField.text! : (CountryCodes.countryCodes[countryCodeSelected!] + friendsUsernameField.text!))
         } else {
             if publicVibeNameField.text == nil || publicVibeNameField.text!.trimmingCharacters(in: .whitespaces).isEmpty {
                 APPUtilites.displayErrorSnackbar(message: "Please give a name to the Vibe")

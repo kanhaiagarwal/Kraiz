@@ -19,9 +19,6 @@
         <array key="monotype-corsiva.ttf">
             <string>MonotypeCorsiva</string>
         </array>
-        <array key="productsans.ttf">
-            <string>ProductSans-Regular</string>
-        </array>
     </customFonts>
     <scenes>
         <!--Welcome View Controller-->
@@ -91,7 +88,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgc-5s-l5G">
                                                 <rect key="frame" x="40" y="157.66666666666663" width="334" height="67"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="22"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                 <state key="normal" title="SIGN UP">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -102,7 +99,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VdI-VU-HX8">
                                                 <rect key="frame" x="40" y="254.66666666666666" width="334" height="67.333333333333343"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="22"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                 <state key="normal" title="SIGN IN">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -208,7 +205,7 @@
                                                                 <rect key="frame" x="120" y="0.0" width="244" height="56.666666666666664"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hwa-od-77q">
@@ -219,7 +216,7 @@
                                                                     <constraint firstAttribute="width" constant="60" id="QeF-DF-huK"/>
                                                                 </constraints>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
@@ -242,7 +239,7 @@
                                                                 <rect key="frame" x="50" y="0.0" width="314" height="56.333333333333336"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vc-ag-3XG">
@@ -271,7 +268,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klA-AL-S5I">
                                                                 <rect key="frame" x="50" y="19" width="314" height="75"/>
                                                                 <color key="backgroundColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="22"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                                 <state key="normal" title="GET OTP">
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
@@ -309,19 +306,19 @@
                                         <rect key="frame" x="0.0" y="552" width="414" height="266"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ji3-G1-BYL">
-                                                <rect key="frame" x="97" y="209.66666666666663" width="220" height="36.333333333333343"/>
+                                                <rect key="frame" x="86.666666666666686" y="210.66666666666663" width="241" height="35.333333333333343"/>
                                                 <state key="normal">
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="Already a member? ">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.99607843137254903" green="0.99607843137254903" blue="0.99607843137254903" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <font key="NSFont" size="20" name="TimesNewRomanPS-ItalicMT"/>
+                                                                <font key="NSFont" size="20" name="HelveticaNeue-Italic"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment content="Sign In">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.99607843137254903" green="0.99607843137254903" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <font key="NSFont" size="20" name="ProductSans-Regular"/>
+                                                                <font key="NSFont" size="20" name="HelveticaNeue"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
@@ -387,31 +384,31 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMv-C2-cUM">
-                                <rect key="frame" x="169.33333333333334" y="43" width="75.666666666666657" height="48.666666666666657"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="40"/>
+                                <rect key="frame" x="167.33333333333334" y="44" width="79.333333333333343" height="46.666666666666657"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Please type the OTP sent to your number +919003194776" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qYV-7Z-LRk">
-                                <rect key="frame" x="60" y="106.66666666666669" width="294" height="61"/>
+                                <rect key="frame" x="60" y="105.66666666666669" width="294" height="61"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="61" id="eyi-eP-1Gx"/>
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="OTP" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TIE-Eb-SSg">
-                                <rect key="frame" x="50" y="175.33333333333334" width="314" height="62.666666666666657"/>
+                                <rect key="frame" x="50" y="174.33333333333334" width="314" height="62.666666666666657"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="id6-94-IXF">
-                                <rect key="frame" x="273" y="246.33333333333337" width="91" height="33"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                <rect key="frame" x="267" y="245.33333333333337" width="97" height="32"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Resend OTP">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -420,9 +417,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMM-qE-otg">
-                                <rect key="frame" x="50" y="299.33333333333331" width="314" height="75.333333333333314"/>
+                                <rect key="frame" x="50" y="297.33333333333331" width="314" height="75.333333333333314"/>
                                 <color key="backgroundColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                 <state key="normal" title="VERIFY &amp; SIGN UP">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -431,8 +428,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5K4-vk-EEe">
-                                <rect key="frame" x="185.66666666666666" y="374.66666666666669" width="43" height="37"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="20"/>
+                                <rect key="frame" x="184" y="372.66666666666669" width="46" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -493,7 +490,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMy-Fb-Qba">
                                 <rect key="frame" x="0.0" y="53.333333333333343" width="414" height="28"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -505,7 +502,7 @@
                                     <constraint firstAttribute="height" constant="50" id="N7d-Uq-N9Y"/>
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="klY-qJ-YwY" userLabel="Country Code Field">
@@ -517,7 +514,7 @@
                                     <constraint firstAttribute="width" constant="60" id="qnQ-VB-BKY"/>
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="OTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1tN-Cd-sRb">
@@ -527,13 +524,13 @@
                                     <constraint firstAttribute="height" constant="50" id="0ph-jL-h0D"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaK-gb-cDu">
                                 <rect key="frame" x="50" y="264" width="314" height="60"/>
                                 <color key="backgroundColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                 <state key="normal" title="GET OTP">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -543,7 +540,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQk-aM-m4i">
                                 <rect key="frame" x="187.66666666666666" y="324" width="39" height="32"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -601,13 +598,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpB-dk-E9V">
-                                <rect key="frame" x="0.0" y="52.666666666666664" width="414" height="29.333333333333336"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="24"/>
+                                <rect key="frame" x="0.0" y="53.333333333333343" width="414" height="28"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wev-JZ-zsZ">
-                                <rect key="frame" x="50" y="97" width="314" height="43"/>
+                                <rect key="frame" x="50" y="96.333333333333329" width="314" height="42.999999999999986"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="6cv-UJ-NfP"/>
@@ -615,25 +612,25 @@
                                 <string key="text">Please enter the OTP sent to the
 mobile number +919003194776</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="OTP" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FAd-Fd-eI6">
-                                <rect key="frame" x="30" y="180" width="354" height="40"/>
+                                <rect key="frame" x="30" y="179.33333333333334" width="354" height="40"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="2BQ-0h-ydv"/>
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qNM-Y4-ZOF">
-                                <rect key="frame" x="284" y="222" width="100" height="33"/>
+                                <rect key="frame" x="284" y="221.33333333333334" width="100" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Spa-qb-cOk"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Resend OTP">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -642,19 +639,19 @@ mobile number +919003194776</string>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DQm-EW-fgJ">
-                                <rect key="frame" x="30" y="263" width="354" height="40"/>
+                                <rect key="frame" x="30" y="261.33333333333331" width="354" height="40"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="xQW-sC-2Gc"/>
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8E0-6J-Rgn">
-                                <rect key="frame" x="30" y="333" width="354" height="52"/>
+                                <rect key="frame" x="30" y="331.33333333333331" width="354" height="52"/>
                                 <color key="backgroundColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -663,8 +660,8 @@ mobile number +919003194776</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnm-8P-Czb">
-                                <rect key="frame" x="189" y="385" width="36" height="33"/>
-                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                <rect key="frame" x="187.66666666666666" y="383.33333333333331" width="39" height="32"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -673,7 +670,7 @@ mobile number +919003194776</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQ5-fI-in4">
-                                <rect key="frame" x="294" y="263" width="60" height="40"/>
+                                <rect key="frame" x="294" y="261.33333333333331" width="60" height="40"/>
                                 <state key="normal" image="hide-password"/>
                                 <connections>
                                     <action selector="hidePasswordPressed:" destination="phY-Ip-7lP" eventType="touchUpInside" id="rYh-rB-lvC"/>
@@ -779,14 +776,14 @@ mobile number +919003194776</string>
                                                                     <constraint firstAttribute="width" constant="60" id="sLP-7C-Wcw"/>
                                                                 </constraints>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jZv-Rj-l55">
                                                                 <rect key="frame" x="120" y="0.0" width="244" height="58.333333333333336"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                         </subviews>
@@ -808,7 +805,7 @@ mobile number +919003194776</string>
                                                                 <rect key="frame" x="50" y="0.0" width="314" height="58"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYM-Pk-ovP">
@@ -836,7 +833,7 @@ mobile number +919003194776</string>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fz9-vX-llW">
                                                                 <rect key="frame" x="50" y="19.333333333333314" width="314" height="77.666666666666671"/>
                                                                 <color key="backgroundColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="22"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <state key="normal" title="SIGN IN">
                                                                     <color key="titleColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 </state>
@@ -879,7 +876,7 @@ mobile number +919003194776</string>
                                                     <constraint firstAttribute="height" constant="30" id="5pq-PH-ZHM"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="188" id="pwf-Va-BVJ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <state key="normal" title="Can't Sign In?">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </state>
@@ -888,7 +885,7 @@ mobile number +919003194776</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ybj-Jl-Y9X">
-                                                <rect key="frame" x="121" y="216.33333333333326" width="172" height="36.333333333333343"/>
+                                                <rect key="frame" x="121" y="217.33333333333326" width="172" height="35.333333333333343"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="172" id="9UO-8z-4EQ"/>
                                                 </constraints>
@@ -897,21 +894,21 @@ mobile number +919003194776</string>
                                                         <fragment content="New Here?">
                                                             <attributes>
                                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <font key="NSFont" size="20" name="TimesNewRomanPS-ItalicMT"/>
+                                                                <font key="NSFont" size="20" name="HelveticaNeue-Italic"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment content=" ">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.83921568627450982" green="0.84705882352941175" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <font key="NSFont" size="20" name="TimesNewRomanPS-ItalicMT"/>
+                                                                <font key="NSFont" size="20" name="HelveticaNeue"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                         <fragment content="Sign Up">
                                                             <attributes>
                                                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                <font key="NSFont" size="20" name="ProductSans-Regular"/>
+                                                                <font key="NSFont" size="20" name="HelveticaNeue"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -1366,16 +1363,16 @@ mobile number +919003194776</string>
                                                 <rect key="frame" x="20" y="53" width="374" height="448"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lc2-It-KDv">
-                                                        <rect key="frame" x="73.666666666666671" y="20" width="17.666666666666671" height="20.666666666666671"/>
-                                                        <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                        <rect key="frame" x="73.666666666666671" y="20" width="17.666666666666671" height="20"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awZ-It-PJ8" userLabel="UsernameContainer">
-                                                        <rect key="frame" x="0.0" y="45.666666666666686" width="374" height="45"/>
+                                                        <rect key="frame" x="0.0" y="45" width="374" height="45"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-username" translatesAutoresizingMaskIntoConstraints="NO" id="3mt-yD-EcM">
-                                                                <rect key="frame" x="19.999999999999996" y="5.6666666666666572" width="33.666666666666657" height="33.666666666666664"/>
+                                                                <rect key="frame" x="19.999999999999996" y="5.6666666666666856" width="33.666666666666657" height="33.666666666666664"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="3mt-yD-EcM" secondAttribute="height" multiplier="1:1" id="o7L-YJ-1re"/>
                                                                 </constraints>
@@ -1419,13 +1416,13 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skI-0c-2wN">
-                                                        <rect key="frame" x="73.666666666666657" y="110.66666666666666" width="80.666666666666657" height="20.666666666666657"/>
-                                                        <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                        <rect key="frame" x="73.666666666666671" y="110.00000000000003" width="83.000000000000014" height="20"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kdu-UH-vfX" userLabel="VibeNameContainer">
-                                                        <rect key="frame" x="0.0" y="136.33333333333334" width="374" height="44.666666666666657"/>
+                                                        <rect key="frame" x="0.0" y="135.00000000000003" width="374" height="44.666666666666657"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-name" translatesAutoresizingMaskIntoConstraints="NO" id="XqQ-IK-8YX">
                                                                 <rect key="frame" x="19.999999999999996" y="5.3333333333333144" width="33.666666666666657" height="33.666666666666664"/>
@@ -1451,19 +1448,19 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-tag" translatesAutoresizingMaskIntoConstraints="NO" id="5mN-3w-87l">
-                                                        <rect key="frame" x="19.999999999999996" y="194.66666666666666" width="33.666666666666657" height="33.333333333333343"/>
+                                                        <rect key="frame" x="19.999999999999996" y="193.00000000000003" width="33.666666666666657" height="33.333333333333343"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="5mN-3w-87l" secondAttribute="height" multiplier="1:1" id="2lA-Yp-RX4"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibe Tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oy0-4S-GcH">
-                                                        <rect key="frame" x="73.666666666666671" y="201.00000000000003" width="62.666666666666671" height="20.666666666666657"/>
-                                                        <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                        <rect key="frame" x="73.666666666666657" y="199.66666666666666" width="64.666666666666657" height="20"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHn-nl-Zxj" userLabel="VibeTagContainer">
-                                                        <rect key="frame" x="0.0" y="226.66666666666666" width="374" height="44.666666666666657"/>
+                                                        <rect key="frame" x="0.0" y="224.66666666666666" width="374" height="44.666666666666657"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6QX-He-jdk">
                                                                 <rect key="frame" x="73.666666666666657" y="0.0" width="260.33333333333337" height="44.666666666666664"/>
@@ -1487,7 +1484,7 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enb-pq-Mnd" userLabel="BackgroundMusicContainer">
-                                                        <rect key="frame" x="0.0" y="281.33333333333337" width="374" height="45"/>
+                                                        <rect key="frame" x="0.0" y="279.33333333333337" width="374" height="45"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-background-music" translatesAutoresizingMaskIntoConstraints="NO" id="HKA-fT-GZQ">
                                                                 <rect key="frame" x="19.999999999999996" y="5.6666666666666856" width="33.666666666666657" height="33.666666666666664"/>
@@ -1497,7 +1494,7 @@ mobile number +919003194776</string>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPI-XB-jL8">
                                                                 <rect key="frame" x="67.666666666666686" y="0.0" width="187" height="45"/>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -1525,7 +1522,7 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nI4-zN-CPe" userLabel="FriendsMusicContainer">
-                                                        <rect key="frame" x="73.666666666666671" y="336.33333333333337" width="230.33333333333331" height="44.666666666666686"/>
+                                                        <rect key="frame" x="73.666666666666671" y="334.33333333333337" width="230.33333333333331" height="44.666666666666686"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xR9-EN-hes" userLabel="MusicField">
                                                                 <rect key="frame" x="0.0" y="0.0" width="230.33333333333334" height="44.666666666666664"/>
@@ -1554,7 +1551,7 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-play-music" translatesAutoresizingMaskIntoConstraints="NO" id="3gO-e5-0v5">
-                                                        <rect key="frame" x="324" y="342" width="33.666666666666686" height="33.333333333333314"/>
+                                                        <rect key="frame" x="324" y="340" width="33.666666666666686" height="33.333333333333314"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="3gO-e5-0v5" secondAttribute="height" multiplier="1:1" id="Wt5-Jq-Wuj"/>
                                                         </constraints>
@@ -1631,16 +1628,16 @@ mobile number +919003194776</string>
                                                 <rect key="frame" x="20" y="52.999999999999972" width="374" height="358.33333333333326"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2TO-eD-uoH">
-                                                        <rect key="frame" x="72.333333333333314" y="20" width="80.666666666666686" height="20.666666666666671"/>
-                                                        <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                        <rect key="frame" x="72.333333333333329" y="20" width="82.999999999999986" height="20"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="90z-dq-k5J" userLabel="PublicVibeNameContainer">
-                                                        <rect key="frame" x="0.0" y="45.666666666666686" width="374" height="43"/>
+                                                        <rect key="frame" x="0.0" y="45" width="374" height="43"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-name" translatesAutoresizingMaskIntoConstraints="NO" id="2dx-mC-coM">
-                                                                <rect key="frame" x="20.000000000000004" y="5.3333333333333144" width="32.333333333333343" height="32.333333333333336"/>
+                                                                <rect key="frame" x="20.000000000000004" y="5.3333333333333428" width="32.333333333333343" height="32.333333333333336"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="2dx-mC-coM" secondAttribute="height" multiplier="1:1" id="9QT-EG-xhK"/>
                                                                 </constraints>
@@ -1664,19 +1661,19 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibe Tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifV-gl-mIq">
-                                                        <rect key="frame" x="72.333333333333329" y="108.66666666666666" width="62.666666666666671" height="20.666666666666657"/>
-                                                        <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                        <rect key="frame" x="72.333333333333314" y="108.00000000000003" width="64.666666666666686" height="20"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-tag" translatesAutoresizingMaskIntoConstraints="NO" id="FpL-Xn-y8e">
-                                                        <rect key="frame" x="20.000000000000004" y="103.00000000000003" width="32.333333333333343" height="32.333333333333343"/>
+                                                        <rect key="frame" x="20.000000000000004" y="102.00000000000003" width="32.333333333333343" height="32.333333333333343"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="FpL-Xn-y8e" secondAttribute="height" multiplier="1:1" id="NRi-S7-lTo"/>
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7y-JN-Kqz" userLabel="Public Vibe Tag Container">
-                                                        <rect key="frame" x="0.0" y="134.33333333333334" width="374" height="43"/>
+                                                        <rect key="frame" x="0.0" y="133.00000000000003" width="374" height="43"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WIe-c6-pUY">
                                                                 <rect key="frame" x="72.333333333333343" y="0.0" width="261.66666666666663" height="43"/>
@@ -1700,7 +1697,7 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JaV-cg-tc4" userLabel="Public Background Music Container">
-                                                        <rect key="frame" x="0.0" y="187.33333333333334" width="374" height="39.666666666666657"/>
+                                                        <rect key="frame" x="0.0" y="186.00000000000003" width="374" height="39.666666666666657"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-background-music" translatesAutoresizingMaskIntoConstraints="NO" id="AwT-c2-tdk">
                                                                 <rect key="frame" x="20" y="5.0000000000000018" width="29.666666666666671" height="29.666666666666671"/>
@@ -1710,7 +1707,7 @@ mobile number +919003194776</string>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nA-VW-2a9">
                                                                 <rect key="frame" x="67.666666666666686" y="0.0" width="187" height="39.666666666666664"/>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -1736,7 +1733,7 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYV-aW-HtI">
-                                                        <rect key="frame" x="72.333333333333329" y="237" width="231.66666666666669" height="43"/>
+                                                        <rect key="frame" x="72.333333333333329" y="235.66666666666663" width="231.66666666666669" height="43"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kDs-u8-TMA">
                                                                 <rect key="frame" x="0.0" y="0.0" width="231.66666666666666" height="43"/>
@@ -1748,7 +1745,7 @@ mobile number +919003194776</string>
                                                                 </connections>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6G-It-ziT">
-                                                                <rect key="frame" x="217" y="11.333333333333313" width="14.666666666666657" height="20.333333333333329"/>
+                                                                <rect key="frame" x="217" y="11.333333333333369" width="14.666666666666657" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1765,7 +1762,7 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-play-music" translatesAutoresizingMaskIntoConstraints="NO" id="gge-tt-1ry">
-                                                        <rect key="frame" x="324" y="242.33333333333337" width="32.333333333333314" height="32"/>
+                                                        <rect key="frame" x="324" y="241" width="32.333333333333314" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="gge-tt-1ry" secondAttribute="height" multiplier="1:1" id="YAc-LV-o6S"/>
                                                         </constraints>
@@ -2107,7 +2104,7 @@ mobile number +919003194776</string>
                                                                                 <subviews>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzQ-KE-PYI">
                                                                                         <rect key="frame" x="103.66666666666669" y="65.666666666666629" width="207" height="39"/>
-                                                                                        <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                                         <state key="normal" title="Preview" image="preview-icon">
                                                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
@@ -2149,7 +2146,7 @@ mobile number +919003194776</string>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeE-mB-3ao">
                                                                 <rect key="frame" x="124.33333333333333" y="439.66666666666669" width="165.33333333333337" height="51"/>
                                                                 <color key="backgroundColor" red="0.90196078430000004" green="0.61960784310000006" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <state key="normal" title="Send">
                                                                     <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
@@ -3921,7 +3918,7 @@ its the right one</string>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRQ-bc-xqr">
                                                 <rect key="frame" x="286.66666666666669" y="19.333333333333332" width="107.33333333333331" height="38.333333333333343"/>
-                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <state key="normal" title="Ready ➞">
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -4446,8 +4443,8 @@ its the right one</string>
                                                                         <rect key="frame" x="165.66666666666669" y="0.0" width="248.66666666666669" height="203.33333333333334"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Risk_rk" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9Y-ce-2t8">
-                                                                                <rect key="frame" x="0.0" y="81.333333333333329" width="248.66666666666666" height="40.333333333333329"/>
-                                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="33"/>
+                                                                                <rect key="frame" x="0.0" y="82.333333333333329" width="248.66666666666666" height="38.666666666666671"/>
+                                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="33"/>
                                                                                 <color key="textColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
@@ -4621,7 +4618,7 @@ its the right one</string>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite friends and begin the &quot;Kraiz&quot;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yN9-nR-5uu">
                                                 <rect key="frame" x="30" y="40.666666666666671" width="354" height="70"/>
-                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="30"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4633,7 +4630,7 @@ its the right one</string>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite your friends and family to Kraiz and share vibes with everyone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftq-VR-qw4">
                                                         <rect key="frame" x="20" y="221" width="314" height="39.666666666666686"/>
-                                                        <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -4867,7 +4864,7 @@ its the right one</string>
                                                                 <rect key="frame" x="20" y="20" width="374" height="548"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <string key="text">StoryFi, India's one of a kind social platform to share interactive stories. An interactive story is a combination of text, pictures, audio, and video swathed with interaction. These stories can be shared with anyone, you just need their mobile number. StoryFi, also allows you to send anonymous stories where your identity won't be revealed to the receiver. Start expressing your emotions in a better way, go StoryFi.</string>
-                                                                <fontDescription key="fontDescription" name="ProductSans-Regular" family="Product Sans" pointSize="22"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
                                                         </subviews>
@@ -5275,14 +5272,14 @@ its the right one</string>
         <image name="vibes-inactive" width="72" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hgI-cb-1J3"/>
+        <segue reference="Yxk-op-ykK"/>
         <segue reference="AUb-jh-2pV"/>
         <segue reference="kHT-Ph-L82"/>
         <segue reference="S9L-Ur-bSB"/>
         <segue reference="ylo-g6-D3y"/>
         <segue reference="jey-vD-tun"/>
-        <segue reference="h9a-dj-IR4"/>
+        <segue reference="29n-BT-rOK"/>
         <segue reference="h3y-kV-xul"/>
-        <segue reference="QEA-am-gG3"/>
+        <segue reference="QEH-CO-fw1"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -37,9 +37,6 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("self.vibeModel.from?.getId(): \(self.vibeModel.from?.getId())")
-        print("UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!: \(UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)")
-        
         let textView : UITextView = UITextView(frame: CGRect(x: view.frame.width / 20, y: view.frame.height / 15, width: 4 * view.frame.width / 5, height: 9 * view.frame.height / 10))
         textView.isEditable = false
         textView.backgroundColor = UIColor.clear
@@ -246,11 +243,8 @@ extension VibeTextViewController {
     /// This will be called when the app comes back to the foreground and the music was initially playing.
     @objc func resumeMusicIfPaused() {
         if AudioControls.shared.getPlayAudioOnForeground() {
-            print("AudioControls.shared.getPlayAudioOnForeground() is true")
             AudioControls.shared.resumeMusic()
             AudioControls.shared.setPlayAudioOnForeground(playAudio: false)
-        } else {
-            print("AudioControls.shared.getPlayAudioOnForeground() is false")
         }
     }
 
@@ -308,10 +302,36 @@ extension VibeTextViewController {
                     break
                 case 1:
                     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                    let imagesVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameCaptionsViewController") as! VibeImagesGameCaptionsViewController
-                    imagesVC.vibeModel = vibeModel
-                    imagesVC.isPreview = true
-                    self.present(imagesVC, animated: true, completion: nil)
+                    
+                    // Show the upYourCaptionGame Captions View Controller in the following condition
+                    // 1. This is a preview.
+                    // 2. Sender is seeing this vibe.
+                    // 3. Number of seen IDs in the vibe is greater than 0.
+                    if isPreview || vibeModel.getSeenIds().count == 0 || vibeModel.from?.getId() == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID) || UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME) == vibeModel.from?.getUsername() {
+                        let captionGameCaptionsVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameCaptionsViewController") as! VibeImagesGameCaptionsViewController
+                        captionGameCaptionsVC.vibeModel = vibeModel
+                        captionGameCaptionsVC.isPreview = isPreview
+                        self.present(captionGameCaptionsVC, animated: true, completion: nil)
+                    } else {
+                        let seenIds = vibeModel.getSeenIds()
+                        var captionsSelected = [Int : Bool]()
+                        for i in 0 ..< vibeModel.getImages().count {
+                            captionsSelected[i] = false
+                        }
+                        for i in 0 ..< seenIds.count {
+                            for j in 0 ..< vibeModel.getImages().count {
+                                if vibeModel.getImages()[j].imageLink == seenIds[i] {
+                                    captionsSelected[j] = true
+                                    break
+                                }
+                            }
+                        }
+                        let captionGameImagesVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameImagesViewController") as! VibeImagesGameImagesViewController
+                        captionGameImagesVC.vibeModel = vibeModel
+                        captionGameImagesVC.captionsSelected = captionsSelected
+                        captionGameImagesVC.isPreview = isPreview
+                        self.present(captionGameImagesVC, animated: true, completion: nil)
+                    }
                     break
             default:
                 performSegue(withIdentifier: DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW, sender: self)
@@ -331,9 +351,7 @@ extension VibeTextViewController {
         if segue.identifier == DeviceConstants.GOTO_IMAGES_PREVIEW_FROM_TEXT_PREVIEW {
             let destinationVC = segue.destination as! VibeImagesViewController
             destinationVC.vibeModel = vibeModel
-            if isPreview {
-                destinationVC.isPreview = true
-            }
+            destinationVC.isPreview = isPreview
             destinationVC.isSourceLetter = true
         }
     }
@@ -352,7 +370,6 @@ extension VibeTextViewController {
                 self.overlayCloseView.frame.origin.y = 0
             }
             if self.currentPage == self.controllers.count - 1 {
-                print("inside the changeOverlayViewStatus for the next button")
                 if self.isNextButtonVisible {
                     self.isNextButtonVisible = false
                     self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width

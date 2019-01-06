@@ -61,17 +61,16 @@ class VibeHailInputViewController: UIViewController {
         var presentingVC: UIViewController?
 
         if vibeModel!.isLetterPresent && vibeModel!.isPhotosPresent {
-            if sendPressed {
-                presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!
+            if vibeModel!.getSeenIds().count == 0 {
+                presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!.presentingViewController!.presentingViewController!
             } else {
                 presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!.presentingViewController!
             }
-        } else {
-            if sendPressed {
-                presentingVC = self.presentingViewController!.presentingViewController!
-            } else {
-                presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!
-            }
+        } else if vibeModel!.isPhotosPresent && vibeModel!.imageBackdrop == 1 && vibeModel!.getSeenIds().count == 0 {
+            presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!.presentingViewController!
+        }
+        else {
+            presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!
         }
         presentingVC?.dismiss(animated: true, completion: {
             self.dismiss(animated: true, completion: nil)

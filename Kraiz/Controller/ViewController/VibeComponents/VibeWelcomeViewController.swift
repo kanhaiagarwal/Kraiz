@@ -23,6 +23,12 @@ class VibeWelcomeViewController: UIViewController {
         vibeTag.text = VibeCategories.pickerStrings[vibeModel!.category]
         vibeName.text = vibeModel!.vibeName
         backgroundImage.image = UIImage(named: VibeCategories.vibeWelcomebackground[vibeModel!.category])
+        if !isPreview {
+            if !CacheHelper.shared.getSeenStatusOfVibe(vibeId: vibeModel!.id) {
+                AppSyncHelper.shared.updateSeenStatusOfVibe(vibeId: vibeModel!.id, seenStatus: true)
+            }
+        }
+        print("isPreview: \(isPreview)")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -31,7 +37,11 @@ class VibeWelcomeViewController: UIViewController {
         print("vibeModel?.from?.getUsername(): \(vibeModel?.from?.getUsername())")
         print("vibeModel.from.getUserId(): \(vibeModel?.from?.getId())")
         if vibeModel?.from?.getUsername() != nil {
-            senderUsername.text = vibeModel?.from?.getUsername()
+            if vibeModel?.from?.getUsername() == UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME) {
+                senderUsername.text = "You"
+            } else {
+                senderUsername.text = vibeModel?.from?.getUsername()
+            }
         } else {
             let profile = CacheHelper.shared.getProfileById(id: (vibeModel?.from?.getId())!)
             print("profile: \(profile)")
@@ -73,12 +83,33 @@ class VibeWelcomeViewController: UIViewController {
             self.present(vibeImagesVC, animated: true, completion: nil)
         } else if vibeModel!.isPhotosPresent && vibeModel!.imageBackdrop == 1 {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let vibeImagesVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameCaptionsViewController") as! VibeImagesGameCaptionsViewController
-            vibeImagesVC.vibeModel = vibeModel!
-            if isPreview {
-                vibeImagesVC.isPreview = true
+            if isPreview || vibeModel?.from?.getId() == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID) || vibeModel?.getSeenIds().count == 0 {
+                let captionGameCaptionsVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameCaptionsViewController") as! VibeImagesGameCaptionsViewController
+                captionGameCaptionsVC.vibeModel = vibeModel!
+                captionGameCaptionsVC.isPreview = isPreview
+                self.present(captionGameCaptionsVC, animated: true, completion: nil)
+            } else {
+                let seenIds = vibeModel?.getSeenIds()
+                print("seenIds: \(seenIds)")
+                var captionsSelected = [Int : Bool]()
+                for i in 0 ..< vibeModel!.getImages().count {
+                    captionsSelected[i] = false
+                }
+                for i in 0 ..< seenIds!.count {
+                    for j in 0 ..< vibeModel!.getImages().count {
+                        if vibeModel!.getImages()[j].imageLink == seenIds![i] {
+                            print("seenId \(seenIds![i]) matched")
+                            captionsSelected[j] = true
+                            break
+                        }
+                    }
+                }
+                let captionGameImagesVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameImagesViewController") as! VibeImagesGameImagesViewController
+                captionGameImagesVC.vibeModel = vibeModel
+                captionGameImagesVC.captionsSelected = captionsSelected
+                captionGameImagesVC.isPreview = isPreview
+                self.present(captionGameImagesVC, animated: true, completion: nil)
             }
-            self.present(vibeImagesVC, animated: true, completion: nil)
         }
     }
     @IBAction func dismissPressed(_ sender: Any) {

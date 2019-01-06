@@ -210,6 +210,8 @@ class AppSyncHelper {
                                     if let vibe = allVibes[i] as? [String : Any] {
                                         liveBucketVibeIds.append((vibe["vibeId"] as? String)!)
                                         let vibeDataForCache = VibeDataEntity()
+                                        print("vibeId inside getUserChannel: \(vibe["vibeId"] as? String)")
+                                        print("profileId inside getUserChannel: \(vibe["profileId"] as? String)")
                                         vibeDataForCache.setHails(hails: List<HailsEntity>())
                                         vibeDataForCache.setIsSeen(vibe["seen"] as! Bool)
                                         vibeDataForCache.setReach(vibe["reach"] as! Int)
@@ -362,8 +364,6 @@ class AppSyncHelper {
     }
 
     func getUserVibe(vibeId: String, vibeType: Int, vibeTag: Int, completionHandler: ((Error?, VibeModel?) -> Void)?) {
-        print("inside getUserVibe")
-        print("vibeId: \(vibeId)")
         let query = FetchVibeDataQuery(vibeId: vibeId)
         let cachePolicy = CachePolicy.returnCacheDataAndFetch
 
@@ -387,59 +387,154 @@ class AppSyncHelper {
                 return
             }
             if let data = result?.data {
-                let vibeModel = VibeModel()
+                var vibeModel = VibeModel()
                 if let vibeData = data.snapshot["fetchVibeData"] as? [String: Any?] {
-                    print("vibeData: \(vibeData)")
-                    vibeModel.setId(id: vibeData["id"] as! String)
-                    vibeModel.setVibeName(name: vibeData["name"] as! String)
-                    vibeModel.setVibeType(type: vibeType)
-                    vibeModel.setCategory(category: vibeTag)
-                    let sender = vibeData["author"] as! String
-                    vibeModel.setSenderId(sender: sender)
-                    vibeModel.setAnonymous(isSenderAnonymous: vibeData["isAnonymous"] as! Bool)
-                    let vibeComponents = vibeData["vibeComponents"] as! [Any]
-                    for i in 0 ..< vibeComponents.count {
-                        if let component = vibeComponents[i] as? [String : Any] {
-                            let format = component["format"] as! Format
-                            print("format: \(format)")
-                            if format == Format.text {
-                               
-                                print("component['texts']: \(component["texts"])")
-                               let componentTexts = component["texts"] as! [Any]
-                                vibeModel.setLetterPresent(isLetterPresent: true)
-                                vibeModel.setLetterText(letterString: componentTexts[0] as! String)
-                                print("component[template] as! VibeComponentTemplate: \(component["template"] as! VibeComponentTemplate)")
-                                vibeModel.setLetterBackground(background: VibeTextBackgrounds.getletterTemplateIndexFromTemplate(template: component["template"] as! VibeComponentTemplate))
-                            }
-                            if format == Format.backgroundMusic {
-                                let componentIds = component["ids"] as! [Any]
-                                vibeModel.setBackgroundMusicEnabled(isBackgroundMusicEnabled: true)
-                                print("componentIds in backgroundMusic: \(componentIds)")
-                                vibeModel.setBackgroundMusic(index: Int(componentIds[0] as! String) != nil ? Int(componentIds[0] as! String)! : 0)
-                            }
-                            if format == Format.image {
-                                print("component['texts']: \(component["texts"])")
-                                let componentTexts = component["texts"] as! [Any]
-                                let componentIds = component["ids"] as! [Any]
-                                vibeModel.setPhotosPresent(isPhotosPresent: true)
-                                var photos = [PhotoEntity]()
-                                for j in 0 ..< componentIds.count {
-                                    var photo = PhotoEntity()
-                                    photo.caption = componentTexts[j] as? String
-                                    photo.imageLink = componentIds[j] as? String
-                                    photos.append(photo)
+                    vibeModel = self.getVibeModelFromVibeDataSnapshot(vibeData: vibeData, vibeType: vibeType, vibeTag: vibeTag)
+                    if vibeType == 0 && vibeModel.isPhotosPresent && vibeModel.imageBackdrop == 1 && vibeModel.getSeenIds().count == 0 {
+                        self.appSyncClient?.fetch(query: query, cachePolicy: .fetchIgnoringCacheData, queue: DispatchQueue.global(qos: .userInitiated), resultHandler: { (result, error) in
+                            if error != nil {
+                                print("error in fetch vibe data: \(error)")
+                                if completionHandler != nil {
+                                    completionHandler!(error, nil)
                                 }
-                                vibeModel.setImages(photos: photos)
+                                return
                             }
+                            print("result: \(result)")
+                            if result?.errors != nil {
+                                print("error in the result of fetch vibe data: \(result?.errors?.first)")
+                                if completionHandler != nil {
+                                    completionHandler!(result?.errors?.first, nil)
+                                }
+                                return
+                            }
+                            if let data = result?.data {
+                                var vibeModel = VibeModel()
+                                if let vibeData = data.snapshot["fetchVibeData"] as? [String : Any?] {
+                                    vibeModel = self.getVibeModelFromVibeDataSnapshot(vibeData: vibeData, vibeType: vibeType, vibeTag: vibeTag)
+                                    if completionHandler != nil {
+                                        completionHandler!(nil, vibeModel)
+                                    }
+                                }
+                            }
+                        })
+                    } else {
+                        if completionHandler != nil {
+                            completionHandler!(nil, vibeModel)
                         }
-                    }
-                    print("=====> vibeModel inside result of fetchVibeData: \(vibeModel)")
-                    if completionHandler != nil {
-                        completionHandler!(nil, vibeModel)
                     }
                 }
             }
         })
+    }
+
+    /// Sets the Seen Ids when the user sees the Up Your Caption Game Vibe for the first time.
+    /// - Parameters:
+    ///     - vibeId: Vibe ID.
+    ///     - seenIds: All the image Ids. which the user has selected in the Up Your Caption Game.
+    func setImagesSeenIdsInPrivateVibe(vibeId: String, seenIds: [String], completionHandler: ((Bool) -> Void)?) {
+        print("vibeId inside setImagesSeenIdsInPrivateVibe: \(vibeId)")
+        var seenIdsComponents = [VibeComponentInput]()
+        seenIdsComponents.append(VibeComponentInput(ids: nil, seenIds: seenIds, sequence: nil, texts: nil, format: .image, template: .upYourCaptionGame, globalSequence: 0))
+        var seenIdComponents = [FsmComponentInput]()
+        seenIdComponents.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: seenIdsComponents, comment: nil, mobileNumber: nil, id: vibeId, author: nil))
+        let vibeComponent = FsmComponent(exists: true, list: seenIdComponents)
+        var allUsers = [FsmComponentInput]()
+        allUsers.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: nil, id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, author: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!))
+        let usersComponent = FsmComponent(exists: true, list: allUsers)
+        let fsmInput = FsmInput(action: .updateVibeImageSeenIds, users: usersComponent, vibes: vibeComponent, hails: nil)
+        let query = TriggerFsmMutation(input: fsmInput, userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
+        if appSyncClient == nil {
+            setAppSyncClient()
+        }
+        appSyncClient?.perform(mutation: query, queue: DispatchQueue.global(qos: .userInitiated), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
+            if error != nil {
+                print("error in query: \(error)")
+                if completionHandler != nil {
+                    completionHandler!(false)
+                }
+                return
+            }
+            if result?.errors != nil {
+                print("error in result: \(result?.errors)")
+                if completionHandler != nil {
+                    completionHandler!(false)
+                }
+                return
+            }
+            if completionHandler != nil {
+                completionHandler!(true)
+            }
+        })
+    }
+
+    /// Creates a VibeModel from the VibeData Snapshot.
+    /// - Parameters:
+    ///     - vibeData: Data fetched from the server.
+    ///     - vibeType: Vibe Type.
+    ///     - vibeTag: Vibe Tag.
+    func getVibeModelFromVibeDataSnapshot(vibeData: [String : Any?], vibeType: Int, vibeTag: Int) -> VibeModel {
+        var vibeModel = VibeModel()
+        print("vibeData: \(vibeData)")
+        vibeModel.setId(id: vibeData["id"] as! String)
+        vibeModel.setVibeName(name: vibeData["name"] as! String)
+        vibeModel.setVibeType(type: vibeType)
+        vibeModel.setCategory(category: vibeTag)
+        let sender = vibeData["author"] as! String
+        vibeModel.setSenderId(sender: sender)
+        vibeModel.from?.setId(id: sender)
+        if sender == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! {
+            vibeModel.from?.setMobileNumber(mobileNumber: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)!)
+            vibeModel.from?.setUsername(username: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!)
+        }
+        vibeModel.setAnonymous(isSenderAnonymous: vibeData["isAnonymous"] as! Bool)
+        vibeModel.setVersion(version: vibeData["version"] as! Int)
+        let vibeComponents = vibeData["vibeComponents"] as! [Any]
+        for i in 0 ..< vibeComponents.count {
+            if let component = vibeComponents[i] as? [String : Any] {
+                let format = component["format"] as! Format
+                print("format: \(format)")
+                if format == Format.text {
+                    
+                    print("component['texts']: \(component["texts"])")
+                    let componentTexts = component["texts"] as! [Any]
+                    vibeModel.setLetterPresent(isLetterPresent: true)
+                    vibeModel.setLetterText(letterString: componentTexts[0] as! String)
+                    print("component[template] as! VibeComponentTemplate: \(component["template"] as! VibeComponentTemplate)")
+                    vibeModel.setLetterBackground(background: VibeTextBackgrounds.getletterTemplateIndexFromTemplate(template: component["template"] as! VibeComponentTemplate))
+                }
+                if format == Format.backgroundMusic {
+                    let componentIds = component["ids"] as! [Any]
+                    vibeModel.setBackgroundMusicEnabled(isBackgroundMusicEnabled: true)
+                    print("componentIds in backgroundMusic: \(componentIds)")
+                    vibeModel.setBackgroundMusic(index: Int(componentIds[0] as! String) != nil ? Int(componentIds[0] as! String)! : 0)
+                }
+                if format == Format.image {
+                    print("component['texts']: \(component["texts"])")
+                    let componentTexts = component["texts"] as! [Any]
+                    let componentIds = component["ids"] as! [Any]
+                    vibeModel.setPhotosPresent(isPhotosPresent: true)
+                    vibeModel.setImageBackdrop(backdrop: VibeImagesBackdrop.getImagesBackdropIndex(template: component["template"] as! VibeComponentTemplate))
+                    var photos = [PhotoEntity]()
+                    for j in 0 ..< componentIds.count {
+                        var photo = PhotoEntity()
+                        photo.caption = componentTexts[j] as? String == "NULL" ? nil : componentTexts[j] as? String
+                        photo.imageLink = componentIds[j] as? String
+                        photos.append(photo)
+                    }
+                    vibeModel.setImages(photos: photos)
+                    if let seenIdsFromVibeData = component["seenIds"] as? [Any] {
+                        print("seenIdsFromVibeData: \(seenIdsFromVibeData)")
+                        var seenIdsForVibeModel = [String]()
+                        for i in 0 ..< seenIdsFromVibeData.count {
+                            seenIdsForVibeModel.append(seenIdsFromVibeData[i] as! String)
+                        }
+                        print("seenIdsForVibeModel: \(seenIdsForVibeModel)")
+                        vibeModel.setSeenIds(seenIds: seenIdsForVibeModel)
+                    }
+                }
+            }
+        }
+        return vibeModel
     }
 
     /// Increment the reach of a vibe.
@@ -624,11 +719,12 @@ class AppSyncHelper {
                                             var photos = [PhotoEntity]()
                                             for j in 0 ..< componentIds.count {
                                                 var photo = PhotoEntity()
-                                                photo.caption = componentTexts[j] as? String
+                                                photo.caption = componentTexts[j] as? String == "NULL" ? nil : componentTexts[j] as? String
                                                 photo.imageLink = componentIds[j] as? String
                                                 photos.append(photo)
                                             }
                                             vibeModel.setImages(photos: photos)
+                                            
                                         }
                                     }
                                 }
@@ -649,7 +745,7 @@ class AppSyncHelper {
     ///     - failure: Failure Closure which will be invoked if the CreateVibe fails.
     public func createVibe(vibe: VibeModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
         let senderFsmComponentInput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.from?.getId(), id: nil, author: nil)
-        let receiverFsmComponentnput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.to?.getId(), id: nil, author: nil)
+        let receiverFsmComponentnput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.to?.getMobileNumber(), id: nil, author: nil)
         var userInputList = [FsmComponentInput]()
         userInputList.append(senderFsmComponentInput)
         userInputList.append(receiverFsmComponentnput)

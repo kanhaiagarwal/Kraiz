@@ -122,14 +122,31 @@ public class CacheHelper {
         return nil
     }
 
-    /// Returns the Seen status of the Vibe.
+    /// Returns the Seen status of the Vibe. Query by VibeEnitity
     /// - Parameters:
-    ///     -vibe: Vibe Entity.
+    ///     - vibe: Vibe Entity.
     /// - Returns: Seen Status of the Vibe.
     func getSeenStatusOfVibe(vibe: VibeDataEntity) -> Bool {
         do {
             let realm = try Realm()
             let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: vibe)
+            return result?.getIsSeen() ?? false
+        } catch {
+            print("error in realm: \(error)")
+        }
+        return false
+    }
+
+    /// Returns the Seen status of the Vibe. Query by Vibe ID.
+    /// - Parameters:
+    ///     - vibeId: Vibe ID.
+    /// - Returns: Seen Status of the vibe.
+    func getSeenStatusOfVibe(vibeId: String) -> Bool {
+        print("vibeId inside getSeenStatus: \(vibeId)")
+        do {
+            let realm = try Realm()
+            let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: vibeId)
+            print("result of primary key in getSeenStatusOfVibe: \(result)")
             return result?.getIsSeen() ?? false
         } catch {
             print("error in realm: \(error)")

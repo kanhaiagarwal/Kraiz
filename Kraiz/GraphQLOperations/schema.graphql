@@ -193,6 +193,7 @@ query FetchVibeData($vibeId: ID!){
         tag
         vibeComponents {
             ids
+            seenIds
             sequence
             texts
             format

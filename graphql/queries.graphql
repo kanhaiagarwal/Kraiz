@@ -149,6 +149,7 @@ query GetRandomPublicVibes($vibeTag: VibeTag!) {
       tag
       vibeComponents {
         ids
+        seenIds
         sequence
         texts
         format
@@ -181,6 +182,7 @@ query FetchVibeData($vibeId: ID!) {
     tag
     vibeComponents {
       ids
+      seenIds
       sequence
       texts
       format

@@ -74,13 +74,10 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
     }
 
     func updateEmptyVibeBackground() {
-        print("====> inside updateEmptyVibeBackground")
         let privateVibeIndex : String = "\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"
         if privateVibes[privateVibeIndex] == nil || privateVibes[privateVibeIndex]!.count == 0 {
-            print("private vibes are empty")
             emptyImageView.isHidden = false
         } else {
-            print("private vibes are not empty")
             emptyImageView.isHidden = true
         }
     }
@@ -126,6 +123,7 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("FriendsVibesTableViewCell", owner: self, options: nil)?.first as! FriendsVibesTableViewCell
         let vibe = privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]![indexPath.row]
+        print("vibeId: \(vibe.getId())")
         let profileId = vibe.getProfileId()!
         if let profile = CacheHelper.shared.getProfileById(id: profileId) {
             cell.senderName.text = profile.getUsername()!
@@ -278,13 +276,6 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         } else {
             cell?.progressBar.startAnimation()
             cell?.progressBar.isHidden = false
-        }
-        if !vibe.getIsSender() {
-            if !vibe.getIsSeen() {
-                cell?.unseenVibeDot.isHidden = true
-                CacheHelper.shared.updateVibeSeenStatus(vibeId: vibe.getId()!, seenStatus: true)
-//                AppSyncHelper.shared.updateSeenStatusOfVibe(vibeId: vibe.getId()!, seenStatus: true)
-            }
         }
     }
 

@@ -23,8 +23,10 @@ public class VibeModel {
     var isLetterPresent: Bool
     var letter: LetterEntity
     var images: [PhotoEntity]
+    var seenIds: [String]
     var backgroundMusicIndex: Int
     var imageBackdrop: Int
+    var version: Int
     
     init() {
         id = ""
@@ -43,6 +45,8 @@ public class VibeModel {
         images = [PhotoEntity]()
         backgroundMusicIndex = 0
         imageBackdrop = 0
+        version = 1
+        seenIds = [String]()
     }
     
     init(vibeName: String, from: ProfileModel, to: ProfileModel, isBackgroundMusicEnabled: Bool, isSenderAnonymous: Bool) {
@@ -62,6 +66,8 @@ public class VibeModel {
         self.images = [PhotoEntity]()
         self.backgroundMusicIndex = 0
         self.imageBackdrop = 0
+        self.version = 1
+        self.seenIds = [String]()
     }
     
     public func getLetter() -> LetterEntity {
@@ -146,5 +152,21 @@ public class VibeModel {
     
     public func setImageBackdrop(backdrop: Int) {
         self.imageBackdrop = backdrop
+    }
+
+    public func getVersion() -> Int {
+        return version
+    }
+
+    public func setVersion(version: Int) {
+        self.version = version
+    }
+
+    public func getSeenIds() -> [String] {
+        return seenIds
+    }
+
+    public func setSeenIds(seenIds: [String]) {
+        self.seenIds = seenIds
     }
 }

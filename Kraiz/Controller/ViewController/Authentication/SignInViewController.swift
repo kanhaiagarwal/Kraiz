@@ -85,28 +85,28 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     func setupFontSize() {
         switch viewHeight {
         case DeviceConstants.IPHONE5S_HEIGHT:
-            usernameField.font = UIFont(name: "Product Sans", size: 20)
-            passwordField.font = UIFont(name: "Product Sans", size: 20)
-            countryCodeField.font = UIFont(name: "Product Sans", size: 20)
+            usernameField.font = UIFont(name: "Helvetica Neue", size: 20)
+            passwordField.font = UIFont(name: "Helvetica Neue", size: 20)
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 20)
             break
         case DeviceConstants.IPHONE7_HEIGHT:
-            usernameField.font = UIFont(name: "Product Sans", size: 22)
-            passwordField.font = UIFont(name: "Product Sans", size: 22)
-            countryCodeField.font = UIFont(name: "Product Sans", size: 22)
+            usernameField.font = UIFont(name: "Helvetica Neue", size: 22)
+            passwordField.font = UIFont(name: "Helvetica Neue", size: 22)
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 22)
             break
         case DeviceConstants.IPHONE7PLUS_HEIGHT:
-            usernameField.font = UIFont(name: "Product Sans", size: 26)
-            passwordField.font = UIFont(name: "Product Sans", size: 26)
-            countryCodeField.font = UIFont(name: "Product Sans", size: 26)
+            usernameField.font = UIFont(name: "Helvetica Neue", size: 26)
+            passwordField.font = UIFont(name: "Helvetica Neue", size: 26)
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 26)
             break
         case DeviceConstants.IPHONEX_HEIGHT:
-            usernameField.font = UIFont(name: "Product Sans", size: 26)
-            passwordField.font = UIFont(name: "Product Sans", size: 26)
-            countryCodeField.font = UIFont(name: "Product Sans", size: 26)
+            usernameField.font = UIFont(name: "Helvetica Neue", size: 26)
+            passwordField.font = UIFont(name: "Helvetica Neue", size: 26)
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 26)
         default:
-            usernameField.font = UIFont(name: "Product Sans", size: 20)
-            passwordField.font = UIFont(name: "Product Sans", size: 20)
-            countryCodeField.font = UIFont(name: "Product Sans", size: 20)
+            usernameField.font = UIFont(name: "Helvetica Neue", size: 20)
+            passwordField.font = UIFont(name: "Helvetica Neue", size: 20)
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 20)
             break
         }
     }
