@@ -10,12 +10,8 @@ import UIKit
 
 class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var blurEffect: UIVisualEffectView!
-    @IBOutlet weak var imageCard: CardView!
     @IBOutlet weak var imageScrollView: UIScrollView!
-    @IBOutlet weak var captionLabel: UILabel!
-
+    
     var overlayCloseView: UIView = UIView()
 
     var vibeModel: VibeModel?
@@ -30,42 +26,34 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
         super.viewDidLoad()
 
         imageScrollView.delegate = self
-        imageScrollView.decelerationRate = .normal
+        imageScrollView.decelerationRate = UIScrollView.DecelerationRate(rawValue: 0.1)
         overlayCloseView = createOverlayCloseView()
         prepareImagesArray()
-        backgroundImage.image = imagesToDisplay[0].image
         
         // Add Tap Gestures to all the view for the overlay effect
-        let blurEffectTapGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
-        blurEffect.addGestureRecognizer(blurEffectTapGesture)
-
-        let captionLabelTapGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
-        captionLabel.addGestureRecognizer(captionLabelTapGesture)
-
-        let scrollViewTapGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
-        imageScrollView.addGestureRecognizer(scrollViewTapGesture)
+        let imageScrollViewGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
+        imageScrollView.addGestureRecognizer(imageScrollViewGesture)
         
         startMusic()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
         setupScrollView()
     }
-
     func setupScrollView() {
         if imageScrollView.contentSize.height == 0 && imageScrollView.contentSize.width == 0 {
             imageScrollView.showsVerticalScrollIndicator = false
-            imageScrollView.contentSize = CGSize(width: imageScrollView.frame.width * CGFloat(imagesToDisplay.count), height: imageScrollView.frame.width)
-            imageScrollView.isPagingEnabled = false
+            imageScrollView.contentSize = CGSize(width: view.frame.width * CGFloat(imagesToDisplay.count), height: view.frame.width)
             for i in 0 ..< imagesToDisplay.count {
-                let imageView = UIImageView(frame: CGRect(x: imageScrollView.frame.width * CGFloat(i), y: 0, width: imageScrollView.frame.width, height: imageScrollView.frame.height))
-                imageView.contentMode = .scaleAspectFit
-                imageView.image = imagesToDisplay[i].image
-                imageScrollView.addSubview(imageView)
+                let gameView = Bundle.main.loadNibNamed("CaptionGameView", owner: self, options: nil)?.first as! CaptionGameView
+                gameView.frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height)
+                gameView.backgroundImage.image = imagesToDisplay[i].image
+                gameView.mainImage.image = imagesToDisplay[i].image
+                gameView.captionLabel.text = imagesToDisplay[i].caption == nil ? "" : imagesToDisplay[i].caption!
+                imageScrollView.addSubview(gameView)
             }
-            setCaptionLabel(currentIndex: selectedImage)
         }
     }
 
@@ -75,20 +63,6 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
                 imagesToDisplay.append(vibeModel!.getImages()[i])
             }
         }
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let scrollPoint = imageScrollView.contentOffset
-        selectedImage = Int(scrollPoint.x / imageScrollView.frame.width)
-        backgroundImage.image = imagesToDisplay[selectedImage].image
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        setCaptionLabel(currentIndex: selectedImage)
-    }
-
-    func setCaptionLabel(currentIndex: Int) {
-        captionLabel.text = imagesToDisplay[currentIndex].caption == nil ? "" : imagesToDisplay[currentIndex].caption!
     }
 
     /// Creates the Overlay View which will contain the close button.

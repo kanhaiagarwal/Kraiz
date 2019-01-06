@@ -3051,84 +3051,21 @@ its the right one</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X1Z-bk-fA4">
-                                <rect key="frame" x="-241" y="0.0" width="896" height="896"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="X1Z-bk-fA4" secondAttribute="height" multiplier="1:1" id="kPJ-1b-xFp"/>
-                                </constraints>
-                            </imageView>
-                            <visualEffectView opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MVr-Yk-l6Y">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdk-bI-udI">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jlA-Q9-HlV">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <blurEffect style="regular"/>
-                            </visualEffectView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntr-U3-yoA" customClass="CardView" customModule="Kraiz" customModuleProvider="target">
-                                <rect key="frame" x="20.666666666666657" y="224.33333333333334" width="372.66666666666674" height="447.33333333333326"/>
-                                <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9M-7t-r4n">
-                                        <rect key="frame" x="5" y="5" width="362.66666666666669" height="402"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="e9M-7t-r4n" secondAttribute="height" multiplier="1:1" id="ZZt-89-CXk"/>
-                                        </constraints>
-                                    </scrollView>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a sample caption in the card" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jj-GX-Pqf">
-                                        <rect key="frame" x="5" y="377.66666666666663" width="362.66666666666669" height="69.666666666666686"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="e9M-7t-r4n" firstAttribute="top" secondItem="ntr-U3-yoA" secondAttribute="top" constant="5" id="16A-Bh-uRW"/>
-                                    <constraint firstAttribute="bottom" secondItem="8jj-GX-Pqf" secondAttribute="bottom" id="4ED-bB-XN2"/>
-                                    <constraint firstAttribute="width" secondItem="ntr-U3-yoA" secondAttribute="height" multiplier="1:1.2" id="5aE-RR-rhA"/>
-                                    <constraint firstAttribute="trailing" secondItem="e9M-7t-r4n" secondAttribute="trailing" constant="5" id="DRN-3I-Ril"/>
-                                    <constraint firstItem="8jj-GX-Pqf" firstAttribute="top" secondItem="e9M-7t-r4n" secondAttribute="bottom" constant="10" id="F7v-tC-BwH"/>
-                                    <constraint firstItem="e9M-7t-r4n" firstAttribute="leading" secondItem="ntr-U3-yoA" secondAttribute="leading" constant="5" id="Tyq-nq-QAz"/>
-                                    <constraint firstItem="8jj-GX-Pqf" firstAttribute="leading" secondItem="e9M-7t-r4n" secondAttribute="leading" id="mV1-tt-b8U"/>
-                                    <constraint firstItem="8jj-GX-Pqf" firstAttribute="trailing" secondItem="e9M-7t-r4n" secondAttribute="trailing" id="vvM-Kw-635"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetHeight">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                        <real key="value" value="0.10000000000000001"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="MVr-Yk-l6Y" firstAttribute="trailing" secondItem="7pl-3P-XXu" secondAttribute="trailing" id="D68-og-iQw"/>
-                            <constraint firstItem="ntr-U3-yoA" firstAttribute="centerX" secondItem="15u-z9-nGQ" secondAttribute="centerX" id="Eri-1Z-2Lm"/>
-                            <constraint firstItem="X1Z-bk-fA4" firstAttribute="top" secondItem="15u-z9-nGQ" secondAttribute="top" id="VF4-ud-U3P"/>
-                            <constraint firstItem="MVr-Yk-l6Y" firstAttribute="top" secondItem="15u-z9-nGQ" secondAttribute="top" id="bFb-sn-pTi"/>
-                            <constraint firstItem="X1Z-bk-fA4" firstAttribute="centerX" secondItem="15u-z9-nGQ" secondAttribute="centerX" id="dyX-9G-PIe"/>
-                            <constraint firstItem="ntr-U3-yoA" firstAttribute="centerY" secondItem="15u-z9-nGQ" secondAttribute="centerY" id="hQL-z4-Nm9"/>
-                            <constraint firstAttribute="bottom" secondItem="X1Z-bk-fA4" secondAttribute="bottom" id="hfh-ul-AoS"/>
-                            <constraint firstItem="MVr-Yk-l6Y" firstAttribute="leading" secondItem="7pl-3P-XXu" secondAttribute="leading" id="ktR-rd-x3i"/>
-                            <constraint firstItem="ntr-U3-yoA" firstAttribute="width" secondItem="7pl-3P-XXu" secondAttribute="width" multiplier="0.9" id="lQy-Z8-l92"/>
-                            <constraint firstAttribute="bottom" secondItem="MVr-Yk-l6Y" secondAttribute="bottom" id="p7d-Sm-9bL"/>
+                            <constraint firstAttribute="bottom" secondItem="mdk-bI-udI" secondAttribute="bottom" id="0H7-Xh-cJM"/>
+                            <constraint firstItem="mdk-bI-udI" firstAttribute="leading" secondItem="7pl-3P-XXu" secondAttribute="leading" id="NKG-p2-geI"/>
+                            <constraint firstItem="mdk-bI-udI" firstAttribute="top" secondItem="15u-z9-nGQ" secondAttribute="top" id="iEs-nU-mWc"/>
+                            <constraint firstItem="mdk-bI-udI" firstAttribute="trailing" secondItem="7pl-3P-XXu" secondAttribute="trailing" id="wf3-QZ-lyR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7pl-3P-XXu"/>
                     </view>
                     <connections>
-                        <outlet property="backgroundImage" destination="X1Z-bk-fA4" id="LRm-2s-dC1"/>
-                        <outlet property="blurEffect" destination="MVr-Yk-l6Y" id="yab-NJ-5lE"/>
-                        <outlet property="captionLabel" destination="8jj-GX-Pqf" id="DvH-Id-wT8"/>
-                        <outlet property="imageCard" destination="ntr-U3-yoA" id="CWP-8q-nm9"/>
-                        <outlet property="imageScrollView" destination="e9M-7t-r4n" id="J7T-bX-EWm"/>
+                        <outlet property="imageScrollView" destination="mdk-bI-udI" id="RAT-c1-6aN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sn1-DL-1yL" userLabel="First Responder" sceneMemberID="firstResponder"/>

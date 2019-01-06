@@ -10,7 +10,8 @@ import UIKit
 
 class CaptionGameView: UIView {
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
 
     override func awakeFromNib() {
