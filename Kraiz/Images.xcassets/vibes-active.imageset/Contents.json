@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "vibes-active-2.png",
+      "filename" : "vibes-active.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "vibes-active-1.png",
+      "filename" : "vibes-active-2x.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "vibes-active.png",
+      "filename" : "vibes-active-3x.jpg",
       "scale" : "3x"
     }
   ],

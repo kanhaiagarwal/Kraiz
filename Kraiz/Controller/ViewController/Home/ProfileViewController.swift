@@ -92,12 +92,6 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
         
         super.viewDidAppear(true)
         getProfile(shouldUpdateProfilePicture: updateProfilePicFromViewWillAppear, shouldUpdateTableViewCells: updateTableViewCells)
-        
-        let topBorderView = UIView(frame: CGRect(x: 0, y: topBar.frame.height,
-                                                         width: topBar.frame.size.width,
-                                                         height: 1))
-        topBorderView.backgroundColor = DeviceConstants.DEFAULT_SEPERATOR_COLOR
-        topBar.addSubview(topBorderView)
     }
     
     func getProfile(shouldUpdateProfilePicture: Bool, shouldUpdateTableViewCells: Bool) {

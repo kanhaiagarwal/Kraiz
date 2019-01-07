@@ -77,7 +77,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         vibeModel.from?.setUsername(username: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))
         vibeModel.from?.setMobileNumber(mobileNumber: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER))
 
-        let attr = NSDictionary(object: UIFont(name: "Product Sans", size: 16.0)!, forKey: NSAttributedString.Key.font as NSCopying)
+        let attr = NSDictionary(object: UIFont(name: "Helvetica Neue", size: 16.0)!, forKey: NSAttributedString.Key.font as NSCopying)
         vibeTypeSegment.setTitleTextAttributes(attr as? [NSAttributedString.Key : Any], for: .normal)
 
         countryCodePicker.tag = 0

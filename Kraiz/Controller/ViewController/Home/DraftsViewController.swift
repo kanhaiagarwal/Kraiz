@@ -24,18 +24,12 @@ class DraftsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        let topBorderView = UIView(frame: CGRect(x: 0, y: topBar.frame.height,
-                                                 width: topBar.frame.size.width,
-                                                 height: 1))
-        topBorderView.backgroundColor = DeviceConstants.DEFAULT_SEPERATOR_COLOR
 
         if drafts == nil || drafts!.count == 0 {
             let imageView = UIImageView(image: UIImage(named: "saved-empty"))
             imageView.contentMode = .scaleAspectFit
             draftsTable.backgroundView = imageView
         }
-
-        topBar.addSubview(topBorderView)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
