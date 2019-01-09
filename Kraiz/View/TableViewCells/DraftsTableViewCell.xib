@@ -49,8 +49,8 @@
                             <constraint firstAttribute="width" secondItem="G87-cN-Vdw" secondAttribute="height" multiplier="1:1" id="AiT-XE-jsY"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkj-lC-21i">
-                        <rect key="frame" x="30" y="69.5" width="350" height="23"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkj-lC-21i">
+                        <rect key="frame" x="30" y="77.5" width="350" height="23"/>
                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                         <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                     <constraint firstItem="nwW-3d-cTJ" firstAttribute="top" secondItem="wVx-J5-r7h" secondAttribute="top" id="RHW-rm-rL8"/>
                     <constraint firstAttribute="bottom" secondItem="xYk-tr-QXh" secondAttribute="bottom" constant="10" id="Rcx-zQ-u5d"/>
                     <constraint firstItem="jqE-Zz-yTJ" firstAttribute="leading" secondItem="G87-cN-Vdw" secondAttribute="trailing" constant="5" id="Ue1-b1-5Qh"/>
-                    <constraint firstItem="Kkj-lC-21i" firstAttribute="top" secondItem="Fxi-vI-gvR" secondAttribute="bottom" id="Y43-fC-dsU"/>
+                    <constraint firstItem="Kkj-lC-21i" firstAttribute="top" secondItem="Fxi-vI-gvR" secondAttribute="bottom" constant="8" id="Y43-fC-dsU"/>
                     <constraint firstItem="wVx-J5-r7h" firstAttribute="height" secondItem="Fxi-vI-gvR" secondAttribute="height" id="fHt-CO-JDD"/>
                     <constraint firstItem="Fxi-vI-gvR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="fbu-Ab-bwc"/>
                     <constraint firstItem="wVx-J5-r7h" firstAttribute="top" secondItem="Fxi-vI-gvR" secondAttribute="top" id="grQ-d2-dct"/>

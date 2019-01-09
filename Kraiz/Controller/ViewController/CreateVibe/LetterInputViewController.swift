@@ -150,7 +150,7 @@ extension LetterInputViewController: UICollectionViewDataSource, UICollectionVie
             letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: 24)
             letterText.textColor = fontColors[backgroundIndex]
         default:
-            letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: 20)
+            letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: 24)
             letterText.textColor = fontColors[backgroundIndex]
             break
         }

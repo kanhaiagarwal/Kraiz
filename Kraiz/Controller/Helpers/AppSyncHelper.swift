@@ -691,41 +691,45 @@ class AppSyncHelper {
                                 print("UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!: \(UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))")
                                 if sender == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! {
                                     vibeModel.setSenderId(sender: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!)
+                                    vibeModel.from?.setUsername(username: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))
                                 } else {
-                                    let profile = CacheHelper.shared.getProfileById(id: sender)
-                                    vibeModel.setSenderId(sender: profile?.getUsername()! ?? "User")
+//                                    let profile = CacheHelper.shared.getProfileById(id: sender)
+//                                    vibeModel.setSenderId(sender: profile?.getUsername()! ?? "User")
+                                    let profile = allProfiles[sender]
+                                    vibeModel.from?.setId(id: profile?.getId())
+                                    vibeModel.from?.setUsername(username: profile?.getUsername())
                                 }
                                 vibeModel.setAnonymous(isSenderAnonymous: vibeData["isAnonymous"] as! Bool)
                                 let vibeComponents = vibeData["vibeComponents"] as! [Any]
                                 for i in 0 ..< vibeComponents.count {
                                     if let component = vibeComponents[i] as? [String : Any] {
-                                        let format = component["format"] as! Format
-                                        print("format: \(format)")
-                                        let componentTexts = component["texts"] as! [Any]
-                                        if format == Format.text {
-                                            vibeModel.setLetterPresent(isLetterPresent: true)
-                                            vibeModel.setLetterText(letterString: componentTexts[0] as! String)
-                                            print("component[template] as! VibeComponentTemplate: \(component["template"] as! VibeComponentTemplate)")
-                                            vibeModel.setLetterBackground(background: VibeTextBackgrounds.getletterTemplateIndexFromTemplate(template: component["template"] as! VibeComponentTemplate))
-                                        }
-                                        if format == Format.backgroundMusic {
-                                            let componentIds = component["ids"] as! [Any]
-                                            vibeModel.setBackgroundMusicEnabled(isBackgroundMusicEnabled: true)
-                                            vibeModel.setBackgroundMusic(index: componentIds[0] as! Int)
-                                        }
-                                        if format == Format.image {
-                                            let componentIds = component["ids"] as! [Any]
-                                            vibeModel.setPhotosPresent(isPhotosPresent: true)
-                                            var photos = [PhotoEntity]()
-                                            for j in 0 ..< componentIds.count {
-                                                var photo = PhotoEntity()
-                                                photo.caption = componentTexts[j] as? String == "NULL" ? nil : componentTexts[j] as? String
-                                                photo.imageLink = componentIds[j] as? String
-                                                photos.append(photo)
-                                            }
-                                            vibeModel.setImages(photos: photos)
-                                            
-                                        }
+//                                        let format = component["format"] as! Format
+//                                        print("format: \(format)")
+//                                        if format == Format.text {
+//                                            let componentTexts = component["texts"] as! [Any]
+//                                            vibeModel.setLetterPresent(isLetterPresent: true)
+//                                            vibeModel.setLetterText(letterString: componentTexts[0] as! String)
+//                                            print("component[template] as! VibeComponentTemplate: \(component["template"] as! VibeComponentTemplate)")
+//                                            vibeModel.setLetterBackground(background: VibeTextBackgrounds.getletterTemplateIndexFromTemplate(template: component["template"] as! VibeComponentTemplate))
+//                                        }
+//                                        if format == Format.backgroundMusic {
+//                                            let componentIds = component["ids"] as! [Any]
+//                                            vibeModel.setBackgroundMusicEnabled(isBackgroundMusicEnabled: true)
+//                                            vibeModel.setBackgroundMusic(index: componentIds[0] as! Int)
+//                                        }
+//                                        if format == Format.image {
+//                                            let componentIds = component["ids"] as! [Any]
+//                                            vibeModel.setPhotosPresent(isPhotosPresent: true)
+//                                            var photos = [PhotoEntity]()
+//                                            for j in 0 ..< componentIds.count {
+//                                                var photo = PhotoEntity()
+//                                                photo.caption = componentTexts[j] as? String == "NULL" ? nil : componentTexts[j] as? String
+//                                                photo.imageLink = componentIds[j] as? String
+//                                                photos.append(photo)
+//                                            }
+//                                            vibeModel.setImages(photos: photos)
+//
+//                                        }
                                     }
                                 }
                                 allVibes.append(vibeModel)

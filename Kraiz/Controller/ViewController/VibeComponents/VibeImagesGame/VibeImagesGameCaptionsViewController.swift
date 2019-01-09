@@ -20,7 +20,7 @@ class VibeImagesGameCaptionsViewController: UIViewController {
 
     var captionsSelected = [Int : Bool]()
 
-    let CONSTANT_TEXT = "The number of captions you can pick is"
+    let CONSTANT_TEXT = "Not every picture clicked is meant to be saved. You choose only those which are caption worthy. The limit here is "
 
     var gradientLayer: CAGradientLayer?
 
@@ -97,7 +97,7 @@ extension VibeImagesGameCaptionsViewController: UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return captionsTable.frame.height / 8
+        return captionsTable.frame.height / 5.5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -43,13 +43,13 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         textView.isScrollEnabled = true
 
         switch(view.frame.height) {
-            case DeviceConstants.IPHONEXR_HEIGHT : textView.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 32.0)
+            case DeviceConstants.IPHONEXR_HEIGHT : textView.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 45.0)
                 break
-            case DeviceConstants.IPHONEX_HEIGHT : textView.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 23.0)
+            case DeviceConstants.IPHONEX_HEIGHT : textView.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 36.0)
                 break
-            case DeviceConstants.IPHONE7PLUS_HEIGHT: textView.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 23.0)
+            case DeviceConstants.IPHONE7PLUS_HEIGHT: textView.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 44.0)
                 break
-            case DeviceConstants.IPHONE7_HEIGHT: textView.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 30.0)
+            case DeviceConstants.IPHONE7_HEIGHT: textView.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 44.0)
                 break
             case DeviceConstants.IPHONE5S_HEIGHT: textView.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 18.0)
                 break
@@ -129,17 +129,28 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeOverlayViewStatus))
             textView1.addGestureRecognizer(tapGesture)
             switch(vc.view.frame.height) {
-            case DeviceConstants.IPHONEXR_HEIGHT : textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 32.0)
+            case DeviceConstants.IPHONEXR_HEIGHT :
+                print("inside config of iphone XR")
+                textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 45.0)
                 break
-            case DeviceConstants.IPHONEX_HEIGHT : textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 23.0)
+            case DeviceConstants.IPHONEX_HEIGHT :
+                print("inside config of iphone X")
+                textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 36.0)
                 break
-            case DeviceConstants.IPHONE7PLUS_HEIGHT: textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 23.0)
+            case DeviceConstants.IPHONE7PLUS_HEIGHT:
+                print("inside config of iphone 7Plus")
+                textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 44.0)
                 break
-            case DeviceConstants.IPHONE7_HEIGHT: textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 30.0)
+            case DeviceConstants.IPHONE7_HEIGHT:
+                print("inside config of iphone 7")
+                textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 44.0)
                 break
-            case DeviceConstants.IPHONE5S_HEIGHT: textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 18.0)
+            case DeviceConstants.IPHONE5S_HEIGHT:
+                print("inside config of iphone 5S")
+                textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 18.0)
                 break
             default:
+                print("inside config default")
                 textView1.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[vibeModel.letter.background!], size: 24.0)
                 break;
             }
@@ -262,11 +273,13 @@ extension VibeTextViewController {
         let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
         overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
         let dismissButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width / 20, y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
-        dismissButton.setTitle("╳", for: .normal)
+        var dismissButtonTitleAttributes = [NSAttributedString.Key : Any]()
+        dismissButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
+        dismissButtonTitleAttributes[.foregroundColor] = UIColor.white
+        let dismissButtonAttributedTitle = NSAttributedString(string: "⨯", attributes: dismissButtonTitleAttributes)
+        dismissButton.setAttributedTitle(dismissButtonAttributedTitle, for: .normal)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onCloseClick))
         dismissButton.addGestureRecognizer(tapGesture)
-        dismissButton.setTitleColor(UIColor.white, for: .normal)
-        dismissButton.layer.cornerRadius = dismissButton.frame.height / 2
         overlayCloseView.addSubview(dismissButton)
         view.addSubview(overlayCloseView)
         overlayCloseView.isHidden = true

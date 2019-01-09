@@ -18,7 +18,8 @@ class VibeImagesViewController: UIViewController {
     var isSourceLetter = false
     var isDismissOverlayVisible = false
     var isPreview = false
-    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var bgView: UIView!
+    var gradientLayer: CAGradientLayer?
     
     var overlayCloseView: UIView = UIView()
 
@@ -26,9 +27,9 @@ class VibeImagesViewController: UIViewController {
         super.viewDidLoad()
         setViews()
         overlayCloseView = createOverlayCloseView()
-        backgroundImage.isUserInteractionEnabled = true
+        bgView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
-        backgroundImage.addGestureRecognizer(tapGesture)
+        bgView.addGestureRecognizer(tapGesture)
         startMusic()
     }
 
@@ -38,6 +39,13 @@ class VibeImagesViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       
+        if gradientLayer == nil {
+            gradientLayer = CAGradientLayer()
+            gradientLayer!.frame = bgView.bounds
+            gradientLayer!.colors = [UIColor(displayP3Red: 236/255, green: 233/255, blue: 230/255, alpha: 1.0).cgColor, UIColor.white.cgColor]
+            bgView.layer.insertSublayer(gradientLayer!, at: 0)
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(resumeMusicIfPaused), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
@@ -54,12 +62,14 @@ class VibeImagesViewController: UIViewController {
                 card.frame.origin.x = view.frame.width / 20
                 card.frame.size.width = 0.95 * view.frame.width
                 card.frame.origin.y = view.frame.height / 8
+                card.frame.size.height = 11 * view.frame.height / 20
                 card.layer.borderWidth = 3
                 card.layer.borderColor = UIColor.clear.cgColor
                 card.layer.shouldRasterize = true
                 view.layer.rasterizationScale = UIScreen.main.scale
                 cards.append(card)
                 cards[i].imageView.image = vibeModel?.images[i].image!
+                cards[i].caption.textAlignment = .center
                 if let caption = vibeModel?.images[i].caption {
                     cards[i].caption.text = caption
                 } else {
@@ -147,11 +157,14 @@ extension VibeImagesViewController {
     /// Creates the Overlay View which will contain the close button.
     func createOverlayCloseView() -> UIView {
         let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
-        overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.0)
+        overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
 
         let dismissButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width / 20, y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
-        dismissButton.setTitle("╳", for: .normal)
-        dismissButton.setTitleColor(UIColor.white, for: .normal)
+        var dismissButtonTitleAttributes = [NSAttributedString.Key : Any]()
+        dismissButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
+        dismissButtonTitleAttributes[.foregroundColor] = UIColor.white
+        let dismissButtonAttributedTitle = NSAttributedString(string: "⨯", attributes: dismissButtonTitleAttributes)
+        dismissButton.setAttributedTitle(dismissButtonAttributedTitle, for: .normal)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onCloseClick))
         dismissButton.addGestureRecognizer(tapGesture)

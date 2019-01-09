@@ -51,6 +51,7 @@
 		57B24F3A21AB138300FA45E9 /* ImageBackdropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F3921AB138300FA45E9 /* ImageBackdropViewController.swift */; };
 		57B24F3D21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B24F3B21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift */; };
 		57B24F3E21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57B24F3C21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib */; };
+		57B36FB521E4FE8600E51F50 /* Calligraffiti.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57B36FB421E4FE8600E51F50 /* Calligraffiti.ttf */; };
 		57BD53E8219841BF001B1010 /* PublicVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */; };
 		57BD53EA219841F0001B1010 /* FriendsVibesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */; };
 		57BD53ED2199CD38001B1010 /* VibesCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */; };
@@ -195,6 +196,7 @@
 		57B24F3921AB138300FA45E9 /* ImageBackdropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackdropViewController.swift; sourceTree = "<group>"; };
 		57B24F3B21AB16EF00FA45E9 /* ImageBackdropTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBackdropTableViewCell.swift; sourceTree = "<group>"; };
 		57B24F3C21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageBackdropTableViewCell.xib; sourceTree = "<group>"; };
+		57B36FB421E4FE8600E51F50 /* Calligraffiti.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Calligraffiti.ttf; sourceTree = "<group>"; };
 		57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibesViewController.swift; sourceTree = "<group>"; };
 		57BD53E9219841F0001B1010 /* FriendsVibesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVibesViewController.swift; sourceTree = "<group>"; };
 		57BD53EB2199CD38001B1010 /* VibesCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibesCategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -538,12 +540,13 @@
 		B51DF242211F1608009896CC /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				57E6909221E09178003F0CFC /* productsans.ttf */,
+				57B36FB421E4FE8600E51F50 /* Calligraffiti.ttf */,
 				B51DF23F211F15FB009896CC /* FREESCPT.TTF */,
 				B51DF240211F15FD009896CC /* frenchscriptmt.ttf */,
 				B513582E215D365C00139854 /* Hero.otf */,
 				B51DF241211F15FF009896CC /* monotype-corsiva.ttf */,
 				B5BC1CFC216164D6008CE09F /* playlist-script.otf */,
+				57E6909221E09178003F0CFC /* productsans.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				57AC145C21CD5A33001FA686 /* VibeChoiceTableViewCell.xib in Resources */,
 				B513582F215D365C00139854 /* Hero.otf in Resources */,
 				57A7912221D538470025F8FE /* Adventure.mp3 in Resources */,
+				57B36FB521E4FE8600E51F50 /* Calligraffiti.ttf in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				57D4C0F421C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib in Resources */,
 				57A7911E21D538470025F8FE /* Jazz.mp3 in Resources */,

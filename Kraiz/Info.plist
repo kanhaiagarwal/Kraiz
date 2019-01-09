@@ -44,6 +44,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>productsans.ttf</string>
+		<string>Calligraffiti.ttf</string>
 		<string>FREESCPT.TTF</string>
 		<string>frenchscriptmt.ttf</string>
 		<string>monotype-corsiva.ttf</string>

@@ -174,13 +174,13 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
             countryCodeField.font = UIFont(name: "Helvetica Neue", size: 26)
             break
         case DeviceConstants.IPHONEX_HEIGHT:
-            usernameField.font = UIFont(name: "Helvetica Neue", size: 26)
-            passwordField.font = UIFont(name: "Helvetica Neue", size: 26)
-            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 26)
+            usernameField.font = UIFont(name: "Helvetica Neue", size: 22)
+            passwordField.font = UIFont(name: "Helvetica Neue", size: 22)
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 22)
         default:
-            usernameField.font = UIFont(name: "Helvetica Neue", size: 20)
-            passwordField.font = UIFont(name: "Helvetica Neue", size: 20)
-            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 20)
+            usernameField.font = UIFont(name: "Helvetica Neue", size: 22)
+            passwordField.font = UIFont(name: "Helvetica Neue", size: 22)
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 22)
             break
         }
     }

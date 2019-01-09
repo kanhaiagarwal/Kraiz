@@ -149,7 +149,7 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (photosCollectionView.frame.width - 20) / 3 - 1, height: (photosCollectionView.frame.height - 20) / 3 - 1)
+        return CGSize(width: (photosCollectionView.frame.width - 20) / 3 - 1, height: (photosCollectionView.frame.height - 20) / 3.5 - 1)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

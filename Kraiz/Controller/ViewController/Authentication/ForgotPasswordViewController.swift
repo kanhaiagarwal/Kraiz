@@ -26,6 +26,8 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
     let FORGOT_PASSWORD_OTP_SEGUE = "gotoEnterOTPFromForgotPassword"
     
     let PLACEHOLDER_COLOR = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.4)
+
+    var viewHeight: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,8 +61,36 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
         
         generateOTPButton.clipsToBounds = true
         generateOTPButton.layer.cornerRadius = generateOTPButton.frame.height / 2
+        
+        viewHeight = view.frame.height
+        setupFontSize()
     }
-    
+
+    func setupFontSize() {
+        switch viewHeight {
+        case DeviceConstants.IPHONE5S_HEIGHT:
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 20)
+            phoneNumberField.font = UIFont(name: "Helvetica Neue", size: 20)
+            break
+        case DeviceConstants.IPHONE7_HEIGHT:
+            phoneNumberField.font = UIFont(name: "Helvetica Neue", size: 22)
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 22)
+            break
+        case DeviceConstants.IPHONE7PLUS_HEIGHT:
+            phoneNumberField.font = UIFont(name: "Helvetica Neue", size: 26)
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 26)
+            break
+        case DeviceConstants.IPHONEX_HEIGHT:
+            phoneNumberField.font = UIFont(name: "Helvetica Neue", size: 22)
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 22)
+            break
+        default:
+            phoneNumberField.font = UIFont(name: "Helvetica Neue", size: 22)
+            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 22)
+            break
+        }
+    }
+
     func createToolbarForTextField(textField: UITextField) {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()

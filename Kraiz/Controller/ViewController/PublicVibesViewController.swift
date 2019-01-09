@@ -91,7 +91,7 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 4.5
+        return view.frame.height / 5.5
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -15,10 +15,12 @@ class VibeHailInputViewController: UIViewController {
     var gradientLayer: CAGradientLayer?
     var vibeModel: VibeModel?
     @IBOutlet weak var hailTextView: UITextView!
+    @IBOutlet weak var hailUserLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        hailUserLabel.text = "Hail \(vibeModel!.from?.getUsername() != nil ? vibeModel!.from?.getUsername()! : "The User")"
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -61,14 +61,14 @@
                                 <rect key="frame" x="56.5" y="0.0" width="236.5" height="65.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends, Romans and Countrymen. Lend me your ears" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjO-5C-vva">
-                                        <rect key="frame" x="10" y="33" width="177.5" height="40"/>
+                                        <rect key="frame" x="10" y="29.5" width="216.5" height="40"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22/12/2020" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJE-mc-LZj">
-                                        <rect key="frame" x="139.5" y="5" width="87" height="20"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <rect key="frame" x="154.5" y="5" width="72" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -79,8 +79,8 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gco-gj-n5u">
-                                        <rect key="frame" x="28" y="47.5" width="16" height="13"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <rect key="frame" x="28" y="47.5" width="18.5" height="13"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.18039215689999999" green="0.25882352939999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -110,9 +110,9 @@
                                     <constraint firstItem="Gco-gj-n5u" firstAttribute="top" secondItem="Suh-90-Kwj" secondAttribute="top" id="GNk-ln-Ep7"/>
                                     <constraint firstItem="KjO-5C-vva" firstAttribute="leading" secondItem="iUp-G5-2gf" secondAttribute="leading" constant="10" id="QkD-rV-Ftv"/>
                                     <constraint firstItem="Gco-gj-n5u" firstAttribute="leading" secondItem="Suh-90-Kwj" secondAttribute="trailing" constant="5" id="Uk9-YM-WXe"/>
-                                    <constraint firstItem="KjO-5C-vva" firstAttribute="width" secondItem="iUp-G5-2gf" secondAttribute="width" multiplier="0.75" id="XYM-7m-40G"/>
                                     <constraint firstItem="ILK-Sd-hxU" firstAttribute="height" secondItem="sFH-X0-Ggs" secondAttribute="height" multiplier="0.3" id="aCe-qE-CWy"/>
                                     <constraint firstItem="Gco-gj-n5u" firstAttribute="height" secondItem="Suh-90-Kwj" secondAttribute="height" id="cOB-fR-zcC"/>
+                                    <constraint firstItem="KjO-5C-vva" firstAttribute="trailing" secondItem="yJE-mc-LZj" secondAttribute="trailing" id="ej3-QY-Yvj"/>
                                     <constraint firstAttribute="trailing" secondItem="yJE-mc-LZj" secondAttribute="trailing" constant="10" id="g4a-Mp-udK"/>
                                     <constraint firstItem="yJE-mc-LZj" firstAttribute="top" secondItem="iUp-G5-2gf" secondAttribute="top" constant="5" id="gHx-cv-CM4"/>
                                     <constraint firstAttribute="trailing" secondItem="sFH-X0-Ggs" secondAttribute="trailing" constant="10" id="h6r-eQ-p7O"/>
@@ -187,6 +187,6 @@
     </objects>
     <resources>
         <image name="LoveVibes" width="114" height="114"/>
-        <image name="hails-eye" width="180" height="180"/>
+        <image name="hails-eye" width="48" height="48"/>
     </resources>
 </document>

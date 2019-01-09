@@ -185,7 +185,7 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return vibesTable.frame.height / 3
+        return vibesTable.frame.height / 3.5
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

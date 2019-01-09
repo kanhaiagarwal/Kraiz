@@ -28,6 +28,7 @@ class PublicVibesChoiceViewController: UIViewController {
 
         quoteLabel.text = VibeQuotes.shared.getQuote(tagIndex: tagSelected, quoteIndex: Int.random(in: 0..<VibeQuotes.shared.getNumberOfQuotesForATag(tagIndex: tagSelected)))
         heading.text = VibeCategories.pickerStrings[tagSelected]
+        loadingLabel.numberOfLines = 0
         if allVibes != nil {
             for i in 0 ..< allVibes!.count {
                 AppSyncHelper.shared.incrementReachOfVibe(vibeId: allVibes![i].id, completionHandler: nil)
@@ -85,8 +86,9 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
         let cell = Bundle.main.loadNibNamed("VibeChoiceTableViewCell", owner: self, options: nil)?.first as! VibeChoiceTableViewCell
         cell.profileImage.image = UIImage(named: "profile-default")
         let vibe = allVibes![indexPath.row]
-        let profile = allProfiles![(vibe.from?.getId())!]
-        cell.usernameLabel.text = profile?.getUsername()!
+//        let profile = allProfiles![(vibe.from?.getId())!]
+//        cell.usernameLabel.text = profile?.getUsername() != nil ? profile?.getUsername() : "None"
+        cell.usernameLabel.text = "kanhai.agarwal"
         cell.vibeNameLabel.text = vibe.vibeName
         return cell
     }
@@ -185,7 +187,7 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 6
+        return view.frame.height / 7
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
