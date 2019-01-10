@@ -72,18 +72,6 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
             countryCodeField.font = UIFont(name: "Helvetica Neue", size: 20)
             phoneNumberField.font = UIFont(name: "Helvetica Neue", size: 20)
             break
-        case DeviceConstants.IPHONE7_HEIGHT:
-            phoneNumberField.font = UIFont(name: "Helvetica Neue", size: 22)
-            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 22)
-            break
-        case DeviceConstants.IPHONE7PLUS_HEIGHT:
-            phoneNumberField.font = UIFont(name: "Helvetica Neue", size: 26)
-            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 26)
-            break
-        case DeviceConstants.IPHONEX_HEIGHT:
-            phoneNumberField.font = UIFont(name: "Helvetica Neue", size: 22)
-            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 22)
-            break
         default:
             phoneNumberField.font = UIFont(name: "Helvetica Neue", size: 22)
             countryCodeField.font = UIFont(name: "Helvetica Neue", size: 22)

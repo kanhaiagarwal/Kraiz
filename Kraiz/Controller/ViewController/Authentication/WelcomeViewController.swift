@@ -65,19 +65,6 @@ class WelcomeViewController: UIViewController {
                 signInButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 20)
                 signUpButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 20)
                 break
-            case DeviceConstants.IPHONE7_HEIGHT:
-                signInButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 22)
-                signUpButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 22)
-                break
-            case DeviceConstants.IPHONE7PLUS_HEIGHT:
-                signInButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 22)
-                signUpButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 22)
-                break
-            case DeviceConstants.IPHONEX_HEIGHT:
-                print("inside iphone x config")
-                signInButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 22)
-                signUpButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 22)
-                break
             default:
                 signInButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 22)
                 signUpButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 22)

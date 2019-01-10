@@ -20,10 +20,12 @@ class PublicVibesViewController: UIViewController {
     var notification: NotificationToken?
 
     let EMPTY_VIBES_IMAGE : String = "empty-vibes-public"
+    var viewHeight : CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewHeight = view.frame.height
         let indexValue = APPUtilites.getVibeIndex(indexType: "vibeType", vibeType: "PUBLIC", vibeTag: nil)
         print("indexValue: \(indexValue)")
         if let vibeResults = CacheHelper.shared.getVibesByIndex(index: "vibeTypeGsiPK", value: indexValue) {
@@ -75,6 +77,13 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("MyPublicVibeTableViewCell", owner: self, options: nil)?.first as! MyPublicVibeTableViewCell
         let vibe = publicVibes![indexPath.row]
+        switch viewHeight {
+            case DeviceConstants.IPHONE7_HEIGHT: cell.reachCount.font = UIFont(name: "Helvetica Neue", size: 13.0)
+            case DeviceConstants.IPHONE7PLUS_HEIGHT: cell.reachCount.font = UIFont(name: "Helvetica Neue", size: 13.0)
+            case DeviceConstants.IPHONEX_HEIGHT: cell.reachCount.font = UIFont(name: "Helvetica Neue", size: 15.0)
+            case DeviceConstants.IPHONEXR_HEIGHT: cell.reachCount.font = UIFont(name: "Helvetica Neue", size: 15.0)
+            default: cell.reachCount.font = UIFont(name: "Helvetica Neue", size: 13.0)
+        }
         cell.reachCount.text = String(vibe.getReach())
         cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: vibe.getCreatedAt(), isTimeInMiliseconds: true)
         cell.vibeName.text = vibe.getVibeName()!
@@ -91,7 +100,13 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 5.5
+        switch viewHeight {
+            case DeviceConstants.IPHONE7_HEIGHT: return view.frame.height / 4.5
+            case DeviceConstants.IPHONE7PLUS_HEIGHT: return view.frame.height / 4.5
+            case DeviceConstants.IPHONEX_HEIGHT: return view.frame.height / 5.5
+            case DeviceConstants.IPHONEXR_HEIGHT: return view.frame.height / 5.5
+            default: return view.frame.height / 5.5
+        }
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

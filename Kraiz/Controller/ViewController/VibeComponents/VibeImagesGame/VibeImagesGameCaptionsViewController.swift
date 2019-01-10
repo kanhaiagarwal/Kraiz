@@ -17,6 +17,7 @@ class VibeImagesGameCaptionsViewController: UIViewController {
     var currentSelectionsCount = 0
     var vibeModel: VibeModel?
     var isPreview = false
+    var viewHeight : CGFloat = 0
 
     var captionsSelected = [Int : Bool]()
 
@@ -26,6 +27,8 @@ class VibeImagesGameCaptionsViewController: UIViewController {
 
     override func viewDidLoad() {
 //        createVibeModel()
+        viewHeight = view.frame.height
+        setHeaderFont()
         maxSelectionsCount = 2 * vibeModel!.getImages().count / 3
         super.viewDidLoad()
         captionsTable.backgroundColor = UIColor.clear
@@ -33,6 +36,26 @@ class VibeImagesGameCaptionsViewController: UIViewController {
         numberOfCaptionsLabel.text = "\(CONSTANT_TEXT) \(maxSelectionsCount)"
         for i in 0 ..< vibeModel!.getImages().count {
             captionsSelected[i] = false
+        }
+    }
+
+    func setHeaderFont() {
+        switch viewHeight {
+        case DeviceConstants.IPHONE7_HEIGHT:
+            numberOfCaptionsLabel.font = UIFont(name: "Monotype Corsiva", size: 22.0)
+            break
+        case DeviceConstants.IPHONE7PLUS_HEIGHT:
+            numberOfCaptionsLabel.font = UIFont(name: "Monotype Corsiva", size: 22.0)
+            break
+        case DeviceConstants.IPHONEX_HEIGHT:
+            numberOfCaptionsLabel.font = UIFont(name: "Monotype Corsiva", size: 22.0)
+            break
+        case DeviceConstants.IPHONEXR_HEIGHT:
+            numberOfCaptionsLabel.font = UIFont(name: "Monotype Corsiva", size: 24.0)
+            break
+        default:
+            numberOfCaptionsLabel.font = UIFont(name: "Monotype Corsiva", size: 22.0)
+            break
         }
     }
 
@@ -97,13 +120,36 @@ extension VibeImagesGameCaptionsViewController: UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return captionsTable.frame.height / 5.5
+        switch viewHeight {
+            case DeviceConstants.IPHONE7_HEIGHT: return captionsTable.frame.height / 4.5
+            case DeviceConstants.IPHONE7PLUS_HEIGHT: return captionsTable.frame.height / 5.5
+            case DeviceConstants.IPHONEX_HEIGHT: return captionsTable.frame.height / 5.5
+            case DeviceConstants.IPHONEXR_HEIGHT: return captionsTable.frame.height / 5.5
+            default: return captionsTable.frame.height / 4.5
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("VibeImageGameCaptionsTableViewCell", owner: self, options: nil)?.first as! VibeImageGameCaptionsTableViewCell
         
         cell.backgroundColor = UIColor.clear
+        switch viewHeight {
+            case DeviceConstants.IPHONE7_HEIGHT:
+                cell.captionLabel.font = UIFont(name: "Monotype Corsiva", size: 18.0)
+                break
+            case DeviceConstants.IPHONE7PLUS_HEIGHT:
+                cell.captionLabel.font = UIFont(name: "Monotype Corsiva", size: 18.0)
+                break
+            case DeviceConstants.IPHONEX_HEIGHT:
+                cell.captionLabel.font = UIFont(name: "Monotype Corsiva", size: 18.0)
+                break
+            case DeviceConstants.IPHONEXR_HEIGHT:
+                cell.captionLabel.font = UIFont(name: "Monotype Corsiva", size: 20.0)
+                break
+            default:
+                cell.captionLabel.font = UIFont(name: "Monotype Corsiva", size: 18.0)
+                break
+        }
         cell.captionLabel.text = vibeModel!.getImages()[indexPath.row].caption != nil && vibeModel!.getImages()[indexPath.row].caption != "" ? vibeModel!.getImages()[indexPath.row].caption : "No Caption here, but you can still select it."
         cell.layer.backgroundColor = UIColor.clear.cgColor
         if captionsSelected[indexPath.row]! {

@@ -205,7 +205,7 @@
                                                                 <rect key="frame" x="120" y="0.0" width="244" height="56.5"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hwa-od-77q">
@@ -216,7 +216,7 @@
                                                                     <constraint firstAttribute="width" constant="60" id="QeF-DF-huK"/>
                                                                 </constraints>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
@@ -239,7 +239,7 @@
                                                                 <rect key="frame" x="50" y="0.0" width="314" height="56.5"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vc-ag-3XG">
@@ -268,7 +268,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klA-AL-S5I">
                                                                 <rect key="frame" x="50" y="19" width="314" height="75"/>
                                                                 <color key="backgroundColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                                 <state key="normal" title="GET OTP">
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
@@ -403,7 +403,7 @@
                                 <rect key="frame" x="50" y="174.5" width="314" height="62.5"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="id6-94-IXF">
@@ -514,7 +514,7 @@
                                     <constraint firstAttribute="width" constant="60" id="qnQ-VB-BKY"/>
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="OTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1tN-Cd-sRb">
@@ -524,13 +524,13 @@
                                     <constraint firstAttribute="height" constant="50" id="0ph-jL-h0D"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaK-gb-cDu">
                                 <rect key="frame" x="50" y="264" width="314" height="60"/>
                                 <color key="backgroundColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                 <state key="normal" title="GET OTP">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -776,14 +776,14 @@ mobile number +919003194776</string>
                                                                     <constraint firstAttribute="width" constant="60" id="sLP-7C-Wcw"/>
                                                                 </constraints>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jZv-Rj-l55">
                                                                 <rect key="frame" x="120" y="0.0" width="244" height="58.5"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                             </textField>
                                                         </subviews>
@@ -805,7 +805,7 @@ mobile number +919003194776</string>
                                                                 <rect key="frame" x="50" y="0.0" width="314" height="58"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <nil key="textColor"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYM-Pk-ovP">
@@ -833,7 +833,7 @@ mobile number +919003194776</string>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fz9-vX-llW">
                                                                 <rect key="frame" x="50" y="19.5" width="314" height="77.5"/>
                                                                 <color key="backgroundColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                                                 <state key="normal" title="SIGN IN">
                                                                     <color key="titleColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                 </state>
@@ -3294,33 +3294,40 @@ its the right one</string>
                                                                 <rect key="frame" x="10" y="10" width="394" height="618.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6rm-UM-T2u">
-                                                                    <size key="itemSize" width="50" height="50"/>
+                                                                    <size key="itemSize" width="53" height="79"/>
                                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
                                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="DY5-Jq-8Zz" customClass="PhotoInputCollectionViewCell" customModule="Kraiz" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="53" height="79"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="53" height="79"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCX-Gn-7H7">
-                                                                                    <rect key="frame" x="9.5" y="-5" width="31" height="60"/>
+                                                                                    <rect key="frame" x="11" y="9.5" width="31" height="60"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                                                                     <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iSW-mJ-2Aj" userLabel="Photo">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="53" height="53"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="iSW-mJ-2Aj" secondAttribute="height" multiplier="1:1" id="F8u-Jf-PL4"/>
                                                                                     </constraints>
                                                                                 </imageView>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nW-Vp-hbp">
+                                                                                    <rect key="frame" x="0.0" y="53" width="53" height="2"/>
+                                                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="2" id="cge-Zy-CCe"/>
+                                                                                    </constraints>
+                                                                                </view>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nrq-Xe-dfY" userLabel="CrossButton">
-                                                                                    <rect key="frame" x="39.5" y="3" width="7.5" height="7.5"/>
+                                                                                    <rect key="frame" x="38" y="3" width="12" height="12"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="Nrq-Xe-dfY" secondAttribute="height" multiplier="1:1" id="AJj-d7-RIE"/>
                                                                                     </constraints>
@@ -3329,7 +3336,7 @@ its the right one</string>
                                                                                     </state>
                                                                                 </button>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Caption" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xih-mg-70s" userLabel="Caption">
-                                                                                    <rect key="frame" x="5" y="50" width="40" height="0.0"/>
+                                                                                    <rect key="frame" x="5" y="55" width="43" height="24"/>
                                                                                     <color key="backgroundColor" red="0.99607843139999996" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3339,21 +3346,25 @@ its the right one</string>
                                                                         </view>
                                                                         <constraints>
                                                                             <constraint firstItem="Xih-mg-70s" firstAttribute="leading" secondItem="DY5-Jq-8Zz" secondAttribute="leading" constant="5" id="1aI-LS-8gU"/>
+                                                                            <constraint firstItem="Xih-mg-70s" firstAttribute="top" secondItem="3nW-Vp-hbp" secondAttribute="bottom" id="D37-TY-No3"/>
                                                                             <constraint firstItem="FCX-Gn-7H7" firstAttribute="centerY" secondItem="DY5-Jq-8Zz" secondAttribute="centerY" id="Fcu-V0-IGs"/>
                                                                             <constraint firstItem="Nrq-Xe-dfY" firstAttribute="top" secondItem="DY5-Jq-8Zz" secondAttribute="top" constant="3" id="JFT-5O-RoJ"/>
+                                                                            <constraint firstItem="3nW-Vp-hbp" firstAttribute="leading" secondItem="DY5-Jq-8Zz" secondAttribute="leading" id="Tu4-8Z-bcz"/>
                                                                             <constraint firstItem="FCX-Gn-7H7" firstAttribute="centerX" secondItem="DY5-Jq-8Zz" secondAttribute="centerX" id="VkC-6e-kXd"/>
                                                                             <constraint firstItem="iSW-mJ-2Aj" firstAttribute="top" secondItem="DY5-Jq-8Zz" secondAttribute="top" id="YxI-2V-F8b"/>
                                                                             <constraint firstAttribute="trailing" secondItem="Xih-mg-70s" secondAttribute="trailing" constant="5" id="Znq-bK-2qP"/>
                                                                             <constraint firstItem="Nrq-Xe-dfY" firstAttribute="height" secondItem="DY5-Jq-8Zz" secondAttribute="height" multiplier="0.15" id="bOs-Me-k7U"/>
+                                                                            <constraint firstItem="3nW-Vp-hbp" firstAttribute="top" secondItem="iSW-mJ-2Aj" secondAttribute="bottom" id="g01-0f-e9P"/>
                                                                             <constraint firstItem="iSW-mJ-2Aj" firstAttribute="leading" secondItem="DY5-Jq-8Zz" secondAttribute="leading" id="grs-x3-uCT"/>
-                                                                            <constraint firstItem="Xih-mg-70s" firstAttribute="top" secondItem="iSW-mJ-2Aj" secondAttribute="bottom" id="j0b-uL-9xv"/>
                                                                             <constraint firstAttribute="trailing" secondItem="iSW-mJ-2Aj" secondAttribute="trailing" id="mgy-oy-BIN"/>
                                                                             <constraint firstAttribute="trailing" secondItem="Nrq-Xe-dfY" secondAttribute="trailing" constant="3" id="qBV-DF-5bk"/>
                                                                             <constraint firstAttribute="bottom" secondItem="Xih-mg-70s" secondAttribute="bottom" id="sBe-cs-Eer"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="3nW-Vp-hbp" secondAttribute="trailing" id="twH-K9-Mq3"/>
                                                                         </constraints>
                                                                         <connections>
                                                                             <outlet property="caption" destination="Xih-mg-70s" id="6yy-7b-EWz"/>
                                                                             <outlet property="crossButton" destination="Nrq-Xe-dfY" id="ODT-Lr-HH3"/>
+                                                                            <outlet property="divider" destination="3nW-Vp-hbp" id="jQu-bu-en2"/>
                                                                             <outlet property="photo" destination="iSW-mJ-2Aj" id="mpl-Y5-krj"/>
                                                                         </connections>
                                                                     </collectionViewCell>
@@ -3429,7 +3440,7 @@ its the right one</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBF-uR-RPR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8049" y="-356"/>
+            <point key="canvasLocation" x="8047.826086956522" y="-356.25"/>
         </scene>
         <!--Image Captions View Controller-->
         <scene sceneID="XkU-Ah-gAg">
@@ -4432,7 +4443,7 @@ its the right one</string>
                                                                         <rect key="frame" x="0.0" y="0.0" width="165.5" height="203.5"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1b9-EC-hXf">
-                                                                                <rect key="frame" x="6" y="25" width="153.5" height="153.5"/>
+                                                                                <rect key="frame" x="22" y="41" width="122" height="121.5"/>
                                                                                 <color key="backgroundColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="1b9-EC-hXf" secondAttribute="height" multiplier="1:1" id="kb1-3T-er6"/>
@@ -4441,8 +4452,8 @@ its the right one</string>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                         <constraints>
+                                                                            <constraint firstItem="1b9-EC-hXf" firstAttribute="height" secondItem="ovt-tg-xUl" secondAttribute="height" multiplier="0.6" id="FO0-3J-raJ"/>
                                                                             <constraint firstItem="1b9-EC-hXf" firstAttribute="centerX" secondItem="ovt-tg-xUl" secondAttribute="centerX" id="NEn-KV-ucA"/>
-                                                                            <constraint firstItem="1b9-EC-hXf" firstAttribute="top" secondItem="ovt-tg-xUl" secondAttribute="top" constant="25" id="OmE-uI-bWY"/>
                                                                             <constraint firstItem="1b9-EC-hXf" firstAttribute="centerY" secondItem="ovt-tg-xUl" secondAttribute="centerY" id="eGW-Y3-66L"/>
                                                                         </constraints>
                                                                     </view>
@@ -5288,7 +5299,7 @@ its the right one</string>
         <segue reference="ylo-g6-D3y"/>
         <segue reference="jey-vD-tun"/>
         <segue reference="29n-BT-rOK"/>
-        <segue reference="h3y-kV-xul"/>
-        <segue reference="QEA-am-gG3"/>
+        <segue reference="pzD-o7-afy"/>
+        <segue reference="QEH-CO-fw1"/>
     </inferredMetricsTieBreakers>
 </document>

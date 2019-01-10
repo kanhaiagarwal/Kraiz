@@ -23,9 +23,12 @@ class PublicVibesChoiceViewController: UIViewController {
     var allVibes: [VibeModel]?
     var allProfiles: [String : ProfileModel]?
     var loadingLabel = UILabel()
+    var viewHeight : CGFloat = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewHeight = view.frame.height
         quoteLabel.text = VibeQuotes.shared.getQuote(tagIndex: tagSelected, quoteIndex: Int.random(in: 0..<VibeQuotes.shared.getNumberOfQuotesForATag(tagIndex: tagSelected)))
         heading.text = VibeCategories.pickerStrings[tagSelected]
         loadingLabel.numberOfLines = 0
@@ -88,6 +91,28 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
         let vibe = allVibes![indexPath.row]
 //        let profile = allProfiles![(vibe.from?.getId())!]
 //        cell.usernameLabel.text = profile?.getUsername() != nil ? profile?.getUsername() : "None"
+        switch viewHeight {
+            case DeviceConstants.IPHONE7_HEIGHT:
+                cell.usernameLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+                cell.vibeNameLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+                break
+            case DeviceConstants.IPHONE7PLUS_HEIGHT:
+                cell.usernameLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+                cell.vibeNameLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+                break
+            case DeviceConstants.IPHONEX_HEIGHT:
+                cell.usernameLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+                cell.vibeNameLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+                break
+            case DeviceConstants.IPHONEXR_HEIGHT:
+                cell.usernameLabel.font = UIFont(name: "Helvetica Neue", size: 19)
+                cell.vibeNameLabel.font = UIFont(name: "Helvetica Neue", size: 19)
+                break
+            default:
+                cell.usernameLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+                cell.vibeNameLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+                break
+        }
         cell.usernameLabel.text = "kanhai.agarwal"
         cell.vibeNameLabel.text = vibe.vibeName
         return cell
@@ -187,7 +212,13 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 7
+        switch viewHeight {
+            case DeviceConstants.IPHONE7_HEIGHT: return view.frame.height / 6
+            case DeviceConstants.IPHONE7PLUS_HEIGHT: return view.frame.height / 6
+            case DeviceConstants.IPHONEX_HEIGHT: return view.frame.height / 7
+            case DeviceConstants.IPHONEXR_HEIGHT: return view.frame.height / 7
+            default: return view.frame.height / 6
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

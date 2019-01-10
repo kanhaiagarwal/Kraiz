@@ -89,20 +89,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
             passwordField.font = UIFont(name: "Helvetica Neue", size: 20)
             countryCodeField.font = UIFont(name: "Helvetica Neue", size: 20)
             break
-        case DeviceConstants.IPHONE7_HEIGHT:
-            usernameField.font = UIFont(name: "Helvetica Neue", size: 22)
-            passwordField.font = UIFont(name: "Helvetica Neue", size: 22)
-            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 22)
-            break
-        case DeviceConstants.IPHONE7PLUS_HEIGHT:
-            usernameField.font = UIFont(name: "Helvetica Neue", size: 26)
-            passwordField.font = UIFont(name: "Helvetica Neue", size: 26)
-            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 26)
-            break
-        case DeviceConstants.IPHONEX_HEIGHT:
-            usernameField.font = UIFont(name: "Helvetica Neue", size: 22)
-            passwordField.font = UIFont(name: "Helvetica Neue", size: 22)
-            countryCodeField.font = UIFont(name: "Helvetica Neue", size: 22)
         default:
             usernameField.font = UIFont(name: "Helvetica Neue", size: 22)
             passwordField.font = UIFont(name: "Helvetica Neue", size: 22)

@@ -39,16 +39,17 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         setupScrollView()
     }
+    
     func setupScrollView() {
         if imageScrollView.contentSize.height == 0 && imageScrollView.contentSize.width == 0 {
             imageScrollView.showsVerticalScrollIndicator = false
+            let nonSafeArea = view.safeAreaInsets.bottom
             imageScrollView.contentSize = CGSize(width: view.frame.width * CGFloat(imagesToDisplay.count), height: view.frame.width)
             for i in 0 ..< imagesToDisplay.count {
                 let gameView = Bundle.main.loadNibNamed("CaptionGameView", owner: self, options: nil)?.first as! CaptionGameView
-                gameView.frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height)
+                gameView.frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: imageScrollView.frame.height + nonSafeArea)
                 gameView.backgroundImage.image = imagesToDisplay[i].image
                 gameView.mainImage.image = imagesToDisplay[i].image
                 gameView.captionLabel.text = imagesToDisplay[i].caption == nil ? "" : imagesToDisplay[i].caption!
@@ -58,13 +59,11 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
     }
 
     func prepareImagesArray() {
-        print("captionsSelected: \(captionsSelected)")
         for i in 0 ..< vibeModel!.getImages().count {
             if captionsSelected![i]! {
                 imagesToDisplay.append(vibeModel!.getImages()[i])
             }
         }
-        print("imagesToDisplay.count: \(imagesToDisplay.count)")
     }
 
     /// Creates the Overlay View which will contain the close button.

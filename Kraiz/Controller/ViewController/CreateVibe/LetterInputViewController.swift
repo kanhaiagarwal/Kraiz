@@ -26,6 +26,7 @@ class LetterInputViewController: UIViewController {
     
     let backgroundImages = ["letter-love", "letter-royal", "letter-ancient", "letter-basic", "letter-starry"]
     let backgroundLabels = ["Love", "Royal", "Parchment", "Basic", "Dreamy"]
+    let fontSize : [CGFloat] = [24.0, 30.0, 30.0, 30.0, 24.0]
     let letterFont = ["Monotype Corsiva", "Freestyle Script", "French Script MT", "French Script MT", "Monotype Corsiva"]
     let fontColors : [UIColor] = [UIColor(displayP3Red: 0, green: 4/255, blue: 0, alpha: 1.0),
                                   UIColor(displayP3Red: 191/255, green: 134/255, blue: 52/255, alpha: 1.0),
@@ -136,24 +137,8 @@ extension LetterInputViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func setTextFont(backgroundIndex: Int) {
-        let viewHeight = view.frame.height
-        
-        switch viewHeight {
-        case DeviceConstants.IPHONE7_HEIGHT:
-            letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: 20)
-            letterText.textColor = fontColors[backgroundIndex]
-            break
-        case DeviceConstants.IPHONE7PLUS_HEIGHT:
-            letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: 24)
-            letterText.textColor = fontColors[backgroundIndex]
-        case DeviceConstants.IPHONEX_HEIGHT:
-            letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: 24)
-            letterText.textColor = fontColors[backgroundIndex]
-        default:
-            letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: 24)
-            letterText.textColor = fontColors[backgroundIndex]
-            break
-        }
+        letterText.font = UIFont(name: VibeTextBackgrounds.TEXT_FONTS[backgroundIndex], size: fontSize[backgroundIndex])
+        letterText.textColor = fontColors[backgroundIndex]
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

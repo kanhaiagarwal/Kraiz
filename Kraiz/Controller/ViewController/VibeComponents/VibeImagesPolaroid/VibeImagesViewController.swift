@@ -20,11 +20,14 @@ class VibeImagesViewController: UIViewController {
     var isPreview = false
     @IBOutlet weak var bgView: UIView!
     var gradientLayer: CAGradientLayer?
+    var viewHeight : CGFloat = 0
     
     var overlayCloseView: UIView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        viewHeight = view.frame.height
         setViews()
         overlayCloseView = createOverlayCloseView()
         bgView.isUserInteractionEnabled = true
@@ -62,7 +65,23 @@ class VibeImagesViewController: UIViewController {
                 card.frame.origin.x = view.frame.width / 20
                 card.frame.size.width = 0.95 * view.frame.width
                 card.frame.origin.y = view.frame.height / 8
-                card.frame.size.height = 11 * view.frame.height / 20
+                switch viewHeight {
+                case DeviceConstants.IPHONE7_HEIGHT:
+                    card.frame.size.height = 2 * view.frame.height / 3
+                    break
+                case DeviceConstants.IPHONE7PLUS_HEIGHT:
+                    card.frame.size.height = 2 * view.frame.height / 3
+                    break
+                case DeviceConstants.IPHONEX_HEIGHT:
+                    card.frame.size.height = 11 * view.frame.height / 20
+                    break
+                case DeviceConstants.IPHONEXR_HEIGHT:
+                    card.frame.size.height = 11 * view.frame.height / 20
+                    break
+                default:
+                    card.frame.size.height = 2 * view.frame.height / 3
+                    break
+                }
                 card.layer.borderWidth = 3
                 card.layer.borderColor = UIColor.clear.cgColor
                 card.layer.shouldRasterize = true

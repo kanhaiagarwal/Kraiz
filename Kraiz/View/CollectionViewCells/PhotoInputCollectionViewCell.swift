@@ -13,4 +13,5 @@ class PhotoInputCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var crossButton: UIButton!
     @IBOutlet weak var caption: UILabel!
+    @IBOutlet weak var divider: UIView!
 }

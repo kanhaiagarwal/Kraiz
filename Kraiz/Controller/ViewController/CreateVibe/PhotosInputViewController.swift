@@ -69,10 +69,12 @@ class PhotosInputViewController: UIViewController, CropViewControllerDelegate, I
     var imagesToBeCropped = [PHAsset]()
     var currentCropIndex : Int = 0
     var backdropSelected : Int = 0
+    var viewHeight : CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewHeight = view.frame.height
         photosCollectionView.delegate = self
         photosCollectionView.dataSource = self
         photosCollectionView.isScrollEnabled = false
@@ -149,7 +151,25 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (photosCollectionView.frame.width - 20) / 3 - 1, height: (photosCollectionView.frame.height - 20) / 3.5 - 1)
+        var cellHeight : CGFloat = 0
+        switch viewHeight {
+        case DeviceConstants.IPHONE7_HEIGHT:
+            cellHeight = (photosCollectionView.frame.height - 20) / 3 - 1
+            break
+        case DeviceConstants.IPHONE7PLUS_HEIGHT:
+            cellHeight = (photosCollectionView.frame.height - 20) / 3 - 1
+            break
+        case DeviceConstants.IPHONEX_HEIGHT:
+            cellHeight = (photosCollectionView.frame.height - 20) / 3.5 - 1
+            break
+        case DeviceConstants.IPHONEXR_HEIGHT:
+            cellHeight = (photosCollectionView.frame.height - 20) / 3.5 - 1
+            break
+        default:
+            cellHeight = (photosCollectionView.frame.height - 20) / 3 - 1
+            break
+        }
+        return CGSize(width: (photosCollectionView.frame.width - 20) / 3 - 1, height: cellHeight)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -158,16 +178,14 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
             cell.photo.isHidden = false
             cell.photo.image = selectedImages[indexPath.row].image!
             cell.caption.isHidden = false
-            if cell.caption.layer.sublayers == nil || cell.caption.layer.sublayers!.count == 0 {
-                cell.caption.layer.borderWidth = 0.5
-                cell.caption.layer.borderColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0).cgColor
-            }
             cell.caption.text = selectedImages[indexPath.row].caption == nil ? DEFAULT_CELL_CAPTION : selectedImages[indexPath.row].caption!
             cell.crossButton.isHidden = false
+            cell.divider.isHidden = false
         } else {
             cell.photo.isHidden = true
             cell.caption.isHidden = true
             cell.crossButton.isHidden = true
+            cell.divider.isHidden = true
         }
         
         cell.crossButton.tag = indexPath.section * NUMBER_OF_PHOTOS_IN_ROW + indexPath.row
@@ -264,12 +282,9 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
                 let cell = self.photosCollectionView.cellForItem(at: IndexPath(row: self.presentImageToBeCroppped, section: 0)) as!PhotoInputCollectionViewCell
                 cell.photo.isHidden = false
                 cell.caption.isHidden = false
-                if cell.caption.layer.sublayers == nil || cell.caption.layer.sublayers!.count == 0 {
-                    cell.caption.layer.borderWidth = 0.5
-                    cell.caption.layer.borderColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0).cgColor
-                }
                 cell.caption.text = (photoEntity.caption != nil) ? photoEntity.caption : self.DEFAULT_CELL_CAPTION
                 cell.crossButton.isHidden = false
+                cell.divider.isHidden = false
                 cell.photo.image = self.selectedImages[self.presentImageToBeCroppped].image!
                 self.currentCropIndex = self.currentCropIndex + 1
                 cropViewController.dismiss(animated: true, completion: {
@@ -282,12 +297,9 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
                 let cell = self.photosCollectionView.cellForItem(at: IndexPath(row: self.presentImageToBeCroppped, section: 0)) as!PhotoInputCollectionViewCell
                 cell.photo.isHidden = false
                 cell.caption.isHidden = false
-                if cell.caption.layer.sublayers == nil || cell.caption.layer.sublayers!.count == 0 {
-                    cell.caption.layer.borderWidth = 0.5
-                    cell.caption.layer.borderColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0).cgColor
-                }
                 cell.caption.text = (photoEntity.caption != nil) ? photoEntity.caption : self.DEFAULT_CELL_CAPTION
                 cell.crossButton.isHidden = false
+                cell.divider.isHidden = false
                 cell.photo.image = self.selectedImages[self.presentImageToBeCroppped].image
                 cropViewController.dismiss(animated: true, completion: nil)
             }
@@ -347,6 +359,7 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
                 cell.photo.isHidden = true
                 cell.caption.isHidden = true
                 cell.crossButton.isHidden = true
+                cell.divider.isHidden = true
             } else if self.numberOfImagesSelected > cellIndex! {
                 // We have removed an image from in between the image grid. We need to shift all the cell contents to its previous cell.
                 for i in cellIndex!..<self.numberOfImagesSelected {
@@ -359,6 +372,7 @@ extension PhotosInputViewController: UICollectionViewDelegate, UICollectionViewD
                 presentCell.photo.isHidden = true
                 presentCell.caption.isHidden = true
                 presentCell.crossButton.isHidden = true
+                presentCell.divider.isHidden = true
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in

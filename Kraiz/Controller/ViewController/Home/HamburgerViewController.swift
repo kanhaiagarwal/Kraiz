@@ -15,6 +15,8 @@ class HamburgerViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+
+    var viewHeight : CGFloat = 0
     
     let NUMBER_OF_ROWS : Int = 4
     let ROW_HEIGHT : CGFloat = 60.5
@@ -31,7 +33,8 @@ class HamburgerViewController: UIViewController, AWSCognitoIdentityInteractiveAu
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+
+        viewHeight = view.frame.height
         pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
     }
     
@@ -88,6 +91,14 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("HamburgerTableViewCell", owner: self, options: nil)?.first as! HamburgerTableViewCell
+        switch viewHeight {
+        case DeviceConstants.IPHONEXR_HEIGHT:
+            cell.informationLabel.font = UIFont(name: "Helvetica Neue", size: 20)
+            break
+        default:
+            cell.informationLabel.font = UIFont(name: "Helvetica Neue", size: 17)
+            break
+        }
         cell.informationLabel.text = cellInformationLabel[indexPath.row]
         cell.icon.image = UIImage(named: iconImageNames[indexPath.row])
         cell.accessoryType = .disclosureIndicator

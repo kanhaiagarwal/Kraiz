@@ -17,6 +17,8 @@ class DraftsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     var drafts : Results<DraftEntity>?
     var notification: NotificationToken?
+    
+    var viewHeight: CGFloat = 0
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return drafts != nil ? drafts!.count : 0
@@ -59,12 +61,18 @@ class DraftsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 6
+        switch viewHeight {
+            case DeviceConstants.IPHONEXR_HEIGHT:
+                return view.frame.height / 6
+            default:
+                return view.frame.height / 5
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        viewHeight = view.frame.height
         drafts = CacheHelper.shared.getDraftsFromCache()
         notification = drafts?._observe({ [weak self] (changes) in
             self?.draftsTable.reloadData()

@@ -16,6 +16,8 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
     @IBOutlet weak var vibeCategoriesCollectionView: UICollectionView!
     @IBOutlet weak var vibesTable: UITableView!
 
+    var viewHeight : CGFloat = 0
+
     var privateVibes = [String : Results<VibeDataEntity>]()
     var unseenPrivateVibes = [String : Results<VibeDataEntity>]()
     var notifications = [NotificationToken]()
@@ -33,6 +35,8 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewHeight = view.frame.height
+        print("viewHeight: \(viewHeight)")
         for i in 0 ..< VibeCategories.TAG_INDEX.count {
             let privateVibeIndex : String = APPUtilites.getVibeIndex(indexType: "vibeTypeTag", vibeType: "PRIVATE", vibeTag: i)
 
@@ -185,7 +189,18 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return vibesTable.frame.height / 3.5
+        switch viewHeight {
+        case DeviceConstants.IPHONE7_HEIGHT:
+            return vibesTable.frame.height / 3
+        case DeviceConstants.IPHONE7PLUS_HEIGHT:
+            return vibesTable.frame.height / 3
+        case DeviceConstants.IPHONEX_HEIGHT:
+            return vibesTable.frame.height / 3.25
+        case DeviceConstants.IPHONEXR_HEIGHT:
+            return vibesTable.frame.height / 3.5
+        default:
+            return vibesTable.frame.height / 3
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
