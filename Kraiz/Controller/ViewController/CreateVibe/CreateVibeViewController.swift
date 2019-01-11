@@ -79,6 +79,9 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
                 DispatchQueue.main.async {
                     APPUtilites.removeLoadingSpinner(spinner: loadingSpinner)
                     self.vibeModel = vibe
+                    self.vibeModel.from?.setId(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID))
+                    self.vibeModel.from?.setUsername(username: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))
+                    self.vibeModel.from?.setMobileNumber(mobileNumber: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER))
                     self.letterText = self.vibeModel.getLetter().text != nil ? self.vibeModel.getLetter().text! : ""
                     self.letterBackground = self.vibeModel.getLetter().background != nil ? self.vibeModel.getLetter().background! : 0
                     self.imageBackdropSelected = self.vibeModel.imageBackdrop

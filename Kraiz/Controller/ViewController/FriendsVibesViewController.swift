@@ -151,20 +151,20 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         cell.vibeSeenImage.isHidden = true
         if vibe.getIsSender() {
             cell.unseenVibeDot.isHidden = true
+            cell.vibeStatus.isHidden = false
             if vibe.getHasNewHails() {
                 cell.unseenHailDot.isHidden = false
             } else {
                 cell.unseenHailDot.isHidden = true
             }
             if vibe.getIsSeen() {
-                cell.vibeStatus.isHidden = true
                 cell.vibeSeenImage.isHidden = false
             } else {
-                cell.vibeStatus.isHidden = false
                 cell.vibeSeenImage.isHidden = true
             }
         } else {
             cell.unseenHailDot.isHidden = true
+            cell.vibeSeenImage.isHidden = true
             cell.vibeStatus.isHidden = true
             if !vibe.getIsSeen() {
                 cell.unseenVibeDot.isHidden = false
@@ -218,7 +218,6 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
             let spinnerView = APPUtilites.displayLoadingSpinner(onView: view)
             AppSyncHelper.shared.getUserVibe(vibeId: vibe.getId()!, vibeType: 0, vibeTag: selectedCategory) { (error, vibeModel) in
                 DispatchQueue.main.async {
-                    print("====> inside the completionHandler of getUserVibe")
                     APPUtilites.removeLoadingSpinner(spinner: spinnerView)
                     if error != nil {
                         APPUtilites.displayErrorSnackbar(message: "Error in fetching the vibe.")

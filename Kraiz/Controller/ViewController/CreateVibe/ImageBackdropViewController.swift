@@ -14,17 +14,20 @@ protocol ImagesBackdropSelection {
 
 class ImageBackdropViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let backdropList = ["Polaroid Photos", "Tuner"]
-    let backdropImages = ["letter-ancient", "letter-love"]
+    let backdropList = ["Polaroid", "Up Your Caption Game"]
+    let backdropDescriptions = ["Choose this to give a Polaroid photos' feel to your photos", "First receiver would be shown all the captions and would be asked to pick some of them. She/he will be able to see only those photos."]
+    let backdropImages = ["image-backdrop-polaroid", "image-backdrop-up-your-caption-game"]
     var backdropSelected: Int?
     var isSourceCreateVibe = false
     var delegate: ImagesBackdropSelection?
+    var viewHeight : CGFloat = 0
 
     @IBOutlet weak var backdropTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewHeight = view.frame.height
         backdropTable.delegate = self
         backdropTable.dataSource = self
     }
@@ -69,9 +72,20 @@ class ImageBackdropViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("ImageBackdropTableViewCell", owner: self, options: nil)?.first as! ImageBackdropTableViewCell
+        switch viewHeight {
+        case DeviceConstants.IPHONE7PLUS_HEIGHT: cell.backdropTitle.font = UIFont(name: "Hero", size: 22.0)
+        cell.backdropDescription.font = UIFont(name: "Hero", size: 17.0)
+        case DeviceConstants.IPHONEXR_HEIGHT: cell.backdropTitle.font = UIFont(name: "Hero", size: 23.0)
+        cell.backdropDescription.font = UIFont(name: "Hero", size: 18.0)
+        break
+        default:
+            cell.backdropTitle.font = UIFont(name: "Hero", size: 20.0)
+            cell.backdropDescription.font = UIFont(name: "Hero", size: 15.0)
+            break
+        }
         cell.backdropTitle.text = backdropList[indexPath.row]
         cell.backdropImage.image = UIImage(named: backdropImages[indexPath.row])
-        
+        cell.backdropDescription.text = backdropDescriptions[indexPath.row]
         cell.isBackdropSelected = false
         cell.backdropCheckbox.isHidden = true
         
@@ -80,7 +94,11 @@ class ImageBackdropViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return backdropTable.frame.height / 2.5
+        if indexPath.row == 0 {
+            return backdropTable.frame.height / 3
+        } else {
+            return backdropTable.frame.height / 2.5
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

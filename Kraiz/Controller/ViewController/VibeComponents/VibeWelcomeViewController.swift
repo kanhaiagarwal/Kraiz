@@ -64,6 +64,10 @@ class VibeWelcomeViewController: UIViewController {
         vibeTag.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[line(1)]-(\(-spacing))-|", metrics: nil, views: ["line": line]))
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     @IBAction func nextPressed(_ sender: UIButton) {
         if vibeModel!.isLetterPresent {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)

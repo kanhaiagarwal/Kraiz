@@ -1011,11 +1011,6 @@ mobile number +919003194776</string>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H0H-pe-gv6">
                                         <rect key="frame" x="0.0" y="99.5" width="414" height="796.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="koh-v8-RfA">
-                                            <rect key="frame" x="0.0" y="72" width="414" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GX8-1i-AKN">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
@@ -1359,25 +1354,25 @@ mobile number +919003194776</string>
                                         <rect key="frame" x="0.0" y="108" width="414" height="754"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q0T-Nt-5XE" customClass="CardView" customModule="Kraiz" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="53" width="374" height="448"/>
+                                                <rect key="frame" x="20" y="53" width="374" height="340"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lc2-It-KDv">
-                                                        <rect key="frame" x="73.5" y="20" width="18" height="20"/>
+                                                        <rect key="frame" x="65.5" y="20" width="18" height="20"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awZ-It-PJ8" userLabel="UsernameContainer">
-                                                        <rect key="frame" x="0.0" y="45" width="374" height="44.5"/>
+                                                        <rect key="frame" x="0.0" y="45" width="374" height="34"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-username" translatesAutoresizingMaskIntoConstraints="NO" id="3mt-yD-EcM">
-                                                                <rect key="frame" x="20" y="5.5" width="33.5" height="33.5"/>
+                                                                <rect key="frame" x="20" y="4" width="25.5" height="25.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="3mt-yD-EcM" secondAttribute="height" multiplier="1:1" id="o7L-YJ-1re"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NPK-5G-5Xw">
-                                                                <rect key="frame" x="123.5" y="0.0" width="210.5" height="44.5"/>
+                                                                <rect key="frame" x="115.5" y="0.0" width="218.5" height="34"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
@@ -1386,13 +1381,13 @@ mobile number +919003194776</string>
                                                                 </connections>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lwz-Ti-QMy">
-                                                                <rect key="frame" x="73.5" y="0.0" width="50" height="44.5"/>
+                                                                <rect key="frame" x="65.5" y="0.0" width="50" height="34"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact-list" translatesAutoresizingMaskIntoConstraints="NO" id="cin-nl-5e4">
-                                                                <rect key="frame" x="334" y="0.0" width="40" height="44.5"/>
+                                                                <rect key="frame" x="334" y="0.0" width="40" height="34"/>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1415,22 +1410,22 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skI-0c-2wN">
-                                                        <rect key="frame" x="73.5" y="109.5" width="83" height="20"/>
+                                                        <rect key="frame" x="65.5" y="99" width="83" height="20"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kdu-UH-vfX" userLabel="VibeNameContainer">
-                                                        <rect key="frame" x="0.0" y="134.5" width="374" height="45"/>
+                                                        <rect key="frame" x="0.0" y="124" width="374" height="34"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-name" translatesAutoresizingMaskIntoConstraints="NO" id="XqQ-IK-8YX">
-                                                                <rect key="frame" x="20" y="5.5" width="33.5" height="34"/>
+                                                                <rect key="frame" x="20" y="4" width="25.5" height="25.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="XqQ-IK-8YX" secondAttribute="height" multiplier="1:1" id="Tp5-pV-QW5"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Give a Name to your Vibe" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QfS-XT-VwV">
-                                                                <rect key="frame" x="73.5" y="0.0" width="260.5" height="45"/>
+                                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Give a Name to your Vibe" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QfS-XT-VwV">
+                                                                <rect key="frame" x="65.5" y="0.0" width="268.5" height="34"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -1447,28 +1442,28 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-tag" translatesAutoresizingMaskIntoConstraints="NO" id="5mN-3w-87l">
-                                                        <rect key="frame" x="20" y="192.5" width="33.5" height="33.5"/>
+                                                        <rect key="frame" x="20" y="175" width="25.5" height="25.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="5mN-3w-87l" secondAttribute="height" multiplier="1:1" id="2lA-Yp-RX4"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibe Tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oy0-4S-GcH">
-                                                        <rect key="frame" x="73.5" y="199.5" width="65" height="20"/>
+                                                        <rect key="frame" x="65.5" y="178" width="65" height="20"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHn-nl-Zxj" userLabel="VibeTagContainer">
-                                                        <rect key="frame" x="0.0" y="224.5" width="374" height="44.5"/>
+                                                        <rect key="frame" x="0.0" y="203" width="374" height="34"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6QX-He-jdk">
-                                                                <rect key="frame" x="73.5" y="0.0" width="260.5" height="44.5"/>
+                                                                <rect key="frame" x="65.5" y="0.0" width="268.5" height="34"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tue-5x-371">
-                                                                <rect key="frame" x="319" y="12" width="15" height="20.5"/>
+                                                                <rect key="frame" x="319" y="6.5" width="15" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1483,22 +1478,22 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="enb-pq-Mnd" userLabel="BackgroundMusicContainer">
-                                                        <rect key="frame" x="0.0" y="279" width="374" height="45"/>
+                                                        <rect key="frame" x="0.0" y="247" width="374" height="34"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-background-music" translatesAutoresizingMaskIntoConstraints="NO" id="HKA-fT-GZQ">
-                                                                <rect key="frame" x="20" y="6" width="33.5" height="33.5"/>
+                                                                <rect key="frame" x="20" y="4" width="25.5" height="25.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="HKA-fT-GZQ" secondAttribute="height" multiplier="1:1" id="n1J-2J-3vO"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPI-XB-jL8">
-                                                                <rect key="frame" x="67.5" y="0.0" width="187" height="45"/>
+                                                                <rect key="frame" x="59.5" y="0.0" width="187" height="34"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0UZ-zb-2ny">
-                                                                <rect key="frame" x="274.5" y="7" width="51" height="31"/>
+                                                                <rect key="frame" x="266.5" y="7" width="51" height="20"/>
                                                                 <color key="tintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                                 <color key="onTintColor" red="0.8901960784313725" green="0.47450980392156861" blue="0.043137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <connections>
@@ -1521,10 +1516,10 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nI4-zN-CPe" userLabel="FriendsMusicContainer">
-                                                        <rect key="frame" x="73.5" y="334" width="230.5" height="45"/>
+                                                        <rect key="frame" x="65.5" y="291" width="238.5" height="34"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xR9-EN-hes" userLabel="MusicField">
-                                                                <rect key="frame" x="0.0" y="0.0" width="230.5" height="45"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="238.5" height="34"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -1533,7 +1528,7 @@ mobile number +919003194776</string>
                                                                 </connections>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3h2-IN-nyT">
-                                                                <rect key="frame" x="215.5" y="12" width="15" height="20.5"/>
+                                                                <rect key="frame" x="223.5" y="6.5" width="15" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1550,7 +1545,7 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-play-music" translatesAutoresizingMaskIntoConstraints="NO" id="3gO-e5-0v5">
-                                                        <rect key="frame" x="324" y="339.5" width="33.5" height="33.5"/>
+                                                        <rect key="frame" x="324" y="295" width="25.5" height="25.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="3gO-e5-0v5" secondAttribute="height" multiplier="1:1" id="Wt5-Jq-Wuj"/>
                                                         </constraints>
@@ -1578,6 +1573,7 @@ mobile number +919003194776</string>
                                                     <constraint firstAttribute="trailing" secondItem="BHn-nl-Zxj" secondAttribute="trailing" id="TYA-qJ-WFt"/>
                                                     <constraint firstItem="enb-pq-Mnd" firstAttribute="top" secondItem="BHn-nl-Zxj" secondAttribute="bottom" constant="10" id="TtS-ZH-RTZ"/>
                                                     <constraint firstItem="5mN-3w-87l" firstAttribute="centerY" secondItem="Oy0-4S-GcH" secondAttribute="centerY" id="Veb-ay-HdD"/>
+                                                    <constraint firstAttribute="height" constant="340" id="WUF-tw-Uek"/>
                                                     <constraint firstItem="Oy0-4S-GcH" firstAttribute="leading" secondItem="skI-0c-2wN" secondAttribute="leading" id="XJN-33-vnb"/>
                                                     <constraint firstItem="nI4-zN-CPe" firstAttribute="leading" secondItem="6QX-He-jdk" secondAttribute="leading" id="bnP-1d-OYN"/>
                                                     <constraint firstItem="QfS-XT-VwV" firstAttribute="trailing" secondItem="NPK-5G-5Xw" secondAttribute="trailing" id="dDv-7B-Y2a"/>
@@ -1624,25 +1620,25 @@ mobile number +919003194776</string>
                                                 </connections>
                                             </segmentedControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfy-JS-hON" userLabel="Public Vibe Details" customClass="CardView" customModule="Kraiz" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="53" width="374" height="358"/>
+                                                <rect key="frame" x="20" y="53" width="374" height="270"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2TO-eD-uoH">
-                                                        <rect key="frame" x="72.5" y="20" width="83" height="20"/>
+                                                        <rect key="frame" x="64.5" y="20" width="83" height="20"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="90z-dq-k5J" userLabel="PublicVibeNameContainer">
-                                                        <rect key="frame" x="0.0" y="45" width="374" height="43"/>
+                                                        <rect key="frame" x="0.0" y="45" width="374" height="32"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-name" translatesAutoresizingMaskIntoConstraints="NO" id="2dx-mC-coM">
-                                                                <rect key="frame" x="20" y="5" width="32.5" height="32.5"/>
+                                                                <rect key="frame" x="20" y="4" width="24.5" height="24"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="2dx-mC-coM" secondAttribute="height" multiplier="1:1" id="9QT-EG-xhK"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Give a Name to your Vibe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iRq-Oa-rAb">
-                                                                <rect key="frame" x="72.5" y="0.0" width="261.5" height="43"/>
+                                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Give a Name to your Vibe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iRq-Oa-rAb">
+                                                                <rect key="frame" x="64.5" y="0.0" width="269.5" height="32"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -1660,28 +1656,28 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vibe Tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifV-gl-mIq">
-                                                        <rect key="frame" x="72.5" y="108" width="65" height="20"/>
+                                                        <rect key="frame" x="64.5" y="97" width="65" height="20"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-tag" translatesAutoresizingMaskIntoConstraints="NO" id="FpL-Xn-y8e">
-                                                        <rect key="frame" x="20" y="101.5" width="32.5" height="32.5"/>
+                                                        <rect key="frame" x="20" y="95" width="24.5" height="24.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="FpL-Xn-y8e" secondAttribute="height" multiplier="1:1" id="NRi-S7-lTo"/>
                                                         </constraints>
                                                     </imageView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7y-JN-Kqz" userLabel="Public Vibe Tag Container">
-                                                        <rect key="frame" x="0.0" y="133" width="374" height="43"/>
+                                                        <rect key="frame" x="0.0" y="122" width="374" height="32.5"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WIe-c6-pUY">
-                                                                <rect key="frame" x="72.5" y="0.0" width="261.5" height="43"/>
+                                                                <rect key="frame" x="64.5" y="0.0" width="269.5" height="32.5"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phU-zd-5nw">
-                                                                <rect key="frame" x="319" y="11" width="15" height="20.5"/>
+                                                                <rect key="frame" x="319" y="6" width="15" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1696,22 +1692,22 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JaV-cg-tc4" userLabel="Public Background Music Container">
-                                                        <rect key="frame" x="0.0" y="186" width="374" height="39"/>
+                                                        <rect key="frame" x="0.0" y="164.5" width="374" height="30"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-background-music" translatesAutoresizingMaskIntoConstraints="NO" id="AwT-c2-tdk">
-                                                                <rect key="frame" x="20" y="4.5" width="29.5" height="30"/>
+                                                                <rect key="frame" x="20" y="4" width="22.5" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="AwT-c2-tdk" secondAttribute="height" multiplier="1:1" id="hDu-eN-SpT"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nA-VW-2a9">
-                                                                <rect key="frame" x="67.5" y="0.0" width="187" height="39"/>
+                                                                <rect key="frame" x="59.5" y="0.0" width="187" height="30"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XzG-QQ-Mib">
-                                                                <rect key="frame" x="274.5" y="7" width="51" height="25"/>
+                                                                <rect key="frame" x="266.5" y="7" width="51" height="16"/>
                                                                 <color key="onTintColor" red="0.8901960784313725" green="0.47450980392156861" blue="0.043137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <connections>
                                                                     <action selector="publicBackgroundMusicSwitchPressed:" destination="SGl-gi-3i5" eventType="valueChanged" id="B6W-Ut-hUS"/>
@@ -1732,10 +1728,10 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KYV-aW-HtI">
-                                                        <rect key="frame" x="72.5" y="235" width="231.5" height="43"/>
+                                                        <rect key="frame" x="64.5" y="204.5" width="239.5" height="32"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kDs-u8-TMA">
-                                                                <rect key="frame" x="0.0" y="0.0" width="231.5" height="43"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="239.5" height="32"/>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -1744,7 +1740,7 @@ mobile number +919003194776</string>
                                                                 </connections>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6G-It-ziT">
-                                                                <rect key="frame" x="216.5" y="11.5" width="15" height="20.5"/>
+                                                                <rect key="frame" x="224.5" y="5.5" width="15" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1761,7 +1757,7 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myvibe-play-music" translatesAutoresizingMaskIntoConstraints="NO" id="gge-tt-1ry">
-                                                        <rect key="frame" x="324" y="240.5" width="32.5" height="32.5"/>
+                                                        <rect key="frame" x="324" y="208.5" width="24.5" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="gge-tt-1ry" secondAttribute="height" multiplier="1:1" id="YAc-LV-o6S"/>
                                                         </constraints>
@@ -1774,6 +1770,7 @@ mobile number +919003194776</string>
                                                     <constraint firstItem="JaV-cg-tc4" firstAttribute="leading" secondItem="Tfy-JS-hON" secondAttribute="leading" id="8Ae-Jq-gBx"/>
                                                     <constraint firstItem="ifV-gl-mIq" firstAttribute="top" secondItem="iRq-Oa-rAb" secondAttribute="bottom" constant="20" id="8Qx-dE-OuT"/>
                                                     <constraint firstAttribute="trailing" secondItem="90z-dq-k5J" secondAttribute="trailing" id="97j-D2-NPg"/>
+                                                    <constraint firstAttribute="height" constant="270" id="9eJ-aF-syg"/>
                                                     <constraint firstItem="q7y-JN-Kqz" firstAttribute="leading" secondItem="Tfy-JS-hON" secondAttribute="leading" id="C7i-gb-W67"/>
                                                     <constraint firstItem="90z-dq-k5J" firstAttribute="height" secondItem="Tfy-JS-hON" secondAttribute="height" multiplier="0.12" id="CSk-J3-IZV"/>
                                                     <constraint firstItem="FpL-Xn-y8e" firstAttribute="centerY" secondItem="ifV-gl-mIq" secondAttribute="centerY" id="FKt-gh-5JU"/>
@@ -1805,7 +1802,7 @@ mobile number +919003194776</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ezu-xQ-WjO">
-                                                <rect key="frame" x="20" y="526" width="374" height="67"/>
+                                                <rect key="frame" x="20" y="418" width="374" height="51"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <state key="normal" title="Next">
@@ -1846,8 +1843,6 @@ mobile number +919003194776</string>
                             <constraint firstItem="Q1l-aR-rfv" firstAttribute="trailing" secondItem="kYM-kJ-WJO" secondAttribute="trailing" id="D21-Qu-CGX"/>
                             <constraint firstItem="kYM-kJ-WJO" firstAttribute="top" secondItem="dPV-Gx-aj0" secondAttribute="top" id="MAN-55-S4R"/>
                             <constraint firstItem="kYM-kJ-WJO" firstAttribute="leading" secondItem="Q1l-aR-rfv" secondAttribute="leading" id="qR7-RO-rkT"/>
-                            <constraint firstItem="Tfy-JS-hON" firstAttribute="height" secondItem="dPV-Gx-aj0" secondAttribute="height" multiplier="0.4" id="rIg-Wd-GFM"/>
-                            <constraint firstItem="q0T-Nt-5XE" firstAttribute="height" secondItem="dPV-Gx-aj0" secondAttribute="height" multiplier="0.5" id="vK7-mR-ipM"/>
                             <constraint firstItem="Q1l-aR-rfv" firstAttribute="bottom" secondItem="kYM-kJ-WJO" secondAttribute="bottom" id="vKL-Im-eMV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q1l-aR-rfv"/>
@@ -1856,7 +1851,6 @@ mobile number +919003194776</string>
                         <outlet property="contactListIcon" destination="cin-nl-5e4" id="Urp-1F-JeF"/>
                         <outlet property="friendsBackgroundMusicSwitch" destination="0UZ-zb-2ny" id="czz-P1-4Kj"/>
                         <outlet property="friendsCountryCodeField" destination="Lwz-Ti-QMy" id="d7d-au-Swh"/>
-                        <outlet property="friendsDetailsContainerHeightConstraint" destination="vK7-mR-ipM" id="0iE-zc-IvQ"/>
                         <outlet property="friendsMusicArrowLabel" destination="3h2-IN-nyT" id="Fdb-45-BJq"/>
                         <outlet property="friendsMusicField" destination="xR9-EN-hes" id="hor-iV-uD6"/>
                         <outlet property="friendsPhoneNumberIcon" destination="3mt-yD-EcM" id="rAi-1I-OK8"/>
@@ -2389,7 +2383,6 @@ mobile number +919003194776</string>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="zpZ-ET-w9p" firstAttribute="leading" secondItem="zRb-qF-qWk" secondAttribute="leading" id="DBw-hD-zn0"/>
-                                                            <constraint firstItem="zpZ-ET-w9p" firstAttribute="top" secondItem="zRb-qF-qWk" secondAttribute="top" id="Pob-Gx-5CS"/>
                                                             <constraint firstItem="pSd-fR-XfM" firstAttribute="centerY" secondItem="hN2-gE-cRq" secondAttribute="centerY" id="TQu-na-Yqk"/>
                                                             <constraint firstAttribute="bottom" secondItem="zpZ-ET-w9p" secondAttribute="bottom" id="WO3-YU-468"/>
                                                             <constraint firstItem="M3o-vc-b5e" firstAttribute="leading" secondItem="zRb-qF-qWk" secondAttribute="leading" id="cwI-qc-FIf"/>
@@ -2398,6 +2391,7 @@ mobile number +919003194776</string>
                                                             <constraint firstItem="hN2-gE-cRq" firstAttribute="leading" secondItem="zRb-qF-qWk" secondAttribute="leading" constant="8" id="jfQ-EL-Wtj"/>
                                                             <constraint firstAttribute="trailing" secondItem="pSd-fR-XfM" secondAttribute="trailing" constant="8" id="lol-st-IxS"/>
                                                             <constraint firstItem="M3o-vc-b5e" firstAttribute="height" secondItem="zpZ-ET-w9p" secondAttribute="height" id="t2d-Km-aMP"/>
+                                                            <constraint firstItem="zpZ-ET-w9p" firstAttribute="top" secondItem="zRb-qF-qWk" secondAttribute="top" id="ugD-3d-EOH"/>
                                                             <constraint firstItem="M3o-vc-b5e" firstAttribute="top" secondItem="zRb-qF-qWk" secondAttribute="top" id="x6M-zd-0k8"/>
                                                             <constraint firstAttribute="trailing" secondItem="M3o-vc-b5e" secondAttribute="trailing" id="xaR-xv-Ube"/>
                                                         </constraints>
@@ -2493,7 +2487,7 @@ mobile number +919003194776</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGn-l2-ruh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7940.579710144928" y="-2093.3035714285716"/>
+            <point key="canvasLocation" x="7940.579710144928" y="-2093.9732142857142"/>
         </scene>
         <!--Review Page View Controller-->
         <scene sceneID="Vrd-8S-Hsg">
@@ -2975,13 +2969,13 @@ its the right one</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not every picture clicked is meant to be saved. You choose only those which are caption worthy. The limit here is " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgC-5m-ycL">
-                                <rect key="frame" x="15" y="135" width="384" height="112"/>
+                                <rect key="frame" x="15" y="135" width="384" height="79"/>
                                 <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FwR-ev-O0W">
-                                <rect key="frame" x="0.0" y="277" width="414" height="565"/>
+                                <rect key="frame" x="0.0" y="244" width="414" height="598"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="Pea-Vl-f9I">
                                     <rect key="frame" x="0.0" y="72" width="414" height="44"/>
@@ -3641,7 +3635,7 @@ its the right one</string>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Recorder" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4b8-eg-v3J">
-                                <rect key="frame" x="0.0" y="53.5" width="414" height="31.5"/>
+                                <rect key="frame" x="0.0" y="55.5" width="414" height="27"/>
                                 <fontDescription key="fontDescription" name="Hero" family="Hero" pointSize="27"/>
                                 <color key="textColor" red="0.18039215689999999" green="0.25882352939999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -5176,7 +5170,7 @@ its the right one</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FirstScreenBackground" translatesAutoresizingMaskIntoConstraints="NO" id="fNe-2x-lnd">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="P2R-hb-Dg1">
                                 <rect key="frame" x="197" y="438" width="20" height="20"/>
@@ -5187,8 +5181,8 @@ its the right one</string>
                             <constraint firstItem="JYG-oN-wfP" firstAttribute="trailing" secondItem="fNe-2x-lnd" secondAttribute="trailing" id="9DJ-gs-aUW"/>
                             <constraint firstItem="P2R-hb-Dg1" firstAttribute="centerY" secondItem="glT-WU-um7" secondAttribute="centerY" id="O9U-Nm-p1s"/>
                             <constraint firstItem="fNe-2x-lnd" firstAttribute="top" secondItem="glT-WU-um7" secondAttribute="top" id="ShF-0Z-LXe"/>
-                            <constraint firstItem="JYG-oN-wfP" firstAttribute="bottom" secondItem="fNe-2x-lnd" secondAttribute="bottom" id="V2w-GS-wUx"/>
                             <constraint firstItem="P2R-hb-Dg1" firstAttribute="centerX" secondItem="glT-WU-um7" secondAttribute="centerX" id="bpf-dP-Mi7"/>
+                            <constraint firstAttribute="bottom" secondItem="fNe-2x-lnd" secondAttribute="bottom" id="gsq-WW-R9I"/>
                             <constraint firstItem="fNe-2x-lnd" firstAttribute="leading" secondItem="JYG-oN-wfP" secondAttribute="leading" id="mbl-5d-LPQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JYG-oN-wfP"/>
@@ -5203,7 +5197,7 @@ its the right one</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gwo-SZ-Wor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-246" y="-1345"/>
+            <point key="canvasLocation" x="-246.37681159420291" y="-1345.3125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1Rx-kg-TRM">
@@ -5259,10 +5253,10 @@ its the right one</string>
         <image name="follow_us_on_instagram" width="274" height="39"/>
         <image name="hide-password" width="30" height="30"/>
         <image name="images-icon" width="400.69564819335938" height="400.69564819335938"/>
-        <image name="invite-common-share" width="80" height="83"/>
-        <image name="invite-facebook" width="80" height="83"/>
+        <image name="invite-common-share" width="284" height="295"/>
+        <image name="invite-facebook" width="286" height="297"/>
         <image name="invite-header" width="524" height="329"/>
-        <image name="invite-instagram" width="81" height="83"/>
+        <image name="invite-instagram" width="289" height="299"/>
         <image name="invite-whatsapp" width="81" height="83"/>
         <image name="letter-ancient" width="320" height="568"/>
         <image name="letter-icon" width="400.69564819335938" height="400.69564819335938"/>
@@ -5292,7 +5286,7 @@ its the right one</string>
         <image name="vibes-inactive" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Yxk-op-ykK"/>
+        <segue reference="CPU-Kp-dc0"/>
         <segue reference="AUb-jh-2pV"/>
         <segue reference="kHT-Ph-L82"/>
         <segue reference="Lbh-sf-AQL"/>

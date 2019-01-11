@@ -13,6 +13,7 @@ class ImageBackdropTableViewCell: UITableViewCell {
     @IBOutlet weak var backdropImage: UIImageView!
     @IBOutlet weak var backdropTitle: UILabel!
     @IBOutlet weak var backdropCheckbox: UIView!
+    @IBOutlet weak var backdropDescription: UILabel!
     
     var isBackdropSelected : Bool = false
     override func awakeFromNib() {

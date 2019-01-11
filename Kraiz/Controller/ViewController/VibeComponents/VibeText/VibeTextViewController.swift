@@ -130,6 +130,10 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         overlayCloseView = createOverlayView()
         overlayNextButton = createOverlayNextButton()
     }
+
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     @objc func onCloseClick() {
         AudioControls.shared.stopMusic()

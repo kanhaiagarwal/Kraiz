@@ -68,7 +68,9 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     var vibeModel = VibeModel()
     var isSourceCreateVibe = false
     var isAudioPlaying = false
-    
+
+    let MAX_VIBE_NAME_LIMIT = 50
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -208,6 +210,27 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         setupNextButton()
     }
 
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField.tag == 1 || textField.tag == 2 {
+            if vibeTypeSegment.selectedSegmentIndex == 0 {
+                let str = ((friendsVibeNameField.text != nil ? friendsVibeNameField.text! : "") + string)
+                if str.count <= MAX_VIBE_NAME_LIMIT {
+                    return true
+                } else {
+                    return false
+                }
+            } else {
+                let str = ((friendsVibeNameField.text != nil ? friendsVibeNameField.text! : "") + string)
+                if str.count <= MAX_VIBE_NAME_LIMIT {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
     @IBAction func vibeTypePressed(_ sender: UISegmentedControl) {
         dismissKeyboard()
         if vibeTypeSegment.selectedSegmentIndex != vibeTypeSelected! {
@@ -242,6 +265,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     }
     
     @objc func playImageTapped() {
+        dismissKeyboard()
         if isAudioPlaying {
             friendsPlayImageView.image = UIImage(named: PLAY_IMAGE)
             publicPlayImageView.image = UIImage(named: PLAY_IMAGE)

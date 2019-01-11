@@ -42,6 +42,10 @@ class VibeHailInputViewController: UIViewController {
         hailTextView.layer.cornerRadius = 5.0
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     @IBAction func dismissPressed(_ sender: Any) {
         presentClosingAlert()
     }

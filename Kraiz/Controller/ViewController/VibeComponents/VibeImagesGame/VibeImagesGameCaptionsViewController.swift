@@ -39,6 +39,10 @@ class VibeImagesGameCaptionsViewController: UIViewController {
         }
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     func setHeaderFont() {
         switch viewHeight {
         case DeviceConstants.IPHONE7_HEIGHT:

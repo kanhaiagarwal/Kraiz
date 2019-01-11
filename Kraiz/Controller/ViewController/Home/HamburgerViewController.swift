@@ -56,7 +56,8 @@ class HamburgerViewController: UIViewController, AWSCognitoIdentityInteractiveAu
                     }, failure: { (error) in
                         DispatchQueue.main.async {
                             print("Error in loading the image: \(error)")
-                            APPUtilites.displayErrorSnackbar(message: "Error in loading the Profile Picture. Please try again later")
+                            APPUtilites.displayElevatedErrorSnackbar(message: "Error in loading the Profile Picture. Please try again later")
+                            self.profileImage.image = self.DEFAULT_PROFILE_IMAGE
                         }
                     })
                 } else {
@@ -66,7 +67,7 @@ class HamburgerViewController: UIViewController, AWSCognitoIdentityInteractiveAu
         }) { (error) in
             DispatchQueue.main.async {
                 print("Error: \(error)")
-                APPUtilites.displayErrorSnackbar(message: "Error in loading the User Data")
+                APPUtilites.displayElevatedErrorSnackbar(message: "Error in loading the User Data")
             }
         }
     }
@@ -125,11 +126,11 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
     
     func performSignOut() {
         if !APPUtilites.isInternetConnectionAvailable() {
-            APPUtilites.displayErrorSnackbar(message: "Please Check your Internet Connection")
+            APPUtilites.displayElevatedErrorSnackbar(message: "Please Check your Internet Connection")
         }
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
             if !APPUtilites.isInternetConnectionAvailable() {
-                APPUtilites.displayErrorSnackbar(message: "Please Check your Internet Connection")
+                APPUtilites.displayElevatedErrorSnackbar(message: "Please Check your Internet Connection")
                 return
             }
             DispatchQueue.main.async {
@@ -149,7 +150,7 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
                     UserDefaults.standard.set(nil, forKey: DeviceConstants.ID_TOKEN)
                     DispatchQueue.main.async {
                         print("error in sign out: \(error)")
-                        APPUtilites.displayErrorSnackbar(message: "Sorry, cannot Sign Out right now. Please try again")
+                        APPUtilites.displayElevatedErrorSnackbar(message: "Sorry, cannot Sign Out right now. Please try again")
                         APPUtilites.removeLoadingSpinner(spinner: sv)
                     }
                 })

@@ -107,7 +107,7 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
                 DispatchQueue.main.async {
                     APPUtilites.removeLoadingSpinner(spinner: sv)
                     print(error.localizedDescription)
-                    APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
+                    APPUtilites.displayElevatedErrorSnackbar(message: error.localizedDescription)
                 }
             }
         } else {
@@ -183,7 +183,7 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
                 DispatchQueue.main.async {
                     self.uploadPhotoButton.setTitle("Change Photo", for: .normal)
                     APPUtilites.removeLoadingSpinner(spinner: spinner)
-                    APPUtilites.displayErrorSnackbar(message: error.localizedDescription)
+                    APPUtilites.displayElevatedErrorSnackbar(message: error.localizedDescription)
                 }
             }
         } else {

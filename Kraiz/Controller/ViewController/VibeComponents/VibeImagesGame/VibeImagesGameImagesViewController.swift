@@ -41,6 +41,10 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
         super.viewDidLayoutSubviews()
         setupScrollView()
     }
+
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     func setupScrollView() {
         if imageScrollView.contentSize.height == 0 && imageScrollView.contentSize.width == 0 {

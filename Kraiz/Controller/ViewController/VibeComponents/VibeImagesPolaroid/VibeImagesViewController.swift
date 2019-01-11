@@ -56,6 +56,10 @@ class VibeImagesViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     /// Creates all the Image Cards with the images and captions.
     /// Gives the swiping gestures to the cards.
     func setViews() {

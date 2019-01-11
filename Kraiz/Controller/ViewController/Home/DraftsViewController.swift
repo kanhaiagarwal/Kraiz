@@ -31,6 +31,8 @@ class DraftsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let imageView = UIImageView(image: UIImage(named: "saved-empty"))
             imageView.contentMode = .scaleAspectFit
             draftsTable.backgroundView = imageView
+        } else {
+            draftsTable.backgroundView = nil
         }
     }
     
@@ -73,6 +75,7 @@ class DraftsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
 
         viewHeight = view.frame.height
+        draftsTable.tableFooterView = UIView()
         drafts = CacheHelper.shared.getDraftsFromCache()
         notification = drafts?._observe({ [weak self] (changes) in
             self?.draftsTable.reloadData()
