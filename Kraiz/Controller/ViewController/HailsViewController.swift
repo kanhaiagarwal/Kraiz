@@ -18,7 +18,7 @@ class HailsViewController: UIViewController {
     @IBOutlet weak var hailsTable: UITableView!
     
     let HAILS_VIEW_MIN_HEIGHT_PROPORTION = 0.2
-    let HAILS_ANIMATION_TIME = 0.2
+    let HAILS_ANIMATION_TIME = 0.5
     let HAILS_VIEW_HEIGHT_INCREASE_STEPS = 0.1
     let HAILS_VIEW_MAX_HEIGHT_PROPORTION = 0.8
     let MAX_HAILS_IN_SINGLE_VIEW = 8
@@ -84,7 +84,7 @@ class HailsViewController: UIViewController {
             self!.hailsView.frame = CGRect(x: 0, y: self!.view.frame.height, width: self!.hailsView.frame.width
                 , height: (self?.hailsView.frame.height)!)
         }) { [weak self] (completed) in
-            self!.dismiss(animated: false, completion: nil)
+            self?.dismiss(animated: false, completion: nil)
         }
     }
 

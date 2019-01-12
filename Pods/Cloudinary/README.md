@@ -26,6 +26,8 @@ For iOS, Cloudinary provides an SDK for simplifying the integration even further
 ## Requirements
 
 - iOS 8.0+
+- Compatible with Swift, tested up to version 4.1.
+- Compatible with Objective-C, see [usage example](CloudinaryTests/GenerateUrlTests/UrlTests.m).
 
 ## Integration
 
@@ -92,7 +94,7 @@ The Cloudinary iOS SDK depends on [Alamofire](https://github.com/Alamofire/Alamo
 
 Here's the steps to get the framework project to build, in case you want to work on the project itself.
 
-After cloning the repository, you will need to add Alamofire v4.7.2, there are several ways to do so:
+After cloning the repository, you will need to add Alamofire v4.7.3, there are several ways to do so:
 
 ##### Submodule
 
@@ -109,7 +111,7 @@ git submodule update --init Alamofire
 
 ##### Download source
 
-You can download Alamofire v4.7.2 from [here](https://github.com/Alamofire/Alamofire/archive/4.7.2.zip). Then follow the instruction in [Add library](#add-library).
+You can download Alamofire v4.7.3 from [here](https://github.com/Alamofire/Alamofire/archive/4.7.3.zip). Then follow the instruction in [Add library](#add-library).
 
 ## Usage
 
@@ -290,6 +292,10 @@ You can [open an issue through GitHub](https://github.com/cloudinary/cloudinary_
 Contact us at [https://cloudinary.com/contact](https://cloudinary.com/contact).
 
 Stay tuned for updates, tips and tutorials: [Blog](https://cloudinary.com/blog), [Twitter](https://twitter.com/cloudinary), [Facebook](https://www.facebook.com/Cloudinary).
+
+## Join the Community ##########################################################
+
+Impact the product, hear updates, test drive new features and more! Join [here](https://www.facebook.com/groups/CloudinaryCommunity).
 
 ## License
 

@@ -206,3 +206,9 @@ query FetchVibeData($vibeId: ID!){
         }
     }
 }
+
+mutation UpdateLastPublicVibeFetchTime($userId: ID) {
+    updateLastPublicVibeFetchTime(userId: $userId) {
+        userId
+    }
+}

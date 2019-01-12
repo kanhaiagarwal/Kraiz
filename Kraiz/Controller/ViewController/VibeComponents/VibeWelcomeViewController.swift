@@ -24,11 +24,19 @@ class VibeWelcomeViewController: UIViewController {
         vibeName.text = vibeModel!.vibeName
         backgroundImage.image = UIImage(named: VibeCategories.vibeWelcomebackground[vibeModel!.category])
         if !isPreview {
-            if !CacheHelper.shared.getSeenStatusOfVibe(vibeId: vibeModel!.id) {
-                AppSyncHelper.shared.updateSeenStatusOfVibe(vibeId: vibeModel!.id, seenStatus: true)
+            if vibeModel!.type == 0 && vibeModel!.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! {
+                if !CacheHelper.shared.getSeenStatusOfVibe(vibeId: vibeModel!.id) {
+                    AppSyncHelper.shared.updateSeenStatusOfVibe(vibeId: vibeModel!.id, seenStatus: true)
+                }
+            }
+            print("vibeModel!.type: \(vibeModel!.type)")
+            print("vibeModel!.from!.getUsername()!: \(vibeModel!.from!.getUsername()!)")
+            print("UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!: \(UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!)")
+            if vibeModel!.type == 1 && vibeModel!.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! {
+                print("=========> this is a public vibe which is not created by the user")
+                AppSyncHelper.shared.updateLastSeenPublicVibeTime()
             }
         }
-        print("isPreview: \(isPreview)")
     }
 
     override func viewWillAppear(_ animated: Bool) {

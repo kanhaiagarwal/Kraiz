@@ -47,8 +47,8 @@ mutation DeleteUserChannelUpdates(
     liveProfileBucketIds: $liveProfileBucketIds
   )
 }
-mutation UpdateLastPublicVibeFetchTime {
-  updateLastPublicVibeFetchTime {
+mutation UpdateLastPublicVibeFetchTime($userId: ID) {
+  updateLastPublicVibeFetchTime(userId: $userId) {
     userId
     liveVibeBucketIds
     liveProfileBucketIds

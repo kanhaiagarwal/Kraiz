@@ -2652,13 +2652,13 @@ its the right one</string>
                                                 <rect key="frame" x="0.0" y="314.5" width="414" height="57"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blV-dE-aGm">
-                                                        <rect key="frame" x="28" y="5" width="34.5" height="52"/>
+                                                        <rect key="frame" x="28" y="5" width="30.5" height="52"/>
                                                         <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="26"/>
                                                         <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Risk_rk" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fNK-4C-n5O">
-                                                        <rect key="frame" x="67.5" y="0.0" width="316.5" height="57"/>
+                                                        <rect key="frame" x="63.5" y="0.0" width="320.5" height="57"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" red="0.18431372549019609" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
@@ -2680,13 +2680,13 @@ its the right one</string>
                                                 <rect key="frame" x="0.0" y="379.5" width="414" height="57"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7r-3i-aPf">
-                                                        <rect key="frame" x="28" y="0.0" width="178.5" height="57"/>
+                                                        <rect key="frame" x="28" y="0.0" width="142.5" height="57"/>
                                                         <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
                                                         <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="The Sutta" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4wH-Bn-kZh" userLabel="StoryNameLine1">
-                                                        <rect key="frame" x="216.5" y="0.0" width="167.5" height="57"/>
+                                                        <rect key="frame" x="180.5" y="0.0" width="203.5" height="57"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <color key="textColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
@@ -2935,7 +2935,7 @@ its the right one</string>
                     <view key="view" contentMode="scaleToFill" id="1jF-2K-v6i">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="mom-A5-bTY"/>
                     </view>
                     <connections>
@@ -3123,14 +3123,14 @@ its the right one</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An Appreciation would make this vibe even more awesome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93J-2M-Ckl">
-                                <rect key="frame" x="-16.5" y="331" width="447" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An Appreciation would make this vibe even more awesome" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93J-2M-Ckl">
+                                <rect key="frame" x="20" y="311" width="374" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hail the Vibe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wta-By-ldo">
-                                <rect key="frame" x="147.5" y="292" width="119" height="24"/>
+                                <rect key="frame" x="147.5" y="272" width="119" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -3169,6 +3169,7 @@ its the right one</string>
                             <constraint firstItem="93J-2M-Ckl" firstAttribute="top" secondItem="wta-By-ldo" secondAttribute="bottom" constant="15" id="Lth-fR-eJZ"/>
                             <constraint firstItem="Sac-Hw-apo" firstAttribute="trailing" secondItem="fMZ-DW-HmV" secondAttribute="trailing" id="Pbz-TA-lnU"/>
                             <constraint firstItem="2h1-ra-oKH" firstAttribute="centerX" secondItem="fvA-Dq-Gs5" secondAttribute="centerX" id="PlY-uG-btg"/>
+                            <constraint firstItem="93J-2M-Ckl" firstAttribute="leading" secondItem="fvA-Dq-Gs5" secondAttribute="leading" constant="20" id="QXv-eR-qTc"/>
                             <constraint firstItem="Jvw-ym-umB" firstAttribute="leading" secondItem="fMZ-DW-HmV" secondAttribute="leading" constant="30" id="cna-c3-eWO"/>
                             <constraint firstItem="Sac-Hw-apo" firstAttribute="leading" secondItem="fMZ-DW-HmV" secondAttribute="leading" id="eic-6I-fWk"/>
                             <constraint firstItem="Jvw-ym-umB" firstAttribute="centerY" secondItem="fvA-Dq-Gs5" secondAttribute="centerY" id="fmx-fr-cms"/>
@@ -3178,6 +3179,7 @@ its the right one</string>
                             <constraint firstItem="Sac-Hw-apo" firstAttribute="top" secondItem="fvA-Dq-Gs5" secondAttribute="top" id="mth-Iy-RLl"/>
                             <constraint firstItem="Jvw-ym-umB" firstAttribute="centerX" secondItem="fvA-Dq-Gs5" secondAttribute="centerX" id="mv2-YE-GMR"/>
                             <constraint firstItem="93J-2M-Ckl" firstAttribute="centerX" secondItem="fvA-Dq-Gs5" secondAttribute="centerX" id="oam-A7-2iK"/>
+                            <constraint firstItem="fMZ-DW-HmV" firstAttribute="trailing" secondItem="93J-2M-Ckl" secondAttribute="trailing" constant="20" id="qFE-On-eGL"/>
                             <constraint firstItem="Jvw-ym-umB" firstAttribute="height" secondItem="Sac-Hw-apo" secondAttribute="height" multiplier="0.1" id="u2U-b5-iPh"/>
                             <constraint firstItem="2h1-ra-oKH" firstAttribute="height" secondItem="Jvw-ym-umB" secondAttribute="height" multiplier="0.5" id="wxt-S7-FfA"/>
                         </constraints>
@@ -3931,7 +3933,7 @@ its the right one</string>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRQ-bc-xqr">
                                                 <rect key="frame" x="286.5" y="19" width="107.5" height="38.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                <state key="normal" title="Ready ➞">
+                                                <state key="normal" title="Ready ❯">
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -4152,7 +4154,7 @@ its the right one</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOVE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3c-sr-YMv">
-                                                <rect key="frame" x="166.5" y="0.0" width="81.5" height="82"/>
+                                                <rect key="frame" x="165.5" y="0.0" width="83" height="82"/>
                                                 <fontDescription key="fontDescription" name="Hero" family="Hero" pointSize="32"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -4179,7 +4181,7 @@ its the right one</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="122.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePf-xb-8sw">
-                                                                <rect key="frame" x="20" y="-3" width="374" height="128.5"/>
+                                                                <rect key="frame" x="20" y="13" width="374" height="96.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <string key="text">Singing and dancing with strangers, eventually friends, capturing each and every moment in my giga pixels camera, eyes, is a never forgettable party.</string>
                                                                 <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="22"/>
@@ -5287,7 +5289,7 @@ its the right one</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="CPU-Kp-dc0"/>
-        <segue reference="AUb-jh-2pV"/>
+        <segue reference="i7q-Jt-iVl"/>
         <segue reference="kHT-Ph-L82"/>
         <segue reference="Lbh-sf-AQL"/>
         <segue reference="ylo-g6-D3y"/>

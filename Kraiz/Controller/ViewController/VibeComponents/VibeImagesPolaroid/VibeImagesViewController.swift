@@ -91,7 +91,7 @@ class VibeImagesViewController: UIViewController {
                 card.layer.shouldRasterize = true
                 view.layer.rasterizationScale = UIScreen.main.scale
                 cards.append(card)
-                cards[i].imageView.image = vibeModel?.images[i].image!
+                cards[i].imageView.image = vibeModel?.images[vibeModel!.images.count - 1 - i].image!
                 cards[i].caption.textAlignment = .center
                 if let caption = vibeModel?.images[i].caption {
                     cards[i].caption.text = caption
@@ -105,15 +105,14 @@ class VibeImagesViewController: UIViewController {
                 } else {
                     cards[i].transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 40)
                 }
-                let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(self.onSwipeCard(sender:)))
-                cards[i].addGestureRecognizer(swipeGesture)
                 let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
                 cards[i].addGestureRecognizer(tapGesture)
                 view.addSubview(cards[i])
-                
             }
         }
-        
+
+        let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(self.onSwipeCard(sender:)))
+        cards[vibeModel!.images.count - 1].addGestureRecognizer(swipeGesture)
         let swipeViewGesture = UIPanGestureRecognizer(target: self, action: #selector(self.onSwipeView(sender:)))
         view.addGestureRecognizer(swipeViewGesture)
     }
@@ -131,20 +130,24 @@ class VibeImagesViewController: UIViewController {
         }
         
         if sender.state == .ended {
-            if cards[tag].center.x < view.center.x / 20 && cards[tag].tag > 0 {
+            // Swipe ended on the left side of the center of the screen
+            if cards[tag].center.x < view.center.x && cards[tag].tag > 0 {
                 UIView.animate(withDuration: 0.3, animations: {
-                    self.cards[tag].center = CGPoint(x: -self.view.center.x, y: self.self.cards[tag].center.y)
-                    self.self.cards[tag].alpha = 0
+                    self.cards[tag].center = CGPoint(x: -self.view.center.x - 50, y: self.self.cards[tag].center.y)
                 })
+                if tag > 0 {
+                    let swipeCardGesture = UIPanGestureRecognizer(target: self, action: #selector(self.onSwipeCard(sender:)))
+                    cards[tag - 1].addGestureRecognizer(swipeCardGesture)
+                }
                 cardOutside = tag
             } else if point.x > 0 && cardOutside < vibeModel!.images.count && cardOutside >= 0 {
-                UIView.animate(withDuration: 0.2, animations: {
+                cards[tag].removeGestureRecognizer(cards[tag].gestureRecognizers![cards[tag].gestureRecognizers!.count - 1])
+                UIView.animate(withDuration: 0.3, animations: {
                     self.cards[self.cardOutside].center = self.view.center
-                    self.self.cards[self.cardOutside].alpha = 1
                     self.cardOutside += 1
                 })
             } else {
-                UIView.animate(withDuration: 0.2, animations: {
+                UIView.animate(withDuration: 0.3, animations: {
                     self.cards[tag].center = self.view.center
                 })
             }
@@ -195,11 +198,14 @@ extension VibeImagesViewController {
         overlayCloseView.addSubview(dismissButton)
         
         let nextButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width - (overlayCloseView.frame.width / 20 + overlayCloseView.frame.height / 2), y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
-        nextButton.setTitle("→", for: .normal)
-        nextButton.setTitleColor(UIColor.white, for: .normal)
+        var nextButtonTitleAttributes = [NSAttributedString.Key : Any]()
+        nextButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
+        nextButtonTitleAttributes[.foregroundColor] = UIColor.white
+        let nextButtonAttributedTitle = NSAttributedString(string: "→", attributes: nextButtonTitleAttributes)
+        nextButton.setAttributedTitle(nextButtonAttributedTitle, for: .normal)
 
         if !isPreview {
-            let nextTapGesture = UITapGestureRecognizer(target: self, action: #selector(onCloseClick))
+            let nextTapGesture = UITapGestureRecognizer(target: self, action: #selector(nextPressed))
             nextButton.addGestureRecognizer(nextTapGesture)
             nextButton.layer.cornerRadius = nextButton.frame.height / 2
             overlayCloseView.addSubview(nextButton)

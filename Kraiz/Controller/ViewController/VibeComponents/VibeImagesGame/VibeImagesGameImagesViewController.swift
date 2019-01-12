@@ -91,7 +91,7 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
         let nextButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width - overlayCloseView.frame.height / 2, y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
         
         var nextButtonTitleAttributes = [NSAttributedString.Key : Any]()
-        nextButtonTitleAttributes[.font] = UIFont.systemFont(ofSize: 35)
+        nextButtonTitleAttributes[.font] = UIFont.systemFont(ofSize: 30)
         nextButtonTitleAttributes[.foregroundColor] = UIColor.white
         let nextButtonAttributedTitle = NSAttributedString(string: "→", attributes: nextButtonTitleAttributes)
         nextButton.setAttributedTitle(nextButtonAttributedTitle, for: .normal)

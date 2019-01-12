@@ -6,7 +6,7 @@ target 'Kraiz' do
   use_frameworks!
 
   # Pods for Kraiz
-  pod 'AWSAppSync', '~> 2.6.19'
+  pod 'AWSAppSync'
   pod 'AWSCognito'
   pod 'AWSCognitoIdentityProvider'
   pod 'BSImagePicker'

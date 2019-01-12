@@ -86,14 +86,15 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
                 }
             }
         }
-        
+
         pageController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: nil)
         pageController.dataSource = self
         pageController.delegate = self
         
         addChild(pageController)
         view.addSubview(pageController.view)
-        
+        view.backgroundColor = UIColor.clear
+
         let views = ["pageController": pageController.view] as [String: AnyObject]
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[pageController]|", options: [], metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[pageController]|", options: [], metrics: nil, views: views))
@@ -101,6 +102,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         for i in 0 ... pageTexts.count - 1 {
             let vc = UIViewController()
             vc.view.isUserInteractionEnabled = true
+            vc.view.backgroundColor = UIColor.clear
 
             let imageView : UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: vc.view.frame.width, height: vc.view.frame.height))
             imageView.image = UIImage(named: VibeTextBackgrounds.TEXT_BACKGROUNDS[vibeModel.letter.background!])
@@ -128,7 +130,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         
         pageController.setViewControllers([controllers[0]], direction: .forward, animated: false)
         overlayCloseView = createOverlayView()
-        overlayNextButton = createOverlayNextButton()
+//        overlayNextButton = createOverlayNextButton()
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -161,7 +163,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
             }
             if self.isNextButtonVisible {
                 self.isNextButtonVisible = false
-                self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width
+                self.overlayNextButton.isHidden = false
             }
             currentPage = index - 1 > 0 ? index - 1 : 0
             if index > 0 {
@@ -184,7 +186,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
             }
             if self.isNextButtonVisible {
                 self.isNextButtonVisible = false
-                self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width
+                self.overlayNextButton.isHidden = true
             }
             if index < controllers.count - 1 {
                 return controllers[index + 1]
@@ -194,6 +196,13 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         }
         
         return nil
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        pageViewController.view.backgroundColor = UIColor.clear
+        for i in 0 ..< pendingViewControllers.count {
+            pendingViewControllers[i].view.backgroundColor = UIColor.clear
+        }
     }
 
     func randomCGFloat() -> CGFloat {
@@ -264,6 +273,22 @@ extension VibeTextViewController {
         overlayCloseView.addSubview(dismissButton)
         view.addSubview(overlayCloseView)
         overlayCloseView.isHidden = true
+        
+        overlayNextButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width - (overlayCloseView.frame.width / 20 + overlayCloseView.frame.height / 2), y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
+        var nextButtonTitleAttributes = [NSAttributedString.Key : Any]()
+        nextButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
+        nextButtonTitleAttributes[.foregroundColor] = UIColor.white
+        let nextButtonAttributedTitle = NSAttributedString(string: "→", attributes: nextButtonTitleAttributes)
+        overlayNextButton.setAttributedTitle(nextButtonAttributedTitle, for: .normal)
+
+        if (!isPreview && vibeModel.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)) || vibeModel.isPhotosPresent {
+            let nextTapGesture = UITapGestureRecognizer(target: self, action: #selector(nextPressed))
+            overlayNextButton.addGestureRecognizer(nextTapGesture)
+            overlayNextButton.layer.cornerRadius = overlayNextButton.frame.height / 2
+            overlayCloseView.addSubview(overlayNextButton)
+            overlayNextButton.isHidden = true
+        }
+
         return overlayCloseView
     }
 
@@ -276,7 +301,7 @@ extension VibeTextViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(nextPressed))
         overlayNextButton.addGestureRecognizer(tapGesture)
         view.addSubview(overlayNextButton)
-        overlayNextButton.isHidden = true
+//        overlayNextButton.isHidden = true
 
         return overlayNextButton
     }
@@ -287,7 +312,7 @@ extension VibeTextViewController {
         self.overlayCloseView.frame.origin.y = -self.overlayCloseView.frame.height
 
         self.isNextButtonVisible = false
-        self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width
+        self.overlayNextButton.isHidden = true
 
         if vibeModel.isPhotosPresent {
             switch vibeModel.imageBackdrop {
@@ -366,11 +391,10 @@ extension VibeTextViewController {
             if self.currentPage == self.controllers.count - 1 {
                 if self.isNextButtonVisible {
                     self.isNextButtonVisible = false
-                    self.overlayNextButton.frame.origin.x += self.overlayNextButton.frame.width
+                    self.overlayNextButton.isHidden = true
                 } else {
                     self.isNextButtonVisible = true
                     self.overlayNextButton.isHidden = false
-                    self.overlayNextButton.frame.origin.x -= self.overlayNextButton.frame.width
                 }
             }
         }) { (success) in

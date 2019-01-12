@@ -92,7 +92,13 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
         cell.vibeCategoryName.text = VibeCategories.getVibeCategoryDisplayName(vibeCategory: vibeCategory)
         cell.vibeCategoryName.textColor = VibeCategories.getVibeCategoryColor(vibeCategory: vibeCategory)
         cell.hailButton.tag = indexPath.row
-        
+
+        if vibe.getHasNewHails() {
+            cell.unseenHailsDot.isHidden = false
+        } else {
+            cell.unseenHailsDot.isHidden = true
+        }
+
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hailButtonPressed(sender:)))
         cell.hailButton.addGestureRecognizer(tapGesture)
 

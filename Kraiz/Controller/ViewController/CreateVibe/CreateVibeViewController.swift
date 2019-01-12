@@ -173,7 +173,6 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         MediaHelper.shared.uploadImagesAsync(images: vibeModel.images, folder: MediaHelperConstants.VIBE_IMAGES_FOLDER, counter: counter)
         AppSyncHelper.shared.createVibe(vibe: vibeModel, success: { (success) in
             DispatchQueue.main.async {
-                
                 if success {
                     counter.value = 1
                 } else {

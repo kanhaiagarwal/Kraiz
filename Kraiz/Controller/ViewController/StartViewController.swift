@@ -69,58 +69,70 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
             }
         } else {
             let currentUser = pool?.currentUser()
+            print("currenUser.isSignedIn: \(currentUser?.isSignedIn)")
 
-            if currentUser != nil {
+            if currentUser != nil && currentUser!.isSignedIn {
                 print("Current User is not nil")
-                let result = currentUser?.getSession().result
-                if result != nil {
-                    print("result is not nil")
-                    print("result?.idToken?.tokenString: \(result?.idToken?.tokenString)")
-                    UserDefaults.standard.set(result?.idToken?.tokenString, forKey: DeviceConstants.ID_TOKEN)
-                    CognitoHelper.shared.currentUser = currentUser
-                    currentUser?.getDetails().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserGetDetailsResponse>) -> Any? in
-                        if let taskResult = task.result {
-                            if let userAttributes = taskResult.userAttributes {
-                                for i in 0 ..< userAttributes.count {
-                                    print("\(userAttributes[i].name): \(userAttributes[i].value)")
-                                    if userAttributes[i].name == "phone_number" {
-                                        UserDefaults.standard.set(userAttributes[i].value!, forKey: DeviceConstants.MOBILE_NUMBER)
-                                        break
+                print("currentUser.getSession(): \(currentUser?.getSession().debugDescription)")
+                currentUser?.getSession().continueWith(block: { (task) -> Any? in
+                    print("inside currentUser?.getSession().continueWith")
+                    print("task: \(task)")
+                    if task.isCompleted {
+                        print("task.result: \(task.result)")
+                        if let result = task.result {
+                            print("task.result is not nil")
+                            print("result?.idToken?.tokenString: \(result.idToken?.tokenString)")
+                            UserDefaults.standard.set(result.idToken?.tokenString, forKey: DeviceConstants.ID_TOKEN)
+                            CognitoHelper.shared.currentUser = currentUser
+                            currentUser?.getDetails().continueOnSuccessWith(block: { (task: AWSTask<AWSCognitoIdentityUserGetDetailsResponse>) -> Any? in
+                                if let taskResult = task.result {
+                                    if let userAttributes = taskResult.userAttributes {
+                                        for i in 0 ..< userAttributes.count {
+                                            print("\(userAttributes[i].name): \(userAttributes[i].value)")
+                                            if userAttributes[i].name == "phone_number" {
+                                                UserDefaults.standard.set(userAttributes[i].value!, forKey: DeviceConstants.MOBILE_NUMBER)
+                                                break
+                                            }
+                                        }
                                     }
                                 }
+                                return nil
+                            }).continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
+                                if let error = task.error {
+                                    print("Error: \(error.localizedDescription)")
+                                }
+                                return nil
+                            })
+                            UserDefaults.standard.set(currentUser?.username!, forKey: DeviceConstants.USER_ID)
+                            AppSyncHelper.shared.setAppSyncClient()
+                            AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (profile) in
+                                print("Inside the getUserProfile of StartViewController where the Internet Connection is available")
+                                DispatchQueue.main.async {
+                                    if profile.getId() != nil {
+                                        UserDefaults.standard.set(profile.getUsername()!, forKey: DeviceConstants.USER_NAME)
+                                        UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                                    } else {
+                                        UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                                    }
+                                    UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_IN)
+                                    self.performSegue(withIdentifier: self.HOME_PAGE_SEGUE, sender: self)
+                                }
+                            }, failure: { (error) in
+                                DispatchQueue.main.async {
+                                    print("Error: \(error)")
+                                    APPUtilites.displayErrorSnackbar(message: "Error in network connection. Please check your internet connection")
+                                }
+                            })
+                            
+                        } else {
+                            print("Session result is nil for the current user")
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: self.WELCOME_PAGE_SEGUE, sender: self)
                             }
                         }
-                        return nil
-                    }).continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
-                        if let error = task.error {
-                            print("Error: \(error.localizedDescription)")
-                        }
-                        return nil
-                    })
-                    UserDefaults.standard.set(currentUser?.username!, forKey: DeviceConstants.USER_ID)
-                    AppSyncHelper.shared.setAppSyncClient()
-                    AppSyncHelper.shared.getUserProfile(userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, success: { (profile) in
-                        print("Inside the getUserProfile of StartViewController where the Internet Connection is available")
-                        DispatchQueue.main.async {
-                            if profile.getId() != nil {
-                                UserDefaults.standard.set(profile.getUsername()!, forKey: DeviceConstants.USER_NAME)
-                                UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
-                            } else {
-                                UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
-                            }
-                            UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_IN)
-                            self.performSegue(withIdentifier: self.HOME_PAGE_SEGUE, sender: self)
-                        }
-                    }, failure: { (error) in
-                        DispatchQueue.main.async {
-                            print("Error: \(error)")
-                            APPUtilites.displayErrorSnackbar(message: "Error in network connection. Please check your internet connection")
-                        }
-                    })
-                } else {
-                    print("Session result is nil for the current user")
-                    performSegue(withIdentifier: self.WELCOME_PAGE_SEGUE, sender: self)
-                }
+                    }
+                    return nil
+                })
             } else {
                 print("Current User is nil")
                 performSegue(withIdentifier: WELCOME_PAGE_SEGUE, sender: self)

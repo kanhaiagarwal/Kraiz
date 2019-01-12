@@ -94,8 +94,16 @@ class VibesViewController: UIViewController {
         } else {
             let currentTime = Int(Date().timeIntervalSince1970)
             let lastTime = CacheHelper.shared.getPublicVibeLastAccessedTime() / 1000
-            let timeDifference = (DeviceConstants.TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS - (currentTime - lastTime)) / 60 > 0 ? "\((DeviceConstants.TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS - (currentTime - lastTime)) / 60 > 0)" : "\((DeviceConstants.TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS - (currentTime - lastTime)) / 3600)"
-            APPUtilites.displayElevatedErrorSnackbar(message: "There are still \(timeDifference) minutes to go")
+            let timeDifference = DeviceConstants.TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS - (currentTime - lastTime)
+            let hours = timeDifference / 3600
+            let minutes = (timeDifference % 3600) / 60
+            let seconds = (timeDifference % 60) % 60
+            let okayAction = UIAlertAction(title: "Okay", style: .default) { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            let alertController = UIAlertController(title: "Public Vibe Not ready", message: "The public vibe will be ready in \(hours):\(minutes):\(seconds)", preferredStyle: .alert)
+            alertController.addAction(okayAction)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 

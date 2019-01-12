@@ -3383,3 +3383,82 @@ public final class FetchVibeDataQuery: GraphQLQuery {
     }
   }
 }
+
+public final class UpdateLastPublicVibeFetchTimeMutation: GraphQLMutation {
+  public static let operationString =
+    "mutation UpdateLastPublicVibeFetchTime($userId: ID) {\n  updateLastPublicVibeFetchTime(userId: $userId) {\n    __typename\n    userId\n  }\n}"
+
+  public var userId: GraphQLID?
+
+  public init(userId: GraphQLID? = nil) {
+    self.userId = userId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["userId": userId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("updateLastPublicVibeFetchTime", arguments: ["userId": GraphQLVariable("userId")], type: .nonNull(.object(UpdateLastPublicVibeFetchTime.selections))),
+    ]
+
+    public var snapshot: Snapshot
+
+    public init(snapshot: Snapshot) {
+      self.snapshot = snapshot
+    }
+
+    public init(updateLastPublicVibeFetchTime: UpdateLastPublicVibeFetchTime) {
+      self.init(snapshot: ["__typename": "Mutation", "updateLastPublicVibeFetchTime": updateLastPublicVibeFetchTime.snapshot])
+    }
+
+    public var updateLastPublicVibeFetchTime: UpdateLastPublicVibeFetchTime {
+      get {
+        return UpdateLastPublicVibeFetchTime(snapshot: snapshot["updateLastPublicVibeFetchTime"]! as! Snapshot)
+      }
+      set {
+        snapshot.updateValue(newValue.snapshot, forKey: "updateLastPublicVibeFetchTime")
+      }
+    }
+
+    public struct UpdateLastPublicVibeFetchTime: GraphQLSelectionSet {
+      public static let possibleTypes = ["UserChannel"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("userId", type: .nonNull(.scalar(GraphQLID.self))),
+      ]
+
+      public var snapshot: Snapshot
+
+      public init(snapshot: Snapshot) {
+        self.snapshot = snapshot
+      }
+
+      public init(userId: GraphQLID) {
+        self.init(snapshot: ["__typename": "UserChannel", "userId": userId])
+      }
+
+      public var __typename: String {
+        get {
+          return snapshot["__typename"]! as! String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var userId: GraphQLID {
+        get {
+          return snapshot["userId"]! as! GraphQLID
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "userId")
+        }
+      }
+    }
+  }
+}

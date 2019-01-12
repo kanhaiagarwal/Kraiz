@@ -20,7 +20,9 @@ class VibeHailInputViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        hailUserLabel.text = "Hail \(vibeModel!.from?.getUsername() != nil ? vibeModel!.from?.getUsername()! : "The User")"
+        let user = vibeModel!.from!.getUsername() != nil ? vibeModel!.from!.getUsername()! : "The User"
+        print("user inside hailInput: \(user)")
+        hailUserLabel.text = "Hail \(user)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +53,7 @@ class VibeHailInputViewController: UIViewController {
     }
 
     @IBAction func hailPressed(_ sender: UIButton) {
+        dismissKeyboard()
         AppSyncHelper.shared.sendHail(hailText: hailTextView.text, vibeId: vibeModel!.id, sender: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!) { [weak self] (success) in
             DispatchQueue.main.async {
                 if success {

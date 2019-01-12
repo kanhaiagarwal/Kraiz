@@ -64,7 +64,7 @@ class PublicVibesChoiceViewController: UIViewController {
         bgView.layer.addSublayer(gradientLayer!)
         loadingLabel.text = "Loading ...."
         loadingLabel.textColor = UIColor.white
-        loadingLabel.font = UIFont.systemFont(ofSize: 26)
+        loadingLabel.font = UIFont.systemFont(ofSize: 24)
         loadingLabel.frame = publicVibesTableView.frame
         loadingLabel.textAlignment = .center
         publicVibesTableView.backgroundView = loadingLabel
@@ -90,7 +90,7 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
         cell.profileImage.image = UIImage(named: "profile-default")
         let vibe = allVibes![indexPath.row]
 //        let profile = allProfiles![(vibe.from?.getId())!]
-//        cell.usernameLabel.text = profile?.getUsername() != nil ? profile?.getUsername() : "None"
+        cell.usernameLabel.text = vibe.from!.getUsername() != nil ? vibe.from!.getUsername()! : "User"
         switch viewHeight {
             case DeviceConstants.IPHONE7_HEIGHT:
                 cell.usernameLabel.font = UIFont(name: "Helvetica Neue", size: 17)
@@ -113,7 +113,6 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
                 cell.vibeNameLabel.font = UIFont(name: "Helvetica Neue", size: 17)
                 break
         }
-        cell.usernameLabel.text = "kanhai.agarwal"
         cell.vibeNameLabel.text = vibe.vibeName
         return cell
     }
@@ -157,14 +156,11 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
                 let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
                 vibeWelcomeVC.vibeModel = vibe
                 let presentingVC = self.presentingViewController!.presentingViewController!
-                let homeVC = self.presentingViewController!.presentingViewController!.presentingViewController!
+                let homeVC = self.presentingViewController!.presentingViewController!
                 presentingVC.dismiss(animated: true) {
                     print("inside presentingVC.dismiss")
-                    self.dismiss(animated: false, completion: {
-                        print("inside self.dismiss")
-                        homeVC.present(vibeWelcomeVC, animated: true, completion: {
-                            print("inside homeVC.present")
-                        })
+                    homeVC.present(vibeWelcomeVC, animated: true, completion: {
+                        print("inside homeVC.present")
                     })
                 }
             } else {
@@ -186,14 +182,11 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
                             let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
                             vibeWelcomeVC.vibeModel = vibe
                             let presentingVC = self.presentingViewController!.presentingViewController!
-                            let homeVC = self.presentingViewController!.presentingViewController!.presentingViewController!
+                            let homeVC = self.presentingViewController!.presentingViewController!
                             presentingVC.dismiss(animated: true) {
                                 print("inside presentingVC.dismiss")
-                                self.dismiss(animated: false, completion: {
-                                    print("inside self.dismiss")
-                                    homeVC.present(vibeWelcomeVC, animated: true, completion: {
-                                        print("inside homeVC.present")
-                                    })
+                                homeVC.present(vibeWelcomeVC, animated: true, completion: {
+                                    print("inside homeVC.present")
                                 })
                             }
                         }
