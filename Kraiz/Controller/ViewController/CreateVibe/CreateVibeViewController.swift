@@ -144,7 +144,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
             vibeModel.isPhotosPresent = true
             for i in 0 ..< vibeModel.images.count {
                 let timeNow = String(Int(Date().timeIntervalSince1970))
-                vibeModel.images[i].imageLink = "IMG_" + timeNow + "_" + NSUUID().uuidString + ".jpg"
+                vibeModel.images[i].imageLink = "IMG_" + timeNow + "_" + NSUUID().uuidString
                 FileManagerHelper.shared.storeImageInFolder(image: vibeModel.images[i].image!, folder: "\(MediaHelper.shared.COMMON_FOLDER)/\(MediaHelper.shared.VIBE_IMAGES_FOLDER)", fileName: vibeModel.images[i].imageLink!)
             }
         }

@@ -71,7 +71,11 @@ class VibeHailInputViewController: UIViewController {
 
         if vibeModel!.isLetterPresent && vibeModel!.isPhotosPresent {
             if vibeModel!.getSeenIds().count == 0 {
-                presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!.presentingViewController!.presentingViewController!
+                if vibeModel!.imageBackdrop == 0 {
+                    presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!.presentingViewController!
+                } else {
+                    presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!.presentingViewController!.presentingViewController!
+                }
             } else {
                 presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!.presentingViewController!
             }

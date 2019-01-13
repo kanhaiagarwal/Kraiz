@@ -281,7 +281,7 @@ extension VibeTextViewController {
         let nextButtonAttributedTitle = NSAttributedString(string: "→", attributes: nextButtonTitleAttributes)
         overlayNextButton.setAttributedTitle(nextButtonAttributedTitle, for: .normal)
 
-        if (!isPreview && vibeModel.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)) || vibeModel.isPhotosPresent {
+        if (!isPreview && vibeModel.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!) || (!isPreview && vibeModel.from!.getUsername()! == UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! && vibeModel.isPhotosPresent) || (isPreview && vibeModel.isPhotosPresent) {
             let nextTapGesture = UITapGestureRecognizer(target: self, action: #selector(nextPressed))
             overlayNextButton.addGestureRecognizer(nextTapGesture)
             overlayNextButton.layer.cornerRadius = overlayNextButton.frame.height / 2

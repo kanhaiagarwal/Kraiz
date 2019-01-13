@@ -96,7 +96,7 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
         let nextButtonAttributedTitle = NSAttributedString(string: "→", attributes: nextButtonTitleAttributes)
         nextButton.setAttributedTitle(nextButtonAttributedTitle, for: .normal)
 
-        if !isPreview && (vibeModel!.to?.getUsername() != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)){
+        if (!isPreview && vibeModel!.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!) || (!isPreview && vibeModel!.from!.getUsername()! == UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! && vibeModel!.isPhotosPresent) || (isPreview && vibeModel!.isPhotosPresent) {
             let nextTapGesture = UITapGestureRecognizer(target: self, action: #selector(nextPressed))
             nextButton.addGestureRecognizer(nextTapGesture)
             nextButton.layer.cornerRadius = nextButton.frame.height / 2

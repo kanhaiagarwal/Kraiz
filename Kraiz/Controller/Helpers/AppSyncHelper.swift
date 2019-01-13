@@ -487,6 +487,11 @@ class AppSyncHelper {
         if sender == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! {
             vibeModel.from?.setMobileNumber(mobileNumber: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)!)
             vibeModel.from?.setUsername(username: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!)
+        } else {
+            let profile = CacheHelper.shared.getProfileById(id: sender)
+            vibeModel.from?.setUsername(username: profile?.getUsername())
+            vibeModel.from?.setMobileNumber(mobileNumber: profile?.getMobileNumber())
+            vibeModel.from?.setProfilePicId(profilePicId: profile?.getProfilePicId())
         }
         vibeModel.setAnonymous(isSenderAnonymous: vibeData["isAnonymous"] as! Bool)
         vibeModel.setVersion(version: vibeData["version"] as! Int)
@@ -778,7 +783,7 @@ class AppSyncHelper {
         }
         
         if vibe.isBackgroundMusicEnabled {
-            let musicComponent = VibeComponentInput(ids: [BackgroundMusic.musicList[vibe.backgroundMusicIndex]], sequence: nil, texts: nil, format: Format.backgroundMusic, template: nil, globalSequence: 0)
+            let musicComponent = VibeComponentInput(ids: [String(vibe.backgroundMusicIndex)], sequence: nil, texts: nil, format: Format.backgroundMusic, template: nil, globalSequence: 0)
             vibeComponents.append(musicComponent)
         }
 
