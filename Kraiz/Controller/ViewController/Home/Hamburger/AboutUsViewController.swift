@@ -11,10 +11,16 @@ import UIKit
 
 class AboutUsViewController: UIViewController {
     
+    @IBOutlet weak var aboutUsText: UITextView!
     @IBOutlet weak var instagramButton: UIButton!
     @IBOutlet weak var facebookButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        aboutUsText.contentOffset = CGPoint(x: 0, y: 0)
     }
     
     @IBAction func onBackClick(_ sender: UIButton) {

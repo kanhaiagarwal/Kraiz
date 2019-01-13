@@ -4878,9 +4878,9 @@ its the right one</string>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PHJ-h8-NVX">
                                                                 <rect key="frame" x="20" y="20" width="374" height="548"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <string key="text">Kraiz was formed based on a simple idea that people can't entirely give off their vibes. Once, we were going down the memory lane, looking at our college photos and cherishing the moments. Suddenly, one of us played some soothing background music. Now, we were not reminiscing the memories, we were actually reliving the moments. That's when the idea struck in our mind, we felt that when you capture photos and write text with some good backgrounds and swathe it in background music, that's when the true vibes are perceived. So, now Kraiz is a platform where people can share their vibes, and can also capture someone else's vibes. As of now, we have 6 vibe tags- Love vibes, Travel vibes, Good vibes, Party vibes, Nostalgic vibes, and Occasion vibes. Our vision is that people capture their each and every vibe and share it with the world; also, get whatever vibes they want to feel.</string>
+                                                                <mutableString key="text">Kraiz was formed based on a simple idea that people can't entirely give off their vibes. Once, we were going down the memory lane, looking at our college photos and cherishing the moments. Suddenly, one of us played some soothing background music. Now, we were not reminiscing the memories, we were actually reliving the moments. That's when the idea struck in our mind, we felt that when you capture photos and write text with some good backgrounds and swathe it in background music, that's when the true vibes are perceived. Kraiz is a platform where people can share their vibes. Along with this, they can capture someone else's vibes. As of now, we have 6 vibe tags- Love vibes, Travel vibes, Good vibes, Party vibes, Nostalgic vibes, and Occasion vibes. Our vision is that people capture their each and every vibe and share it with the world, and receive whichever Vibe they want to feel at that moment.</mutableString>
                                                                 <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
                                                         </subviews>
@@ -4926,6 +4926,7 @@ its the right one</string>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="aboutUsText" destination="PHJ-h8-NVX" id="Np1-c2-4gM"/>
                         <outlet property="facebookButton" destination="byc-d2-2yC" id="SoL-pv-bxQ"/>
                         <outlet property="instagramButton" destination="W3f-jr-BeF" id="3yM-81-Vbi"/>
                     </connections>

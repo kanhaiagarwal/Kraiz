@@ -42,18 +42,12 @@ class InviteFriendsViewController: UIViewController {
     }
     
     @objc func whatsappTapped() {
-        if let appURL = URL(string: "whatsapp://") {
-            let canOpenURL = UIApplication.shared.canOpenURL(appURL)
-            print("\(canOpenURL)")
-            
-            let appName = "WhatsApp"
-            let appScheme = "\(appName)://"
-            let appSchemeUrl = URL(string: appScheme)
-            
-            if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
-                UIApplication.shared.open(appSchemeUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-            } else {
-                UIApplication.shared.open(URL(string: "http://whatsapp.com")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+        var str = "Please download Kraiz to create Vibes that you feel everyday. Share them with your friends and people who want to receive the same vibes."
+        str=str.addingPercentEncoding(withAllowedCharacters: (NSCharacterSet.urlQueryAllowed))!
+        let whatsappURL = URL(string: "whatsapp://send?text=\(str)")
+        if let url = whatsappURL {
+            UIApplication.shared.open(url, options: [:]) { (success) in
+                print("success: \(success)")
             }
         }
     }
