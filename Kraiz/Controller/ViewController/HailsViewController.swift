@@ -18,7 +18,7 @@ class HailsViewController: UIViewController {
     @IBOutlet weak var hailsTable: UITableView!
     
     let HAILS_VIEW_MIN_HEIGHT_PROPORTION = 0.2
-    let HAILS_ANIMATION_TIME = 0.5
+    let HAILS_ANIMATION_TIME = 0.2
     let HAILS_VIEW_HEIGHT_INCREASE_STEPS = 0.1
     let HAILS_VIEW_MAX_HEIGHT_PROPORTION = 0.8
     let MAX_HAILS_IN_SINGLE_VIEW = 8
@@ -34,7 +34,7 @@ class HailsViewController: UIViewController {
         super.viewDidLoad()
 
         hailsView.isUserInteractionEnabled = true
-        let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(dismissVC))
+        let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(dismissVC(sender:)))
         hailsView.addGestureRecognizer(swipeGesture)
         if let hailResult = CacheHelper.shared.getHailsOfVibe(vibeId: vibeId!) {
             if hailResult.count == 0 {
@@ -79,12 +79,23 @@ class HailsViewController: UIViewController {
         }
     }
     
-    @objc func dismissVC() {
-        UIView.animate(withDuration: TimeInterval(exactly: HAILS_ANIMATION_TIME)!, animations: { [weak self] in
-            self!.hailsView.frame = CGRect(x: 0, y: self!.view.frame.height, width: self!.hailsView.frame.width
-                , height: (self?.hailsView.frame.height)!)
-        }) { [weak self] (completed) in
-            self?.dismiss(animated: false, completion: nil)
+    @objc func dismissVC(sender: UIPanGestureRecognizer) {
+        
+        // This gives the point relative to the point where the touch first happended
+        let point = sender.translation(in: view)
+
+        // When the user swipes down
+        if point.y > 0 {
+            hailsView.center.y += point.y
+        }
+
+        if sender.state == .ended {
+            UIView.animate(withDuration: TimeInterval(exactly: HAILS_ANIMATION_TIME)!, animations: { [weak self] in
+                self!.hailsView.frame = CGRect(x: 0, y: self!.view.frame.height, width: self!.hailsView.frame.width
+                    , height: (self?.hailsView.frame.height)!)
+            }) { [weak self] (completed) in
+                self?.dismiss(animated: false, completion: nil)
+            }
         }
     }
 

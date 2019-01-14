@@ -131,18 +131,28 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         let profileId = vibe.getProfileId()!
         if let profile = CacheHelper.shared.getProfileById(id: profileId) {
             cell.senderName.text = profile.getUsername()!
-            if profile.getProfilePicId() != "NONE" && profile.getProfilePicId() != nil {
-                MediaHelper.shared.getProfileImage(publicId: profile.getProfilePicId()!, success: { (image) in
-                    DispatchQueue.main.async {
-                        cell.profileImage.image = image
+            if profile.getProfilePicId() != nil && profile.getProfilePicId() != "NONE" {
+                if FileManagerHelper.shared.doesFileExist(filePath: FileManagerHelper.shared.getFileUrl(fileName: profile.getProfilePicId()!, folder: MediaHelper.shared.PROFILE_PIC_FOLDER).absoluteString) {
+                    let filePath = FileManagerHelper.shared.getFileUrl(fileName: profile.getProfilePicId()!, folder: MediaHelper.shared.PROFILE_PIC_FOLDER).absoluteString
+                    if let data = FileManagerHelper.shared.getImageDataFromPath(filePath: filePath, isJpgExtensionRequired: false) {
+                        cell.profileImage.image = UIImage(data: data)
+                    } else {
+                        cell.profileImage.image = UIImage(named: DEFAULT_PROFILE_PIC)
                     }
-                }) { [weak self] (error) in
-                    DispatchQueue.main.async {
-                        cell.profileImage.image = UIImage(named: self!.DEFAULT_PROFILE_PIC)
+                } else {
+                    MediaHelper.shared.getProfileImage(publicId: profile.getProfilePicId()!, success: { (image) in
+                        DispatchQueue.main.async {
+                            cell.profileImage.image = image
+                        }
+                    }) { [weak self] (error) in
+                        DispatchQueue.main.async {
+                            cell.profileImage.image = UIImage(named: self!.DEFAULT_PROFILE_PIC)
+                        }
                     }
                 }
             }
         } else {
+            cell.profileImage.image = UIImage(named: DEFAULT_PROFILE_PIC)
             cell.senderName.text = "None"
         }
 

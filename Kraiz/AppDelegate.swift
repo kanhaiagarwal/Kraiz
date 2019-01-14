@@ -11,6 +11,8 @@ import CoreData
 import AWSAppSync
 import AWSCore
 import AWSCognitoIdentityProvider
+import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInteractiveAuthenticationDelegate {
@@ -23,8 +25,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
         let configuration = AWSCognitoIdentityUserPoolConfiguration(clientId: AWSConstants.COGNITO_APP_CLIENT_ID, clientSecret: AWSConstants.COGNITO_APP_CLIENT_SECRET, poolId: AWSConstants.COGNITO_USER_POOL_ID)
         AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: configuration, forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         CognitoHelper.shared.setUserPool()
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self as MessagingDelegate
+
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+
+        application.registerForRemoteNotifications()
         
+//        InstanceID.instanceID().instanceID { (result, error) in
+//            if let error = error {
+//                print("Error fetching remote instance ID: \(error)")
+//            } else if let result = result {
+//                print("Remote instance ID token: \(result.token)")
+//                self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
+//            }
+        }
+
         return true
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("APNs token retrieved: \(deviceToken)")
+//        Messaging.messaging().isAutoInitEnabled = true
+//        Messaging.messaging().apnsToken = deviceToken
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -111,3 +145,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
     }
 }
 
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("fcmToken: \(fcmToken)")
+    }
+}

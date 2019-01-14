@@ -29,7 +29,7 @@ class VibeImagesGameCaptionsViewController: UIViewController {
 //        createVibeModel()
         viewHeight = view.frame.height
         setHeaderFont()
-        maxSelectionsCount = 2 * vibeModel!.getImages().count / 3
+        maxSelectionsCount = Int(round(Double(2 * vibeModel!.getImages().count / 3)))
         super.viewDidLoad()
         captionsTable.backgroundColor = UIColor.clear
         captionsTable.layer.backgroundColor = UIColor.clear.cgColor
@@ -64,6 +64,7 @@ class VibeImagesGameCaptionsViewController: UIViewController {
     }
 
     @IBAction func closePressed(_ sender: Any) {
+        AudioControls.shared.stopMusic()
         if vibeModel!.isLetterPresent {
             let presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!
             presentingVC.dismiss(animated: true) {
@@ -85,10 +86,10 @@ class VibeImagesGameCaptionsViewController: UIViewController {
             }
         }
         if !atleastOneImageSelected {
-            APPUtilites.displayErrorSnackbar(message: "Please select atleast one caption")
+            APPUtilites.displayErrorSnackbar(message: "Please select at least one caption")
             return
         }
-        if !isPreview && vibeModel!.from?.getUsername() != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! {
+        if !isPreview && vibeModel!.from?.getUsername() != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! && vibeModel!.type == 1 {
             var seenIds = [String]()
             for i in 0 ..< vibeModel!.getImages().count {
                 if captionsSelected[i]! {

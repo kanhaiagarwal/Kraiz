@@ -138,13 +138,13 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
     @IBAction func hidePasswordPressed(_ sender: UIButton) {
         passwordField.isSecureTextEntry = !passwordField.isSecureTextEntry
         if passwordField.isSecureTextEntry == true {
-            hidePasswordButton.setImage(UIImage(named: "show-password"), for: .normal)
+            hidePasswordButton.setImage(UIImage(named: "hide-password"), for: .normal)
         } else {
             // The position of the cursor on unsecured text is shown wrong. This is because the width of the secured text and unsecured text are different.
             let tempText = passwordField.text
             passwordField.text = ""
             passwordField.text = tempText
-            hidePasswordButton.setImage(UIImage(named: "hide-password"), for: .normal)
+            hidePasswordButton.setImage(UIImage(named: "show-password"), for: .normal)
         }
     }
     

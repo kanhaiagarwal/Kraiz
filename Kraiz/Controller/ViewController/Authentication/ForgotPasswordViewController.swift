@@ -32,7 +32,7 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pool = AWSCognitoIdentityUserPool(forKey: "Kraiz-2")
+        pool = AWSCognitoIdentityUserPool(forKey: AWSConstants.COGNITO_USER_POOL_NAME)
         pool?.delegate = self
     self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
     }
@@ -107,6 +107,8 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
              phoneNumberField.text!
         
         self.user = pool?.getUser(username)
+        print("pool: \(pool)")
+        print("user: \(user)")
         
         let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
         CognitoHelper.shared.forgotPassword(user: user!, success: {
@@ -142,6 +144,10 @@ class ForgotPasswordViewController: UIViewController, UIPickerViewDelegate, AWSC
             destinationVC?.user = user!
             destinationVC?.username = countryCodeField.text! + phoneNumberField.text!
         }
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 

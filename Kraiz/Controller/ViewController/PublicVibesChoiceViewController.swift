@@ -32,11 +32,6 @@ class PublicVibesChoiceViewController: UIViewController {
         quoteLabel.text = VibeQuotes.shared.getQuote(tagIndex: tagSelected, quoteIndex: Int.random(in: 0..<VibeQuotes.shared.getNumberOfQuotesForATag(tagIndex: tagSelected)))
         heading.text = VibeCategories.pickerStrings[tagSelected]
         loadingLabel.numberOfLines = 0
-        if allVibes != nil {
-            for i in 0 ..< allVibes!.count {
-                AppSyncHelper.shared.incrementReachOfVibe(vibeId: allVibes![i].id, completionHandler: nil)
-            }
-        }
         
         AppSyncHelper.shared.getRandomPublicVibes(vibeTag: VibeCategories.getVibeTag(index: tagSelected)) {(error, allVibes, allProfiles)  in
             DispatchQueue.main.async {
@@ -48,6 +43,9 @@ class PublicVibesChoiceViewController: UIViewController {
                     self.allProfiles = allProfiles
                     self.publicVibesTableView.backgroundView = nil
                     self.publicVibesTableView.reloadData()
+                    for i in 0 ..< allVibes!.count {
+                        AppSyncHelper.shared.incrementReachOfVibe(vibeId: allVibes![i].id, completionHandler: nil)
+                    }
                 } else {
                     self.loadingLabel.text = "Sorry, no vibes are available right now. Please try after sometime."
                 }
@@ -87,8 +85,23 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("VibeChoiceTableViewCell", owner: self, options: nil)?.first as! VibeChoiceTableViewCell
-        cell.profileImage.image = UIImage(named: "profile-default")
         let vibe = allVibes![indexPath.row]
+        let profile = allProfiles != nil && vibe != nil && vibe.from != nil && vibe.from!.getId() != nil ? allProfiles![vibe.from!.getId()!] : nil
+        if profile != nil, let profilePicId = profile!.getProfilePicId() {
+            print("profilePicId: \(profilePicId)")
+            MediaHelper.shared.getProfileImage(publicId: profilePicId, success: { (image) in
+                DispatchQueue.main.async {
+                    cell.profileImage.image = image
+                }
+            }) { (error) in
+                DispatchQueue.main.async {
+                    cell.profileImage.image = UIImage(named: "profile-default")
+                }
+            }
+        } else {
+            print("no profilePicId")
+            cell.profileImage.image = UIImage(named: "profile-default")
+        }
 //        let profile = allProfiles![(vibe.from?.getId())!]
         cell.usernameLabel.text = vibe.from!.getUsername() != nil ? vibe.from!.getUsername()! : "User"
         switch viewHeight {

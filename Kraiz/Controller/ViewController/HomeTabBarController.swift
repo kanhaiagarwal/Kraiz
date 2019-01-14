@@ -99,6 +99,8 @@ extension UITabBarController {
         createButton.adjustsImageWhenHighlighted = false
         createButton.addTarget(self, action: #selector(self.onClickCreateButton), for: .touchUpInside)
         self.tabBar.addSubview(createButton)
+        
+        self.tabBar.items![2].badgeColor = UIColor.clear
     }
     
     // Goto the create story view controller

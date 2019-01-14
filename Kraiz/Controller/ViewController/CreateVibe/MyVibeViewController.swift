@@ -105,12 +105,12 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
         vibeTypeSegment.selectedSegmentIndex = vibeModel.type
 
         // Set the mobile number field during the loading of the view.
-        if vibeModel.to?.getMobileNumber() == "" {
+        if vibeModel.to?.getMobileNumber() == nil ||  vibeModel.to?.getMobileNumber()! == "" {
             displayCountryCodeTextField()
             friendsUsernameField.text = nil
         } else {
             removeCountryCodeTextField()
-            vibeModel.to?.setMobileNumber(mobileNumber: friendsUsernameField.text)
+            friendsUsernameField.text = vibeModel.to?.getMobileNumber()!
         }
         
         // Set the vibe name field during the loading of the view.
@@ -656,11 +656,16 @@ extension MyVibeViewController: CNContactPickerDelegate {
         contactNumber = contactNumber.replacingOccurrences(of: " ", with: "")
         contactNumber = contactNumber.replacingOccurrences(of: "(", with: "")
         contactNumber = contactNumber.replacingOccurrences(of: ")", with: "")
-        friendsUsernameField.text = contactNumber
         if contactNumber.starts(with: "+") {
             removeCountryCodeTextField()
         } else {
             displayCountryCodeTextField()
+            if contactNumber.starts(with: "0") {
+                while (contactNumber.starts(with: "0")) {
+                    contactNumber.removeFirst()
+                }
+            }
         }
+        friendsUsernameField.text = contactNumber
     }
 }

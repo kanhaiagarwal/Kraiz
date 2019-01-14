@@ -9,7 +9,7 @@
 import Foundation
 
 public class CountryCodes {
-    static public let pickerStrings = ["Bangladesh (+123)", "India (+91)", "Pakistan (+92)", "USA (+1)"]
+    static public let pickerStrings = ["India (+91)"]
     
-    static public let countryCodes = ["+123", "+91", "+92", "+1"]
+    static public let countryCodes = ["+91"]
 }

@@ -366,8 +366,10 @@ class AppSyncHelper {
     }
 
     func getUserVibe(vibeId: String, vibeType: Int, vibeTag: Int, completionHandler: ((Error?, VibeModel?) -> Void)?) {
+        print("inside getUserVibe")
+        print("vibeId: \(vibeId)")
         let query = FetchVibeDataQuery(vibeId: vibeId)
-        let cachePolicy = CachePolicy.returnCacheDataAndFetch
+        let cachePolicy = CachePolicy.fetchIgnoringCacheData
 
         if appSyncClient == nil {
             setAppSyncClient()
@@ -549,6 +551,7 @@ class AppSyncHelper {
     ///     - vibeId: Vibe ID.
     ///     - completionHandler: Completion Handler
     func incrementReachOfVibe(vibeId: String, completionHandler: ((Bool) -> Void)?) {
+        print("inside incrementReach for vibe \(vibeId)")
         var userInputList = [FsmComponentInput]()
         userInputList.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: nil, id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, author: nil))
         let userComponent = FsmComponent(exists: true, list: userInputList)
@@ -561,12 +564,22 @@ class AppSyncHelper {
             setAppSyncClient()
         }
         if completionHandler == nil {
-            appSyncClient?.perform(mutation: incrementReachMutation)
+            appSyncClient?.perform(mutation: incrementReachMutation, queue: DispatchQueue.global(qos: .userInitiated), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
+                if error != nil || result?.errors != nil {
+                    print("error in incrementReach Query")
+                    print("error: \(error)")
+                    print("result.errors: \(result?.errors)")
+                } else {
+                    print("Success in incrementReachOfVibe query")
+                }
+            })
         } else {
             appSyncClient?.perform(mutation: incrementReachMutation, queue: DispatchQueue.global(qos: .userInteractive), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
                 if (error != nil) || ((result?.errors) != nil) {
+                    print("error in incrementReachOfVibe")
                     completionHandler!(false)
                 } else {
+                    print("incrementReachOfVibe successful")
                     completionHandler!(true)
                 }
             })
@@ -708,8 +721,6 @@ class AppSyncHelper {
                                     vibeModel.setSenderId(sender: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!)
                                     vibeModel.from?.setUsername(username: UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))
                                 } else {
-//                                    let profile = CacheHelper.shared.getProfileById(id: sender)
-//                                    vibeModel.setSenderId(sender: profile?.getUsername()! ?? "User")
                                     let profile = allProfiles[sender]
                                     vibeModel.from?.setId(id: profile?.getId())
                                     vibeModel.from?.setUsername(username: profile?.getUsername())
@@ -745,6 +756,7 @@ class AppSyncHelper {
                                                 photos.append(photo)
                                             }
                                             vibeModel.setImages(photos: photos)
+                                            vibeModel.setImageBackdrop(backdrop: VibeImagesBackdrop.getImagesBackdropIndex(template: component["template"] as! VibeComponentTemplate))
 
                                         }
                                     }
@@ -819,7 +831,7 @@ class AppSyncHelper {
     ///     - success: Success Closure to be invoked if the Create Query succeeds.
     ///     - failure: Failure Closure to be invoked if the Create Query fails.
     public func createUserProfile(profile: ProfileModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
-        let profileInput = CreateUserProfileInput.init(id: profile.getId()!, mobileNumber: profile.getMobileNumber()!, username: profile.getUsername()!, name: profile.getName(), dob: profile.getDob()?.description, gender: profile.getGender().map { Gender(rawValue: $0) } != nil ? profile.getGender().map { Gender(rawValue: $0) }! : Gender.male, profilePicId: profile.getProfilePicId())
+        let profileInput = CreateUserProfileInput.init(id: profile.getId()!, mobileNumber: profile.getMobileNumber()!, username: profile.getUsername()!, name: profile.getName(), dob: profile.getDob()?.description, gender: profile.getGender().map { Gender(rawValue: $0) } != nil ? profile.getGender().map { Gender(rawValue: $0) }! : nil, profilePicId: profile.getProfilePicId())
         
         let createQuery = CreateUserProfileMutation(input: profileInput)
         if appSyncClient == nil {
@@ -846,7 +858,7 @@ class AppSyncHelper {
     ///     - failure: Failure Closure to be invoked if the Update Query fails.
     func updateUserProfile(profile: ProfileModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
         
-        let updateInput = UpdateUserProfileInput(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, username: profile.getUsername(), name: profile.getName(), dob: profile.getDob(), gender: profile.getGender().map { Gender(rawValue: $0) }! ?? Gender(rawValue: "Male"), profilePicId: profile.getProfilePicId())
+        let updateInput = UpdateUserProfileInput(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, username: profile.getUsername(), name: profile.getName(), dob: profile.getDob(), gender: profile.getGender().map { Gender(rawValue: $0) } ?? nil, profilePicId: profile.getProfilePicId())
         let updateQuery = UpdateUserProfileMutation(input: updateInput)
         
         appSyncClient?.perform(mutation: updateQuery, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
@@ -864,19 +876,22 @@ class AppSyncHelper {
         })
     }
 
+    /// Triggers the update profile Action of the FSM to update the profile in all the connected users.
+    /// - Parameters:
+    ///     - completionHandler: (Optional) Closure after the FSM has been triggered.
     func performUpdateProfileForAllUsers(completionHandler: ((Bool) -> Void)?) {
         var userInputList = [FsmComponentInput]()
         userInputList.append(FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: nil, id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, author: nil))
         let userComponent = FsmComponent(exists: true, list: userInputList)
         let fsmInput = FsmInput(action: .updateProfile, users: userComponent, vibes: nil, hails: nil)
-        let incrementReachMutation = TriggerFsmMutation(input: fsmInput, userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
+        let updateProfileTriggerFsmMutation = TriggerFsmMutation(input: fsmInput, userId: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
         if appSyncClient == nil {
             setAppSyncClient()
         }
         if completionHandler == nil {
-            appSyncClient?.perform(mutation: incrementReachMutation)
+            appSyncClient?.perform(mutation: updateProfileTriggerFsmMutation)
         } else {
-            appSyncClient?.perform(mutation: incrementReachMutation, queue: DispatchQueue.global(qos: .userInteractive), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
+            appSyncClient?.perform(mutation: updateProfileTriggerFsmMutation, queue: DispatchQueue.global(qos: .userInteractive), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
                 if (error != nil) || ((result?.errors) != nil) {
                     completionHandler!(false)
                 } else {

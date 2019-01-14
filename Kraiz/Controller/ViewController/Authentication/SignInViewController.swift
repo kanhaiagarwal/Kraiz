@@ -176,11 +176,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
                     } else {
                         UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
                     }
+                    if profileModel.getUsername() != nil {
+                        UserDefaults.standard.set(profileModel.getUsername(), forKey: DeviceConstants.USER_NAME)
+                    }
+                    if profileModel.getMobileNumber() != nil {
+                        UserDefaults.standard.set(profileModel.getMobileNumber(), forKey: DeviceConstants.MOBILE_NUMBER)
+                    }
                     self.gotoHomePage()
                 }
             }, failure: { (error) in
                 APPUtilites.removeLoadingSpinner(spinner: sv)
-                print("Error")
+                print("Error inside getUserProfile of signIn")
                 print(error)
                 if error.userInfo["__type"] as! String == "NoInternetConnectionException" {
                     APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
@@ -208,26 +214,19 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
             })
         }) { (error: NSError) in
             APPUtilites.removeLoadingSpinner(spinner: sv)
+            print("Error inside main signin")
             print("Error")
             print(error)
             if error.userInfo["__type"] as! String == "NoInternetConnectionException" {
                 APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
             } else if error.userInfo["__type"] as! String == "UserNotConfirmedException" {
-                print("======> self.pool!.currentUser(): \(self.pool!.currentUser())")
-                CognitoHelper.shared.resendOTPForSignUp(pool: self.pool!, user: self.pool!.currentUser()!, success: {
-                    self.user = self.pool!.currentUser()
-                    self.gotoOTPPage()
+                let user = self.pool?.getUser(usernameText)
+                print("user inside UserNotConfirmedException: \(user)")
+                CognitoHelper.shared.resendOTPForSignUp(pool: self.pool!, user: user!, success: {
+                        self.user = user!
+                        self.gotoOTPPage()
                 }, failure: { (error) in
-                    print("========> error: \(error)")
-                    if String(describing: error.userInfo["__type"]!) == "NoInternetConnectionException" {
-                        APPUtilites.displayErrorSnackbar(message: "No Internet Connection")
-                    } else if String(describing: error.userInfo["__type"]!) == "UsernameExistsException" {
-                        APPUtilites.displayErrorSnackbar(message: "Mobile number already exists")
-                    } else if String(describing: error.userInfo["__type"]!) == "InvalidPasswordException" {
-                        APPUtilites.displayErrorSnackbar(message: "Please make sure that the password is minimum 8 characters.")
-                    } else if String(describing: error.userInfo["__type"]!) == "InvalidParameterException" {
-                        APPUtilites.displayErrorSnackbar(message: "Please enter a valid mobile number")
-                    }
+                    print("error in resending the code: \(error)")
                 })
             } else if error.userInfo["__type"] as! String == "NotAuthorizedException" {
                 APPUtilites.displayErrorSnackbar(message: "Mobile number/Password combination incorrect")
@@ -273,6 +272,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
             let destinationVC = segue.destination as? SignUpOTPViewController
             destinationVC?.pool = pool
             destinationVC?.cognitoUser = user
+            destinationVC?.isSourceSignIn = true
 
             let usernameText = countryCodeField.text! + usernameField.text!
             destinationVC?.username = usernameText
@@ -285,6 +285,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     
     @IBAction func gotoForgotPassword(_ sender: UIButton) {
         performSegue(withIdentifier: "gotoForgotPassword", sender: self)
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 

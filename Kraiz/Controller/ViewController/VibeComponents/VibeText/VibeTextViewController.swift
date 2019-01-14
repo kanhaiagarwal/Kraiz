@@ -125,7 +125,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
             vc.view.addSubview(textView1)
             controllers.append(vc)
             
-            startMusic()
+//            startMusic()
         }
         
         pageController.setViewControllers([controllers[0]], direction: .forward, animated: false)
@@ -163,7 +163,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
             }
             if self.isNextButtonVisible {
                 self.isNextButtonVisible = false
-                self.overlayNextButton.isHidden = false
+                self.overlayNextButton.isHidden = true
             }
             currentPage = index - 1 > 0 ? index - 1 : 0
             if index > 0 {
@@ -260,9 +260,10 @@ extension VibeTextViewController {
     /// It is initially present outside the view bounds at the top.
     /// - Returns: Overlay UIView.
     func createOverlayView() -> UIView {
-        let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
-        overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
-        let dismissButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width / 20, y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
+        let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 14))
+        overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.2)
+        let dismissButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width / 20, y: overlayCloseView.frame.height / 4, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
+        dismissButton.alpha = 0.8
         var dismissButtonTitleAttributes = [NSAttributedString.Key : Any]()
         dismissButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
         dismissButtonTitleAttributes[.foregroundColor] = UIColor.white
@@ -274,9 +275,10 @@ extension VibeTextViewController {
         view.addSubview(overlayCloseView)
         overlayCloseView.isHidden = true
         
-        overlayNextButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width - (overlayCloseView.frame.width / 20 + overlayCloseView.frame.height / 2), y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
+        overlayNextButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width - (overlayCloseView.frame.width / 20 + overlayCloseView.frame.height / 2), y: overlayCloseView.frame.height / 4, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
+        overlayNextButton.alpha = 0.8
         var nextButtonTitleAttributes = [NSAttributedString.Key : Any]()
-        nextButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
+        nextButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 26)
         nextButtonTitleAttributes[.foregroundColor] = UIColor.white
         let nextButtonAttributedTitle = NSAttributedString(string: "→", attributes: nextButtonTitleAttributes)
         overlayNextButton.setAttributedTitle(nextButtonAttributedTitle, for: .normal)
@@ -389,6 +391,7 @@ extension VibeTextViewController {
                 self.overlayCloseView.frame.origin.y = 0
             }
             if self.currentPage == self.controllers.count - 1 {
+                print("========> self.currentPage == self.controllers.count - 1")
                 if self.isNextButtonVisible {
                     self.isNextButtonVisible = false
                     self.overlayNextButton.isHidden = true

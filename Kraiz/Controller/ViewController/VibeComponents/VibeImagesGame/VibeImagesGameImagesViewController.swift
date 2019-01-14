@@ -34,7 +34,7 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
         let imageScrollViewGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
         imageScrollView.addGestureRecognizer(imageScrollViewGesture)
         
-        startMusic()
+//        startMusic()
     }
 
     override func viewDidLayoutSubviews() {
@@ -72,10 +72,11 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
 
     /// Creates the Overlay View which will contain the close button.
     func createOverlayCloseView() -> UIView {
-        let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 10))
-        overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
+        let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 14))
+        overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.2)
         
-        let dismissButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width / 20, y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
+        let dismissButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width / 20, y: overlayCloseView.frame.height / 4, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
+        dismissButton.alpha = 0.8
         
         var dismissButtonTitleAttributes = [NSAttributedString.Key : Any]()
         dismissButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
@@ -88,10 +89,11 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
         dismissButton.layer.cornerRadius = dismissButton.frame.height / 2
         overlayCloseView.addSubview(dismissButton)
         
-        let nextButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width - overlayCloseView.frame.height / 2, y: overlayCloseView.frame.height / 2 - 5, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
-        
+        let nextButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width - (overlayCloseView.frame.width / 20 + overlayCloseView.frame.height / 2), y: overlayCloseView.frame.height / 4, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
+        nextButton.alpha = 0.8
+
         var nextButtonTitleAttributes = [NSAttributedString.Key : Any]()
-        nextButtonTitleAttributes[.font] = UIFont.systemFont(ofSize: 30)
+        nextButtonTitleAttributes[.font] = UIFont.systemFont(ofSize: 26)
         nextButtonTitleAttributes[.foregroundColor] = UIColor.white
         let nextButtonAttributedTitle = NSAttributedString(string: "→", attributes: nextButtonTitleAttributes)
         nextButton.setAttributedTitle(nextButtonAttributedTitle, for: .normal)

@@ -12,6 +12,8 @@ target 'Kraiz' do
   pod 'BSImagePicker'
   pod 'Cloudinary'
   pod 'CropViewController', '2.3.8'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
   pod 'LinearProgressBarMaterial'
   pod 'MaterialShowcase'
   pod 'RealmSwift'

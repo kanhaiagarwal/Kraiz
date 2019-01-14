@@ -145,6 +145,10 @@ class ForgotPasswordOTPViewController: UIViewController, AWSCognitoIdentityInter
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 extension ForgotPasswordOTPViewController: UITextFieldDelegate {

@@ -39,6 +39,7 @@ class VibeWelcomeViewController: UIViewController {
                 AppSyncHelper.shared.updateLastSeenPublicVibeTime()
             }
         }
+        startMusic()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +98,7 @@ class VibeWelcomeViewController: UIViewController {
             self.present(vibeImagesVC, animated: true, completion: nil)
         } else if vibeModel!.isPhotosPresent && vibeModel!.imageBackdrop == 1 {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            if isPreview || vibeModel?.from?.getId() == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID) || vibeModel?.getSeenIds().count == 0 {
+            if isPreview || vibeModel?.getSeenIds().count == 0 {
                 let captionGameCaptionsVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameCaptionsViewController") as! VibeImagesGameCaptionsViewController
                 captionGameCaptionsVC.vibeModel = vibeModel!
                 captionGameCaptionsVC.isPreview = isPreview
@@ -127,7 +128,14 @@ class VibeWelcomeViewController: UIViewController {
         }
     }
     @IBAction func dismissPressed(_ sender: Any) {
+        AudioControls.shared.stopMusic()
         self.dismiss(animated: true, completion: nil)
     }
 
+    /// Starts the Music if its enabled in the Vibe.
+    func startMusic() {
+        if vibeModel!.isBackgroundMusicEnabled {
+            AudioControls.shared.playBackgroundMusic(musicIndex: vibeModel!.backgroundMusicIndex)
+        }
+    }
 }

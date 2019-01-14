@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Hero.otf">
+            <string>Hero</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -18,16 +23,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FirstScreenBackground" translatesAutoresizingMaskIntoConstraints="NO" id="8o7-4g-X6m">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="VK1-fC-PAU">
+                                <rect key="frame" x="143" y="274" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VK1-fC-PAU" secondAttribute="height" multiplier="1:1" id="E97-th-b5R"/>
+                                    <constraint firstAttribute="height" constant="128" id="XMM-kw-PEc"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where Vibes are Shared" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZ3-Y1-foH">
+                                <rect key="frame" x="0.0" y="410" width="414" height="22"/>
+                                <fontDescription key="fontDescription" name="Hero" family="Hero" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="8o7-4g-X6m" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4Mi-UT-LY1"/>
-                            <constraint firstItem="8o7-4g-X6m" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="PxX-Ng-XQ9"/>
-                            <constraint firstItem="8o7-4g-X6m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hVK-og-Y1M"/>
-                            <constraint firstItem="8o7-4g-X6m" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="oqM-CU-mW7"/>
+                            <constraint firstItem="VK1-fC-PAU" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-30" id="AnI-jo-q90"/>
+                            <constraint firstItem="LZ3-Y1-foH" firstAttribute="top" secondItem="VK1-fC-PAU" secondAttribute="bottom" constant="8" id="chW-C8-rDH"/>
+                            <constraint firstItem="LZ3-Y1-foH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="d2k-cy-bTQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LZ3-Y1-foH" secondAttribute="trailing" id="lrC-GZ-bOe"/>
+                            <constraint firstItem="VK1-fC-PAU" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="x47-co-iZO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -38,6 +54,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FirstScreenBackground" width="360" height="640"/>
+        <image name="Logo" width="188" height="188"/>
     </resources>
 </document>

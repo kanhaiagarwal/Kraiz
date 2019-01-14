@@ -141,6 +141,7 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
                 UserDefaults.standard.set(nil, forKey: DeviceConstants.MOBILE_NUMBER)
                 CognitoHelper.shared.signOut(success: {
                     UserDefaults.standard.set(nil, forKey: DeviceConstants.ID_TOKEN)
+                    self.pool?.clearAll()
                     DispatchQueue.main.async {
                         APPUtilites.removeLoadingSpinner(spinner: sv)
                         CacheHelper.shared.clearCache()
@@ -148,6 +149,7 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
                     }
                 }, failure: { (error) in
                     UserDefaults.standard.set(nil, forKey: DeviceConstants.ID_TOKEN)
+                    self.pool?.clearAll()
                     DispatchQueue.main.async {
                         print("error in sign out: \(error)")
                         APPUtilites.displayElevatedErrorSnackbar(message: "Sorry, cannot Sign Out right now. Please try again")

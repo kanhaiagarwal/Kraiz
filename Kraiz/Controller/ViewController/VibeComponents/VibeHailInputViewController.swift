@@ -54,8 +54,10 @@ class VibeHailInputViewController: UIViewController {
 
     @IBAction func hailPressed(_ sender: UIButton) {
         dismissKeyboard()
+        let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
         AppSyncHelper.shared.sendHail(hailText: hailTextView.text, vibeId: vibeModel!.id, sender: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!) { [weak self] (success) in
             DispatchQueue.main.async {
+                APPUtilites.removeLoadingSpinner(spinner: sv)
                 if success {
                     self?.dismissVCAction(sendPressed: true)
                 } else {

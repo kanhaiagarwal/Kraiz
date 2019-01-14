@@ -17,9 +17,10 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
     public var username: String = ""
     public var password: String = ""
     var pool: AWSCognitoIdentityUserPool?
+    var isSourceSignIn = false
     
     let standardText = "Please type the OTP sent to your number "
-    
+
     @IBOutlet weak var typeOTPLabel: UITextView!
     @IBOutlet weak var otpField: UITextField!
     @IBOutlet weak var otpButton: UIButton!
@@ -98,18 +99,22 @@ class SignUpOTPViewController: UIViewController, AWSCognitoIdentityInteractiveAu
         CognitoHelper.shared.verifyOTPForSignUp(pool: pool!, user: self.cognitoUser!, otp: otpField.text!, success: {
             APPUtilites.removeLoadingSpinner(spinner: sv)
             UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
-            CognitoHelper.shared.signIn(pool: self.pool!, usernameText: self.username, passwordText: self.password, success: {
-                let currentUser = self.pool?.currentUser()
-                CognitoHelper.shared.currentUser = currentUser!
-                if let userId = currentUser?.username {
-                    UserDefaults.standard.set(userId, forKey: DeviceConstants.USER_ID)
-                    AppSyncHelper.shared.setAppSyncClient()
-                    self.setMobileNumberInUserDefaults()
-                }
-                self.gotoHomePage()
-            }, failure: { (error) in
-                APPUtilites.displayErrorSnackbar(message: "Error in Sign In after Sign Up")
-            })
+            if self.isSourceSignIn {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                CognitoHelper.shared.signIn(pool: self.pool!, usernameText: self.username, passwordText: self.password, success: {
+                    let currentUser = self.pool?.currentUser()
+                    CognitoHelper.shared.currentUser = currentUser!
+                    if let userId = currentUser?.username {
+                        UserDefaults.standard.set(userId, forKey: DeviceConstants.USER_ID)
+                        AppSyncHelper.shared.setAppSyncClient()
+                        self.setMobileNumberInUserDefaults()
+                    }
+                    self.gotoHomePage()
+                }, failure: { (error) in
+                    APPUtilites.displayErrorSnackbar(message: "Error in Sign In after Sign Up")
+                })
+            }
         }) { (error: NSError) in
             print(error)
             APPUtilites.removeLoadingSpinner(spinner: sv)
@@ -170,5 +175,9 @@ extension SignUpOTPViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }

@@ -23,6 +23,7 @@
 		579854C521C6704A00406BF8 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854C421C6704A00406BF8 /* ProfileEntity.swift */; };
 		579854CB21C8B6FE00406BF8 /* HailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CA21C8B6FE00406BF8 /* HailsEntity.swift */; };
 		579854CD21CAB28700406BF8 /* PublicVibeTimeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */; };
+		579EF3FC21EB1A9300C360CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 579EF3FB21EB1A9300C360CC /* GoogleService-Info.plist */; };
 		57A7911C21D538470025F8FE /* Celebration.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911521D538460025F8FE /* Celebration.mp3 */; };
 		57A7911D21D538470025F8FE /* Guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911621D538460025F8FE /* Guitar.mp3 */; };
 		57A7911E21D538470025F8FE /* Jazz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911721D538460025F8FE /* Jazz.mp3 */; };
@@ -168,6 +169,7 @@
 		579854C421C6704A00406BF8 /* ProfileEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
 		579854CA21C8B6FE00406BF8 /* HailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsEntity.swift; sourceTree = "<group>"; };
 		579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibeTimeEntity.swift; sourceTree = "<group>"; };
+		579EF3FB21EB1A9300C360CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		57A7911521D538460025F8FE /* Celebration.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Celebration.mp3; sourceTree = "<group>"; };
 		57A7911621D538460025F8FE /* Guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Guitar.mp3; sourceTree = "<group>"; };
 		57A7911721D538460025F8FE /* Jazz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Jazz.mp3; sourceTree = "<group>"; };
@@ -487,6 +489,7 @@
 				B51DF1EE211F1248009896CC /* AppDelegate.swift */,
 				B51DF1F2211F1248009896CC /* Main.storyboard */,
 				B51DF1FA211F1248009896CC /* LaunchScreen.storyboard */,
+				579EF3FB21EB1A9300C360CC /* GoogleService-Info.plist */,
 				B51DF1FD211F1248009896CC /* Info.plist */,
 				B51DF1F5211F1248009896CC /* Kraiz.xcdatamodeld */,
 				B56EFE98215AB05D008059ED /* Images.xcassets */,
@@ -753,6 +756,7 @@
 				B513582F215D365C00139854 /* Hero.otf in Resources */,
 				57A7912221D538470025F8FE /* Adventure.mp3 in Resources */,
 				57B36FB521E4FE8600E51F50 /* Calligraffiti.ttf in Resources */,
+				579EF3FC21EB1A9300C360CC /* GoogleService-Info.plist in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				57D4C0F421C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib in Resources */,
 				57A7911E21D538470025F8FE /* Jazz.mp3 in Resources */,
@@ -801,8 +805,10 @@
 				"${BUILT_PRODUCTS_DIR}/BSImageView/BSImageView.framework",
 				"${BUILT_PRODUCTS_DIR}/Cloudinary/Cloudinary.framework",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/LinearProgressBarMaterial/LinearProgressBarMaterial.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialShowcase/MaterialShowcase.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -810,6 +816,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/TTGSnackbar/TTGSnackbar.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -824,8 +831,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImageView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cloudinary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinearProgressBarMaterial.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialShowcase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -833,6 +842,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTGSnackbar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

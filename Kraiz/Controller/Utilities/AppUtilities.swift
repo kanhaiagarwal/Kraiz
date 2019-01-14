@@ -159,14 +159,17 @@ public class APPUtilites {
         if username.count > 30 {
             return false
         }
-        
-        let range = NSRange(location: 0, length: username.utf16.count)
-        let regex = try! NSRegularExpression(pattern: "([A-Za-z0-9\\@\\-\\_\\.])*(?<![.@_-])$", options: .allowCommentsAndWhitespace)
-        let matches = regex.firstMatch(in: username, options: [], range: range)
-        if matches != nil {
-            return true
+
+        var isValid = true
+        for ch in username {
+            if (ch >= "a" && ch <= "z") || (ch >= "A" && ch <= "Z") || (ch >= "0" && ch <= "9") || ch == "@" || ch == "-" || ch == "." || ch == "_"  {
+                isValid = true
+            } else {
+                isValid = false
+                break
+            }
         }
-        return false
+        return isValid
     }
     
     /// Gets the Vibe Image Ids as an GraphQL ID Array.

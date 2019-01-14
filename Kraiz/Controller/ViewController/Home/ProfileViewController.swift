@@ -158,12 +158,16 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
         
         if let dob = profile.getDob() {
             dobCell.inputField.text = APPUtilites.inverseDate(inputDate: dob)
+        } else {
+            dobCell.inputField.text = nil
         }
         
         mobileCell.inputField.text = UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)
-        
+
         if let gender = profile.getGender() {
             genderCell.inputField.text = gender
+        } else {
+            genderCell.inputField.text = nil
         }
         
         if shouldUpdateProfilePicture {
@@ -284,7 +288,11 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
             APPUtilites.displayElevatedErrorSnackbarForLongDuration(message: "Username should contain only alphanumeric and special characters like . - @ _")
             return
         }
-        
+
+        if dobCell.inputField.text == nil || dobCell.inputField.text == "" {
+            APPUtilites.displayElevatedErrorSnackbar(message: "Date of Birth is mandatory")
+            return
+        }
         let sv = APPUtilites.displayLoadingSpinner(onView: (self.tabBarController?.view)!)
         
         AppSyncHelper.shared.getUserProfileByUsername(username: usernameCell.inputField.text!, success: { (profile) in
@@ -436,10 +444,10 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        genderSelected = genders[row]
+//        genderSelected = genders[row]
         
-        let cell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as! ProfileTableViewCell
-        cell.inputField.text = genderSelected
+//        let cell = tableView.cellForRow(at: IndexPath(row: 4, section: 0)) as! ProfileTableViewCell
+//        cell.inputField.text = genderSelected
     }
     
     func createToolbarForGenderPickerView(genderCell: ProfileTableViewCell) {

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B1D3756D740EDB5D4DC384C9E3070E4E"
+               BlueprintIdentifier = "E9AF1332A169FD0AE07C00F3BFA44EA0"
                BlueprintName = "TTGSnackbar"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "TTGSnackbar.framework">
