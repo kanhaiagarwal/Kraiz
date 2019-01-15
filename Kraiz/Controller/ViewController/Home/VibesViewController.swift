@@ -8,6 +8,7 @@
 //  Class to Show all the Vibes for the user.
 
 import UIKit
+import FirebaseAnalytics
 
 class VibesViewController: UIViewController {
 
@@ -38,6 +39,7 @@ class VibesViewController: UIViewController {
         super.viewDidLoad()
         updateView()
 
+        Analytics.logEvent("SampleIOSEvent", parameters: [AnalyticsParameterItemID: "id-title", AnalyticsParameterItemName: "parameterItemName", AnalyticsParameterContentType: "cont"])
         print("inside viewDidLoad of VibeViewController")
 
         let attr = NSDictionary(object: UIFont(name: "Helvetica Neue", size: 16.0)!, forKey: NSAttributedString.Key.font as NSCopying)
@@ -89,6 +91,11 @@ class VibesViewController: UIViewController {
 
     @IBAction func publicVibeButtonPressed(_ sender: UIButton) {
         if isPublicVibeReady {
+            if !APPUtilites.isInternetConnectionAvailable() {
+                APPUtilites.displayElevatedErrorSnackbar(message: "Please Check your Internet Connection.")
+                return
+            }
+            AnalyticsHelper.shared.logRandomPublicVibeEvent(action: .READY_BUTTON_CLICKED, tag: nil)
             let choosePublicTagVC = self.storyboard?.instantiateViewController(withIdentifier: "PublicVibeTagsViewController")
             self.present(choosePublicTagVC!, animated: true, completion: nil)
         } else {

@@ -33,6 +33,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     var vibeModel = VibeModel()
     var isLetterSelected : Bool = false
     var isImagesSelected : Bool = false
+    var hasPreviewed : Bool = false
     
     var letterText : String = ""
     var letterBackground : Int = 0
@@ -159,6 +160,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
                 if self.draftId != nil {
                     CacheHelper.shared.deleteDraft(draftId: self.draftId!)
                 }
+                AnalyticsHelper.shared.logCreateVibeEvent(vibeModel: self.vibeModel, hasPreviewed: self.hasPreviewed)
                 self.performSegue(withIdentifier: self.FINAL_APPROVAL_SEGUE, sender: self)
             }
         }, onError: { (error) in
@@ -169,14 +171,15 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
             print("disposed")
         }
 
-        // Start the image upload in the background(if any images present).
+        // Start the image upload in the background (if any images present).
         MediaHelper.shared.uploadImagesAsync(images: vibeModel.images, folder: MediaHelperConstants.VIBE_IMAGES_FOLDER, counter: counter)
         AppSyncHelper.shared.createVibe(vibe: vibeModel, success: { (success) in
             DispatchQueue.main.async {
                 if success {
                     counter.value = 1
                 } else {
-                    APPUtilites.displayErrorSnackbar(message: "Vibe Creation is not successful. Please check the receiver is present in the App. Or Check the Internet Connection.")
+                    APPUtilites.removeLoadingSpinner(spinner: sv)
+                    APPUtilites.displayErrorSnackbar(message: "Vibe Creation is not successful. Please check that the receiver is present in the App. Or Check the Internet Connection.")
                 }
             }
         }) { (error) in
@@ -189,6 +192,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     
     /// Action to perform on pressing the Preview Button
     @IBAction func previewPressed(_ sender: UIButton) {
+        hasPreviewed = true
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
         vibeWelcomeVC.vibeModel = vibeModel
@@ -201,6 +205,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         
         let saveAndCloseAction = UIAlertAction(title: "Save and Exit", style: .default) { (action) in
             CacheHelper.shared.storeDraft(draftId: self.draftId, vibeModel: self.vibeModel)
+            AnalyticsHelper.shared.logSaveVibeEvent()
             self.dismiss(animated: true, completion: nil)
         }
         let justCloseAction = UIAlertAction(title: "Exit", style: .default) { (action) in

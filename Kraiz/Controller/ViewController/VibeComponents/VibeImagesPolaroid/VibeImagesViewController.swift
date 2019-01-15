@@ -33,6 +33,7 @@ class VibeImagesViewController: UIViewController {
         bgView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
         bgView.addGestureRecognizer(tapGesture)
+        AnalyticsHelper.shared.logViewVibeEvent(vibeModel: vibeModel!, action: .IMAGES_PAGE)
 //        startMusic()
     }
 

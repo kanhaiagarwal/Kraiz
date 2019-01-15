@@ -38,6 +38,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        AnalyticsHelper.shared.logViewVibeEvent(vibeModel: vibeModel, action: .LETTER_PAGE)
         viewHeight = view.frame.height
         let textView : UITextView = UITextView(frame: CGRect(x: view.frame.width / 20, y: view.frame.height / 15, width: 4 * view.frame.width / 5, height: 9 * view.frame.height / 10))
         textView.isEditable = false

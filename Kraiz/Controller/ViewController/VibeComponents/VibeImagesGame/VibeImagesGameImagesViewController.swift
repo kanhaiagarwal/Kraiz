@@ -33,6 +33,7 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
         // Add Tap Gestures to all the view for the overlay effect
         let imageScrollViewGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
         imageScrollView.addGestureRecognizer(imageScrollViewGesture)
+        AnalyticsHelper.shared.logViewVibeEvent(vibeModel: vibeModel!, action: .IMAGES_PAGE)
         
 //        startMusic()
     }

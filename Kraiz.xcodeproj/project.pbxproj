@@ -11,6 +11,8 @@
 		571E508C2185807100271314 /* ImageCaptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571E508B2185807100271314 /* ImageCaptionsViewController.swift */; };
 		571E508E2185880700271314 /* ImageCaptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571E508D2185880700271314 /* ImageCaptionCollectionViewCell.swift */; };
 		571F44C621A47B46001C033B /* VibeCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F44C521A47B46001C033B /* VibeCategories.swift */; };
+		5724CA8921EE3E9A00605A2D /* AnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724CA8821EE3E9A00605A2D /* AnalyticsConstants.swift */; };
+		5724CA8B21EE494B00605A2D /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724CA8A21EE494B00605A2D /* AnalyticsHelper.swift */; };
 		578061CA21E127CF008618A5 /* CaptionGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 578061C921E127CF008618A5 /* CaptionGameView.xib */; };
 		578061CC21E12C94008618A5 /* CaptionGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578061CB21E12C94008618A5 /* CaptionGameView.swift */; };
 		579854B621C5259F00406BF8 /* HailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854B521C5259F00406BF8 /* HailsViewController.swift */; };
@@ -157,6 +159,8 @@
 		571E508B2185807100271314 /* ImageCaptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptionsViewController.swift; sourceTree = "<group>"; };
 		571E508D2185880700271314 /* ImageCaptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCaptionCollectionViewCell.swift; sourceTree = "<group>"; };
 		571F44C521A47B46001C033B /* VibeCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeCategories.swift; sourceTree = "<group>"; };
+		5724CA8821EE3E9A00605A2D /* AnalyticsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsConstants.swift; sourceTree = "<group>"; };
+		5724CA8A21EE494B00605A2D /* AnalyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHelper.swift; sourceTree = "<group>"; };
 		578061C921E127CF008618A5 /* CaptionGameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptionGameView.xib; sourceTree = "<group>"; };
 		578061CB21E12C94008618A5 /* CaptionGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionGameView.swift; sourceTree = "<group>"; };
 		579854B521C5259F00406BF8 /* HailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsViewController.swift; sourceTree = "<group>"; };
@@ -559,16 +563,17 @@
 		B51DF24B211F16BC009896CC /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				B51DF249211F16AA009896CC /* DeviceConstants.swift */,
+				5724CA8821EE3E9A00605A2D /* AnalyticsConstants.swift */,
 				B507EF5C21244886007FC9F1 /* AWSConstants.swift */,
+				57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */,
 				B5E23DAE2129E677005C93C2 /* CountryCodes.swift */,
+				B51DF249211F16AA009896CC /* DeviceConstants.swift */,
 				B5A6582F214D052F0003C034 /* MediaHelperConstants.swift */,
 				571F44C521A47B46001C033B /* VibeCategories.swift */,
-				57B24F2D21A98B7700FA45E9 /* BackgroundMusic.swift */,
-				57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */,
-				57C74A9721B3B07400D737FB /* VibeTextBackgrounds.swift */,
 				57C74AA321BEE5EC00D737FB /* VibeImagesBackdrop.swift */,
 				57AC146721CF9879001FA686 /* VibeQuotes.swift */,
+				57B24F2F21A991E200FA45E9 /* VibeTypesLocal.swift */,
+				57C74A9721B3B07400D737FB /* VibeTextBackgrounds.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -642,6 +647,7 @@
 		B5C6E32F213469A700F8D5EC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5724CA8A21EE494B00605A2D /* AnalyticsHelper.swift */,
 				B524CABD21453AD000316D84 /* AppSyncHelper.swift */,
 				579854C221C6673900406BF8 /* CacheHelper.swift */,
 				B5C6E33121346A2700F8D5EC /* CognitoHelper.swift */,
@@ -674,6 +680,7 @@
 				B51DF1E9211F1248009896CC /* Resources */,
 				3C57ED9B4747591F8C37E197 /* [CP] Embed Pods Frameworks */,
 				57ABED88217CF19D009F3FC7 /* Embed Frameworks */,
+				5724CA8721EE2ACA00605A2D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -854,6 +861,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5724CA8721EE2ACA00605A2D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -880,6 +905,7 @@
 				57AC145B21CD5A33001FA686 /* VibeChoiceTableViewCell.swift in Sources */,
 				B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */,
 				57B24F3021A991E200FA45E9 /* VibeTypesLocal.swift in Sources */,
+				5724CA8B21EE494B00605A2D /* AnalyticsHelper.swift in Sources */,
 				57AC146621CE3B6C001FA686 /* Extensions.swift in Sources */,
 				57C74A9C21BA44D000D737FB /* VibeImageCardView.swift in Sources */,
 				57AC146A21CFAF44001FA686 /* FileManagerHelper.swift in Sources */,
@@ -889,6 +915,7 @@
 				B5BC1CFB21615D05008CE09F /* ChatsViewController.swift in Sources */,
 				578061CC21E12C94008618A5 /* CaptionGameView.swift in Sources */,
 				B54073032120188F00122FD0 /* PhotosInputViewController.swift in Sources */,
+				5724CA8921EE3E9A00605A2D /* AnalyticsConstants.swift in Sources */,
 				57E6908D21DD3D1C003F0CFC /* VibeImagesGameCaptionsViewController.swift in Sources */,
 				B5A65830214D052F0003C034 /* MediaHelperConstants.swift in Sources */,
 				579854B921C5525C00406BF8 /* HailsTableViewCell.swift in Sources */,
@@ -1094,6 +1121,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Kraiz/Kraiz.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = GNET3L3CRK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

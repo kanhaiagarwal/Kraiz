@@ -65,6 +65,7 @@ class PublicVibeTagsViewController: UIViewController {
         let tag = sender.view?.tag
         let vibeChoiceVC = self.storyboard?.instantiateViewController(withIdentifier: "PublicVibesChoiceViewController") as! PublicVibesChoiceViewController
         vibeChoiceVC.tagSelected = tag!
+        AnalyticsHelper.shared.logRandomPublicVibeEvent(action: .TAG_CHOSEN, tag: tag)
         self.present(vibeChoiceVC, animated: true, completion: nil)
     }
 }

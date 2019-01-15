@@ -235,12 +235,15 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
                     APPUtilites.removeLoadingSpinner(spinner: spinnerView)
                     if error != nil {
                         APPUtilites.displayErrorSnackbar(message: "Error in fetching the vibe.")
+                        return
                     }
                     if vibeModel == nil {
                         APPUtilites.displayErrorSnackbar(message: "Cannot get the vibe components. Please try again")
+                        return
                     }
                     if !vibeModel!.isLetterPresent && !vibeModel!.isPhotosPresent {
                         APPUtilites.displayErrorSnackbar(message: "No data present in the vibe. Please try again")
+                        return
                     }
                     if !vibeModel!.isPhotosPresent {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)

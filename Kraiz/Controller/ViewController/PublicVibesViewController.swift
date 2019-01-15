@@ -135,22 +135,25 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
             let spinnerView = APPUtilites.displayLoadingSpinner(onView: view)
             AppSyncHelper.shared.getUserVibe(vibeId: vibe.getId()!, vibeType: 0, vibeTag: vibeTag) { (error, vibeModel) in
                 DispatchQueue.main.async {
-                    print("====> inside the completionHandler of getUserVibe")
                     APPUtilites.removeLoadingSpinner(spinner: spinnerView)
                     if error != nil {
                         APPUtilites.displayErrorSnackbar(message: "Error in fetching the vibe.")
+                        return
                     }
                     if vibeModel == nil {
                         APPUtilites.displayErrorSnackbar(message: "Cannot get the vibe components. Please try again")
+                        return
                     }
                     if !vibeModel!.isLetterPresent && !vibeModel!.isPhotosPresent {
                         APPUtilites.displayErrorSnackbar(message: "No data present in the vibe. Please try again")
+                        return
                     }
                     if !vibeModel!.isPhotosPresent {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
                         vibeWelcomeVC.vibeModel = vibeModel
                         CacheHelper.shared.updateVibeDownloadStatus(vibe: vibe, isDownloadInProgress: false)
+                        AnalyticsHelper.shared.logRandomPublicVibeEvent(action: .SEEN, tag: nil)
                         self.present(vibeWelcomeVC, animated: true, completion: nil)
                     } else {
                         var imagesToBeDownloaded = [String]()
@@ -169,6 +172,7 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
                             let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
                             vibeWelcomeVC.vibeModel = vibeModel
                             CacheHelper.shared.updateVibeDownloadStatus(vibe: vibe, isDownloadInProgress: false)
+                            AnalyticsHelper.shared.logRandomPublicVibeEvent(action: .SEEN, tag: nil)
                             self.present(vibeWelcomeVC, animated: true, completion: nil)
                         } else {
                             print("not all images present in local.")
@@ -188,6 +192,7 @@ extension PublicVibesViewController: UITableViewDelegate, UITableViewDataSource 
                                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                                         let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
                                         vibeWelcomeVC.vibeModel = vibeModel
+                                        AnalyticsHelper.shared.logRandomPublicVibeEvent(action: .SEEN, tag: nil)
                                         self.present(vibeWelcomeVC, animated: true, completion: nil)
                                     }
                                 }

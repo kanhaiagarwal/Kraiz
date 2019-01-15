@@ -18,7 +18,10 @@ PODS:
   - BSImageView (1.0.2)
   - Cloudinary (2.5.0):
     - Alamofire (~> 4.7.3)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
   - CropViewController (2.3.8)
+  - Fabric (1.9.0)
   - Firebase/Core (5.15.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.4.0)
@@ -102,7 +105,9 @@ DEPENDENCIES:
   - AWSCognitoIdentityProvider
   - BSImagePicker
   - Cloudinary
+  - Crashlytics (~> 3.12.0)
   - CropViewController (= 2.3.8)
+  - Fabric (~> 1.9.0)
   - Firebase/Core
   - Firebase/Messaging
   - LinearProgressBarMaterial
@@ -123,7 +128,9 @@ SPEC REPOS:
     - BSImagePicker
     - BSImageView
     - Cloudinary
+    - Crashlytics
     - CropViewController
+    - Fabric
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -155,7 +162,9 @@ SPEC CHECKSUMS:
   BSImagePicker: 553707de1adaad42eac252e0b84d20dbdba83fe9
   BSImageView: ab22ff8cae61f1ae17a3c9efeeb216af3cf84a09
   Cloudinary: 1ae089904a497f706212921809cda3817d7cae4a
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   CropViewController: 7be882b7d3fb3faef48a41924e80f689e9df2514
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: 8bb9268bff82374f2cbaaabb143e725743c316ae
   FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
@@ -176,6 +185,6 @@ SPEC CHECKSUMS:
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
   TTGSnackbar: 2cf4e7b6ffbe5cddf248a73f3ee952b71bee8ea3
 
-PODFILE CHECKSUM: 35ee737a11d12cc781c32fb0392712332b8942d6
+PODFILE CHECKSUM: ce84aa76c85850d408fe280fe01f1bc1c2f1df2d
 
 COCOAPODS: 1.5.3

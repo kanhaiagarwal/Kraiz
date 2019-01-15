@@ -39,6 +39,7 @@ class VibeWelcomeViewController: UIViewController {
                 AppSyncHelper.shared.updateLastSeenPublicVibeTime()
             }
         }
+        AnalyticsHelper.shared.logViewVibeEvent(vibeModel: vibeModel!, action: .ADD_ALL)
         startMusic()
     }
 

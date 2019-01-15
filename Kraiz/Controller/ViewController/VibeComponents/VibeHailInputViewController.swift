@@ -20,6 +20,7 @@ class VibeHailInputViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        AnalyticsHelper.shared.logViewVibeEvent(vibeModel: vibeModel!, action: .HAILS_VIBE)
         let user = vibeModel!.from!.getUsername() != nil ? vibeModel!.from!.getUsername()! : "The User"
         print("user inside hailInput: \(user)")
         hailUserLabel.text = "Hail \(user)"
