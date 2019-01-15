@@ -9,6 +9,7 @@ mutation CreateUserProfile($input: CreateUserProfileInput!) {
     gender
     profilePicId
     createdAt
+    token
   }
 }
 mutation UpdateUserProfile($input: UpdateUserProfileInput!) {
@@ -21,6 +22,7 @@ mutation UpdateUserProfile($input: UpdateUserProfileInput!) {
     gender
     profilePicId
     createdAt
+    token
   }
 }
 mutation DeleteUserProfile($input: DeleteUserProfileInput!) {
@@ -33,6 +35,7 @@ mutation DeleteUserProfile($input: DeleteUserProfileInput!) {
     gender
     profilePicId
     createdAt
+    token
   }
 }
 mutation TriggerFsm($input: FsmInput!, $userId: ID!) {

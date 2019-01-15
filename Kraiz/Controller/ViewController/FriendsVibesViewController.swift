@@ -35,6 +35,10 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if UserDefaults.standard.bool(forKey: DeviceConstants.IS_FCM_TOKEN_UPDATE_REQUIRED) {
+            AppSyncHelper.shared.updateFcmToken()
+        }
+
         viewHeight = view.frame.height
         print("viewHeight: \(viewHeight)")
         for i in 0 ..< VibeCategories.TAG_INDEX.count {

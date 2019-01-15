@@ -37,9 +37,9 @@ class VibesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView()
-        
+
         print("inside viewDidLoad of VibeViewController")
-        
+
         let attr = NSDictionary(object: UIFont(name: "Helvetica Neue", size: 16.0)!, forKey: NSAttributedString.Key.font as NSCopying)
         vibesSegment.setTitleTextAttributes(attr as? [NSAttributedString.Key : Any], for: .normal)
 
@@ -124,14 +124,14 @@ class VibesViewController: UIViewController {
     private func add(asChildViewController viewController: UIViewController) {
         // Add Child View Controller
         addChild(viewController)
-        
+
         // Add Child View as Subview
         viewContainers.addSubview(viewController.view)
-        
+
         // Configure Child View
         viewController.view.frame = viewContainers.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
+
         // Notify Child View Controller
         viewController.didMove(toParent: self)
     }

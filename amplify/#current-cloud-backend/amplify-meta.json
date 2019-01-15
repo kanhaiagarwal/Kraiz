@@ -1,25 +1,14 @@
 {
-  "providers": {
-    "awscloudformation": {
-      "AuthRoleName": "kraizios-20181122200957-authRole",
-      "UnauthRoleArn": "arn:aws:iam::292872607610:role/kraizios-20181122200957-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::292872607610:role/kraizios-20181122200957-authRole",
-      "Region": "us-west-2",
-      "DeploymentBucketName": "kraizios-20181122200957-deployment",
-      "UnauthRoleName": "kraizios-20181122200957-unauthRole",
-      "StackName": "kraizios-20181122200957",
-      "StackId": "arn:aws:cloudformation:us-west-2:292872607610:stack/kraizios-20181122200957/7cd11e60-ee64-11e8-b3c4-503f2a2cee4a"
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "kraizios-20190115185804-authRole",
+            "UnauthRoleArn": "arn:aws:iam::255877721128:role/kraizios-20190115185804-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::255877721128:role/kraizios-20190115185804-authRole",
+            "Region": "ap-south-1",
+            "DeploymentBucketName": "kraizios-20190115185804-deployment",
+            "UnauthRoleName": "kraizios-20190115185804-unauthRole",
+            "StackName": "kraizios-20190115185804",
+            "StackId": "arn:aws:cloudformation:ap-south-1:255877721128:stack/kraizios-20190115185804/638f4e60-18c9-11e9-9bbe-0a791b5fd632"
+        }
     }
-  },
-  "api": {
-    "Kraiz App": {
-      "service": "AppSync",
-      "output": {
-        "securityType": "AMAZON_COGNITO_USER_POOLS",
-        "GraphQLAPIIdOutput": "qh6wpofl5zb3nkp3mi64eqicoa",
-        "GraphQLAPIEndpointOutput": "https://hmi5ytmqybc5zjyg7qjvp7mxxq.appsync-api.us-west-2.amazonaws.com/graphql"
-      },
-      "lastPushTimeStamp": "2018-11-22T14:41:57.622Z"
-    }
-  }
 }

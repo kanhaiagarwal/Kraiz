@@ -40,25 +40,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
-
-        application.registerForRemoteNotifications()
-        
-//        InstanceID.instanceID().instanceID { (result, error) in
-//            if let error = error {
-//                print("Error fetching remote instance ID: \(error)")
-//            } else if let result = result {
-//                print("Remote instance ID token: \(result.token)")
-//                self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
-//            }
+            InstanceID.instanceID().instanceID { (result, error) in
+                if let error = error {
+                    print("error in fetching the remote instance id: \(error)")
+                } else if let result = result {
+                    print("Remote instance ID token: \(result.token)")
+                }
+            }
         }
+        application.registerForRemoteNotifications()
 
         return true
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("APNs token retrieved: \(deviceToken)")
-//        Messaging.messaging().isAutoInitEnabled = true
-//        Messaging.messaging().apnsToken = deviceToken
+        Messaging.messaging().isAutoInitEnabled = true
+        Messaging.messaging().apnsToken = deviceToken
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -147,6 +145,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("=======> inside didReceiveRegistrationToken")
         print("fcmToken: \(fcmToken)")
+
+        if let defaultToken = UserDefaults.standard.string(forKey: DeviceConstants.FCM_TOKEN) {
+            print("default token present")
+            if !defaultToken.elementsEqual(fcmToken) {
+                print("default token not equal to new token")
+                UserDefaults.standard.set(fcmToken, forKey: DeviceConstants.FCM_TOKEN)
+                UserDefaults.standard.set(true, forKey: DeviceConstants.IS_FCM_TOKEN_UPDATE_REQUIRED)
+            }
+        } else {
+            print("default token not present")
+            UserDefaults.standard.set(fcmToken, forKey: DeviceConstants.FCM_TOKEN)
+            UserDefaults.standard.set(true, forKey: DeviceConstants.IS_FCM_TOKEN_UPDATE_REQUIRED)
+        }
+
+        let dataDict:[String: String] = ["token": fcmToken]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if let messageID = userInfo["gcmMessageIDKey"] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
     }
 }

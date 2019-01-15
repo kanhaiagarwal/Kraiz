@@ -9,6 +9,7 @@ query GetUserProfile($id: ID!) {
     gender
     profilePicId
     createdAt
+    token
   }
 }
 query GetUserProfileByUsername($username: String!) {
@@ -21,6 +22,7 @@ query GetUserProfileByUsername($username: String!) {
     gender
     profilePicId
     createdAt
+    token
   }
 }
 query GetUserProfileByMobileNumber($mobileNumber: ID!) {
@@ -33,6 +35,7 @@ query GetUserProfileByMobileNumber($mobileNumber: ID!) {
     gender
     profilePicId
     createdAt
+    token
   }
 }
 query GetUserChannel {
@@ -64,6 +67,7 @@ query GetUserChannel {
         dob
         profilePicId
         createdAt
+        token
       }
       hails {
         id
@@ -82,6 +86,7 @@ query GetUserChannel {
       gender
       profilePicId
       createdAt
+      token
     }
     lastPublicVibeFetchTime
   }
@@ -125,6 +130,7 @@ query GetUserVibes(
       gender
       profilePicId
       createdAt
+      token
     }
     hails {
       id
@@ -166,6 +172,7 @@ query GetRandomPublicVibes($vibeTag: VibeTag!) {
       gender
       profilePicId
       createdAt
+      token
     }
   }
 }

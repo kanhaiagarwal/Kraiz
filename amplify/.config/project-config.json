@@ -1,7 +1,7 @@
 {
     "projectName": "kraizios",
     "projectPath": "/Users/kanhaiagarwal/ios/kraiz-ios",
-    "defaultEditor": "sublime",
+    "defaultEditor": "vim",
     "frontendHandler": {
         "ios": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/amplify-frontend-ios"
     },

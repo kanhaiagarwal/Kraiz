@@ -133,10 +133,10 @@ class AppSyncHelper {
         }
         if appSyncClient != nil {
                 appSyncClient?.fetch(query: getQuery, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .background), resultHandler: { (result, error) in
-                    if error != nil {
-                        failure(error! as NSError)
-                    } else {
-                        var profileModel = ProfileModel()
+                if error != nil {
+                    failure(error! as NSError)
+                } else {
+                    var profileModel = ProfileModel()
                         if let data = result?.data {
                             if let userProfile = data.snapshot["getUserProfile"] as? [String: Any?] {
                                 profileModel = ProfileModel(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID), username: userProfile["username"] as? String, mobileNumber: userProfile["mobileNumber"] as? String, name: userProfile["name"] as? String, gender: (userProfile["gender"] as? Gender).map { $0.rawValue }, dob: userProfile["dob"] as? String, profilePicId: userProfile["profilePicId"] as? String)
@@ -163,6 +163,31 @@ class AppSyncHelper {
         } else {
             APPUtilites.displayErrorSnackbar(message: "Error in the user session. Please login again")
         }
+    }
+
+    /// Updates the FCM Token
+    func updateFcmToken() {
+        print("inside the updateFcmTokenIfRequired")
+        let userQuery = UpdateUserProfileInput(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!, username: nil, name: nil, dob: nil, gender: nil, profilePicId: nil, token: UserDefaults.standard.string(forKey: DeviceConstants.FCM_TOKEN))
+        if appSyncClient == nil {
+            setAppSyncClient()
+        }
+        appSyncClient?.perform(mutation: UpdateUserProfileMutation(input: userQuery), queue: DispatchQueue.global(qos: .userInitiated), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
+            if let error = error {
+                print("error in updateProfileQuery")
+                print(error)
+                return
+            }
+            if let result = result {
+                if let errors = result.errors {
+                    print("Error in the result of updateProfileQuery")
+                    print(errors)
+                    return
+                }
+                print("Token has been updated in the server.")
+                UserDefaults.standard.set(false, forKey: DeviceConstants.IS_FCM_TOKEN_UPDATE_REQUIRED)
+            }
+        })
     }
 
     /// Gets the User Channel.
@@ -931,7 +956,6 @@ class MyCognitoUserPoolsAuthProvider: AWSCognitoUserPoolsAuthProvider {
     
     /// background thread - asynchronous
     func getLatestAuthToken() -> String {
-        print("=========> getLatestToken is called here")
         var token: String? = nil
         if let tokenString = UserDefaults.standard.string(forKey: DeviceConstants.ID_TOKEN) {
             token = tokenString

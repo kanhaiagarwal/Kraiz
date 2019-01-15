@@ -21,10 +21,12 @@ public class DeviceConstants {
     
     // User Defaults Keys
     static public let DOB : String = "dob"
+    static public let FCM_TOKEN : String = "kraizFcmToken"
     static public let GENDER : String = "gender"
     static public let ID_TOKEN : String = "tokenString"
     static public let IS_PROFILE_PRESENT : String = "isProfilePresent"
     static public let IS_SIGN_IN : String = "isSignIn"
+    static public let IS_FCM_TOKEN_UPDATE_REQUIRED = "kraizIsFcmTokenUpdateRequired"
     static public let MOBILE_NUMBER : String = "mobileNumber"
     static public let NAME : String = "name"
     static public let PROFILE_PICTURE : String = "profilePicture"

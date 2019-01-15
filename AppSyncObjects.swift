@@ -23,8 +23,8 @@ public struct DeleteUserProfileInput: GraphQLMapConvertible {
 public struct CreateUserProfileInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID, mobileNumber: GraphQLID, username: String, name: String? = nil, dob: String? = nil, gender: Gender? = nil, profilePicId: String? = nil) {
-    graphQLMap = ["id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "dob": dob, "gender": gender, "profilePicId": profilePicId]
+  public init(id: GraphQLID, mobileNumber: GraphQLID, username: String, name: String? = nil, dob: String? = nil, gender: Gender? = nil, profilePicId: String? = nil, token: String? = nil) {
+    graphQLMap = ["id": id, "mobileNumber": mobileNumber, "username": username, "name": name, "dob": dob, "gender": gender, "profilePicId": profilePicId, "token": token]
   }
 
   public var id: GraphQLID {
@@ -89,6 +89,15 @@ public struct CreateUserProfileInput: GraphQLMapConvertible {
       graphQLMap.updateValue(newValue, forKey: "profilePicId")
     }
   }
+
+  public var token: String? {
+    get {
+      return graphQLMap["token"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "token")
+    }
+  }
 }
 
 public enum Gender: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
@@ -131,8 +140,8 @@ public enum Gender: RawRepresentable, Equatable, JSONDecodable, JSONEncodable {
 public struct UpdateUserProfileInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID, username: String? = nil, name: String? = nil, dob: String? = nil, gender: Gender? = nil, profilePicId: String? = nil) {
-    graphQLMap = ["id": id, "username": username, "name": name, "dob": dob, "gender": gender, "profilePicId": profilePicId]
+  public init(id: GraphQLID, username: String? = nil, name: String? = nil, dob: String? = nil, gender: Gender? = nil, profilePicId: String? = nil, token: String? = nil) {
+    graphQLMap = ["id": id, "username": username, "name": name, "dob": dob, "gender": gender, "profilePicId": profilePicId, "token": token]
   }
 
   public var id: GraphQLID {
@@ -186,6 +195,15 @@ public struct UpdateUserProfileInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "profilePicId")
+    }
+  }
+
+  public var token: String? {
+    get {
+      return graphQLMap["token"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "token")
     }
   }
 }
