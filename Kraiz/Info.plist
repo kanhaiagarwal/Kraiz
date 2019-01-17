@@ -21,7 +21,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>LSApplicationQueriesSchema</key>
 	<array>
 		<string>facebook</string>
@@ -35,6 +35,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Kraiz needs camera access for uploading images in the App.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Kraiz needs to Access your Contacts List</string>
 	<key>NSMicrophoneUsageDescription</key>
@@ -66,8 +68,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
