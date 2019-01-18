@@ -16,7 +16,7 @@ class VibeHailInputViewController: UIViewController {
     var vibeModel: VibeModel?
     @IBOutlet weak var hailTextView: UITextView!
     @IBOutlet weak var hailUserLabel: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,6 +55,9 @@ class VibeHailInputViewController: UIViewController {
 
     @IBAction func hailPressed(_ sender: UIButton) {
         dismissKeyboard()
+        if !APPUtilites.isInternetConnectionAvailable() {
+            APPUtilites.displayErrorSnackbar(message: "Please check your internet connection.")
+        }
         let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
         AppSyncHelper.shared.sendHail(hailText: hailTextView.text, vibeId: vibeModel!.id, sender: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!) { [weak self] (success) in
             DispatchQueue.main.async {

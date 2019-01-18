@@ -18,6 +18,7 @@ class VibeImagesViewController: UIViewController {
     var isSourceLetter = false
     var isDismissOverlayVisible = false
     var isPreview = false
+    var hasViewsSet = false
     @IBOutlet weak var bgView: UIView!
     var gradientLayer: CAGradientLayer?
     var viewHeight : CGFloat = 0
@@ -28,7 +29,6 @@ class VibeImagesViewController: UIViewController {
         super.viewDidLoad()
 
         viewHeight = view.frame.height
-        setViews()
         overlayCloseView = createOverlayCloseView()
         bgView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(changeDismissViewStatus))
@@ -51,6 +51,11 @@ class VibeImagesViewController: UIViewController {
             bgView.layer.insertSublayer(gradientLayer!, at: 0)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(resumeMusicIfPaused), name: UIApplication.didBecomeActiveNotification, object: nil)
+        
+        if !hasViewsSet {
+            setViews()
+            hasViewsSet = true
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -89,8 +94,10 @@ class VibeImagesViewController: UIViewController {
                 }
                 card.layer.borderWidth = 3
                 card.layer.borderColor = UIColor.clear.cgColor
-                card.layer.shouldRasterize = true
-                view.layer.rasterizationScale = UIScreen.main.scale
+                card.layer.allowsEdgeAntialiasing = true
+                card.imageView.layer.allowsEdgeAntialiasing = true
+//                card.layer.shouldRasterize = true
+//                view.layer.rasterizationScale = UIScreen.main.scale
                 cards.append(card)
                 cards[i].imageView.image = vibeModel?.images[vibeModel!.images.count - 1 - i].image!
                 cards[i].caption.textAlignment = .center

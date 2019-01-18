@@ -21,6 +21,17 @@ class VibeImageCardView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.imageView.frame = CGRect(x: 20, y: 20, width: Int(round(frame.width - 40)), height: Int(round(frame.width - 40)))
+        self.caption.frame = CGRect(x: 20, y: Int(round(frame.width - 20)), width: Int(round(frame.width - 40)), height: Int(round(frame.height - (frame.width - 20))))
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     override func layoutSubviews() {

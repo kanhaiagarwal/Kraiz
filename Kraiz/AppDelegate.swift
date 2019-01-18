@@ -15,7 +15,7 @@ import Firebase
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInteractiveAuthenticationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInteractiveAuthenticationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
     var restrictRotation: UIInterfaceOrientationMask = .portrait
 
@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
         CognitoHelper.shared.setUserPool()
         FirebaseApp.configure()
         Messaging.messaging().delegate = self as MessagingDelegate
+        UNUserNotificationCenter.current().delegate = self
 
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
@@ -140,6 +141,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("======> notification received in the foreground")
+        completionHandler([.alert, .badge, .sound])
     }
 }
 
