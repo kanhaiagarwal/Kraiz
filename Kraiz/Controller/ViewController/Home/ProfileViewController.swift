@@ -331,6 +331,7 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
                                     self.tabBarController?.addCreateVibeButton()
                                     self.tabBarController?.tabBar.isHidden = false
                                     UserDefaults.standard.set(true, forKey: DeviceConstants.IS_PROFILE_PRESENT)
+                                    UserDefaults.standard.set(profile.getUsername(), forKey: DeviceConstants.USER_NAME)
                                 } else {
                                     APPUtilites.displayElevatedErrorSnackbar(message: "Profile Creation Failed. Please Check your inputs")
                                 }
@@ -344,6 +345,7 @@ class ProfileViewController: UIViewController, CropViewControllerDelegate, Displ
                             DispatchQueue.main.async {
                                 APPUtilites.removeLoadingSpinner(spinner: sv)
                                 if success == true {
+                                    UserDefaults.standard.set(profile.getUsername(), forKey: DeviceConstants.USER_NAME)
                                     APPUtilites.displayElevatedSuccessSnackbar(message: "Profile Update Succeeded!")
                                 } else {
                                     APPUtilites.displayElevatedErrorSnackbar(message: "Profile Update Failed")

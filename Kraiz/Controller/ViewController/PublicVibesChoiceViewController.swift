@@ -102,7 +102,6 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
             print("no profilePicId")
             cell.profileImage.image = UIImage(named: "profile-default")
         }
-//        let profile = allProfiles![(vibe.from?.getId())!]
         cell.usernameLabel.text = vibe.from!.getUsername() != nil ? vibe.from!.getUsername()! : "User"
         switch viewHeight {
             case DeviceConstants.IPHONE7_HEIGHT:
@@ -143,6 +142,7 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
             vibeWelcomeVC.vibeModel = vibe
+            vibeWelcomeVC.updateLastPublicVibeTime = true
             let presentingVC = self.presentingViewController!.presentingViewController!
             let homeVC = self.presentingViewController!.presentingViewController!
             presentingVC.dismiss(animated: true) {
@@ -168,6 +168,7 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
                 vibeWelcomeVC.vibeModel = vibe
+                vibeWelcomeVC.updateLastPublicVibeTime = true
                 let presentingVC = self.presentingViewController!.presentingViewController!
                 let homeVC = self.presentingViewController!.presentingViewController!
                 presentingVC.dismiss(animated: true) {
@@ -194,6 +195,7 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
                             APPUtilites.removeLoadingSpinner(spinner: spinnerView)
                             let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
                             vibeWelcomeVC.vibeModel = vibe
+                            vibeWelcomeVC.updateLastPublicVibeTime = true
                             let presentingVC = self.presentingViewController!.presentingViewController!
                             let homeVC = self.presentingViewController!.presentingViewController!
                             presentingVC.dismiss(animated: true) {

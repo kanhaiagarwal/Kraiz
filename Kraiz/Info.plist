@@ -21,7 +21,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>5</string>
 	<key>LSApplicationQueriesSchema</key>
 	<array>
 		<string>facebook</string>
@@ -45,6 +45,9 @@
 	<string>We need to access the Photo Library</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Mordred.ttf</string>
+		<string>gemelli.TTF</string>
+		<string>dancing_script.ttf</string>
 		<string>productsans.ttf</string>
 		<string>Calligraffiti.ttf</string>
 		<string>FREESCPT.TTF</string>

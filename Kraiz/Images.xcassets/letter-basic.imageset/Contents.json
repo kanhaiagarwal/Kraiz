@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "letter-basic.jpg",
+      "filename" : "Basic-q_auto_best jpg.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "letter-basic-1.jpg",
+      "filename" : "Basic-q_auto_best jpg-1.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "letter-basic-2.jpg",
+      "filename" : "Basic-q_auto_best jpg-2.jpg",
       "scale" : "3x"
     }
   ],

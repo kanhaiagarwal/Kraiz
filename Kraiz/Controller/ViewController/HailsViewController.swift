@@ -38,15 +38,27 @@ class HailsViewController: UIViewController {
         hailsView.addGestureRecognizer(swipeGesture)
         if let hailResult = CacheHelper.shared.getHailsOfVibe(vibeId: vibeId!) {
             if hailResult.count == 0 {
+                hailsHeading.textAlignment = .center
+                hailsHeading.textColor = UIColor.black.withAlphaComponent(0.8)
+                hailsHeading.font = UIFont.systemFont(ofSize: 20)
                 hailsHeading.text = NO_HAILS_HEADING
             } else {
-                self.hailsHeading.text = self.HAILS_HEADING
+                hailsHeading.textAlignment = .left
+                hailsHeading.textColor = UIColor.black
+                hailsHeading.font = UIFont.systemFont(ofSize: 25)
+                hailsHeading.text = HAILS_HEADING
             }
             hails = hailResult
             notification = hailResult.observe { [weak self] (changes) in
                 if hailResult.count == 0 {
+                    self?.hailsHeading.textAlignment = .center
+                    self?.hailsHeading.textColor = UIColor.black.withAlphaComponent(0.8)
+                    self?.hailsHeading.font = UIFont.systemFont(ofSize: 20)
                     self?.hailsHeading.text = self?.NO_HAILS_HEADING
                 } else {
+                    self?.hailsHeading.textAlignment = .left
+                    self?.hailsHeading.textColor = UIColor.black
+                    self?.hailsHeading.font = UIFont.systemFont(ofSize: 25)
                     self?.hailsHeading.text = self?.HAILS_HEADING
                 }
                 self!.hailsTable.reloadData()
@@ -57,8 +69,10 @@ class HailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if (hails == nil) || ((hails!.count) <= MAX_HAILS_IN_SINGLE_VIEW / 2) {
-            hailsHeightConstraint = hailsHeightConstraint.setMultiplier(multiplier: 0.5)
+        if hails == nil || hails!.count == 0 {
+            hailsHeightConstraint = hailsHeightConstraint.setMultiplier(multiplier: 0.15)
+        } else if (hails!.count) <= MAX_HAILS_IN_SINGLE_VIEW {
+            hailsHeightConstraint = hailsHeightConstraint.setMultiplier(multiplier: 0.15 + 0.15 * CGFloat(hails!.count))
         } else {
             hailsHeightConstraint = hailsHeightConstraint.setMultiplier(multiplier: 1.0)
         }
@@ -67,8 +81,14 @@ class HailsViewController: UIViewController {
         hailsTable.rowHeight = UITableView.automaticDimension
         
         if hails == nil || hails!.count == 0 {
+            hailsHeading.textAlignment = .center
+            hailsHeading.textColor = UIColor.black.withAlphaComponent(0.8)
+            hailsHeading.font = UIFont.systemFont(ofSize: 20)
             hailsHeading.text = NO_HAILS_HEADING
         } else {
+            hailsHeading.textAlignment = .left
+            hailsHeading.textColor = UIColor.black
+            hailsHeading.font = UIFont.systemFont(ofSize: 25)
             hailsHeading.text = HAILS_HEADING
         }
     }

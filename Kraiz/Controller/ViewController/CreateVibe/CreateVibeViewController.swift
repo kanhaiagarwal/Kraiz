@@ -76,7 +76,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     func setVibeModelFromDraftIfPresent() {
         if draftId != nil {
             let loadingSpinner = APPUtilites.displayLoadingSpinner(onView: view)
-            CacheHelper.shared.setVibeModelFromVibeComponentEntity(draftId: draftId!) { (vibe) in
+            CacheHelper.shared.setVibeModelFromDraftEntity(draftId: draftId!) { (vibe) in
                 DispatchQueue.main.async {
                     APPUtilites.removeLoadingSpinner(spinner: loadingSpinner)
                     self.vibeModel = vibe

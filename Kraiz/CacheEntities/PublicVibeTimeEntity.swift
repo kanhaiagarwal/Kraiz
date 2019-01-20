@@ -13,6 +13,7 @@ class PublicVibeTimeEntity: Object {
     @objc dynamic var userId: String?
     @objc dynamic var lastVibeAccessTime: Int = 0
     @objc dynamic var publicVibeSeen : Bool = false
+    @objc dynamic var lastPublicVibeId : String?
 
     /// MARK :- Getters Start.
     func getUserId() -> String? {
@@ -25,6 +26,10 @@ class PublicVibeTimeEntity: Object {
 
     func getPublicVibeSeen() -> Bool {
         return publicVibeSeen
+    }
+
+    func getLastPublicVibeId() -> String? {
+        return lastPublicVibeId
     }
 
     /// MARK :- Getters End.
@@ -41,7 +46,11 @@ class PublicVibeTimeEntity: Object {
     func setPublicVibeSeen(publicVibeSeen: Bool) {
         self.publicVibeSeen = publicVibeSeen
     }
-    
+
+    func setLastPublicVibeId(publicVibeId: String?) {
+        self.lastPublicVibeId = publicVibeId
+    }
+
     /// MARK :- Setters End.
 
     override static func primaryKey() -> String? {

@@ -14,7 +14,11 @@ class VibeWelcomeViewController: UIViewController {
     @IBOutlet weak var vibeTag: UILabel!
     @IBOutlet weak var vibeName: UILabel!
     @IBOutlet weak var senderUsername: UILabel!
+    @IBOutlet weak var demoInstructionLabel: UILabel!
+
     var isPreview = false
+    var isDemoVibe = false
+    var updateLastPublicVibeTime = false
 
     var vibeModel: VibeModel?
 
@@ -23,20 +27,28 @@ class VibeWelcomeViewController: UIViewController {
         vibeTag.text = VibeCategories.pickerStrings[vibeModel!.category]
         vibeName.text = vibeModel!.vibeName
         backgroundImage.image = UIImage(named: VibeCategories.vibeWelcomebackground[vibeModel!.category])
-        if !isPreview {
-            print("========> vibeModel.type: \(vibeModel!.type)")
-            print("========> vibeModel!.from.getUsername(): \(vibeModel!.from!.getUsername())")
+
+        if !isPreview && !isDemoVibe {
             if vibeModel!.type == 0 && vibeModel!.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! {
                 if !CacheHelper.shared.getSeenStatusOfVibe(vibeId: vibeModel!.id) {
                     AppSyncHelper.shared.updateSeenStatusOfVibe(vibeId: vibeModel!.id, seenStatus: true)
                 }
             }
-            print("vibeModel!.type: \(vibeModel!.type)")
-            print("vibeModel!.from!.getUsername()!: \(vibeModel!.from!.getUsername()!)")
-            print("UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!: \(UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!)")
-            if vibeModel!.type == 1 && vibeModel!.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! {
-                print("=========> this is a public vibe which is not created by the user")
-                AppSyncHelper.shared.updateLastSeenPublicVibeTime()
+            if vibeModel!.from!.getUsername() != nil {
+                if vibeModel!.type == 1 && vibeModel!.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! {
+                    if updateLastPublicVibeTime {
+                        CacheHelper.shared.addRandomPublicVibeToCache(vibeModel: vibeModel!)
+                        AppSyncHelper.shared.updateLastSeenPublicVibeTime()
+                    }
+                }
+            } else {
+                print("vibeModel!.from!.getId()!: \(vibeModel!.from!.getId())")
+                if vibeModel!.type == 1 && vibeModel!.from!.getId()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! {
+                    if updateLastPublicVibeTime {
+                        CacheHelper.shared.addRandomPublicVibeToCache(vibeModel: vibeModel!)
+                        AppSyncHelper.shared.updateLastSeenPublicVibeTime()
+                    }
+                }
             }
         }
         AnalyticsHelper.shared.logViewVibeEvent(vibeModel: vibeModel!, action: .ADD_ALL)
@@ -45,20 +57,30 @@ class VibeWelcomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        print("vibeModel?.from?.getUsername(): \(vibeModel?.from?.getUsername())")
-        print("vibeModel.from.getUserId(): \(vibeModel?.from?.getId())")
-        if vibeModel?.from?.getUsername() != nil {
-            if vibeModel?.from?.getUsername() == UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME) {
-                senderUsername.text = "You"
-            } else {
-                senderUsername.text = vibeModel?.from?.getUsername()
-            }
+        if isDemoVibe {
+            senderUsername.text = "From Kraiz"
         } else {
-            let profile = CacheHelper.shared.getProfileById(id: (vibeModel?.from?.getId())!)
-            print("profile: \(profile)")
-            print("profile?.getUsername()!: \(profile?.getUsername()!)")
-            senderUsername.text = profile?.getUsername()!
+            if vibeModel?.from?.getUsername() != nil {
+                if vibeModel?.from?.getUsername() == UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME) {
+                    senderUsername.text = "You"
+                } else {
+                    senderUsername.text = vibeModel?.from?.getUsername()
+                }
+            } else {
+                let profile = CacheHelper.shared.getProfileById(id: (vibeModel?.from?.getId())!)
+                senderUsername.text = profile?.getUsername()!
+            }
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        demoInstructionLabel.alpha = 0
+        if isDemoVibe {
+            UIView.animate(withDuration: 2.0) {
+                self.demoInstructionLabel.alpha = 1.0
+            }
         }
     }
 
@@ -85,17 +107,15 @@ class VibeWelcomeViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let vibeTextVC = storyboard.instantiateViewController(withIdentifier: "VibeTextViewController") as! VibeTextViewController
             vibeTextVC.vibeModel = vibeModel!
-            if isPreview {
-                vibeTextVC.isPreview = true
-            }
+            vibeTextVC.isPreview = isPreview
+            vibeTextVC.isDemoVibe = true
             self.present(vibeTextVC, animated: true, completion: nil)
         } else if vibeModel!.isPhotosPresent && vibeModel!.imageBackdrop == 0 {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let vibeImagesVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesViewController") as! VibeImagesViewController
             vibeImagesVC.vibeModel = vibeModel!
-            if isPreview {
-                vibeImagesVC.isPreview = true
-            }
+            vibeImagesVC.isPreview = isPreview
+            vibeImagesVC.isDemoVibe = isDemoVibe
             self.present(vibeImagesVC, animated: true, completion: nil)
         } else if vibeModel!.isPhotosPresent && vibeModel!.imageBackdrop == 1 {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -103,10 +123,10 @@ class VibeWelcomeViewController: UIViewController {
                 let captionGameCaptionsVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameCaptionsViewController") as! VibeImagesGameCaptionsViewController
                 captionGameCaptionsVC.vibeModel = vibeModel!
                 captionGameCaptionsVC.isPreview = isPreview
+                captionGameCaptionsVC.isDemoVibe = isDemoVibe
                 self.present(captionGameCaptionsVC, animated: true, completion: nil)
             } else {
                 let seenIds = vibeModel?.getSeenIds()
-                print("seenIds: \(seenIds)")
                 var captionsSelected = [Int : Bool]()
                 for i in 0 ..< vibeModel!.getImages().count {
                     captionsSelected[i] = false
@@ -124,6 +144,7 @@ class VibeWelcomeViewController: UIViewController {
                 captionGameImagesVC.vibeModel = vibeModel
                 captionGameImagesVC.captionsSelected = captionsSelected
                 captionGameImagesVC.isPreview = isPreview
+                captionGameImagesVC.isDemoVibe = isDemoVibe
                 self.present(captionGameImagesVC, animated: true, completion: nil)
             }
         }

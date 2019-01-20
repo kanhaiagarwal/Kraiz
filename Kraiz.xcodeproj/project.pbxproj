@@ -74,6 +74,9 @@
 		57E6909021DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6908E21DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.swift */; };
 		57E6909121DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E6908F21DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib */; };
 		57E6909321E09178003F0CFC /* productsans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57E6909221E09178003F0CFC /* productsans.ttf */; };
+		57FB85FE21F424800088A816 /* Mordred.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57FB85FB21F4247F0088A816 /* Mordred.ttf */; };
+		57FB85FF21F424800088A816 /* dancing_script.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57FB85FC21F424800088A816 /* dancing_script.ttf */; };
+		57FB860021F424800088A816 /* gemelli.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 57FB85FD21F424800088A816 /* gemelli.TTF */; };
 		B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507EF5C21244886007FC9F1 /* AWSConstants.swift */; };
 		B513582F215D365C00139854 /* Hero.otf in Resources */ = {isa = PBXBuildFile; fileRef = B513582E215D365C00139854 /* Hero.otf */; };
 		B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */; };
@@ -223,6 +226,9 @@
 		57E6908E21DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeImageGameCaptionsTableViewCell.swift; sourceTree = "<group>"; };
 		57E6908F21DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VibeImageGameCaptionsTableViewCell.xib; sourceTree = "<group>"; };
 		57E6909221E09178003F0CFC /* productsans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsans.ttf; sourceTree = "<group>"; };
+		57FB85FB21F4247F0088A816 /* Mordred.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mordred.ttf; sourceTree = "<group>"; };
+		57FB85FC21F424800088A816 /* dancing_script.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dancing_script.ttf; sourceTree = "<group>"; };
+		57FB85FD21F424800088A816 /* gemelli.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = gemelli.TTF; sourceTree = "<group>"; };
 		77E76ED88E986A26B0C07B92 /* Pods-Kraiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.release.xcconfig"; sourceTree = "<group>"; };
 		AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.debug.xcconfig"; sourceTree = "<group>"; };
 		B507EF5C21244886007FC9F1 /* AWSConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSConstants.swift; sourceTree = "<group>"; };
@@ -550,10 +556,13 @@
 			isa = PBXGroup;
 			children = (
 				57B36FB421E4FE8600E51F50 /* Calligraffiti.ttf */,
+				57FB85FC21F424800088A816 /* dancing_script.ttf */,
 				B51DF23F211F15FB009896CC /* FREESCPT.TTF */,
 				B51DF240211F15FD009896CC /* frenchscriptmt.ttf */,
+				57FB85FD21F424800088A816 /* gemelli.TTF */,
 				B513582E215D365C00139854 /* Hero.otf */,
 				B51DF241211F15FF009896CC /* monotype-corsiva.ttf */,
+				57FB85FB21F4247F0088A816 /* Mordred.ttf */,
 				B5BC1CFC216164D6008CE09F /* playlist-script.otf */,
 				57E6909221E09178003F0CFC /* productsans.ttf */,
 			);
@@ -651,8 +660,8 @@
 				B524CABD21453AD000316D84 /* AppSyncHelper.swift */,
 				579854C221C6673900406BF8 /* CacheHelper.swift */,
 				B5C6E33121346A2700F8D5EC /* CognitoHelper.swift */,
-				B5A65831214D05A00003C034 /* MediaHelper.swift */,
 				57AC146921CFAF44001FA686 /* FileManagerHelper.swift */,
+				B5A65831214D05A00003C034 /* MediaHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -739,9 +748,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57FB85FF21F424800088A816 /* dancing_script.ttf in Resources */,
 				B5BC1CFD216164D6008CE09F /* playlist-script.otf in Resources */,
 				57A7911C21D538470025F8FE /* Celebration.mp3 in Resources */,
 				B51DF21B211F13B9009896CC /* AppIcon.png in Resources */,
+				57FB85FE21F424800088A816 /* Mordred.ttf in Resources */,
 				579854BA21C5525C00406BF8 /* HailsTableViewCell.xib in Resources */,
 				B51DF24E211F174A009896CC /* HamburgerTableViewCell.xib in Resources */,
 				57BD53EE2199CD38001B1010 /* VibesCategoryTableViewCell.xib in Resources */,
@@ -772,6 +783,7 @@
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				57D4C0F421C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib in Resources */,
 				57A7911E21D538470025F8FE /* Jazz.mp3 in Resources */,
+				57FB860021F424800088A816 /* gemelli.TTF in Resources */,
 				B5BC1CF921615B61008CE09F /* ChatsTableViewCell.xib in Resources */,
 				57E6909121DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib in Resources */,
 				579854BE21C611C200406BF8 /* MyPublicVibeTableViewCell.xib in Resources */,

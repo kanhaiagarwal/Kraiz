@@ -12,6 +12,7 @@ import AWSAppSync
 import AWSCore
 import AWSCognitoIdentityProvider
 import Firebase
+import RealmSwift
 import UserNotifications
 
 @UIApplicationMain
@@ -49,8 +50,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
                 }
             }
         }
-        application.registerForRemoteNotifications()
 
+        if let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let realmUrl = documentsDirectoryURL.appendingPathComponent("default.realm")
+            Realm.Configuration.defaultConfiguration = Realm.Configuration(fileURL: realmUrl, inMemoryIdentifier: nil, syncConfiguration: nil, encryptionKey: nil, readOnly: false, schemaVersion: UInt64(DeviceConstants.REALM_SCHEMA_VERSION), migrationBlock: { (migration, oldSchemaVersion) in
+                if oldSchemaVersion < 2 {
+                    migration.enumerateObjects(ofType: PublicVibeTimeEntity.className(), { (oldObject, newObject) in
+                        newObject!["lastPublicVibeId"] = nil
+                    })
+                }
+            }, deleteRealmIfMigrationNeeded: false, shouldCompactOnLaunch: nil, objectTypes: nil)
+        } else {
+            print("Cannot find the documents directory in the device.")
+        }
+        
+        application.registerForRemoteNotifications()
         return true
     }
 
@@ -145,6 +159,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("======> notification received in the foreground")
+        print("notification.request.content.attachments: \(notification.request.content.attachments)")
+        print("notification.request.content.badge: \(notification.request.content.badge)")
+        print("notification.request.content.body: \(notification.request.content.body)")
+        print("notification.request.content.categoryIdentifier: \(notification.request.content.categoryIdentifier)")
+        print("notification.request.content.subtitle: \(notification.request.content.subtitle)")
+        if #available(iOS 12.0, *) {
+            print("notification.request.content.summaryArgument: \(notification.request.content.summaryArgument)")
+        } else {
+            // Fallback on earlier versions
+        }
+        if #available(iOS 12.0, *) {
+            print("notification.request.content.summaryArgumentCount: \(notification.request.content.summaryArgumentCount)")
+        } else {
+            // Fallback on earlier versions
+        }
+        print("notification.request.content.userInfo.debugDescription: \(notification.request.content.userInfo.debugDescription)")
+        print("========> notification.description: \(notification.description)")
+        print("========> notification.description: \(notification.debugDescription)")
         completionHandler([.alert, .badge, .sound])
     }
 }
@@ -177,7 +209,7 @@ extension AppDelegate: MessagingDelegate {
         if let messageID = userInfo["gcmMessageIDKey"] {
             print("Message ID: \(messageID)")
         }
-        
+
         // Print full message.
         print(userInfo)
     }

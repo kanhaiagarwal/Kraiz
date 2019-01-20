@@ -14,6 +14,7 @@ class VibeHailInputViewController: UIViewController {
 
     var gradientLayer: CAGradientLayer?
     var vibeModel: VibeModel?
+    var isDemoVibe = false
     @IBOutlet weak var hailTextView: UITextView!
     @IBOutlet weak var hailUserLabel: UILabel!
 
@@ -24,6 +25,10 @@ class VibeHailInputViewController: UIViewController {
         let user = vibeModel!.from!.getUsername() != nil ? vibeModel!.from!.getUsername()! : "The User"
         print("user inside hailInput: \(user)")
         hailUserLabel.text = "Hail \(user)"
+        if isDemoVibe {
+            hailTextView.textColor = UIColor.white.withAlphaComponent(0.7)
+            hailTextView.text = "You can add your appreciative hail here and send it to the Vibe Creator."
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,10 +55,18 @@ class VibeHailInputViewController: UIViewController {
     }
 
     @IBAction func dismissPressed(_ sender: Any) {
-        presentClosingAlert()
+        if isDemoVibe {
+            dismissVCAction(sendPressed: false)
+        } else {
+            presentClosingAlert()
+        }
     }
 
     @IBAction func hailPressed(_ sender: UIButton) {
+        if isDemoVibe {
+            dismissVCAction(sendPressed: true)
+            return
+        }
         dismissKeyboard()
         if !APPUtilites.isInternetConnectionAvailable() {
             APPUtilites.displayErrorSnackbar(message: "Please check your internet connection.")

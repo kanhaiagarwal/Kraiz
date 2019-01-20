@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Photos
 
 class FileManagerHelper {
     static public let shared = FileManagerHelper()
@@ -77,5 +78,69 @@ class FileManagerHelper {
     /// - Returns: File Existence.
     public func doesFileExist(filePath: String) -> Bool {
         return FileManager.default.fileExists(atPath: NSHomeDirectory().appending(filePath))
+    }
+
+    /// Creates a custom album in the Photos.
+    /// - Parameters:
+    ///     - withTitle: Album Name.
+    ///     - completionHandler: Completion Handler.
+    func createAlbum(withTitle title: String, completionHandler: @escaping (PHAssetCollection?) -> ()) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            var placeholder: PHObjectPlaceholder?
+            
+            PHPhotoLibrary.shared().performChanges({
+                let createAlbumRequest = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: title)
+                placeholder = createAlbumRequest.placeholderForCreatedAssetCollection
+            }, completionHandler: { (created, error) in
+                var album: PHAssetCollection?
+                if created {
+                    let collectionFetchResult = placeholder.map { PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [$0.localIdentifier], options: nil) }
+                    album = collectionFetchResult?.firstObject
+                }
+                
+                completionHandler(album)
+            })
+        }
+    }
+
+    /// Gets the album from the Photos Library. If the album does not exists, it triggers the creation of the album.
+    /// - Parameters:
+    ///     - title: Name of the Album.
+    ///     - completionHandler: Completion Handler.
+    func getAlbum(title: String, completionHandler: @escaping (PHAssetCollection?) -> ()) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            let fetchOptions = PHFetchOptions()
+            fetchOptions.predicate = NSPredicate(format: "title = %@", title)
+            let collections = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
+            
+            if let album = collections.firstObject {
+                completionHandler(album)
+            } else {
+                self?.createAlbum(withTitle: title, completionHandler: { (album) in
+                    completionHandler(album)
+                })
+            }
+        }
+    }
+
+    /// Saves the image to a custom Album.
+    /// - Parameters:
+    ///     - photo: Photo.
+    ///     - toAlbum: Name of the Album.
+    ///     - completionHandler: Completion Handler.
+    func saveToAlbum(photo: UIImage, toAlbum titled: String, completionHandler: @escaping (Bool, Error?) -> ()) {
+        getAlbum(title: titled) { (album) in
+            DispatchQueue.global(qos: .background).async {
+                PHPhotoLibrary.shared().performChanges({
+                    let assetRequest = PHAssetChangeRequest.creationRequestForAsset(from: photo)
+                    let assets = assetRequest.placeholderForCreatedAsset
+                        .map { [$0] as NSArray } ?? NSArray()
+                    let albumChangeRequest = album.flatMap { PHAssetCollectionChangeRequest(for: $0) }
+                    albumChangeRequest?.addAssets(assets)
+                }, completionHandler: { (success, error) in
+                    completionHandler(success, error)
+                })
+            }
+        }
     }
 }

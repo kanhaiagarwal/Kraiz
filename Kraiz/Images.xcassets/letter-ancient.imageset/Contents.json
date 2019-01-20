@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Third3@1x.jpg",
+      "filename" : "Parchment.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Third3@2x.jpg",
+      "filename" : "Parchment-1.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Third3@3x.jpg",
+      "filename" : "Parchment-2.jpg",
       "scale" : "3x"
     }
   ],

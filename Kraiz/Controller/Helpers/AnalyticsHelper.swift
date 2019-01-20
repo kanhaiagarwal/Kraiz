@@ -102,8 +102,16 @@ public class AnalyticsHelper {
     func logViewVibeEvent(vibeModel: VibeModel, action: ViewVibeActions) {
         var params = [String : Any]()
 
-        if vibeModel.from?.getUsername()! == UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! || CacheHelper.shared.getSeenStatusOfVibe(vibeId: vibeModel.id) {
-            return
+        if vibeModel.from?.getUsername() != nil {
+            if vibeModel.from?.getUsername()! == UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! || CacheHelper.shared.getSeenStatusOfVibe(vibeId: vibeModel.id) {
+                return
+            }
+        }
+        
+        if vibeModel.from?.getId() != nil {
+            if vibeModel.from?.getId()! == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! || CacheHelper.shared.getSeenStatusOfVibe(vibeId: vibeModel.id) {
+                return
+            }
         }
 
         switch action {

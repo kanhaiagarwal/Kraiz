@@ -16,6 +16,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     var isDismissOverlayVisible = false
     var isNextButtonVisible = false
     var isPreview = false
+    var isDemoVibe = false
     var currentPage = 0
     var viewHeight : CGFloat = 0
     
@@ -261,12 +262,40 @@ extension VibeTextViewController {
     /// It is initially present outside the view bounds at the top.
     /// - Returns: Overlay UIView.
     func createOverlayView() -> UIView {
-        let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: view.frame.height / 14))
-        overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.2)
-        let dismissButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width / 20, y: overlayCloseView.frame.height / 4, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
-        dismissButton.alpha = 0.8
+        var overlayViewHeight : CGFloat = 0
+        var buttonsAlpha : CGFloat = 0
         var dismissButtonTitleAttributes = [NSAttributedString.Key : Any]()
-        dismissButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
+        switch view.frame.height {
+            case DeviceConstants.IPHONE7_HEIGHT:
+                overlayViewHeight = view.frame.height / 14
+                dismissButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
+                buttonsAlpha = 0.7
+                break
+            case DeviceConstants.IPHONE7PLUS_HEIGHT:
+                overlayViewHeight = view.frame.height / 14
+                dismissButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
+                buttonsAlpha = 0.7
+                break
+            case DeviceConstants.IPHONEX_HEIGHT:
+                overlayViewHeight = view.frame.height / 10
+                dismissButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 36)
+                buttonsAlpha = 0.8
+                break
+            case DeviceConstants.IPHONEXR_HEIGHT:
+                overlayViewHeight = view.frame.height / 10
+                dismissButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 36)
+                buttonsAlpha = 0.8
+                break
+            default:
+                overlayViewHeight = view.frame.height / 14
+                dismissButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 30)
+                buttonsAlpha = 0.7
+                break
+        }
+        let overlayCloseView = UIView(frame: CGRect(x: 0, y: -view.frame.height / 10, width: view.frame.width, height: overlayViewHeight))
+        overlayCloseView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.2)
+        let dismissButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width / 20, y: overlayCloseView.frame.height / 2 - 10, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
+        dismissButton.alpha = buttonsAlpha
         dismissButtonTitleAttributes[.foregroundColor] = UIColor.white
         let dismissButtonAttributedTitle = NSAttributedString(string: "⨯", attributes: dismissButtonTitleAttributes)
         dismissButton.setAttributedTitle(dismissButtonAttributedTitle, for: .normal)
@@ -277,14 +306,47 @@ extension VibeTextViewController {
         overlayCloseView.isHidden = true
         
         overlayNextButton = UIButton(frame: CGRect(x: overlayCloseView.frame.width - (overlayCloseView.frame.width / 20 + overlayCloseView.frame.height / 2), y: overlayCloseView.frame.height / 4, width: overlayCloseView.frame.height / 2, height: overlayCloseView.frame.height / 2))
-        overlayNextButton.alpha = 0.8
+        overlayNextButton.alpha = buttonsAlpha
+        overlayNextButton.center.y = dismissButton.center.y
         var nextButtonTitleAttributes = [NSAttributedString.Key : Any]()
-        nextButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 26)
+        switch view.frame.height {
+            case DeviceConstants.IPHONE7_HEIGHT:
+                nextButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 26)
+                break
+            case DeviceConstants.IPHONE7PLUS_HEIGHT:
+                nextButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 26)
+                break
+            case DeviceConstants.IPHONEX_HEIGHT:
+                nextButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 31)
+                break
+            case DeviceConstants.IPHONEXR_HEIGHT:
+                nextButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 31)
+                break
+            default:
+                nextButtonTitleAttributes[.font] = UIFont.boldSystemFont(ofSize: 26)
+                break
+        }
         nextButtonTitleAttributes[.foregroundColor] = UIColor.white
         let nextButtonAttributedTitle = NSAttributedString(string: "→", attributes: nextButtonTitleAttributes)
         overlayNextButton.setAttributedTitle(nextButtonAttributedTitle, for: .normal)
 
-        if (!isPreview && vibeModel.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!) || (!isPreview && vibeModel.from!.getUsername()! == UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! && vibeModel.isPhotosPresent) || (isPreview && vibeModel.isPhotosPresent) {
+        if vibeModel.from?.getUsername() != nil {
+            if (!isPreview && vibeModel.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)!) || (!isPreview && vibeModel.from!.getUsername()! == UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! && vibeModel.isPhotosPresent) || (isPreview && vibeModel.isPhotosPresent) {
+                let nextTapGesture = UITapGestureRecognizer(target: self, action: #selector(nextPressed))
+                overlayNextButton.addGestureRecognizer(nextTapGesture)
+                overlayNextButton.layer.cornerRadius = overlayNextButton.frame.height / 2
+                overlayCloseView.addSubview(overlayNextButton)
+                overlayNextButton.isHidden = true
+            }
+        } else if vibeModel.from?.getId() != nil {
+            if (!isPreview && vibeModel.from!.getId()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!) || (!isPreview && vibeModel.from!.getId()! == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! && vibeModel.isPhotosPresent) || (isPreview && vibeModel.isPhotosPresent) {
+                let nextTapGesture = UITapGestureRecognizer(target: self, action: #selector(nextPressed))
+                overlayNextButton.addGestureRecognizer(nextTapGesture)
+                overlayNextButton.layer.cornerRadius = overlayNextButton.frame.height / 2
+                overlayCloseView.addSubview(overlayNextButton)
+                overlayNextButton.isHidden = true
+            }
+        } else if isDemoVibe {
             let nextTapGesture = UITapGestureRecognizer(target: self, action: #selector(nextPressed))
             overlayNextButton.addGestureRecognizer(nextTapGesture)
             overlayNextButton.layer.cornerRadius = overlayNextButton.frame.height / 2
@@ -333,6 +395,7 @@ extension VibeTextViewController {
                         let captionGameCaptionsVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameCaptionsViewController") as! VibeImagesGameCaptionsViewController
                         captionGameCaptionsVC.vibeModel = vibeModel
                         captionGameCaptionsVC.isPreview = isPreview
+                        captionGameCaptionsVC.isDemoVibe = isDemoVibe
                         self.present(captionGameCaptionsVC, animated: true, completion: nil)
                     } else {
                         let seenIds = vibeModel.getSeenIds()
@@ -352,6 +415,7 @@ extension VibeTextViewController {
                         captionGameImagesVC.vibeModel = vibeModel
                         captionGameImagesVC.captionsSelected = captionsSelected
                         captionGameImagesVC.isPreview = isPreview
+                        captionGameImagesVC.isDemoVibe = isDemoVibe
                         self.present(captionGameImagesVC, animated: true, completion: nil)
                     }
                     break
@@ -364,6 +428,7 @@ extension VibeTextViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let hailinputVC = storyboard.instantiateViewController(withIdentifier: "VibeHailInputViewController") as! VibeHailInputViewController
             hailinputVC.vibeModel = vibeModel
+            hailinputVC.isDemoVibe = isDemoVibe
             self.present(hailinputVC, animated: true, completion: nil)
         }
     }
@@ -374,6 +439,7 @@ extension VibeTextViewController {
             let destinationVC = segue.destination as! VibeImagesViewController
             destinationVC.vibeModel = vibeModel
             destinationVC.isPreview = isPreview
+            destinationVC.isDemoVibe = isDemoVibe
             destinationVC.isSourceLetter = true
         }
     }

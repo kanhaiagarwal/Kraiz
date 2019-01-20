@@ -56,5 +56,8 @@ public class DeviceConstants {
 
     // Time to next Public Vibe
     static public let TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS = 300
+    
+    // Realm Schema Version
+    static public let REALM_SCHEMA_VERSION = 2
 }
 

@@ -460,63 +460,128 @@ public class CacheHelper {
         }
     }
 
+    /// Adds the Random Public Vibe to Cache by creating its VibeComponentEntity.
+    /// - Parameters:
+    ///     - vibeModel: Vibe Model.
+    func addRandomPublicVibeToCache(vibeModel: VibeModel) {
+        do {
+            let realm = try Realm()
+            if let object = realm.object(ofType: PublicVibeTimeEntity.self, forPrimaryKey: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!) {
+                realm.beginWrite()
+                _ = createVibeComponentEntityFromVibeModel(vibeComponentId: vibeModel.id, vibeModel: vibeModel, realm: realm)
+                object.setLastPublicVibeId(publicVibeId: vibeModel.id)
+                try realm.commitWrite()
+            }
+        } catch {
+            print("error in realm: \(error)")
+        }
+    }
+
     /// Sets the Vibe Model from the VibeComponents of the Draft.
     /// - Parameters:
     ///     - draftId: Draft ID.
     ///     - completionHandler: Action to perform after the vibe model is ready.
-    func setVibeModelFromVibeComponentEntity(draftId: String, completionHandler: (VibeModel) -> Void) {
-        let vibeModel = VibeModel()
+    func setVibeModelFromDraftEntity(draftId: String, completionHandler: (VibeModel) -> Void) {
+        var vibeModel = VibeModel()
         do {
             let realm = try Realm()
             if let result = realm.object(ofType: DraftEntity.self, forPrimaryKey: draftId) {
                 if let vibeComponent = result.getVibeEntity() {
-                    vibeModel.setId(id: vibeComponent.getId() != nil ? vibeComponent.getId()! : "")
-                    vibeModel.setVibeName(name: vibeComponent.getVibeName() != nil ? vibeComponent.getVibeName()! : "")
-                    vibeModel.setSenderId(sender: vibeComponent.getSender() != nil ? vibeComponent.getSender()! : "")
-                    vibeModel.setReceiverMobileNumber(mobileNumber: vibeComponent.getReceiverMobileNumber() != nil ? vibeComponent.getReceiverMobileNumber()! : "")
-                    vibeModel.setReceiverUsername(username: vibeComponent.getReceiverUsername() != nil ? vibeComponent.getReceiverUsername()! : "")
-                    vibeModel.setReceiverProfilePic(profilePic: vibeComponent.getReceiverProfilePic() != nil ? vibeComponent.getReceiverProfilePic()! : "")
-                    vibeModel.setCategory(category: vibeComponent.getCategory() != nil ? vibeComponent.getCategory()! : 0)
-                    vibeModel.setVibeType(type: vibeComponent.getType() != nil ? vibeComponent.getType()! : 0)
-                    vibeModel.setBackgroundMusicEnabled(isBackgroundMusicEnabled: vibeComponent.getIsBackgroundMusicEnabled() != nil ? vibeComponent.getIsBackgroundMusicEnabled()! : false)
-                    vibeModel.setAnonymous(isSenderAnonymous: vibeComponent.getIsSenderAnonymous() != nil ? vibeComponent.getIsSenderAnonymous()! : false)
-                    vibeModel.setPhotosPresent(isPhotosPresent: vibeComponent.getIsPhotosPresent() != nil ? vibeComponent.getIsPhotosPresent()! : false)
-                    vibeModel.setLetterPresent(isLetterPresent: vibeComponent.getIsLetterPresent() != nil ? vibeComponent.getIsLetterPresent()! : false)
-                    vibeModel.setBackgroundMusic(index: vibeComponent.getBackgroundMusicIndex() != nil ? vibeComponent.getBackgroundMusicIndex()! : 0)
-                    vibeModel.setImageBackdrop(backdrop: vibeComponent.getImageBackdrop() != nil ? vibeComponent.getImageBackdrop()! : 0)
-                    vibeModel.setLetterText(letterString: (vibeComponent.getLetter() != nil && vibeComponent.getLetter()!.getText() != nil) ? vibeComponent.getLetter()!.getText()! : "")
-                    vibeModel.setLetterBackground(background: (vibeComponent.getLetter() != nil) ? vibeComponent.getLetter()!.getBackground() : 0)
-                    if vibeComponent.isPhotosPresent {
-                        if let images = vibeComponent.getImages() {
-                            var allModelPhotos = [PhotoEntity]()
-                            for i in 0 ..< images.count {
-                                var modelPhoto = PhotoEntity()
-                                if let urlString = images[i].localPath {
-                                    let imageUrl = URL(fileURLWithPath: NSHomeDirectory().appending(urlString))
-                                    do {
-                                        let image = try Data(contentsOf: imageUrl)
-                                        modelPhoto.image = UIImage(data: image)
-                                        modelPhoto.caption = images[i].caption
-                                        allModelPhotos.append(modelPhoto)
-                                    } catch {
-                                        print("cannot convert the image: \(error)")
-                                    }
-                                }
-                            }
-                            vibeModel.setImages(photos: allModelPhotos)
-                            if allModelPhotos.count == 0 {
-                                vibeModel.setPhotosPresent(isPhotosPresent: false)
-                            }
-                        } else {
-                            vibeModel.setPhotosPresent(isPhotosPresent: false)
-                        }
-                    }
+                    vibeModel = setVibeModelFromVibeComponentEntity(vibeComponent: vibeComponent)
                 }
             }
         } catch {
             print("error in realm: \(error)")
         }
         completionHandler(vibeModel)
+    }
+
+    func getVibeModelForRandomPublicVibe(vibeId: String, completionHandler: (VibeModel) -> Void) {
+        var vibeModel = VibeModel()
+        do {
+            let realm = try Realm()
+            if let result = realm.object(ofType: VibeComponentEntity.self, forPrimaryKey: vibeId) {
+                vibeModel = setVibeModelFromVibeComponentEntity(vibeComponent: result)
+            }
+        } catch {
+            print("error in realm: \(error)")
+        }
+        completionHandler(vibeModel)
+    }
+    
+    func setVibeModelFromVibeComponentEntity(vibeComponent: VibeComponentEntity) -> VibeModel {
+        let vibeModel = VibeModel()
+        vibeModel.setId(id: vibeComponent.getId() != nil ? vibeComponent.getId()! : "")
+        vibeModel.setVibeName(name: vibeComponent.getVibeName() != nil ? vibeComponent.getVibeName()! : "")
+        vibeModel.setSenderId(sender: vibeComponent.getSender() != nil ? vibeComponent.getSender()! : "")
+        vibeModel.from?.setId(id: vibeComponent.getSender() != nil ? vibeComponent.getSender()! : "")
+        vibeModel.setReceiverMobileNumber(mobileNumber: vibeComponent.getReceiverMobileNumber() != nil ? vibeComponent.getReceiverMobileNumber()! : "")
+        vibeModel.setReceiverUsername(username: vibeComponent.getReceiverUsername() != nil ? vibeComponent.getReceiverUsername()! : "")
+        vibeModel.setReceiverProfilePic(profilePic: vibeComponent.getReceiverProfilePic() != nil ? vibeComponent.getReceiverProfilePic()! : "")
+        vibeModel.setCategory(category: vibeComponent.getCategory() != nil ? vibeComponent.getCategory()! : 0)
+        vibeModel.setVibeType(type: vibeComponent.getType() != nil ? vibeComponent.getType()! : 0)
+        vibeModel.setBackgroundMusicEnabled(isBackgroundMusicEnabled: vibeComponent.getIsBackgroundMusicEnabled() != nil ? vibeComponent.getIsBackgroundMusicEnabled()! : false)
+        vibeModel.setAnonymous(isSenderAnonymous: vibeComponent.getIsSenderAnonymous() != nil ? vibeComponent.getIsSenderAnonymous()! : false)
+        vibeModel.setPhotosPresent(isPhotosPresent: vibeComponent.getIsPhotosPresent() != nil ? vibeComponent.getIsPhotosPresent()! : false)
+        vibeModel.setLetterPresent(isLetterPresent: vibeComponent.getIsLetterPresent() != nil ? vibeComponent.getIsLetterPresent()! : false)
+        vibeModel.setBackgroundMusic(index: vibeComponent.getBackgroundMusicIndex() != nil ? vibeComponent.getBackgroundMusicIndex()! : 0)
+        vibeModel.setImageBackdrop(backdrop: vibeComponent.getImageBackdrop() != nil ? vibeComponent.getImageBackdrop()! : 0)
+        vibeModel.setLetterText(letterString: (vibeComponent.getLetter() != nil && vibeComponent.getLetter()!.getText() != nil) ? vibeComponent.getLetter()!.getText()! : "")
+        vibeModel.setLetterBackground(background: (vibeComponent.getLetter() != nil) ? vibeComponent.getLetter()!.getBackground() : 0)
+        if vibeComponent.isPhotosPresent {
+            if let images = vibeComponent.getImages() {
+                var allModelPhotos = [PhotoEntity]()
+                for i in 0 ..< images.count {
+                    var modelPhoto = PhotoEntity()
+                    if let urlString = images[i].localPath {
+                        let imageUrl = URL(fileURLWithPath: NSHomeDirectory().appending(urlString))
+                        do {
+                            let image = try Data(contentsOf: imageUrl)
+                            modelPhoto.image = UIImage(data: image)
+                            modelPhoto.caption = images[i].caption
+                            allModelPhotos.append(modelPhoto)
+                        } catch {
+                            print("cannot convert the image: \(error)")
+                        }
+                    }
+                }
+                vibeModel.setImages(photos: allModelPhotos)
+                if allModelPhotos.count == 0 {
+                    vibeModel.setPhotosPresent(isPhotosPresent: false)
+                }
+            } else {
+                vibeModel.setPhotosPresent(isPhotosPresent: false)
+            }
+        }
+        return vibeModel
+    }
+
+    func clearLastPublicVibe() {
+        do {
+            let realm = try Realm()
+            if let userId = UserDefaults.standard.string(forKey: DeviceConstants.USER_ID) {
+                if let object = realm.object(ofType: PublicVibeTimeEntity.self, forPrimaryKey: userId) {
+                    realm.beginWrite()
+                    if let vibe = realm.object(ofType: VibeComponentEntity.self, forPrimaryKey: object.getLastPublicVibeId()) {
+                        if vibe.getSender()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! {
+                            if vibe.getLetter() != nil {
+                                realm.delete(vibe.getLetter()!)
+                            }
+                            if vibe.getImages() != nil && vibe.getImages()!.count > 0 {
+                                for image in vibe.getImages()! {
+                                    realm.delete(image)
+                                }
+                            }
+                            realm.delete(vibe)
+                        }
+                    }
+                    object.setLastPublicVibeId(publicVibeId: nil)
+                    try realm.commitWrite()
+                }
+            }
+        } catch {
+            print("Error in realm: \(error)")
+        }
     }
 
     /// Clears all the data from the default Realm Cache.

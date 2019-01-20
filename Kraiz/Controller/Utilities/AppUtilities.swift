@@ -273,6 +273,30 @@ public class APPUtilites {
         let splitStrings = vibeTypeTag.split(separator: "_")
         return String(splitStrings[1])
     }
+
+    public static func getVibeModelForDemoVibe(vibeTag: Int) -> VibeModel {
+        let vibe = VibeModel()
+        vibe.backgroundMusicIndex = 1
+        vibe.category = vibeTag
+        vibe.imageBackdrop = 0
+        vibe.isBackgroundMusicEnabled = true
+        vibe.isLetterPresent = true
+        vibe.isPhotosPresent = true
+        let letterText = "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \nPress anywhere in the screen. There will come an arrow at the top right. Press it."
+        vibe.setLetterText(letterString: letterText)
+        vibe.setLetterBackground(background: 0)
+        vibe.setVibeName(name: "Hello. This is a Sample Love Vibe")
+
+        var photos = [PhotoEntity]()
+        for _ in 0 ..< 4 {
+            var photo = PhotoEntity()
+            photo.image = UIImage(named: "profile-default")
+            photo.caption = "This is a sample caption. You can put cool captions here."
+            photos.append(photo)
+        }
+        vibe.setImages(photos: photos)
+        return vibe
+    }
 }
 
 extension Date {

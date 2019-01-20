@@ -30,6 +30,8 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
     private let EMPTY_VIBES_IMAGE = "empty-vibes-private"
     let emptyImageView = UIImageView()
     
+    var demoVibeSeen = false
+    
     let firstShowcase = MaterialShowcase()
     
     override func viewDidLoad() {
@@ -120,6 +122,15 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
         emptyImageView.frame = CGRect(x: 30, y: emptyImageView.superview!.frame.height / 4, width: emptyImageView.superview!.frame.width - 60, height: emptyImageView.superview!.frame.height / 3)
         emptyImageView.image = UIImage(named: EMPTY_VIBES_IMAGE)
         updateEmptyVibeBackground()
+
+        if !demoVibeSeen {
+            demoVibeSeen = true
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+            vibeWelcomeVC.isDemoVibe = true
+            vibeWelcomeVC.vibeModel = APPUtilites.getVibeModelForDemoVibe(vibeTag: 0)
+            self.present(vibeWelcomeVC, animated: true, completion: nil)
+        }
     }
 }
 

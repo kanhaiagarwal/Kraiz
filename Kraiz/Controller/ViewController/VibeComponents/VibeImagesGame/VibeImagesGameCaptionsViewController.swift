@@ -17,6 +17,7 @@ class VibeImagesGameCaptionsViewController: UIViewController {
     var currentSelectionsCount = 0
     var vibeModel: VibeModel?
     var isPreview = false
+    var isDemoVibe = false
     var viewHeight : CGFloat = 0
 
     var captionsSelected = [Int : Bool]()
@@ -89,7 +90,7 @@ class VibeImagesGameCaptionsViewController: UIViewController {
             APPUtilites.displayErrorSnackbar(message: "Please select at least one caption")
             return
         }
-        if !isPreview && vibeModel!.from?.getUsername() != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! && vibeModel!.type == 1 {
+        if !isPreview && vibeModel!.from?.getUsername() != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! && vibeModel!.type == 0 {
             var seenIds = [String]()
             for i in 0 ..< vibeModel!.getImages().count {
                 if captionsSelected[i]! {

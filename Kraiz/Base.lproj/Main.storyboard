@@ -2874,6 +2874,12 @@ its the right one</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press anywhere on the screen" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTk-a3-yyl">
+                                <rect key="frame" x="20" y="533" width="374" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJX-Np-fGI">
                                 <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <connections>
@@ -2898,6 +2904,8 @@ its the right one</string>
                             <constraint firstItem="fjh-We-4tB" firstAttribute="top" secondItem="5fP-iq-4LG" secondAttribute="top" constant="10" id="5ci-85-pxI"/>
                             <constraint firstAttribute="bottom" secondItem="Kz9-ML-Hfc" secondAttribute="bottom" id="7If-oz-yDO"/>
                             <constraint firstItem="dVf-T0-f6P" firstAttribute="centerX" secondItem="2W5-T5-czK" secondAttribute="centerX" id="7iE-Wy-afp"/>
+                            <constraint firstItem="5fP-iq-4LG" firstAttribute="trailing" secondItem="UTk-a3-yyl" secondAttribute="trailing" constant="20" id="Bc4-QQ-KUk"/>
+                            <constraint firstItem="UTk-a3-yyl" firstAttribute="leading" secondItem="5fP-iq-4LG" secondAttribute="leading" constant="20" id="Bdy-TW-f1S"/>
                             <constraint firstItem="dVf-T0-f6P" firstAttribute="height" secondItem="Kz9-ML-Hfc" secondAttribute="height" multiplier="0.05" id="CiK-Sw-CTj"/>
                             <constraint firstItem="fjh-We-4tB" firstAttribute="leading" secondItem="5fP-iq-4LG" secondAttribute="leading" constant="10" id="Fqt-xu-AE2"/>
                             <constraint firstItem="Vwh-e4-NMs" firstAttribute="top" secondItem="dVf-T0-f6P" secondAttribute="bottom" constant="10" id="HCW-ee-3Mh"/>
@@ -2909,6 +2917,7 @@ its the right one</string>
                             <constraint firstItem="xbs-6y-U0i" firstAttribute="centerX" secondItem="2W5-T5-czK" secondAttribute="centerX" id="age-o3-Qml"/>
                             <constraint firstItem="5fP-iq-4LG" firstAttribute="bottom" secondItem="fJX-Np-fGI" secondAttribute="bottom" id="ask-8s-6e8"/>
                             <constraint firstItem="5fP-iq-4LG" firstAttribute="trailing" secondItem="xbs-6y-U0i" secondAttribute="trailing" id="cbL-2v-fNl"/>
+                            <constraint firstItem="UTk-a3-yyl" firstAttribute="top" secondItem="xbs-6y-U0i" secondAttribute="bottom" constant="51.333333333333371" id="fkz-rG-7hG"/>
                             <constraint firstItem="5fP-iq-4LG" firstAttribute="trailing" secondItem="Kz9-ML-Hfc" secondAttribute="trailing" id="fut-A7-p6K"/>
                             <constraint firstItem="xbs-6y-U0i" firstAttribute="leading" secondItem="5fP-iq-4LG" secondAttribute="leading" id="i14-Er-Lpg"/>
                             <constraint firstItem="5fP-iq-4LG" firstAttribute="trailing" secondItem="Vwh-e4-NMs" secondAttribute="trailing" constant="30" id="kJ6-Eu-OC7"/>
@@ -2919,6 +2928,7 @@ its the right one</string>
                     </view>
                     <connections>
                         <outlet property="backgroundImage" destination="Kz9-ML-Hfc" id="Jy7-dZ-sDL"/>
+                        <outlet property="demoInstructionLabel" destination="UTk-a3-yyl" id="Ko8-JM-bsr"/>
                         <outlet property="senderUsername" destination="xbs-6y-U0i" id="n35-qo-sol"/>
                         <outlet property="vibeName" destination="Vwh-e4-NMs" id="3nh-Vm-MCc"/>
                         <outlet property="vibeTag" destination="dVf-T0-f6P" id="hx2-8C-tKm"/>
@@ -3078,7 +3088,20 @@ its the right one</string>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pmq-CZ-3S5">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe the card leftward to see the next card." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKU-WU-Sv4">
+                                        <rect key="frame" x="20" y="100" width="374" height="45.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="QKU-WU-Sv4" firstAttribute="top" secondItem="Pmq-CZ-3S5" secondAttribute="top" constant="100" id="5dd-5l-5f1"/>
+                                    <constraint firstItem="QKU-WU-Sv4" firstAttribute="leading" secondItem="Pmq-CZ-3S5" secondAttribute="leading" constant="20" id="TWR-A5-o97"/>
+                                    <constraint firstAttribute="trailing" secondItem="QKU-WU-Sv4" secondAttribute="trailing" constant="20" id="dSF-Zx-FXb"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3092,6 +3115,8 @@ its the right one</string>
                     </view>
                     <connections>
                         <outlet property="bgView" destination="Pmq-CZ-3S5" id="vKi-zc-tVe"/>
+                        <outlet property="demoInstructionTop" destination="QKU-WU-Sv4" id="fbx-se-DWt"/>
+                        <outlet property="demoInstructionTopMargin" destination="5dd-5l-5f1" id="6ru-Eb-6Hp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oBS-NZ-uqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3453,18 +3478,18 @@ its the right one</string>
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHy-LY-Hn7">
-                                                <rect key="frame" x="10" y="0.0" width="64" height="65"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <rect key="frame" x="15" y="0.0" width="53" height="65"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="Cancel">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" white="0.45000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="backPressed:" destination="LgE-Jo-AIf" eventType="touchUpInside" id="i3f-gc-Mjd"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOl-OR-5rL">
-                                                <rect key="frame" x="355" y="0.0" width="49" height="65"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                                <rect key="frame" x="349" y="0.0" width="45" height="65"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <state key="normal" title="Save">
                                                     <color key="titleColor" red="0.18039215689999999" green="0.25882352939999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -3475,12 +3500,12 @@ its the right one</string>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="iOl-OR-5rL" secondAttribute="trailing" constant="10" id="1IQ-8D-pKj"/>
+                                            <constraint firstAttribute="trailing" secondItem="iOl-OR-5rL" secondAttribute="trailing" constant="20" id="1IQ-8D-pKj"/>
                                             <constraint firstAttribute="bottom" secondItem="sHy-LY-Hn7" secondAttribute="bottom" id="Jdd-bX-9Yv"/>
                                             <constraint firstItem="sHy-LY-Hn7" firstAttribute="top" secondItem="caW-yL-W82" secondAttribute="top" id="SBo-fJ-Pov"/>
                                             <constraint firstAttribute="bottom" secondItem="iOl-OR-5rL" secondAttribute="bottom" id="eLm-uE-N5G"/>
                                             <constraint firstItem="iOl-OR-5rL" firstAttribute="top" secondItem="caW-yL-W82" secondAttribute="top" id="gcr-ig-FpG"/>
-                                            <constraint firstItem="sHy-LY-Hn7" firstAttribute="leading" secondItem="caW-yL-W82" secondAttribute="leading" constant="10" id="qCe-61-nbd"/>
+                                            <constraint firstItem="sHy-LY-Hn7" firstAttribute="leading" secondItem="caW-yL-W82" secondAttribute="leading" constant="15" id="qCe-61-nbd"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qGw-aW-gCN">
@@ -4400,16 +4425,16 @@ its the right one</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VsD-tx-Ndm">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="687"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edA-TM-OgD" userLabel="HeaderContainer">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="86"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kgJ-6m-uMH">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="86"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Thn-kM-Bmx" userLabel="StatusBarView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="86"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="86"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </view>
                                                 </subviews>
@@ -4424,16 +4449,16 @@ its the right one</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z51-zz-Fgf" userLabel="ContentContainer">
-                                        <rect key="frame" x="0.0" y="86" width="414" height="601"/>
+                                        <rect key="frame" x="0.0" y="86" width="414.33333333333331" height="601"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="E2q-7L-hdu">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="601"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="601"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNb-H3-HR4" userLabel="TopContainer">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="171.66666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="171.66666666666666"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aH7-4R-Rnp">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="171.66666666666666"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="171.66666666666666"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovt-tg-xUl" userLabel="ImageContainer">
                                                                         <rect key="frame" x="0.0" y="0.0" width="165.66666666666666" height="171.66666666666666"/>
@@ -4454,10 +4479,10 @@ its the right one</string>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rz5-sF-Ww0" userLabel="UsernameContainer">
-                                                                        <rect key="frame" x="165.66666666666663" y="0.0" width="248.33333333333337" height="171.66666666666666"/>
+                                                                        <rect key="frame" x="165.66666666666669" y="0.0" width="248.66666666666669" height="171.66666666666666"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Risk_rk" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9Y-ce-2t8">
-                                                                                <rect key="frame" x="0.0" y="66.333333333333343" width="248.33333333333334" height="38.666666666666657"/>
+                                                                                <rect key="frame" x="0.0" y="66.333333333333343" width="248.66666666666666" height="38.666666666666657"/>
                                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="33"/>
                                                                                 <color key="textColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
@@ -4485,22 +4510,22 @@ its the right one</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JhD-zp-EMh" userLabel="BottomContainer">
-                                                        <rect key="frame" x="0.0" y="171.66666666666671" width="414" height="429.33333333333326"/>
+                                                        <rect key="frame" x="0.0" y="171.66666666666671" width="414.33333333333331" height="429.33333333333326"/>
                                                         <subviews>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gPZ-2H-7EG">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="429.33333333333331"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="429.33333333333331"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <view key="tableFooterView" contentMode="scaleToFill" id="osW-Zo-5vN" userLabel="EmptyView">
-                                                                    <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                                                    <rect key="frame" x="0.0" y="72" width="414.33333333333331" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </view>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nFa-yr-3Vy">
-                                                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="414.33333333333331" height="44"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nFa-yr-3Vy" id="2dv-yU-eVz">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="43.666666666666664"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                         </tableViewCellContentView>
                                                                     </tableViewCell>
@@ -5261,7 +5286,7 @@ its the right one</string>
         <image name="invite-header" width="524" height="329"/>
         <image name="invite-instagram" width="573" height="595"/>
         <image name="invite-whatsapp" width="81" height="83"/>
-        <image name="letter-ancient" width="320" height="568"/>
+        <image name="letter-ancient" width="720" height="1280"/>
         <image name="letter-icon" width="400.69564819335938" height="400.69564819335938"/>
         <image name="myvibe-background-music" width="48" height="48"/>
         <image name="myvibe-name" width="39" height="39"/>
@@ -5291,7 +5316,7 @@ its the right one</string>
     <inferredMetricsTieBreakers>
         <segue reference="CPU-Kp-dc0"/>
         <segue reference="i7q-Jt-iVl"/>
-        <segue reference="kHT-Ph-L82"/>
+        <segue reference="8oh-yI-riF"/>
         <segue reference="Lbh-sf-AQL"/>
         <segue reference="ylo-g6-D3y"/>
         <segue reference="jey-vD-tun"/>

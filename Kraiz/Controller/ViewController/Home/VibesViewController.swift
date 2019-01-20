@@ -95,6 +95,7 @@ class VibesViewController: UIViewController {
                 APPUtilites.displayElevatedErrorSnackbar(message: "Please Check your Internet Connection.")
                 return
             }
+            CacheHelper.shared.clearLastPublicVibe()
             AnalyticsHelper.shared.logRandomPublicVibeEvent(action: .READY_BUTTON_CLICKED, tag: nil)
             let choosePublicTagVC = self.storyboard?.instantiateViewController(withIdentifier: "PublicVibeTagsViewController")
             self.present(choosePublicTagVC!, animated: true, completion: nil)
@@ -108,9 +109,20 @@ class VibesViewController: UIViewController {
             let okayAction = UIAlertAction(title: "Okay", style: .default) { (action) in
                 self.dismiss(animated: true, completion: nil)
             }
-            let alertController = UIAlertController(title: "Public Vibe Not ready", message: "The public vibe will be ready in \(hours):\(minutes):\(seconds)", preferredStyle: .alert)
-            alertController.addAction(okayAction)
-            self.present(alertController, animated: true, completion: nil)
+            let lastPublicVibeEntity = CacheHelper.shared.getPublicVibeTimeEntity()
+            let vibeId = lastPublicVibeEntity?.getLastPublicVibeId()
+            if let id = vibeId {
+                CacheHelper.shared.getVibeModelForRandomPublicVibe(vibeId: id, completionHandler: { (vibeModel) in
+                    let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
+                    let vibesWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+                    vibeModel.setVibeType(type: 1)
+                    vibesWelcomeVC.vibeModel = vibeModel
+                    self.present(vibesWelcomeVC, animated: true, completion: nil)
+                })
+            }
+//            let alertController = UIAlertController(title: "Public Vibe Not ready", message: "The public vibe will be ready in \(hours):\(minutes):\(seconds)", preferredStyle: .alert)
+//            alertController.addAction(okayAction)
+//            self.present(alertController, animated: true, completion: nil)
         }
     }
 
