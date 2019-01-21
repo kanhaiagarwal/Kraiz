@@ -1274,7 +1274,7 @@ mobile number +919003194776</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="tw5-t2-syO"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="CreateButton" selectedImage="CreateButton" id="SdX-Lo-Vnu">
+                    <tabBarItem key="tabBarItem" title="" id="SdX-Lo-Vnu">
                         <inset key="imageInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                         <inset key="largeContentSizeImageInsets" minX="0.0" minY="100" maxX="0.0" maxY="0.0"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
@@ -2489,319 +2489,6 @@ mobile number +919003194776</string>
             </objects>
             <point key="canvasLocation" x="7940.579710144928" y="-2093.9732142857142"/>
         </scene>
-        <!--Review Page View Controller-->
-        <scene sceneID="Vrd-8S-Hsg">
-            <objects>
-                <viewController id="S9q-XB-SKE" customClass="ReviewPageViewController" customModule="Kraiz" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="oZY-h4-B9m">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dCT-5D-Fxm">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Twq-Yg-Lu2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="81.666666666666671"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N6O-H6-ZPh">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="81.666666666666671"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3LR-2i-mMR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="27.333333333333332"/>
-                                                        <color key="backgroundColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgt-Xv-RUb">
-                                                        <rect key="frame" x="0.0" y="27.333333333333332" width="414" height="54.333333333333343"/>
-                                                        <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JKP-pU-oFe">
-                                                                <rect key="frame" x="10" y="0.0" width="30" height="54.333333333333336"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                                                <state key="normal" title="←">
-                                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="backPressed:" destination="S9q-XB-SKE" eventType="touchUpInside" id="Knt-1B-nSL"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                        <color key="backgroundColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="JKP-pU-oFe" secondAttribute="bottom" id="cBt-ri-cn8"/>
-                                                            <constraint firstItem="JKP-pU-oFe" firstAttribute="leading" secondItem="tgt-Xv-RUb" secondAttribute="leading" constant="10" id="fWs-Ua-ak8"/>
-                                                            <constraint firstItem="JKP-pU-oFe" firstAttribute="top" secondItem="tgt-Xv-RUb" secondAttribute="top" id="lbx-Fj-Ne4"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="tgt-Xv-RUb" firstAttribute="height" secondItem="3LR-2i-mMR" secondAttribute="height" multiplier="2:1" id="eyX-Ix-HNg"/>
-                                                </constraints>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.043137254899999998" green="0.74117647060000003" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstItem="N6O-H6-ZPh" firstAttribute="top" secondItem="Twq-Yg-Lu2" secondAttribute="top" id="5S9-zG-Cs7"/>
-                                            <constraint firstItem="N6O-H6-ZPh" firstAttribute="leading" secondItem="Twq-Yg-Lu2" secondAttribute="leading" id="RTt-0E-ehX"/>
-                                            <constraint firstAttribute="bottom" secondItem="N6O-H6-ZPh" secondAttribute="bottom" id="dyW-QN-Wdp"/>
-                                            <constraint firstAttribute="trailing" secondItem="N6O-H6-ZPh" secondAttribute="trailing" id="vaj-Nj-yym"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IiA-RF-MvF">
-                                        <rect key="frame" x="0.0" y="81.666666666666686" width="414" height="654.33333333333326"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bZJ-NW-JxF">
-                                                <rect key="frame" x="10" y="40" width="394" height="574.33333333333337"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="review-background" translatesAutoresizingMaskIntoConstraints="NO" id="8hx-DS-qyt">
-                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="574.33333333333337"/>
-                                                    </imageView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPK-9Z-5tZ">
-                                                        <rect key="frame" x="18" y="39.999999999999986" width="215" height="110.00000000000001"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="215" id="wZT-FQ-0uZ"/>
-                                                        </constraints>
-                                                        <string key="text">If life gives you 
-Risk then make sure 
-its the right one</string>
-                                                        <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="28"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    </textView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rJc-AC-Wme">
-                                                        <rect key="frame" x="241" y="39.999999999999986" width="145" height="110.00000000000001"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="110" id="wze-fg-mMp"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXN-9U-SaN" userLabel="ScheduleContainer">
-                                                        <rect key="frame" x="15" y="497.33333333333326" width="62" height="62"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="schedule" translatesAutoresizingMaskIntoConstraints="NO" id="cZc-9d-1sH">
-                                                                <rect key="frame" x="9.6666666666666643" y="0.0" width="43" height="43"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="43" id="Hbd-H0-E44"/>
-                                                                    <constraint firstAttribute="width" secondItem="cZc-9d-1sH" secondAttribute="height" multiplier="1:1" id="TX0-eM-p5E"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Schedule" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxK-AV-mGW">
-                                                                <rect key="frame" x="0.0" y="46.333333333333371" width="62" height="15.666666666666664"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="14"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="62" id="8tK-w3-zTP"/>
-                                                            <constraint firstAttribute="bottom" secondItem="hxK-AV-mGW" secondAttribute="bottom" id="Qkr-7r-5zv"/>
-                                                            <constraint firstItem="cZc-9d-1sH" firstAttribute="centerX" secondItem="aXN-9U-SaN" secondAttribute="centerX" id="XIW-q8-P0E"/>
-                                                            <constraint firstAttribute="trailing" secondItem="hxK-AV-mGW" secondAttribute="trailing" id="b40-HX-KVf"/>
-                                                            <constraint firstAttribute="width" secondItem="aXN-9U-SaN" secondAttribute="height" multiplier="1:1" id="qop-fP-7Gl"/>
-                                                            <constraint firstItem="cZc-9d-1sH" firstAttribute="top" secondItem="aXN-9U-SaN" secondAttribute="top" id="sOy-Zw-0Fz"/>
-                                                            <constraint firstItem="hxK-AV-mGW" firstAttribute="leading" secondItem="aXN-9U-SaN" secondAttribute="leading" id="vCP-BX-k35"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iva-qC-9wn" userLabel="SendContainer">
-                                                        <rect key="frame" x="317" y="497.33333333333326" width="62" height="62"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="send" translatesAutoresizingMaskIntoConstraints="NO" id="6eb-br-dZS">
-                                                                <rect key="frame" x="9" y="0.0" width="44" height="44"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="6eb-br-dZS" secondAttribute="height" multiplier="1:1" id="0eZ-0u-uBU"/>
-                                                                    <constraint firstAttribute="height" constant="44" id="yph-pb-XSB"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dT3-nd-NOf">
-                                                                <rect key="frame" x="0.0" y="43" width="62" height="19"/>
-                                                                <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="17"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstItem="dT3-nd-NOf" firstAttribute="leading" secondItem="Iva-qC-9wn" secondAttribute="leading" id="Edu-EU-itX"/>
-                                                            <constraint firstAttribute="trailing" secondItem="dT3-nd-NOf" secondAttribute="trailing" id="Rgw-5e-gS7"/>
-                                                            <constraint firstAttribute="height" constant="62" id="ZdA-KP-UJc"/>
-                                                            <constraint firstItem="6eb-br-dZS" firstAttribute="top" secondItem="Iva-qC-9wn" secondAttribute="top" id="aeP-vh-hmf"/>
-                                                            <constraint firstItem="6eb-br-dZS" firstAttribute="centerX" secondItem="Iva-qC-9wn" secondAttribute="centerX" id="egG-Jf-dwB"/>
-                                                            <constraint firstAttribute="bottom" secondItem="dT3-nd-NOf" secondAttribute="bottom" id="jES-rA-Ddu"/>
-                                                            <constraint firstAttribute="width" secondItem="Iva-qC-9wn" secondAttribute="height" multiplier="1:1" id="xAY-gC-FxE"/>
-                                                        </constraints>
-                                                    </view>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="YPK-9Z-5tZ" firstAttribute="leading" secondItem="bZJ-NW-JxF" secondAttribute="leading" constant="18" id="0q8-9i-0QW"/>
-                                                    <constraint firstAttribute="trailing" secondItem="rJc-AC-Wme" secondAttribute="trailing" constant="8" id="BGA-Dc-bH1"/>
-                                                    <constraint firstItem="rJc-AC-Wme" firstAttribute="leading" secondItem="YPK-9Z-5tZ" secondAttribute="trailing" constant="8" id="HRa-jx-lQe"/>
-                                                    <constraint firstAttribute="bottom" secondItem="aXN-9U-SaN" secondAttribute="bottom" constant="15" id="JTM-sz-qmn"/>
-                                                    <constraint firstItem="8hx-DS-qyt" firstAttribute="leading" secondItem="bZJ-NW-JxF" secondAttribute="leading" id="Njb-zr-CML"/>
-                                                    <constraint firstAttribute="bottom" secondItem="8hx-DS-qyt" secondAttribute="bottom" id="S40-fT-duJ"/>
-                                                    <constraint firstItem="8hx-DS-qyt" firstAttribute="top" secondItem="bZJ-NW-JxF" secondAttribute="top" id="ZIg-jT-7Jq"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Iva-qC-9wn" secondAttribute="trailing" constant="15" id="cen-Oc-oi1"/>
-                                                    <constraint firstItem="YPK-9Z-5tZ" firstAttribute="bottom" secondItem="rJc-AC-Wme" secondAttribute="bottom" id="fSc-K2-59R"/>
-                                                    <constraint firstAttribute="trailing" secondItem="8hx-DS-qyt" secondAttribute="trailing" id="hAF-hg-nZ6"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Iva-qC-9wn" secondAttribute="bottom" constant="15" id="pzT-6o-UNc"/>
-                                                    <constraint firstItem="YPK-9Z-5tZ" firstAttribute="top" secondItem="bZJ-NW-JxF" secondAttribute="top" constant="40" id="r2A-H4-RUn"/>
-                                                    <constraint firstItem="rJc-AC-Wme" firstAttribute="top" secondItem="bZJ-NW-JxF" secondAttribute="top" constant="40" id="sod-42-vR7"/>
-                                                    <constraint firstItem="aXN-9U-SaN" firstAttribute="leading" secondItem="bZJ-NW-JxF" secondAttribute="leading" constant="15" id="ye0-FY-f1w"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gp0-8s-lcj" userLabel="ToContainer">
-                                                <rect key="frame" x="0.0" y="263.33333333333331" width="414" height="47.666666666666686"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blV-dE-aGm">
-                                                        <rect key="frame" x="28" y="5" width="30.333333333333329" height="42.666666666666664"/>
-                                                        <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="26"/>
-                                                        <color key="textColor" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Risk_rk" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fNK-4C-n5O">
-                                                        <rect key="frame" x="63.333333333333343" y="0.0" width="320.66666666666663" height="47.666666666666664"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <color key="textColor" red="0.18431372549019609" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="blV-dE-aGm" secondAttribute="bottom" id="3sZ-AG-JYq"/>
-                                                    <constraint firstItem="fNK-4C-n5O" firstAttribute="top" secondItem="gp0-8s-lcj" secondAttribute="top" id="Bm9-nb-dq4"/>
-                                                    <constraint firstAttribute="trailing" secondItem="fNK-4C-n5O" secondAttribute="trailing" constant="30" id="NSA-Ms-R4y"/>
-                                                    <constraint firstItem="blV-dE-aGm" firstAttribute="top" secondItem="gp0-8s-lcj" secondAttribute="top" constant="5" id="VPq-LU-kAS"/>
-                                                    <constraint firstAttribute="bottom" secondItem="fNK-4C-n5O" secondAttribute="bottom" id="phc-HI-9l2"/>
-                                                    <constraint firstItem="blV-dE-aGm" firstAttribute="leading" secondItem="gp0-8s-lcj" secondAttribute="leading" constant="28" id="q0I-oQ-I1O"/>
-                                                    <constraint firstItem="fNK-4C-n5O" firstAttribute="leading" secondItem="blV-dE-aGm" secondAttribute="trailing" constant="5" id="u1m-Q3-LcH"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEs-5h-F59" userLabel="StoryNameContainer1">
-                                                <rect key="frame" x="0.0" y="319" width="414" height="48"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Story Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7r-3i-aPf">
-                                                        <rect key="frame" x="28" y="0.0" width="142.33333333333334" height="48"/>
-                                                        <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
-                                                        <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="The Sutta" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4wH-Bn-kZh" userLabel="StoryNameLine1">
-                                                        <rect key="frame" x="180.33333333333337" y="0.0" width="203.66666666666663" height="48"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <color key="textColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="4wH-Bn-kZh" firstAttribute="leading" secondItem="Q7r-3i-aPf" secondAttribute="trailing" constant="10" id="MNv-Fl-9LR"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Q7r-3i-aPf" secondAttribute="bottom" id="Mdh-mr-6LW"/>
-                                                    <constraint firstItem="Q7r-3i-aPf" firstAttribute="top" secondItem="XEs-5h-F59" secondAttribute="top" id="NT6-S4-r09"/>
-                                                    <constraint firstAttribute="bottom" secondItem="4wH-Bn-kZh" secondAttribute="bottom" id="Rdl-mp-cmH"/>
-                                                    <constraint firstItem="4wH-Bn-kZh" firstAttribute="top" secondItem="XEs-5h-F59" secondAttribute="top" id="nRA-hI-wXQ"/>
-                                                    <constraint firstItem="Q7r-3i-aPf" firstAttribute="leading" secondItem="XEs-5h-F59" secondAttribute="leading" constant="28" id="wJB-zz-S7G"/>
-                                                    <constraint firstAttribute="trailing" secondItem="4wH-Bn-kZh" secondAttribute="trailing" constant="30" id="zbK-K2-ED7"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6e-dV-Jzh" userLabel="StoryNameContainer2">
-                                                <rect key="frame" x="0.0" y="367" width="414" height="48"/>
-                                                <subviews>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Gang's story" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gLu-E1-RPs">
-                                                        <rect key="frame" x="28" y="0.0" width="356" height="48"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <color key="textColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="gLu-E1-RPs" firstAttribute="top" secondItem="S6e-dV-Jzh" secondAttribute="top" id="JcL-80-z3K"/>
-                                                    <constraint firstAttribute="trailing" secondItem="gLu-E1-RPs" secondAttribute="trailing" constant="30" id="Zh4-mM-Upa"/>
-                                                    <constraint firstItem="gLu-E1-RPs" firstAttribute="leading" secondItem="S6e-dV-Jzh" secondAttribute="leading" constant="28" id="sKX-sN-z0J"/>
-                                                    <constraint firstAttribute="bottom" secondItem="gLu-E1-RPs" secondAttribute="bottom" id="zWe-k2-qKI"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cFh-6c-yhF" userLabel="StoryNameContainer3">
-                                                <rect key="frame" x="0.0" y="415" width="414" height="47.666666666666686"/>
-                                                <subviews>
-                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="17a-4b-XbJ">
-                                                        <rect key="frame" x="28" y="0.0" width="356" height="47.666666666666664"/>
-                                                        <color key="textColor" red="0.18039215689999999" green="0.25882352939999997" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" name="MonotypeCorsiva" family="Monotype Corsiva" pointSize="32"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="17a-4b-XbJ" secondAttribute="trailing" constant="30" id="Cn8-C2-UAV"/>
-                                                    <constraint firstAttribute="bottom" secondItem="17a-4b-XbJ" secondAttribute="bottom" id="fKL-Qo-Bb6"/>
-                                                    <constraint firstItem="17a-4b-XbJ" firstAttribute="top" secondItem="cFh-6c-yhF" secondAttribute="top" id="gzi-2A-wBX"/>
-                                                    <constraint firstItem="17a-4b-XbJ" firstAttribute="leading" secondItem="cFh-6c-yhF" secondAttribute="leading" constant="28" id="lx5-ne-6Fa"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="bZJ-NW-JxF" secondAttribute="trailing" constant="10" id="4qN-1r-7SE"/>
-                                            <constraint firstAttribute="trailing" secondItem="S6e-dV-Jzh" secondAttribute="trailing" id="5SV-bm-G9Q"/>
-                                            <constraint firstItem="XEs-5h-F59" firstAttribute="leading" secondItem="IiA-RF-MvF" secondAttribute="leading" id="9B1-C2-MWJ"/>
-                                            <constraint firstItem="XEs-5h-F59" firstAttribute="centerX" secondItem="IiA-RF-MvF" secondAttribute="centerX" id="AXF-ff-kiO"/>
-                                            <constraint firstItem="XEs-5h-F59" firstAttribute="height" secondItem="bZJ-NW-JxF" secondAttribute="height" multiplier="1:12" id="BWX-kU-Bm0"/>
-                                            <constraint firstItem="bZJ-NW-JxF" firstAttribute="centerY" secondItem="IiA-RF-MvF" secondAttribute="centerY" id="Bkp-a0-8jr"/>
-                                            <constraint firstItem="XEs-5h-F59" firstAttribute="top" secondItem="gp0-8s-lcj" secondAttribute="bottom" constant="8" id="Cyt-RL-Oqn"/>
-                                            <constraint firstItem="bZJ-NW-JxF" firstAttribute="leading" secondItem="IiA-RF-MvF" secondAttribute="leading" constant="10" id="HHS-hR-EWZ"/>
-                                            <constraint firstItem="S6e-dV-Jzh" firstAttribute="height" secondItem="bZJ-NW-JxF" secondAttribute="height" multiplier="1:12" id="LWZ-tD-BQS"/>
-                                            <constraint firstItem="gp0-8s-lcj" firstAttribute="leading" secondItem="IiA-RF-MvF" secondAttribute="leading" id="Lgn-ab-qaa"/>
-                                            <constraint firstItem="gp0-8s-lcj" firstAttribute="centerX" secondItem="IiA-RF-MvF" secondAttribute="centerX" id="MQV-5o-1tt"/>
-                                            <constraint firstItem="S6e-dV-Jzh" firstAttribute="leading" secondItem="IiA-RF-MvF" secondAttribute="leading" id="N2Q-x1-rMh"/>
-                                            <constraint firstItem="gp0-8s-lcj" firstAttribute="height" secondItem="8hx-DS-qyt" secondAttribute="height" multiplier="1:12" id="Nve-ul-deC"/>
-                                            <constraint firstItem="bZJ-NW-JxF" firstAttribute="centerX" secondItem="IiA-RF-MvF" secondAttribute="centerX" id="PSs-1f-ity"/>
-                                            <constraint firstItem="S6e-dV-Jzh" firstAttribute="top" secondItem="XEs-5h-F59" secondAttribute="bottom" id="RRF-Lj-zlS"/>
-                                            <constraint firstItem="cFh-6c-yhF" firstAttribute="top" secondItem="S6e-dV-Jzh" secondAttribute="bottom" id="Rd0-xc-LQl"/>
-                                            <constraint firstAttribute="trailing" secondItem="cFh-6c-yhF" secondAttribute="trailing" id="U43-7a-Wtb"/>
-                                            <constraint firstItem="cFh-6c-yhF" firstAttribute="height" secondItem="S6e-dV-Jzh" secondAttribute="height" id="hko-kg-nxS"/>
-                                            <constraint firstAttribute="bottom" secondItem="bZJ-NW-JxF" secondAttribute="bottom" constant="40" id="iJy-9u-p52"/>
-                                            <constraint firstItem="bZJ-NW-JxF" firstAttribute="top" secondItem="IiA-RF-MvF" secondAttribute="top" constant="40" id="oYR-ua-Ujn"/>
-                                            <constraint firstAttribute="trailing" secondItem="XEs-5h-F59" secondAttribute="trailing" id="oxq-e1-ejW"/>
-                                            <constraint firstItem="gp0-8s-lcj" firstAttribute="centerY" secondItem="IiA-RF-MvF" secondAttribute="centerY" constant="-40" id="qez-ZA-kDD"/>
-                                            <constraint firstItem="cFh-6c-yhF" firstAttribute="leading" secondItem="IiA-RF-MvF" secondAttribute="leading" id="rbL-fr-FL4"/>
-                                            <constraint firstAttribute="trailing" secondItem="gp0-8s-lcj" secondAttribute="trailing" id="zc0-Qe-CrX"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="IiA-RF-MvF" firstAttribute="height" secondItem="Twq-Yg-Lu2" secondAttribute="height" multiplier="8:1" id="e2M-l5-eed"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="dCT-5D-Fxm" firstAttribute="top" secondItem="oZY-h4-B9m" secondAttribute="top" id="BgQ-MN-PdL"/>
-                            <constraint firstItem="dFh-Cu-KSR" firstAttribute="trailing" secondItem="dCT-5D-Fxm" secondAttribute="trailing" id="KXD-mU-QGs"/>
-                            <constraint firstItem="dCT-5D-Fxm" firstAttribute="leading" secondItem="dFh-Cu-KSR" secondAttribute="leading" id="Zjl-gb-fuT"/>
-                            <constraint firstItem="dFh-Cu-KSR" firstAttribute="bottom" secondItem="dCT-5D-Fxm" secondAttribute="bottom" id="iYN-pn-Vqw"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="dFh-Cu-KSR"/>
-                    </view>
-                    <connections>
-                        <outlet property="nameView" destination="gp0-8s-lcj" id="jRE-Ex-6Iz"/>
-                        <outlet property="scheduleContainer" destination="aXN-9U-SaN" id="vV6-3A-bwp"/>
-                        <outlet property="sendContainer" destination="Iva-qC-9wn" id="fbb-Fp-7qR"/>
-                        <outlet property="storyNameContainer1" destination="XEs-5h-F59" id="6EW-IH-zQ2"/>
-                        <outlet property="storyNameContainer2" destination="S6e-dV-Jzh" id="aOM-0A-ac4"/>
-                        <outlet property="storyNameContainer3" destination="cFh-6c-yhF" id="Ql1-6x-QYh"/>
-                        <outlet property="storyNameField1" destination="4wH-Bn-kZh" id="r2y-6Q-ahH"/>
-                        <outlet property="storyNameField2" destination="gLu-E1-RPs" id="3LR-D3-fVb"/>
-                        <outlet property="storyNameField3" destination="17a-4b-XbJ" id="LqF-R6-dq0"/>
-                        <outlet property="usernameField" destination="fNK-4C-n5O" id="Odc-qA-3Ta"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nRY-Ly-QqT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="9293" y="-1714"/>
-        </scene>
         <!--Vibe Sent View Controller-->
         <scene sceneID="UDP-It-eqX">
             <objects>
@@ -3090,7 +2777,7 @@ its the right one</string>
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe the card leftward to see the next card." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKU-WU-Sv4">
-                                        <rect key="frame" x="20" y="100" width="374" height="45.666666666666657"/>
+                                        <rect key="frame" x="20" y="590.33333333333337" width="374" height="45.666666666666629"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -3098,7 +2785,7 @@ its the right one</string>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="QKU-WU-Sv4" firstAttribute="top" secondItem="Pmq-CZ-3S5" secondAttribute="top" constant="100" id="5dd-5l-5f1"/>
+                                    <constraint firstAttribute="bottom" secondItem="QKU-WU-Sv4" secondAttribute="bottom" constant="100" id="FZ3-ci-GBp"/>
                                     <constraint firstItem="QKU-WU-Sv4" firstAttribute="leading" secondItem="Pmq-CZ-3S5" secondAttribute="leading" constant="20" id="TWR-A5-o97"/>
                                     <constraint firstAttribute="trailing" secondItem="QKU-WU-Sv4" secondAttribute="trailing" constant="20" id="dSF-Zx-FXb"/>
                                 </constraints>
@@ -3115,8 +2802,8 @@ its the right one</string>
                     </view>
                     <connections>
                         <outlet property="bgView" destination="Pmq-CZ-3S5" id="vKi-zc-tVe"/>
+                        <outlet property="demoInstructionBottomMargin" destination="FZ3-ci-GBp" id="bqD-mi-HHu"/>
                         <outlet property="demoInstructionTop" destination="QKU-WU-Sv4" id="fbx-se-DWt"/>
-                        <outlet property="demoInstructionTopMargin" destination="5dd-5l-5f1" id="6ru-Eb-6Hp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oBS-NZ-uqh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3131,10 +2818,9 @@ its the right one</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sac-Hw-apo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6JF-xK-ZoG">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                            </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Jvw-ym-umB">
                                 <rect key="frame" x="30" y="331.33333333333331" width="354" height="73.333333333333314"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3144,13 +2830,13 @@ its the right one</string>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hail Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4Q-Uh-Yz0">
                                 <rect key="frame" x="35" y="310.33333333333331" width="379" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An Appreciation would make this vibe even more awesome" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93J-2M-Ckl">
                                 <rect key="frame" x="20" y="239.66666666666666" width="374" height="40.666666666666657"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -3171,8 +2857,8 @@ its the right one</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2h1-ra-oKH">
-                                <rect key="frame" x="145" y="434.66666666666669" width="124" height="37"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="186" y="434.66666666666669" width="42" height="37"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Send">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -3184,41 +2870,40 @@ its the right one</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fMZ-DW-HmV" firstAttribute="top" secondItem="OKu-o7-lCg" secondAttribute="top" constant="-10" id="4Qz-Uk-0Na"/>
+                            <constraint firstItem="6JF-xK-ZoG" firstAttribute="trailing" secondItem="fMZ-DW-HmV" secondAttribute="trailing" id="6IU-hF-dza"/>
                             <constraint firstItem="2h1-ra-oKH" firstAttribute="top" secondItem="Jvw-ym-umB" secondAttribute="bottom" constant="30" id="6WG-1o-W3a"/>
                             <constraint firstItem="t4Q-Uh-Yz0" firstAttribute="leading" secondItem="Jvw-ym-umB" secondAttribute="leading" constant="5" id="6eg-Y7-SVW"/>
                             <constraint firstItem="fMZ-DW-HmV" firstAttribute="trailing" secondItem="Jvw-ym-umB" secondAttribute="trailing" constant="30" id="9Fy-Kc-s9O"/>
+                            <constraint firstItem="Jvw-ym-umB" firstAttribute="height" secondItem="6JF-xK-ZoG" secondAttribute="height" multiplier="0.1" id="D1T-ZY-sVn"/>
                             <constraint firstItem="Jvw-ym-umB" firstAttribute="top" secondItem="t4Q-Uh-Yz0" secondAttribute="bottom" constant="5" id="DP8-fu-hfc"/>
-                            <constraint firstItem="2h1-ra-oKH" firstAttribute="width" secondItem="Sac-Hw-apo" secondAttribute="width" multiplier="0.3" id="GAe-9D-id6"/>
-                            <constraint firstAttribute="bottom" secondItem="Sac-Hw-apo" secondAttribute="bottom" id="JwL-dy-yGI"/>
                             <constraint firstItem="fMZ-DW-HmV" firstAttribute="trailing" secondItem="t4Q-Uh-Yz0" secondAttribute="trailing" id="KbG-Mv-bgy"/>
                             <constraint firstItem="93J-2M-Ckl" firstAttribute="top" secondItem="wta-By-ldo" secondAttribute="bottom" constant="15" id="Lth-fR-eJZ"/>
-                            <constraint firstItem="Sac-Hw-apo" firstAttribute="trailing" secondItem="fMZ-DW-HmV" secondAttribute="trailing" id="Pbz-TA-lnU"/>
+                            <constraint firstItem="6JF-xK-ZoG" firstAttribute="leading" secondItem="fMZ-DW-HmV" secondAttribute="leading" id="OKL-yt-rea"/>
                             <constraint firstItem="2h1-ra-oKH" firstAttribute="centerX" secondItem="fvA-Dq-Gs5" secondAttribute="centerX" id="PlY-uG-btg"/>
                             <constraint firstItem="93J-2M-Ckl" firstAttribute="leading" secondItem="fvA-Dq-Gs5" secondAttribute="leading" constant="20" id="QXv-eR-qTc"/>
+                            <constraint firstAttribute="bottom" secondItem="6JF-xK-ZoG" secondAttribute="bottom" id="axU-hj-6xj"/>
                             <constraint firstItem="Jvw-ym-umB" firstAttribute="leading" secondItem="fMZ-DW-HmV" secondAttribute="leading" constant="30" id="cna-c3-eWO"/>
-                            <constraint firstItem="Sac-Hw-apo" firstAttribute="leading" secondItem="fMZ-DW-HmV" secondAttribute="leading" id="eic-6I-fWk"/>
                             <constraint firstItem="Jvw-ym-umB" firstAttribute="centerY" secondItem="fvA-Dq-Gs5" secondAttribute="centerY" id="fmx-fr-cms"/>
                             <constraint firstItem="fMZ-DW-HmV" firstAttribute="leading" secondItem="OKu-o7-lCg" secondAttribute="leading" constant="-10" id="gp7-l0-3Vv"/>
                             <constraint firstItem="t4Q-Uh-Yz0" firstAttribute="top" secondItem="93J-2M-Ckl" secondAttribute="bottom" constant="30" id="grw-J4-8xJ"/>
+                            <constraint firstItem="6JF-xK-ZoG" firstAttribute="top" secondItem="fvA-Dq-Gs5" secondAttribute="top" id="jfE-zA-5yd"/>
                             <constraint firstItem="wta-By-ldo" firstAttribute="centerX" secondItem="fvA-Dq-Gs5" secondAttribute="centerX" id="k7e-gj-HLr"/>
-                            <constraint firstItem="Sac-Hw-apo" firstAttribute="top" secondItem="fvA-Dq-Gs5" secondAttribute="top" id="mth-Iy-RLl"/>
                             <constraint firstItem="Jvw-ym-umB" firstAttribute="centerX" secondItem="fvA-Dq-Gs5" secondAttribute="centerX" id="mv2-YE-GMR"/>
                             <constraint firstItem="93J-2M-Ckl" firstAttribute="centerX" secondItem="fvA-Dq-Gs5" secondAttribute="centerX" id="oam-A7-2iK"/>
                             <constraint firstItem="fMZ-DW-HmV" firstAttribute="trailing" secondItem="93J-2M-Ckl" secondAttribute="trailing" constant="20" id="qFE-On-eGL"/>
-                            <constraint firstItem="Jvw-ym-umB" firstAttribute="height" secondItem="Sac-Hw-apo" secondAttribute="height" multiplier="0.1" id="u2U-b5-iPh"/>
                             <constraint firstItem="2h1-ra-oKH" firstAttribute="height" secondItem="Jvw-ym-umB" secondAttribute="height" multiplier="0.5" id="wxt-S7-FfA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fMZ-DW-HmV"/>
                     </view>
                     <connections>
-                        <outlet property="bgView" destination="Sac-Hw-apo" id="32j-Dd-J30"/>
+                        <outlet property="bgImageView" destination="6JF-xK-ZoG" id="Ro6-dg-ARB"/>
                         <outlet property="hailTextView" destination="Jvw-ym-umB" id="FKA-bp-RT0"/>
                         <outlet property="hailUserLabel" destination="wta-By-ldo" id="QzA-sf-9I5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8cw-2E-Yec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9720" y="475"/>
+            <point key="canvasLocation" x="9718.8405797101459" y="474.45652173913049"/>
         </scene>
         <!--Photos Input View Controller-->
         <scene sceneID="DqS-9B-azH">
@@ -3523,7 +3208,7 @@ its the right one</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fwA-NL-Z6c">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fwA-NL-Z6c">
                                                 <rect key="frame" x="10" y="553.33333333333337" width="394" height="97.666666666666629"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xwc-UI-Yrb">
@@ -4900,12 +4585,226 @@ its the right one</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TL0-kZ-eK5">
                                                         <rect key="frame" x="0.0" y="161" width="414" height="483"/>
                                                         <subviews>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PHJ-h8-NVX">
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHJ-h8-NVX">
                                                                 <rect key="frame" x="20" y="20" width="374" height="443"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <string key="text">Kraiz was formed based on a simple idea that people can't entirely give off their vibes. Once, we were going down the memory lane, looking at our college photos and cherishing the moments. Suddenly, one of us played some soothing background music. Now, we were not reminiscing the memories, we were actually reliving the moments. That's when the idea struck in our mind, we felt that when you capture photos and write text with some good backgrounds and swathe it in background music, that's when the true vibes are perceived. Kraiz is a platform where people can share their vibes. Along with this, they can capture someone else's vibes. As of now, we have 6 vibe tags- Love vibes, Travel vibes, Good vibes, Party vibes, Nostalgic vibes, and Occasion vibes. Our vision is that people capture their each and every vibe and share it with the world, and receive whichever Vibe they want to feel at that moment.</string>
-                                                                <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                                                <attributedString key="attributedText">
+                                                                    <fragment>
+                                                                        <string key="content">Kraiz was formed based on a simple idea that people can't entirely give off their vibes. Once, we were going down the memory lane, looking at our college photos and cherishing the moments. Suddenly, one of us played a soothing background music. Now, we were not reminiscing the memories, we were actually reliving the moments. That's when the idea struck in our mind, when you swathe your thoughts and pictures in a background music that's when the true vibes are perceived. We also added a background template for each of them to enhance the feel. Now, Kraiz is a platform where people can share their vibes and can also capture someone else's vibes. As of now, you can share your love, travel, good, party, nostalgic and occasion vibes. Our vision is that people capture their each and every vibe and share it with the world; also, get whatever vibes they want to feel.
+</string>
+                                                                        <attributes>
+                                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <font key="NSFont" size="13" name="TrebuchetMS"/>
+                                                                            <real key="NSKern" value="0.0"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                <tabStops/>
+                                                                            </paragraphStyle>
+                                                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                    <fragment>
+                                                                        <string key="content">Credits
+</string>
+                                                                        <attributes>
+                                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <font key="NSFont" size="13" name="TrebuchetMS-Bold"/>
+                                                                            <real key="NSKern" value="0.0"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                <tabStops/>
+                                                                            </paragraphStyle>
+                                                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                    <fragment>
+                                                                        <string key="content">Some icons are taken from icons8: https://icons8.com/ and some of them are taken from Freepik: www.freepik.com
+Letter image on create page is made by Freepik from www.flaticon.com
+Photos image on create page is made by Pixel Buddha from www.flaticon.com
+Congratulations screen's background is designed by Freepik www.freepik.com
+The background music is taken from purple planet- Music: https://www.purple-planet.com
+</string>
+                                                                        <attributes>
+                                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <font key="NSFont" size="13" name="TrebuchetMS"/>
+                                                                            <real key="NSKern" value="0.0"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                <tabStops/>
+                                                                            </paragraphStyle>
+                                                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                    <fragment>
+                                                                        <string key="content">End-User License Agreement (EULA) of Kraiz
+</string>
+                                                                        <attributes>
+                                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <font key="NSFont" size="13" name="TrebuchetMS-Bold"/>
+                                                                            <real key="NSKern" value="0.0"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                <tabStops/>
+                                                                            </paragraphStyle>
+                                                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                    <fragment>
+                                                                        <string key="content">This End-User License Agreement ("EULA") is a legal agreement between you and Kraiz
+This EULA agreement governs your acquisition and use of our Kraiz software ("Software") directly from Kraiz or indirectly through a Kraiz authorized reseller or distributor (a "Reseller").
+Please read this EULA agreement carefully before completing the installation process and using the Kraiz software. It provides a license to use the Kraiz software and contains warranty information and liability disclaimers.
+If you register for a free trial of the Kraiz software, this EULA agreement will also govern that trial. By clicking "accept" or installing and/or using the Kraiz software, you are confirming your acceptance of the Software and agreeing to become bound by the terms of this EULA agreement.
+If you are entering into this EULA agreement on behalf of a company or other legal entity, you represent that you have the authority to bind such entity and its affiliates to these terms and conditions. If you do not have such authority or if you do not agree with the terms and conditions of this EULA agreement, do not install or use the Software, and you must not accept this EULA agreement.
+This EULA agreement shall apply only to the Software supplied by Kraiz herewith regardless of whether other software is referred to or described herein. The terms also apply to any Kraiz updates, supplements, Internet-based services, and support services for the Software, unless other terms accompany those items on delivery. If so, those terms apply.
+License Grant
+Kraiz hereby grants you a personal, non-transferable, non-exclusive licence to use the Kraiz software on your devices in accordance with the terms of this EULA agreement.
+You are permitted to load the Kraiz software (for example a PC, laptop, mobile or tablet) under your control. You are responsible for ensuring your device meets the minimum requirements of the Kraiz software.
+You are not permitted to:
+Edit, alter, modify, adapt, translate or otherwise change the whole or any part of the Software nor permit the whole or any part of the Software to be combined with or become incorporated in any other software, nor decompile, disassemble or reverse engineer the Software or attempt to do any such things
+Reproduce, copy, distribute, resell or otherwise use the Software for any commercial purpose
+Allow any third party to use the Software on behalf of or for the benefit of any third party
+Use the Software in any way which breaches any applicable local, national or international law
+use the Software for any purpose that Kraiz considers is a breach of this EULA agreement
+Intellectual Property and Ownership
+Kraiz shall at all times retain ownership of the Software as originally downloaded by you and all subsequent downloads of the Software by you. The Software (and the copyright, and other intellectual property rights of whatever nature in the Software, including any modifications made thereto) are and shall remain the property of Kraiz.
+Kraiz reserves the right to grant licences to use the Software to third parties.
+Termination
+This EULA agreement is effective from the date you first use the Software and shall continue until terminated. You may terminate it at any time upon written notice to Kraiz.
+This EULA was created by EULA Template for Kraiz
+It will also terminate immediately if you fail to comply with any term of this EULA agreement. Upon such termination, the licenses granted by this EULA agreement will immediately terminate and you agree to stop all access and use of the Software. The provisions that by their nature continue and survive will survive any termination of this EULA agreement.
+Governing Law
+This EULA agreement, and any dispute arising out of or in connection with this EULA agreement, shall be governed by and construed in accordance with the laws of in.
+This EULA agreement was created at https://eulatemplate.com/live.php?token=vGSeoUUtDNQnQC40HgADVJSQVweUsfLl.
+</string>
+                                                                        <attributes>
+                                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <font key="NSFont" size="13" name="TrebuchetMS"/>
+                                                                            <real key="NSKern" value="0.0"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                <tabStops/>
+                                                                            </paragraphStyle>
+                                                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                    <fragment>
+                                                                        <string key="content">Terms and Conditions
+</string>
+                                                                        <attributes>
+                                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <font key="NSFont" size="13" name="TrebuchetMS-Bold"/>
+                                                                            <real key="NSKern" value="0.0"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                <tabStops/>
+                                                                            </paragraphStyle>
+                                                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                    <fragment>
+                                                                        <string key="content">Welcome to Kraiz!
+These terms and conditions outline the rules and regulations for the use of Kraiz Application.
+By accessing this application we assume you accept these terms and conditions. Do not continue to use Kraiz if you do not agree to take all of the terms and conditions stated on this page. Our Terms and Conditions were created with the help of the Terms And Conditions Generator application.
+The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this application and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.
+License
+Unless otherwise stated, Kraiz and/or its licensors own the intellectual property rights for all material on Kraiz. All intellectual property rights are reserved. You may access this from Kraiz for your own personal use subjected to restrictions set in these terms and conditions.
+You must not:
+
+    Republish material from Kraiz
+    Sell, rent or sub-license material from Kraiz
+    Reproduce, duplicate or copy material from Kraiz
+    Redistribute content from Kraiz
+
+This Agreement shall begin on the date hereof.
+Parts of this application offer an opportunity for users to post and exchange opinions and information in certain areas of the application. Kraiz does not filter, edit, publish or review Comments prior to their presence on the application. Comments do not reflect the views and opinions of Kraiz, its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, Kraiz shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this application.
+Kraiz reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.
+You warrant and represent that:
+    You are entitled to post the Comments on our application and have all necessary licenses and consents to do so;
+    The Comments do not invade any intellectual property right, including without limitation copyright, patent or trademark of any third party;
+    The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material which is an invasion of privacy
+    The Comments will not be used to solicit or promote business or custom or present commercial activities or unlawful activity.
+You hereby grant Kraiz a non-exclusive license to use, reproduce, edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats or media.
+Content Liability
+We shall not be hold responsible for any content that appears on your Application. You agree to protect and defend us against all claims that is rising on your Application. No link(s) should appear on any Application that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.
+Your Privacy
+Please read our Privacy Policy.
+Reservation of Rights
+We reserve the right to request that you remove all links or any particular link to our Application. You approve to immediately remove all links to our Application upon request. We also reserve the right to amen these terms and conditions and it’s linking policy at any time. By continuously linking to our Application, you agree to be bound to and follow these linking terms and conditions.
+Disclaimer
+To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our application and the use of this application. Nothing in this disclaimer will:
+
+
+    limit or exclude our or your liability for death or personal injury;
+    limit or exclude our or your liability for fraud or fraudulent misrepresentation;
+    limit any of our or your liabilities in any way that is not permitted under applicable law; or
+    exclude any of our or your liabilities that may not be excluded under applicable law.
+
+
+The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.
+As long as the application and the information and services on the application are provided free of charge, we will not be liable for any loss or damage of any nature.
+The Terms and conditions are created at https://termsandconditionsgenerator.com/live.php?token=fRdpfsDDrNS9j2REzu3QAihcjgv7vg2b
+</string>
+                                                                        <attributes>
+                                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <font key="NSFont" size="13" name="TrebuchetMS"/>
+                                                                            <real key="NSKern" value="0.0"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                <tabStops/>
+                                                                            </paragraphStyle>
+                                                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                    <fragment>
+                                                                        <string key="content">Privacy Policy
+</string>
+                                                                        <attributes>
+                                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <font key="NSFont" size="13" name="TrebuchetMS-Bold"/>
+                                                                            <real key="NSKern" value="0.0"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                <tabStops/>
+                                                                            </paragraphStyle>
+                                                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                    <fragment>
+                                                                        <string key="content">Rishabh Kochar built the Kraiz app as a Free app. This SERVICE is provided by Rishabh Kochar at no cost and is intended for use as is.
+This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
+If you choose to use my Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy.
+The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Kraiz unless otherwise defined in this Privacy Policy.
+Information Collection and Use
+For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to Name, mobile number, date of birth. The information that I request will be retained on your device and is not collected by me in any way.
+The app does use third party services that may collect information used to identify you.
+Link to privacy policy of third party service providers used by the app
+Google Play Services
+Log Data
+I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.
+Cookies
+Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device's internal memory.
+This Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.
+Service Providers
+I may employ third-party companies and individuals due to the following reasons:
+To facilitate our Service;
+To provide the Service on our behalf;
+To perform Service-related services; or
+To assist us in analyzing how our Service is used.
+I want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
+Security
+I value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and I cannot guarantee its absolute security.
+Links to Other Sites
+This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+Children’s Privacy
+These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do necessary actions.
+Changes to This Privacy Policy
+I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted on this page.
+Contact Us
+If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me.
+This privacy policy page was created at privacypolicytemplate.net and modified/generated by App Privacy Policy Generator</string>
+                                                                        <attributes>
+                                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <font key="NSFont" size="13" name="TrebuchetMS"/>
+                                                                            <real key="NSKern" value="0.0"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="8" lineHeightMultiple="1.0791666666666666" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                                <tabStops/>
+                                                                            </paragraphStyle>
+                                                                            <color key="NSStrokeColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
                                                         </subviews>
@@ -5262,7 +5161,6 @@ its the right one</string>
         </scene>
     </scenes>
     <resources>
-        <image name="CreateButton" width="198" height="129"/>
         <image name="Drafts" width="24" height="24"/>
         <image name="Drafts_IOS_Active" width="24" height="24"/>
         <image name="FirstScreenBackground" width="360" height="640"/>
@@ -5299,9 +5197,6 @@ its the right one</string>
         <image name="recorder-play-enabled" width="50" height="50"/>
         <image name="recorder-start" width="64" height="64"/>
         <image name="remove_image" width="48" height="48"/>
-        <image name="review-background" width="334" height="492"/>
-        <image name="schedule" width="37" height="36"/>
-        <image name="send" width="35" height="34"/>
         <image name="tag-good" width="210" height="140"/>
         <image name="tag-love" width="210" height="140"/>
         <image name="tag-nostalgic" width="230" height="160"/>
@@ -5309,16 +5204,16 @@ its the right one</string>
         <image name="tag-party" width="210" height="140"/>
         <image name="tag-travel" width="210" height="140"/>
         <image name="tagline" width="180" height="14"/>
-        <image name="vibe-welcome-good" width="748" height="1331"/>
+        <image name="vibe-welcome-good" width="720" height="1280"/>
         <image name="vibes-active" width="72" height="72"/>
         <image name="vibes-inactive" width="72" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="CPU-Kp-dc0"/>
-        <segue reference="i7q-Jt-iVl"/>
+        <segue reference="AUb-jh-2pV"/>
         <segue reference="8oh-yI-riF"/>
-        <segue reference="Lbh-sf-AQL"/>
-        <segue reference="ylo-g6-D3y"/>
+        <segue reference="S9L-Ur-bSB"/>
+        <segue reference="eqt-dD-DA2"/>
         <segue reference="jey-vD-tun"/>
         <segue reference="29n-BT-rOK"/>
         <segue reference="pzD-o7-afy"/>

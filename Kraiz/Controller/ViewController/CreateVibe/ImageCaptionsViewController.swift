@@ -31,6 +31,7 @@ class ImageCaptionsViewController: UIViewController, UITextFieldDelegate {
         photosCollectionView.dataSource = self
         photosScrollView.delegate = self
         photosCollectionView.isScrollEnabled = true
+        photosCollectionView.isPagingEnabled = true
         
         createToolbarForTextField(textField: captionTextField)
         captionFieldYIndex = captionTextField.frame.origin.y
@@ -85,7 +86,7 @@ class ImageCaptionsViewController: UIViewController, UITextFieldDelegate {
     func setCollectionViewCellBorder(cellIndex: Int) {
         photosCollectionView.cellForItem(at: IndexPath(row: selectedCell, section: 0))?.layer.borderWidth = 0.0
         photosCollectionView.cellForItem(at: IndexPath(row: selectedCell, section: 0))?.layer.borderColor = UIColor.clear.cgColor
-        photosCollectionView.cellForItem(at: IndexPath(row: cellIndex, section: 0))?.layer.borderWidth = 1.0
+        photosCollectionView.cellForItem(at: IndexPath(row: cellIndex, section: 0))?.layer.borderWidth = 3.0
         photosCollectionView.cellForItem(at: IndexPath(row: cellIndex, section: 0))?.layer.borderColor = UIColor.blue.cgColor
     }
 
@@ -180,7 +181,7 @@ extension ImageCaptionsViewController: UICollectionViewDelegate, UICollectionVie
         let scrollPoint = photosScrollView.contentOffset
         setCollectionViewCellBorder(cellIndex: Int(scrollPoint.x / photosScrollView.frame.width))
         selectedCell = Int(scrollPoint.x / photosScrollView.frame.width)
-        photosCollectionView.scrollToItem(at: IndexPath(row: selectedCell, section: 0), at: .centeredVertically, animated: false)
+        photosCollectionView.scrollToItem(at: IndexPath(row: selectedCell, section: 0), at: .centeredHorizontally, animated: false)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

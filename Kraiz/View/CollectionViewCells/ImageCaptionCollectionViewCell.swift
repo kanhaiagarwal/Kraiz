@@ -11,4 +11,15 @@ import UIKit
 class ImageCaptionCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
+
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                layer.borderWidth = 3.0
+                layer.borderColor = UIColor.blue.cgColor
+            } else {
+                layer.borderWidth = 0.0
+            }
+        }
+    }
 }

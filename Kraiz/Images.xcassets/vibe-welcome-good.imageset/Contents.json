@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "vibe-welcome-good.jpg",
+      "filename" : "Good.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "vibe-welcome-good-1.jpg",
+      "filename" : "Good-1.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "vibe-welcome-good-2.jpg",
+      "filename" : "Good-2.jpg",
       "scale" : "3x"
     }
   ],

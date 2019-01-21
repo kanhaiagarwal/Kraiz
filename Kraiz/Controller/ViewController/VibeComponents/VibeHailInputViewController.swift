@@ -10,11 +10,9 @@ import UIKit
 
 class VibeHailInputViewController: UIViewController {
 
-    @IBOutlet weak var bgView: UIView!
-
-    var gradientLayer: CAGradientLayer?
     var vibeModel: VibeModel?
     var isDemoVibe = false
+    @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var hailTextView: UITextView!
     @IBOutlet weak var hailUserLabel: UILabel!
 
@@ -23,14 +21,14 @@ class VibeHailInputViewController: UIViewController {
 
         AnalyticsHelper.shared.logViewVibeEvent(vibeModel: vibeModel!, action: .HAILS_VIBE)
         let user = vibeModel!.from!.getUsername() != nil ? vibeModel!.from!.getUsername()! : "The User"
-        print("user inside hailInput: \(user)")
         hailUserLabel.text = "Hail \(user)"
         if isDemoVibe {
             hailTextView.textColor = UIColor.white.withAlphaComponent(0.7)
             hailTextView.text = "You can add your appreciative hail here and send it to the Vibe Creator."
         }
+        bgImageView.image = UIImage(named: VibeCategories.vibeWelcomebackground[vibeModel!.category])
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -39,11 +37,6 @@ class VibeHailInputViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
-        gradientLayer = CAGradientLayer()
-        gradientLayer?.frame = bgView.bounds
-        gradientLayer?.colors = [UIColor(displayP3Red: 41/225, green: 50/255, blue: 60/255, alpha: 1.0).cgColor, UIColor(displayP3Red: 72/255, green: 85/255, blue: 99/255, alpha: 1.0).cgColor]
-        bgView.layer.addSublayer(gradientLayer!)
 
         hailTextView.layer.borderColor = UIColor.white.cgColor
         hailTextView.layer.borderWidth = 2.0

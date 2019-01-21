@@ -274,7 +274,8 @@ public class APPUtilites {
         return String(splitStrings[1])
     }
 
-    public static func getVibeModelForDemoVibe(vibeTag: Int) -> VibeModel {
+    public static func getVibeModelForDemoVibe(vibeTag: Int, viewHeight: CGFloat) -> VibeModel {
+        print("viewHeight: \(viewHeight)")
         let vibe = VibeModel()
         vibe.backgroundMusicIndex = 1
         vibe.category = vibeTag
@@ -282,8 +283,17 @@ public class APPUtilites {
         vibe.isBackgroundMusicEnabled = true
         vibe.isLetterPresent = true
         vibe.isPhotosPresent = true
-        let letterText = "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \nPress anywhere in the screen. There will come an arrow at the top right. Press it."
-        vibe.setLetterText(letterString: letterText)
+        switch viewHeight {
+            case DeviceConstants.IPHONEX_HEIGHT: vibe.setLetterText(letterString: "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nPress anywhere in the screen. There will come an arrow at the top right. Press it.")
+                break
+            case DeviceConstants.IPHONEXR_HEIGHT: vibe.setLetterText(letterString: "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Press anywhere in the screen. There will come an arrow at the top right. Press it.")
+                break
+            case DeviceConstants.IPHONE7PLUS_HEIGHT: vibe.setLetterText(letterString: "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nPress anywhere in the screen. There will come an arrow at the top right. Press it.")
+                break
+            case DeviceConstants.IPHONE7_HEIGHT: vibe.setLetterText(letterString: "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \nPress anywhere in the screen. There will come an arrow at the top right. Press it.")
+                break
+        default: vibe.setLetterText(letterString: "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \nPress anywhere in the screen. There will come an arrow at the top right. Press it.")
+        }
         vibe.setLetterBackground(background: 0)
         vibe.setVibeName(name: "Hello. This is a Sample Love Vibe")
 

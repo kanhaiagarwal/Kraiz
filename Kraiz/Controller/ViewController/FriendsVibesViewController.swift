@@ -58,7 +58,7 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
                     self?.updateEmptyVibeBackground()
                 })
             }
-            
+
             if let unseenResults = CacheHelper.shared.getUnseenVibesByIndex(index: "vibeTypeTagGsiPK", value: privateVibeIndex) {
                 unseenPrivateVibes["\(VibeCategories.TAG_INDEX[i])_\(VibeCategories.TYPE_INDEX[1])"] = unseenResults
                 unseenVibesNotification.append(unseenResults.observe({ [weak self] (change) in
@@ -72,7 +72,7 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
                     }
                 }))
             }
-            
+
             if selectedCategory == i {
                 vibesTable.reloadData()
                 updateEmptyVibeBackground()
@@ -91,7 +91,7 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
             emptyImageView.isHidden = true
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -117,7 +117,7 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
                 print("=======> showcase.show has been completed")
             }
         }
-        
+
         vibesTableBackgroundImageView.addSubview(emptyImageView)
         emptyImageView.frame = CGRect(x: 30, y: emptyImageView.superview!.frame.height / 4, width: emptyImageView.superview!.frame.width - 60, height: emptyImageView.superview!.frame.height / 3)
         emptyImageView.image = UIImage(named: EMPTY_VIBES_IMAGE)
@@ -128,7 +128,7 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
             vibeWelcomeVC.isDemoVibe = true
-            vibeWelcomeVC.vibeModel = APPUtilites.getVibeModelForDemoVibe(vibeTag: 0)
+            vibeWelcomeVC.vibeModel = APPUtilites.getVibeModelForDemoVibe(vibeTag: 0, viewHeight: view.superview!.superview!.superview!.superview!.frame.height)
             self.present(vibeWelcomeVC, animated: true, completion: nil)
         }
     }
@@ -142,11 +142,11 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("FriendsVibesTableViewCell", owner: self, options: nil)?.first as! FriendsVibesTableViewCell
         let vibe = privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]![indexPath.row]
-        print("vibeId: \(vibe.getId())")
         let profileId = vibe.getProfileId()!
         if let profile = CacheHelper.shared.getProfileById(id: profileId) {
             cell.senderName.text = profile.getUsername()!
-            if profile.getProfilePicId() != nil && profile.getProfilePicId() != "NONE" {
+            cell.profileImage.image = UIImage(named: DEFAULT_PROFILE_PIC)
+            if profile.getProfilePicId() != nil && profile.getProfilePicId() != "NONE" && profile.getProfilePicId() != "none" {
                 if FileManagerHelper.shared.doesFileExist(filePath: FileManagerHelper.shared.getFileUrl(fileName: profile.getProfilePicId()!, folder: MediaHelper.shared.PROFILE_PIC_FOLDER).absoluteString) {
                     let filePath = FileManagerHelper.shared.getFileUrl(fileName: profile.getProfilePicId()!, folder: MediaHelper.shared.PROFILE_PIC_FOLDER).absoluteString
                     if let data = FileManagerHelper.shared.getImageDataFromPath(filePath: filePath, isJpgExtensionRequired: false) {
@@ -165,6 +165,8 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
                         }
                     }
                 }
+            } else {
+                cell.profileImage.image = UIImage(named: DEFAULT_PROFILE_PIC)
             }
         } else {
             cell.profileImage.image = UIImage(named: DEFAULT_PROFILE_PIC)

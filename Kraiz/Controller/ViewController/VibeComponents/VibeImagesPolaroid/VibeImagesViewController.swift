@@ -20,7 +20,9 @@ class VibeImagesViewController: UIViewController {
     var isPreview = false
     var isDemoVibe = false
     var hasViewsSet = false
-    @IBOutlet weak var demoInstructionTopMargin: NSLayoutConstraint!
+    var isLastCardViewedForDemoVibe = false
+    var isNextCardViewed = false
+    @IBOutlet weak var demoInstructionBottomMargin: NSLayoutConstraint!
     @IBOutlet weak var demoInstructionTop: UILabel!
     @IBOutlet weak var bgView: UIView!
     var gradientLayer: CAGradientLayer?
@@ -43,18 +45,18 @@ class VibeImagesViewController: UIViewController {
 
         switch view.frame.height {
         case DeviceConstants.IPHONE7_HEIGHT:
-            demoInstructionTopMargin.constant = 30
+            demoInstructionBottomMargin.constant = 20
             break
         case DeviceConstants.IPHONE7PLUS_HEIGHT:
-            demoInstructionTopMargin.constant = 30
+            demoInstructionBottomMargin.constant = 30
         case DeviceConstants.IPHONEX_HEIGHT:
-            demoInstructionTopMargin.constant = 100
+            demoInstructionBottomMargin.constant = 100
             break
         case DeviceConstants.IPHONEXR_HEIGHT:
-            demoInstructionTopMargin.constant = 100
+            demoInstructionBottomMargin.constant = 100
             break
         default:
-            demoInstructionTopMargin.constant = 30
+            demoInstructionBottomMargin.constant = 30
         }
     }
 
@@ -176,11 +178,24 @@ class VibeImagesViewController: UIViewController {
                     cards[tag - 1].addGestureRecognizer(swipeCardGesture)
                 }
                 cardOutside = tag
+                if cardOutside > 0 && isDemoVibe {
+                    if !isNextCardViewed {
+                        demoInstructionTop.alpha = 0.0
+                        demoInstructionTop.text = "Swipe Rightward to see the previous card. Swipe leftward again to see the next card"
+                        UIView.animate(withDuration: 2.0) {
+                            self.demoInstructionTop.alpha = 1.0
+                        }
+                        isNextCardViewed = true
+                    }
+                }
                 if cardOutside == 1 && isDemoVibe {
-                    demoInstructionTop.alpha = 0.0
-                    demoInstructionTop.text = "Press anywhere on the screen to show the next Arrow. Press the arrow for the next screen."
-                    UIView.animate(withDuration: 2.0) {
-                        self.demoInstructionTop.alpha = 1.0
+                    if !isLastCardViewedForDemoVibe {
+                        demoInstructionTop.alpha = 0.0
+                        demoInstructionTop.text = "Press anywhere on the screen to show the next Arrow. Press the arrow for the next screen."
+                        UIView.animate(withDuration: 2.0) {
+                            self.demoInstructionTop.alpha = 1.0
+                        }
+                        isLastCardViewedForDemoVibe = true
                     }
                 }
             } else if point.x > 0 && cardOutside < vibeModel!.images.count && cardOutside >= 0 {

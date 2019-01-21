@@ -79,7 +79,6 @@
 		57FB860021F424800088A816 /* gemelli.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 57FB85FD21F424800088A816 /* gemelli.TTF */; };
 		B507EF5D21244886007FC9F1 /* AWSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507EF5C21244886007FC9F1 /* AWSConstants.swift */; };
 		B513582F215D365C00139854 /* Hero.otf in Resources */ = {isa = PBXBuildFile; fileRef = B513582E215D365C00139854 /* Hero.otf */; };
-		B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */; };
 		B51DF1EF211F1248009896CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51DF1EE211F1248009896CC /* AppDelegate.swift */; };
 		B51DF1F4211F1248009896CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B51DF1F2211F1248009896CC /* Main.storyboard */; };
 		B51DF1F7211F1248009896CC /* Kraiz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B51DF1F5211F1248009896CC /* Kraiz.xcdatamodeld */; };
@@ -233,7 +232,6 @@
 		AD088434A09205D47B4A9E30 /* Pods-Kraiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kraiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kraiz/Pods-Kraiz.debug.xcconfig"; sourceTree = "<group>"; };
 		B507EF5C21244886007FC9F1 /* AWSConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSConstants.swift; sourceTree = "<group>"; };
 		B513582E215D365C00139854 /* Hero.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hero.otf; sourceTree = "<group>"; };
-		B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPageViewController.swift; sourceTree = "<group>"; };
 		B51DF1EB211F1248009896CC /* Kraiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kraiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B51DF1EE211F1248009896CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B51DF1F3211F1248009896CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -461,7 +459,6 @@
 				57AC145721CD43F5001FA686 /* PublicVibesChoiceViewController.swift */,
 				57AC145521CCDD90001FA686 /* PublicVibeTagsViewController.swift */,
 				57BD53E7219841BF001B1010 /* PublicVibesViewController.swift */,
-				B518DB5F21221C4E00089A06 /* ReviewPageViewController.swift */,
 				B545799F213F010900C7424F /* StartViewController.swift */,
 			);
 			path = ViewController;
@@ -912,7 +909,6 @@
 				579854BD21C611C200406BF8 /* MyPublicVibeTableViewCell.swift in Sources */,
 				57B24F3A21AB138300FA45E9 /* ImageBackdropViewController.swift in Sources */,
 				B51DF22C211F13B9009896CC /* DraftsViewController.swift in Sources */,
-				B518DB6021221C4E00089A06 /* ReviewPageViewController.swift in Sources */,
 				57C74A9821B3B07400D737FB /* VibeTextBackgrounds.swift in Sources */,
 				57AC145B21CD5A33001FA686 /* VibeChoiceTableViewCell.swift in Sources */,
 				B51DF21E211F13B9009896CC /* AboutUsViewController.swift in Sources */,

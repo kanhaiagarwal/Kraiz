@@ -12,10 +12,10 @@ import UIKit
 public class VibeTextBackgrounds {
     public static let TEXT_BACKGROUNDS = ["letter-love", "letter-royal", "letter-ancient", "letter-basic", "letter-starry"]
     public static let TEXT_FONTS = ["Gemelli", "Dancing Script", "Mordred", "Times New Roman", "Hero"]
-    public static let FONT_COLORS = [UIColor(displayP3Red: 0, green: 4/255, blue: 0, alpha: 1.0),
-                                                                  UIColor(displayP3Red: 191/255, green: 134/255, blue: 52/255, alpha: 1.0),
-                                                                  UIColor.black,
-                                                                  UIColor(displayP3Red: 10/255, green: 9/255, blue: 22/255, alpha: 1.0),
+    public static let FONT_COLORS = [UIColor.black.withAlphaComponent(0.8),
+                                                                  UIColor(displayP3Red: 216/255, green: 149/255, blue: 70/255, alpha: 1.0),
+                                                                  UIColor(displayP3Red: 94/255, green: 41/255, blue: 4/255, alpha: 1.0),
+                                                                  UIColor.black.withAlphaComponent(0.8),
                                                                   UIColor.white]
     public static let FONT_ALPHAS = [0.8, 1.0, 1.0, 0.8, 1.0]
     public static func getLetterTemplate(index: Int) -> VibeComponentTemplate {

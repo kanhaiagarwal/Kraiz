@@ -42,7 +42,6 @@ class VibeWelcomeViewController: UIViewController {
                     }
                 }
             } else {
-                print("vibeModel!.from!.getId()!: \(vibeModel!.from!.getId())")
                 if vibeModel!.type == 1 && vibeModel!.from!.getId()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)! {
                     if updateLastPublicVibeTime {
                         CacheHelper.shared.addRandomPublicVibeToCache(vibeModel: vibeModel!)
@@ -108,7 +107,7 @@ class VibeWelcomeViewController: UIViewController {
             let vibeTextVC = storyboard.instantiateViewController(withIdentifier: "VibeTextViewController") as! VibeTextViewController
             vibeTextVC.vibeModel = vibeModel!
             vibeTextVC.isPreview = isPreview
-            vibeTextVC.isDemoVibe = true
+            vibeTextVC.isDemoVibe = isDemoVibe
             self.present(vibeTextVC, animated: true, completion: nil)
         } else if vibeModel!.isPhotosPresent && vibeModel!.imageBackdrop == 0 {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
