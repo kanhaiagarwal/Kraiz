@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "KRAIZ.png",
+      "filename" : "demo-image-3.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "kraiz-start.png",
+      "filename" : "demo-image-4.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "kraiz-start-1.png",
+      "filename" : "demo-image-5.jpg",
       "scale" : "3x"
     }
   ],

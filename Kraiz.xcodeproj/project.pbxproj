@@ -446,9 +446,9 @@
 		B508AC5B214C4AB2001E3BB3 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				57E6909421E0B88D003F0CFC /* Authentication */,
 				57E6909721E0C0B3003F0CFC /* CreateVibe */,
 				57E6909521E0BE96003F0CFC /* Home */,
-				57E6909421E0B88D003F0CFC /* Authentication */,
 				57E6908621DD3BAE003F0CFC /* VibeComponents */,
 				B51DF217211F13B8009896CC /* AudioRecorderViewController.swift */,
 				B5BC1CFA21615D05008CE09F /* ChatsViewController.swift */,

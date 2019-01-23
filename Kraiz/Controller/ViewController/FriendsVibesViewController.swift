@@ -41,17 +41,28 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
             AppSyncHelper.shared.updateFcmToken()
         }
 
+        if CacheHelper.shared.getDemoVibe() == nil {
+            print("demo vibe is nil")
+            CacheHelper.shared.writeVibeToCache(APPUtilites.getCacheEntityForDemoVibe(), checkVersion: false)
+        } else {
+            print("demo vibe is not nil")
+        }
+        let demoVibe = CacheHelper.shared.getDemoVibe()
+        print("demoVibe: \(demoVibe.debugDescription)")
         viewHeight = view.frame.height
         print("viewHeight: \(viewHeight)")
         for i in 0 ..< VibeCategories.TAG_INDEX.count {
             let privateVibeIndex : String = APPUtilites.getVibeIndex(indexType: "vibeTypeTag", vibeType: "PRIVATE", vibeTag: i)
 
-            if let results = CacheHelper.shared.getVibesByIndex(index: "vibeTypeTagGsiPK", value: privateVibeIndex) {
+            if let results = CacheHelper.shared.getVibesByIndexWithoutDemoVibe(index: "vibeTypeTagGsiPK", value: privateVibeIndex) {
                 print("results.count for privateVibeIndex: \(privateVibeIndex): \(results.count)")
                 if results.count == 0 {
                     AppSyncHelper.shared.getUserVibesPaginated(requestedVibeTag: VibeCategories.getVibeTag(index: i), requestedVibeType: VibeType.private, first: NUMBER_OF_VIBES_IN_ONE_PAGE, after: nil, completionHandler: nil)
                 }
-                privateVibes["\(VibeCategories.TAG_INDEX[i])_\(VibeCategories.TYPE_INDEX[1])"] = results
+
+                let newResults = CacheHelper.shared.getVibesByIndex(index: "vibeTypeTagGsiPK", value: privateVibeIndex)
+                print("newResults.count: \(newResults?.count ?? 0)")
+                privateVibes["\(VibeCategories.TAG_INDEX[i])_\(VibeCategories.TYPE_INDEX[1])"] = newResults
 
                 notifications.append(results.observe { [weak self] (change) in
                     self?.vibesTable.reloadData()
@@ -105,9 +116,10 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if UserDefaults.standard.bool(forKey: DeviceConstants.IS_SIGN_IN) {
+        if UserDefaults.standard.bool(forKey: DeviceConstants.IS_SIGN_UP) {
+            UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_UP)
             let firstCollectionCell = vibeCategoriesCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! VibeCategoryCollectionViewCell
-            firstShowcase.backgroundPromptColor = UIColor.red.withAlphaComponent(0.4)
+            firstShowcase.backgroundPromptColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0)
             firstShowcase.tag = 0
             firstShowcase.delegate = self
             firstShowcase.setTargetView(view: firstCollectionCell.categoryImage)
@@ -122,15 +134,6 @@ class FriendsVibesViewController: UIViewController, MaterialShowcaseDelegate {
         emptyImageView.frame = CGRect(x: 30, y: emptyImageView.superview!.frame.height / 4, width: emptyImageView.superview!.frame.width - 60, height: emptyImageView.superview!.frame.height / 3)
         emptyImageView.image = UIImage(named: EMPTY_VIBES_IMAGE)
         updateEmptyVibeBackground()
-
-        if !demoVibeSeen {
-            demoVibeSeen = true
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
-            vibeWelcomeVC.isDemoVibe = true
-            vibeWelcomeVC.vibeModel = APPUtilites.getVibeModelForDemoVibe(vibeTag: 0, viewHeight: view.superview!.superview!.superview!.superview!.frame.height)
-            self.present(vibeWelcomeVC, animated: true, completion: nil)
-        }
     }
 }
 
@@ -168,13 +171,16 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
             } else {
                 cell.profileImage.image = UIImage(named: DEFAULT_PROFILE_PIC)
             }
+        } else if vibe.getId() != nil && vibe.getId()! == DeviceConstants.DEMO_VIBE_ID {
+            cell.profileImage.image = UIImage(named: "Logo")
+            cell.senderName.text = "Kraiz Team"
         } else {
             cell.profileImage.image = UIImage(named: DEFAULT_PROFILE_PIC)
             cell.senderName.text = "None"
         }
 
         cell.vibeName.text = vibe.getVibeName()!
-        cell.timestamp.text = APPUtilites.getDateFromEpochTime(epochTime: vibe.getCreatedAt(), isTimeInMiliseconds: true)
+        cell.timestamp.text = vibe.getId() != nil && vibe.getId()! == DeviceConstants.DEMO_VIBE_ID ? "" : APPUtilites.getDateFromEpochTime(epochTime: vibe.getCreatedAt(), isTimeInMiliseconds: true)
         cell.vibeSeenImage.isHidden = true
         if vibe.getIsSender() {
             cell.unseenVibeDot.isHidden = true
@@ -241,6 +247,14 @@ extension FriendsVibesViewController: UITableViewDelegate, UITableViewDataSource
         print("cell.progressBar.isHidden: \(cell!.progressBar.isHidden)")
         let vibe = privateVibes["\(VibeCategories.TAG_INDEX[selectedCategory])_\(VibeCategories.TYPE_INDEX[1])"]![indexPath.row]
 
+        if vibe.getId() != nil && vibe.getId()! == DeviceConstants.DEMO_VIBE_ID {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+            vibeWelcomeVC.isDemoVibe = true
+            vibeWelcomeVC.vibeModel = APPUtilites.getVibeModelForDemoVibe(vibeTag: 0, viewHeight: viewHeight)
+            self.present(vibeWelcomeVC, animated: true, completion: nil)
+            return
+        }
         if !vibe.getIsDownloadInProgress() {
             let spinnerView = APPUtilites.displayLoadingSpinner(onView: view)
             AppSyncHelper.shared.getUserVibe(vibeId: vibe.getId()!, vibeType: 0, vibeTag: selectedCategory) { (error, vibeModel) in
@@ -431,14 +445,34 @@ extension FriendsVibesViewController {
             let parent = self.parent as! VibesViewController
             let publicVibeButton = parent.publicVibeButton
             let showcase = MaterialShowcase()
-            showcase.backgroundPromptColor = UIColor.red.withAlphaComponent(0.4)
+            showcase.tag = 1
+            showcase.delegate = self
+            showcase.backgroundPromptColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0)
             showcase.setTargetView(view: publicVibeButton!)
-            showcase.primaryText = "Clicking on it, you can see vibes created by people from all around the world, after every 2 hours."
+            showcase.primaryText = "Tapping on it, you can see vibes created by people from all around the world, after every 2 hours."
             showcase.secondaryText = ""
             showcase.show(animated: true) {
                 print("=======> showcase.show has been completed")
             }
+        } else if showcase.tag == 1 {
+            let firstCell = vibesTable.cellForRow(at: IndexPath(row: 0, section: 0)) as! FriendsVibesTableViewCell
+            let showcase = MaterialShowcase()
+            showcase.delegate = self
+            showcase.tag = 2
+            showcase.setTargetView(view: firstCell.cardView)
+            showcase.backgroundPromptColor = UIColor(displayP3Red: 46/255, green: 66/255, blue: 100/255, alpha: 1.0)
+            showcase.primaryText = "Tap on the card to see a demo vibe."
+            showcase.secondaryText = ""
+            showcase.show(animated: true) {
+                print("=======> showcase.show has been completed")
+            }
+        } else if showcase.tag == 2 {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+            vibeWelcomeVC.isDemoVibe = true
+            vibeWelcomeVC.vibeModel = APPUtilites.getVibeModelForDemoVibe(vibeTag: 0, viewHeight: viewHeight)
+            self.present(vibeWelcomeVC, animated: true, completion: nil)
         }
-        UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_IN)
+        UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_UP)
     }
 }

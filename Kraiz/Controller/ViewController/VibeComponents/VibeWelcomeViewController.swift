@@ -77,9 +77,14 @@ class VibeWelcomeViewController: UIViewController {
 
         demoInstructionLabel.alpha = 0
         if isDemoVibe {
-            UIView.animate(withDuration: 2.0) {
-                self.demoInstructionLabel.alpha = 1.0
-            }
+            let messageVC = UIAlertController(title: "Background music", message: "This vibe contains background music" , preferredStyle: .alert)
+            present(messageVC, animated: true) {
+                Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { (_) in
+                    messageVC.dismiss(animated: true, completion: nil)
+                    UIView.animate(withDuration: 2.0) {
+                        self.demoInstructionLabel.alpha = 1.0
+                    }
+                })}
         }
     }
 

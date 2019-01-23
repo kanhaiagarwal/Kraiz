@@ -53,6 +53,7 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                                 UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
                             }
                             UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_IN)
+                            UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_UP)
                             self.performSegue(withIdentifier: self.HOME_PAGE_SEGUE, sender: self)
                         }
                     }, failure: { (error) in
@@ -115,6 +116,7 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                                         UserDefaults.standard.set(false, forKey: DeviceConstants.IS_PROFILE_PRESENT)
                                     }
                                     UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_IN)
+                                    UserDefaults.standard.set(false, forKey: DeviceConstants.IS_SIGN_UP)
                                     self.performSegue(withIdentifier: self.HOME_PAGE_SEGUE, sender: self)
                                 }
                             }, failure: { (error) in

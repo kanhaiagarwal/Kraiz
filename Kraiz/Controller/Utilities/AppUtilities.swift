@@ -10,6 +10,7 @@ import Foundation
 import TTGSnackbar
 import Photos
 import Reachability
+import RealmSwift
 import AWSAppSync
 
 public class APPUtilites {
@@ -277,35 +278,56 @@ public class APPUtilites {
     public static func getVibeModelForDemoVibe(vibeTag: Int, viewHeight: CGFloat) -> VibeModel {
         print("viewHeight: \(viewHeight)")
         let vibe = VibeModel()
-        vibe.backgroundMusicIndex = 1
+        vibe.backgroundMusicIndex = 4
         vibe.category = vibeTag
         vibe.imageBackdrop = 0
         vibe.isBackgroundMusicEnabled = true
         vibe.isLetterPresent = true
         vibe.isPhotosPresent = true
         switch viewHeight {
-            case DeviceConstants.IPHONEX_HEIGHT: vibe.setLetterText(letterString: "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nPress anywhere in the screen. There will come an arrow at the top right. Press it.")
+            case DeviceConstants.IPHONEX_HEIGHT: vibe.setLetterText(letterString: "\n \n Please curl from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nTap anywhere on the screen and press the next arrow at the top right.")
                 break
-            case DeviceConstants.IPHONEXR_HEIGHT: vibe.setLetterText(letterString: "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n Press anywhere in the screen. There will come an arrow at the top right. Press it.")
+            case DeviceConstants.IPHONEXR_HEIGHT: vibe.setLetterText(letterString: "\n \n Please curl from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nTap anywhere on the screen and press the next arrow at the top right..")
                 break
-            case DeviceConstants.IPHONE7PLUS_HEIGHT: vibe.setLetterText(letterString: "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nPress anywhere in the screen. There will come an arrow at the top right. Press it.")
+            case DeviceConstants.IPHONE7PLUS_HEIGHT: vibe.setLetterText(letterString: "\n \n Please curl from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nTap anywhere on the screen and press the next arrow at the top right.")
                 break
-            case DeviceConstants.IPHONE7_HEIGHT: vibe.setLetterText(letterString: "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \nPress anywhere in the screen. There will come an arrow at the top right. Press it.")
+            case DeviceConstants.IPHONE7_HEIGHT: vibe.setLetterText(letterString: "\n \n Please curl from right to left. \n \n \n \n \n \n \n \n \n \nTap anywhere on the screen and press the next arrow at the top right.")
                 break
-        default: vibe.setLetterText(letterString: "\n \n Please swipe from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \nPress anywhere in the screen. There will come an arrow at the top right. Press it.")
+        default: vibe.setLetterText(letterString: "\n \n Please curl from right to left. \n \n \n \n \n \n \n \n \n \n \n \n \n \nTap anywhere on the screen and press the next arrow at the top right.")
         }
         vibe.setLetterBackground(background: 0)
         vibe.setVibeName(name: "Hello. This is a Sample Love Vibe")
 
         var photos = [PhotoEntity]()
-        for _ in 0 ..< 4 {
+        var photoNames = ["demo-image-1", "demo-image-2", "demo-image-3"]
+        var captions = ["This area is to give a cool caption to the image.", "Captions give a different essence to the image.", ""]
+        for i in 0 ..< 3 {
             var photo = PhotoEntity()
-            photo.image = UIImage(named: "profile-default")
-            photo.caption = "This is a sample caption. You can put cool captions here."
+            photo.image = UIImage(named: photoNames[i])
+            photo.caption = captions[i]
             photos.append(photo)
         }
         vibe.setImages(photos: photos)
         return vibe
+    }
+
+    static func getCacheEntityForDemoVibe() -> VibeDataEntity {
+        var vibeEntity = VibeDataEntity()
+        vibeEntity.setReach(0)
+        vibeEntity.setIsSeen(true)
+        vibeEntity.setVibeId(DeviceConstants.DEMO_VIBE_ID)
+        vibeEntity.setVersion(1)
+        vibeEntity.setIsSender(false)
+        vibeEntity.setVibeName("Hello. This is a Sample Love Vibe")
+        vibeEntity.setCreatedAt(0)
+        vibeEntity.setProfileId("demoProfile")
+        vibeEntity.setHails(hails: List<HailsEntity>())
+        vibeEntity.setIsAnonymous(false)
+        vibeEntity.setUpdatedTime(0)
+        vibeEntity.setVibeTypeGsiPK(getVibeIndex(indexType: "vibeType", vibeType: VibeType.private.rawValue, vibeTag: nil))
+        vibeEntity.setVibeTypeTagGsiPK(getVibeIndex(indexType: "vibeTypeTag", vibeType: VibeType.private.rawValue, vibeTag: 0))
+        vibeEntity.setIsDownloadInProgress(false)
+        return vibeEntity
     }
 }
 

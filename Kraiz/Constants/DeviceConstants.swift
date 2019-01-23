@@ -20,20 +20,21 @@ public class DeviceConstants {
     static public let NO_INTERNET_ERROR = NSError(domain: "NoInternetConnection", code: 503, userInfo: ["__type": "NoInternetConnectionException"])
     
     // User Defaults Keys
-    static public let DOB : String = "dob"
+    static public let DOB : String = "kraizDob"
     static public let FCM_TOKEN : String = "kraizFcmToken"
-    static public let GENDER : String = "gender"
-    static public let ID_TOKEN : String = "tokenString"
-    static public let IS_PROFILE_PRESENT : String = "isProfilePresent"
-    static public let IS_SIGN_IN : String = "isSignIn"
+    static public let GENDER : String = "kraizGender"
+    static public let ID_TOKEN : String = "kraizTokenString"
+    static public let IS_PROFILE_PRESENT : String = "kraizIsProfilePresent"
+    static public let IS_SIGN_IN : String = "kraizIsSignIn"
+    static public let IS_SIGN_UP : String = "kraizIsSignUp"
     static public let IS_FCM_TOKEN_UPDATE_REQUIRED = "kraizIsFcmTokenUpdateRequired"
-    static public let MOBILE_NUMBER : String = "mobileNumber"
-    static public let NAME : String = "name"
-    static public let PROFILE_PICTURE : String = "profilePicture"
-    static public let START_BACKGROUND_FETCH = "startBackgroundFetch"
-    static public let USER_ID : String = "userId"
-    static public let USER_NAME : String = "username"
-    
+    static public let MOBILE_NUMBER : String = "kraizMobileNumber"
+    static public let NAME : String = "kraizName"
+    static public let PROFILE_PICTURE : String = "kraizProfilePicture"
+    static public let START_BACKGROUND_FETCH = "kraizStartBackgroundFetch"
+    static public let USER_ID : String = "kraizUserId"
+    static public let USER_NAME : String = "kraizUsername"
+
     // Segues
     static public let CREATE_STORY_SEGUE = "gotoCreateStory"
     static public let GOTO_CREATE_VIBE_FROM_VIBE_DETAILS = "gotoCreateVibeFromVibeDetails"
@@ -55,9 +56,12 @@ public class DeviceConstants {
     static public let DEFAULT_SEPERATOR_COLOR = UIColor(displayP3Red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
 
     // Time to next Public Vibe
-    static public let TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS = 300
+    static public let TIME_TO_NEXT_PUBLIC_VIBE_IN_SECONDS = 86400
     
     // Realm Schema Version
     static public let REALM_SCHEMA_VERSION = 2
+
+    // Demo vibe
+    static public let DEMO_VIBE_ID = "demo_vibe_love"
 }
 

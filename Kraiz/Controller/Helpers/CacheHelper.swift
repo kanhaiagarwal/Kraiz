@@ -91,6 +91,17 @@ public class CacheHelper {
         }
     }
 
+    func getDemoVibe() -> VibeDataEntity? {
+        do {
+            let realm = try Realm()
+            let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: DeviceConstants.DEMO_VIBE_ID)
+            return result
+        } catch {
+            print("error in realm: \(error)")
+        }
+        return nil
+    }
+
     /// Get all the Vibes of a particular index.
     /// - Parameters:
     ///     - index: Vibe Index.
@@ -100,6 +111,17 @@ public class CacheHelper {
             let realm = try Realm()
             print(Realm.Configuration.defaultConfiguration.fileURL ?? "No File Url")
             let results = realm.objects(VibeDataEntity.self).filter("\(index) == '\(value)'").sorted(byKeyPath: "updatedTime", ascending: false)
+            return results
+        } catch {
+            print("error in realm: \(error)")
+        }
+        return nil
+    }
+    
+    func getVibesByIndexWithoutDemoVibe(index: String, value: String) -> Results<VibeDataEntity>? {
+        do {
+            let realm = try Realm()
+            let results = realm.objects(VibeDataEntity.self).filter("\(index) == '\(value)'").filter("id != '\(DeviceConstants.DEMO_VIBE_ID)'").sorted(byKeyPath: "updatedTime", ascending: false)
             return results
         } catch {
             print("error in realm: \(error)")

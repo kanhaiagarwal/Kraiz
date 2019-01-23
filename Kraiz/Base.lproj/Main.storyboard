@@ -54,7 +54,7 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="KRAIZ" translatesAutoresizingMaskIntoConstraints="NO" id="mST-Ci-fMb">
                                                                 <rect key="frame" x="143" y="180.33333333333334" width="128" height="38.333333333333343"/>
                                                             </imageView>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tagline" translatesAutoresizingMaskIntoConstraints="NO" id="hmt-Ga-TZk">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tagline" translatesAutoresizingMaskIntoConstraints="NO" id="hmt-Ga-TZk">
                                                                 <rect key="frame" x="82.666666666666671" y="228.66666666666666" width="248.66666666666663" height="19"/>
                                                             </imageView>
                                                         </subviews>
@@ -2776,7 +2776,7 @@ mobile number +919003194776</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pmq-CZ-3S5">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe the card leftward to see the next card." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKU-WU-Sv4">
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe the photo leftward to see the next photo." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKU-WU-Sv4">
                                         <rect key="frame" x="20" y="590.33333333333337" width="374" height="45.666666666666629"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
                                         <nil key="textColor"/>
@@ -3630,10 +3630,10 @@ mobile number +919003194776</string>
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="66.666666666666671"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="OGh-Xe-ujB">
-                                                <rect key="frame" x="147.66666666666666" y="16.666666666666661" width="118.99999999999997" height="34.333333333333343"/>
+                                                <rect key="frame" x="133.66666666666666" y="16.666666666666661" width="146.99999999999997" height="34.333333333333343"/>
                                                 <segments>
                                                     <segment title="Friends"/>
-                                                    <segment title="Public"/>
+                                                    <segment title="My Public"/>
                                                 </segments>
                                                 <color key="tintColor" red="0.8901960784313725" green="0.47450980392156861" blue="0.043137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
@@ -3641,7 +3641,7 @@ mobile number +919003194776</string>
                                                 </connections>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRQ-bc-xqr">
-                                                <rect key="frame" x="286.66666666666669" y="16.666666666666661" width="107.33333333333331" height="33.333333333333343"/>
+                                                <rect key="frame" x="300.66666666666669" y="16.666666666666661" width="93.333333333333314" height="33.333333333333343"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <state key="normal" title="Ready ❯">
                                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5166,7 +5166,7 @@ This privacy policy page was created at privacypolicytemplate.net and modified/g
         <image name="FirstScreenBackground" width="360" height="640"/>
         <image name="Hamburger_IOS" width="110" height="110"/>
         <image name="Hamburger_IOS_Active" width="110" height="110"/>
-        <image name="KRAIZ" width="232" height="72"/>
+        <image name="KRAIZ" width="244" height="74"/>
         <image name="Logo" width="188" height="188"/>
         <image name="Profile_IOS_Active" width="180" height="180"/>
         <image name="Profile_IOS_Inactive" width="180" height="180"/>
@@ -5203,7 +5203,7 @@ This privacy policy page was created at privacypolicytemplate.net and modified/g
         <image name="tag-occasion" width="230" height="160"/>
         <image name="tag-party" width="210" height="140"/>
         <image name="tag-travel" width="210" height="140"/>
-        <image name="tagline" width="180" height="14"/>
+        <image name="tagline" width="360" height="24"/>
         <image name="vibe-welcome-good" width="720" height="1280"/>
         <image name="vibes-active" width="72" height="72"/>
         <image name="vibes-inactive" width="72" height="72"/>
@@ -5215,8 +5215,8 @@ This privacy policy page was created at privacypolicytemplate.net and modified/g
         <segue reference="S9L-Ur-bSB"/>
         <segue reference="eqt-dD-DA2"/>
         <segue reference="jey-vD-tun"/>
-        <segue reference="29n-BT-rOK"/>
+        <segue reference="h9a-dj-IR4"/>
         <segue reference="pzD-o7-afy"/>
-        <segue reference="QEH-CO-fw1"/>
+        <segue reference="QEA-am-gG3"/>
     </inferredMetricsTieBreakers>
 </document>

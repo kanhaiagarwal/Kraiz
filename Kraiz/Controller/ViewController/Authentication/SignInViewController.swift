@@ -255,6 +255,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     
     func gotoHomePage() {
         print("========> inside gotoHomePage")
+        CacheHelper.shared.clearCache()
         UserDefaults.standard.set(true, forKey: DeviceConstants.START_BACKGROUND_FETCH)
         UserDefaults.standard.set(true, forKey: DeviceConstants.IS_SIGN_IN)
         DispatchQueue.main.async {
