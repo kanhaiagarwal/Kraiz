@@ -28,40 +28,29 @@ class AboutUsViewController: UIViewController {
     }
     
     @IBAction func fbPressed(_ sender: UIButton) {
-//        if let appURL = URL(string: "fb://") {
-//            let canOpenURL = UIApplication.shared.canOpenURL(appURL)
-//            print("\(canOpenURL)")
-//
-//            let appName = "fb"
-//            let appScheme = "\(appName)://profile/2275774296080604"
-//            let appSchemeUrl = URL(string: appScheme)
-//
-//            if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
-//                UIApplication.shared.open(appSchemeUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-//            } else {
-//                UIApplication.shared.open(URL(string: "http://facebook.com")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-//            }
-//        }
-        let fbWebUrl = URL(string: "https://facebook.com/kraizCommunity")
-        let fbAppUrl = URL(string: "facebook://profile/2275774296080604")
-        if let appURL = fbAppUrl {
-            if UIApplication.shared.canOpenURL(appURL) {
-                UIApplication.shared.open(appURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+        let appName = "fb"
+        if let appURL = URL(string: "\(appName)://") {
+            let canOpenURL = UIApplication.shared.canOpenURL(appURL)
+            print("\(canOpenURL)")
+            
+            let appScheme = "\(appName)://profile/\(DeviceConstants.FB_PAGE_ID)"
+            let appSchemeUrl = URL(string: appScheme)
+            
+            if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
+                UIApplication.shared.open(appSchemeUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
-                UIApplication.shared.open(fbWebUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                UIApplication.shared.open(URL(string: "http://facebook.com")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             }
-        } else {
-            UIApplication.shared.open(fbWebUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
     }
     
     @IBAction func instagramPressed(_ sender: UIButton) {
-        if let appURL = URL(string: "instagram://app") {
+        let appName = "instagram"
+        if let appURL = URL(string: "\(appName)://") {
             let canOpenURL = UIApplication.shared.canOpenURL(appURL)
             print("\(canOpenURL)")
             
-            let appName = "instagram"
-            let appScheme = "\(appName)://user?username=kraiz_vibe"
+            let appScheme = "\(appName)://user?username=\(DeviceConstants.INSTAGRAM_PAGE_USER_NAME)"
             let appSchemeUrl = URL(string: appScheme)
             
             if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {

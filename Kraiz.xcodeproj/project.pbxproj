@@ -13,6 +13,7 @@
 		571F44C621A47B46001C033B /* VibeCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F44C521A47B46001C033B /* VibeCategories.swift */; };
 		5724CA8921EE3E9A00605A2D /* AnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724CA8821EE3E9A00605A2D /* AnalyticsConstants.swift */; };
 		5724CA8B21EE494B00605A2D /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724CA8A21EE494B00605A2D /* AnalyticsHelper.swift */; };
+		573B77D421F8EF8C00C0DA67 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 573B77D321F8EF8C00C0DA67 /* GoogleService-Info.plist */; };
 		578061CA21E127CF008618A5 /* CaptionGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 578061C921E127CF008618A5 /* CaptionGameView.xib */; };
 		578061CC21E12C94008618A5 /* CaptionGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578061CB21E12C94008618A5 /* CaptionGameView.swift */; };
 		579854B621C5259F00406BF8 /* HailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854B521C5259F00406BF8 /* HailsViewController.swift */; };
@@ -25,7 +26,6 @@
 		579854C521C6704A00406BF8 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854C421C6704A00406BF8 /* ProfileEntity.swift */; };
 		579854CB21C8B6FE00406BF8 /* HailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CA21C8B6FE00406BF8 /* HailsEntity.swift */; };
 		579854CD21CAB28700406BF8 /* PublicVibeTimeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */; };
-		579EF40121EE0D6B00C360CC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 579EF40021EE0D6B00C360CC /* GoogleService-Info.plist */; };
 		57A7911C21D538470025F8FE /* Celebration.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911521D538460025F8FE /* Celebration.mp3 */; };
 		57A7911D21D538470025F8FE /* Guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911621D538460025F8FE /* Guitar.mp3 */; };
 		57A7911E21D538470025F8FE /* Jazz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911721D538460025F8FE /* Jazz.mp3 */; };
@@ -163,6 +163,7 @@
 		571F44C521A47B46001C033B /* VibeCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeCategories.swift; sourceTree = "<group>"; };
 		5724CA8821EE3E9A00605A2D /* AnalyticsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsConstants.swift; sourceTree = "<group>"; };
 		5724CA8A21EE494B00605A2D /* AnalyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHelper.swift; sourceTree = "<group>"; };
+		573B77D321F8EF8C00C0DA67 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		578061C921E127CF008618A5 /* CaptionGameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptionGameView.xib; sourceTree = "<group>"; };
 		578061CB21E12C94008618A5 /* CaptionGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionGameView.swift; sourceTree = "<group>"; };
 		579854B521C5259F00406BF8 /* HailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsViewController.swift; sourceTree = "<group>"; };
@@ -176,7 +177,6 @@
 		579854CA21C8B6FE00406BF8 /* HailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsEntity.swift; sourceTree = "<group>"; };
 		579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibeTimeEntity.swift; sourceTree = "<group>"; };
 		579EF3FD21ED12F400C360CC /* Kraiz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kraiz.entitlements; sourceTree = "<group>"; };
-		579EF40021EE0D6B00C360CC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		57A7911521D538460025F8FE /* Celebration.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Celebration.mp3; sourceTree = "<group>"; };
 		57A7911621D538460025F8FE /* Guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Guitar.mp3; sourceTree = "<group>"; };
 		57A7911721D538460025F8FE /* Jazz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Jazz.mp3; sourceTree = "<group>"; };
@@ -498,7 +498,7 @@
 				B51DF1EE211F1248009896CC /* AppDelegate.swift */,
 				B51DF1F2211F1248009896CC /* Main.storyboard */,
 				B51DF1FA211F1248009896CC /* LaunchScreen.storyboard */,
-				579EF40021EE0D6B00C360CC /* GoogleService-Info.plist */,
+				573B77D321F8EF8C00C0DA67 /* GoogleService-Info.plist */,
 				B51DF1FD211F1248009896CC /* Info.plist */,
 				B51DF1F5211F1248009896CC /* Kraiz.xcdatamodeld */,
 				B56EFE98215AB05D008059ED /* Images.xcassets */,
@@ -771,12 +771,12 @@
 				B51DF251211F1787009896CC /* ContactUsTableViewCell.xib in Resources */,
 				B56EFE99215AB05D008059ED /* Images.xcassets in Resources */,
 				B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */,
+				573B77D421F8EF8C00C0DA67 /* GoogleService-Info.plist in Resources */,
 				B524CACC214544BF00316D84 /* schema.graphql in Resources */,
 				57AC145C21CD5A33001FA686 /* VibeChoiceTableViewCell.xib in Resources */,
 				B513582F215D365C00139854 /* Hero.otf in Resources */,
 				57A7912221D538470025F8FE /* Adventure.mp3 in Resources */,
 				57B36FB521E4FE8600E51F50 /* Calligraffiti.ttf in Resources */,
-				579EF40121EE0D6B00C360CC /* GoogleService-Info.plist in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				57D4C0F421C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib in Resources */,
 				57A7911E21D538470025F8FE /* Jazz.mp3 in Resources */,

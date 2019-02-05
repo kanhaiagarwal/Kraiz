@@ -40,6 +40,8 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
         if !APPUtilites.isInternetConnectionAvailable() {
             // The ID Token for the session was already set previously
             if UserDefaults.standard.string(forKey: DeviceConstants.ID_TOKEN) != nil {
+                print("UserDefaults.standard.string(forKey: DeviceConstants.ID_TOKEN) is not nil")
+                print("UserDefaults.standard.string(forKey: DeviceConstants.ID_TOKEN): \(UserDefaults.standard.string(forKey: DeviceConstants.ID_TOKEN))")
                 AppSyncHelper.shared.setAppSyncClient()
                 
                 // Check if the ID token might have expired. The UserDefaults will be set to nil if the setAppClient() fails because of token expiry.
@@ -60,6 +62,7 @@ class StartViewController: UIViewController, AWSCognitoIdentityInteractiveAuthen
                         DispatchQueue.main.async {
                             print("Error: \(error)")
                             APPUtilites.displayErrorSnackbar(message: "Error in network connection. Please check your internet connection")
+                            self.performSegue(withIdentifier: self.WELCOME_PAGE_SEGUE, sender: self)
                         }
                     })
                 } else {

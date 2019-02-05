@@ -53,14 +53,14 @@ class InviteFriendsViewController: UIViewController {
     }
     
     @objc func fbTapped() {
-        if let appURL = URL(string: "facebook://") {
+        let appName = "fb"
+        if let appURL = URL(string: "\(appName)://") {
             let canOpenURL = UIApplication.shared.canOpenURL(appURL)
             print("\(canOpenURL)")
-            
-            let appName = "Facebook"
-            let appScheme = "\(appName)://"
+
+            let appScheme = "\(appName)://profile/\(DeviceConstants.FB_PAGE_ID)"
             let appSchemeUrl = URL(string: appScheme)
-            
+
             if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
                 UIApplication.shared.open(appSchemeUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
@@ -70,14 +70,14 @@ class InviteFriendsViewController: UIViewController {
     }
     
     @objc func instagramTapped() {
-        if let appURL = URL(string: "instagram://") {
+        let appName = "instagram"
+        if let appURL = URL(string: "\(appName)://") {
             let canOpenURL = UIApplication.shared.canOpenURL(appURL)
             print("\(canOpenURL)")
-            
-            let appName = "Instagram"
-            let appScheme = "\(appName)://"
+
+            let appScheme = "\(appName)://user?username=\(DeviceConstants.INSTAGRAM_PAGE_USER_NAME)"
             let appSchemeUrl = URL(string: appScheme)
-            
+
             if UIApplication.shared.canOpenURL(appSchemeUrl as! URL) {
                 UIApplication.shared.open(appSchemeUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {

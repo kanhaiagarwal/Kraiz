@@ -63,5 +63,9 @@ public class DeviceConstants {
 
     // Demo vibe
     static public let DEMO_VIBE_ID = "demo_vibe_love"
+    
+    /// Social Media Profile Ids.
+    static public let FB_PAGE_ID = "2275774296080604"
+    static public let INSTAGRAM_PAGE_USER_NAME = "kraiz_vibe"
 }
 
