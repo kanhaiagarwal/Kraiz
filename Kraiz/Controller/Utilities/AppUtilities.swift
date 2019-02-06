@@ -311,8 +311,19 @@ public class APPUtilites {
         return vibe
     }
 
+    static func getRemoteConfigKey() -> String? {
+        if let userId = UserDefaults.standard.string(forKey: DeviceConstants.USER_ID) {
+            var key = "Kraiz"
+            for i in userId.utf8 {
+                key.append(String(i))
+            }
+            return key
+        }
+        return nil
+    }
+
     static func getCacheEntityForDemoVibe() -> VibeDataEntity {
-        var vibeEntity = VibeDataEntity()
+        let vibeEntity = VibeDataEntity()
         vibeEntity.setReach(0)
         vibeEntity.setIsSeen(true)
         vibeEntity.setVibeId(DeviceConstants.DEMO_VIBE_ID)

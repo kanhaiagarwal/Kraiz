@@ -9,6 +9,7 @@
 
 import UIKit
 import AWSCognitoIdentityProvider
+import Instabug
 
 class HamburgerViewController: UIViewController, AWSCognitoIdentityInteractiveAuthenticationDelegate {
 
@@ -18,13 +19,13 @@ class HamburgerViewController: UIViewController, AWSCognitoIdentityInteractiveAu
 
     var viewHeight : CGFloat = 0
     
-    let NUMBER_OF_ROWS : Int = 4
+    let NUMBER_OF_ROWS : Int = 5
     let ROW_HEIGHT : CGFloat = 60.5
     let DEFAULT_PROFILE_IMAGE = UIImage(named: "profile-default")
     
-    let iconImageNames = ["invite-friends", "contact-us", "about-us", "sign-out"]
-    let cellSegues = ["gotoInviteFriends", "gotoContactUs", "gotoAboutUs", "gotoSignOut"]
-    let cellInformationLabel = ["Invite Friends", "Contact Us", "About Us", "Sign Out"]
+    let iconImageNames = ["invite-friends", "contact-us", "about-us", "feedback", "sign-out"]
+    let cellSegues = ["gotoInviteFriends", "gotoContactUs", "gotoAboutUs", "gotoFeedback", "gotoSignOut"]
+    let cellInformationLabel = ["Invite Friends", "Contact Us", "About Us", "Feedback", "Sign Out"]
     
     var pool: AWSCognitoIdentityUserPool?
     
@@ -117,8 +118,11 @@ extension HamburgerViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 3 {
+        if indexPath.row == 4 {
             performSignOut()
+        } else if indexPath.row == 3 {
+            BugReporting.invoke(with: .newFeedback, options: IBGBugReportingInvocationOption.none)
+            print("Feedback pressed")
         } else {
             performSegue(withIdentifier: cellSegues[indexPath.row], sender: self)
         }

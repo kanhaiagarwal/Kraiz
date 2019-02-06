@@ -12,7 +12,7 @@ import UIKit
 class ContactUsViewController: UIViewController {
 
     let icons = ["contact", "email", "link"]
-    let labels = ["+91-9023161611", "kraiz.company@gmail.com", "https://www.kraiz.app"]
+    let labels = ["+91-9023161611", "kraiz.company@gmail.com", "https://kraiz.app"]
     
     @IBOutlet weak var tableView: UITableView!
     

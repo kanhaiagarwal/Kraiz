@@ -16,6 +16,8 @@ target 'Kraiz' do
   pod 'Fabric', '~> 1.9.0'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'Firebase/RemoteConfig'
+  pod 'Instabug'
   pod 'LinearProgressBarMaterial'
   pod 'MaterialShowcase'
   pod 'RealmSwift'

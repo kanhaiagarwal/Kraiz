@@ -125,8 +125,37 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     @IBAction func myVibePressed(_ sender: UIButton) {
         performSegue(withIdentifier: DeviceConstants.GOTO_MY_VIBE_FROM_CREATE_VIBE, sender: self)
     }
-    
-    @IBAction func sendPressed(_ sender: UIButton) {
+
+    @IBAction func savePressed(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Save and Exit", message: "Do you want to save this Vibe right now? You can edit it later", preferredStyle: .actionSheet)
+        
+        let saveAndCloseAction = UIAlertAction(title: "Save and Exit", style: .default) { (action) in
+            CacheHelper.shared.storeDraft(draftId: self.draftId, vibeModel: self.vibeModel)
+            AnalyticsHelper.shared.logSaveVibeEvent()
+            self.dismiss(animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(saveAndCloseAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    func performPreviewAction() {
+        hasPreviewed = true
+        if !isLetterSelected && !isImagesSelected {
+            APPUtilites.displayErrorSnackbar(message: "Please select atleast the Letter or the Photos")
+            return
+        }
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
+        vibeWelcomeVC.vibeModel = vibeModel
+        vibeWelcomeVC.isPreview = true
+        self.present(vibeWelcomeVC, animated: true, completion: nil)
+    }
+
+    func performSendAction() {
         if !APPUtilites.isInternetConnectionAvailable() {
             APPUtilites.displayErrorSnackbar(message: "Please check your internet connection.")
             return
@@ -149,7 +178,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
                 FileManagerHelper.shared.storeImageInFolder(image: vibeModel.images[i].image!, folder: "\(MediaHelper.shared.COMMON_FOLDER)/\(MediaHelper.shared.VIBE_IMAGES_FOLDER)", fileName: vibeModel.images[i].imageLink!)
             }
         }
-
+        
         let sv = APPUtilites.displayLoadingSpinner(onView: self.view)
         var totalUpload = 0
         let counter = Variable(0)
@@ -170,7 +199,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         }) {
             print("disposed")
         }
-
+        
         // Start the image upload in the background (if any images present).
         MediaHelper.shared.uploadImagesAsync(images: vibeModel.images, folder: MediaHelperConstants.VIBE_IMAGES_FOLDER, counter: counter)
         AppSyncHelper.shared.createVibe(vibe: vibeModel, success: { (success) in
@@ -189,32 +218,31 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
             }
         }
     }
-    
-    /// Action to perform on pressing the Preview Button
-    @IBAction func previewPressed(_ sender: UIButton) {
-        hasPreviewed = true
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
-        vibeWelcomeVC.vibeModel = vibeModel
-        vibeWelcomeVC.isPreview = true
-        self.present(vibeWelcomeVC, animated: true, completion: nil)
+
+    @IBAction func sendPressed(_ sender: UIButton) {
+        let previewAction = UIAlertAction(title: "Preview", style: .default) { [weak self] (action) in
+            self!.performPreviewAction()
+        }
+        let sendAction = UIAlertAction(title: "Send", style: .default) { [weak self] (action) in
+            self!.performSendAction()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let alertController = UIAlertController(title: "Send", message: "You can also Preview this Vibe", preferredStyle: .actionSheet)
+        alertController.addAction(previewAction)
+        alertController.addAction(sendAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     @IBAction func crossButtonPressed(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Exit", message: "Do you want to exit right now? You can edit this Vibe later", preferredStyle: .actionSheet)
-        
-        let saveAndCloseAction = UIAlertAction(title: "Save and Exit", style: .default) { (action) in
-            CacheHelper.shared.storeDraft(draftId: self.draftId, vibeModel: self.vibeModel)
-            AnalyticsHelper.shared.logSaveVibeEvent()
-            self.dismiss(animated: true, completion: nil)
-        }
-        let justCloseAction = UIAlertAction(title: "Exit", style: .default) { (action) in
+        let alertController = UIAlertController(title: "Exit", message: "Do you want to exit right now?", preferredStyle: .actionSheet)
+
+        let closeAction = UIAlertAction(title: "Exit", style: .default) { (action) in
             self.dismiss(animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alertController.addAction(saveAndCloseAction)
-        alertController.addAction(justCloseAction)
+
+        alertController.addAction(closeAction)
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)

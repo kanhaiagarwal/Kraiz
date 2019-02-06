@@ -42,7 +42,7 @@ class InviteFriendsViewController: UIViewController {
     }
     
     @objc func whatsappTapped() {
-        var str = "Please download Kraiz to create Vibes that you feel everyday. Share them with your friends and people who want to receive the same vibes."
+        var str = "Hi! I'm using this awesome app called Kraiz, where vibes are shared. Create your first vibe here:"
         str=str.addingPercentEncoding(withAllowedCharacters: (NSCharacterSet.urlQueryAllowed))!
         let whatsappURL = URL(string: "whatsapp://send?text=\(str)")
         if let url = whatsappURL {
@@ -87,7 +87,7 @@ class InviteFriendsViewController: UIViewController {
     }
     
     @objc func commonShareTapped() {
-        let activityViewController = UIActivityViewController(activityItems: ["Please download Kraiz. Its a really cool and awesome app." as NSString], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: ["Hi! I'm using this awesome app called Kraiz, where vibes are shared. Create your first vibe here:" as NSString], applicationActivities: nil)
         present(activityViewController, animated: true, completion: {})
     }
 }

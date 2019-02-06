@@ -13,6 +13,15 @@
 		571F44C621A47B46001C033B /* VibeCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F44C521A47B46001C033B /* VibeCategories.swift */; };
 		5724CA8921EE3E9A00605A2D /* AnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724CA8821EE3E9A00605A2D /* AnalyticsConstants.swift */; };
 		5724CA8B21EE494B00605A2D /* AnalyticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5724CA8A21EE494B00605A2D /* AnalyticsHelper.swift */; };
+		5732160F2209F7E20081698F /* Jazz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 573216062209F7DE0081698F /* Jazz.mp3 */; };
+		573216102209F7E20081698F /* Cinematic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 573216072209F7DF0081698F /* Cinematic.mp3 */; };
+		573216112209F7E20081698F /* Rains Will Fall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 573216082209F7DF0081698F /* Rains Will Fall.mp3 */; };
+		573216122209F7E20081698F /* Guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 573216092209F7E00081698F /* Guitar.mp3 */; };
+		573216132209F7E20081698F /* Dark.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5732160A2209F7E00081698F /* Dark.mp3 */; };
+		573216142209F7E20081698F /* Piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5732160B2209F7E00081698F /* Piano.mp3 */; };
+		573216152209F7E20081698F /* Memories.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5732160C2209F7E10081698F /* Memories.mp3 */; };
+		573216162209F7E20081698F /* Soothing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5732160D2209F7E10081698F /* Soothing.mp3 */; };
+		573216172209F7E20081698F /* Adventure.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5732160E2209F7E10081698F /* Adventure.mp3 */; };
 		573B77D421F8EF8C00C0DA67 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 573B77D321F8EF8C00C0DA67 /* GoogleService-Info.plist */; };
 		578061CA21E127CF008618A5 /* CaptionGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 578061C921E127CF008618A5 /* CaptionGameView.xib */; };
 		578061CC21E12C94008618A5 /* CaptionGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578061CB21E12C94008618A5 /* CaptionGameView.swift */; };
@@ -26,13 +35,6 @@
 		579854C521C6704A00406BF8 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854C421C6704A00406BF8 /* ProfileEntity.swift */; };
 		579854CB21C8B6FE00406BF8 /* HailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CA21C8B6FE00406BF8 /* HailsEntity.swift */; };
 		579854CD21CAB28700406BF8 /* PublicVibeTimeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */; };
-		57A7911C21D538470025F8FE /* Celebration.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911521D538460025F8FE /* Celebration.mp3 */; };
-		57A7911D21D538470025F8FE /* Guitar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911621D538460025F8FE /* Guitar.mp3 */; };
-		57A7911E21D538470025F8FE /* Jazz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911721D538460025F8FE /* Jazz.mp3 */; };
-		57A7911F21D538470025F8FE /* Piano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911821D538460025F8FE /* Piano.mp3 */; };
-		57A7912021D538470025F8FE /* Soothing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911921D538460025F8FE /* Soothing.mp3 */; };
-		57A7912121D538470025F8FE /* Happiness.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911A21D538470025F8FE /* Happiness.mp3 */; };
-		57A7912221D538470025F8FE /* Adventure.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 57A7911B21D538470025F8FE /* Adventure.mp3 */; };
 		57A7912421D53AF40025F8FE /* VibeHailInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A7912321D53AF40025F8FE /* VibeHailInputViewController.swift */; };
 		57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */; };
 		57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */; };
@@ -163,6 +165,15 @@
 		571F44C521A47B46001C033B /* VibeCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeCategories.swift; sourceTree = "<group>"; };
 		5724CA8821EE3E9A00605A2D /* AnalyticsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsConstants.swift; sourceTree = "<group>"; };
 		5724CA8A21EE494B00605A2D /* AnalyticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsHelper.swift; sourceTree = "<group>"; };
+		573216062209F7DE0081698F /* Jazz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Jazz.mp3; sourceTree = "<group>"; };
+		573216072209F7DF0081698F /* Cinematic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Cinematic.mp3; sourceTree = "<group>"; };
+		573216082209F7DF0081698F /* Rains Will Fall.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rains Will Fall.mp3"; sourceTree = "<group>"; };
+		573216092209F7E00081698F /* Guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Guitar.mp3; sourceTree = "<group>"; };
+		5732160A2209F7E00081698F /* Dark.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Dark.mp3; sourceTree = "<group>"; };
+		5732160B2209F7E00081698F /* Piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Piano.mp3; sourceTree = "<group>"; };
+		5732160C2209F7E10081698F /* Memories.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Memories.mp3; sourceTree = "<group>"; };
+		5732160D2209F7E10081698F /* Soothing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Soothing.mp3; sourceTree = "<group>"; };
+		5732160E2209F7E10081698F /* Adventure.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Adventure.mp3; sourceTree = "<group>"; };
 		573B77D321F8EF8C00C0DA67 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		578061C921E127CF008618A5 /* CaptionGameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptionGameView.xib; sourceTree = "<group>"; };
 		578061CB21E12C94008618A5 /* CaptionGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionGameView.swift; sourceTree = "<group>"; };
@@ -177,13 +188,6 @@
 		579854CA21C8B6FE00406BF8 /* HailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsEntity.swift; sourceTree = "<group>"; };
 		579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibeTimeEntity.swift; sourceTree = "<group>"; };
 		579EF3FD21ED12F400C360CC /* Kraiz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kraiz.entitlements; sourceTree = "<group>"; };
-		57A7911521D538460025F8FE /* Celebration.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Celebration.mp3; sourceTree = "<group>"; };
-		57A7911621D538460025F8FE /* Guitar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Guitar.mp3; sourceTree = "<group>"; };
-		57A7911721D538460025F8FE /* Jazz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Jazz.mp3; sourceTree = "<group>"; };
-		57A7911821D538460025F8FE /* Piano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Piano.mp3; sourceTree = "<group>"; };
-		57A7911921D538460025F8FE /* Soothing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Soothing.mp3; sourceTree = "<group>"; };
-		57A7911A21D538470025F8FE /* Happiness.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Happiness.mp3; sourceTree = "<group>"; };
-		57A7911B21D538470025F8FE /* Adventure.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Adventure.mp3; sourceTree = "<group>"; };
 		57A7912321D53AF40025F8FE /* VibeHailInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeHailInputViewController.swift; sourceTree = "<group>"; };
 		57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionModel.swift; sourceTree = "<group>"; };
 		57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
@@ -329,13 +333,15 @@
 		57B24F3821AADD6900FA45E9 /* AudioFiles */ = {
 			isa = PBXGroup;
 			children = (
-				57A7911621D538460025F8FE /* Guitar.mp3 */,
-				57A7911821D538460025F8FE /* Piano.mp3 */,
-				57A7911A21D538470025F8FE /* Happiness.mp3 */,
-				57A7911521D538460025F8FE /* Celebration.mp3 */,
-				57A7911721D538460025F8FE /* Jazz.mp3 */,
-				57A7911921D538460025F8FE /* Soothing.mp3 */,
-				57A7911B21D538470025F8FE /* Adventure.mp3 */,
+				5732160E2209F7E10081698F /* Adventure.mp3 */,
+				573216072209F7DF0081698F /* Cinematic.mp3 */,
+				5732160A2209F7E00081698F /* Dark.mp3 */,
+				573216092209F7E00081698F /* Guitar.mp3 */,
+				573216062209F7DE0081698F /* Jazz.mp3 */,
+				5732160C2209F7E10081698F /* Memories.mp3 */,
+				5732160B2209F7E00081698F /* Piano.mp3 */,
+				573216082209F7DF0081698F /* Rains Will Fall.mp3 */,
+				5732160D2209F7E10081698F /* Soothing.mp3 */,
 			);
 			path = AudioFiles;
 			sourceTree = "<group>";
@@ -747,24 +753,25 @@
 			files = (
 				57FB85FF21F424800088A816 /* dancing_script.ttf in Resources */,
 				B5BC1CFD216164D6008CE09F /* playlist-script.otf in Resources */,
-				57A7911C21D538470025F8FE /* Celebration.mp3 in Resources */,
+				573216142209F7E20081698F /* Piano.mp3 in Resources */,
 				B51DF21B211F13B9009896CC /* AppIcon.png in Resources */,
+				573216132209F7E20081698F /* Dark.mp3 in Resources */,
+				573216162209F7E20081698F /* Soothing.mp3 in Resources */,
+				5732160F2209F7E20081698F /* Jazz.mp3 in Resources */,
 				57FB85FE21F424800088A816 /* Mordred.ttf in Resources */,
 				579854BA21C5525C00406BF8 /* HailsTableViewCell.xib in Resources */,
 				B51DF24E211F174A009896CC /* HamburgerTableViewCell.xib in Resources */,
 				57BD53EE2199CD38001B1010 /* VibesCategoryTableViewCell.xib in Resources */,
-				57A7911D21D538470025F8FE /* Guitar.mp3 in Resources */,
 				578061CA21E127CF008618A5 /* CaptionGameView.xib in Resources */,
 				57E6909321E09178003F0CFC /* productsans.ttf in Resources */,
 				B51DF24D211F1744009896CC /* DraftsTableViewCell.xib in Resources */,
 				B51DF1FC211F1248009896CC /* LaunchScreen.storyboard in Resources */,
+				573216122209F7E20081698F /* Guitar.mp3 in Resources */,
 				B5652C6E21482D9900B15E8F /* schema.json in Resources */,
+				573216152209F7E20081698F /* Memories.mp3 in Resources */,
 				B51DF250211F1783009896CC /* FriendsVibesTableViewCell.xib in Resources */,
-				57A7911F21D538470025F8FE /* Piano.mp3 in Resources */,
-				57A7912121D538470025F8FE /* Happiness.mp3 in Resources */,
 				B51DF259211F1AAB009896CC /* FREESCPT.TTF in Resources */,
 				B51DF258211F1AA8009896CC /* frenchscriptmt.ttf in Resources */,
-				57A7912021D538470025F8FE /* Soothing.mp3 in Resources */,
 				B51DF257211F1AA6009896CC /* monotype-corsiva.ttf in Resources */,
 				57B24F3E21AB16EF00FA45E9 /* ImageBackdropTableViewCell.xib in Resources */,
 				57C74A9A21BA44BD00D737FB /* VibeImageCardView.xib in Resources */,
@@ -772,15 +779,16 @@
 				B56EFE99215AB05D008059ED /* Images.xcassets in Resources */,
 				B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */,
 				573B77D421F8EF8C00C0DA67 /* GoogleService-Info.plist in Resources */,
+				573216112209F7E20081698F /* Rains Will Fall.mp3 in Resources */,
 				B524CACC214544BF00316D84 /* schema.graphql in Resources */,
+				573216172209F7E20081698F /* Adventure.mp3 in Resources */,
 				57AC145C21CD5A33001FA686 /* VibeChoiceTableViewCell.xib in Resources */,
 				B513582F215D365C00139854 /* Hero.otf in Resources */,
-				57A7912221D538470025F8FE /* Adventure.mp3 in Resources */,
 				57B36FB521E4FE8600E51F50 /* Calligraffiti.ttf in Resources */,
 				B51DF1F4211F1248009896CC /* Main.storyboard in Resources */,
 				57D4C0F421C2E4ED007DD51F /* VibeCategoryCollectionViewCell.xib in Resources */,
-				57A7911E21D538470025F8FE /* Jazz.mp3 in Resources */,
 				57FB860021F424800088A816 /* gemelli.TTF in Resources */,
+				573216102209F7E20081698F /* Cinematic.mp3 in Resources */,
 				B5BC1CF921615B61008CE09F /* ChatsTableViewCell.xib in Resources */,
 				57E6909121DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib in Resources */,
 				579854BE21C611C200406BF8 /* MyPublicVibeTableViewCell.xib in Resources */,
@@ -827,6 +835,8 @@
 				"${BUILT_PRODUCTS_DIR}/Cloudinary/Cloudinary.framework",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${PODS_ROOT}/Instabug/Instabug.framework",
+				"${PODS_ROOT}/Instabug/Instabug.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/LinearProgressBarMaterial/LinearProgressBarMaterial.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialShowcase/MaterialShowcase.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -853,6 +863,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cloudinary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instabug.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Instabug.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinearProgressBarMaterial.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialShowcase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",

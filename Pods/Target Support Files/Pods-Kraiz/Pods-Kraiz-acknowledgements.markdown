@@ -272,6 +272,10 @@ Fabric: Copyright 2018 Google, Inc. All Rights Reserved. Use of this software is
 
 Copyright 2018 Google
 
+## FirebaseABTesting
+
+Copyright 2018 Google
+
 ## FirebaseAnalytics
 
 Copyright 2018 Google
@@ -898,6 +902,10 @@ Copyright 2018 Google
    limitations under the License.
 
 
+## FirebaseRemoteConfig
+
+Copyright 2018 Google
+
 ## GoogleAppMeasurement
 
 Copyright 2018 Google
@@ -1106,6 +1114,20 @@ Copyright 2018 Google
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+
+## Instabug
+
+Copyright (C) 2014 Instabug Permission is hereby granted to use this framework as is, modification are not allowed.
+All rights reserved.
+        
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
 
 ## LinearProgressBarMaterial

@@ -142,7 +142,7 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
             vibeWelcomeVC.vibeModel = vibe
-            vibeWelcomeVC.updateLastPublicVibeTime = true
+//            vibeWelcomeVC.updateLastPublicVibeTime = true
             let presentingVC = self.presentingViewController!.presentingViewController!
             let homeVC = self.presentingViewController!.presentingViewController!
             presentingVC.dismiss(animated: true) {
@@ -168,7 +168,7 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
                 vibeWelcomeVC.vibeModel = vibe
-                vibeWelcomeVC.updateLastPublicVibeTime = true
+//                vibeWelcomeVC.updateLastPublicVibeTime = true
                 let presentingVC = self.presentingViewController!.presentingViewController!
                 let homeVC = self.presentingViewController!.presentingViewController!
                 presentingVC.dismiss(animated: true) {
@@ -195,7 +195,7 @@ extension PublicVibesChoiceViewController: UITableViewDelegate, UITableViewDataS
                             APPUtilites.removeLoadingSpinner(spinner: spinnerView)
                             let vibeWelcomeVC = storyboard.instantiateViewController(withIdentifier: "VibeWelcomeViewController") as! VibeWelcomeViewController
                             vibeWelcomeVC.vibeModel = vibe
-                            vibeWelcomeVC.updateLastPublicVibeTime = true
+//                            vibeWelcomeVC.updateLastPublicVibeTime = true
                             let presentingVC = self.presentingViewController!.presentingViewController!
                             let homeVC = self.presentingViewController!.presentingViewController!
                             presentingVC.dismiss(animated: true) {

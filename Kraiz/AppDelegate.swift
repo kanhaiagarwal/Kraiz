@@ -12,6 +12,7 @@ import AWSAppSync
 import AWSCore
 import AWSCognitoIdentityProvider
 import Firebase
+import Instabug
 import RealmSwift
 import UserNotifications
 
@@ -19,6 +20,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInteractiveAuthenticationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
     var restrictRotation: UIInterfaceOrientationMask = .portrait
+    var remoteConfig: RemoteConfig?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -63,8 +65,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AWSCognitoIdentityInterac
         } else {
             print("Cannot find the documents directory in the device.")
         }
-        
+
         application.registerForRemoteNotifications()
+        Instabug.autoScreenRecordingEnabled = false
+        Instabug.reproStepsMode = .disable
+        Instabug.replyNotificationsEnabled = false
+        Instabug.shouldCaptureViewHierarchy = false
+        Instabug.trackUserSteps = false
+        Instabug.start(withToken: DeviceConstants.INSTABUG_TOKEN, invocationEvents: [.none])
+        self.remoteConfig = RemoteConfig.remoteConfig()
+        remoteConfig?.setDefaults(nil)
         return true
     }
 

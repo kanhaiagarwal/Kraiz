@@ -68,6 +68,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     var vibeModel = VibeModel()
     var isSourceCreateVibe = false
     var isAudioPlaying = false
+    var isPreferredUser = false
 
     let MAX_VIBE_NAME_LIMIT = 50
 
@@ -81,6 +82,11 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
 
         let attr = NSDictionary(object: UIFont(name: "Helvetica Neue", size: 16.0)!, forKey: NSAttributedString.Key.font as NSCopying)
         vibeTypeSegment.setTitleTextAttributes(attr as? [NSAttributedString.Key : Any], for: .normal)
+        if !isPreferredUser {
+            vibeTypeSegment.isHidden = true
+        } else {
+            vibeTypeSegment.isHidden = false
+        }
 
         countryCodePicker.tag = 0
         friendsVibeTagPicker.tag = 1

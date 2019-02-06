@@ -66,6 +66,9 @@ public class DeviceConstants {
     
     /// Social Media Profile Ids.
     static public let FB_PAGE_ID = "2275774296080604"
-    static public let INSTAGRAM_PAGE_USER_NAME = "kraiz_vibe"
+    static public let INSTAGRAM_PAGE_USER_NAME = "kraiz.app"
+    
+    /// Instabug
+    static public let INSTABUG_TOKEN = "ccba30127aadbda7c739f0e17320e209"
 }
 
