@@ -10,6 +10,7 @@ import UIKit
 import TTGSnackbar
 import ContactsUI
 import AVFoundation
+import Firebase
 
 protocol VibeDetailsProtocol {
     func setVibeDetails(vibeModel: VibeModel)
@@ -74,6 +75,10 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let remoteConfigKey = APPUtilites.getRemoteConfigKey() {
+            isPreferredUser = RemoteConfig.remoteConfig().configValue(forKey: remoteConfigKey).boolValue
+        }
 
         print("UserDefaults.standard.string(forKey: DeviceConstants.USER_ID): \(UserDefaults.standard.string(forKey: DeviceConstants.USER_ID))")
         vibeModel.from?.setId(id: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID))
@@ -411,7 +416,6 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
             }
         }
 
-        vibeModel.setSenderId(sender: UserDefaults.standard.string(forKey: DeviceConstants.MOBILE_NUMBER)!)
         vibeModel.setVibeType(type: vibeTypeSegment.selectedSegmentIndex)
         vibeModel.setVibeName(name: vibeTypeSegment.selectedSegmentIndex == 0 ? friendsVibeNameField.text! : publicVibeNameField.text!)
         vibeModel.setCategory(category: vibeTypeSegment.selectedSegmentIndex == 0 ?friendsVibeTagSelected! : publicVibeTagSelected!)

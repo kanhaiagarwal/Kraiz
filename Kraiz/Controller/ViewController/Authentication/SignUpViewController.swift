@@ -21,8 +21,8 @@ class SignUpViewController: UIViewController, AWSCognitoIdentityInteractiveAuthe
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var hidePasswordButton: UIButton!
     
-    let pickerStrings = ["India (+91)", "USA (+1)", "Pakistan (+92)", "Bangladesh (+123)"]
-    let countryCodes = ["+91", "+1", "+92", "+123"]
+    let pickerStrings = ["India (+91)"]
+    let countryCodes = ["+91"]
     
     var countryCodeSelected = "+91"
     

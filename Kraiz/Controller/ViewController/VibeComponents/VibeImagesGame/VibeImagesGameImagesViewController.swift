@@ -176,8 +176,13 @@ class VibeImagesGameImagesViewController: UIViewController, UIScrollViewDelegate
             presentingVC!.dismiss(animated: true) {
                 self.dismiss(animated: false, completion: nil)
             }
-        } else {
+        } else if vibeModel!.seenIds.count == 0 {
             let presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!.presentingViewController!
+            presentingVC.dismiss(animated: true) {
+                self.dismiss(animated: false, completion: nil)
+            }
+        } else {
+            let presentingVC = self.presentingViewController!.presentingViewController!.presentingViewController!
             presentingVC.dismiss(animated: true) {
                 self.dismiss(animated: false, completion: nil)
             }

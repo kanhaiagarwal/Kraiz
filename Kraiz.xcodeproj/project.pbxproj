@@ -22,7 +22,7 @@
 		573216152209F7E20081698F /* Memories.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5732160C2209F7E10081698F /* Memories.mp3 */; };
 		573216162209F7E20081698F /* Soothing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5732160D2209F7E10081698F /* Soothing.mp3 */; };
 		573216172209F7E20081698F /* Adventure.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5732160E2209F7E10081698F /* Adventure.mp3 */; };
-		573B77D421F8EF8C00C0DA67 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 573B77D321F8EF8C00C0DA67 /* GoogleService-Info.plist */; };
+		5732161B220B55070081698F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5732161A220B55060081698F /* GoogleService-Info.plist */; };
 		578061CA21E127CF008618A5 /* CaptionGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 578061C921E127CF008618A5 /* CaptionGameView.xib */; };
 		578061CC21E12C94008618A5 /* CaptionGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578061CB21E12C94008618A5 /* CaptionGameView.swift */; };
 		579854B621C5259F00406BF8 /* HailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854B521C5259F00406BF8 /* HailsViewController.swift */; };
@@ -174,7 +174,7 @@
 		5732160C2209F7E10081698F /* Memories.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Memories.mp3; sourceTree = "<group>"; };
 		5732160D2209F7E10081698F /* Soothing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Soothing.mp3; sourceTree = "<group>"; };
 		5732160E2209F7E10081698F /* Adventure.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Adventure.mp3; sourceTree = "<group>"; };
-		573B77D321F8EF8C00C0DA67 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5732161A220B55060081698F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		578061C921E127CF008618A5 /* CaptionGameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptionGameView.xib; sourceTree = "<group>"; };
 		578061CB21E12C94008618A5 /* CaptionGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionGameView.swift; sourceTree = "<group>"; };
 		579854B521C5259F00406BF8 /* HailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsViewController.swift; sourceTree = "<group>"; };
@@ -504,7 +504,7 @@
 				B51DF1EE211F1248009896CC /* AppDelegate.swift */,
 				B51DF1F2211F1248009896CC /* Main.storyboard */,
 				B51DF1FA211F1248009896CC /* LaunchScreen.storyboard */,
-				573B77D321F8EF8C00C0DA67 /* GoogleService-Info.plist */,
+				5732161A220B55060081698F /* GoogleService-Info.plist */,
 				B51DF1FD211F1248009896CC /* Info.plist */,
 				B51DF1F5211F1248009896CC /* Kraiz.xcdatamodeld */,
 				B56EFE98215AB05D008059ED /* Images.xcassets */,
@@ -778,7 +778,6 @@
 				B51DF251211F1787009896CC /* ContactUsTableViewCell.xib in Resources */,
 				B56EFE99215AB05D008059ED /* Images.xcassets in Resources */,
 				B51DF24F211F176A009896CC /* ProfileTableViewCell.xib in Resources */,
-				573B77D421F8EF8C00C0DA67 /* GoogleService-Info.plist in Resources */,
 				573216112209F7E20081698F /* Rains Will Fall.mp3 in Resources */,
 				B524CACC214544BF00316D84 /* schema.graphql in Resources */,
 				573216172209F7E20081698F /* Adventure.mp3 in Resources */,
@@ -791,6 +790,7 @@
 				573216102209F7E20081698F /* Cinematic.mp3 in Resources */,
 				B5BC1CF921615B61008CE09F /* ChatsTableViewCell.xib in Resources */,
 				57E6909121DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib in Resources */,
+				5732161B220B55070081698F /* GoogleService-Info.plist in Resources */,
 				579854BE21C611C200406BF8 /* MyPublicVibeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

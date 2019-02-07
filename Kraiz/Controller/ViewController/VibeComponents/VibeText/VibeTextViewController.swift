@@ -398,9 +398,9 @@ extension VibeTextViewController {
                     
                     // Show the upYourCaptionGame Captions View Controller in the following condition
                     // 1. This is a preview.
-                    // 2. Sender is seeing this vibe.
-                    // 3. Number of seen IDs in the vibe is greater than 0.
-                    if isPreview || vibeModel.getSeenIds().count == 0 || vibeModel.from?.getId() == UserDefaults.standard.string(forKey: DeviceConstants.USER_ID) || UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME) == vibeModel.from?.getUsername() {
+                    // 2. Vibe is public.
+                    // 3. Number of seen IDs in the vibe is 0.
+                    if isPreview || vibeModel.type == 1 || vibeModel.getSeenIds().count == 0 {
                         let captionGameCaptionsVC = storyboard.instantiateViewController(withIdentifier: "VibeImagesGameCaptionsViewController") as! VibeImagesGameCaptionsViewController
                         captionGameCaptionsVC.vibeModel = vibeModel
                         captionGameCaptionsVC.isPreview = isPreview

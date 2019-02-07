@@ -842,11 +842,11 @@ class AppSyncHelper {
     ///     - success: Success Closure which will be invoked if the CreateVibe query succeeds.
     ///     - failure: Failure Closure which will be invoked if the CreateVibe fails.
     public func createVibe(vibe: VibeModel, success: @escaping (Bool) -> Void, failure: @escaping (NSError) -> Void) {
-        let senderFsmComponentInput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.from?.getId(), id: nil, author: nil)
-        let receiverFsmComponentnput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.to?.getMobileNumber(), id: nil, author: nil)
+        let senderFsmComponentInput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.from?.getMobileNumber(), id: nil, author: nil)
+        let receiverFsmComponentInput = FsmComponentInput(type: nil, tag: nil, isAnonymous: nil, name: nil, vibeComponents: nil, comment: nil, mobileNumber: vibe.to?.getMobileNumber(), id: nil, author: nil)
         var userInputList = [FsmComponentInput]()
         userInputList.append(senderFsmComponentInput)
-        userInputList.append(receiverFsmComponentnput)
+        userInputList.append(receiverFsmComponentInput)
         let userComponent = FsmComponent(exists: true, list: userInputList)
         var vibeComponents = [VibeComponentInput]()
         if vibe.isLetterPresent {

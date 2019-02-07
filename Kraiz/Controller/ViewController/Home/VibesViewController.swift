@@ -54,6 +54,19 @@ class VibesViewController: UIViewController {
 //            RemoteConfig.remoteConfig().configSettings = RemoteConfigSettings.init(developerModeEnabled: true)
 
             // Use the fetch method with withExpirationDuration argument in the developer mode.
+//            RemoteConfig.remoteConfig().fetch(withExpirationDuration: 0) { (status, error) in
+//                RemoteConfig.remoteConfig().activateFetched()
+//                self.isPreferredUser = RemoteConfig.remoteConfig().configValue(forKey: remoteConfigKey).boolValue
+//                DispatchQueue.main.async {
+//                    if self.isPreferredUser {
+//                        self.usernameLabel.isHidden = true
+//                        self.vibesSegment.isHidden = false
+//                    } else {
+//                        self.usernameLabel.isHidden = false
+//                        self.vibesSegment.isHidden = true
+//                    }
+//                }
+//            }
             RemoteConfig.remoteConfig().fetch { (status, error) in
                 RemoteConfig.remoteConfig().activateFetched()
                 self.isPreferredUser = RemoteConfig.remoteConfig().configValue(forKey: remoteConfigKey).boolValue

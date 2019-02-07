@@ -9,6 +9,7 @@
 
 import UIKit
 import AWSCognitoIdentityProvider
+import Crashlytics
 
 class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIdentityInteractiveAuthenticationDelegate {
 
@@ -32,16 +33,16 @@ class SignInViewController: UIViewController, UITextFieldDelegate, AWSCognitoIde
     let GOTO_HOME_FROM_SIGN_IN = "gotoHomeFromSignIn"
     let GOTO_OTP_FROM_SIGN_IN = "gotoOTPFromSignIn"
     
-    let pickerStrings = ["India (+91)", "USA (+1)", "Pakistan (+92)", "Bangladesh (+123)"]
+    let pickerStrings = ["India (+91)"]
     
-    let countryCodes = ["+91", "+1", "+92", "+123"]
+    let countryCodes = ["+91"]
     let PLACEHOLDER_COLOR = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.4)
     
     var viewHeight : CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         viewHeight = view.frame.height
         usernameField.delegate = self
         passwordField.delegate = self

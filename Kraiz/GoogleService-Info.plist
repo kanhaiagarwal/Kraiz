@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>99435874951-bfuempc0evakcmo341bn0373g996o1b7.apps.googleusercontent.com</string>
+	<string>917425867822-7dth3oke04ulnnv8hdguqtci8ndjihns.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.99435874951-bfuempc0evakcmo341bn0373g996o1b7</string>
+	<string>com.googleusercontent.apps.917425867822-7dth3oke04ulnnv8hdguqtci8ndjihns</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCSTt_28IaNHP5xqLSBxVhFkOjdbK6cxzE</string>
+	<string>AIzaSyB4-B3a6I04-_0qZ5yqRlPky1pXSn5LIwc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>99435874951</string>
+	<string>917425867822</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.kraiz.Kraiz</string>
 	<key>PROJECT_ID</key>
-	<string>kraiz-f4959</string>
+	<string>kraizproduction</string>
 	<key>STORAGE_BUCKET</key>
-	<string>kraiz-f4959.appspot.com</string>
+	<string>kraizproduction.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:99435874951:ios:1af3fe6e8e1bdd3c</string>
+	<string>1:917425867822:ios:1af3fe6e8e1bdd3c</string>
 	<key>DATABASE_URL</key>
-	<string>https://kraiz-f4959.firebaseio.com</string>
+	<string>https://kraizproduction.firebaseio.com</string>
 </dict>
 </plist>
