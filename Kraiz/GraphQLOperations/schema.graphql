@@ -212,3 +212,54 @@ mutation UpdateLastPublicVibeFetchTime($userId: ID) {
         userId
     }
 }
+
+query GetPendingPublicVibes {
+    getPendingPublicVibes {
+        userVibes {
+            vibeId
+            vibeTypeTagGsiPk
+            vibeTypeGsiPk
+            version
+            createdAt
+            updatedTime
+            vibeName
+            isSender
+            isAnonymous
+            seen
+            reach
+            profileId
+            hailsSeenStatus
+        },
+        profiles {
+            id
+            mobileNumber
+            username
+            name
+            profilePicId
+        }
+    }
+}
+
+query FetchPendingPublicVibeData($pendingVibeId: ID!) {
+    fetchPendingPublicVibeData(pendingVibeId: $pendingVibeId) {
+        id
+        version
+        type
+        createdAt
+        updatedTime
+        isAnonymous
+        name
+        author
+        tag
+        seenCount
+        vibeComponents {
+            ids
+            seenIds
+            sequence
+            texts
+            format
+            template
+            globalSequence
+        }
+    }
+}

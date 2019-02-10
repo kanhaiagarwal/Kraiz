@@ -307,7 +307,9 @@ class AppSyncHelper {
                                 }
                             }
                         }
-                        self!.deleteUserChannelUpdates(liveBucketVibeIds: liveBucketVibeIds, liveBucketProfileIds: liveBucketProfileIds)
+                        if liveBucketVibeIds.count > 0 || liveBucketProfileIds.count > 0 {
+                            self!.deleteUserChannelUpdates(liveBucketVibeIds: liveBucketVibeIds, liveBucketProfileIds: liveBucketProfileIds)
+                        }
                     }
                 }
             })

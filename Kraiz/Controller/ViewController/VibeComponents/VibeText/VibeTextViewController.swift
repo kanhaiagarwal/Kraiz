@@ -42,7 +42,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
         AnalyticsHelper.shared.logViewVibeEvent(vibeModel: vibeModel, action: .LETTER_PAGE)
         print("isDemoVibe in letter: \(isDemoVibe)")
         viewHeight = view.frame.height
-        let textView : UITextView = UITextView(frame: CGRect(x: view.frame.width / 20, y: view.frame.height / 15, width: 4 * view.frame.width / 5, height: 9 * view.frame.height / 10))
+        let textView : UITextView = UITextView(frame: CGRect(x: view.frame.width / 20, y: view.frame.height / 15, width: 9 * view.frame.width / 10, height: 9 * view.frame.height / 10))
         textView.isEditable = false
         textView.backgroundColor = UIColor.clear
         textView.isScrollEnabled = true
@@ -119,7 +119,7 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
             }
             imageView.isUserInteractionEnabled = true
             vc.view.addSubview(imageView)
-            let textView1 : UITextView = UITextView(frame: CGRect(x: view.frame.width / 10, y: view.frame.height / 15, width: 4 * view.frame.width / 5, height: 9 * view.frame.height / 10))
+            let textView1 : UITextView = UITextView(frame: CGRect(x: view.frame.width / 20, y: view.frame.height / 15, width: 9 * view.frame.width / 10, height: 9 * view.frame.height / 10))
             textView1.isEditable = false
             textView1.isSelectable = false
             textView1.backgroundColor = UIColor.clear
@@ -238,13 +238,21 @@ class VibeTextViewController: UIViewController, UIPageViewControllerDelegate, UI
     ///     - height: Screen Height.
     /// - Returns: Font Size of the letter text view.
     func getFontSize(height: CGFloat) -> CGFloat {
-        switch(height) {
-        case DeviceConstants.IPHONEXR_HEIGHT : return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 3) ? 37.0 : ((vibeModel.getLetter().background! == 2) ? 40.0 : (vibeModel.getLetter().background! == 4) ? 35.0 : 44.0)
-            case DeviceConstants.IPHONEX_HEIGHT : return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 3 || vibeModel.getLetter().background! == 4) ? 29.5 : (vibeModel.getLetter().background! == 2) ? 33.0 : 37.0
-            case DeviceConstants.IPHONE7PLUS_HEIGHT: return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 3 || vibeModel.getLetter().background! == 4) ? 29.5 : (vibeModel.getLetter().background! == 2) ? 33.0 : 37.0
-            case DeviceConstants.IPHONE7_HEIGHT: return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 4) ? 36.0 : 45.0
-            case DeviceConstants.IPHONE5S_HEIGHT: return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 4) ? 36.0 : 45.0
-            default: return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 4) ? 36.0 : 45.0
+//        switch(height) {
+//        case DeviceConstants.IPHONEXR_HEIGHT : return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 3) ? 37.0 : ((vibeModel.getLetter().background! == 2) ? 40.0 : (vibeModel.getLetter().background! == 4) ? 35.0 : 44.0)
+//            case DeviceConstants.IPHONEX_HEIGHT : return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 3 || vibeModel.getLetter().background! == 4) ? 29.5 : (vibeModel.getLetter().background! == 2) ? 33.0 : 37.0
+//            case DeviceConstants.IPHONE7PLUS_HEIGHT: return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 3 || vibeModel.getLetter().background! == 4) ? 29.5 : (vibeModel.getLetter().background! == 2) ? 33.0 : 37.0
+//            case DeviceConstants.IPHONE7_HEIGHT: return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 4) ? 36.0 : 45.0
+//            case DeviceConstants.IPHONE5S_HEIGHT: return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 4) ? 36.0 : 45.0
+//            default: return (vibeModel.getLetter().background! == 0 || vibeModel.getLetter().background! == 4) ? 36.0 : 45.0
+//        }
+        switch vibeModel.getLetter().background! {
+            case 0: return 30.0
+            case 1: return 35.0
+            case 2: return 33.0
+            case 3: return 32.0
+            case 4: return 32.0
+            default: return 30.0
         }
     }
 }
