@@ -9,6 +9,7 @@
 import Foundation
 import AWSCognitoIdentityProvider
 import Reachability
+import Firebase
 
 class CognitoHelper {
     
@@ -62,6 +63,7 @@ class CognitoHelper {
                     if let error = task.error as? NSError {
                         print("Error")
                         print(error)
+                        Crashlytics.sharedInstance().recordError(error)
                         failure(error)
                     }
                 })
@@ -95,6 +97,7 @@ class CognitoHelper {
             }.continueWith { (task: AWSTask<AnyObject>) -> Any? in
                 DispatchQueue.main.async(execute: {
                     if let error = task.error as? NSError {
+                        Crashlytics.sharedInstance().recordError(error)
                         failure(error)
                     }
                 })
@@ -125,6 +128,7 @@ class CognitoHelper {
             }.continueWith { (task: AWSTask<AnyObject>) -> Any? in
                 DispatchQueue.main.async(execute: {
                     if let error = task.error as? NSError {
+                        Crashlytics.sharedInstance().recordError(error)
                         failure(error)
                     }
                 })
@@ -154,6 +158,7 @@ class CognitoHelper {
         }).continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
             DispatchQueue.main.async(execute: {
                 if let error = task.error as? NSError {
+                    Crashlytics.sharedInstance().recordError(error)
                     failure(error)
                 }
             })
@@ -184,6 +189,7 @@ class CognitoHelper {
         .continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
             DispatchQueue.main.async(execute: {
                 if let error = task.error as? NSError {
+                    Crashlytics.sharedInstance().recordError(error)
                     failure(error)
                 }
             })
@@ -215,6 +221,7 @@ class CognitoHelper {
         .continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
             DispatchQueue.main.async(execute: {
                 if let error = task.error as? NSError {
+                    Crashlytics.sharedInstance().recordError(error)
                     failure(error)
                 }
             })
@@ -243,6 +250,7 @@ class CognitoHelper {
         })
         .continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
             if let error = task.error as? NSError {
+                Crashlytics.sharedInstance().recordError(error)
                 failure(error)
             }
             return nil
@@ -263,6 +271,7 @@ class CognitoHelper {
             })
             .continueWith(block: { (task: AWSTask<AnyObject>) -> Any? in
                 if let error = task.error as? NSError {
+                    Crashlytics.sharedInstance().recordError(error)
                     failure(error)
                 }
                 return nil

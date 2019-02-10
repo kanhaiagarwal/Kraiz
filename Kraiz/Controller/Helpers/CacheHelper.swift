@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 import RealmSwift
 
 public class CacheHelper {
@@ -24,6 +25,7 @@ public class CacheHelper {
             realm.add(object, update: true)
             try realm.commitWrite()
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("Could not write profile to the cache: \(error)")
         }
     }
@@ -42,6 +44,7 @@ public class CacheHelper {
                 try realm.commitWrite()
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("Could not write vibe to the cache: \(error)")
         }
     }
@@ -56,6 +59,7 @@ public class CacheHelper {
             realm.add(object, update: true)
             try realm.commitWrite()
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("Could not write hail to the cache: \(error)")
         }
     }
@@ -68,6 +72,7 @@ public class CacheHelper {
             let realm = try Realm()
             return realm.objects(HailsEntity.self).filter("vibeId == '\(vibeId)'").sorted(byKeyPath: "createdAt", ascending: false)
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in fetching the hails for the vibe: \(error)")
         }
         return nil
@@ -87,6 +92,7 @@ public class CacheHelper {
                 try realm.commitWrite()
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("Error in realm: \(error)")
         }
     }
@@ -97,6 +103,7 @@ public class CacheHelper {
             let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: DeviceConstants.DEMO_VIBE_ID)
             return result
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
         return nil
@@ -113,6 +120,7 @@ public class CacheHelper {
             let results = realm.objects(VibeDataEntity.self).filter("\(index) == '\(value)'").sorted(byKeyPath: "updatedTime", ascending: false)
             return results
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
         return nil
@@ -124,6 +132,7 @@ public class CacheHelper {
             let results = realm.objects(VibeDataEntity.self).filter("\(index) == '\(value)'").filter("id != '\(DeviceConstants.DEMO_VIBE_ID)'").sorted(byKeyPath: "updatedTime", ascending: false)
             return results
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
         return nil
@@ -139,6 +148,7 @@ public class CacheHelper {
             let results = realm.objects(VibeDataEntity.self).filter("\(index) == '\(value)' AND isSeen == false AND isSender == false   ")
             return results
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
         return nil
@@ -154,6 +164,7 @@ public class CacheHelper {
             let result = realm.object(ofType: VibeDataEntity.self, forPrimaryKey: vibe)
             return result?.getIsSeen() ?? false
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
         return false
@@ -171,6 +182,7 @@ public class CacheHelper {
             print("result of primary key in getSeenStatusOfVibe: \(result)")
             return result?.getIsSeen() ?? false
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
         return false
@@ -188,6 +200,7 @@ public class CacheHelper {
             result?.setIsSeen(seenStatus)
             try! realm.commitWrite()
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
     }
@@ -199,6 +212,7 @@ public class CacheHelper {
             vibe.setIsDownloadInProgress(isDownloadInProgress)
             try realm.commitWrite()
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
     }
@@ -212,6 +226,7 @@ public class CacheHelper {
             let results = realm.object(ofType: ProfileEntity.self, forPrimaryKey: id)
             return results
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
         return nil
@@ -222,8 +237,8 @@ public class CacheHelper {
         do {
             let realm = try Realm()
             return realm.object(ofType: PublicVibeTimeEntity.self, forPrimaryKey: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)
-            
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("realm has error: \(error)")
         }
         return nil
@@ -234,6 +249,7 @@ public class CacheHelper {
             let realm = try Realm()
             return (realm.object(ofType: PublicVibeTimeEntity.self, forPrimaryKey: UserDefaults.standard.string(forKey: DeviceConstants.USER_ID)!)?.getLastVibeAccessTime())!
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("realm has error: \(error)")
         }
         return Int(Date().timeIntervalSinceNow)
@@ -256,6 +272,7 @@ public class CacheHelper {
                 try realm.commitWrite()
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("realm has error: \(error)")
         }
     }
@@ -272,6 +289,7 @@ public class CacheHelper {
                 realm.add(publicVibeTimeEntity)
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
     }
@@ -288,6 +306,7 @@ public class CacheHelper {
                 try realm.commitWrite()
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
     }
@@ -306,6 +325,7 @@ public class CacheHelper {
                 return 0
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
         return 0
@@ -332,6 +352,7 @@ public class CacheHelper {
             }
             try realm.commitWrite()
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
     }
@@ -341,6 +362,7 @@ public class CacheHelper {
             let objects = realm.objects(DraftEntity.self).sorted(byKeyPath: "lastUpdatedTime", ascending: false)
             return objects
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
         return nil
@@ -369,6 +391,7 @@ public class CacheHelper {
                 try realm.commitWrite()
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("Error in realm: \(error)")
         }
     }
@@ -495,6 +518,7 @@ public class CacheHelper {
                 try realm.commitWrite()
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
     }
@@ -513,6 +537,7 @@ public class CacheHelper {
                 }
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
         completionHandler(vibeModel)
@@ -526,6 +551,7 @@ public class CacheHelper {
                 vibeModel = setVibeModelFromVibeComponentEntity(vibeComponent: result)
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
         completionHandler(vibeModel)
@@ -602,6 +628,7 @@ public class CacheHelper {
                 }
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("Error in realm: \(error)")
         }
     }
@@ -614,6 +641,7 @@ public class CacheHelper {
                 realm.deleteAll()
             }
         } catch {
+            Crashlytics.sharedInstance().recordError(error as NSError)
             print("error in realm: \(error)")
         }
     }

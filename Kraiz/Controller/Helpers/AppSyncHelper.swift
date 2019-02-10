@@ -8,6 +8,7 @@
 
 import Foundation
 import AWSAppSync
+import Firebase
 import RealmSwift
 
 class AppSyncHelper {
@@ -37,6 +38,7 @@ class AppSyncHelper {
             AppSyncHelper.shared.appSyncClient?.apolloClient?.cacheKeyForObject = { $0["id"] }
         } catch {
             print("Error: \(error)")
+            Crashlytics.sharedInstance().recordError(error)
             UserDefaults.standard.set(nil, forKey: DeviceConstants.ID_TOKEN)
         }
     }
@@ -60,9 +62,11 @@ class AppSyncHelper {
         appSyncClient?.fetch(query: query, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .userInitiated), resultHandler: { (result, error) in
             if error != nil {
                 print("error in getUserProfileByMobileNumber: \(error)")
+                Crashlytics.sharedInstance().recordError(error as! NSError)
                 completionHandler(error, nil)
             } else if result?.errors != nil {
                 print("error in result of getUserProfileByMobileNumber: \(result?.errors)")
+                Crashlytics.sharedInstance().recordError(result?.errors?.first as! NSError)
                 completionHandler(result?.errors?.first, nil)
             } else {
                 var profileModel = ProfileModel()
@@ -96,10 +100,12 @@ class AppSyncHelper {
         if appSyncClient != nil {
             appSyncClient?.fetch(query: queryInput, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .background), resultHandler: { (result, error) in
                 if error != nil {
+                    Crashlytics.sharedInstance().recordError(error! as NSError)
                     failure(error! as NSError)
                 } else {
                     var profileModel = ProfileModel()
                     if let error = result?.errors {
+                        Crashlytics.sharedInstance().recordError(error[0] as NSError)
                         failure(error[0] as NSError)
                         return
                     }
@@ -134,6 +140,7 @@ class AppSyncHelper {
         if appSyncClient != nil {
                 appSyncClient?.fetch(query: getQuery, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .background), resultHandler: { (result, error) in
                 if error != nil {
+                    Crashlytics.sharedInstance().recordError(error as! NSError)
                     failure(error! as NSError)
                 } else {
                     var profileModel = ProfileModel()
@@ -175,12 +182,14 @@ class AppSyncHelper {
         appSyncClient?.perform(mutation: UpdateUserProfileMutation(input: userQuery), queue: DispatchQueue.global(qos: .userInitiated), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
             if let error = error {
                 print("error in updateProfileQuery")
+                Crashlytics.sharedInstance().recordError(error as NSError)
                 print(error)
                 return
             }
             if let result = result {
                 if let errors = result.errors {
                     print("Error in the result of updateProfileQuery")
+                    Crashlytics.sharedInstance().recordError(errors[0] as NSError)
                     print(errors)
                     return
                 }
@@ -201,6 +210,7 @@ class AppSyncHelper {
         if appSyncClient != nil {
             appSyncClient?.fetch(query: getChannelQuery, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated), resultHandler: { [weak self] (result, error) in
                 if error != nil {
+                    Crashlytics.sharedInstance().recordError(error as! NSError)
                 } else if let data = result?.data {
                     if let userChannel = data.snapshot["getUserChannel"] as? [String: Any] {
                         var liveBucketVibeIds = [GraphQLID]()
@@ -320,6 +330,7 @@ class AppSyncHelper {
         }
         appSyncClient?.fetch(query: query, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: DispatchQoS.userInteractive.qosClass), resultHandler: { [weak self] (result, error) in
             if error != nil {
+                Crashlytics.sharedInstance().recordError(error as! NSError)
                 print("error in the query: \(error)")
                 return
             }
@@ -400,6 +411,7 @@ class AppSyncHelper {
         appSyncClient?.fetch(query: query, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .userInitiated), resultHandler: { (result, error) in
             if error != nil {
                 print("error in fetch vibe data: \(error)")
+                Crashlytics.sharedInstance().recordError(error as! NSError)
                 if completionHandler != nil {
                     completionHandler!(error, nil)
                 }
@@ -407,6 +419,7 @@ class AppSyncHelper {
             }
             print("result: \(result)")
             if result?.errors != nil {
+                Crashlytics.sharedInstance().recordError(result!.errors!.first! as NSError)
                 print("error in the result of fetch vibe data: \(result?.errors?.first)")
                 if completionHandler != nil {
                     completionHandler!(result?.errors?.first, nil)
@@ -458,6 +471,7 @@ class AppSyncHelper {
                     self.appSyncClient?.fetch(query: query, cachePolicy: .fetchIgnoringCacheData, queue: DispatchQueue.global(qos: .userInitiated), resultHandler: { (result, error) in
                         if let error = error {
                             print("error in fetching the vibe from the server: \(error)")
+                            Crashlytics.sharedInstance().recordError(error as NSError)
                             if completionHandler != nil {
                                 completionHandler!(error, nil)
                             }
@@ -465,6 +479,7 @@ class AppSyncHelper {
                         if let result = result {
                             if let errors = result.errors {
                                 print("errors in the result of vibe from the server: \(error)")
+                                Crashlytics.sharedInstance().recordError(result.errors!.first! as NSError)
                                 if completionHandler != nil {
                                     completionHandler!(errors.first, nil)
                                 }
@@ -536,6 +551,7 @@ class AppSyncHelper {
         appSyncClient?.perform(mutation: query, queue: DispatchQueue.global(qos: .userInitiated), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
             if error != nil {
                 print("error in query: \(error)")
+                Crashlytics.sharedInstance().recordError(error! as NSError)
                 if completionHandler != nil {
                     completionHandler!(false)
                 }
@@ -543,6 +559,7 @@ class AppSyncHelper {
             }
             if result?.errors != nil {
                 print("error in result: \(result?.errors)")
+                Crashlytics.sharedInstance().recordError(result!.errors!.first! as NSError)
                 if completionHandler != nil {
                     completionHandler!(false)
                 }
@@ -644,6 +661,11 @@ class AppSyncHelper {
                     print("error: \(error)")
                     print("result.errors: \(result?.errors)")
                 }
+                if error != nil {
+                    Crashlytics.sharedInstance().recordError(error! as NSError)
+                } else if result?.errors != nil {
+                    Crashlytics.sharedInstance().recordError(result!.errors!.first! as NSError)
+                }
             })
         } else {
             appSyncClient?.perform(mutation: incrementReachMutation, queue: DispatchQueue.global(qos: .userInteractive), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
@@ -683,6 +705,7 @@ class AppSyncHelper {
         appSyncClient?.perform(mutation: mutation, queue: DispatchQueue.global(qos: .userInitiated), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
             if error != nil {
                 print("error: \(error.debugDescription)")
+                Crashlytics.sharedInstance().recordError(error! as NSError)
                 if completionHandler != nil {
                     completionHandler!(false)
                     return
@@ -690,6 +713,7 @@ class AppSyncHelper {
             }
             if result?.errors != nil {
                 print("errors: \(result?.errors.debugDescription)")
+                Crashlytics.sharedInstance().recordError(result!.errors!.first! as NSError)
                 print(result?.errors)
                 if completionHandler != nil {
                     completionHandler!(false)
@@ -754,8 +778,10 @@ class AppSyncHelper {
         
         appSyncClient?.fetch(query: query, cachePolicy: cachePolicy, queue: DispatchQueue.global(qos: .userInteractive), resultHandler: { (result, error) in
             if error != nil {
+                Crashlytics.sharedInstance().recordError(error! as NSError)
                 completionHandler(error, nil, nil)
             } else if result?.errors != nil {
+                Crashlytics.sharedInstance().recordError(result!.errors!.first! as NSError)
                 completionHandler(result?.errors?.first, nil, nil)
             } else {
                 var allProfiles = [String : ProfileModel]()
@@ -872,11 +898,13 @@ class AppSyncHelper {
         if appSyncClient != nil {
             appSyncClient?.perform(mutation: mutation, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
                 if error != nil {
+                    Crashlytics.sharedInstance().recordError(error! as NSError)
                     failure(error! as NSError)
                     success(false)
                 } else if result?.errors == nil {
                     success(true)
                 } else {
+                    Crashlytics.sharedInstance().recordError(result!.errors!.first! as NSError)
                     print(result?.errors)
                     success(false)
                 }
@@ -903,11 +931,13 @@ class AppSyncHelper {
         } else {
             appSyncClient?.perform(mutation: createQuery, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
                 if error != nil {
+                    Crashlytics.sharedInstance().recordError(error! as NSError)
                     failure(error! as NSError)
                 } else {
                     if result?.errors == nil {
                         success(true)
                     } else {
+                        Crashlytics.sharedInstance().recordError(result!.errors!.first! as NSError)
                         success(false)
                     }
                 }
@@ -927,12 +957,14 @@ class AppSyncHelper {
         
         appSyncClient?.perform(mutation: updateQuery, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
             if error != nil {
+                Crashlytics.sharedInstance().recordError(error! as NSError)
                 failure(error! as NSError)
             } else {
                 if result?.errors == nil {
                     self.performUpdateProfileForAllUsers(completionHandler: nil)
                     success(true)
                 } else {
+                    Crashlytics.sharedInstance().recordError(result!.errors!.first! as NSError)
                     print("result.errors in updateUserProfile: \(result?.errors)")
                     success(false)
                 }
@@ -957,6 +989,11 @@ class AppSyncHelper {
         } else {
             appSyncClient?.perform(mutation: updateProfileTriggerFsmMutation, queue: DispatchQueue.global(qos: .userInteractive), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
                 if (error != nil) || ((result?.errors) != nil) {
+                    if error != nil {
+                        Crashlytics.sharedInstance().recordError(error! as NSError)
+                    } else if result?.errors != nil {
+                        Crashlytics.sharedInstance().recordError(result!.errors!.first! as NSError)
+                    }
                     completionHandler!(false)
                 } else {
                     completionHandler!(true)
@@ -978,11 +1015,13 @@ class AppSyncHelper {
         let updateQuery = UpdateUserProfileMutation(input: updateInput)
         appSyncClient?.perform(mutation: updateQuery, queue: DispatchQueue.global(qos: .background), optimisticUpdate: nil, conflictResolutionBlock: nil, resultHandler: { (result, error) in
             if error != nil {
+                Crashlytics.sharedInstance().recordError(error! as NSError)
                 failure(error! as NSError)
             } else {
                 if result?.errors == nil {
                     success(true)
                 } else {
+                    Crashlytics.sharedInstance().recordError(result!.errors!.first! as NSError)
                     print("result.errors in updateUserProfile: \(result?.errors)")
                     success(false)
                 }
