@@ -19,7 +19,8 @@ class MyPublicVibeTableViewCell: UITableViewCell {
     @IBOutlet weak var hailButton: UIButton!
     @IBOutlet weak var reachCount: UILabel!
     @IBOutlet weak var unseenHailsDot: UIView!
-
+    @IBOutlet weak var reachIcon: UIImageView!
+    
     let progressBar = LinearProgressBar()
     override func awakeFromNib() {
         super.awakeFromNib()

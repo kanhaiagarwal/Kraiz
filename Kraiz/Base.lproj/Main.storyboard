@@ -1918,8 +1918,18 @@ mobile number +919003194776</string>
                                                                     <action selector="crossButtonPressed:" destination="gRD-ah-aq8" eventType="touchUpInside" id="hyD-jJ-Sl2"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tE5-Ad-tPb">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AZX-qT-0D8">
                                                                 <rect key="frame" x="314" y="23.333333333333336" width="25" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="AZX-qT-0D8" secondAttribute="height" multiplier="1:1" id="NYO-0h-Y3a"/>
+                                                                </constraints>
+                                                                <state key="normal" backgroundImage="save-vibe"/>
+                                                                <connections>
+                                                                    <action selector="savePressed:" destination="gRD-ah-aq8" eventType="touchUpInside" id="md4-En-xgQ"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tE5-Ad-tPb">
+                                                                <rect key="frame" x="369" y="23.333333333333336" width="25" height="25"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="tE5-Ad-tPb" secondAttribute="height" multiplier="1:1" id="LXa-so-E5h"/>
                                                                     <constraint firstAttribute="height" constant="25" id="pdU-E2-wed"/>
@@ -1933,28 +1943,18 @@ mobile number +919003194776</string>
                                                                     <action selector="myVibePressed:" destination="gRD-ah-aq8" eventType="touchUpInside" id="MXV-id-f4d"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AZX-qT-0D8">
-                                                                <rect key="frame" x="369" y="23.333333333333336" width="25" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="AZX-qT-0D8" secondAttribute="height" multiplier="1:1" id="NYO-0h-Y3a"/>
-                                                                </constraints>
-                                                                <state key="normal" backgroundImage="save-vibe"/>
-                                                                <connections>
-                                                                    <action selector="savePressed:" destination="gRD-ah-aq8" eventType="touchUpInside" id="md4-En-xgQ"/>
-                                                                </connections>
-                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="AZX-qT-0D8" firstAttribute="height" secondItem="tE5-Ad-tPb" secondAttribute="height" id="89z-WR-i4w"/>
+                                                            <constraint firstAttribute="trailing" secondItem="tE5-Ad-tPb" secondAttribute="trailing" constant="20" id="8Md-8E-2rY"/>
                                                             <constraint firstItem="RvZ-nK-dQg" firstAttribute="top" secondItem="Mnr-T3-ws9" secondAttribute="top" id="93T-UU-OLO"/>
-                                                            <constraint firstItem="AZX-qT-0D8" firstAttribute="centerY" secondItem="tE5-Ad-tPb" secondAttribute="centerY" id="BLo-EH-xCh"/>
-                                                            <constraint firstItem="tE5-Ad-tPb" firstAttribute="centerY" secondItem="Mnr-T3-ws9" secondAttribute="centerY" id="G7R-ac-ZgE"/>
-                                                            <constraint firstAttribute="trailing" secondItem="AZX-qT-0D8" secondAttribute="trailing" constant="20" id="Jc4-0V-Nwf"/>
+                                                            <constraint firstItem="tE5-Ad-tPb" firstAttribute="leading" secondItem="AZX-qT-0D8" secondAttribute="trailing" constant="30" id="PlZ-hD-T4O"/>
                                                             <constraint firstItem="RvZ-nK-dQg" firstAttribute="leading" secondItem="Mnr-T3-ws9" secondAttribute="leading" id="SZl-lL-SVy"/>
-                                                            <constraint firstItem="AZX-qT-0D8" firstAttribute="leading" secondItem="tE5-Ad-tPb" secondAttribute="trailing" constant="30" id="WNq-aJ-kMX"/>
                                                             <constraint firstItem="2Qj-4l-8VH" firstAttribute="leading" secondItem="Mnr-T3-ws9" secondAttribute="leading" constant="10" id="a3Z-GM-4C0"/>
+                                                            <constraint firstItem="tE5-Ad-tPb" firstAttribute="centerY" secondItem="RvZ-nK-dQg" secondAttribute="centerY" id="cid-1G-Mey"/>
                                                             <constraint firstAttribute="bottom" secondItem="2Qj-4l-8VH" secondAttribute="bottom" id="dTR-FI-GUy"/>
+                                                            <constraint firstItem="AZX-qT-0D8" firstAttribute="centerY" secondItem="tE5-Ad-tPb" secondAttribute="centerY" id="hto-FC-cFC"/>
                                                             <constraint firstItem="2Qj-4l-8VH" firstAttribute="top" secondItem="Mnr-T3-ws9" secondAttribute="top" id="k8x-OM-Jfo"/>
                                                             <constraint firstAttribute="bottom" secondItem="RvZ-nK-dQg" secondAttribute="bottom" id="tbc-u7-P7Q"/>
                                                             <constraint firstAttribute="trailing" secondItem="RvZ-nK-dQg" secondAttribute="trailing" id="zH8-7p-TF5"/>
@@ -2151,12 +2151,27 @@ mobile number +919003194776</string>
                                                                     <action selector="sendPressed:" destination="gRD-ah-aq8" eventType="touchUpInside" id="9YI-Zc-OJC"/>
                                                                 </connections>
                                                             </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xay-H9-oom">
+                                                                <rect key="frame" x="103.66666666666669" y="443.99999999999994" width="207" height="53.666666666666686"/>
+                                                                <color key="backgroundColor" red="0.90196078431372551" green="0.61960784313725492" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                <state key="normal" title="Send for review">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="sendForReviewPressed:" destination="gRD-ah-aq8" eventType="touchUpInside" id="0eI-b1-ggg"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="GeE-mB-3ao" firstAttribute="width" secondItem="AeI-Ec-cxl" secondAttribute="width" multiplier="0.4" id="7dB-Mf-Bh4"/>
+                                                            <constraint firstItem="xay-H9-oom" firstAttribute="height" secondItem="GeE-mB-3ao" secondAttribute="height" id="AJi-Te-c95"/>
                                                             <constraint firstItem="GeE-mB-3ao" firstAttribute="top" secondItem="blg-4Z-2xR" secondAttribute="bottom" constant="30" id="Lba-2s-xtN"/>
+                                                            <constraint firstItem="xay-H9-oom" firstAttribute="centerX" secondItem="AeI-Ec-cxl" secondAttribute="centerX" id="RRf-Q9-fCm"/>
+                                                            <constraint firstItem="xay-H9-oom" firstAttribute="top" secondItem="blg-4Z-2xR" secondAttribute="bottom" constant="30" id="Xr8-0W-MNq"/>
                                                             <constraint firstItem="frv-Ti-rJy" firstAttribute="centerX" secondItem="AeI-Ec-cxl" secondAttribute="centerX" id="bpi-WF-EVu"/>
+                                                            <constraint firstItem="xay-H9-oom" firstAttribute="width" secondItem="AeI-Ec-cxl" secondAttribute="width" multiplier="0.5" id="pkl-Kv-WBE"/>
                                                             <constraint firstItem="frv-Ti-rJy" firstAttribute="top" secondItem="AeI-Ec-cxl" secondAttribute="top" id="qhS-uY-UmO"/>
                                                             <constraint firstItem="GeE-mB-3ao" firstAttribute="height" secondItem="blg-4Z-2xR" secondAttribute="height" multiplier="0.4" id="rk7-sn-b99"/>
                                                             <constraint firstItem="GeE-mB-3ao" firstAttribute="centerX" secondItem="AeI-Ec-cxl" secondAttribute="centerX" id="tMv-a0-hIb"/>
@@ -2191,16 +2206,19 @@ mobile number +919003194776</string>
                     </view>
                     <connections>
                         <outlet property="continueButton" destination="GeE-mB-3ao" id="ztD-dn-XYH"/>
+                        <outlet property="continueWithReviewButton" destination="xay-H9-oom" id="KjU-DM-TlU"/>
                         <outlet property="imagesView" destination="FWp-fa-4mU" id="YJf-Vm-eUz"/>
                         <outlet property="letterCheckbox" destination="I5G-ZX-Rb1" id="Xpy-RA-clq"/>
                         <outlet property="letterCrossButton" destination="Zy1-Rd-F2k" id="0Gm-8U-O6v"/>
                         <outlet property="letterImageView" destination="fie-Np-Fja" id="RMv-HU-UOf"/>
                         <outlet property="letterLabel" destination="GTl-Jc-V56" id="xPx-IQ-dRi"/>
                         <outlet property="letterView" destination="4J7-8D-Wbn" id="5m3-10-b4J"/>
+                        <outlet property="myVibeButton" destination="tE5-Ad-tPb" id="tWU-S0-u02"/>
                         <outlet property="photosCheckbox" destination="oqk-eo-QZP" id="cDL-uH-VyU"/>
                         <outlet property="photosCrossButton" destination="9dD-md-faf" id="u7h-k6-bzH"/>
                         <outlet property="photosImageView" destination="IoW-Xj-gjd" id="h4Q-N6-VH1"/>
                         <outlet property="photosLabel" destination="7nh-7I-31S" id="cXq-e0-gjy"/>
+                        <outlet property="saveButton" destination="AZX-qT-0D8" id="qT1-D5-uhJ"/>
                         <outlet property="squaresContainer" destination="frv-Ti-rJy" id="HfJ-YI-jNK"/>
                         <segue destination="Zku-rO-OLl" kind="show" identifier="gotoAudioRecorder" id="8RS-Zu-kiD"/>
                         <segue destination="4R8-EI-p1B" kind="show" identifier="gotoTextInput" id="nkZ-Ht-Ppf"/>
@@ -4118,16 +4136,16 @@ mobile number +919003194776</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VsD-tx-Ndm">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="813"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edA-TM-OgD" userLabel="HeaderContainer">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="101.66666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="101.66666666666667"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kgJ-6m-uMH">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="101.66666666666667"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="101.66666666666667"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Thn-kM-Bmx" userLabel="StatusBarView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="101.66666666666667"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="101.66666666666667"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </view>
                                                 </subviews>
@@ -4142,22 +4160,22 @@ mobile number +919003194776</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z51-zz-Fgf" userLabel="ContentContainer">
-                                        <rect key="frame" x="0.0" y="101.66666666666669" width="414" height="711.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="101.66666666666669" width="414.33333333333331" height="711.33333333333326"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="E2q-7L-hdu">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="711.33333333333337"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="711.33333333333337"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNb-H3-HR4" userLabel="TopContainer">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="203.33333333333334"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="203.33333333333334"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aH7-4R-Rnp">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="203.33333333333334"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="203.33333333333334"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovt-tg-xUl" userLabel="ImageContainer">
                                                                         <rect key="frame" x="0.0" y="0.0" width="165.66666666666666" height="203.33333333333334"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1b9-EC-hXf">
-                                                                                <rect key="frame" x="21.666666666666671" y="40.666666666666671" width="122.00000000000001" height="122.00000000000001"/>
+                                                                                <rect key="frame" x="22" y="40.666666666666671" width="122" height="122.00000000000001"/>
                                                                                 <color key="backgroundColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="1b9-EC-hXf" secondAttribute="height" multiplier="1:1" id="kb1-3T-er6"/>
@@ -4172,10 +4190,10 @@ mobile number +919003194776</string>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rz5-sF-Ww0" userLabel="UsernameContainer">
-                                                                        <rect key="frame" x="165.66666666666663" y="0.0" width="248.33333333333337" height="203.33333333333334"/>
+                                                                        <rect key="frame" x="165.66666666666669" y="0.0" width="248.66666666666669" height="203.33333333333334"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Risk_rk" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9Y-ce-2t8">
-                                                                                <rect key="frame" x="0.0" y="82.333333333333329" width="248.33333333333334" height="38.666666666666671"/>
+                                                                                <rect key="frame" x="0.0" y="82.333333333333329" width="248.66666666666666" height="38.666666666666671"/>
                                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="33"/>
                                                                                 <color key="textColor" red="0.1803921568627451" green="0.25882352941176467" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
@@ -4203,22 +4221,22 @@ mobile number +919003194776</string>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JhD-zp-EMh" userLabel="BottomContainer">
-                                                        <rect key="frame" x="0.0" y="203.33333333333331" width="414" height="507.99999999999994"/>
+                                                        <rect key="frame" x="0.0" y="203.33333333333331" width="414.33333333333331" height="507.99999999999994"/>
                                                         <subviews>
                                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gPZ-2H-7EG">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="508"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="508"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <view key="tableFooterView" contentMode="scaleToFill" id="osW-Zo-5vN" userLabel="EmptyView">
-                                                                    <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                                                    <rect key="frame" x="0.0" y="72" width="414.33333333333331" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </view>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nFa-yr-3Vy">
-                                                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                                                        <rect key="frame" x="0.0" y="28" width="414.33333333333331" height="44"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nFa-yr-3Vy" id="2dv-yU-eVz">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="414.33333333333331" height="43.666666666666664"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                         </tableViewCellContentView>
                                                                     </tableViewCell>
@@ -4598,8 +4616,8 @@ mobile number +919003194776</string>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <attributedString key="attributedText">
                                                                     <fragment>
-                                                                        <mutableString key="content">Kraiz was formed based on a simple idea that people can't entirely give off their vibes. Once, we were going down the memory lane, looking at our college photos and cherishing the moments. Suddenly, one of us played a soothing background music. Now, we were not reminiscing the memories, we were actually reliving the moments. That's when the idea struck in our mind, when you swathe your thoughts and pictures in a background music that's when the true vibes are perceived. We also added a background template for each of them to enhance the feel. Now, Kraiz is a platform where people can share their vibes and can also capture someone else's vibes. As of now, you can share your love, travel, good, party, nostalgic and occasion vibes. Our vision is that people capture their each and every vibe and share it with the world; also, get whatever vibes they want to feel.
-</mutableString>
+                                                                        <string key="content">Kraiz was formed based on a simple idea that people can't entirely give off their vibes. Once, we were going down the memory lane, looking at our college photos and cherishing the moments. Suddenly, one of us played a soothing background music. Now, we were not reminiscing the memories, we were actually reliving the moments. That's when the idea struck in our mind, when you swathe your thoughts and pictures in a background music that's when the true vibes are perceived. We also added a background template for each of them to enhance the feel. Now, Kraiz is a platform where people can share their vibes and can also capture someone else's vibes. As of now, you can share your love, travel, good, party, nostalgic and occasion vibes. Our vision is that people capture their each and every vibe and share it with the world; also, get whatever vibes they want to feel.
+</string>
                                                                         <attributes>
                                                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                             <font key="NSFont" size="13" name="TrebuchetMS"/>
@@ -4624,7 +4642,7 @@ mobile number +919003194776</string>
                                                                         </attributes>
                                                                     </fragment>
                                                                     <fragment>
-                                                                        <mutableString key="content">Some icons are taken from icons8: https://icons8.com/ and some of them are taken from Freepik: www.freepik.com
+                                                                        <string key="content">Some icons are taken from icons8: https://icons8.com/ and some of them are taken from Freepik: www.freepik.com
 Letter image on create page is made by Freepik from www.flaticon.com
 Photos image on create page is made by Pixel Buddha from www.flaticon.com
 Congratulations screen's background is designed by Freepik www.freepik.com
@@ -4639,7 +4657,7 @@ The background music Adventure and Jazz is taken from purple planet- Music: http
 The background music Soothing, Memories, and Guitar are taken from "Music: http://www.bensound.com/royalty-free-music"
 The background music Piano is taken from Music: "El-Pastor-Cordial" by sawsquarenoise From the Free Music Archive
 CC BY
-</mutableString>
+</string>
                                                                         <attributes>
                                                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                             <font key="NSFont" size="13" name="TrebuchetMS"/>

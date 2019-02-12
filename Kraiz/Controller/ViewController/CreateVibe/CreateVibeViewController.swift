@@ -29,11 +29,15 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     @IBOutlet weak var letterCrossButton: UIButton!
     @IBOutlet weak var photosCrossButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var myVibeButton: UIButton!
+    @IBOutlet weak var continueWithReviewButton: UIButton!
     
     var vibeModel = VibeModel()
     var isLetterSelected : Bool = false
     var isImagesSelected : Bool = false
     var hasPreviewed : Bool = false
+    var isReview : Bool = false
     
     var letterText : String = ""
     var letterBackground : Int = 0
@@ -65,12 +69,63 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if vibeModel.isLetterPresent {
+            isLetterSelected = true
+            letterText = vibeModel.getLetter().text!
+            letterBackground = vibeModel.getLetter().background!
+        } else {
+            isLetterSelected = false
+        }
+        if vibeModel.isPhotosPresent {
+            isImagesSelected = true
+            photosSelected = vibeModel.images
+        } else {
+            isImagesSelected = false
+        }
+        
         setVibeModelFromDraftIfPresent()
         setInputViewShadow(inputView: letterView)
         setInputViewShadow(inputView: imagesView)
         setupCheckboxes()
         addGesturesToIcons()
         setupCrossButtons()
+        setupOtherButtons()
+
+        if isLetterSelected {
+            self.letterCheckbox.isHidden = false
+            self.letterCrossButton.isHidden = false
+            self.letterCrossButton.isEnabled = true
+        } else {
+            self.letterCheckbox.isHidden = true
+            self.letterCrossButton.isHidden = true
+            self.letterCrossButton.isEnabled = false
+        }
+        if isImagesSelected {
+            self.photosCheckbox.isHidden = false
+            self.photosCrossButton.isHidden = false
+            self.photosCrossButton.isEnabled = true
+        } else {
+            self.photosCheckbox.isHidden = true
+            self.photosCrossButton.isHidden = true
+            self.photosCrossButton.isEnabled = false
+        }
+        print("isReview in createPage: \(isReview)")
+    }
+
+    func setupOtherButtons() {
+        if isReview {
+            saveButton.isHidden = true
+        } else {
+            saveButton.isHidden = false
+        }
+
+        if vibeModel.type == 1 {
+            continueButton.isHidden = true
+            continueWithReviewButton.isHidden = false
+        } else {
+            continueButton.isHidden = false
+            continueWithReviewButton.isHidden = true
+        }
     }
 
     func setVibeModelFromDraftIfPresent() {
@@ -111,13 +166,22 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
                     self.photosSelected = self.vibeModel.images
                     self.performTickAnimation(checkbox: self.letterCheckbox, isSelected: self.isLetterSelected)
                     self.performTickAnimation(checkbox: self.photosCheckbox, isSelected: self.isImagesSelected)
+                    self.setupOtherButtons()
                 }
             }
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.performTickAnimation(checkbox: self.letterCheckbox, isSelected: self.isLetterSelected)
+        self.performTickAnimation(checkbox: self.photosCheckbox, isSelected: self.isImagesSelected)
+    }
+    
     override func viewDidLayoutSubviews() {
         continueButton.layer.cornerRadius = continueButton.frame.height / 2
+        continueWithReviewButton.layer.cornerRadius = continueWithReviewButton.frame.height / 2
         squaresContainer.clipsToBounds = true
         squaresContainer.roundCorners([.bottomLeft, .bottomRight], radius: squaresContainer.frame.height / 4)
     }
@@ -155,7 +219,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         self.present(vibeWelcomeVC, animated: true, completion: nil)
     }
 
-    func performSendAction() {
+    func performSendAction(isReview: Bool) {
         if !APPUtilites.isInternetConnectionAvailable() {
             APPUtilites.displayErrorSnackbar(message: "Please check your internet connection.")
             return
@@ -202,7 +266,7 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         
         // Start the image upload in the background (if any images present).
         MediaHelper.shared.uploadImagesAsync(images: vibeModel.images, folder: MediaHelperConstants.VIBE_IMAGES_FOLDER, counter: counter)
-        AppSyncHelper.shared.createVibe(vibe: vibeModel, success: { (success) in
+        AppSyncHelper.shared.createVibe(vibe: vibeModel, isReview: isReview, success: { (success) in
             DispatchQueue.main.async {
                 if success {
                     counter.value = 1
@@ -219,12 +283,26 @@ class CreateVibeViewController: UIViewController, VibeDetailsProtocol {
         }
     }
 
+    @IBAction func sendForReviewPressed(_ sender: UIButton) {
+        let previewAction = UIAlertAction(title: "Preview", style: .default) { [weak self] (action) in
+            self!.performPreviewAction()
+        }
+        let sendAction = UIAlertAction(title: "Send for review", style: .default) { [weak self] (action) in
+            self!.performSendAction(isReview: true)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let alertController = UIAlertController(title: "Send for review", message: "You can also Preview this Vibe", preferredStyle: .actionSheet)
+        alertController.addAction(previewAction)
+        alertController.addAction(sendAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
     @IBAction func sendPressed(_ sender: UIButton) {
         let previewAction = UIAlertAction(title: "Preview", style: .default) { [weak self] (action) in
             self!.performPreviewAction()
         }
         let sendAction = UIAlertAction(title: "Send", style: .default) { [weak self] (action) in
-            self!.performSendAction()
+            self!.performSendAction(isReview: false)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let alertController = UIAlertController(title: "Send", message: "You can also Preview this Vibe", preferredStyle: .actionSheet)
@@ -431,6 +509,7 @@ extension CreateVibeViewController: LetterInputProtocol, PhotosInputProtocol {
         } else if segue.identifier == DeviceConstants.GOTO_MY_VIBE_FROM_CREATE_VIBE {
             let destinationVC = segue.destination as! MyVibeViewController
             destinationVC.vibeModel = vibeModel
+            destinationVC.isReview = isReview
             destinationVC.isSourceCreateVibe = true
         } else if segue.identifier == DeviceConstants.GOTO_IMAGE_BACKDROP_FROM_CREATE_VIBE {
             let destinationVC = segue.destination as! ImageBackdropViewController

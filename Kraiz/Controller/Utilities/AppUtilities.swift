@@ -315,7 +315,7 @@ public class APPUtilites {
         if let userId = UserDefaults.standard.string(forKey: DeviceConstants.USER_ID) {
             var key = "Kraiz"
             for i in userId.utf8 {
-                key.append(String(i))
+                key.append(String(i + 1))
             }
             return key
         }

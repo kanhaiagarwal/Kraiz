@@ -48,11 +48,12 @@ class VibeHailInputViewController: UIViewController {
     }
 
     @IBAction func dismissPressed(_ sender: Any) {
-        if isDemoVibe {
-            dismissVCAction(sendPressed: false)
-        } else {
-            presentClosingAlert()
-        }
+//        if isDemoVibe {
+//            dismissVCAction(sendPressed: false)
+//        } else {
+//            presentClosingAlert()
+//        }
+        dismissVCAction(sendPressed: false)
     }
 
     @IBAction func hailPressed(_ sender: UIButton) {

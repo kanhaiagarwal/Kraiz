@@ -30,6 +30,8 @@ class VibeWelcomeViewController: UIViewController {
         backgroundImage.image = UIImage(named: VibeCategories.vibeWelcomebackground[vibeModel!.category])
 
         if !isPreview && !isDemoVibe {
+            print("vibeModel!.from!.getUsername(): \(vibeModel!.from!.getUsername())")
+            print("UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME): \(UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME))")
             if vibeModel!.type == 0 && vibeModel!.from!.getUsername()! != UserDefaults.standard.string(forKey: DeviceConstants.USER_NAME)! {
                 if !CacheHelper.shared.getSeenStatusOfVibe(vibeId: vibeModel!.id) {
                     AppSyncHelper.shared.updateSeenStatusOfVibe(vibeId: vibeModel!.id, seenStatus: true)

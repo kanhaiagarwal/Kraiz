@@ -51,11 +51,13 @@ query GetUserChannel {
         createdAt
         updatedTime
         vibeName
+        vibeComponentFormats
         isSender
         isAnonymous
         seen
         reach
         profileId
+        hailsSeenStatus
         hailIds
         hailProfileIds
       }
@@ -113,11 +115,13 @@ query GetUserVibes(
       createdAt
       updatedTime
       vibeName
+      vibeComponentFormats
       isSender
       isAnonymous
       seen
       reach
       profileId
+      hailsSeenStatus
       hailIds
       hailProfileIds
     }
@@ -152,6 +156,7 @@ query GetRandomPublicVibes($vibeTag: VibeTag!) {
       isAnonymous
       name
       author
+      seenCount
       tag
       vibeComponents {
         ids
@@ -186,6 +191,7 @@ query FetchVibeData($vibeId: ID!) {
     isAnonymous
     name
     author
+    seenCount
     tag
     vibeComponents {
       ids
@@ -198,7 +204,74 @@ query FetchVibeData($vibeId: ID!) {
     }
     ... on PrivateVibe {
       accessGroup
-      seenCount
+    }
+  }
+}
+query GetPendingPublicVibes {
+  getPendingPublicVibes {
+    nextToken
+    userVibes {
+      userId
+      vibeId
+      vibeTypeTagGsiPk
+      vibeTypeGsiPk
+      version
+      createdAt
+      updatedTime
+      vibeName
+      vibeComponentFormats
+      isSender
+      isAnonymous
+      seen
+      reach
+      profileId
+      hailsSeenStatus
+      hailIds
+      hailProfileIds
+    }
+    profiles {
+      id
+      mobileNumber
+      username
+      name
+      dob
+      gender
+      profilePicId
+      createdAt
+      token
+    }
+    hails {
+      id
+      vibeId
+      author
+      comment
+      createdAt
+    }
+  }
+}
+query FetchPendingPublicVibeData($pendingVibeId: ID!) {
+  fetchPendingPublicVibeData(pendingVibeId: $pendingVibeId) {
+    id
+    version
+    type
+    createdAt
+    updatedTime
+    isAnonymous
+    name
+    author
+    seenCount
+    tag
+    vibeComponents {
+      ids
+      seenIds
+      sequence
+      texts
+      format
+      template
+      globalSequence
+    }
+    ... on PrivateVibe {
+      accessGroup
     }
   }
 }

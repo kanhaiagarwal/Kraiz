@@ -58,3 +58,6 @@ mutation UpdateLastPublicVibeFetchTime($userId: ID) {
     lastPublicVibeFetchTime
   }
 }
+mutation UpdateHailsSeenStatus($vibeId: ID!) {
+  updateHailsSeenStatus(vibeId: $vibeId)
+}

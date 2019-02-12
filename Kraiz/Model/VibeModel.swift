@@ -21,12 +21,16 @@ public class VibeModel {
     var isSenderAnonymous: Bool
     var isPhotosPresent: Bool
     var isLetterPresent: Bool
+    var isReview: Bool
+    var isDownloadInProgress: Bool
     var letter: LetterEntity
     var images: [PhotoEntity]
     var seenIds: [String]
     var backgroundMusicIndex: Int
     var imageBackdrop: Int
     var version: Int
+    var createdAt: Int
+    var updatedAt: Int
     
     init() {
         id = ""
@@ -41,12 +45,16 @@ public class VibeModel {
         isSenderAnonymous = false
         isPhotosPresent = false
         isLetterPresent = false
+        isReview = false
         letter = LetterEntity()
         images = [PhotoEntity]()
         backgroundMusicIndex = 0
         imageBackdrop = 0
         version = 1
         seenIds = [String]()
+        createdAt = 0
+        updatedAt = 0
+        isDownloadInProgress = false
     }
     
     init(vibeName: String, from: ProfileModel, to: ProfileModel, isBackgroundMusicEnabled: Bool, isSenderAnonymous: Bool) {
@@ -62,12 +70,16 @@ public class VibeModel {
         self.isSenderAnonymous = isSenderAnonymous
         self.isLetterPresent = false
         self.isPhotosPresent = false
+        self.isReview = false
         self.letter = LetterEntity()
         self.images = [PhotoEntity]()
         self.backgroundMusicIndex = 0
         self.imageBackdrop = 0
         self.version = 1
         self.seenIds = [String]()
+        self.createdAt = 0
+        self.updatedAt = 0
+        self.isDownloadInProgress = false
     }
     
     public func getLetter() -> LetterEntity {
@@ -168,5 +180,37 @@ public class VibeModel {
 
     public func setSeenIds(seenIds: [String]) {
         self.seenIds = seenIds
+    }
+
+    public func getCreatedAt() -> Int {
+        return createdAt
+    }
+
+    public func setCreatedAt(createdAt: Int) {
+        self.createdAt = createdAt
+    }
+
+    public func getUpdatedAt() -> Int {
+        return updatedAt
+    }
+
+    public func setUpdatedAt(updatedAt: Int) {
+        self.updatedAt = updatedAt
+    }
+    
+    public func getIsRevew() -> Bool {
+        return isReview
+    }
+
+    public func setIsReview(isReview: Bool) {
+        self.isReview = isReview
+    }
+
+    public func getIsDownloadInProgress() -> Bool {
+        return isDownloadInProgress
+    }
+
+    public func setIsDownloadInProgress(isDownloadInProgress: Bool) {
+        self.isDownloadInProgress = isDownloadInProgress
     }
 }

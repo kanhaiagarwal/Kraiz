@@ -40,20 +40,20 @@ public class AWSConstants {
 //    static public let DATABASE_NAME = "appsync-local-db"
     
     /// Pre-Prod Credentials
-        static public let AWS_REGION : AWSRegionType = AWSRegionType.USWest2
-        static public let APP_SYNC_ENDPOINT : URL = URL(string: "https://nv3vjybfpjdtxktpf5jvibilhm.appsync-api.us-west-2.amazonaws.com/graphql")!
-        static public let COGNITO_APP_CLIENT_ID : String = "40be7h1tqcsit6ean9his86ish"
-        static public let COGNITO_APP_CLIENT_SECRET : String = "chs7118m9l1o7rj2m5h97bke9g865kmfb53r43stnj3u54qndui"
-        static public let COGNITO_USER_POOL_ID : String = "us-west-2_huauHJ7ED"
-        static public let COGNITO_USER_POOL_NAME : String = "Kraiz_Preprod"
-        static public let DATABASE_NAME = "appsync-local-db"
+//        static public let AWS_REGION : AWSRegionType = AWSRegionType.USWest2
+//        static public let APP_SYNC_ENDPOINT : URL = URL(string: "https://nv3vjybfpjdtxktpf5jvibilhm.appsync-api.us-west-2.amazonaws.com/graphql")!
+//        static public let COGNITO_APP_CLIENT_ID : String = "40be7h1tqcsit6ean9his86ish"
+//        static public let COGNITO_APP_CLIENT_SECRET : String = "chs7118m9l1o7rj2m5h97bke9g865kmfb53r43stnj3u54qndui"
+//        static public let COGNITO_USER_POOL_ID : String = "us-west-2_huauHJ7ED"
+//        static public let COGNITO_USER_POOL_NAME : String = "Kraiz_Preprod"
+//        static public let DATABASE_NAME = "appsync-local-db"
 
     /// Prod Credentials.
-//    static public let AWS_REGION : AWSRegionType = AWSRegionType.APSouth1
-//    static public let APP_SYNC_ENDPOINT : URL = URL(string: "https://jicldefr7bgcjldkmbswb4vtva.appsync-api.ap-south-1.amazonaws.com/graphql")!
-//    static public let COGNITO_APP_CLIENT_ID : String = "1o3k1idj4a7ng3hidaftiu9nqu"
-//    static public let COGNITO_APP_CLIENT_SECRET : String = "9ie6ouru3lj76ige67sbc5iq7opfs2rq6p5nk0fhpdjqvj051jk"
-//    static public let COGNITO_USER_POOL_ID : String = "ap-south-1_imB6UeE2T"
-//    static public let COGNITO_USER_POOL_NAME : String = "Kraiz_Production"
-//    static public let DATABASE_NAME = "appsync-local-db"
+    static public let AWS_REGION : AWSRegionType = AWSRegionType.APSouth1
+    static public let APP_SYNC_ENDPOINT : URL = URL(string: "https://jicldefr7bgcjldkmbswb4vtva.appsync-api.ap-south-1.amazonaws.com/graphql")!
+    static public let COGNITO_APP_CLIENT_ID : String = "1o3k1idj4a7ng3hidaftiu9nqu"
+    static public let COGNITO_APP_CLIENT_SECRET : String = "9ie6ouru3lj76ige67sbc5iq7opfs2rq6p5nk0fhpdjqvj051jk"
+    static public let COGNITO_USER_POOL_ID : String = "ap-south-1_imB6UeE2T"
+    static public let COGNITO_USER_POOL_NAME : String = "Kraiz_Production"
+    static public let DATABASE_NAME = "appsync-local-db"
 }

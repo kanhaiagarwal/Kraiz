@@ -63,6 +63,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
     
     var isUsernameInputNumbers : Bool = false
     var isAnonymousEnabled : Bool = false
+    var isReview = false
     
     let gradientLayer = CAGradientLayer()
     
@@ -87,7 +88,7 @@ class MyVibeViewController: UIViewController, UITextFieldDelegate, AVAudioPlayer
 
         let attr = NSDictionary(object: UIFont(name: "Helvetica Neue", size: 16.0)!, forKey: NSAttributedString.Key.font as NSCopying)
         vibeTypeSegment.setTitleTextAttributes(attr as? [NSAttributedString.Key : Any], for: .normal)
-        if !isPreferredUser {
+        if !isPreferredUser || isReview {
             vibeTypeSegment.isHidden = true
         } else {
             vibeTypeSegment.isHidden = false

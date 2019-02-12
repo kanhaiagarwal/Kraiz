@@ -1,17 +1,17 @@
 projects:
-  Kraiz App:
+  Kraiz_Preprod:
     schemaPath: graphql/schema.json
     includes:
-      - Kraiz/GraphQLOperations/*.graphql
+      - Kraiz/**/*.graphql
     excludes:
       - ./amplify/**
     extensions:
       amplify:
-        graphQLApiId: qh6wpofl5zb3nkp3mi64eqicoa
+        graphQLApiId: tugm7vxnejcrbcil3afkhhxpdi
         codeGenTarget: swift
         generatedFileName: AppSyncObjects.swift
         docsFilePath: graphql
         region: us-west-2
       endpoints:
         prod: >-
-          https://hmi5ytmqybc5zjyg7qjvp7mxxq.appsync-api.us-west-2.amazonaws.com/graphql
+          https://nv3vjybfpjdtxktpf5jvibilhm.appsync-api.us-west-2.amazonaws.com/graphql
