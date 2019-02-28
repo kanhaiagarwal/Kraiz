@@ -22,7 +22,6 @@
 		573216152209F7E20081698F /* Memories.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5732160C2209F7E10081698F /* Memories.mp3 */; };
 		573216162209F7E20081698F /* Soothing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5732160D2209F7E10081698F /* Soothing.mp3 */; };
 		573216172209F7E20081698F /* Adventure.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5732160E2209F7E10081698F /* Adventure.mp3 */; };
-		5732161B220B55070081698F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5732161A220B55060081698F /* GoogleService-Info.plist */; };
 		578061CA21E127CF008618A5 /* CaptionGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 578061C921E127CF008618A5 /* CaptionGameView.xib */; };
 		578061CC21E12C94008618A5 /* CaptionGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578061CB21E12C94008618A5 /* CaptionGameView.swift */; };
 		579854B621C5259F00406BF8 /* HailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854B521C5259F00406BF8 /* HailsViewController.swift */; };
@@ -35,6 +34,7 @@
 		579854C521C6704A00406BF8 /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854C421C6704A00406BF8 /* ProfileEntity.swift */; };
 		579854CB21C8B6FE00406BF8 /* HailsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CA21C8B6FE00406BF8 /* HailsEntity.swift */; };
 		579854CD21CAB28700406BF8 /* PublicVibeTimeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */; };
+		57A5F743222590BA00C30659 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57A5F742222590BA00C30659 /* GoogleService-Info.plist */; };
 		57A7912421D53AF40025F8FE /* VibeHailInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A7912321D53AF40025F8FE /* VibeHailInputViewController.swift */; };
 		57ABED81217CEFA9009F3FC7 /* ConnectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */; };
 		57ABED8F217CF6C0009F3FC7 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */; };
@@ -174,7 +174,6 @@
 		5732160C2209F7E10081698F /* Memories.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Memories.mp3; sourceTree = "<group>"; };
 		5732160D2209F7E10081698F /* Soothing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Soothing.mp3; sourceTree = "<group>"; };
 		5732160E2209F7E10081698F /* Adventure.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Adventure.mp3; sourceTree = "<group>"; };
-		5732161A220B55060081698F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		578061C921E127CF008618A5 /* CaptionGameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptionGameView.xib; sourceTree = "<group>"; };
 		578061CB21E12C94008618A5 /* CaptionGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionGameView.swift; sourceTree = "<group>"; };
 		579854B521C5259F00406BF8 /* HailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +187,7 @@
 		579854CA21C8B6FE00406BF8 /* HailsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HailsEntity.swift; sourceTree = "<group>"; };
 		579854CC21CAB28700406BF8 /* PublicVibeTimeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVibeTimeEntity.swift; sourceTree = "<group>"; };
 		579EF3FD21ED12F400C360CC /* Kraiz.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kraiz.entitlements; sourceTree = "<group>"; };
+		57A5F742222590BA00C30659 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		57A7912321D53AF40025F8FE /* VibeHailInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeHailInputViewController.swift; sourceTree = "<group>"; };
 		57ABED80217CEFA9009F3FC7 /* ConnectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionModel.swift; sourceTree = "<group>"; };
 		57ABED8E217CF6C0009F3FC7 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
@@ -502,9 +502,9 @@
 				B51DF233211F15D4009896CC /* View */,
 				B51DF203211F13B6009896CC /* AppIcon.png */,
 				B51DF1EE211F1248009896CC /* AppDelegate.swift */,
+				57A5F742222590BA00C30659 /* GoogleService-Info.plist */,
 				B51DF1F2211F1248009896CC /* Main.storyboard */,
 				B51DF1FA211F1248009896CC /* LaunchScreen.storyboard */,
-				5732161A220B55060081698F /* GoogleService-Info.plist */,
 				B51DF1FD211F1248009896CC /* Info.plist */,
 				B51DF1F5211F1248009896CC /* Kraiz.xcdatamodeld */,
 				B56EFE98215AB05D008059ED /* Images.xcassets */,
@@ -790,7 +790,7 @@
 				573216102209F7E20081698F /* Cinematic.mp3 in Resources */,
 				B5BC1CF921615B61008CE09F /* ChatsTableViewCell.xib in Resources */,
 				57E6909121DD444A003F0CFC /* VibeImageGameCaptionsTableViewCell.xib in Resources */,
-				5732161B220B55070081698F /* GoogleService-Info.plist in Resources */,
+				57A5F743222590BA00C30659 /* GoogleService-Info.plist in Resources */,
 				579854BE21C611C200406BF8 /* MyPublicVibeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1142,14 +1142,14 @@
 				CODE_SIGN_ENTITLEMENTS = Kraiz/Kraiz.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = GNET3L3CRK;
+				DEVELOPMENT_TEAM = 2F2WMA3V78;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Kraiz/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kraiz.Kraiz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kraiz.Kraiz.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENABLE_BATCH_MODE = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Kraiz/Kraiz-Bridging-Header.h";
@@ -1167,7 +1167,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Kraiz/Kraiz.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GNET3L3CRK;
+				DEVELOPMENT_TEAM = 2F2WMA3V78;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1175,7 +1175,7 @@
 				);
 				INFOPLIST_FILE = Kraiz/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kraiz.Kraiz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kraiz.Kraiz.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENABLE_BATCH_MODE = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Kraiz/Kraiz-Bridging-Header.h";
